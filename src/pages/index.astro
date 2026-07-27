@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Team Tasks Manager — team coordination, inside Discord">
+  <section class="hero wrap">
+    <p class="eyebrow">Team Tasks Manager</p>
+    <h1>Coordinate your team where it already talks.</h1>
+    <p class="lede">Stop juggling Discord and a pile of external task tools. <strong>Team Tasks Manager</strong> brings shared checklists, reminders and roles right into your server &mdash; so attention stays in one place.</p>
+    <div class="cta-row">
+      <a class="btn" href="#">Add to Discord</a>
+      <a class="btn-ghost" href="/docs/">Read the docs &rarr;</a>
+    </div>
+  </section>
+
+  <section class="block wrap">
+    <p class="section-eyebrow">The problem</p>
+    <h2>Coordination shouldn't cost you your focus.</h2>
+    <div class="split-cols">
+      <div class="panel pain">
+        <h3>Without TTM</h3>
+        <ul>
+          <li><span class="tick">&mdash;</span><span>Tasks live in a <b>separate tool</b> (boards, spreadsheets, another app) while the team talks on Discord.</span></li>
+          <li><span class="tick">&mdash;</span><span>Every update means <b>switching context</b>, copying links, re-explaining status.</span></li>
+          <li><span class="tick">&mdash;</span><span>Deadlines slip because <b>nobody owns the reminder</b>.</span></li>
+          <li><span class="tick">&mdash;</span><span>Attention is <b>scattered</b> across windows and no one has the full picture.</span></li>
+        </ul>
+      </div>
+      <div class="panel gain">
+        <h3>With TTM</h3>
+        <ul>
+          <li><span class="tick">+</span><span>Shared, trackable checklists <b>inside the channel</b> where work is discussed.</span></li>
+          <li><span class="tick">+</span><span>Assign tasks to <b>people or roles</b>, and tag who to notify on completion.</span></li>
+          <li><span class="tick">+</span><span>Automatic <b>reminders</b> carry the burden of remembering for you.</span></li>
+          <li><span class="tick">+</span><span>One source of truth &mdash; the whole team sees the same board, in real time.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block wrap">
+    <p class="section-eyebrow">What you get</p>
+    <h2>Everything runs on Discord's own interface.</h2>
+    <p class="big">Almost no slash commands to memorize: every feature is a button with a familiar icon, designed to take the fewest clicks possible.</p>
+    <div class="grid3">
+      <div class="card">
+        <img class="ic" src="/icons/task_list.png" alt="" />
+        <h3>Shared lists</h3>
+        <p>Create a checklist from plain text. Tasks, subtasks and task groups are recognized automatically from line breaks.</p>
+      </div>
+      <div class="card">
+        <img class="ic" src="/icons/owner.png" alt="" />
+        <h3>Owners &amp; tags</h3>
+        <p>Give each task an owner and tag the people or roles to notify &mdash; right on the task, not in a side conversation.</p>
+      </div>
+      <div class="card">
+        <img class="ic" src="/icons/alertW.png" alt="" />
+        <h3>Reminders</h3>
+        <p>Attach a reminder with start date, interval, repetitions and time zone. TTM remembers so you don't have to.</p>
+      </div>
+    </div>
+  </section>
+  <section class="block wrap">
+    <p class="section-eyebrow">Try it</p>
+    <h2>The list panel, explained by clicking it.</h2>
+    <p class="big">This is the button panel you get under every list. Click a button to see what it does &mdash; the same layout you will find on Discord.</p>
+    <div class="board-teaser">
+      <div class="board-lab">Row 1 &mdash; acts on the whole list</div>
+      <div class="board-row">
+        <button class="dbtn" data-group="row1" data-info="<b>Clone list.</b> Clone the list into other channels of the server. A dropdown lets you pick the destination channel, and you can choose whether to keep task selections and reminders."><img src="/icons/clone.png" alt="" />Clone</button>
+        <button class="dbtn" data-group="row1" data-info="<b>Download.</b> Download a text file with the list, ready to copy and paste into other lists &mdash; even on other servers."><img src="/icons/download.png" alt="" />Download</button>
+        <button class="dbtn" data-group="row1" data-info="<b>Bulk update.</b> Edit the title and the whole list at once &mdash; the fastest way to change two or more tasks together."><img src="/icons/edit.png" alt="" />Bulk update</button>
+        <button class="dbtn" data-group="row1" data-info="<b>Clean list.</b> Remove all selected tasks from the list and recalculate the remaining positions automatically."><img src="/icons/clean.png" alt="" />Clean</button>
+        <button class="dbtn" data-group="row1" data-info="<b>Guide.</b> Opens a quick in-Discord guide describing every button, with a link to this documentation."><img src="/icons/doc.png" alt="" />Guide</button>
+      </div>
+      <div class="board-lab">Row 2 &mdash; acts on a single task &middot; 3 states: grey (off) &middot; blue (edit) &middot; red (delete)</div>
+      <div class="board-row">
+        <button class="dbtn primary" data-group="row2" data-info="<b>Content.</b> In edit mode it changes the task text. In delete mode it deletes the task."><img src="/icons/task.png" alt="" />Content</button>
+        <button class="dbtn primary" data-group="row2" data-info="<b>Owner.</b> In edit mode it sets or changes the task owner. In delete mode it removes the owner."><img src="/icons/owner.png" alt="" />Owner</button>
+        <button class="dbtn primary" data-group="row2" data-info="<b>Tag.</b> In edit mode it adds a user or role to notify at the end of the task. In delete mode it removes every tag on the task."><img src="/icons/tag.png" alt="" />Tag</button>
+        <button class="dbtn primary" data-group="row2" data-info="<b>Reminder.</b> In edit mode it adds or edits a reminder (start date, interval, repetitions, time zone). In delete mode it removes it."><img src="/icons/alertW.png" alt="" />Reminder</button>
+        <button class="dbtn primary" data-group="row2" data-info="<b>Webhook.</b> Associate a webhook to the task, so completing or reopening it fires the HTTP call you configured with /config webhook."><img src="/icons/api.png" alt="" />Webhook</button>
+      </div>
+      <div class="board-info" id="board-info">Click any button above. <b>Row 1</b> acts on the whole list; <b>Row 2</b> acts on the single task you select.</div>
+    </div>
+  </section>
+
+  <section class="block wrap">
+    <p class="section-eyebrow">Go deeper</p>
+    <h2>Ready to set it up?</h2>
+    <p class="big">The documentation walks you through inviting the bot, creating your first list, mastering the panel, configuring the app and connecting webhooks.</p>
+    <div class="cta-row" style="margin-top:1.5rem">
+      <a class="btn" href="/docs/getting-started/">Get started &rarr;</a>
+      <a class="btn-ghost" href="/docs/">Browse all docs</a>
+    </div>
+  </section>
+
+  <script>
+    const groups = {
+      row1: "Row 1 &mdash; acts on the whole list. ",
+      row2: "Row 2 &mdash; acts on a single task (grey = off, blue = edit, red = delete). ",
+    };
+    const info = document.getElementById("board-info");
+    document.querySelectorAll(".dbtn").forEach((b) => {
+      b.addEventListener("click", () => {
+        const g = groups[b.dataset.group] || "";
+        info.innerHTML = g + b.dataset.info;
+      });
+    });
+  </script>
+</Base>

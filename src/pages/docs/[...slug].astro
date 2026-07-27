@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const all = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
+const groupsOrder = ['Start', 'Using the bot', 'More'];
+const grouped = groupsOrder
+  .map((g) => ({ name: g, items: all.filter((d) => d.data.group === g) }))
+  .filter((g) => g.items.length);
+const current = entry.slug;
+---
+<Base title={entry.data.title + " — Team Tasks Manager docs"} description={entry.data.description}>
+  <div class="docs-shell">
+    <aside class="docs-side">
+      {grouped.map((g) => (
+        <div>
+          <div class="grp">{g.name}</div>
+          {g.items.map((it) => (
+            <a href={`/docs/${it.slug}/`} class={it.slug === current ? 'active' : ''}>{it.data.title}</a>
+          ))}
+        </div>
+      ))}
+    </aside>
+    <article class="prose">
+      <h1>{entry.data.title}</h1>
+      {entry.data.description && <p class="subtitle">{entry.data.description}</p>}
+      <Content />
+    </article>
+  </div>
+</Base>
