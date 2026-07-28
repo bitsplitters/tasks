@@ -141,3 +141,5 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 /* Prevent horizontal overflow / rubber-band scroll on mobile */
 html { overflow-x: hidden; }
 .board-info { overflow-wrap: anywhere; }
+/* Board buttons: fixed width (~40% wider than the old square), icon centered */
+.board-row .dbtn { flex: 0 0 auto !important; width: 56px; padding: .55em 0 !important; justify-content: center; }
