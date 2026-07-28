@@ -19,6 +19,15 @@ const current = entry.slug;
 ---
 <Base title={entry.data.title + " — Team Tasks Manager docs"} description={entry.data.description}>
   <div class="docs-shell">
+    <select class="docs-select" onchange="if(this.value)location.href=this.value" aria-label="Jump to a documentation page">
+      {grouped.map((g) => (
+        <optgroup label={g.name}>
+          {g.items.map((it) => (
+            <option value={`/docs/${it.slug}/`} selected={it.slug === current}>{it.data.title}</option>
+          ))}
+        </optgroup>
+      ))}
+    </select>
     <aside class="docs-side">
       {grouped.map((g) => (
         <div>
