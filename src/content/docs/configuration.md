@@ -2,7 +2,7 @@
 title: Configuration
 description: Tailor notifications, history, time zone and permissions with /config app.
 group: Using the bot
-order: 5
+order: 6
 ---
 
 Run the command:
@@ -38,7 +38,7 @@ After you use **owner**, **tag** or **reminder**, this decides whether the butto
 
 ## Time zone <img class="inline-ic" src="/icons/timeZone.png" alt="" />
 
-Sets the time zone your team works in (reminders can still use their own). Click the button, then paste an official zone name — look it up on the **[Time Zone Picker](https://timezones.bitsplitters.app)**.
+Sets the time zone your team works in (reminders can still use their own). Click the button, then paste an official zone name — look it up on the **[time zone map](https://timezones.bitsplitters.app)**.
 
 ## Sync permissions <img class="inline-ic" src="/icons/command.png" alt="" />
 

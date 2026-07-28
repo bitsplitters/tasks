@@ -2,7 +2,7 @@
 title: Reminders
 description: Attach a schedule to a task so TTM pings your team on time, every time.
 group: Using the bot
-order: 4
+order: 5
 ---
 
 A reminder turns a task into something that reminds *you*, instead of the other way round. You set it once; TTM handles the pings.
@@ -27,7 +27,7 @@ On the second button row, click **Reminder** <img class="inline-ic" src="/icons/
 
 ## Finding your time zone
 
-TTM needs an official time-zone name like `Europe/Rome`. Look yours up on the **[Time Zone Picker](https://timezones.bitsplitters.app)**: select your area on the map, copy the value, and paste it into the field.
+TTM needs an official time-zone name like `Europe/Rome`. Look yours up on the **[time zone map](https://timezones.bitsplitters.app)**: select your area on the map, copy the value, and paste it into the field.
 
 ## Editing or removing a reminder
 
@@ -43,4 +43,4 @@ Completing a task also stops its reminder — no need to clean up afterwards.
 | *Invalid reminder* | The start must be at least 5 minutes in the future. |
 | *Incorrect interval* | Use the `d` / `h` / `m` pattern, e.g. `1d`, `24h`, `1d12h`. |
 | *Incorrect repetitions* | Use a whole number between 1 and the maximum. |
-| *Incorrect time zone* | The name doesn't match an official zone — copy it from the Time Zone Picker. |
+| *Incorrect time zone* | The name doesn't match an official zone — copy it from the time zone map. |

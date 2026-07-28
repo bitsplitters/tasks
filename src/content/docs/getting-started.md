@@ -62,7 +62,7 @@ TTM reads that text and builds the list for you. The rules are simple:
 
 - **A new line that starts with `-` is a new task.**
 - **Spaces after the dash make it a subtask.** No space → a task; one or more spaces → a subtask of the task above. A task with subtasks becomes a **task group**.
-- The list can hold up to **4000 characters** and a maximum number of tasks defined by the app.
+- The list can hold up to **4000 characters** and up to **50 tasks in total** (subtasks included).
 
 Once created, the list appears with a set of check controls and **two rows of buttons**. That panel is where the real power lives — head to [The task list panel](/docs/the-task-list/) to master it.
 
