@@ -18,17 +18,10 @@ const grouped = groupsOrder
 const current = entry.slug;
 ---
 <Base title={entry.data.title + " — Team Tasks Manager docs"} description={entry.data.description}>
+  <button class="docs-menu-toggle" id="docs-menu-toggle" aria-label="Open documentation menu">&#9776; Documentation</button>
   <div class="docs-shell">
-    <select class="docs-select" onchange="if(this.value)location.href=this.value" aria-label="Jump to a documentation page">
-      {grouped.map((g) => (
-        <optgroup label={g.name}>
-          {g.items.map((it) => (
-            <option value={`/docs/${it.slug}/`} selected={it.slug === current}>{it.data.title}</option>
-          ))}
-        </optgroup>
-      ))}
-    </select>
-    <aside class="docs-side">
+    <aside class="docs-side" id="docs-side">
+      <button class="docs-side-close" id="docs-side-close" aria-label="Close menu">&times;</button>
       {grouped.map((g) => (
         <div>
           <div class="grp">{g.name}</div>
@@ -44,4 +37,12 @@ const current = entry.slug;
       <Content />
     </article>
   </div>
+  <script>
+    const t = document.getElementById("docs-menu-toggle");
+    const s = document.getElementById("docs-side");
+    const c = document.getElementById("docs-side-close");
+    if (t && s) t.addEventListener("click", () => s.classList.add("open"));
+    if (c && s) c.addEventListener("click", () => s.classList.remove("open"));
+    if (s) s.addEventListener("click", (e) => { if (e.target === s) s.classList.remove("open"); });
+  </script>
 </Base>
