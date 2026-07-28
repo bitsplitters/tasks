@@ -2,7 +2,7 @@
 title: Release notes
 description: What's new in Team Tasks Manager, newest first.
 group: More
-order: 9
+order: 10
 ---
 
 Everything that changes in TTM lands here, newest first. Follow along to see the bot evolve.

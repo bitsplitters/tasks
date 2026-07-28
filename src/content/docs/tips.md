@@ -2,7 +2,7 @@
 title: Tips & tricks
 description: Small habits that make TTM faster and quieter.
 group: More
-order: 8
+order: 9
 ---
 
 ## Reuse a list anywhere
