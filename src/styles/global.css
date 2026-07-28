@@ -131,3 +131,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .board-row .dbtn.is-delete { background: #ED4245 !important; }
 .board-info br + * , .board-info strong { }
 .board-info strong { color: var(--accent); }
+/* "What you get": icon and title on the same line */
+.card .card-head { display: flex; align-items: center; gap: .7rem; margin-bottom: .6rem; }
+.card .card-head .ic { margin-bottom: 0; flex: none; }
+.card .card-head h3 { margin: 0; }
+/* Board buttons: wider rectangles that fill the row (and stretch on mobile) */
+.board-row { flex-wrap: wrap; }
+.board-row .dbtn { flex: 1 1 72px; padding: .85em .6em !important; }
+/* Prevent horizontal overflow / rubber-band scroll on mobile */
+html { overflow-x: hidden; }
+.board-info { overflow-wrap: anywhere; }

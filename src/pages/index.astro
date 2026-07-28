@@ -43,18 +43,15 @@ import Base from '../layouts/Base.astro';
     <p class="big">Almost no slash commands to memorize: every feature is a button with a familiar icon, designed to take the fewest clicks possible.</p>
     <div class="grid3">
       <div class="card">
-        <img class="ic" src="/icons/task_list.png" alt="" />
-        <h3>Shared lists</h3>
+        <div class="card-head"><img class="ic" src="/icons/task_list.png" alt="" /><h3>Shared lists</h3></div>
         <p>Create a checklist from plain text. Tasks, subtasks and task groups are recognized automatically from line breaks.</p>
       </div>
       <div class="card">
-        <img class="ic" src="/icons/owner.png" alt="" />
-        <h3>Owners &amp; tags</h3>
+        <div class="card-head"><img class="ic" src="/icons/owner.png" alt="" /><h3>Owners &amp; tags</h3></div>
         <p>Give each task an owner and tag the people or roles to notify &mdash; right on the task, not in a side conversation.</p>
       </div>
       <div class="card">
-        <img class="ic" src="/icons/alertW.png" alt="" />
-        <h3>Reminders</h3>
+        <div class="card-head"><img class="ic" src="/icons/alertW.png" alt="" /><h3>Reminders</h3></div>
         <p>Attach a reminder with start date, interval, repetitions and time zone. TTM remembers so you don't have to.</p>
       </div>
     </div>
@@ -96,13 +93,11 @@ import Base from '../layouts/Base.astro';
 
   <script>
     const info = document.getElementById("board-info");
-    // Row 1: a single click reveals the name and description
     document.querySelectorAll(".board-row .dbtn:not(.task-btn)").forEach((b) => {
       b.addEventListener("click", () => {
         info.innerHTML = "<strong>" + b.dataset.name + "</strong><br>" + b.dataset.desc;
       });
     });
-    // Row 2: each button cycles grey -> edit (blue) -> delete (red)
     document.querySelectorAll(".task-btn").forEach((b) => {
       let state = 0;
       b.addEventListener("click", () => {
