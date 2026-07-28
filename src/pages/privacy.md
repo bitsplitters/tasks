@@ -9,7 +9,7 @@ This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") co
 
 ## Who we are
 
-The data controller is **bitsplitters** — [legal entity name], [VAT/registration number], [registered address]. Contact: **info@bitsplitters.app**.
+The data controller is **bitsplitters** — Alessandro Vurro, Italian VAT no. 18349651002, [registered address]. Contact: **info@bitsplitters.app**.
 
 ## What we collect
 
@@ -34,7 +34,7 @@ We process this data solely to **provide the service**: rendering and updating y
 
 ## Sharing
 
-We do **not** sell your data. Data may be processed by infrastructure providers that host the bot and its database ([hosting provider]), acting as processors on our behalf. When you use webhooks, TTM sends the data you configured to the **third-party endpoints you choose** — those services are outside our control.
+We do **not** sell your data. Data is processed by our infrastructure provider **OVHcloud**, which hosts the bot and its database in **France (EU)**, acting as a processor on our behalf. The bot also runs on the **Discord** platform, so your use is subject to [Discord's Privacy Policy](https://discord.com/privacy). When you use webhooks, TTM sends the data you configured to the **third-party endpoints you choose** — those services are outside our control.
 
 ## Retention
 

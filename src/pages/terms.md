@@ -56,4 +56,4 @@ These Terms are governed by the laws of Italy, without regard to conflict-of-law
 
 Questions about these Terms: **info@bitsplitters.app**.
 
-Provider: bitsplitters — [legal entity name], [VAT/registration number], [registered address].
+Provider: bitsplitters — Alessandro Vurro, Italian VAT no. 18349651002, [registered address].

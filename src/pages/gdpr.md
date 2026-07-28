@@ -9,7 +9,7 @@ Because **bitsplitters** operates in the European Union, the use of **Team Tasks
 
 ## Data controller
 
-**bitsplitters** — [legal entity name], [VAT/registration number], [registered address]. Contact for any data-protection matter: **info@bitsplitters.app**.
+**bitsplitters** — Alessandro Vurro, Italian VAT no. 18349651002, [registered address]. Contact for any data-protection matter: **info@bitsplitters.app**.
 
 ## Legal basis for processing (Art. 6 GDPR)
 
@@ -42,7 +42,7 @@ We keep data only as long as needed to provide the service, as described in the 
 
 ## International transfers
 
-Data is hosted by our infrastructure provider ([hosting provider], [region]). Where any transfer outside the European Economic Area occurs, it is protected by appropriate safeguards such as the European Commission's Standard Contractual Clauses.
+Data is hosted by **OVHcloud** in **France (Gravelines — region `eu-west-gra`)**, within the European Economic Area (EEA). We do **not** transfer your personal data outside the EEA.
 
 ## Complaints
 
