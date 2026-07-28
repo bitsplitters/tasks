@@ -154,5 +154,5 @@ html { overflow-x: hidden; }
 .board-row .dbtn:not(.task-btn) { background: #5865F2 !important; }
 /* Desktop only: ~20% wider board buttons (56px -> 67px) */
 @media (min-width: 641px) {
-  .board-row .dbtn { flex-basis: 67px !important; }
+  .board-row .dbtn { flex-basis: 70px !important; }
 }
