@@ -146,3 +146,7 @@ html { overflow-x: hidden; }
 /* Keep each row on a single line: 56px ideal, shrink to fit narrow screens */
 .board-row { flex-wrap: nowrap !important; }
 .board-row .dbtn { flex: 0 1 56px !important; width: auto !important; min-width: 0; }
+/* On mobile, center the button rows; left-aligned on larger screens */
+@media (max-width: 640px) {
+  .board-row { justify-content: center; }
+}
