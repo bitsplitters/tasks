@@ -150,3 +150,9 @@ html { overflow-x: hidden; }
 @media (max-width: 640px) {
   .board-row { justify-content: center; }
 }
+/* Row 1 buttons always blue (PRIMARY), like the bot */
+.board-row .dbtn:not(.task-btn) { background: #5865F2 !important; }
+/* Desktop only: ~20% wider board buttons (56px -> 67px) */
+@media (min-width: 641px) {
+  .board-row .dbtn { flex-basis: 67px !important; }
+}
