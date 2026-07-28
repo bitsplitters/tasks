@@ -98,10 +98,14 @@ import Base from '../layouts/Base.astro';
         info.innerHTML = "<strong>" + b.dataset.name + "</strong><br>" + b.dataset.desc;
       });
     });
-    document.querySelectorAll(".task-btn").forEach((b) => {
-      let state = 0;
+    const taskBtns = document.querySelectorAll(".task-btn");
+    taskBtns.forEach((b) => {
+      b.dataset.state = "0";
       b.addEventListener("click", () => {
-        state = (state + 1) % 3;
+        // Only one task button can be active at a time: reset the others to grey
+        taskBtns.forEach((o) => { if (o !== b) { o.dataset.state = "0"; o.classList.remove("is-edit", "is-delete"); } });
+        const state = (parseInt(b.dataset.state, 10) + 1) % 3;
+        b.dataset.state = String(state);
         b.classList.toggle("is-edit", state === 1);
         b.classList.toggle("is-delete", state === 2);
         const name = b.dataset.name;
