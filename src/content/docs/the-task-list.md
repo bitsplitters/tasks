@@ -16,6 +16,8 @@ Above the buttons sits the **check / uncheck** selector. Use it to:
 
 Selecting a group toggles its subtasks in cascade; completing all subtasks marks the group automatically.
 
+<div class="callout"><div class="callout-t">Keep the task buttons grey</div>To check or uncheck tasks, <strong>every button in the second row must be grey</strong> (off). If any task button is active (blue or red), clicking a task applies that action instead of toggling it.</div>
+
 ## Row 1 — acts on the whole list
 
 These buttons never touch a single task; they operate on the **entire list**.

@@ -36,16 +36,16 @@ When enabled, TTM adds plain text alongside embeds so your **mobile push notific
 
 After you use **owner**, **tag** or **reminder**, this decides whether the button **resets** to its neutral state or **keeps** the active mode — handy when you are applying the same action to several tasks in a row.
 
-## Time zone <img class="inline-ic" src="/icons/timeZone.png" alt="" />
+## Time zone
 
 Sets the time zone your team works in (reminders can still use their own). Click the button, then paste an official zone name — look it up on the **[time zone map](https://timezones.bitsplitters.app)**.
 
-## Sync permissions <img class="inline-ic" src="/icons/command.png" alt="" />
+## Sync permissions
 
 By default, Discord's integration permissions only hide *commands* — the generated buttons and lists stay usable by everyone. Click **Load permissions** to extend your permission rules to those components too. After syncing, **users who aren't allowed see the list as read-only**.
 
 Define the rules in *Server Settings → Integrations → Team Tasks Manager*, then sync.
 
-## Webhooks <img class="inline-ic" src="/icons/api.png" alt="" />
+## Webhooks
 
 Opens the webhook overview, where you can review configured webhooks and get the exact command to create one. See the full [Webhooks](/docs/webhooks/) guide.

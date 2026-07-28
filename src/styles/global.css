@@ -122,3 +122,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .prose .c-red  { color: #ED4245; font-weight: 700; }
 /* Center cells that contain only a button icon (the "Button" column) */
 .prose td:has(> img.inline-ic:only-child) { text-align: center; }
+/* Icons must show in full: no rounded corners, no crop */
+.prose .inline-ic { border-radius: 0 !important; object-fit: contain; }
+/* Interactive button board (home): icon-only buttons + Discord state colors */
+.board-row .dbtn { background: #4E5058 !important; border: none !important; gap: 0 !important; padding: .55em !important; }
+.board-row .dbtn img { width: 24px !important; height: 24px !important; }
+.board-row .dbtn.is-edit { background: #5865F2 !important; }
+.board-row .dbtn.is-delete { background: #ED4245 !important; }
+.board-info br + * , .board-info strong { }

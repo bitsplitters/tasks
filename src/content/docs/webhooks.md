@@ -15,11 +15,11 @@ Webhooks let a task talk to the outside world. Associate one with a task and, wh
 
 The command takes a few options:
 
-| Option | Values | Notes |
-| :--- | :--- | :--- |
-| **action** | view · create · modify · delete | What you want to do. Required. |
-| **webhook** | a name | The webhook to act on. Required. |
-| **trigger** | completion · reopen | *Optional.* Omit it to act on **both** directions at once. |
+| Option | Required? | Values | Notes |
+| :--- | :--- | :--- | :--- |
+| **action** | Required | view · create · modify · delete | What you want to do. |
+| **webhook** | Required | a name | The webhook to act on. |
+| **trigger** | Optional | completion · reopen | Omit it to act on **both** directions at once. |
 
 Choosing **create** (or **modify**) opens a form with four fields:
 
