@@ -20,13 +20,13 @@ Selecting a group toggles its subtasks in cascade; completing all subtasks marks
 
 These buttons never touch a single task; they operate on the **entire list**.
 
-| Button | Does |
-| :---: | :--- |
-| **Clone list**<br><img class="inline-ic" src="/icons/clone.png" alt="" /> | Clone the list into another channel. Opens a channel picker and a small set of options (see below). |
-| **Download**<br><img class="inline-ic" src="/icons/download.png" alt="" /> | Download a text file of the list, ready to copy-paste into other lists — even on other servers. |
-| **Bulk update**<br><img class="inline-ic" src="/icons/edit.png" alt="" /> | Edit the title and the full list in one form — the fastest way to change two or more tasks at once. While you edit, the list is temporarily locked. |
-| **Clean list**<br><img class="inline-ic" src="/icons/clean.png" alt="" /> | Remove all currently selected tasks and recalculate the remaining positions. |
-| **Guide**<br><img class="inline-ic" src="/icons/doc.png" alt="" /> | Open a quick in-Discord guide, with a link back to this documentation. |
+| Button | Function | What it does |
+| :---: | :--- | :--- |
+| <img class="inline-ic" src="/icons/clone.png" alt="" /> | **Clone list** | Clone the list into another channel. Opens a channel picker and a small set of options (see below). |
+| <img class="inline-ic" src="/icons/download.png" alt="" /> | **Download** | Download a text file of the list, ready to copy-paste into other lists — even on other servers. |
+| <img class="inline-ic" src="/icons/edit.png" alt="" /> | **Bulk update** | Edit the title and the full list in one form — the fastest way to change two or more tasks at once. While you edit, the list is temporarily locked. |
+| <img class="inline-ic" src="/icons/clean.png" alt="" /> | **Clean list** | Remove all currently selected tasks and recalculate the remaining positions. |
+| <img class="inline-ic" src="/icons/doc.png" alt="" /> | **Guide** | Open a quick in-Discord guide, with a link back to this documentation. |
 
 ### Clone options
 
@@ -41,19 +41,19 @@ When you start **Clone list**, the first row is replaced by the cloning controls
 
 Each button in the second row is a **three-state switch**. Click it to cycle through the same colors Discord uses for its buttons:
 
-- <span style="color:#949BA4"><strong>Grey</strong></span> — off / inactive.
-- <span style="color:#5865F2"><strong>Blue</strong></span> — active in **edit** mode.
-- <span style="color:#ED4245"><strong>Red</strong></span> — active in **delete** mode.
+- <span class="c-grey">Grey</span> — off / inactive.
+- <span class="c-blue">Blue</span> — active in <span class="c-blue">edit</span> mode.
+- <span class="c-red">Red</span> — active in <span class="c-red">delete</span> mode.
 
 The workflow is always the same: **turn a button blue or red, then pick the task** from the check selector. TTM applies the action to that task.
 
-| Button | <span style="color:#5865F2"><strong>Blue</strong></span> (edit) | <span style="color:#ED4245"><strong>Red</strong></span> (delete) |
-| :---: | :--- | :--- |
-| **Content**<br><img class="inline-ic" src="/icons/task.png" alt="" /> | Change the task text (opens a form). | Delete the task. |
-| **Owner**<br><img class="inline-ic" src="/icons/owner.png" alt="" /> | Set or change the task owner (pick a user/role). | Remove the owner. |
-| **Tag**<br><img class="inline-ic" src="/icons/tag.png" alt="" /> | Add a user/role to notify at the end of the task text. | Remove every tag on the task. |
-| **Reminder**<br><img class="inline-ic" src="/icons/alertW.png" alt="" /> | Add or edit a reminder (start date, interval, repetitions, time zone). | Remove the reminder. |
-| **Webhook**<br><img class="inline-ic" src="/icons/api.png" alt="" /> | Associate a webhook, so completing/reopening the task fires an HTTP call. | — |
+| Button | Function | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
+| :---: | :--- | :--- | :--- |
+| <img class="inline-ic" src="/icons/task.png" alt="" /> | **Content** | Change the task text (opens a form). | Delete the task. |
+| <img class="inline-ic" src="/icons/owner.png" alt="" /> | **Owner** | Set or change the task owner (pick a user/role). | Remove the owner. |
+| <img class="inline-ic" src="/icons/tag.png" alt="" /> | **Tag** | Add a user/role to notify at the end of the task text. | Remove every tag on the task. |
+| <img class="inline-ic" src="/icons/alertW.png" alt="" /> | **Reminder** | Add or edit a reminder (start date, interval, repetitions, time zone). | Remove the reminder. |
+| <img class="inline-ic" src="/icons/api.png" alt="" /> | **Webhook** | Associate a webhook, so completing/reopening the task fires an HTTP call. | Remove the webhook association from the task. |
 
 <div class="callout"><div class="callout-t">Remember</div>You cannot delete the very last task in a list. To remove a list entirely, delete its message manually.</div>
 

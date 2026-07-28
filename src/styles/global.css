@@ -116,3 +116,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
   @keyframes rise { to { opacity: 1; transform: none; } }
 }
+/* Discord button-state colors (used in docs tables) */
+.prose .c-grey { color: #949BA4; font-weight: 700; }
+.prose .c-blue { color: #5865F2; font-weight: 700; }
+.prose .c-red  { color: #ED4245; font-weight: 700; }
