@@ -9,7 +9,7 @@ Because **bitsplitters** operates in the European Union, the use of **Team Tasks
 
 ## Data controller
 
-**bitsplitters** — Alessandro Vurro, Italian VAT no. 18349651002, [registered address]. Contact for any data-protection matter: **info@bitsplitters.app**.
+**bitsplitters** — Alessandro Vurro, Italian VAT no. 18349651002, certified email (PEC): alessandro.vurro@pec.it. Contact for any data-protection matter: **info@bitsplitters.app**.
 
 ## Legal basis for processing (Art. 6 GDPR)
 

@@ -9,7 +9,7 @@ This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") co
 
 ## Who we are
 
-The data controller is **bitsplitters** — Alessandro Vurro, Italian VAT no. 18349651002, [registered address]. Contact: **info@bitsplitters.app**.
+The data controller is **bitsplitters** — Alessandro Vurro, Italian VAT no. 18349651002, certified email (PEC): alessandro.vurro@pec.it. Contact: **info@bitsplitters.app**.
 
 ## What we collect
 
