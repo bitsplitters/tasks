@@ -120,3 +120,5 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .prose .c-grey { color: #949BA4; font-weight: 700; }
 .prose .c-blue { color: #5865F2; font-weight: 700; }
 .prose .c-red  { color: #ED4245; font-weight: 700; }
+/* Center cells that contain only a button icon (the "Button" column) */
+.prose td:has(> img.inline-ic:only-child) { text-align: center; }
