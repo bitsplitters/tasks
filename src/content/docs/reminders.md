@@ -19,9 +19,11 @@ On the second button row, click **Reminder** <img class="inline-ic" src="/icons/
 
 | Field | Meaning | Example |
 | :--- | :--- | :--- |
-| **Interval** | Time between reminders. Use days `d`, hours `h`, minutes `m` — no months. | `1d`, `24h`, `1d12h` |
-| **Repetitions** | How many times it fires (minimum 1, up to the app maximum). | `5` |
+| **Repetitions** | Extra repeats **after** the first reminder. `0` fires it **once only**; `N` adds `N` more (so `N + 1` in total), up to the app maximum. | `0`, `3` |
+| **Interval** | Time between repeats. **Optional** — only needed when repetitions are `1` or more. Use days `d`, hours `h`, minutes `m` (no months). | `1d`, `24h`, `1d12h` |
 | **Time zone** | The zone the schedule runs in. | `Europe/Rome` |
+
+Most reminders fire once: leave **Repetitions** at `0` and the **Interval** empty. The task then shows just the scheduled time — no repeat badge. Raise Repetitions only when you want the reminder to recur.
 
 <div class="callout"><div class="callout-t">Daylight saving — the detail that matters</div><code>1d</code> keeps the <strong>same wall-clock time</strong> across a DST change (e.g. always 09:00). <code>24h</code> means <strong>exactly 24 hours</strong>, which can shift by an hour after the clocks change. Pick the one that matches what you mean.</div>
 
@@ -42,5 +44,5 @@ Completing a task also stops its reminder — no need to clean up afterwards.
 | :--- | :--- |
 | *Invalid reminder* | The start must be at least 5 minutes in the future. |
 | *Incorrect interval* | Use the `d` / `h` / `m` pattern, e.g. `1d`, `24h`, `1d12h`. |
-| *Incorrect repetitions* | Use a whole number between 1 and the maximum. |
+| *Incorrect repetitions* | Use a whole number between 0 and the maximum (`0` = once only). |
 | *Incorrect time zone* | The name doesn't match an official zone — copy it from the time zone map. |
