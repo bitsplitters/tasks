@@ -1,0 +1,47 @@
+---
+title: Known limits
+description: The ceilings on lists, tasks, reminders and more — most come from Discord itself, and how to work within them.
+group: More
+order: 9.5
+---
+
+Team Tasks Manager works entirely inside Discord, so most of the limits below aren't TTM's choice — they come from Discord itself: how long a message can be, how many menus fit in one message, how far back messages can be deleted in bulk. Where a limit is Discord's, we say so.
+
+## Lists and tasks
+
+| Limit | Value | Why |
+| :--- | :--- | :--- |
+| Characters per list | **4000** | The whole list is edited inside a single Discord field, and Discord caps that field at 4000 characters. This counts *everything shown* — task text, checkboxes, any reminder time and one line break per row — not just what you type. TTM keeps a small safety margin below the hard limit. |
+| Items per list | **50** (tasks + subtasks) | Discord allows 5 component rows per message and up to 25 options per dropdown. TTM reserves rows for the action buttons, which leaves room for 50 selectable items in total — subtasks included. |
+
+<div class="callout"><div class="callout-t">Hitting a ceiling?</div>Split the work across several lists. Two focused lists are easier to read than one that's maxed out — and each gets its own reminders, owners and tags.</div>
+
+**Very long lists are sent as a file.** A normal Discord message is capped at 2000 characters. When a list is too long to post as text, TTM delivers it as a `.txt` attachment instead — nothing is lost, it just arrives as a download.
+
+## Reminders
+
+| Limit | Value | Why |
+| :--- | :--- | :--- |
+| Repetitions per reminder | **up to 50** | A single reminder can repeat at most 50 times after the first one (51 pings in total). Set repetitions to `0` for a one-time reminder. |
+
+See [Reminders](/docs/reminders/) for how repetitions and intervals work.
+
+## Owners and tags
+
+Each task has **one owner** — a single user or role, the person responsible. A task can carry **up to 25 tags** (users or roles to notify): 25 is Discord's per-menu maximum for the tag picker.
+
+## Webhooks
+
+| Limit | Value |
+| :--- | :--- |
+| Webhook name | up to **100** characters |
+| Webhook URL | up to **2000** characters |
+| Webhooks shown in the picker | **25** at a time (Discord's per-menu maximum) |
+
+## Notifications
+
+When TTM tidies up its own notification messages, Discord only allows bulk-deleting messages from the **last 14 days**. Older notifications may stay in the channel — you can remove them manually.
+
+---
+
+These numbers reflect the current version of the bot. Anything that changes will be noted in the [Release notes](/docs/release-notes/).
