@@ -5,7 +5,7 @@ group: More
 order: 8
 ---
 
-A task is just Discord text, so you can enrich it the way you enrich any message: mention people and roles, link channels, add clickable links. The **Owner** and **Tag** buttons do some of this for you, but when you use **Bulk update** or edit a task's content you can also write and adjust these by hand — and in bulk edit you'll see the raw codes, so it helps to know what they mean.
+A task is just Discord text, so you can enrich it the way you enrich any message: mention people and roles, link channels, add clickable links. The **Owner** and **Tag** buttons do some of this for you (Tag can even apply several users and roles at once), but when you use **Bulk update** or edit a task's content you can also write and adjust these by hand — and in bulk edit you'll see the raw codes, so it helps to know what they mean.
 
 ## How Discord references things
 

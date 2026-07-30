@@ -53,11 +53,21 @@ The workflow is always the same: **turn a button blue or red, then pick the task
 | :---: | :--- | :--- | :--- |
 | <img class="inline-ic" src="/icons/task.png" alt="" /> | **Content** | Change the task text (opens a form). | Delete the task. |
 | <img class="inline-ic" src="/icons/owner.png" alt="" /> | **Owner** | Set or change the task owner (pick a user/role). | Remove the owner. |
-| <img class="inline-ic" src="/icons/tag.png" alt="" /> | **Tag** | Add a user/role to notify at the end of the task text. | Remove every tag on the task. |
+| <img class="inline-ic" src="/icons/tag.png" alt="" /> | **Tag** | Set the users/roles to notify — pick several at once (see *Two ways to tag* below). | Remove every tag on the task. |
 | <img class="inline-ic" src="/icons/alertW.png" alt="" /> | **Reminder** | Add or edit a reminder (start date, interval, repetitions, time zone). | Remove the reminder. |
 | <img class="inline-ic" src="/icons/api.png" alt="" /> | **Webhook** | Associate a webhook, so completing/reopening the task fires an HTTP call. | Remove the webhook association from the task. |
 
 <div class="callout"><div class="callout-t">Remember</div>You cannot delete the very last task in a list. To remove a list entirely, delete its message manually.</div>
+
+### Two ways to tag
+
+With **Tag** active in blue, the button does two different things depending on one simple question: **did you pick people before picking the task?** People first means **assign**; task first, with the selector still empty, means **live editing**.
+
+**Assign — pick people, then the task.** Turn Tag blue, choose up to 25 users/roles in the selector — say *Anna* and *@Devs* — then pick the task. The task is now tagged Anna + @Devs, nothing else. Assigning **replaces** the whole set, it doesn't add: anyone previously tagged that you didn't re-pick is untagged. If your server keeps buttons active (see the callout below), your picks stay in the selector, so you can stamp the same set onto the next task, and the next.
+
+**Live editing — pick the task, selector empty.** Turn Tag blue and, without picking anyone, choose the task you want to re-tag. That's not a mistake: its current tags load into the selector, already ticked, and you are now editing that task directly. Every time you close the dropdown the task updates instantly — untick someone and they vanish from the task, tick someone and they appear. There is no confirmation step. Untick everyone to remove all tags. Picking a different task simply moves the editing there; turn Tag off (grey) to finish — the next activation starts fresh.
+
+<div class="callout"><div class="callout-t">Live editing needs "keep status"</div>Live editing is only available when <strong>Behavior on selection</strong> is set to <em>keep status</em> in <a href="/docs/configuration/">Configuration</a>. With the default behavior (buttons reset after each action) only assign works, and picking a task with an empty selector shows an error asking you to select at least one tag first.</div>
 
 ## Editing while others watch
 
