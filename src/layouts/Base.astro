@@ -16,7 +16,11 @@ const { title, description = "Team Tasks Manager brings task coordination inside
 </head>
 <body>
   <header class="site-top">
-    <a class="mark" href="/">bit<span class="bar"></span>splitters <span class="sep">/</span> <span class="prod">tasks</span></a>
+    <div class="mark">
+      <a class="brand" href="https://bitsplitters.app" aria-label="bitsplitters home">bit<span class="bar"></span>splitters</a>
+      <span class="sep">/</span>
+      <a class="prod" href="/">tasks</a>
+    </div>
     <nav>
       <a href="/docs/">Docs</a>
       <a href="/docs/release-notes/">Release notes</a>
@@ -25,7 +29,7 @@ const { title, description = "Team Tasks Manager brings task coordination inside
   <slot />
   <footer class="site-foot">
     <div class="wrap foot-inner">
-      <span>&copy; 2026 bitsplitters &middot; Team Tasks Manager</span>
+      <span>&copy; 2026 <a href="https://bitsplitters.app">bitsplitters</a> &middot; Team Tasks Manager</span>
       <nav class="foot-links">
         <a href="/terms/">Terms</a>
         <a href="/privacy/">Privacy</a>

@@ -30,10 +30,14 @@ a { color: inherit; }
   background: color-mix(in srgb, var(--ink) 82%, transparent);
   backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
 }
-.site-top .mark { font-family: var(--mono); font-weight: 700; letter-spacing: -.01em; font-size: 1rem; text-decoration: none; color: var(--text); display: inline-flex; align-items: baseline; gap: .12em; }
+.site-top .mark { font-family: var(--mono); font-weight: 700; letter-spacing: -.01em; font-size: 1rem; display: inline-flex; align-items: baseline; gap: .12em; }
+.site-top .mark a { text-decoration: none; color: var(--text); transition: color .18s ease; }
+.site-top .mark .brand { display: inline-flex; align-items: baseline; gap: .12em; }
+.site-top .mark .brand:hover { color: var(--accent); }
 .site-top .mark .bar { width: 2px; align-self: stretch; background: var(--accent); margin: .15em .04em; border-radius: 1px; }
 .site-top .mark .sep { color: var(--line-2); margin: 0 .3em; }
 .site-top .mark .prod { color: var(--accent); }
+.site-top .mark .prod:hover { color: var(--text); }
 .site-top nav { display: flex; align-items: center; gap: clamp(.75rem, 2vw, 1.5rem); }
 .site-top nav a { font-family: var(--mono); font-size: .85rem; color: var(--muted); text-decoration: none; transition: color .18s ease; }
 .site-top nav a:hover { color: var(--text); }
