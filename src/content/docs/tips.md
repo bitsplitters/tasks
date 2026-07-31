@@ -7,7 +7,7 @@ order: 9
 
 ## Reuse a list anywhere
 
-Use **Download** <img class="inline-ic" src="/icons/download.png" alt="" /> to export a list as text, then paste it into a new `/tasklist` on any server. Great for recurring checklists (releases, onboarding, events).
+Use **Download** <img class="inline-ic" src="/icons/download.png" alt="" /> to export a list as text, then paste it into a new `/create-list` on any server. Great for recurring checklists (releases, onboarding, events).
 
 ## Clone instead of rebuilding
 

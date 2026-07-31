@@ -43,7 +43,7 @@ TTM is built almost entirely on buttons, so there are only a few commands to rem
 Run the command:
 
 ```
-/tasklist
+/create-list
 ```
 
 TTM replies with a short legend and two buttons: **Create list** <img class="inline-ic" src="/icons/edit.png" alt="" /> and **Guide** <img class="inline-ic" src="/icons/doc.png" alt="" />. Click **Create list** to open a form with two fields — the **list title** and the **list of activities**.

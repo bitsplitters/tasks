@@ -7,7 +7,7 @@ order: 8
 
 TTM deliberately keeps commands to a minimum: once a list exists, you drive everything from buttons. Here is the full set.
 
-## `/tasklist`
+## `/create-list`
 
 Create and manage a task list. TTM checks it has the permissions it needs in the channel, then posts the list with its button panel. This is the command you'll use most.
 
