@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 
 const all = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
-const groupsOrder = ['Start', 'Using the bot', 'More'];
+const groupsOrder = ['Plans', 'Getting started', 'Using the bot', 'Reference', 'Help & community'];
 const grouped = groupsOrder
   .map((g) => ({ name: g, items: all.filter((d) => d.data.group === g) }))
   .filter((g) => g.items.length);

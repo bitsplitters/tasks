@@ -1,8 +1,8 @@
 ---
 title: Personalize your lists
 description: Mention people and roles, link channels and add hyperlinks — by hand, with full control.
-group: More
-order: 8
+group: Using the bot
+order: 6.5
 ---
 
 A task is just Discord text, so you can enrich it the way you enrich any message: mention people and roles, link channels, add clickable links. The **Owner** and **Tag** buttons do some of this for you (Tag can even apply several users and roles at once), but when you use **Bulk update** or edit a task's content you can also write and adjust these by hand — and in bulk edit you'll see the raw codes, so it helps to know what they mean.

@@ -2,7 +2,7 @@
 title: Commands reference
 description: The complete list of slash commands — most of TTM lives in buttons, not commands.
 group: Using the bot
-order: 8
+order: 2.5
 ---
 
 TTM deliberately keeps commands to a minimum: once a list exists, you drive everything from buttons. Here is the full set.

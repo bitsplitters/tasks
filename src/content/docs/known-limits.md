@@ -1,7 +1,7 @@
 ---
 title: Known limits
 description: The ceilings on lists, tasks, reminders and more — most come from Discord itself, and how to work within them.
-group: More
+group: Reference
 order: 9.5
 ---
 

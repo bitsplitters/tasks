@@ -1,7 +1,7 @@
 ---
 title: Community & support
 description: The official Discord server for TTM — get help, report bugs, request features and shape what comes next.
-group: More
+group: Help & community
 order: 9.7
 ---
 

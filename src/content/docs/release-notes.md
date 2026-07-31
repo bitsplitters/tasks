@@ -1,7 +1,7 @@
 ---
 title: Release notes
 description: What's new in Team Tasks Manager, newest first.
-group: More
+group: Reference
 order: 10
 ---
 

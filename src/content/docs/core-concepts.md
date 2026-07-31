@@ -1,7 +1,7 @@
 ---
 title: Core concepts
 description: The vocabulary of TTM — tasks, subtasks, groups, states, owners, tags and reminders.
-group: Start
+group: Getting started
 order: 2
 ---
 

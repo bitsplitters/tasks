@@ -1,7 +1,7 @@
 ---
 title: Getting started
 description: Invite the bot, run your first command and create a list in a couple of minutes.
-group: Start
+group: Getting started
 order: 1
 ---
 
