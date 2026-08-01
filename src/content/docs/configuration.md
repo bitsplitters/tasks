@@ -36,6 +36,8 @@ When enabled, TTM adds plain text alongside embeds so your **mobile push notific
 
 After you use **owner**, **tag** or **reminder**, this decides whether the button **resets** to its neutral state or **keeps** the active mode — handy when you are applying the same action to several tasks in a row.
 
+It also changes what **Tag** can do: with it off, tagging always overwrites; with it on, you additionally get live editing of a task's existing tags. See [Two ways to tag](/docs/the-task-list/#two-ways-to-tag) for the full breakdown.
+
 ## Recurring reminders
 
 Off by default. When it's off, every reminder is a **single event**: creating or editing one is a **one-step flow** — you pick the date and time, nothing else. Simpler and quicker for teams that just need a one-off ping.

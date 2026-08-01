@@ -61,13 +61,32 @@ The workflow is always the same: **turn a button blue or red, then pick the task
 
 ### Two ways to tag
 
-With **Tag** active in blue, the button does two different things depending on one simple question: **did you pick people before picking the task?** People first means **assign**; task first, with the selector still empty, means **live editing**.
+How **Tag** behaves depends entirely on one setting — **Behavior on selection** in [Configuration](/docs/configuration/), the toggle that decides whether task buttons *reset* after each action or *keep* their active mode. Tag reads very differently in the two cases, so it's worth knowing both. The short version: with the setting **off**, tagging always **overwrites**; with it **on**, you also unlock a second mode, **live editing**.
 
-**Assign — pick people, then the task.** Turn Tag blue, choose up to 25 users/roles in the selector — say *Anna* and *@Devs* — then pick the task. The task is now tagged Anna + @Devs, nothing else. Assigning **replaces** the whole set, it doesn't add: anyone previously tagged that you didn't re-pick is untagged. If your server keeps buttons active (see the callout below), your picks stay in the selector, so you can stamp the same set onto the next task, and the next.
+#### With "keep status" off — the default
 
-**Live editing — pick the task, selector empty.** Turn Tag blue and, without picking anyone, choose the task you want to re-tag. That's not a mistake: its current tags load into the selector, already ticked, and you are now editing that task directly. Every time you close the dropdown the task updates instantly — untick someone and they vanish from the task, tick someone and they appear. There is no confirmation step. Untick everyone to remove all tags. Picking a different task simply moves the editing there; turn Tag off (grey) to finish — the next activation starts fresh.
+The button resets after every action, and Tag has just one behaviour: it **always overwrites**. Turn Tag blue, choose up to 25 users/roles in the selector — say *Anna* and *@Devs* — then pick the task. The task is now tagged Anna + @Devs and nothing else: this **replaces** the whole set, it doesn't add to it, so anyone previously tagged that you didn't re-pick is removed.
 
-<div class="callout"><div class="callout-t">Live editing needs "keep status"</div>Live editing is only available when <strong>Behavior on selection</strong> is set to <em>keep status</em> in <a href="/docs/configuration/">Configuration</a>. With the default behavior (buttons reset after each action) only assign works, and picking a task with an empty selector shows an error asking you to select at least one tag first.</div>
+You must pick people **before** the task. Choosing a task with an empty selector isn't a shortcut here — it shows an error asking you to select at least one tag first.
+
+#### With "keep status" on — two modes
+
+Now the button stays active after each action, and what Tag does depends on one question: **did you pick people before picking the task?** People first means **assign**; task first, with the selector still empty, means **live editing**.
+
+**Assign — pick people, then the task.** Exactly the overwrite behaviour above: choose the users/roles, pick the task, and its tags become precisely your selection. Because the button stays active, your picks also stay in the selector — so you can stamp the same set onto the next task, and the next, without re-choosing.
+
+**Live editing — pick the task, selector empty.** Turn Tag blue and, without picking anyone, choose the task you want to re-tag. That's not a mistake: its current tags load into the selector, already ticked, and you are now editing that task directly. Every time you close the menu the task updates instantly — untick someone and they vanish from the task, tick someone and they appear. There is no confirmation step and nothing overwrites: you're adjusting the existing set, not replacing it. Untick everyone to remove all tags. Picking a different task simply moves the editing there; turn Tag off (grey) to finish — the next activation starts fresh.
+
+<div class="callout"><div class="callout-t">In one line</div><strong>Off</strong>: tagging always overwrites, and you must pick people first. <strong>On</strong>: pick people first to <em>overwrite</em> (assign), or pick the task first to <em>edit its tags live</em>.</div>
+
+## Confirming a selection — desktop vs mobile
+
+Every dropdown in the panel — the check selector and the owner and tag menus — waits for you to **confirm** your choice before TTM acts on it. How you confirm depends on your device, and it isn't obvious the first time:
+
+- **On mobile**, a **Save** button appears beneath the open menu. Tap it to apply what you picked.
+- **On desktop**, there is **no Save button**. Instead, **click anywhere outside the menu** to close it — closing it is what applies your selection. If a pick doesn't seem to take effect, this is almost always why: click away from the dropdown to commit it.
+
+This matters most during tag **live editing**, where each time you close the menu the task updates on the spot — so on desktop, one click outside the menu is what saves each change.
 
 ## Editing while others watch
 
