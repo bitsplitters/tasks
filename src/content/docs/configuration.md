@@ -36,6 +36,14 @@ When enabled, TTM adds plain text alongside embeds so your **mobile push notific
 
 After you use **owner**, **tag** or **reminder**, this decides whether the button **resets** to its neutral state or **keeps** the active mode — handy when you are applying the same action to several tasks in a row.
 
+## Recurring reminders
+
+Off by default. When it's off, every reminder is a **single event**: creating or editing one is a **one-step flow** — you pick the date and time, nothing else. Simpler and quicker for teams that just need a one-off ping.
+
+Turn it **on** to unlock **repetitions and intervals**: reminder creation then uses the two-step flow (a summary screen plus a repetition dialog). See [Reminders](/docs/reminders/) for the repetition fields.
+
+A reminder that is *already* recurring stays fully editable — with its repetitions and interval — even while the toggle is off, so existing schedules are never lost.
+
 ## Time zone
 
 Sets the time zone your team works in (reminders can still use their own). Click the button, then paste an official zone name — look it up on the **[time zone map](https://timezones.bitsplitters.app)**.

@@ -15,6 +15,8 @@ On the second button row, click **Reminder** <img class="inline-ic" src="/icons/
 2. A confirmation step with **Continue**, **Edit date** or **Cancel**.
 3. **Repetition** — how the reminder repeats.
 
+<div class="callout"><div class="callout-t">Steps 2 and 3 are opt-in</div>The confirmation and <strong>Repetition</strong> steps only appear when <strong>Recurring reminders</strong> is enabled in <a href="/docs/configuration/">Configuration</a> — it's off by default. With it off, every reminder is a single event and setting one is a one-step flow: you pick the date and time and you're done. A reminder that's already recurring keeps its repetitions even while the toggle is off.</div>
+
 ## The repetition fields
 
 | Field | Meaning | Example |
