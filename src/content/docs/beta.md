@@ -25,7 +25,7 @@ When TTM leaves beta it becomes **freemium**. That word makes people nervous, so
 | Tasks per list | **20** | 50 |
 | Reminders per day | **10** | Unlimited |
 | Repetitions per reminder | **5** | 50 |
-| Webhooks | — | ✅ |
+| Webhooks | — | 25 |
 
 *These are the planned limits and may be tuned before launch.*
 
