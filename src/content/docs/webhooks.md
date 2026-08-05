@@ -18,7 +18,7 @@ The command takes a few options:
 | Option | Required? | Values | Notes |
 | :--- | :--- | :--- | :--- |
 | **action** | Required | view · create · modify · delete | What you want to do. |
-| **webhook** | Required | a name | The webhook to act on. |
+| **webhook** | Required | a name | The webhook to act on, up to 100 characters. |
 | **trigger** | Optional | completion · reopen | Omit it to act on **both** directions at once. |
 
 Choosing **create** (or **modify**) opens a form with four fields:
@@ -28,7 +28,11 @@ Choosing **create** (or **modify**) opens a form with four fields:
 - **Headers** — one `Key: value` per line.
 - **Body** — JSON.
 
-<div class="callout"><div class="callout-t">The trigger is optional on purpose</div>Omit it and <strong>create</strong> sets up both completion and reopen with the same configuration — the <code>{{state}}</code> and <code>{{when}}</code> tokens tell the two events apart. <strong>Modify</strong> pre-fills from the completion action and overwrites both.</div>
+A webhook is really a **pair of actions** — one for completion, one for reopen — under a single name. That's what the trigger picks.
+
+<div class="callout"><div class="callout-t">The trigger is optional on purpose</div>Omit it and one command covers both directions: <strong>create</strong> sets up completion and reopen with the same configuration (the <code>{{state}}</code> and <code>{{when}}</code> tokens tell the two events apart), <strong>view</strong> prints both, and <strong>delete</strong> removes the webhook entirely, with all its actions. <strong>Modify</strong> pre-fills from the completion action and overwrites both.</div>
+
+Each server can keep up to **25** webhooks. Reached the ceiling? Delete one you no longer use — TTM lists them all in the error.
 
 ## Tokens
 
@@ -50,7 +54,15 @@ Inside the URL, headers and body you can drop `{{ }}` tokens that TTM replaces a
 
 ## Associating a webhook with a task
 
-Creating a webhook doesn't wire it to anything yet. Open the list, use the **Webhook** control <img class="inline-ic" src="/icons/api.png" alt="" /> on the second button row (or the 🔗 control on the task) and pick the webhook. From then on, completing or reopening that task fires the call.
+Creating a webhook doesn't wire it to anything yet. Open the list, click **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" /> on the second button row until it turns **blue**, pick the webhook from the selector and then the task. From then on, completing or reopening that task fires the call. Click **Webhook** until it turns **red** and pick the task to remove the association.
+
+The association is stored **in the task itself**, as a reserved token: in **Bulk update** you'll see it in front of the task text.
+
+```
+- [] {{wb=deploy}} Ship the release notes
+```
+
+You can move it, copy it onto another task or delete it by hand, exactly like a mention — the token never shows up in the rendered list, and `wb` is the only reserved key (every other `{{key=value}}` is a free variable, see below).
 
 ## Example
 

@@ -1,6 +1,6 @@
 ---
 title: Configuration
-description: Tailor notifications, history, time zone and permissions with /config app.
+description: Tailor notifications, history, reminders, time zone and permissions with /config app.
 group: Using the bot
 order: 6
 ---
@@ -11,7 +11,7 @@ Run the command:
 /config app
 ```
 
-TTM opens a private panel with a summary of your current settings, four dropdowns and three buttons. Nothing here is permanent — change it whenever your team's needs change.
+TTM opens a private panel with a summary of your current settings, six dropdowns and two buttons. Nothing here is permanent — change it whenever your team's needs change.
 
 ## Notification mode
 
@@ -30,7 +30,11 @@ When enabled, **every action on your lists is recorded in a dedicated thread**, 
 
 ## Push notification
 
-When enabled, TTM adds plain text alongside embeds so your **mobile push notifications** are readable at a glance (embeds alone often show up empty on a lock screen).
+When enabled, TTM adds plain text alongside embeds so your **mobile push notifications** are readable at a glance (embeds alone often show up empty on a lock screen). On by default.
+
+## `/create-list` legend
+
+Shows the explanatory legend when someone runs `/create-list` — handy while the team is learning the buttons, easy to switch off once everyone knows them. On by default, and only visible to whoever ran the command. With it off, `/create-list` opens the creation form straight away: one step fewer.
 
 ## Behavior on selection
 
@@ -48,14 +52,12 @@ A reminder that is *already* recurring stays fully editable — with its repetit
 
 ## Time zone
 
-Sets the time zone your team works in (reminders can still use their own). Click the button, then paste an official zone name — look it up on the **[time zone map](https://timezones.bitsplitters.app)**.
+Sets the time zone your team works in (members can still use their own for reminders). Click the button, then paste an official zone name — look it up on the **[time zone map](https://timezones.bitsplitters.app)**.
 
 ## Sync permissions
 
 By default, Discord's integration permissions only hide *commands* — the generated buttons and lists stay usable by everyone. Click **Load permissions** to extend your permission rules to those components too. After syncing, **users who aren't allowed see the list as read-only**.
 
-Define the rules in *Server Settings → Integrations → Team Tasks Manager*, then sync.
+Define the rules in *Server Settings → Integrations → Team Tasks Manager*, then sync. Channel restrictions are honoured as well: if a channel is off-limits for a user, the lists living there are read-only for them.
 
-## Webhooks
-
-Opens the webhook overview, where you can review configured webhooks and get the exact command to create one. See the full [Webhooks](/docs/webhooks/) guide.
+<div class="callout"><div class="callout-t">Webhooks live in their own command</div>Webhooks are not configured from this panel: use <code>/config webhook</code>. See the full <a href="/docs/webhooks/">Webhooks</a> guide.</div>

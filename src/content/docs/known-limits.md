@@ -23,8 +23,9 @@ Team Tasks Manager works entirely inside Discord, so most of the limits below ar
 | Limit | Value | Why |
 | :--- | :--- | :--- |
 | Repetitions per reminder | **up to 50** | A single reminder can repeat at most 50 times after the first one (51 pings in total). Set repetitions to `0` for a one-time reminder. |
+| How soon a reminder can fire | **5 minutes** from now | The start date must be at least five minutes in the future, so the scheduler has time to pick it up. |
 
-See [Reminders](/docs/reminders/) for how repetitions and intervals work.
+Repetitions are only offered when **Recurring reminders** is enabled in [Configuration](/docs/configuration/); by default every reminder is a single event. See [Reminders](/docs/reminders/) for how repetitions and intervals work.
 
 ## Owners and tags
 
@@ -34,9 +35,9 @@ Each task has **one owner** — a single user or role, the person responsible. A
 
 | Limit | Value |
 | :--- | :--- |
+| Webhooks per server | **25** — the picker is a Discord dropdown, and 25 options is its maximum, so that is also the cap |
 | Webhook name | up to **100** characters |
 | Webhook URL | up to **2000** characters |
-| Webhooks shown in the picker | **25** at a time (Discord's per-menu maximum) |
 
 ## Notifications
 

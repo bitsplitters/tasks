@@ -54,6 +54,8 @@ Channels use `#`:
 
 `<#111222333444555666>` renders as a clickable **#channel**. Perfect for sending readers to the right place — "specs in `<#…>`", "deploy from `<#…>`".
 
+<div class="callout"><div class="callout-t">The shortcut: right-click → Copy Link</div>You don't need the ID, or even Developer Mode, for a channel: <strong>right-click the channel in the sidebar → Copy Link</strong> and paste it into the task. TTM recognises the link and <strong>shortens it to a channel tag</strong> for you, so <code>https://discord.com/channels/…/111222333444555666</code> becomes <code>&lt;#111222333444555666&gt;</code> on its own. Links that point to a specific <em>message</em> are left alone — those stay clickable links.</div>
+
 ## Adding a hyperlink
 
 For links to anything outside Discord, use standard Markdown:

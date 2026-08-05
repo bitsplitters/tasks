@@ -46,7 +46,9 @@ Run the command:
 /create-list
 ```
 
-TTM replies with a short legend and two buttons: **Create list** <img class="inline-ic" src="/icons/edit.png" alt="" /> and **Guide** <img class="inline-ic" src="/icons/doc.png" alt="" />. Click **Create list** to open a form with two fields — the **list title** and the **list of activities**.
+TTM replies with a short legend on how to write a list and a **Create your list** button. Click it to open a form with two fields — the **list title** and the **list of activities**.
+
+<div class="callout"><div class="callout-t">Already know the syntax?</div>The legend can be switched off in <a href="/docs/configuration/">Configuration</a>. With it off, <code>/create-list</code> opens the creation form immediately.</div>
 
 Type your activities one per line, each starting with a dash `-`:
 

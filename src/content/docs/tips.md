@@ -23,7 +23,15 @@ If task notifications feel noisy, switch **Notification mode** to *keep last onl
 
 ## Reminders that survive the clock change
 
-Use `1d` when you mean "same time tomorrow" and `24h` when you mean "exactly a day later". Around daylight-saving switches the two differ by an hour — see [Reminders](/docs/reminders/).
+On a *repeating* reminder, use `1d` when you mean "same time tomorrow" and `24h` when you mean "exactly a day later". Around daylight-saving switches the two differ by an hour — see [Reminders](/docs/reminders/).
+
+## A reminder in two clicks
+
+The **When** form arrives pre-filled with ten minutes from now, in your own time zone: for "remind me shortly" you can submit it as it is, without typing anything. And since repetitions are off by default, that's the whole flow — one form.
+
+## Link a channel without hunting for its ID
+
+Right-click the channel → **Copy Link**, paste it into the task: TTM turns it into a proper `#channel` tag by itself. No Developer Mode needed — see [Personalize your lists](/docs/personalize-your-lists/).
 
 ## Personalize webhooks with free variables
 

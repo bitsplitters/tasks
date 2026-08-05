@@ -15,7 +15,7 @@ Create and manage a task list. TTM checks it has the permissions it needs in the
 
 ## `/config app`
 
-Open the configuration panel: notification mode, history tracking, push notifications, behavior on selection, time zone, permission sync and webhooks.
+Open the configuration panel: notification mode, history tracking, push notifications, the `/create-list` legend, recurring reminders, behavior on selection, time zone and permission sync.
 
 → See [Configuration](/docs/configuration/).
 
@@ -25,6 +25,12 @@ Create, view, modify or delete a webhook, optionally scoped to a **completion** 
 
 → See [Webhooks](/docs/webhooks/).
 
+## `/beta`
+
+What being in beta means for you: everything unlocked, for free, for the whole beta — plus a button that shows what the paid plan will look like afterwards.
+
+→ See [Free during the beta](/docs/beta/).
+
 ## `/help`
 
 Your starting point inside Discord. It opens a panel with buttons:
@@ -32,7 +38,7 @@ Your starting point inside Discord. It opens a panel with buttons:
 - <img class="inline-ic" src="/icons/home_blue.png" alt="" /> **Home** — an overview of the app.
 - <img class="inline-ic" src="/icons/start_blue.png" alt="" /> **Get started** — a quick start with a link to this documentation.
 - <img class="inline-ic" src="/icons/config_blue.png" alt="" /> **Configuration** — points you to `/config app`.
-- <img class="inline-ic" src="/icons/premium_blue.png" alt="" /> **Premium** — coming soon.
+- <img class="inline-ic" src="/icons/premium_blue.png" alt="" /> **Premium** — what the paid plan will look like once the beta ends (free limits included).
 - <img class="inline-ic" src="/icons/abouts_blue.png" alt="" /> **About us** — who builds TTM.
 
 <div class="callout"><div class="callout-t">Note</div>All commands run with no required input — one click is enough to start them.</div>

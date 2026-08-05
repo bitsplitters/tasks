@@ -37,7 +37,7 @@ These look similar but do different jobs:
 
 ## Reminders
 
-A **reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> attaches a schedule to a task: a start date, an interval between reminders, a number of repetitions and a time zone. TTM then pings on time, so nobody has to keep checking. Full details in [Reminders](/docs/reminders/).
+A **reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> attaches a schedule to a task: a date, a time and a time zone. When it comes due, TTM sends a direct message to the task's **owner**, so nobody has to keep checking. One ping is the default; a server can also enable repeating reminders, which add an interval and a number of repetitions. Full details in [Reminders](/docs/reminders/).
 
 ## Notifications & history
 

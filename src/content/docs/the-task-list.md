@@ -54,7 +54,7 @@ The workflow is always the same: **turn a button blue or red, then pick the task
 | <img class="inline-ic" src="/icons/task.png" alt="" /> | **Content** | Change the task text (opens a form). | Delete the task. |
 | <img class="inline-ic" src="/icons/owner.png" alt="" /> | **Owner** | Set or change the task owner (pick a user/role). | Remove the owner. |
 | <img class="inline-ic" src="/icons/tag.png" alt="" /> | **Tag** | Set the users/roles to notify — pick several at once (see *Two ways to tag* below). | Remove every tag on the task. |
-| <img class="inline-ic" src="/icons/alertW.png" alt="" /> | **Reminder** | Add or edit a reminder (start date, interval, repetitions, time zone). | Remove the reminder. |
+| <img class="inline-ic" src="/icons/alertW.png" alt="" /> | **Reminder** | Add or edit a reminder (start date and time zone — plus interval and repetitions if the server enables recurring reminders). | Remove the reminder. |
 | <img class="inline-ic" src="/icons/api.png" alt="" /> | **Webhook** | Associate a webhook, so completing/reopening the task fires an HTTP call. | Remove the webhook association from the task. |
 
 <div class="callout"><div class="callout-t">Remember</div>You cannot delete the very last task in a list. To remove a list entirely, delete its message manually.</div>
