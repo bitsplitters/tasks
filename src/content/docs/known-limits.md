@@ -39,6 +39,12 @@ Each task has **one owner** — a single user or role, the person responsible. A
 | Webhook name | up to **100** characters |
 | Webhook URL | up to **2000** characters |
 
+## The activity timeline
+
+When the timeline is on, TTM posts each action into a thread next to the list, through a Discord webhook. Discord allows **15 webhooks per channel**, so TTM creates **one webhook per channel** and reuses it for every list in that channel — the name and picture you see on each message are set per message, so nothing changes visually.
+
+If a channel has already reached Discord's 15 (because of other bots or integrations), the timeline for a new list can't start. Free one up in **Channel settings → Integrations → Webhooks**.
+
 ## Notifications
 
 When TTM tidies up its own notification messages, Discord only allows bulk-deleting messages from the **last 14 days**. Older notifications may stay in the channel — you can remove them manually.

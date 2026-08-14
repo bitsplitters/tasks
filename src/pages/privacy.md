@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 28 July 2026"
+updated: "Last updated: 14 August 2026"
 ---
 
 This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") collects and how we handle it. It applies to the use of the bot on Discord. For your rights under EU data-protection law, see also our [GDPR page](/gdpr/).
@@ -17,7 +17,8 @@ TTM only stores what is needed to run task lists inside your server:
 
 - **Discord identifiers** — server (guild), channel, and message IDs; user and role IDs when you assign an owner, add a tag, or configure permissions.
 - **Task content you create** — list titles and task text, including anything you type into them (mentions, links, notes).
-- **Reminders** — dates, intervals, repetitions and the time zone you set.
+- **Reminders** — dates, intervals, repetitions and the time zone set for the server.
+- **Your personal time zone** — the time zone you pick while creating a reminder, stored against your Discord user ID and reused across servers.
 - **Configuration** — per-server settings such as notification mode, history logging, push option and time zone.
 - **Webhooks** — the HTTP method, URL, headers and body you define, and their association to tasks.
 - **Activity logs** — records of actions performed on lists (who did what, and when), when history logging is enabled.
@@ -38,7 +39,15 @@ We do **not** sell your data. Data is processed by our infrastructure provider *
 
 ## Retention
 
-Data is kept while the bot is present and in use in your server. When the bot is removed, the related data is deleted or anonymized, except where retention is required by law. You can also request deletion at any time (see [GDPR](/gdpr/)).
+Data is kept while the bot is present and in use in your server.
+
+**When the bot is removed from a server** we delete its content and operational data: task lists and their tasks, tags, reminders and scheduled reminder events, webhooks and their actions, and the activity history.
+
+**What we keep** is the minimum needed to run the service and to measure its adoption: the server ID together with the settings configured for it, the dates the bot joined and left, the command-permission settings, subscription records where applicable, and non-identifying usage counters. **No task content is kept.**
+
+**Your personal time zone** — if you set one while creating a reminder, it is stored against your Discord user ID and is not tied to any single server, so removing the bot from a server does not delete it. Write to **info@bitsplitters.app** and we will delete it.
+
+You can request deletion at any time (see [GDPR](/gdpr/)); we may also delete data earlier.
 
 ## Security
 

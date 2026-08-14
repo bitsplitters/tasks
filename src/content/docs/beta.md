@@ -14,6 +14,7 @@ When TTM leaves beta it becomes **freemium**. That word makes people nervous, so
 - **Nothing you've built is ever deleted or hidden.** Your lists, tasks and reminders stay exactly where they are.
 - **A free tier stays free, forever.** A small team can keep using TTM without paying a cent.
 - **If your server has outgrown the free limits**, you simply can't add *more* beyond them until you upgrade — everything already there keeps working.
+- **What you build during the beta stays.** The free limits apply only to what you add *next*: the lists, tasks and reminders you created during the beta keep working, even if they sit above the thresholds. You were the ones who showed up early — you don't get to be the ones penalised for it.
 
 <div class="callout"><div class="callout-t">We will never switch the bot off to make you pay.</div>A task manager that goes dark is useless, and we know it. The free tier is permanent — the beta is generous, and the landing is soft.</div>
 
@@ -21,17 +22,19 @@ When TTM leaves beta it becomes **freemium**. That word makes people nervous, so
 
 | | Free | Unlocked |
 | :--- | :--- | :--- |
-| Active lists per server | **3** | Unlimited |
-| Tasks per list | **20** | 50 |
+| Active lists per server | **3** | 100+ |
+| Tasks per list | **20** | 50 † |
 | Reminders per day | **10** | Unlimited |
-| Repetitions per reminder | **5** | 50 |
-| Webhooks | — | 25 |
+| Repetitions per reminder | **5** | 50 † |
+| Webhooks | — | 25 † |
 
 *These are the planned limits and may be tuned before launch.*
 
+† **These aren't our numbers — they're Discord's, and they're the same on every plan.** A list can hold at most 50 items because a Discord message fits five component rows of 25 options; 50 repetitions and 25 webhooks are ceilings of the same kind. A paid plan can only let you *reach* them, never go past. The full list is on [Known limits](/docs/known-limits/).
+
 ## What it costs to unlock everything
 
-From about **€2 per month, per server**, on an annual plan. One price for the whole server — everyone on it included, no per-seat maths.
+**Planned: from about €2 per month, per server**, on an annual plan. One price for the whole server — everyone on it included, no per-seat maths. The price isn't final until the beta ends.
 
 And for being here first: when the beta winds down we'll open a **Founder** offer — a full year at roughly **half price**, as a thank-you to the servers that showed up early.
 
