@@ -30,7 +30,7 @@ Under the GDPR you have the right to:
 - **Objection** — object to processing based on legitimate interest.
 - **Withdraw consent** — where processing is based on consent, withdraw it at any time.
 
-Much of your data is also directly under your control inside Discord: editing or deleting tasks, reminders, webhooks and configuration removes them, and **removing the bot from a server** deletes the lists, tasks, reminders, webhooks and history it holds. A few server-level records are kept — see [Retention](/privacy/#retention) in the Privacy Policy for the exact list, and for your personal time zone, which we delete on request.
+Much of your data is also directly under your control inside Discord: editing or deleting tasks, reminders, webhooks and configuration removes them; **deleting a list** (the *Delete list* button in its *More* panel, or `/config lists`) removes that list with its tasks, reminders and history; and **removing the bot from a server** deletes the lists, tasks, reminders, webhooks and history it holds. A few server-level records are kept — see [Retention](/privacy/#retention) in the Privacy Policy for the exact list, and for your personal time zone, which we delete on request.
 
 ## How to exercise your rights
 

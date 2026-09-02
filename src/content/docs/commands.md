@@ -19,6 +19,16 @@ Open the configuration panel: notification mode, history tracking, push notifica
 
 → See [Configuration](/docs/configuration/).
 
+## `/config lists`
+
+The lists of this server, with two actions per list: **delete** it, or **regenerate** it — publish it again, with the same contents, when its message was deleted by mistake.
+
+Each row has one button that cycles through three states: <img class="inline-ic" src="/icons/noaction.png" alt="" /> grey does nothing, <img class="inline-ic" src="/icons/refresh.png" alt="" /> blue regenerates, <img class="inline-ic" src="/icons/delete.png" alt="" /> red deletes. Mark as many lists as you need, then press **Apply** and confirm: the whole block runs at once.
+
+Two things worth knowing. The panel lists **every** list this server has ever used, including those whose message no longer exists — TTM does not check Discord for each one, so open the linked channel if you want to see for yourself. And **regeneration keeps the activity timeline**: the new message reuses the same thread, so the history stays where it was.
+
+→ See [Configuration](/docs/configuration/).
+
 ## `/config webhook`
 
 Create, view, modify or delete a webhook, optionally scoped to a **completion** or **reopen** trigger.

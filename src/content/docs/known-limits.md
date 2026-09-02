@@ -18,6 +18,15 @@ Team Tasks Manager works entirely inside Discord, so most of the limits below ar
 
 **Very long lists are sent as a file.** A normal Discord message is capped at 2000 characters. When a list is too long to post as text, TTM delivers it as a `.txt` attachment instead — nothing is lost, it just arrives as a download.
 
+**Deleting the message is not the same as deleting the list.** A list lives in its message, but its data — tasks, owners, tags and above all **reminders** — lives in TTM. If you delete the message by hand, the list disappears from the channel while its reminders keep arriving, pointing at a message that is no longer there.
+
+Two ways out, both under your control:
+
+- **Delete list**, inside the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel of the list itself: the ordinary way, which takes the reminders with it. Needs *Manage messages* on the channel.
+- **`/config lists`**, when the message is already gone: it shows every list of the server and lets you delete the leftovers — or **regenerate** the list, if the message was deleted by mistake.
+
+TTM does not detect the deletion of a message on its own: doing so would mean asking Discord about every list, every time, and guessing from silence is exactly how data gets destroyed by accident. The panel shows you what exists and leaves the decision to you.
+
 ## Reminders
 
 | Limit | Value | Why |

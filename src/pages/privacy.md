@@ -49,6 +49,8 @@ Data is kept while the bot is present and in use in your server.
 
 **Your personal time zone** — if you set one while creating a reminder, it is stored against your Discord user ID and is not tied to any single server, so removing the bot from a server does not delete it. Write to **info@bitsplitters.app** and we will delete it.
 
+**You can delete a single list yourself**, without asking us: the **Delete list** button in the list's *More* panel, or `/config lists` when the list's message is no longer there. Deletion is immediate and permanent, and it takes the list's tasks, owners, tags, reminders and activity history with it.
+
 You can request deletion at any time (see [GDPR](/gdpr/)); we may also delete data earlier.
 
 ## Security

@@ -7,6 +7,12 @@ order: 10
 
 Everything that changes in TTM lands here, newest first. Follow along to see the bot evolve.
 
+## Unreleased — deleting and regenerating lists
+
+- **Delete list** — a list can finally be deleted properly, and its reminders go with it. It lives in the new <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel, which has taken the place of the *Guide* button in the first row (the guide is inside it). Requires *Manage messages* on the channel: the same permission that would let you delete the list's message by hand.
+- **`/config lists`** — the lists of the server, with one three-state button per row: do nothing, **regenerate** or **delete**. Mark several, press Apply, confirm once. Regeneration republishes a list whose message was deleted by mistake — with the same contents, and **keeping its activity timeline** in the same thread.
+- Deleting the message of a list is no longer a dead end: see [Known limits](/docs/known-limits/) for what happens and how to clean up.
+
 ## 1.0.0 — First public release
 
 The debut of Team Tasks Manager under the **bitsplitters** banner. Highlights:

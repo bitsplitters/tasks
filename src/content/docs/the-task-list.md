@@ -28,7 +28,18 @@ These buttons never touch a single task; they operate on the **entire list**.
 | <img class="inline-ic" src="/icons/download.png" alt="" /> | **Download** | Download a text file of the list, ready to copy-paste into other lists — even on other servers. |
 | <img class="inline-ic" src="/icons/edit.png" alt="" /> | **Bulk update** | Edit the title and the full list in one form — the fastest way to change two or more tasks at once. While you edit, the list is temporarily locked. |
 | <img class="inline-ic" src="/icons/clean.png" alt="" /> | **Clean list** | Remove all currently selected tasks and recalculate the remaining positions. |
-| <img class="inline-ic" src="/icons/doc.png" alt="" /> | **Guide** | Open a quick in-Discord guide, with a link back to this documentation. |
+| <img class="inline-ic" src="/icons/other.png" alt="" /> | **More** | Open the panel with everything you rarely need: the in-Discord guide and the deletion of this list. |
+
+### What's inside More
+
+The first row is full — Discord allows five buttons per row — so the rare actions live one click away:
+
+- **Guide** — the quick in-Discord guide, with a link back to this documentation. It used to sit in the first row and it moved here.
+- <img class="inline-ic" src="/icons/delete_blue.png" alt="" /> **Delete list** — deletes the list **for good**: tasks, owners, tags and reminders go with it, the message is removed and a short receipt takes its place in the channel. It cannot be undone, and you are asked to confirm first.
+
+**Deleting needs *Manage messages* on the channel** — the same permission that would let you delete the list's message by hand. If you don't have it, the button simply isn't there.
+
+<div class="callout"><div class="callout-t">Why delete instead of removing the message?</div>Deleting the message hides the list but leaves its data behind — and its reminders keep arriving, pointing at a message that no longer exists. <strong>Delete list</strong> takes the reminders with it. If a message has already been deleted by hand, <code>/config lists</code> lets you clean up (or bring the list back).</div>
 
 ### Clone options
 
