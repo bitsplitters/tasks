@@ -19,12 +19,14 @@ The permissions TTM may use are:
 | :--- | :--- |
 | View channel | See the channel where the list lives |
 | Send messages | Post and update the list |
-| Send messages in threads | Write to the history/log thread |
 | Embed links | Render the list as a rich embed |
-| Create public / private threads | Create the optional log thread |
-| Manage webhooks | Run the webhook feature |
+| Manage messages | Clear the bot's own older notifications, so the channel stays readable |
+| Create public threads | Create the optional timeline thread |
+| Manage webhooks | Write the timeline and run the webhook feature |
 | Attach files | Provide the list download |
 | Read message history | Keep the list in sync |
+| Mention everyone | Notify the people you tag on a task |
+| Use external emojis | Show the bot's own icons on buttons and lists |
 
 <div class="callout"><div class="callout-t">Good to know</div>You can grant these later from <em>Server Settings → Roles → Team Tasks Manager</em>, or per channel from the channel's permission settings.</div>
 
