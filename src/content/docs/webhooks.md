@@ -1,8 +1,8 @@
 ---
-title: Webhooks
+title: /config webhook
 description: Fire an HTTP call when a task is completed or reopened — connect TTM to anything.
-group: Using the bot
-order: 7
+group: Configuration
+order: 3
 ---
 
 Webhooks let a task talk to the outside world. Associate one with a task and, when that task is **completed** or **reopened**, TTM sends an HTTP request you defined — to a CI system, a chat, a spreadsheet automation, anything that accepts a call.

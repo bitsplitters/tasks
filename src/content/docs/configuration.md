@@ -1,8 +1,8 @@
 ---
-title: Configuration
+title: /config app
 description: Tailor notifications, history, reminders, time zone and permissions with /config app.
-group: Using the bot
-order: 6
+group: Configuration
+order: 1
 ---
 
 Run the command:

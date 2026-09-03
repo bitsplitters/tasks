@@ -11,7 +11,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 
 const all = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
-const groupsOrder = ['Plans', 'Getting started', 'Using the bot', 'Reference', 'Help & community'];
+const groupsOrder = ['Plans', 'Getting started', 'Using the bot', 'Configuration', 'Reference', 'Help & community'];
 const grouped = groupsOrder
   .map((g) => ({ name: g, items: all.filter((d) => d.data.group === g) }))
   .filter((g) => g.items.length);

@@ -17,7 +17,7 @@ Create and manage a task list. TTM checks it has the permissions it needs in the
 
 Open the configuration panel: notification mode, history tracking, push notifications, the `/create-list` legend, recurring reminders, behavior on selection, time zone and permission sync.
 
-→ See [Configuration](/docs/configuration/).
+→ See [/config app](/docs/configuration/).
 
 ## `/config lists`
 
@@ -27,13 +27,13 @@ Each row has one button that cycles through three states: <img class="inline-ic"
 
 Two things worth knowing. The panel lists **every** list this server has ever used, including those whose message no longer exists — TTM does not check Discord for each one, so open the linked channel if you want to see for yourself. And **regeneration keeps the activity timeline**: the new message reuses the same thread, so the history stays where it was.
 
-→ See [Configuration](/docs/configuration/).
+→ See [/config lists](/docs/config-lists/).
 
 ## `/config webhook`
 
 Create, view, modify or delete a webhook, optionally scoped to a **completion** or **reopen** trigger.
 
-→ See [Webhooks](/docs/webhooks/).
+→ See [/config webhook](/docs/webhooks/).
 
 ## `/beta`
 
