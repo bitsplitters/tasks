@@ -22,7 +22,7 @@ When TTM leaves beta it becomes **freemium**. That word makes people nervous, so
 
 | | Free | Unlocked |
 | :--- | :--- | :--- |
-| Active lists per server | **3** | 100+ |
+| Active lists per server | **3** | Unlimited |
 | Tasks per list | **20** | 50 † |
 | Reminders per day | **10** | Unlimited |
 | Repetitions per reminder | **5** | 50 † |
