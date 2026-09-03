@@ -23,14 +23,14 @@ When TTM leaves beta it becomes **freemium**. That word makes people nervous, so
 | | Free | Unlocked |
 | :--- | :--- | :--- |
 | Active lists per server | **3** | Unlimited |
-| Tasks per list | **20** | 50 † |
+| Tasks per list | **20** | 50 \* |
 | Reminders per day | **10** | Unlimited |
-| Repetitions per reminder | **5** | 50 † |
-| Webhooks | — | 25 † |
+| Repetitions per reminder | **5** | 50 |
+| Webhooks | — | 25 \* |
 
 *These are the planned limits and may be tuned before launch.*
 
-† **These aren't our numbers — they're Discord's, and they're the same on every plan.** A list can hold at most 50 items because a Discord message fits five component rows of 25 options; 50 repetitions and 25 webhooks are ceilings of the same kind. A paid plan can only let you *reach* them, never go past. The full list is on [Known limits](/docs/known-limits/).
+\* **A limit set by Discord, not by us** — it's the same on every plan, and a paid plan can only let you *reach* it, never go past. See [Known limits](/docs/known-limits/).
 
 ## What it costs to unlock everything
 
