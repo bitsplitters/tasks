@@ -51,4 +51,4 @@ Your starting point inside Discord. It opens a panel with buttons:
 - <img class="inline-ic" src="/icons/premium_blue.png" alt="" /> **Premium** — what the paid plan will look like once the beta ends (free limits included).
 - <img class="inline-ic" src="/icons/abouts_blue.png" alt="" /> **About us** — who builds TTM.
 
-<div class="callout"><div class="callout-t">Note</div>All commands run with no required input — one click is enough to start them.</div>
+<div class="callout"><div class="callout-t">Note</div>Every command starts with one click, with a single exception: <code>/config webhook</code> asks for the <strong>action</strong> and the <strong>webhook name</strong> up front — the two parameters described above. Everything else you configure from buttons and menus, not from typed arguments.</div>

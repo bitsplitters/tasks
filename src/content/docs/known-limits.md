@@ -45,8 +45,12 @@ Each task has **one owner** — a single user or role, the person responsible. A
 | Limit | Value |
 | :--- | :--- |
 | Webhooks per server | **25** — the picker is a Discord dropdown, and 25 options is its maximum, so that is also the cap |
-| Webhook name | up to **100** characters |
+| Webhook name | up to **96** characters \* |
 | Webhook URL | up to **2000** characters |
+
+\* Discord's own cap is 100, but the name travels inside the form field's identifier together with a
+short marker, and those characters count too: TTM checks 96 and says so if you go over. The error
+message quotes the same number you read here.
 
 ## The activity timeline
 
