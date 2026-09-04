@@ -262,10 +262,20 @@ html { overflow-x: hidden; }
 .dc-time { color: #949BA4; font-size: .72rem; }
 .dc-title { color: #f2f3f5; font-size: 1.15rem; font-weight: 700; margin: .2rem 0 .7rem; }
 .dc-tasks { list-style: none; margin: 0; padding: 0; }
-.dc-tasks li {
+/* Un task e' una PILA di righe, come in app: webhook, poi promemoria, poi checkbox + contenuto.
+   Il numero sta solo sulla PRIMA riga del blocco; le successive prendono uno spaziatore della sua
+   stessa larghezza (nel bot e' un code-span vuoto). Mettere le righe di dettaglio sotto il testo,
+   come facevo prima, e' un ordine che in Discord non si vede mai. */
+.dc-tasks li { padding: .22rem 0; color: #dbdee1; }
+.dc-line {
   display: grid; grid-template-columns: auto auto 1fr; align-items: start;
-  gap: .1rem .5rem; padding: .22rem 0; color: #dbdee1; line-height: 1.45; font-size: .92rem;
+  gap: .1rem .5rem; line-height: 1.45; font-size: .92rem;
 }
+/* Stessa larghezza minima e stesso padding orizzontale della pastiglia del numero, cosi' le
+   colonne restano allineate fra le righe dello stesso task. */
+.dc-sp { min-width: 1.6em; padding: .05rem .32rem; }
+.dc-mi { width: 17px; height: 17px; margin-top: .1rem; }
+.dc-metatxt { color: #949BA4; font-size: .84rem; min-width: 0; }
 .dc-sub { padding-left: 1.6rem; }
 .dc-n {
   font-family: var(--mono); font-size: .78rem; color: #b5bac1;
@@ -282,12 +292,7 @@ html { overflow-x: hidden; }
 .dc-txt { min-width: 0; }
 /* Menzione: Discord la disegna come pastiglia blu tenue, non come testo semplice. */
 .dc-pill { background: rgba(88,101,242,.18); color: #c9cdfb; border-radius: 4px; padding: 0 .28rem; }
-/* Riga di dettaglio (promemoria/webhook): sta sotto il testo, allineata a esso. */
-.dc-meta {
-  grid-column: 3; display: flex; align-items: center; gap: .35rem;
-  color: #949BA4; font-size: .78rem; margin-top: .1rem;
-}
-.dc-meta img { width: 14px; height: 14px; }
+
 
 /* La select: chiusa e' un bottone grigio; aperta scopre le opzioni sopra di se'. */
 .dc-select { position: relative; margin-top: .9rem; max-width: 420px; }
@@ -330,7 +335,7 @@ html { overflow-x: hidden; }
 @media (max-width: 640px) {
   .dc-msg { padding: .9rem; gap: .6rem; }
   .dc-avatar { width: 32px; height: 32px; flex-basis: 32px; }
-  .dc-tasks li { font-size: .86rem; }
+  .dc-line { font-size: .86rem; }
   .dc-select { max-width: none; }
 }
 

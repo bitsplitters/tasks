@@ -86,62 +86,87 @@ import Base from '../layouts/Base.astro';
           <div class="dc-title">Roster &amp; scrims &mdash; week 12</div>
           <ul class="dc-tasks">
             <li data-task="1" class="dc-done">
-              <span class="dc-n">1</span>
-              <span class="dc-cb">
-                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-              </span>
-              <span class="dc-txt">Confirm the five-man roster for Saturday's scrim block</span>
+              <div class="dc-line">
+                <span class="dc-n">1</span>
+                <span class="dc-cb">
+                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                </span>
+                <span class="dc-txt">Confirm the five-man roster for Saturday's scrim block</span>
+              </div>
             </li>
             <li data-task="2" class="dc-flip">
-              <span class="dc-n">2</span>
-              <span class="dc-cb">
-                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-              </span>
-              <span class="dc-txt">Lock the scrim block vs. Nova Collective</span>
+              <div class="dc-line">
+                <span class="dc-n">2</span>
+                <span class="dc-cb">
+                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                </span>
+                <span class="dc-txt">Lock the scrim block vs. Nova Collective</span>
+              </div>
             </li>
             <li data-task="2.1" data-parent="2" class="dc-sub">
-              <span class="dc-n">2.1</span>
-              <span class="dc-cb">
-                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-              </span>
-              <span class="dc-txt">Clip the three teamfights for the review</span>
+              <div class="dc-line">
+                <span class="dc-n">2.1</span>
+                <span class="dc-cb">
+                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                </span>
+                <span class="dc-txt">Clip the three teamfights for the review</span>
+              </div>
             </li>
             <li data-task="3">
-              <span class="dc-n">3</span>
-              <span class="dc-cb">
-                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-              </span>
-              <span class="dc-txt">VOD review: mid rotations, game 3 <span class="dc-pill">@coach</span></span>
-              <span class="dc-meta"><img src="/icons/alertW.png" alt="" />in 2 days at 20:30 &middot; repeats weekly</span>
+              <!-- Promemoria SOPRA il testo, e il numero sulla prima riga del blocco: e' l'ordine
+                   che compone taskToText (webhook, poi promemoria, poi checkbox + contenuto), con
+                   le righe successive che prendono lo spaziatore invece del numero. -->
+              <div class="dc-line">
+                <span class="dc-n">3</span>
+                <img class="dc-mi" src="/icons/alert.png" alt="" />
+                <span class="dc-metatxt">in 2 days at 20:30 &middot; every week &times;3</span>
+              </div>
+              <div class="dc-line">
+                <span class="dc-sp"></span>
+                <span class="dc-cb">
+                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                </span>
+                <span class="dc-txt">VOD review: mid rotations, game 3 <span class="dc-pill">@coach</span></span>
+              </div>
             </li>
             <li data-task="4" class="dc-done">
-              <span class="dc-n">4</span>
-              <span class="dc-cb">
-                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-              </span>
-              <span class="dc-txt">Submit the tournament registration</span>
+              <div class="dc-line">
+                <span class="dc-n">4</span>
+                <span class="dc-cb">
+                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                </span>
+                <span class="dc-txt">Submit the tournament registration</span>
+              </div>
             </li>
             <li data-task="5">
-              <span class="dc-n">5</span>
-              <span class="dc-cb">
-                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-              </span>
-              <span class="dc-txt">Publish the match-day graphic <span class="dc-pill">@social</span></span>
-              <span class="dc-meta"><img src="/icons/wb.png" alt="" />webhook: post-to-x</span>
+              <div class="dc-line">
+                <span class="dc-n">5</span>
+                <img class="dc-mi" src="/icons/wb.png" alt="" />
+                <span class="dc-metatxt">post-to-x</span>
+              </div>
+              <div class="dc-line">
+                <span class="dc-sp"></span>
+                <span class="dc-cb">
+                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                </span>
+                <span class="dc-txt">Publish the match-day graphic <span class="dc-pill">@social</span></span>
+              </div>
             </li>
             <li data-task="6">
-              <span class="dc-n">6</span>
-              <span class="dc-cb">
-                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-              </span>
-              <span class="dc-txt">Chase the two missing player contracts</span>
+              <div class="dc-line">
+                <span class="dc-n">6</span>
+                <span class="dc-cb">
+                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                </span>
+                <span class="dc-txt">Chase the two missing player contracts</span>
+              </div>
             </li>
           </ul>
 
