@@ -85,60 +85,82 @@ import Base from '../layouts/Base.astro';
 
           <div class="dc-title">Roster &amp; scrims &mdash; week 12</div>
           <ul class="dc-tasks">
-            <li>
+            <li data-task="1" class="dc-done">
               <span class="dc-n">1</span>
-              <span class="dc-cb"><img src="/icons/checkbox_marked.png" alt="Done" /></span>
+              <span class="dc-cb">
+                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+              </span>
               <span class="dc-txt">Confirm the five-man roster for Saturday's scrim block</span>
             </li>
-            <li class="dc-flip">
+            <li data-task="2" class="dc-flip">
               <span class="dc-n">2</span>
               <span class="dc-cb">
-                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="To do" />
+                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
                 <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
               </span>
               <span class="dc-txt">Lock the scrim block vs. Nova Collective</span>
             </li>
-            <li class="dc-sub">
+            <li data-task="2.1" data-parent="2" class="dc-sub">
               <span class="dc-n">2.1</span>
-              <span class="dc-cb"><img src="/icons/checkbox_empty.png" alt="To do" /></span>
+              <span class="dc-cb">
+                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+              </span>
               <span class="dc-txt">Clip the three teamfights for the review</span>
             </li>
-            <li>
+            <li data-task="3">
               <span class="dc-n">3</span>
-              <span class="dc-cb"><img src="/icons/checkbox_empty.png" alt="To do" /></span>
+              <span class="dc-cb">
+                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+              </span>
               <span class="dc-txt">VOD review: mid rotations, game 3 <span class="dc-pill">@coach</span></span>
               <span class="dc-meta"><img src="/icons/alertW.png" alt="" />in 2 days at 20:30 &middot; repeats weekly</span>
             </li>
-            <li>
+            <li data-task="4" class="dc-done">
               <span class="dc-n">4</span>
-              <span class="dc-cb"><img src="/icons/checkbox_marked.png" alt="Done" /></span>
+              <span class="dc-cb">
+                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+              </span>
               <span class="dc-txt">Submit the tournament registration</span>
             </li>
-            <li>
+            <li data-task="5">
               <span class="dc-n">5</span>
-              <span class="dc-cb"><img src="/icons/checkbox_empty.png" alt="To do" /></span>
+              <span class="dc-cb">
+                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+              </span>
               <span class="dc-txt">Publish the match-day graphic <span class="dc-pill">@social</span></span>
               <span class="dc-meta"><img src="/icons/wb.png" alt="" />webhook: post-to-x</span>
             </li>
-            <li>
+            <li data-task="6">
               <span class="dc-n">6</span>
-              <span class="dc-cb"><img src="/icons/checkbox_empty.png" alt="To do" /></span>
+              <span class="dc-cb">
+                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+              </span>
               <span class="dc-txt">Chase the two missing player contracts</span>
             </li>
           </ul>
 
-          <div class="dc-select" aria-hidden="true">
-            <div class="dc-select-btn">
-              <span class="dc-select-lab">Select the tasks to complete</span>
+          <div class="dc-select">
+            <button type="button" class="dc-select-btn" id="dc-trigger" aria-expanded="false" aria-controls="dc-menu">
+              <span class="dc-select-lab">Check or uncheck tasks</span>
               <span class="dc-caret">&#9662;</span>
-            </div>
-            <div class="dc-select-menu">
-              <div class="dc-opt dc-opt-pick"><img src="/icons/checkbox_empty.png" alt="" />2 &middot; Lock the scrim block vs. Nova Collective</div>
-              <div class="dc-opt"><img src="/icons/checkbox_empty.png" alt="" />2.1 &middot; Clip the three teamfights for the review</div>
-              <div class="dc-opt"><img src="/icons/checkbox_empty.png" alt="" />3 &middot; VOD review: mid rotations, game 3</div>
-              <div class="dc-opt"><img src="/icons/checkbox_empty.png" alt="" />5 &middot; Publish the match-day graphic</div>
+            </button>
+            <div class="dc-select-menu" id="dc-menu" role="group" aria-label="Check or uncheck tasks">
+              <button type="button" class="dc-opt" data-for="1" aria-pressed="true"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>1 &middot; Confirm the five-man roster</button>
+              <button type="button" class="dc-opt dc-opt-pick" data-for="2" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2 &middot; Lock the scrim block vs. Nova Collective</button>
+              <button type="button" class="dc-opt" data-for="2.1" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2.1 &middot; Clip the three teamfights</button>
+              <button type="button" class="dc-opt" data-for="3" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>3 &middot; VOD review: mid rotations</button>
+              <button type="button" class="dc-opt" data-for="4" aria-pressed="true"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>4 &middot; Submit the tournament registration</button>
+              <button type="button" class="dc-opt" data-for="5" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>5 &middot; Publish the match-day graphic</button>
+              <button type="button" class="dc-opt" data-for="6" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>6 &middot; Chase the two missing contracts</button>
             </div>
           </div>
+          <p class="dc-hint" id="dc-hint">Open the selector and tick a task &mdash; it works exactly like this in Discord. Group <strong>2</strong> and its subtask move together.</p>
         </div>
       </div>
     </div>
@@ -176,6 +198,78 @@ import Base from '../layouts/Base.astro';
   </section>
 
   <script>
+    /* ── Il mock della lista: interattivo come la pulsantiera ──────────────────────────────────
+       Riproduce il "check selector" descritto in /docs/the-task-list/: spunta e despunta i task,
+       e un gruppo trascina i suoi sottotask. La cascata e' nei DUE sensi, come nel bot: spuntare
+       il gruppo spunta i figli, e quando TUTTI i figli sono spuntati il gruppo si spunta da se'.
+       Riprodurre solo il primo senso avrebbe insegnato mezza verita'. */
+    const demo = document.querySelector(".dc-demo");
+    if (demo) {
+      const sel = demo.querySelector(".dc-select");
+      const trigger = demo.querySelector(".dc-select-btn");
+      const opzioni = Array.from(demo.querySelectorAll(".dc-opt"));
+      const righe = Array.from(demo.querySelectorAll(".dc-tasks li"));
+      const hint = document.getElementById("dc-hint");
+
+      const riga = (id) => righe.find((r) => r.dataset.task === id);
+      const opzione = (id) => opzioni.find((o) => o.dataset.for === id);
+      const spuntato = (id) => { const r = riga(id); return !!r && r.classList.contains("dc-done"); };
+
+      // Al primo tocco l'animazione dimostrativa si ferma: da quel momento comanda la persona, e
+      // vedere la riga 2 spuntarsi da sola mentre ci si sta giocando sarebbe solo confusione.
+      const fermaAnimazione = () => demo.classList.add("dc-live");
+
+      const imposta = (id, valore) => {
+        const r = riga(id);
+        if (!r) return;
+        r.classList.toggle("dc-done", valore);
+        const o = opzione(id);
+        if (o) o.setAttribute("aria-pressed", String(valore));
+      };
+
+      const applica = (id) => {
+        const valore = !spuntato(id);
+        imposta(id, valore);
+
+        // giu': il gruppo trascina i figli
+        righe.filter((r) => r.dataset.parent === id).forEach((r) => imposta(r.dataset.task, valore));
+
+        // su': se tutti i figli sono spuntati il genitore lo diventa, e basta un figlio aperto
+        // perche' il genitore torni aperto
+        const r = riga(id);
+        const padre = r && r.dataset.parent;
+        if (padre) {
+          const figli = righe.filter((x) => x.dataset.parent === padre);
+          imposta(padre, figli.every((x) => x.classList.contains("dc-done")));
+        }
+      };
+
+      const apriChiudi = (aperto) => {
+        sel.classList.toggle("open", aperto);
+        trigger.setAttribute("aria-expanded", String(aperto));
+      };
+
+      trigger.addEventListener("click", () => {
+        fermaAnimazione();
+        apriChiudi(!sel.classList.contains("open"));
+      });
+
+      opzioni.forEach((o) => o.addEventListener("click", () => {
+        fermaAnimazione();
+        applica(o.dataset.for);
+        // Il menu NON si chiude: la select del bot e' multipla, e chiuderla a ogni scelta
+        // costringerebbe a riaprirla per il task successivo.
+        if (hint) hint.textContent = "That's it — the message updates in place, and the selector stays open so you can tick more than one.";
+      }));
+
+      document.addEventListener("click", (e) => {
+        if (sel.classList.contains("open") && !sel.contains(e.target)) apriChiudi(false);
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && sel.classList.contains("open")) { apriChiudi(false); trigger.focus(); }
+      });
+    }
+
     const info = document.getElementById("board-info");
     document.querySelectorAll(".board-row .dbtn:not(.task-btn)").forEach((b) => {
       b.addEventListener("click", () => {

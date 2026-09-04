@@ -66,8 +66,18 @@ const current = entry.slug;
     const t = document.getElementById("docs-menu-toggle");
     const s = document.getElementById("docs-side");
     const c = document.getElementById("docs-side-close");
-    if (t && s) t.addEventListener("click", () => s.classList.add("open"));
-    if (c && s) c.addEventListener("click", () => s.classList.remove("open"));
-    if (s) s.addEventListener("click", (e) => { if (e.target === s) s.classList.remove("open"); });
+
+    // La classe sul body blocca lo scroll della pagina mentre il menu e' aperto: senza, il gesto
+    // che "manca" il pannello scorre il contenuto dietro invece del menu. Va togliuta in OGNI
+    // uscita — croce, tap fuori, Escape, e anche la navigazione verso una voce — altrimenti la
+    // pagina di destinazione resta bloccata e sembra rotta.
+    const apri = () => { s.classList.add("open"); document.body.classList.add("docs-menu-open"); };
+    const chiudi = () => { s.classList.remove("open"); document.body.classList.remove("docs-menu-open"); };
+
+    if (t && s) t.addEventListener("click", apri);
+    if (c && s) c.addEventListener("click", chiudi);
+    if (s) s.addEventListener("click", (e) => { if (e.target === s) chiudi(); });
+    if (s) s.addEventListener("click", (e) => { if (e.target.closest("a")) chiudi(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && s && s.classList.contains("open")) chiudi(); });
   </script>
 </Base>

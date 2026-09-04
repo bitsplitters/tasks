@@ -116,6 +116,15 @@ section.block { padding: clamp(2.5rem, 7vh, 5rem) 0; }
 .callout { border: 1px solid var(--line-2); border-left: 3px solid var(--accent); background: var(--surface); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
 .callout .callout-t { font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .4rem; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+/* Toccato = l'animazione dimostrativa finisce. Non si "mette in pausa": riprendere a muovere
+   caselle sotto le dita di chi sta giocando col mock e' peggio che non animare affatto. */
+.dc-demo.dc-live .dc-select-menu,
+.dc-demo.dc-live .dc-opt-pick,
+.dc-demo.dc-live .dc-caret,
+.dc-demo.dc-live .dc-flip,
+.dc-demo.dc-live .dc-flip .dc-cb-on,
+.dc-demo.dc-live .dc-flip .dc-cb-off { animation: none; }
+
 @media (prefers-reduced-motion: no-preference) {
   .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
   @keyframes rise { to { opacity: 1; transform: none; } }
@@ -174,12 +183,24 @@ html { overflow-x: hidden; }
   }
   .docs-menu-toggle:hover { border-color: var(--accent); color: var(--accent); }
   .docs-side {
-    position: fixed; inset: 0; top: 0; height: auto; z-index: 100;
-    display: block; margin: 0; padding: 4.5rem clamp(1.25rem, 6vw, 2rem) 2rem;
+    position: fixed; inset: 0; top: 0; z-index: 100;
+    display: block; margin: 0;
+    /* Altezza esplicita in dvh, non ereditata da inset:0. Con inset:0 il pannello e' alto quanto
+       il viewport LARGO, che su mobile comprende l'area coperta dalla barra del browser: le ultime
+       voci del menu finivano sotto quella barra e sembrava che il menu non scorresse. 'dvh' segue
+       la barra che si ritrae; il 100vh davanti serve ai browser che non conoscono dvh. */
+    height: 100vh; height: 100dvh;
+    padding: 4.5rem clamp(1.25rem, 6vw, 2rem) calc(2rem + env(safe-area-inset-bottom));
     background: color-mix(in srgb, var(--ink) 97%, transparent);
-    backdrop-filter: blur(8px); overflow-y: auto;
+    backdrop-filter: blur(8px);
+    /* 'contain' spezza la catena dello scroll: arrivato in fondo al menu il gesto NON passa alla
+       pagina dietro. Era l'altra metà del difetto — si scorreva il contenuto invece del menu. */
+    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
     transform: translateX(-100%); transition: transform .25s ease;
   }
+  /* Blocco dello scroll di fondo mentre il menu e' aperto: senza, il gesto che "manca" il pannello
+     muove la pagina sotto e al ritorno ti ritrovi altrove. */
+  body.docs-menu-open { overflow: hidden; }
   .docs-side.open { transform: translateX(0); }
   .docs-side-close {
     display: block; position: absolute; top: 1.1rem; right: 1.2rem;
@@ -253,6 +274,11 @@ html { overflow-x: hidden; }
 .dc-cb { position: relative; width: 18px; height: 18px; display: inline-block; }
 .dc-cb img { width: 18px; height: 18px; display: block; }
 .dc-cb-on { position: absolute; inset: 0; opacity: 0; }
+/* Stato spuntato: lo comanda la classe, cosi' vale sia per i valori iniziali sia per i click.
+   L'animazione dimostrativa resta, ma solo finche' nessuno ha toccato niente (.dc-live). */
+.dc-tasks li.dc-done .dc-cb-off { opacity: 0; }
+.dc-tasks li.dc-done .dc-cb-on { opacity: 1; }
+.dc-tasks li.dc-done .dc-txt { color: #949BA4; }
 .dc-txt { min-width: 0; }
 /* Menzione: Discord la disegna come pastiglia blu tenue, non come testo semplice. */
 .dc-pill { background: rgba(88,101,242,.18); color: #c9cdfb; border-radius: 4px; padding: 0 .28rem; }
@@ -285,6 +311,21 @@ html { overflow-x: hidden; }
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .dc-opt img { width: 16px; height: 16px; flex: 0 0 16px; }
+.dc-optcb { position: relative; width: 16px; height: 16px; flex: 0 0 16px; display: inline-block; }
+.dc-optcb .dc-cb-on { position: absolute; inset: 0; opacity: 0; }
+.dc-opt[aria-pressed="true"] .dc-cb-off { opacity: 0; }
+.dc-opt[aria-pressed="true"] .dc-cb-on { opacity: 1; }
+
+/* Interattivita': la select e' un vero controllo, non un disegno. */
+.dc-select-btn { width: 100%; font: inherit; font-size: .88rem; cursor: pointer; text-align: left; }
+.dc-select-btn:hover { border-color: var(--line-2); }
+.dc-opt { width: 100%; border: 0; background: transparent; font: inherit; font-size: .84rem; cursor: pointer; text-align: left; }
+.dc-opt:hover { background: #404249; }
+.dc-select.open .dc-select-menu { opacity: 1; transform: none; pointer-events: auto; }
+.dc-select.open .dc-caret { transform: rotate(180deg); }
+.dc-select-menu { max-height: 280px; overflow-y: auto; overscroll-behavior: contain; transition: opacity .16s ease, transform .16s ease; }
+.dc-hint { color: var(--muted); font-size: .85rem; margin: .8rem 0 0; max-width: 52ch; }
+.dc-hint strong { color: var(--text); }
 
 @media (max-width: 640px) {
   .dc-msg { padding: .9rem; gap: .6rem; }
