@@ -39,7 +39,14 @@ If you're here from the bot, start with [Free during the beta](/docs/beta/): it 
 
 ## What it will cost
 
-**Planned: from about €2 per month, per server**, on an annual plan. One price for the whole server — everyone on it included, no per-seat maths. The price isn't final until the beta ends.
+| | Price | Works out at |
+| :--- | :--- | :--- |
+| Monthly | **€5 / month** | €5 per month |
+| Annual | **€24 / year** | **€2 per month** |
+
+One price for the **whole server** — everyone on it included, no per-seat maths, no counting members. The annual plan is the same product paid once: it costs less because it saves us a year of billing, not because it gives you more.
+
+*Planned prices, not final until the beta ends.*
 
 And for being here first: when the beta winds down we'll open a **Founder** offer — a full year at roughly **half price**, as a thank-you to the servers that showed up early.
 
@@ -47,7 +54,7 @@ And for being here first: when the beta winds down we'll open a **Founder** offe
 
 You can — and this is the point: **you'll never be trapped.** If you'd prefer to host TTM on your own machine, join our [Discord server](/docs/community/), download the executable and its configuration, and run it free, for good. Every time we ship an update, the new executable is waiting for you there.
 
-<div class="callout"><div class="callout-t">The honest maths</div>Self-hosting to save €2/month means: paying for a server that costs <em>more</em> than €2/month; keeping a database running and backed up; and stopping the bot, downloading each release, reconfiguring it and starting it again — <em>every single update</em> — while you're the one on call when it falls over at 2 a.m.<br><br>€2/month — less than one coffee — is us doing all of that for you, forever, with every update live the moment it ships. The self-host door is always open — with the trade-offs laid out, is it worth walking through? That's yours to decide.</div>
+<div class="callout"><div class="callout-t">The honest maths</div>Self-hosting to save €2/month — €24 for a whole year — means: paying for a server that costs <em>more</em> than €2/month; keeping a database running and backed up; and stopping the bot, downloading each release, reconfiguring it and starting it again — <em>every single update</em> — while you're the one on call when it falls over at 2 a.m.<br><br>€2/month — less than one coffee — is us doing all of that for you, forever, with every update live the moment it ships. The self-host door is always open — with the trade-offs laid out, is it worth walking through? That's yours to decide.</div>
 
 ## Questions?
 
