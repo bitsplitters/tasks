@@ -213,3 +213,109 @@ html { overflow-x: hidden; }
 .docs-search .pagefind-ui__results-area { max-height: 60vh; overflow-y: auto; }
 .docs-search .pagefind-ui__result-title a { color: var(--text); }
 .docs-search .pagefind-ui__result-excerpt { color: var(--muted); font-size: .85rem; }
+
+/* ── Mock della lista Discord in home page ─────────────────────────────────────
+   Riproduce il messaggio che il bot tiene aggiornato: intestazione, titolo H2,
+   righe numerate col checkbox, e la select con cui si spuntano i task. Serve a
+   far riconoscere il bot PRIMA di invitarlo, quindi le proporzioni contano piu'
+   della fedelta' pixel-per-pixel: numerazione monospace come il bot (che la
+   rende in code-span), sotto-task rientrato, riga di dettaglio per promemoria e
+   webhook.
+   L'animazione sta tutta dentro @media (prefers-reduced-motion: no-preference),
+   come il resto del sito: chi chiede meno movimento vede un fotogramma fermo e
+   coerente, non una pagina rotta. */
+.dc-demo { margin-top: 1.8rem; }
+.dc-msg {
+  display: flex; gap: .9rem; padding: 1.1rem 1.2rem;
+  background: #313338;                 /* il grigio del tema Dark di Discord */
+  border: 1px solid var(--line-2); border-radius: 12px;
+}
+.dc-avatar { width: 40px; height: 40px; border-radius: 50%; flex: 0 0 40px; }
+.dc-body { min-width: 0; flex: 1; }
+.dc-head { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; margin-bottom: .5rem; }
+.dc-name { color: #f2f3f5; font-weight: 600; }
+.dc-app {
+  background: #5865F2; color: #fff; font-size: .62rem; font-weight: 700;
+  padding: .1rem .3rem; border-radius: 3px; letter-spacing: .04em; text-transform: uppercase;
+}
+.dc-time { color: #949BA4; font-size: .72rem; }
+.dc-title { color: #f2f3f5; font-size: 1.15rem; font-weight: 700; margin: .2rem 0 .7rem; }
+.dc-tasks { list-style: none; margin: 0; padding: 0; }
+.dc-tasks li {
+  display: grid; grid-template-columns: auto auto 1fr; align-items: start;
+  gap: .1rem .5rem; padding: .22rem 0; color: #dbdee1; line-height: 1.45; font-size: .92rem;
+}
+.dc-sub { padding-left: 1.6rem; }
+.dc-n {
+  font-family: var(--mono); font-size: .78rem; color: #b5bac1;
+  background: #2b2d31; border-radius: 4px; padding: .05rem .32rem; min-width: 1.6em; text-align: center;
+}
+.dc-cb { position: relative; width: 18px; height: 18px; display: inline-block; }
+.dc-cb img { width: 18px; height: 18px; display: block; }
+.dc-cb-on { position: absolute; inset: 0; opacity: 0; }
+.dc-txt { min-width: 0; }
+/* Menzione: Discord la disegna come pastiglia blu tenue, non come testo semplice. */
+.dc-pill { background: rgba(88,101,242,.18); color: #c9cdfb; border-radius: 4px; padding: 0 .28rem; }
+/* Riga di dettaglio (promemoria/webhook): sta sotto il testo, allineata a esso. */
+.dc-meta {
+  grid-column: 3; display: flex; align-items: center; gap: .35rem;
+  color: #949BA4; font-size: .78rem; margin-top: .1rem;
+}
+.dc-meta img { width: 14px; height: 14px; }
+
+/* La select: chiusa e' un bottone grigio; aperta scopre le opzioni sopra di se'. */
+.dc-select { position: relative; margin-top: .9rem; max-width: 420px; }
+.dc-select-btn {
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+  background: #2b2d31; border: 1px solid #1e1f22; border-radius: 8px;
+  padding: .55rem .75rem; color: #b5bac1; font-size: .88rem;
+}
+.dc-caret { color: #949BA4; }
+/* Si apre verso il BASSO, come Discord quando c'e' spazio. Verso l'alto coprirebbe
+   proprio la lista che il mock deve far vedere — compresa la riga che poi si spunta. */
+.dc-select-menu {
+  position: absolute; left: 0; right: 0; top: calc(100% + .35rem); z-index: 2;
+  background: #2b2d31; border: 1px solid #1e1f22; border-radius: 8px;
+  padding: .3rem; box-shadow: 0 8px 24px rgba(0,0,0,.45);
+  opacity: 0; transform: translateY(-6px); pointer-events: none;
+}
+.dc-opt {
+  display: flex; align-items: center; gap: .45rem; padding: .4rem .5rem;
+  border-radius: 5px; color: #dbdee1; font-size: .84rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.dc-opt img { width: 16px; height: 16px; flex: 0 0 16px; }
+
+@media (max-width: 640px) {
+  .dc-msg { padding: .9rem; gap: .6rem; }
+  .dc-avatar { width: 32px; height: 32px; flex-basis: 32px; }
+  .dc-tasks li { font-size: .86rem; }
+  .dc-select { max-width: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Un solo giro da 9s con un solo gesto: apri, scegli, la riga si spunta. Due
+     scelte per giro rendevano la sequenza difficile da seguire e non aggiungevano
+     niente. Le percentuali sono i secondi divisi 9. */
+  .dc-select-menu { animation: dc-menu 9s ease-in-out infinite; }
+  .dc-opt-pick { animation: dc-pick 9s ease-in-out infinite; }
+  .dc-caret { animation: dc-caret 9s ease-in-out infinite; }
+  .dc-flip .dc-cb-on { animation: dc-check 9s ease-in-out infinite; }
+  .dc-flip .dc-cb-off { animation: dc-uncheck 9s ease-in-out infinite; }
+  .dc-flip { animation: dc-row 9s ease-in-out infinite; }
+
+  @keyframes dc-menu {              /* chiusa → aperta 1,2-2,9s → richiusa 3,5s */
+    0%, 13% { opacity: 0; transform: translateY(-6px); }
+    21%, 32% { opacity: 1; transform: none; }
+    39%, 100% { opacity: 0; transform: translateY(-6px); }
+  }
+  @keyframes dc-pick {              /* l'opzione si illumina appena prima del click */
+    0%, 24% { background: transparent; }
+    28%, 36% { background: #404249; }
+    40%, 100% { background: transparent; }
+  }
+  @keyframes dc-caret { 0%, 13% { transform: none; } 21%, 36% { transform: rotate(180deg); } 44%, 100% { transform: none; } }
+  @keyframes dc-check { 0%, 39% { opacity: 0; } 46%, 89% { opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes dc-uncheck { 0%, 39% { opacity: 1; } 46%, 89% { opacity: 0; } 96%, 100% { opacity: 1; } }
+  @keyframes dc-row { 0%, 39% { background: transparent; } 46% { background: rgba(88,101,242,.14); } 60%, 100% { background: transparent; } }
+}

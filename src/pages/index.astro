@@ -58,8 +58,84 @@ import Base from '../layouts/Base.astro';
   </section>
   <section class="block wrap">
     <p class="section-eyebrow">Try it</p>
-    <h2>The list panel, explained by clicking it.</h2>
-    <p class="big">This is the button panel you get under every list &mdash; no labels, on purpose. Trust your intuition, then click to confirm what each one does. The same layout you'll find on Discord.</p>
+    <h2>This is what a list looks like in your server.</h2>
+    <p class="big">A message the bot keeps up to date, with a dropdown underneath to tick tasks off. Nothing to learn: it's Discord's own interface, so it already behaves the way you expect.</p>
+
+    <!-- Mock della lista come la rende il bot: intestazione del messaggio, titolo H2, righe
+         numerate con checkbox, e sotto la select per spuntare i task. L'animazione mostra il
+         gesto piu' frequente — apri la select, scegli un task, la riga si spunta — perche' e'
+         quello che rende il bot familiare prima ancora di invitarlo. -->
+    <div class="dc-demo">
+      <div class="dc-msg">
+        <img class="dc-avatar" src="/icons/TTM-Official.png" alt="" />
+        <div class="dc-body">
+          <div class="dc-head">
+            <span class="dc-name">Team Tasks Manager</span>
+            <span class="dc-app">APP</span>
+            <span class="dc-time">Today at 18:04</span>
+          </div>
+
+          <div class="dc-title">Roster &amp; scrims &mdash; week 12</div>
+          <ul class="dc-tasks">
+            <li>
+              <span class="dc-n">1</span>
+              <span class="dc-cb"><img src="/icons/checkbox_marked.png" alt="Done" /></span>
+              <span class="dc-txt">Confirm the five-man roster for Saturday's scrim block</span>
+            </li>
+            <li class="dc-flip">
+              <span class="dc-n">2</span>
+              <span class="dc-cb">
+                <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="To do" />
+                <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+              </span>
+              <span class="dc-txt">Lock the scrim block vs. Nova Collective</span>
+            </li>
+            <li class="dc-sub">
+              <span class="dc-n">2.1</span>
+              <span class="dc-cb"><img src="/icons/checkbox_empty.png" alt="To do" /></span>
+              <span class="dc-txt">Clip the three teamfights for the review</span>
+            </li>
+            <li>
+              <span class="dc-n">3</span>
+              <span class="dc-cb"><img src="/icons/checkbox_empty.png" alt="To do" /></span>
+              <span class="dc-txt">VOD review: mid rotations, game 3 <span class="dc-pill">@coach</span></span>
+              <span class="dc-meta"><img src="/icons/alertW.png" alt="" />in 2 days at 20:30 &middot; repeats weekly</span>
+            </li>
+            <li>
+              <span class="dc-n">4</span>
+              <span class="dc-cb"><img src="/icons/checkbox_marked.png" alt="Done" /></span>
+              <span class="dc-txt">Submit the tournament registration</span>
+            </li>
+            <li>
+              <span class="dc-n">5</span>
+              <span class="dc-cb"><img src="/icons/checkbox_empty.png" alt="To do" /></span>
+              <span class="dc-txt">Publish the match-day graphic <span class="dc-pill">@social</span></span>
+              <span class="dc-meta"><img src="/icons/wb.png" alt="" />webhook: post-to-x</span>
+            </li>
+            <li>
+              <span class="dc-n">6</span>
+              <span class="dc-cb"><img src="/icons/checkbox_empty.png" alt="To do" /></span>
+              <span class="dc-txt">Chase the two missing player contracts</span>
+            </li>
+          </ul>
+
+          <div class="dc-select" aria-hidden="true">
+            <div class="dc-select-btn">
+              <span class="dc-select-lab">Select the tasks to complete</span>
+              <span class="dc-caret">&#9662;</span>
+            </div>
+            <div class="dc-select-menu">
+              <div class="dc-opt dc-opt-pick"><img src="/icons/checkbox_empty.png" alt="" />2 &middot; Lock the scrim block vs. Nova Collective</div>
+              <div class="dc-opt"><img src="/icons/checkbox_empty.png" alt="" />2.1 &middot; Clip the three teamfights for the review</div>
+              <div class="dc-opt"><img src="/icons/checkbox_empty.png" alt="" />3 &middot; VOD review: mid rotations, game 3</div>
+              <div class="dc-opt"><img src="/icons/checkbox_empty.png" alt="" />5 &middot; Publish the match-day graphic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="big" style="margin-top:2.5rem">And these are the buttons that sit under it &mdash; no labels, on purpose. Trust your intuition, then click to confirm what each one does.</p>
     <div class="board-teaser">
       <div class="board-lab">Row 1 &mdash; acts on the whole list</div>
       <div class="board-row">
