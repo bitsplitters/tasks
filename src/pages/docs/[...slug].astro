@@ -22,6 +22,10 @@ const current = entry.slug;
   <div class="docs-shell">
     <aside class="docs-side" id="docs-side">
       <button class="docs-side-close" id="docs-side-close" aria-label="Close menu">&times;</button>
+      {/* La ricerca esiste solo nella build: gli asset (/pagefind/*) li produce `pagefind --site dist`
+          dopo `astro build`, quindi in `astro dev` non ci sono. Renderizzarla comunque significherebbe
+          mostrare in sviluppo un campo che non cerca niente e due 404 in console. */}
+      {import.meta.env.PROD && <div class="docs-search" id="docs-search"></div>}
       {grouped.map((g) => (
         <div>
           <div class="grp">{g.name}</div>
@@ -31,12 +35,33 @@ const current = entry.slug;
         </div>
       ))}
     </aside>
-    <article class="prose">
+    {/* data-pagefind-body delimita CIO' CHE VA INDICIZZATO. Senza, Pagefind indicizza tutta la
+        pagina, sidebar compresa: ogni voce del menu comparirebbe in ogni pagina e una ricerca per
+        «webhook» restituirebbe tutte le pagine del sito. Effetto collaterale voluto: appena un
+        attributo del genere esiste, Pagefind indicizza SOLO le pagine che lo hanno, quindi la
+        ricerca copre la documentazione e non le pagine legali. */}
+    <article class="prose" data-pagefind-body>
       <h1>{entry.data.title}</h1>
       {entry.data.description && <p class="subtitle">{entry.data.description}</p>}
       <Content />
     </article>
   </div>
+  {import.meta.env.PROD && (
+    <>
+      <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+      <script is:inline src="/pagefind/pagefind-ui.js"></script>
+      <script is:inline>
+        window.addEventListener("DOMContentLoaded", () => {
+          new PagefindUI({
+            element: "#docs-search",
+            showImages: false,
+            showSubResults: true,
+            translations: { placeholder: "Search the docs" }
+          });
+        });
+      </script>
+    </>
+  )}
   <script>
     const t = document.getElementById("docs-menu-toggle");
     const s = document.getElementById("docs-side");
