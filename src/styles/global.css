@@ -266,15 +266,23 @@ html { overflow-x: hidden; }
    Il numero sta solo sulla PRIMA riga del blocco; le successive prendono uno spaziatore della sua
    stessa larghezza (nel bot e' un code-span vuoto). Mettere le righe di dettaglio sotto il testo,
    come facevo prima, e' un ordine che in Discord non si vede mai. */
-.dc-tasks li { padding: .22rem 0; color: #dbdee1; }
-.dc-line {
+/* UNA griglia per task, non una per riga. Con una griglia per riga le colonne si calcolano
+   indipendentemente e non c'e' modo di allinearle: l'emoji del promemoria finiva fuori asse
+   rispetto alla checkbox sotto, e lo spaziatore risolveva il suo 1.6em su una dimensione di font
+   diversa da quella della pastiglia del numero. Con display:contents sulle righe i loro figli
+   entrano in questa griglia, quindi le tre colonne sono le stesse per tutte le righe del task. */
+.dc-tasks li {
   display: grid; grid-template-columns: auto auto 1fr; align-items: start;
-  gap: .1rem .5rem; line-height: 1.45; font-size: .92rem;
+  gap: .1rem .5rem; padding: .22rem 0; color: #dbdee1; line-height: 1.45; font-size: .92rem;
 }
+.dc-line { display: contents; }
 /* Stessa larghezza minima e stesso padding orizzontale della pastiglia del numero, cosi' le
    colonne restano allineate fra le righe dello stesso task. */
-.dc-sp { min-width: 1.6em; padding: .05rem .32rem; }
-.dc-mi { width: 17px; height: 17px; margin-top: .1rem; }
+/* Lo spaziatore deve misurare ESATTAMENTE come la pastiglia del numero: stessa famiglia e
+   dimensione di font (l'em di 1.6em dipende da quelle) e stesso padding. */
+.dc-sp { font-family: var(--mono); font-size: .78rem; min-width: 1.6em; padding: .05rem .32rem; }
+/* 18px come la checkbox: nella colonna 2 si alternano, e un pixel di scarto si vede. */
+.dc-mi { width: 18px; height: 18px; }
 .dc-metatxt { color: #949BA4; font-size: .84rem; min-width: 0; }
 .dc-sub { padding-left: 1.6rem; }
 .dc-n {
@@ -335,7 +343,7 @@ html { overflow-x: hidden; }
 @media (max-width: 640px) {
   .dc-msg { padding: .9rem; gap: .6rem; }
   .dc-avatar { width: 32px; height: 32px; flex-basis: 32px; }
-  .dc-line { font-size: .86rem; }
+  .dc-tasks li { font-size: .86rem; }
   .dc-select { max-width: none; }
 }
 
