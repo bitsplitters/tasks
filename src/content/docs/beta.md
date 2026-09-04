@@ -20,29 +20,15 @@ When TTM leaves beta it becomes **freemium**. That word makes people nervous, so
 
 ## The free tier, after beta
 
-| | Free | Unlocked |
-| :--- | :--- | :--- |
-| Active lists per server | **3** | Unlimited |
-| Tasks per list | **20** | 50 \* |
-| Reminders per day | **10** | Unlimited |
-| Repetitions per reminder | **5** | 50 |
-| Webhooks | — | 25 \* |
+Three lists, twenty tasks each, ten reminders a day: enough for a small team to keep using TTM without ever paying. The full table — free limits, what Premium lifts, what each one changes day to day, and the planned price — lives on one page:
 
-*These are the planned limits and may be tuned before launch.*
+**→ [What Premium unlocks](/docs/premium/)**
 
-\* **A limit set by Discord, not by us** — it's the same on every plan, and a paid plan can only let you *reach* it, never go past. See [Known limits](/docs/known-limits/).
-
-## What it costs to unlock everything
-
-**Planned: from about €2 per month, per server**, on an annual plan. One price for the whole server — everyone on it included, no per-seat maths. The price isn't final until the beta ends.
-
-And for being here first: when the beta winds down we'll open a **Founder** offer — a full year at roughly **half price**, as a thank-you to the servers that showed up early.
+It's a separate page on purpose. This one is about *the beta* and stops being true the day the beta ends; that one describes the plans and stays. And the limits are written down in exactly one place, so they can't drift apart.
 
 ## Rather run it yourself?
 
-You can — and this is the point: **you'll never be trapped.** If you'd prefer to host TTM on your own machine, join our [Discord server](/docs/community/), download the executable and its configuration, and run it free, for good. Every time we ship an update, the new executable is waiting for you there.
-
-<div class="callout"><div class="callout-t">The honest maths</div>Self-hosting to save €2/month means: paying for a server that costs <em>more</em> than €2/month; keeping a database running and backed up; and stopping the bot, downloading each release, reconfiguring it and starting it again — <em>every single update</em> — while you're the one on call when it falls over at 2 a.m.<br><br>€2/month — less than one coffee — is us doing all of that for you, forever, with every update live the moment it ships. The self-host door is always open — with the trade-offs laid out, is it worth walking through? That's yours to decide.</div>
+You can, and you'll never be trapped: TTM can be self-hosted for free, for good. The trade-offs — and the honest maths on what €2/month actually buys you — are on [What Premium unlocks](/docs/premium/#rather-run-it-yourself).
 
 ## Questions?
 
