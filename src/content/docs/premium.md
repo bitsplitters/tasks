@@ -15,7 +15,7 @@ If you're here from the bot, start with [Free during the beta](/docs/beta/): it 
 | :--- | :--- | :--- |
 | Active lists per server | **3** | Unlimited |
 | Tasks per list | **20** | 50 \* |
-| Reminders per day | **10** | Unlimited |
+| Active reminders | **10** | Unlimited |
 | Repetitions per reminder | **5** | 50 |
 | Webhooks | — | 25 \* |
 
@@ -29,13 +29,13 @@ If you're here from the bot, start with [Free during the beta](/docs/beta/): it 
 
 **Tasks per list — 20 → 50.** Twenty is a working checklist. Fifty is a backlog you groom. Above that neither plan can go, and that isn't us: a Discord message has a hard size limit, and a list *is* a message. [Known limits](/docs/known-limits/) has the details.
 
-**Reminders per day — 10 → unlimited.** Ten a day is plenty for deadlines that matter. It becomes the binding limit when reminders stop being exceptions and become the rhythm of the server — stand-ups, shift handovers, recurring checks on a dozen lists.
+**Active reminders — 10 → unlimited.** Ten reminders *waiting at the same time* — not ten a day. A reminder stops counting the moment it has fired for the last time, so the slot comes back on its own; and a repeating reminder takes **one** slot, not one per repetition. Ten is plenty for deadlines that matter. It becomes the binding limit when reminders stop being exceptions and become the rhythm of the server — stand-ups, shift handovers, recurring checks on a dozen lists.
 
 **Repetitions per reminder — 5 → 50.** How many times a single reminder repeats before it gives up. Five is a nudge; fifty is a drumbeat for something that genuinely must not be missed.
 
 **Webhooks — none → up to 25.** This is the only row where Premium unlocks a *capability* rather than a bigger number. Webhooks let a completed task fire an HTTP call to anything you run: a deploy, a spreadsheet, a ticket system, your own service. It is the feature that turns TTM from a checklist into a piece of your workflow, and it's the reason the paid plan exists. See [Webhooks](/docs/webhooks/).
 
-<div class="callout"><div class="callout-t">Every limit on this page is a limit on <em>creating</em>, never on <em>using</em></div>The clearest case is webhooks: you can create up to 25 per server, and each one can fire as many times as you like — a webhook that runs a thousand times a week still counts as one. Same everywhere else: three lists means three lists <em>existing</em>, not three lists you may open per day. Nothing in TTM is metered by use.</div>
+<div class="callout"><div class="callout-t">Every limit on this page is a limit on <em>creating</em>, never on <em>using</em></div>The clearest case is webhooks: you can create up to 25 per server, and each one can fire as many times as you like — a webhook that runs a thousand times a week still counts as one. Same everywhere else: three lists means three lists you are <em>working on</em> — and a list you are not working on still opens, still ticks, still downloads. Nothing in TTM is metered by use.</div>
 
 <div class="callout"><div class="callout-t">The free tier is not a countdown</div>Everything above the line keeps working for as long as you use TTM. If your server outgrows a free limit you can't add <em>more</em> beyond it until you upgrade — but nothing already there is deleted, hidden, or degraded. That promise is spelled out in <a href="/docs/beta/">Free during the beta</a>.</div>
 
