@@ -1,0 +1,33 @@
+---
+// L'invito del bot vive QUI e in nessun altro posto.
+//
+// Il sito è statico (GitHub Pages), quindi il rimando è un meta refresh più un link
+// cliccabile: senza JavaScript e senza server funziona comunque.
+//
+// Perché una pagina e non l'URL OAuth2 nei pulsanti: l'URL cambia — client id di un'app
+// diversa, maschera dei permessi rivista — e ogni pulsante sparso per il sito sarebbe una
+// copia da ricordarsi di aggiornare. Con /invite si cambia una riga. In più è un indirizzo
+// breve, dettabile a voce e condivisibile, e se un giorno servirà sapere quante volte viene
+// aperto basterà guardare le statistiche di questa pagina.
+//
+// La maschera 34897128448 è la stessa di `bot.invite` in app-properties.yaml e deve restare
+// un SOVRAINSIEME di TTMPermissions.requiredPermissions: se il gate chiede un permesso che
+// l'invito non concede, il primo /create-list viene rifiutato all'admin che ha appena
+// invitato il bot.
+const INVITE = 'https://discord.com/api/oauth2/authorize?client_id=1531611457152618516&permissions=34897128448&scope=bot+applications.commands';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Adding Team Tasks Manager to your server…</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0; url=${INVITE}`} />
+    <link rel="canonical" href={INVITE} />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body style="font-family: system-ui, sans-serif; padding: 3rem; line-height: 1.6;">
+    <p>Taking you to Discord to add <strong>Team Tasks Manager</strong> to your server…</p>
+    <p>If nothing happens, <a href={INVITE}>open the invite manually</a>.</p>
+  </body>
+</html>

@@ -11,7 +11,9 @@ This page takes you from zero to your first working list.
 
 ## 1. Invite the bot
 
-Add Team Tasks Manager to your server with the **Add to Discord** button (top of this site). During the invite, keep the permissions TTM asks for — it needs them to post lists, manage threads and run reminders. If you skip one, the bot will tell you exactly which permission is missing when it needs it.
+<p><a class="btn" href="/invite">Add to Discord</a></p>
+
+That button invites Team Tasks Manager to your server. During the invite, keep the permissions TTM asks for — it needs them to post lists, manage threads and run reminders. If you skip one, the bot will tell you exactly which permission is missing when it needs it.
 
 The permissions TTM may use are:
 
