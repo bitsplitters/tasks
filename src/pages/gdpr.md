@@ -2,14 +2,14 @@
 layout: ../layouts/Legal.astro
 title: "GDPR & Your Data Rights"
 description: How Team Tasks Manager complies with the EU General Data Protection Regulation.
-updated: "Last updated: 14 August 2026"
+updated: "Last updated: 11 September 2026"
 ---
 
 Because **bitsplitters** operates in the European Union, the use of **Team Tasks Manager** ("TTM") is subject to the **General Data Protection Regulation (GDPR)**. This page explains the legal basis for processing and the rights you have. It complements our [Privacy Policy](/privacy/), which lists exactly what data we handle.
 
 ## Data controller
 
-**bitsplitters** — Alessandro Vurro, Italian VAT no. 18349651002, certified email (PEC): alessandro.vurro@pec.it. Contact for any data-protection matter: **info@bitsplitters.app**.
+**bitsplitters** — Alessandro Vurro, Via di Dragone 478/B, 00126 Rome (RM), Italy. Italian VAT no. 18349651002, certified email (PEC): alessandro.vurro@pec.it. Contact for any data-protection matter: **info@bitsplitters.app**.
 
 ## Legal basis for processing (Art. 6 GDPR)
 

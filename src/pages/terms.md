@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Terms of Service
 description: The terms governing the use of the Team Tasks Manager Discord bot.
-updated: "Last updated: 28 July 2026"
+updated: "Last updated: 11 September 2026"
 ---
 
 These Terms of Service ("Terms") govern your use of the **Team Tasks Manager** Discord bot ("TTM", "the bot", "the service"), provided by bitsplitters ("we", "us"). By adding the bot to a Discord server or using it, you agree to these Terms. If you do not agree, do not use the bot.
@@ -56,4 +56,4 @@ These Terms are governed by the laws of Italy, without regard to conflict-of-law
 
 Questions about these Terms: **info@bitsplitters.app**.
 
-Provider: bitsplitters — Alessandro Vurro, Italian VAT no. 18349651002, certified email (PEC): alessandro.vurro@pec.it.
+Provider: bitsplitters — Alessandro Vurro, Via di Dragone 478/B, 00126 Rome (RM), Italy. Italian VAT no. 18349651002, certified email (PEC): alessandro.vurro@pec.it.

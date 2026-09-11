@@ -2,14 +2,14 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 2 September 2026"
+updated: "Last updated: 11 September 2026"
 ---
 
 This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") collects and how we handle it. It applies to the use of the bot on Discord. For your rights under EU data-protection law, see also our [GDPR page](/gdpr/).
 
 ## Who we are
 
-The data controller is **bitsplitters** — Alessandro Vurro, Italian VAT no. 18349651002, certified email (PEC): alessandro.vurro@pec.it. Contact: **info@bitsplitters.app**.
+The data controller is **bitsplitters** — Alessandro Vurro, Via di Dragone 478/B, 00126 Rome (RM), Italy. Italian VAT no. 18349651002, certified email (PEC): alessandro.vurro@pec.it. Contact: **info@bitsplitters.app**.
 
 ## What we collect
 
