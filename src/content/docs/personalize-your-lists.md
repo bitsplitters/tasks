@@ -66,7 +66,9 @@ For links to anything outside Discord, use standard Markdown:
 
 So `[our roadmap](https://example.com/roadmap)` becomes **[our roadmap](https://example.com/roadmap)** — a clean, clickable link instead of a bare URL.
 
-The target doesn't have to be a web page: a `mailto:` link works the same way and opens the reader's own mail client, so `[the release owner](mailto:release@example.com)` turns a task into a one-click "write to this person".
+The target doesn't have to be a web page: `mailto:`, `tel:` and `sms:` links work the same way and hand the task over to the reader's own app. `[the release owner](mailto:release@example.com)` turns a task into a one-click "write to this person", and `[the on-call phone](tel:+12025550100)` dials it straight from a phone.
+
+A link can also point to **another list**: right-click its message → **Copy Message Link** and paste it inside the brackets. Message links are left as they are — only plain channel links get shortened to a `#channel` tag.
 
 ## Quick reference
 
@@ -77,6 +79,7 @@ The target doesn't have to be a web page: a `mailto:` link works the same way an
 | Link a channel | `<#CHANNEL_ID>` | #channel |
 | Add a link | `[text](https://url)` | text |
 | Link an email address | `[text](mailto:name@example.com)` | text |
+| Link a phone number | `[text](tel:+12025550100)` | text |
 
 ## Putting it together
 
