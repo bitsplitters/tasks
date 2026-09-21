@@ -7,7 +7,7 @@ order: 9.7
 
 Team Tasks Manager has an **official Discord community server**, published by bitsplitters. It's the fastest way to get help, tell us what's missing and stay ahead of what's coming — no need to add the bot to join.
 
-<a class="btn" href="https://discord.gg/ec7j5YRc4R">Join the Discord server &rarr;</a>
+<a class="btn" href="https://discord.gg/ec7j5YRc4R" target="_blank" rel="noopener noreferrer">Join the Discord server &rarr;<span class="sr-only"> (opens in a new tab)</span></a>
 
 ## What you can do there
 
