@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import { unified } from '@astrojs/markdown-remark';
 import rehypeExternalLinks from 'rehype-external-links';
 
 // I link che portano FUORI dal sito si aprono in una scheda nuova; quelli interni no.
@@ -16,35 +17,50 @@ import rehypeExternalLinks from 'rehype-external-links';
 // mantenere a mano: sta fuori dalla pipeline, quindi e' fuori dalla regola.
 export default defineConfig({
   site: 'https://tasks.bitsplitters.app',
+
+  // Il processore Markdown va dichiarato esplicitamente. Dalla 7 il default di Astro e' Satteri, e
+  // `@astrojs/markdown-remark` non e' piu' installato d'ufficio: la vecchia forma
+  // `markdown.rehypePlugins` e' deprecata, e con quel pacchetto assente la build muore.
+  //
+  // Si resta su `unified` e non si passa a Satteri per una ragione concreta, non per inerzia: i
+  // markdown di commands.md e config-lists.md contengono HTML grezzo inline (<img class="inline-ic">,
+  // anche dentro le tabelle GFM) che oggi passa grazie a rehype-raw, dipendenza di
+  // @astrojs/markdown-remark. Con Satteri quel comportamento andrebbe riverificato pagina per pagina.
+  //
+  // ATTENZIONE al modo peggiore di sbagliare qui: impostare `processor: satteri()` lasciando anche
+  // `markdown.rehypePlugins` NON fa fallire la build — stampa un avviso e ignora i plugin. I link
+  // esterni perderebbero target, rel e testo per screen reader, e la CI passerebbe lo stesso.
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['noopener', 'noreferrer'],
+    processor: unified({
+      rehypePlugins: [
+        [
+          rehypeExternalLinks,
+          {
+            target: '_blank',
+            rel: ['noopener', 'noreferrer'],
 
-          // I domini riservati agli esempi (RFC 2606) sono dimostrazioni, non destinazioni: in
-          // «Personalize your lists» il link `[our roadmap](https://example.com/roadmap)` esiste
-          // per far VEDERE com'e' un link cliccabile. Marcarlo come «esce dal sito», freccina
-          // compresa, direbbe una cosa vera di una finzione, e in una pagina che insegna la
-          // sintassi sarebbe solo rumore.
-          test: (element) =>
-            !/^https?:\/\/(www\.)?example\.(com|org|net)(\/|$)/i.test(
-              String(element.properties?.href ?? '')
-            ),
+            // I domini riservati agli esempi (RFC 2606) sono dimostrazioni, non destinazioni: in
+            // «Personalize your lists» il link `[our roadmap](https://example.com/roadmap)` esiste
+            // per far VEDERE com'e' un link cliccabile. Marcarlo come «esce dal sito», freccina
+            // compresa, direbbe una cosa vera di una finzione, e in una pagina che insegna la
+            // sintassi sarebbe solo rumore.
+            test: (element) =>
+              !/^https?:\/\/(www\.)?example\.(com|org|net)(\/|$)/i.test(
+                String(element.properties?.href ?? '')
+              ),
 
-          // La freccina che il CSS aggiunge e' decorativa, e uno screen reader non la legge. Senza
-          // questo testo, chi non la vede scopre la scheda nuova solo premendo Indietro e non
-          // ottenendo niente.
-          content: {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['sr-only'] },
-            children: [{ type: 'text', value: ' (opens in a new tab)' }],
+            // La freccina che il CSS aggiunge e' decorativa, e uno screen reader non la legge.
+            // Senza questo testo, chi non la vede scopre la scheda nuova solo premendo Indietro e
+            // non ottenendo niente.
+            content: {
+              type: 'element',
+              tagName: 'span',
+              properties: { className: ['sr-only'] },
+              children: [{ type: 'text', value: ' (opens in a new tab)' }],
+            },
           },
-        },
+        ],
       ],
-    ],
+    }),
   },
 });

@@ -18,8 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: withastro/action@v3
+      - uses: actions/checkout@v7
+      # withastro/action@v6 e non v3: il tag v3 passa `node-version: "20"` di default, e Astro 7
+      # pretende Node >=22.12 — la build morirebbe qui, dopo il push, cioe' nel punto peggiore per
+      # un sito che si pubblica da solo. La v6 usa "24". Verificato leggendo gli action.yml dei due
+      # tag, non la documentazione: il ramo main dell'action dichiara gia' "24" da tempo, quindi
+      # guardare li' fa concludere che anche v3 vada bene. Non va bene.
+      - uses: withastro/action@v6
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -28,4 +33,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
