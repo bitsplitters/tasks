@@ -34,8 +34,8 @@ These buttons never touch a single task; they operate on the **entire list**.
 
 The first row is full — Discord allows five buttons per row — so the rare actions live one click away:
 
-- **Guide** — the quick in-Discord guide, with a link back to this documentation. It used to sit in the first row and it moved here.
-- <img class="inline-ic" src="/icons/delete_blue.png" alt="" /> **Delete list** — deletes the list **for good**: tasks, owners, tags and reminders go with it, the message is removed and a short receipt takes its place in the channel. It cannot be undone, and you are asked to confirm first.
+- <img class="inline-ic" src="/icons/doc.png" alt="" /> **Guide** — the quick in-Discord guide, with a link back to this documentation. It used to sit in the first row and it moved here.
+- <img class="inline-ic" src="/icons/delete.png" alt="" /> **Delete list** — deletes the list **for good**: tasks, owners, tags and reminders go with it, the message is removed and a short receipt takes its place in the channel. It cannot be undone, and you are asked to confirm first.
 
 **Deleting needs *Manage messages* on the channel** — the same permission that would let you delete the list's message by hand. If you don't have it, the button simply isn't there.
 
