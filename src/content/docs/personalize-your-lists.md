@@ -66,6 +66,8 @@ For links to anything outside Discord, use standard Markdown:
 
 So `[our roadmap](https://example.com/roadmap)` becomes **[our roadmap](https://example.com/roadmap)** — a clean, clickable link instead of a bare URL.
 
+The target doesn't have to be a web page: a `mailto:` link works the same way and opens the reader's own mail client, so `[the release owner](mailto:release@example.com)` turns a task into a one-click "write to this person".
+
 ## Quick reference
 
 | You want | You write | It shows |
@@ -74,13 +76,14 @@ So `[our roadmap](https://example.com/roadmap)` becomes **[our roadmap](https://
 | Mention a role | `<@&ROLE_ID>` | @role |
 | Link a channel | `<#CHANNEL_ID>` | #channel |
 | Add a link | `[text](https://url)` | text |
+| Link an email address | `[text](mailto:name@example.com)` | text |
 
 ## Putting it together
 
 A single task can combine all of these. In **Bulk update** you might write:
 
 ```
-- Review the release notes in <#111222333444555666>, ping <@&987654321098765432> when done — see [checklist](https://example.com/checklist)
+- Review the release notes in <#111222333444555666>, ping <@&987654321098765432> when done — questions to [the release owner](mailto:release@example.com)
 ```
 
 <div class="callout"><div class="callout-t">Bulk edit with confidence</div>Bulk update shows the raw text of every task, including the mention codes above. Now that you can read them, you can safely reorder tasks, fix a wrong ID, or swap a channel link — without breaking anything.</div>
