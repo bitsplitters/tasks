@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 11 September 2026"
+updated: "Last updated: 24 September 2026"
 ---
 
 This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") collects and how we handle it. It applies to the use of the bot on Discord. For your rights under EU data-protection law, see also our [GDPR page](/gdpr/).
@@ -19,6 +19,7 @@ TTM only stores what is needed to run task lists inside your server:
 - **Task content you create** — list titles and task text, including anything you type into them (mentions, links, notes).
 - **Reminders** — dates, intervals, repetitions and the time zone set for the server.
 - **Your personal time zone** — the time zone you pick while creating a reminder, stored against your Discord user ID and reused across servers.
+- **Your direct-message channel** — reminders reach their owner by direct message, so the bot keeps the ID of its direct-message channel with you, to deliver them with a single request to Discord. If you don't accept direct messages, it also keeps until when not to try again (six hours after the failed attempt). Both are stored against your Discord user ID, like the time zone; the messages themselves are not stored.
 - **Configuration** — per-server settings such as notification mode, history logging, push option and time zone.
 - **Webhooks** — the HTTP method, URL, headers and body you define, and their association to tasks.
 - **Activity logs** — records of actions performed on lists (who did what, and when), when history logging is enabled.
@@ -47,9 +48,11 @@ Data is kept while the bot is present and in use in your server.
 
 **Operational logs** — to diagnose faults, the bot writes technical logs on the server where it runs. At the logging level used in production these do **not** contain the text of your tasks or your list titles; they can contain Discord identifiers, for example the user ID involved in an error. Logs are deleted automatically after **30 days**.
 
-**Your personal time zone** — if you set one while creating a reminder, it is stored against your Discord user ID and is not tied to any single server, so removing the bot from a server does not delete it. Write to **info@bitsplitters.app** and we will delete it.
+**Your personal time zone and direct-message channel** — the time zone you set while creating a reminder, and the ID of your direct-message channel with the bot (with, if you don't accept direct messages, until when not to try again), are stored against your Discord user ID and are not tied to any single server, so removing the bot from a server does not delete them. Write to **info@bitsplitters.app** with your Discord user ID and we will delete them.
 
 **You can delete a single list yourself**, without asking us: the **Delete list** button in the list's *More* panel, or `/config lists` when the list's message is no longer there. Deletion is immediate and permanent, and it takes the list's tasks, owners, tags, reminders and activity history with it.
+
+**Seal list**, in the same panel, also removes the list's data from TTM, but leaves its message — and its timeline thread — in the channel as ordinary Discord messages, under your server's control.
 
 You can request deletion at any time (see [GDPR](/gdpr/)); we may also delete data earlier.
 

@@ -16,7 +16,7 @@ If you're here from the bot, start with [Free during the beta](/docs/beta/): it 
 | Active lists per server | **3** | Unlimited |
 | Tasks per list | **20** | 50 \* |
 | Active reminders | **10** | Unlimited |
-| Repetitions per reminder | **5** | 50 |
+| Repetitions per reminder | — (single reminders only) | 50 |
 | Webhooks | — | 25 \* |
 
 *These are the planned limits and may be tuned before launch.*
@@ -27,17 +27,19 @@ If you're here from the bot, start with [Free during the beta](/docs/beta/): it 
 
 **Active lists — 3 → unlimited.** Three lists cover a small team with one thing going on: a to-do, a bug list, a checklist for the next event. You hit the ceiling when lists start belonging to *people or channels* rather than to the server — one per project, one per squad, one per recurring meeting. The free tier isn't a trial that runs out; it's the size at which one list per topic still fits in your head.
 
+On the free tier the three places are fixed. A list takes one the first time someone works on it — checks a task, runs a bulk update, edits or removes a task, cleans it, reopens it, sets an owner, a tag or a reminder, or links a webhook — and keeps it. A quiet week doesn't give the place back. Creating, cloning, importing or regenerating a list gives the place to the *new* list. When all three are taken, a list outside them refuses those actions and tells you how to free a place: **Seal list** (the list stays in the channel as a record, without buttons) or **Delete list**, both in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel of a list you're done with, or [`/config lists`](/docs/config-lists/), which also shows which lists are in use.
+
 **Tasks per list — 20 → 50.** Twenty is a working checklist. Fifty is a backlog you groom. Above that neither plan can go, and that isn't us: a Discord message has a hard size limit, and a list *is* a message. [Known limits](/docs/known-limits/) has the details.
 
-**Active reminders — 10 → unlimited.** Ten reminders *waiting at the same time* — not ten a day. A reminder stops counting the moment it has fired for the last time, so the slot comes back on its own; and a repeating reminder takes **one** slot, not one per repetition. Ten is plenty for deadlines that matter. It becomes the binding limit when reminders stop being exceptions and become the rhythm of the server — stand-ups, shift handovers, recurring checks on a dozen lists.
+**Active reminders — 10 → unlimited.** Ten reminders *waiting at the same time* — not ten a day. A reminder stops counting the moment it has fired for the last time, so the slot comes back on its own; and a repeating reminder — like one set up during the beta — takes **one** slot, not one per repetition. Ten is plenty for deadlines that matter. It becomes the binding limit when reminders stop being exceptions and become the rhythm of the server — stand-ups, shift handovers, recurring checks on a dozen lists.
 
-**Repetitions per reminder — 5 → 50.** How many times a single reminder repeats before it gives up. Five is a nudge; fifty is a drumbeat for something that genuinely must not be missed.
+**Repetitions per reminder — single only → up to 50.** On the free tier every reminder is a single event: it arrives once, at the time you choose. Recurring reminders — repetitions and an interval — are a Premium feature: one reminder can repeat up to 50 times after the first, a drumbeat for something that genuinely must not be missed. On Premium an admin still switches them on in [Configuration](/docs/configuration/#recurring-reminders), where they are off by default. Recurring reminders you already have, from the beta for example, keep firing on the free tier and stay editable: you can move them or lower their repetitions, not raise them. See [Reminders](/docs/reminders/).
 
-**Webhooks — none → up to 25.** This is the only row where Premium unlocks a *capability* rather than a bigger number. Webhooks let a completed task fire an HTTP call to anything you run: a deploy, a spreadsheet, a ticket system, your own service. It is the feature that turns TTM from a checklist into a piece of your workflow, and it's the reason the paid plan exists. See [Webhooks](/docs/webhooks/).
+**Webhooks — none → up to 25.** Like recurring reminders, this row unlocks a *capability* rather than a bigger number. Webhooks let a completed task fire an HTTP call to anything you run: a deploy, a spreadsheet, a ticket system, your own service. It is the feature that turns TTM from a checklist into a piece of your workflow, and it's the main reason the paid plan exists. See [Webhooks](/docs/webhooks/).
 
-<div class="callout"><div class="callout-t">Every limit on this page is a limit on <em>creating</em>, never on <em>using</em></div>The clearest case is webhooks: you can create up to 25 per server, and each one can fire as many times as you like — a webhook that runs a thousand times a week still counts as one. Same everywhere else: three lists means three lists you are <em>working on</em> — and a list you are not working on still opens, still ticks, still downloads. Nothing in TTM is metered by use.</div>
+<div class="callout"><div class="callout-t">No limit on this page counts how often you use something</div>The clearest case is webhooks: you can create up to 25 per server, and each one can fire as many times as you like — a webhook that runs a thousand times a week still counts as one. Same everywhere else: three lists means three lists you are <em>working on</em> — a list outside them still sits in the channel and still downloads, and one created during the beta can still be ticked without taking a place. Nothing in TTM is metered by use: a place, once taken, doesn't count how often you work on its list.</div>
 
-<div class="callout"><div class="callout-t">The free tier is not a countdown</div>Everything above the line keeps working for as long as you use TTM. If your server outgrows a free limit you can't add <em>more</em> beyond it until you upgrade — but nothing already there is deleted, hidden, or degraded. That promise is spelled out in <a href="/docs/beta/">Free during the beta</a>.</div>
+<div class="callout"><div class="callout-t">The free tier is not a countdown</div>Everything above the line keeps working for as long as you use TTM. If your server outgrows a free limit you can't add <em>more</em> beyond it until you upgrade — but nothing already there is deleted or hidden. That promise, and exactly what a beta list outside your three places can still do, is spelled out in <a href="/docs/beta/">Free during the beta</a>.</div>
 
 ## What it will cost
 

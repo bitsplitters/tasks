@@ -28,6 +28,8 @@ Every task is either **open** or **completed**, shown by its checkbox:
 
 You flip the state from the **check / uncheck** selector above the button rows. Completing or reopening a task is what can trigger notifications and webhooks.
 
+A task **with an owner** can be flipped only by its owner — or the members of the owner role — and by whoever has *Manage messages* on the channel. A task without an owner can be flipped by anyone who can use the list.
+
 ## Owner vs. tag
 
 These look similar but do different jobs:
@@ -37,7 +39,7 @@ These look similar but do different jobs:
 
 ## Reminders
 
-A **reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> attaches a schedule to a task: a date, a time and a time zone. When it comes due, TTM sends a direct message to the task's **owner**, so nobody has to keep checking. One ping is the default; a server can also enable repeating reminders, which add an interval and a number of repetitions. Full details in [Reminders](/docs/reminders/).
+A **reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> attaches a schedule to a task: a date, a time and a time zone. When it comes due, TTM sends a direct message to the task's **owner**, so nobody has to keep checking. One ping is the default, and on the Free plan it is the only kind. Repeating reminders, which add an interval and a number of repetitions, are a Premium feature that a server switches on in [Configuration](/docs/configuration/#recurring-reminders). Full details in [Reminders](/docs/reminders/).
 
 ## Notifications & history
 
@@ -46,3 +48,5 @@ When a task is checked or unchecked, TTM can post a notification and — if you 
 ## Permissions
 
 By default the app's commands follow Discord's own visibility rules (Server Settings → Integrations). Buttons and lists, however, stay usable by anyone unless you **sync permissions** — after which the list becomes read-only for users who are not allowed. This too lives in [Configuration](/docs/configuration/).
+
+A few actions have a rule of their own: a task with an owner is checked by its owner (see *Task state* above), and sealing or deleting a list from its *More* panel needs *Manage messages* on the channel (from `/config lists`, the `/config` permissions apply).

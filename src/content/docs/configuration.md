@@ -11,7 +11,7 @@ Run the command:
 /config app
 ```
 
-TTM opens a private panel with a summary of your current settings, six dropdowns and two buttons. Nothing here is permanent — change it whenever your team's needs change.
+TTM opens a private panel with a summary of your current settings, seven dropdowns and two buttons. Nothing here is permanent — change it whenever your team's needs change.
 
 ## Notification mode
 
@@ -36,6 +36,10 @@ When enabled, TTM adds plain text alongside embeds so your **mobile push notific
 
 Shows the explanatory legend when someone runs `/create-list` — handy while the team is learning the buttons, easy to switch off once everyone knows them. On by default, and only visible to whoever ran the command. With it off, `/create-list` opens the creation form straight away: one step fewer.
 
+## Completed tasks dimmed
+
+Shows every completed task in Discord's smaller, grey text, so what is still to do stands out. On by default; switch it off to show completed tasks like all the others. A list picks up the change the next time it's updated.
+
 ## Behavior on selection
 
 After you use **owner**, **tag** or **reminder**, this decides whether the button **resets** to its neutral state or **keeps** the active mode — handy when you are applying the same action to several tasks in a row.
@@ -48,7 +52,9 @@ Off by default. When it's off, every reminder is a **single event**: creating or
 
 Turn it **on** to unlock **repetitions and intervals**: reminder creation then uses the two-step flow (a summary screen plus a repetition dialog). See [Reminders](/docs/reminders/) for the repetition fields.
 
-A reminder that is *already* recurring stays fully editable — with its repetitions and interval — even while the toggle is off, so existing schedules are never lost.
+Recurring reminders are a **Premium** feature (see [What Premium unlocks](/docs/premium/)). On the Free plan this dropdown is shown but switched off, with the note *"Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. The recurring ones created before keep working."* Your choice isn't lost: on Premium the dropdown comes back set the way you left it.
+
+A reminder that is *already* recurring keeps firing even while the toggle is off, or on the Free plan, so existing schedules are never lost. It stays editable — you can change its date, move it to another task or lower its repetitions — but its repetitions can't go up.
 
 ## Time zone
 
@@ -62,4 +68,4 @@ Define the rules in *Server Settings → Integrations → Team Tasks Manager*, t
 
 <div class="callout"><div class="callout-t">Webhooks live in their own command</div>Webhooks are not configured from this panel: use <code>/config webhook</code>. See the full <a href="/docs/webhooks/">Webhooks</a> guide.</div>
 
-<div class="callout"><div class="callout-t">Looking for your lists?</div>This panel holds <em>settings</em> — how the bot behaves. To see the lists this server has, and to delete or regenerate one, use <code>/config lists</code>: see <a href="/docs/commands/">Commands</a>.</div>
+<div class="callout"><div class="callout-t">Looking for your lists?</div>This panel holds <em>settings</em> — how the bot behaves. To see the lists this server has, and to delete, seal or regenerate one, use <code>/config lists</code>: see <a href="/docs/config-lists/">/config lists</a>.</div>

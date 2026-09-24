@@ -44,6 +44,16 @@ Roles use an extra `&`:
 
 `<@&987654321098765432>` renders as **@role**. Use it to point a task at a whole team at once.
 
+## Owners: the mention with a colon
+
+A task's owner is a mention too, with one difference: it is followed by a **colon**. The **Owner** button writes it for you, at the start of the task:
+
+```
+<@USER_ID>: Ship the release notes
+```
+
+A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag. It matters in **Bulk update**: reminders are sent by DM to the owner, so a reminder on a task with no owner is removed when you save — the list is saved anyway, and TTM tells you privately which tasks lost their reminder.
+
 ## Linking channels
 
 Channels use `#`:
@@ -76,6 +86,7 @@ A link can also point to **another list**: right-click its message → **Copy Me
 | :--- | :--- | :--- |
 | Mention a person | `<@USER_ID>` | @username |
 | Mention a role | `<@&ROLE_ID>` | @role |
+| Set the owner | `<@USER_ID>:` | @username: |
 | Link a channel | `<#CHANNEL_ID>` | #channel |
 | Add a link | `[text](https://url)` | text |
 | Link an email address | `[text](mailto:name@example.com)` | text |
@@ -89,4 +100,4 @@ A single task can combine all of these. In **Bulk update** you might write:
 - Review the release notes in <#111222333444555666>, ping <@&987654321098765432> when done — questions to [the release owner](mailto:release@example.com)
 ```
 
-<div class="callout"><div class="callout-t">Bulk edit with confidence</div>Bulk update shows the raw text of every task, including the mention codes above. Now that you can read them, you can safely reorder tasks, fix a wrong ID, or swap a channel link — without breaking anything.</div>
+<div class="callout"><div class="callout-t">Bulk edit with confidence</div>Bulk update shows the raw text of every task, including the mention codes above. Now that you can read them, you can safely reorder tasks, fix a wrong ID, or swap a channel link — without breaking anything. Just keep the colon after the owner's mention.</div>

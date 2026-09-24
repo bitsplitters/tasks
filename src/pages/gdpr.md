@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: "GDPR & Your Data Rights"
 description: How Team Tasks Manager complies with the EU General Data Protection Regulation.
-updated: "Last updated: 11 September 2026"
+updated: "Last updated: 24 September 2026"
 ---
 
 Because **bitsplitters** operates in the European Union, the use of **Team Tasks Manager** ("TTM") is subject to the **General Data Protection Regulation (GDPR)**. This page explains the legal basis for processing and the rights you have. It complements our [Privacy Policy](/privacy/), which lists exactly what data we handle.
@@ -30,15 +30,15 @@ Under the GDPR you have the right to:
 - **Objection** — object to processing based on legitimate interest.
 - **Withdraw consent** — where processing is based on consent, withdraw it at any time.
 
-Much of your data is also directly under your control inside Discord: editing or deleting tasks, reminders, webhooks and configuration removes them; **deleting a list** (the *Delete list* button in its *More* panel, or `/config lists`) removes that list with its tasks, reminders and history; and **removing the bot from a server** deletes the lists, tasks, reminders, webhooks and history it holds. A few server-level records are kept — see [Retention](/privacy/#retention) in the Privacy Policy for the exact list, and for your personal time zone, which we delete on request.
+Much of your data is also directly under your control inside Discord: editing or deleting tasks, reminders, webhooks and configuration removes them; **deleting a list** (the *Delete list* button in its *More* panel, or `/config lists`) removes that list with its tasks, reminders and history, and **sealing** it (*Seal list*, same panel) does the same while leaving its message in the channel; and **removing the bot from a server** deletes the lists, tasks, reminders, webhooks and history it holds. A few server-level records are kept — see [Retention](/privacy/#retention) in the Privacy Policy for the exact list, and for the data stored against your Discord user ID (your personal time zone and your direct-message channel with the bot), which removing the bot does not touch and which we delete on request.
 
 ## How to exercise your rights
 
-Email **info@bitsplitters.app** with your request and enough information to identify the relevant server or data (e.g. the Discord server ID). We will respond within the time limits set by the GDPR (normally within one month).
+Email **info@bitsplitters.app** with your request and enough information to identify the relevant server or data (e.g. the Discord server ID, or your Discord user ID for your personal time zone and direct-message channel). We will respond within the time limits set by the GDPR (normally within one month).
 
 ## Retention
 
-We keep data only as long as needed to provide the service, as described in the [Privacy Policy](/privacy/). Removing the bot deletes that server's content data; the residual server-level records and your personal time zone are deleted upon a valid erasure request, unless the law requires otherwise.
+We keep data only as long as needed to provide the service, as described in the [Privacy Policy](/privacy/). Removing the bot deletes that server's content data; the residual server-level records and the data stored against your Discord user ID (personal time zone and direct-message channel) are deleted upon a valid erasure request, unless the law requires otherwise.
 
 ## International transfers
 

@@ -68,9 +68,18 @@ TTM reads that text and builds the list for you. The rules are simple:
 
 - **A new line that starts with `-` is a new task.**
 - **Spaces after the dash make it a subtask.** No space → a task; one or more spaces → a subtask of the task above. A task with subtasks becomes a **task group**.
-- The list can hold up to **4000 characters** and up to **50 tasks in total** (subtasks included).
+- The title can be up to **256 characters**.
+- The list can hold up to **4000 characters** and up to **50 tasks in total** (subtasks included) — **20** on the Free plan, see [What Premium unlocks](/docs/premium/).
 
 Once created, the list appears with a set of check controls and **two rows of buttons**. That panel is where the real power lives — head to [The task list panel](/docs/the-task-list/) to master it.
+
+### Import a list from a file
+
+Already have the list as a file? `/create-list` has a **`file`** option: attach a `.txt` made by the list's **Download** (up to 64 KB), and TTM recreates the list in the channel — with its checked tasks, owners, tags, reminders and webhooks.
+
+If something doesn't fit, nothing is created, and one message lists every problem with its line or task: a file that isn't in the Download format; roles, channels, members or webhooks that don't exist in this server (when the file comes from another one); a reminder without an owner; a recurring reminder where recurring reminders aren't allowed; the limits of your plan — tasks, repetitions, reminders waiting at the same time. Reminders already in the past are the exception: the list is created without them, and the bot tells you which ones it dropped.
+
+A file that isn't a `.txt`, or is larger than 64 KB, is refused straight away.
 
 ## Next steps
 

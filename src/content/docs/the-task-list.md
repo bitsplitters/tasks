@@ -16,6 +16,8 @@ Above the buttons sits the **check / uncheck** selector. Use it to:
 
 Selecting a group toggles its subtasks in cascade; completing all subtasks marks the group automatically.
 
+**A task with an owner is checked by its owner.** Only the owner — or the members of the owner role — and whoever has *Manage messages* on the channel can check or uncheck it. Anyone else gets a refusal only they can see, and the list stays as it was. The cascade counts too: a group can't be checked or unchecked if that would change a subtask that belongs to someone else. A task without an owner can be checked by anyone who can use the list.
+
 <div class="callout"><div class="callout-t">Keep the task buttons grey</div>To check or uncheck tasks, <strong>every button in the second row must be grey</strong> (off). If any task button is active (blue or red), clicking a task applies that action instead of toggling it.</div>
 
 ## Row 1 — acts on the whole list
@@ -25,19 +27,44 @@ These buttons never touch a single task; they operate on the **entire list**.
 | Button | Function | What it does |
 | :---: | :--- | :--- |
 | <img class="inline-ic" src="/icons/clone.png" alt="" /> | **Clone list** | Clone the list into another channel. Opens a channel picker and a small set of options (see below). |
-| <img class="inline-ic" src="/icons/download.png" alt="" /> | **Download** | Download a text file of the list, ready to copy-paste into other lists — even on other servers. |
 | <img class="inline-ic" src="/icons/edit.png" alt="" /> | **Bulk update** | Edit the title and the full list in one form — the fastest way to change two or more tasks at once. While you edit, the list is temporarily locked. |
-| <img class="inline-ic" src="/icons/clean.png" alt="" /> | **Clean list** | Remove all currently selected tasks and recalculate the remaining positions. |
-| <img class="inline-ic" src="/icons/other.png" alt="" /> | **More** | Open the panel with everything you rarely need: the in-Discord guide and the deletion of this list. |
+| <img class="inline-ic" src="/icons/clean.png" alt="" /> | **Clean list** | Remove every completed task, after a confirmation, and recalculate the remaining positions. |
+| <img class="inline-ic" src="/icons/reopen.png" alt="" /> | **Reopen all** | Bring every completed task back to to-do and, if you want, move the reminders to a new date. |
+| <img class="inline-ic" src="/icons/other.png" alt="" /> | **More** | Open the panel with the actions you need less often: sealing, deleting and downloading the list, and the in-Discord guide. |
+
+### Clean list
+
+**Clean list** removes every completed task, subtasks included, and renumbers the ones that stay. A group that isn't completed stays, even when some of its subtasks go.
+
+It asks first: a confirmation window tells you how many completed tasks are about to leave, and that they go **for good**, together with their reminders and tags. Their text still shows in the timeline, if it's on, and in the notification until it is replaced. Submit to confirm, close the window to cancel.
+
+- **No task completed** — nothing to remove, and the bot tells you right away.
+- **Every task completed** — Clean refuses, because a list can't be left empty: uncheck at least one task, or remove the whole list with **Delete list** (see below).
+
+### Reopen all
+
+**Reopen all** brings every completed task back to to-do, on the same message: text, owners, tags and reminders stay as they are. If no task is completed, there is nothing to reopen and the bot says so.
+
+Before acting, it asks you in a message only you can see:
+
+- **Reopen** — reopen every task now.
+- **New date** — reopen, and move the reminders too. It opens the **When** window: the oldest reminder lands on the date you pick (at least 5 minutes from now), and the others keep the same distance from it. It's there only when the list has reminders.
+- **Cancel** — leave the list as it is.
+
+Reopening calls **no webhook**, and it doesn't look at owners: anyone who can edit the list can reopen it.
 
 ### What's inside More
 
-The first row is full — Discord allows five buttons per row — so the rare actions live one click away:
+The first row is full — Discord allows five buttons per row — so the actions you need less often live one click away, in a panel only you can see:
 
-- <img class="inline-ic" src="/icons/doc.png" alt="" /> **Guide** — the quick in-Discord guide, with a link back to this documentation. It used to sit in the first row and it moved here.
+- <img class="inline-ic" src="/icons/seal.png" alt="" /> **Seal list** — for a list you are done with but want to keep as a record. The list stays in the channel with the same contents, but without buttons or menus, and marked *Sealed list*. It can no longer be edited, its reminders stop, and it frees one of the places of your plan (see [What Premium unlocks](/docs/premium/)). The activity timeline stays. It cannot be undone, and you are asked to confirm first.
 - <img class="inline-ic" src="/icons/delete.png" alt="" /> **Delete list** — deletes the list **for good**: tasks, owners, tags and reminders go with it, the message is removed and a short receipt takes its place in the channel. It cannot be undone, and you are asked to confirm first.
+- <img class="inline-ic" src="/icons/download.png" alt="" /> **Download** — a `.txt` file of the list, sent **only to you**. It holds the title and the tasks written as in the Bulk update form, with owners, reminders, tags and webhooks. Use it as a backup, or bring the list back — even on another server — with the `file` option of `/create-list` (see [Getting started](/docs/getting-started/#import-a-list-from-a-file)).
+- <img class="inline-ic" src="/icons/doc.png" alt="" /> **Guide** — the quick in-Discord guide, with a link back to this documentation.
 
-**Deleting needs *Manage messages* on the channel** — the same permission that would let you delete the list's message by hand. If you don't have it, the button simply isn't there.
+**Sealing and deleting need *Manage messages* on the channel** — the same permission that would let you delete the list's message by hand. If you don't have it, those two entries simply aren't there. Download and Guide are there for everyone.
+
+Sealing posts a notification and a line in the timeline only if your server has them on: with both off, nothing records who sealed the list. **Delete list** always leaves its receipt in the channel.
 
 <div class="callout"><div class="callout-t">Why delete instead of removing the message?</div>Deleting the message hides the list but leaves its data behind — and its reminders keep arriving, pointing at a message that no longer exists. <strong>Delete list</strong> takes the reminders with it. If a message has already been deleted by hand, <code>/config lists</code> lets you clean up (or bring the list back).</div>
 
@@ -49,6 +76,8 @@ When you start **Clone list**, the first row is replaced by the cloning controls
 - **Selection option** — clone keeping the current check selections, or not.
 - **Reminder option** — clone keeping the reminders, or not.
 - **Exit** — restore the normal list panel.
+
+A clone gets **new** reminders, so they follow today's rules: where recurring reminders aren't allowed — on the Free plan, or with them switched off — clone a list that has a recurring reminder without its reminders.
 
 ## Row 2 — acts on a single task
 
@@ -65,10 +94,10 @@ The workflow is always the same: **turn a button blue or red, then pick the task
 | <img class="inline-ic" src="/icons/task.png" alt="" /> | **Content** | Change the task text (opens a form). | Delete the task. |
 | <img class="inline-ic" src="/icons/owner.png" alt="" /> | **Owner** | Set or change the task owner (pick a user/role). | Remove the owner. |
 | <img class="inline-ic" src="/icons/tag.png" alt="" /> | **Tag** | Set the users/roles to notify — pick several at once (see *Two ways to tag* below). | Remove every tag on the task. |
-| <img class="inline-ic" src="/icons/alertW.png" alt="" /> | **Reminder** | Add or edit a reminder (start date and time zone — plus interval and repetitions if the server enables recurring reminders). | Remove the reminder. |
+| <img class="inline-ic" src="/icons/alertW.png" alt="" /> | **Reminder** | Add or edit a reminder (start date and time zone — plus interval and repetitions when recurring reminders are on: a Premium feature, switched on in [Configuration](/docs/configuration/#recurring-reminders)). | Remove the reminder. |
 | <img class="inline-ic" src="/icons/api.png" alt="" /> | **Webhook** | Associate a webhook, so completing/reopening the task fires an HTTP call. | Remove the webhook association from the task. |
 
-<div class="callout"><div class="callout-t">Remember</div>You cannot delete the very last task in a list. To remove a list entirely, delete its message manually.</div>
+<div class="callout"><div class="callout-t">Remember</div>You cannot delete the very last task in a list. To remove a list entirely, use <strong>Delete list</strong> in <strong>More</strong> — or <strong>Seal list</strong>, to keep it in the channel as a record.</div>
 
 ### Two ways to tag
 
@@ -101,9 +130,17 @@ This matters most during tag **live editing**, where each time you close the men
 
 ## Editing while others watch
 
-When someone opens **Bulk update**, the list is locked and its editing functions are disabled for everyone else, with a note showing who is editing. If an edit is cancelled or gets stuck, anyone can force-unlock with the <img class="inline-ic" src="/icons/unlock.png" alt="" /> unlock button.
+When someone opens **Bulk update**, the list is locked and its editing functions — Bulk update, Clean list, Reopen all and the task buttons — are disabled for everyone else, with a note showing who is editing. If an edit is cancelled or gets stuck, anyone can force-unlock with the <img class="inline-ic" src="/icons/unlock.png" alt="" /> unlock button.
+
+If the list is locked or sealed while your Clean confirmation or your Reopen question is still open, confirming only tells you that *this list can't be changed right now*, and nothing changes.
 
 <div class="callout"><div class="callout-t">Write richer tasks</div>In <strong>Bulk update</strong> and single-task edits you can add channel links, mentions and hyperlinks by hand. Learn the exact syntax in <a href="/docs/personalize-your-lists/">Personalize your lists</a>.</div>
+
+## When a bulk update can't be saved
+
+The list title can be up to **256 characters**. If what you wrote can't be read as a list, the bot shows it back with the wrong lines marked by an arrow. Otherwise, when the list can't be saved, **one message lists every problem at once**, one per paragraph: a list too long, more tasks than a list can hold or your plan allows, and every reminder over the limits — recurring where recurring reminders aren't allowed, repetitions over your plan, too many reminders waiting at the same time. Fix them all and submit again.
+
+A reminder that could never fire is **discarded** instead: one on a task without an owner, or one whose alerts are all in the past. It is removed from the task text, the list is saved, and a message only you can see names each task and the reason. Remember that the owner is a mention followed by a colon (`<@id>:`): without the colon, the mention is a tag.
 
 ## Where to go next
 

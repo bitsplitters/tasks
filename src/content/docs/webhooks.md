@@ -32,7 +32,7 @@ A webhook is really a **pair of actions** — one for completion, one for reopen
 
 <div class="callout"><div class="callout-t">The trigger is optional on purpose</div>Omit it and one command covers both directions: <strong>create</strong> sets up completion and reopen with the same configuration (the <code>{{state}}</code> and <code>{{when}}</code> tokens tell the two events apart), <strong>view</strong> prints both, and <strong>delete</strong> removes the webhook entirely, with all its actions. <strong>Modify</strong> pre-fills from the completion action and overwrites both.</div>
 
-Each server can keep up to **25** webhooks. Reached the ceiling? Delete one you no longer use — TTM lists them all in the error.
+Webhooks are a [Premium](/docs/premium/) feature — the Free plan has none, and during the beta they are unlocked for everyone. Each server can keep up to **25** webhooks. Reached the ceiling? Delete one you no longer use — TTM lists them all in the error.
 
 ## Tokens
 
@@ -63,6 +63,14 @@ The association is stored **in the task itself**, as a reserved token: in **Bulk
 ```
 
 You can move it, copy it onto another task or delete it by hand, exactly like a mention — the token never shows up in the rendered list, and `wb` is the only reserved key (every other `{{key=value}}` is a free variable, see below).
+
+## When a webhook fires
+
+A webhook fires when someone **checks or unchecks its task from the list's check selector** — and only then:
+
+- **only the task you picked** fires its webhook. The tasks that change along with it — subtasks checked in cascade, or a group completed by its last subtask — don't;
+- **Reopen all** and **Bulk update** change many tasks at once and fire **no** webhook;
+- **the list must be active** — one of the lists holding a place on your plan. On a list that isn't, checking a task or linking a webhook takes a free place first, and is refused when there is none. The exception is a list created during the beta that sits outside your places: its tasks can still be checked, but their webhooks stay silent — TTM tells you privately — until the list takes a place. Working on it in any other way — a bulk update, an owner, a reminder, linking a webhook — takes one, when a place is free.
 
 ## Example
 

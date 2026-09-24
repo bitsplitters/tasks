@@ -7,7 +7,9 @@ order: 9
 
 ## Reuse a list anywhere
 
-Use **Download** <img class="inline-ic" src="/icons/download.png" alt="" /> to export a list as text, then paste it into a new `/create-list` on any server. Great for recurring checklists (releases, onboarding, events).
+Open **More** <img class="inline-ic" src="/icons/other.png" alt="" /> and pick **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: the list arrives as a `.txt` file that only you can see. Then run `/create-list` on any server and attach that file to its `file` option — tasks, completed states, owners, tags, reminders and webhooks come back as they were. Great for recurring checklists (releases, onboarding, events).
+
+If something in the file doesn't fit the new server — a role, channel, member or webhook it doesn't have, or a limit of its plan — TTM lists every problem at once and creates nothing until it's fixed. Reminders already in the past are simply dropped, and you're told which ones.
 
 ## Clone instead of rebuilding
 
@@ -23,11 +25,11 @@ If task notifications feel noisy, switch **Notification mode** to *keep last onl
 
 ## Reminders that survive the clock change
 
-On a *repeating* reminder, use `1d` when you mean "same time tomorrow" and `24h` when you mean "exactly a day later". Around daylight-saving switches the two differ by an hour — see [Reminders](/docs/reminders/).
+On a *repeating* reminder (a Premium feature), use `1d` when you mean "same time tomorrow" and `24h` when you mean "exactly a day later". Around daylight-saving switches the two differ by an hour — see [Reminders](/docs/reminders/).
 
 ## A reminder in two clicks
 
-The **When** form arrives pre-filled with ten minutes from now, in your own time zone: for "remind me shortly" you can submit it as it is, without typing anything. And since repetitions are off by default, that's the whole flow — one form.
+The **When** form arrives pre-filled with ten minutes from now, in your own time zone: for "remind me shortly" you can submit it as it is, without typing anything. And since every reminder is a single event unless your server has turned on recurring reminders (a Premium feature, off by default), that's the whole flow — one form.
 
 ## Link a channel without hunting for its ID
 

@@ -1,6 +1,6 @@
 ---
 title: /config lists
-description: See every list of the server, delete the ones you no longer want, or bring back one whose message was deleted by mistake.
+description: See every list of the server, seal or delete the ones you are done with, or bring back one whose message was deleted by mistake.
 group: Configuration
 order: 2
 ---
@@ -13,7 +13,9 @@ Run the command:
 
 It opens a private panel — only you see it — with **every list this server has ever used**, one row each: the list name and the channel it lives in, as a clickable link.
 
-## One button, three states
+A list that holds one of the places of your plan is marked **in use** next to its channel: when you need to free a place, those are the lists to seal or delete. During the beta there is no limit, so no list is marked.
+
+## One button, four states
 
 Each row has a single button that cycles every time you press it:
 
@@ -21,20 +23,36 @@ Each row has a single button that cycles every time you press it:
 | :---: | :--- |
 | <img class="inline-ic" src="/icons/noaction.png" alt="" /> grey | nothing happens to this list |
 | <img class="inline-ic" src="/icons/refresh.png" alt="" /> blue | **regenerate** it |
+| <img class="inline-ic" src="/icons/seal.png" alt="" /> green | **seal** it |
 | <img class="inline-ic" src="/icons/delete.png" alt="" /> red | **delete** it |
 
-Mark as many lists as you need — two to delete and three to regenerate, if that's the case — then press **Apply** and confirm once. The whole block runs together, and the panel tells you how each list went.
+Mark as many lists as you need — two to delete, one to seal and three to regenerate, if that's the case — then press **Apply**. Before anything happens, a confirmation window lists them by name, grouped by action: submit it to go ahead, close it to cancel.
 
-**Cancel** closes the panel and does nothing. Changing page clears the choices made on the page you leave: the selection lives in the panel itself, not in the bot's memory, which is also why it never expires while you think about it.
+The block then runs **in order**: deletions first, then seals, then regenerations. That's what lets one block free a place and use it: a list you delete or seal hands its place to a list you regenerate in the same go.
+
+At the end you get a summary, by name: the lists deleted, sealed and regenerated, and the ones that couldn't be handled, each with its reason — a list that no longer exists, for example, or a regeneration with no place left on your plan. The panel then redraws itself with the lists as they are now.
+
+**Cancel** closes the panel and does nothing. Your choices survive a change of page: the header tells you how many you have marked on other pages, and the confirmation includes them. The ones on the page in front of you live in the panel itself, so they never expire while you think about it; the ones on other pages are remembered for an hour after you last touch the panel.
 
 ## Regenerate
 
 Publishes the list again, in its original channel, with the same contents: tasks, owners, tags and reminders. Use it when the list's message was deleted by mistake — the data was still there, only the message was gone.
 
-Two things worth knowing:
+Three things worth knowing:
 
 - **the activity timeline follows the list.** The new message reuses the same thread, so the history stays where it was and nothing is orphaned;
-- **the old message is removed** if it still exists. That's deliberate: a message left behind still has working buttons, and pressing them would make the bot rebuild the list a second time — leaving you with two lists that drift apart.
+- **the old message is removed** if it still exists. That's deliberate: a message left behind still has working buttons, and pressing them would make the bot rebuild the list a second time — leaving you with two lists that drift apart;
+- **regenerating counts as working on the list.** A list that already holds one of your plan's places keeps it; one that doesn't needs a free place, or it ends up in the summary among the ones not done.
+
+## Seal
+
+For a list you are done with but want to keep as a record. The list **stays in the channel** with the same contents, but without buttons or menus, and with a *Sealed list* line at the bottom. Everything else goes: it can no longer be edited, its reminders stop, it frees its place on your plan, and it no longer appears in this panel. The activity timeline stays where it is. It cannot be undone.
+
+The notification in the channel and the line in the timeline follow your server's options: with both off, nothing records who sealed the list.
+
+A list whose message no longer exists **can't be sealed**: there is no record left to keep. It shows up in the summary among the ones not done, with the reason, and the rest of the block runs anyway. To remove it, mark it red to **delete** it.
+
+It is the same sealing you get from **Seal list** in the <img class="inline-ic" src="/icons/other.png" alt="" /> *More* panel of a list.
 
 ## Delete
 

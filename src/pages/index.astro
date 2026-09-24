@@ -60,7 +60,7 @@ import Base from '../layouts/Base.astro';
       </div>
       <div class="card">
         <div class="card-head"><img class="ic" src="/icons/alertW.png" alt="" /><h3>Reminders</h3></div>
-        <p>Attach a reminder with start date, interval, repetitions and time zone. TTM remembers so you don't have to.</p>
+        <p>Attach a reminder with a start date and a time zone &mdash; and, on Premium, repetitions. TTM remembers so you don't have to.</p>
       </div>
     </div>
   </section>
@@ -195,17 +195,17 @@ import Base from '../layouts/Base.astro';
       <div class="board-lab">Row 1 &mdash; acts on the whole list</div>
       <div class="board-row">
         <button class="dbtn" data-name="Clone list" data-desc="Clone the list into other channels of the server. A dropdown lets you pick the destination channel, and you can choose whether to keep task selections and reminders."><img src="/icons/clone.png" alt="Clone list" /></button>
-        <button class="dbtn" data-name="Download" data-desc="Download a text file with the list, ready to copy and paste into other lists — even on other servers."><img src="/icons/download.png" alt="Download" /></button>
         <button class="dbtn" data-name="Bulk update" data-desc="Edit the title and the whole list at once — the fastest way to change two or more tasks together."><img src="/icons/edit.png" alt="Bulk update" /></button>
-        <button class="dbtn" data-name="Clean list" data-desc="Remove all selected tasks from the list and recalculate the remaining positions automatically."><img src="/icons/clean.png" alt="Clean list" /></button>
-        <button class="dbtn" data-name="More" data-desc="Opens the panel with everything you rarely need: the in-Discord guide describing every button, and the deletion of the list — which takes its reminders with it."><img src="/icons/other.png" alt="More" /></button>
+        <button class="dbtn" data-name="Clean list" data-desc="Remove every completed task, after a confirmation, and recalculate the remaining positions automatically."><img src="/icons/clean.png" alt="Clean list" /></button>
+        <button class="dbtn" data-name="Reopen all" data-desc="Bring every completed task back to to-do and, if you want, move the reminders to a new date."><img src="/icons/reopen.png" alt="Reopen all" /></button>
+        <button class="dbtn" data-name="More" data-desc="Opens a panel only you can see: seal the list as a record, delete it, download it as a file, or open the in-Discord guide to every button."><img src="/icons/other.png" alt="More" /></button>
       </div>
       <div class="board-lab">Row 2 &mdash; acts on a single task &middot; click to cycle grey &rarr; blue (edit) &rarr; red (delete)</div>
       <div class="board-row">
         <button class="dbtn task-btn" data-name="Content" data-edit="Change the task text." data-delete="Delete the task."><img src="/icons/task.png" alt="Content" /></button>
         <button class="dbtn task-btn" data-name="Owner" data-edit="Set or change the task owner." data-delete="Remove the owner."><img src="/icons/owner.png" alt="Owner" /></button>
         <button class="dbtn task-btn" data-name="Tag" data-edit="Add a user or role to notify at the end of the task." data-delete="Remove every tag on the task."><img src="/icons/tag.png" alt="Tag" /></button>
-        <button class="dbtn task-btn" data-name="Reminder" data-edit="Add or edit a reminder (start date, interval, repetitions, time zone)." data-delete="Remove the reminder."><img src="/icons/alertW.png" alt="Reminder" /></button>
+        <button class="dbtn task-btn" data-name="Reminder" data-edit="Add or edit a reminder (start date and time zone; interval and repetitions on Premium)." data-delete="Remove the reminder."><img src="/icons/alertW.png" alt="Reminder" /></button>
         <button class="dbtn task-btn" data-name="Webhook" data-edit="Associate a webhook, so completing or reopening the task fires an HTTP call." data-delete="Remove the webhook association from the task."><img src="/icons/api.png" alt="Webhook" /></button>
       </div>
       <div class="board-info" id="board-info">Click any button above. <strong>Row 1</strong> acts on the whole list; <strong>Row 2</strong> buttons cycle through three states &mdash; click one to walk through them.</div>
