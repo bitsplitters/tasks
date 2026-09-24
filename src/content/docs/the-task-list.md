@@ -48,7 +48,7 @@ It asks first: a confirmation window tells you how many completed tasks are abou
 Before acting, it asks you in a message only you can see:
 
 - **Reopen** — reopen every task now.
-- **New date** — reopen, and move the reminders too. It opens the **When** window: the oldest reminder lands on the date you pick (at least 5 minutes from now), and the others keep the same distance from it. It's there only when the list has reminders.
+- **New date** — reopen, and move the reminders too. It opens the **When** window: the first reminder in the calendar lands on the date you pick (at least 5 minutes from now), and the others follow at the same distance from it. It's there only when the list has reminders.
 - **Cancel** — leave the list as it is.
 
 Reopening calls **no webhook**, and it doesn't look at owners: anyone who can edit the list can reopen it.
