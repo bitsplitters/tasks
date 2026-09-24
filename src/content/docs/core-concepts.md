@@ -39,7 +39,7 @@ These look similar but do different jobs:
 
 ## Reminders
 
-A **reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> attaches a schedule to a task: a date, a time and a time zone. When it comes due, TTM sends a direct message to the task's **owner**, so nobody has to keep checking. One ping is the default, and on the Free plan it is the only kind. Repeating reminders, which add an interval and a number of repetitions, are a Premium feature that a server switches on in [Configuration](/docs/configuration/#recurring-reminders). Full details in [Reminders](/docs/reminders/).
+A **reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> attaches a schedule to a task: a date, a time and a time zone. When it comes due, TTM reminds the task's **owner** — a direct message to a person, a mention in the list's channel to a role — so nobody has to keep checking. One ping is the default, and on the Free plan it is the only kind. Repeating reminders, which add an interval and a number of repetitions, are a Premium feature that a server switches on in [Configuration](/docs/configuration/#recurring-reminders). Full details in [Reminders](/docs/reminders/).
 
 ## Notifications & history
 

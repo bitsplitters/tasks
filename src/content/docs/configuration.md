@@ -30,7 +30,7 @@ When enabled, **every action on your lists is recorded in a dedicated thread**, 
 
 ## Push notification
 
-When enabled, TTM adds plain text alongside embeds so your **mobile push notifications** are readable at a glance (embeds alone often show up empty on a lock screen). On by default.
+When enabled, TTM adds plain text alongside embeds so your **mobile push notifications** are readable at a glance (embeds alone often show up empty on a lock screen). On by default. Turning it off never stops a reminder: it arrives with just its card — or, for a role, just the mention.
 
 ## `/create-list` legend
 

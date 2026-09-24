@@ -38,13 +38,13 @@ TTM does not detect the deletion of a message on its own: doing so would mean as
 | :--- | :--- | :--- |
 | Repetitions per reminder | **up to 50** on Premium, none on Free | Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. On Premium a reminder can repeat at most 50 times after the first one (51 pings in total); set repetitions to `0` for a one-time reminder. |
 | How soon a reminder can fire | **5 minutes** from now | The start date must be at least five minutes in the future, so the scheduler has time to pick it up. |
-| How punctual a reminder is | within about **10 seconds** | Reminders due together are spread over up to ten seconds, to stay within Discord's rate limits. The DM still arrives within the right minute. |
+| How punctual a reminder is | within about **10 seconds** | Reminders due together are spread over up to ten seconds, to stay within Discord's rate limits. The reminder still arrives within the right minute. |
 
 Repetitions are offered only on a plan that includes recurring reminders, and only when **Recurring reminders** is enabled in [Configuration](/docs/configuration/#recurring-reminders); by default every reminder is a single event. Recurring reminders created before — during the beta, for example — keep firing either way, and stay editable: you can move them or lower their repetitions, but not raise them. See [Reminders](/docs/reminders/) for how repetitions and intervals work.
 
-**Reminders arrive by direct message**, so they depend on the owner's DM settings. If the owner doesn't accept direct messages from server members, or no longer shares a server with the bot, Discord refuses the message and that reminder doesn't arrive. TTM remembers it and doesn't try that person again for **6 hours**; after that it tries again, and the first DM that gets through clears the pause.
+**A person's reminders arrive by direct message**, so they depend on the owner's DM settings. If the owner doesn't accept direct messages from server members, or no longer shares a server with the bot, Discord refuses the message and that reminder doesn't arrive. TTM remembers it and doesn't try that person again for **6 hours**; after that it tries again, and the first DM that gets through clears the pause.
 
-**A role gets no reminder, for now.** A task's owner can be a role, but TTM sends reminder DMs only to a person, so a task owned by a role receives no reminder. If a task has a reminder, make a person its owner.
+**A role's reminder notifies only a role that can be mentioned.** When a task's owner is a role, the reminder is a message in the list's channel that mentions it. Discord turns that into a notification only if the role can be mentioned by anyone, or the bot has *Mention @everyone, @here and All Roles* in the channel; otherwise the message appears and nobody is notified. TTM warns you when you set up such a reminder. And only the members who can see the channel are notified — which, for a task on that list, is who you'd expect.
 
 ## Owners and tags
 

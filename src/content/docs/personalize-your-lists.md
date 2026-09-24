@@ -52,7 +52,7 @@ A task's owner is a mention too, with one difference: it is followed by a **colo
 <@USER_ID>: Ship the release notes
 ```
 
-A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag. It matters in **Bulk update**: reminders are sent by DM to the owner, so a reminder on a task with no owner is removed when you save — the list is saved anyway, and TTM tells you privately which tasks lost their reminder.
+A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag. It matters in **Bulk update**: reminders go to the owner — by DM to a person, as a mention in the list's channel to a role — so a reminder on a task with no owner is removed when you save — the list is saved anyway, and TTM tells you privately which tasks lost their reminder.
 
 ## Linking channels
 

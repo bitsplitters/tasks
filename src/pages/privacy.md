@@ -19,7 +19,7 @@ TTM only stores what is needed to run task lists inside your server:
 - **Task content you create** — list titles and task text, including anything you type into them (mentions, links, notes).
 - **Reminders** — dates, intervals, repetitions and the time zone set for the server.
 - **Your personal time zone** — the time zone you pick while creating a reminder, stored against your Discord user ID and reused across servers.
-- **Your direct-message channel** — reminders reach their owner by direct message, so the bot keeps the ID of its direct-message channel with you, to deliver them with a single request to Discord. If you don't accept direct messages, it also keeps until when not to try again (six hours after the failed attempt). Both are stored against your Discord user ID, like the time zone; the messages themselves are not stored.
+- **Your direct-message channel** — when you own a task, its reminders reach you by direct message, so the bot keeps the ID of its direct-message channel with you, to deliver them with a single request to Discord. If you don't accept direct messages, it also keeps until when not to try again (six hours after the failed attempt). Both are stored against your Discord user ID, like the time zone; the messages themselves are not stored.
 - **Configuration** — per-server settings such as notification mode, history logging, push option and time zone.
 - **Webhooks** — the HTTP method, URL, headers and body you define, and their association to tasks.
 - **Activity logs** — records of actions performed on lists (who did what, and when), when history logging is enabled.

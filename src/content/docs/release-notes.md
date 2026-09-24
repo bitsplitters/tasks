@@ -30,7 +30,7 @@ The debut of Team Tasks Manager under the **bitsplitters** banner. Highlights:
 
 ### Reminders
 
-- **Reminders** with a start date and a time zone — daylight-saving aware — sent by DM to the task's owner within about ten seconds of their time, so in the right minute. If the owner doesn't accept direct messages, TTM waits six hours before trying again, instead of failing at every repetition.
+- **Reminders** with a start date and a time zone — daylight-saving aware — sent to the task's owner within about ten seconds of their time, so in the right minute: by DM to a person, as a mention in the list's channel to a role. If a person doesn't accept direct messages, TTM waits six hours before trying again, instead of failing at every repetition.
 - **Recurring reminders** — interval and repetitions — are a Premium feature, switched on per server in `/config app`.
 - **Discarded reminders are explained** — a reminder that could never fire (it has no owner, or all its alerts are already in the past) is removed from the task text, the list is saved, and a message only you can see tells you which tasks and why. Remember: a mention without the colon is a tag, not an owner.
 

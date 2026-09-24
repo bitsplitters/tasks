@@ -27,7 +27,7 @@ The permissions TTM may use are:
 | Manage webhooks | Write the timeline and run the webhook feature |
 | Attach files | Provide the list download |
 | Read message history | Keep the list in sync |
-| Mention everyone | Notify the people you tag on a task |
+| Mention everyone | Notify the people you tag on a task, and the role that owns a task when its reminder comes due |
 | Use external emojis | Show the bot's own icons on buttons and lists |
 
 <div class="callout"><div class="callout-t">Good to know</div>You can grant these later from <em>Server Settings → Roles → Team Tasks Manager</em>, or per channel from the channel's permission settings.</div>
