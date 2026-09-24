@@ -20,6 +20,7 @@ TTM only stores what is needed to run task lists inside your server:
 - **Reminders** — dates, intervals, repetitions and the time zone set for the server.
 - **Your personal time zone** — the time zone you pick while creating a reminder, stored against your Discord user ID and reused across servers.
 - **Your direct-message channel** — when you own a task, its reminders reach you by direct message, so the bot keeps the ID of its direct-message channel with you, to deliver them with a single request to Discord. If you don't accept direct messages, it also keeps until when not to try again (six hours after the failed attempt). Both are stored against your Discord user ID, like the time zone; the messages themselves are not stored.
+- **Roles TTM creates** — when a task is given to several people, TTM creates a role and keeps its ID, the name it gave it, the user IDs of the people it gave it to, who asked for it and when: to show those people when the task is edited, and to delete the role when no list uses it any more.
 - **Configuration** — per-server settings such as notification mode, history logging, push option and time zone.
 - **Webhooks** — the HTTP method, URL, headers and body you define, and their association to tasks.
 - **Activity logs** — records of actions performed on lists (who did what, and when), when history logging is enabled.
@@ -42,7 +43,7 @@ We do **not** sell your data. Data is processed by our infrastructure provider *
 
 Data is kept while the bot is present and in use in your server.
 
-**When the bot is removed from a server** we delete its content and operational data: task lists and their tasks, tags, reminders and scheduled reminder events, webhooks and their actions, and the activity history.
+**When the bot is removed from a server** we delete its content and operational data: task lists and their tasks, tags, reminders and scheduled reminder events, webhooks and their actions, the activity history, and the records of the roles TTM created — the roles themselves stay in the server, which manages them from then on.
 
 **What we keep** is the minimum needed to run the service and to measure its adoption: the server ID together with the settings configured for it, the dates the bot joined and left, the command-permission settings, subscription records where applicable, and non-identifying usage counters. **No task content is kept.**
 
@@ -52,7 +53,9 @@ Data is kept while the bot is present and in use in your server.
 
 **You can delete a single list yourself**, without asking us: the **Delete list** button in the list's *More* panel, or `/config lists` when the list's message is no longer there. Deletion is immediate and permanent, and it takes the list's tasks, owners, tags, reminders and activity history with it.
 
-**Seal list**, in the same panel, also removes the list's data from TTM, but leaves its message — and its timeline thread — in the channel as ordinary Discord messages, under your server's control.
+**Seal list**, in the same panel, also removes the list's data from TTM, but leaves its message — and its timeline thread — in the channel as ordinary Discord messages, under your server's control. The roles TTM created for that list stay too, and TTM forgets them.
+
+**A role TTM created** is forgotten — its record and the people it was given to — once no list uses it any more, as owner or as tag: if the role is still as TTM left it (the same name, no permissions, the same number of members), TTM also deletes it from the server; otherwise it leaves it to your server. TTM also forgets the roles of a list when you seal it, and all of them when the bot is removed from the server.
 
 You can request deletion at any time (see [GDPR](/gdpr/)); we may also delete data earlier.
 

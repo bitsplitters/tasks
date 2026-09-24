@@ -92,7 +92,7 @@ The workflow is always the same: **turn a button blue or red, then pick the task
 | Button | Function | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :---: | :--- | :--- | :--- |
 | <img class="inline-ic" src="/icons/task.png" alt="" /> | **Content** | Change the task text (opens a form). | Delete the task. |
-| <img class="inline-ic" src="/icons/owner.png" alt="" /> | **Owner** | Set or change the task owner (pick a user/role). | Remove the owner. |
+| <img class="inline-ic" src="/icons/owner.png" alt="" /> | **Owner** | Set or change the task owner: one person, one role, or several people (see *Owner* below). | Remove the owner — and its reminder, which has no one left to reach. |
 | <img class="inline-ic" src="/icons/tag.png" alt="" /> | **Tag** | Set the users/roles to notify — pick several at once (see *Two ways to tag* below). | Remove every tag on the task. |
 | <img class="inline-ic" src="/icons/alertW.png" alt="" /> | **Reminder** | Add or edit a reminder (start date and time zone — plus interval and repetitions when recurring reminders are on: a Premium feature, switched on in [Configuration](/docs/configuration/#recurring-reminders)). | Remove the reminder. |
 | <img class="inline-ic" src="/icons/api.png" alt="" /> | **Webhook** | Associate a webhook, so completing/reopening the task fires an HTTP call. | Remove the webhook association from the task. |
@@ -119,14 +119,44 @@ Now the button stays active after each action, and what Tag does depends on one 
 
 <div class="callout"><div class="callout-t">In one line</div><strong>Off</strong>: tagging always overwrites, and you must pick people first. <strong>On</strong>: pick people first to <em>overwrite</em> (assign), or pick the task first to <em>edit its tags live</em>.</div>
 
+### Owner: a person, a role, or several people
+
+The owner is who a task belongs to — who can check it, and who gets its reminder. Pick it in the owner menu:
+
+- **One person** — they own the task, and its reminder reaches them by direct message.
+- **One role** — everyone with that role owns the task: any of them can check it, and its reminder is a message in the list's channel that mentions the role.
+- **Several people** — TTM creates a role for them, gives it to exactly those people and makes it the owner. From then on it works like any role owner. *Several people as owner is a Premium feature: on the Free plan the owner is one person or one role* (see [What Premium unlocks](/docs/premium/)).
+
+People and roles can't be mixed, and you can pick one role at most: a task has one owner.
+
+The owner menu works like the Tag menu (see *Two ways to tag* above). With "keep status" off, pick the owner, then the task. With it on, you can also **pick the task first**, with the menu empty: its owner loads into the menu — for a role TTM created, the people it gave the role to — and every change you confirm applies to that task straight away. Emptying the menu removes the owner — and its reminder — like the red mode does.
+
+### The roles TTM creates
+
+When you give a task to several people, TTM:
+
+- creates a role called **TTM** followed by the first free number — TTM1, TTM2, and so on — **mentionable** and **with no permissions**, at the bottom of the role list;
+- gives it to the people you picked, one at a time: with many people it can take a few seconds;
+- makes it the owner of the task.
+
+Rename it and it becomes one of your server's roles, to use anywhere. A new colour or a new position doesn't change that: TTM would still delete it when no list uses it any more — so to keep a role, rename it.
+
+**TTM never changes a role once it has created it.** Picking different people — one more, one less — creates a new role; picking exactly the same people as the current owner changes nothing. With "keep status" on, the same selection applied to several tasks in a row reuses the role it created for the first one.
+
+**When a role stops being TTM's.** TTM remembers the roles it creates and the people it gave them to. A role stays TTM's only while it still looks the way TTM left it: the same name, no permissions — neither on the server nor on a channel — and the same number of members. Rename it, give it a permission, use it to open a channel, or add or remove a member, and it becomes one of your server's roles. TTM looks when a role would be deleted, and when the owner menu loads its people: a role that's no longer TTM's is never deleted, and the menu shows the role instead of the people. TTM can see *how many* members a role has, but not *who* they are — so if you swap one member for another, it can't tell.
+
+**When TTM deletes a role.** A role TTM created is deleted — from the server, too — when **no list uses it any more**, as owner or as tag, nor any command permission, **and** it still looks TTM's. TTM checks every ten minutes, and never touches a role created less than ten minutes ago. The roles used by a **sealed** list are kept, because the sealed message still shows them, and when the bot is **removed** from a server, every role it created stays there.
+
+**What it needs.** The bot needs the *Manage Roles* permission, which the invite link includes; on a server that added the bot before, an admin may have to grant it to the bot's role, in *Server Settings → Roles* — not on a channel, where the same permission means something else. While the bot doesn't have it, TTM neither creates nor deletes roles. A server can have at most **250 roles** — a Discord limit: when it's reached, TTM can't create the role and says so.
+
 ## Confirming a tag selection — desktop vs mobile
 
-Only the **Tag** menu lets you pick several people at once, and **multi-select menus like this don't apply as you tick** — they wait for you to **confirm** the whole selection. (Single-choice pickers, such as the check selector or the owner menu, apply the moment you pick, so this doesn't concern them.) How you confirm a multi-pick differs by device, and it isn't obvious the first time:
+The **Tag** and **Owner** menus let you pick several at once, and **multi-select menus like these don't apply as you tick** — they wait for you to **confirm** the whole selection. (Single-choice pickers, such as the check selector, apply the moment you pick, so this doesn't concern them.) How you confirm a multi-pick differs by device, and it isn't obvious the first time:
 
 - **On mobile**, a **Save** button appears beneath the open menu. Tap it to apply what you picked.
 - **On desktop**, there is **no Save button**. Instead, **click anywhere outside the menu** to close it — closing it is what applies your selection. If your tags don't seem to take effect, this is almost always why: click away from the dropdown to commit them.
 
-This matters most during tag **live editing**, where each time you close the menu the task updates on the spot — so on desktop, one click outside the menu is what saves each change.
+This matters most during **live editing** of tags or owner, where each time you close the menu the task updates on the spot — so on desktop, one click outside the menu is what saves each change.
 
 ## Editing while others watch
 

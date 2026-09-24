@@ -44,11 +44,15 @@ Repetitions are offered only on a plan that includes recurring reminders, and on
 
 **A person's reminders arrive by direct message**, so they depend on the owner's DM settings. If the owner doesn't accept direct messages from server members, or no longer shares a server with the bot, Discord refuses the message and that reminder doesn't arrive. TTM remembers it and doesn't try that person again for **6 hours**; after that it tries again, and the first DM that gets through clears the pause.
 
+**Roles TTM creates count toward Discord's 250 roles per server.** When several people own a task, TTM creates a role for them; at 250 roles it can't, and says so. It deletes the role when no list uses it any more and it's still as TTM left it — see [The roles TTM creates](/docs/the-task-list/#the-roles-ttm-creates).
+
+**TTM sees how many members a role has, not who they are.** Swap one member of a role TTM created for another and it can't tell: the owner menu keeps showing the people TTM gave the role to.
+
 **A role's reminder notifies only a role that can be mentioned.** When a task's owner is a role, the reminder is a message in the list's channel that mentions it. Discord turns that into a notification only if the role can be mentioned by anyone, or the bot has *Mention @everyone, @here and All Roles* in the channel; otherwise the message appears and nobody is notified. TTM warns you when you set up such a reminder. And only the members who can see the channel are notified — which, for a task on that list, is who you'd expect.
 
 ## Owners and tags
 
-Each task has **one owner** — a single user or role, the person responsible. A task can carry **up to 25 tags** (users or roles to notify): 25 is Discord's per-menu maximum for the tag picker.
+Each task has **one owner** — a person or a role; on Premium also up to 25 people, who share a role TTM creates for them (25 is the owner menu's maximum). A task can carry **up to 25 tags** (users or roles to notify): 25 is Discord's per-menu maximum for the tag picker.
 
 ## Webhooks
 

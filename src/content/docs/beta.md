@@ -22,7 +22,7 @@ When TTM leaves beta it becomes **freemium**. That word makes people nervous, so
 
 ## The free tier, after beta
 
-Three active lists, twenty tasks each, ten reminders waiting at a time — single ones, since recurring reminders are Premium — and no webhooks: enough for a small team to keep using TTM without ever paying. The full table — free limits, what Premium lifts, what each one changes day to day, and the planned price — lives on one page:
+Three active lists, twenty tasks each, ten reminders waiting at a time — single ones, since recurring reminders are Premium — one person or one role per owner, and no webhooks: enough for a small team to keep using TTM without ever paying. The full table — free limits, what Premium lifts, what each one changes day to day, and the planned price — lives on one page:
 
 **→ [What Premium unlocks](/docs/premium/)**
 

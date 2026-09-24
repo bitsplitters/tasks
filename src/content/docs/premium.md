@@ -18,6 +18,7 @@ If you're here from the bot, start with [Free during the beta](/docs/beta/): it 
 | Active reminders | **10** | Unlimited |
 | Repetitions per reminder | — (single reminders only) | 50 |
 | Webhooks | — | 25 \* |
+| People per owner | **1** (a person or a role) | 25 \* |
 
 *These are the planned limits and may be tuned before launch.*
 
@@ -34,6 +35,8 @@ On the free tier the three places are fixed. A list takes one the first time som
 **Active reminders — 10 → unlimited.** Ten reminders *waiting at the same time* — not ten a day. A reminder stops counting the moment it has fired for the last time, so the slot comes back on its own; and a repeating reminder — like one set up during the beta — takes **one** slot, not one per repetition. Ten is plenty for deadlines that matter. It becomes the binding limit when reminders stop being exceptions and become the rhythm of the server — stand-ups, shift handovers, recurring checks on a dozen lists.
 
 **Repetitions per reminder — single only → up to 50.** On the free tier every reminder is a single event: it arrives once, at the time you choose. Recurring reminders — repetitions and an interval — are a Premium feature: one reminder can repeat up to 50 times after the first, a drumbeat for something that genuinely must not be missed. On Premium an admin still switches them on in [Configuration](/docs/configuration/#recurring-reminders), where they are off by default. Recurring reminders you already have, from the beta for example, keep firing on the free tier and stay editable: you can move them or lower their repetitions, not raise them. See [Reminders](/docs/reminders/).
+
+**People per owner — 1 → up to 25.** On the free tier a task's owner is one person, or one role of your server. On Premium you can pick several people as the owner: TTM creates a role for them, gives it to them and makes it the owner, so they can all check the task and its reminder mentions all of them in the list's channel. It is Premium because it costs Discord requests — one for the role, one for each person — and those come from the same budget as everything else the bot does. Up to 25, because that's as many as the owner menu lets you pick. How those roles are named, kept and deleted: [The roles TTM creates](/docs/the-task-list/#the-roles-ttm-creates).
 
 **Webhooks — none → up to 25.** Like recurring reminders, this row unlocks a *capability* rather than a bigger number. Webhooks let a completed task fire an HTTP call to anything you run: a deploy, a spreadsheet, a ticket system, your own service. It is the feature that turns TTM from a checklist into a piece of your workflow, and it's the main reason the paid plan exists. See [Webhooks](/docs/webhooks/).
 

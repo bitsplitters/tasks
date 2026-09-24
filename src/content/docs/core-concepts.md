@@ -34,7 +34,7 @@ A task **with an owner** can be flipped only by its owner — or the members of 
 
 These look similar but do different jobs:
 
-- **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> — the person (or role) *responsible* for the task. One owner per task.
+- **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> — the person (or role) *responsible* for the task. One owner per task — and it can be several people: TTM creates a role for them (see [The roles TTM creates](/docs/the-task-list/#the-roles-ttm-creates)).
 - **Tag** <img class="inline-ic" src="/icons/tag.png" alt="" /> — one or more users/roles *mentioned* on the task, e.g. people to notify when it is completed.
 
 ## Reminders
