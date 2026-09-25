@@ -26,7 +26,7 @@ Every task is either **open** or **completed**, shown by its checkbox:
 - <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> **Open** — still to do.
 - <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" /> **Completed** — done.
 
-You tick or untick a task in the **check selector**, the drop-down menu labelled *check/uncheck tasks*. It sits above the button rows. Completing or reopening a task is what can trigger notifications and webhooks.
+You tick or untick a task in the **check selector**, the drop-down menu that shows the list's title. It sits above the button rows. Completing or reopening a task is what can trigger notifications and webhooks.
 
 A task **with an owner** can be ticked only by its owner, or by the members of the owner role. Whoever has *Manage messages* on the channel can tick it too. Anyone who can use the list can tick a task without an owner. The full rule: [The check selector](/docs/the-task-list/#the-check-selector).
 

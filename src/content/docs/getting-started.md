@@ -25,14 +25,15 @@ Type `/` in the message box and pick the command, or start typing its name:
 
 If your Discord is in another language, the command has a translated name: in Italian it is `/crea-lista`. Every name is in [Commands reference](/docs/commands/#command-names-in-your-language).
 
-TTM replies with a short legend on how to write a list and a **Create your list** button. Click it: a form opens with two fields, the **list title** and the **list of activities**. Write one activity per line, each starting with a dash `-`:
+TTM replies with a short legend on how to write a list and a **Create your list** button. Click it: a form opens with two fields, the **list title** and the **list of activities**. Write one activity per line, each starting with a dash `-`. For example, with the title *Saturday tournament*:
 
 ```
-- Design the landing page
-  - Draft the copy
-  - Pick the palette
-- Set up the repository
-- Ship to staging
+- Book the voice channels
+- Prepare the brackets
+  - Collect the sign-ups
+  - Seed the teams
+- Post the rules
+- Stream the final
 ```
 
 The rules:
@@ -41,11 +42,16 @@ The rules:
 - **Spaces before the dash make it a subtask** of the task above. A task with subtasks becomes a **group**.
 - The title can be up to **256 characters**. The list can be up to about **4000 characters** and **50 tasks**, subtasks included (20 on the Free plan after the beta — see [What Premium unlocks](/docs/premium/)).
 
-Submit the form, and the list appears in the channel.
+Submit the form, and the list appears in the channel. Here is the same list after a few steps: the first task is ticked, *Prepare the brackets* has an owner and *Stream the final* has a reminder.
+
+<picture class="screen">
+  <source media="(max-width: 640px)" srcset="/screens/list-mobile.png" width="946" height="1048" />
+  <img src="/screens/list-desktop.png" width="424" height="371" loading="lazy" alt="The Saturday tournament list in Discord: six numbered tasks with checkboxes. The first is ticked and greyed out; Prepare the brackets has two subtasks and an owner; Stream the final has an owner and a reminder date. Below the list are the drop-down menu, showing the list's title, and two rows of buttons." />
+</picture>
 
 ## 3. Tick a task
 
-Under the list there is the **check selector**, a drop-down menu labelled *check/uncheck tasks*, and two rows of buttons. Open the menu and pick a task: its box changes from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it. Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.
+Under the list there is the **check selector**, a drop-down menu that shows the list's title, and two rows of buttons. Open the menu and pick a task: its box changes from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it. Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.
 
 <div class="callout"><div class="callout-t">Can't tick a task?</div>Every button in the second row must be <strong>grey</strong>: if one is blue or red, picking a task applies that button's action instead. And a task with an owner can be ticked only by its owner, and by whoever has <em>Manage messages</em> on the channel.</div>
 

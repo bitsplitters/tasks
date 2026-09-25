@@ -173,6 +173,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .prose .dchip.is-blue  { background: #5865F2; }
 .prose .dchip.is-green { background: #248046; }
 .prose .dchip.is-red   { background: #ED4245; }
+/* A Discord screenshot: at its natural size on desktop (the capture is 1x, enlarging it blurs it),
+   full width on a phone, where the <picture> serves the high-density mobile capture instead. */
+.prose .screen { display: block; margin: 1.2rem 0; }
+.prose .screen img { display: block; width: 100%; max-width: 424px; height: auto; border-radius: 8px; }
+@media (max-width: 640px) {
+  .prose .screen img { max-width: 100%; }
+}
 /* Interactive button board (home): icon-only buttons + Discord state colors */
 .board-row .dbtn { background: #4E5058 !important; border: none !important; gap: 0 !important; padding: .55em !important; }
 .board-row .dbtn img { width: 24px !important; height: 24px !important; }

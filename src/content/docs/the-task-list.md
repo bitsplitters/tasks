@@ -9,7 +9,7 @@ Once a list exists, TTM shows a **check selector** and **two rows of buttons** b
 
 ## The check selector
 
-Above the buttons sits the **check selector**: the drop-down menu labelled *check/uncheck tasks*. Use it to:
+Above the buttons sits the **check selector**: the drop-down menu that shows the list's title. A list with more than 25 tasks has two menus, each labelled with the position of its last task. Use it to:
 
 1. **Mark tasks done or open** — tick a task to complete it, untick it to reopen it. Its checkbox shows <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> or <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />.
 2. **Pick the task that an active button acts on** (see [Row 2](#row-2--acts-on-a-single-task)).

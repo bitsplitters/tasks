@@ -66,7 +66,7 @@ You can move it, copy it onto another task or delete it by hand, exactly like a 
 
 ## When a webhook fires
 
-A webhook fires only when someone **checks or unchecks its task from the check selector**, the drop-down menu labelled *check/uncheck tasks*. In detail:
+A webhook fires only when someone **checks or unchecks its task from the check selector**, the drop-down menu under the list. In detail:
 
 - **only the task you picked** fires its webhook. The tasks that change with it don't fire theirs: subtasks ticked in cascade, or a group completed by its last subtask;
 - **Reopen all** and **Bulk update** change many tasks at once and fire **no** webhook;
