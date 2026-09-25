@@ -21,10 +21,10 @@ Each row has a single button that cycles every time you press it:
 
 | State | Meaning |
 | :---: | :--- |
-| <img class="inline-ic" src="/icons/noaction.png" alt="" /> grey | nothing happens to this list |
-| <img class="inline-ic" src="/icons/refresh.png" alt="" /> blue | **regenerate** it |
-| <img class="inline-ic" src="/icons/seal.png" alt="" /> green | **seal** it |
-| <img class="inline-ic" src="/icons/delete.png" alt="" /> red | **delete** it |
+| <span class="dchip is-grey" role="img" aria-label="Grey button"><img src="/icons/noaction.png" alt="" /></span> | nothing happens to this list |
+| <span class="dchip is-blue" role="img" aria-label="Blue button"><img src="/icons/refresh.png" alt="" /></span> | **regenerate** it |
+| <span class="dchip is-green" role="img" aria-label="Green button"><img src="/icons/seal.png" alt="" /></span> | **seal** it |
+| <span class="dchip is-red" role="img" aria-label="Red button"><img src="/icons/delete.png" alt="" /></span> | **delete** it |
 
 Mark as many lists as you need — two to delete, one to seal and three to regenerate, if that's the case — then press **Apply**. Before anything happens, a confirmation window lists them by name, grouped by action: submit it to go ahead, close it to cancel.
 
