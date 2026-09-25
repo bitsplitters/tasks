@@ -36,13 +36,25 @@ On the free tier the three places are fixed. A list takes one the first time som
 
 **Repetitions per reminder — single only → up to 50.** On the free tier every reminder is a single event: it arrives once, at the time you choose. Recurring reminders — repetitions and an interval — are a Premium feature: one reminder can repeat up to 50 times after the first, a drumbeat for something that genuinely must not be missed. On Premium an admin still switches them on in [Configuration](/docs/configuration/#recurring-reminders), where they are off by default. Recurring reminders you already have, from the beta for example, keep firing on the free tier and stay editable: you can move them or lower their repetitions, not raise them. See [Reminders](/docs/reminders/).
 
-**People per owner — 1 → up to 25.** On the free tier a task's owner is one person, or one role of your server. On Premium you can pick several people as the owner: TTM creates a role for them, gives it to them and makes it the owner, so they can all check the task and its reminder mentions all of them in the list's channel. It is Premium because it costs Discord requests — one for the role, one for each person — and those come from the same budget as everything else the bot does. Up to 25, because that's as many as the owner menu lets you pick. How those roles are named, kept and deleted: [The roles TTM creates](/docs/the-task-list/#the-roles-ttm-creates).
+**People per owner — 1 → up to 25.** On the free tier a task's owner is one person, or one role of your server. On Premium you can pick several people as the owner: TTM creates a role for them, gives it to them and makes it the owner, so they can all check the task and its reminder mentions all of them in the list's channel. It is Premium because it takes Discord requests — one for the role, one for each person — and Discord caps how many requests a bot can send: one allowance, shared by every list on every server. Up to 25, because that's as many as the owner menu lets you pick. How those roles are named, kept and deleted: [The roles TTM creates](/docs/the-task-list/#the-roles-ttm-creates).
 
-**Webhooks — none → up to 25.** Like recurring reminders, this row unlocks a *capability* rather than a bigger number. Webhooks let a completed task fire an HTTP call to anything you run: a deploy, a spreadsheet, a ticket system, your own service. It is the feature that turns TTM from a checklist into a piece of your workflow, and it's the main reason the paid plan exists. See [Webhooks](/docs/webhooks/).
+**Webhooks — none → up to 25.** Like recurring reminders, this row unlocks a *capability* rather than a bigger number. Webhooks let a completed task fire an HTTP call to anything you run: a deploy, a spreadsheet, a ticket system, your own service. It is the feature that turns TTM from a checklist into a piece of your workflow, and it's the main thing Premium adds. See [Webhooks](/docs/webhooks/).
 
 <div class="callout"><div class="callout-t">No limit on this page counts how often you use something</div>The clearest case is webhooks: you can create up to 25 per server, and each one can fire as many times as you like — a webhook that runs a thousand times a week still counts as one. Same everywhere else: three lists means three lists you are <em>working on</em> — a list outside them still sits in the channel and still downloads, and one created during the beta can still be ticked without taking a place. Nothing in TTM is metered by use: a place, once taken, doesn't count how often you work on its list.</div>
 
 <div class="callout"><div class="callout-t">The free tier is not a countdown</div>Everything above the line keeps working for as long as you use TTM. If your server outgrows a free limit you can't add <em>more</em> beyond it until you upgrade — but nothing already there is deleted or hidden. That promise, and exactly what a beta list outside your three places can still do, is spelled out in <a href="/docs/beta/">Free during the beta</a>.</div>
+
+## Why there's a paid plan
+
+We're a small independent team, and we want to share what we've built with as many communities as we can. That's why the free tier is hosted by us and stays free, forever. So here, plainly, is where the Premium money goes.
+
+**Running TTM has costs, and they grow with every server that uses it:** the machines it runs on, the database and its backups, and the share of every payment that Discord keeps for handling the subscriptions. But the biggest cost never shows up on an invoice: it's our time. New features, fixes, one update after another, and someone answering when you ask a question in the community.
+
+**Hosting your server, by itself, costs us very little** — a single Premium server covers the hosting of many free ones. That's why the free tier can last, and why we will never switch the bot off to make you pay.
+
+**What Premium really pays for is the rest: our work.** It's for the servers that need more — unlimited lists and reminders, recurring reminders, webhooks, several people per owner — and everyone benefits from it: every fix and every update reaches the free tier too.
+
+On the free tier or on Premium, the work of running TTM is ours. If you'd rather take it on yourself, you can, with every Premium feature unlocked: see [Rather run it yourself?](#rather-run-it-yourself) below.
 
 ## What it will cost
 
@@ -51,7 +63,7 @@ On the free tier the three places are fixed. A list takes one the first time som
 | Monthly | **€5 / month** | €5 per month |
 | Annual | **€36 / year** | **€3 per month** |
 
-One price for the **whole server** — everyone on it included, no per-seat maths, no counting members. The annual plan is the same product paid once: it costs less because it saves us a year of billing, not because it gives you more.
+One price for the **whole server** — everyone on it included, no per-seat maths, no counting members. The annual plan is the same product paid once: it costs less because you commit to a whole year up front, not because it gives you more.
 
 *Planned prices, not final until the beta ends.*
 
@@ -59,11 +71,11 @@ And for being here first: when the beta winds down we'll open a **Founder** offe
 
 ## Rather run it yourself?
 
-You can — and this is the point: **you'll never be trapped.** If you'd prefer to host TTM on your own machine, join our [Discord server](/docs/community/), download the executable and its configuration, and run it free, for good. Every time we ship an update, the new executable is waiting for you there.
+You can — and this is the point: **you'll never be trapped.** If you'd prefer to host TTM on your own machine, join our [Discord server](/docs/community/), download the executable and its configuration, and run it free, for good, with every Premium feature unlocked. Every time we ship an update, the new executable is waiting for you there.
 
 **What "free, for good" covers.** Run TTM as long as you like, for yourself or for your own company, at no cost — that part has no expiry and no catch. What it doesn't cover is offering TTM to other people as a service of your own, or passing the executable on to someone else. The full text is the [self-hosting licence](/license/) — read it here before you decide; it also ships inside the package, and you'll be asked to accept it before you get it.
 
-<div class="callout"><div class="callout-t">The honest maths</div>Self-hosting to save €3/month — €36 for a whole year — means: paying for a server that costs <em>more</em> than €3/month; keeping a database running and backed up; and stopping the bot, downloading each release, reconfiguring it and starting it again — <em>every single update</em> — while you're the one on call when it falls over at 2 a.m.<br><br>€3/month — less than one coffee — is us doing all of that for you, forever, with every update live the moment it ships. The self-host door is always open — with the trade-offs laid out, is it worth walking through? That's yours to decide.</div>
+<div class="callout"><div class="callout-t">The honest maths</div>Self-hosting to save €3/month — €36 for a whole year — means: paying for a server that, unless you already run one, costs about as much or more; keeping a database running and backed up; and stopping the bot, downloading each release, reconfiguring it and starting it again — <em>every single update</em> — while you're the one on call when it falls over at 2 a.m.<br><br>€3/month — under 10 cents a day — is us doing all of that for you, forever, with every update live the moment it ships. The self-host door is always open — with the trade-offs laid out, is it worth walking through? That's yours to decide.</div>
 
 ## Questions?
 

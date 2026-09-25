@@ -30,7 +30,7 @@ It's a separate page on purpose. This one is about *the beta* and stops being tr
 
 ## Rather run it yourself?
 
-You can, and you'll never be trapped: TTM can be self-hosted for free, for good — for yourself or your own company, though not to offer as a service to others. The trade-offs, the [terms that come with the download](/license/), and the honest maths on what €3/month actually buys you are on [What Premium unlocks](/docs/premium/#rather-run-it-yourself).
+You can, and you'll never be trapped: TTM can be self-hosted for free, for good, with every Premium feature unlocked — for yourself or your own company, though not to offer as a service to others. The trade-offs, the [terms that come with the download](/license/), and the honest maths on what €3/month actually buys you are on [What Premium unlocks](/docs/premium/#rather-run-it-yourself).
 
 ## Questions?
 

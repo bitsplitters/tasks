@@ -15,7 +15,7 @@ Team Tasks Manager has an **official Discord community server**, published by bi
 - **Report a bug** — found something off? Open a bug report so we can reproduce and fix it. Clear steps and a screenshot go a long way.
 - **Share feedback & request features** — tell us what would make TTM better for your team. A lot of the roadmap comes straight from these conversations.
 - **Follow announcements & roadmap** — see new releases and what's planned, all in one place.
-- **Join the beta** — want early access? Try features before they ship (also from the `/beta` command inside the bot).
+- **Try features before they ship** — grab the 🧪 Beta Tester role in the server to see what's under test and tell us what you think. (Not to be confused with `/beta` in the bot, which explains what TTM being in beta means for your server.)
 - **Meet other teams** — swap tips with other server admins running shared checklists the same way you do.
 
 <div class="callout"><div class="callout-t">Good to know</div>The server is dedicated to TTM but published by <strong>bitsplitters</strong>. Everyone's welcome to drop in, ask questions and follow along — even before you add the bot to your own server.</div>

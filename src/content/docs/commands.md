@@ -41,7 +41,7 @@ Create, view, modify or delete a webhook, optionally scoped to a **completion** 
 
 ## `/beta`
 
-What being in beta means for you: everything unlocked, for free, for the whole beta — plus a button that shows what the paid plan will look like afterwards.
+What being in beta means for you: everything unlocked, for free, for the whole beta; what happens when it ends, and why there's a paid plan at all — plus a button that shows what that plan will look like.
 
 → See [Free during the beta](/docs/beta/).
 
