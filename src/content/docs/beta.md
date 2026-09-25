@@ -20,7 +20,7 @@ When TTM leaves beta it becomes **freemium**: a Free plan, plus a paid plan call
 
 ## What a beta list keeps
 
-On the Free plan a server has [three places for lists](/docs/premium/#how-the-three-places-work), and a list that holds one is **in use**. The bot's Premium table calls them *active lists*. When the beta ends, no list holds a place yet. A list created during the beta:
+On the Free plan a server has [three places for lists](/docs/premium/#how-the-three-places-work), and a list that holds one is **in use**. When the beta ends, no list holds a place yet. A list created during the beta:
 
 - **stays in the channel as it is.** Its reminders keep arriving, and you can still download it.
 - **lets you check or uncheck its tasks**, without taking a place. Its webhooks stay silent until the list takes a place.

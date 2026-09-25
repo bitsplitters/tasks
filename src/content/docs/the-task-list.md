@@ -84,6 +84,8 @@ When you start **Clone list**, the cloning controls replace the first row:
 
 A clone gets new reminders, so a recurring reminder can be refused: see [Repeating reminders](/docs/reminders/#repeating-reminders).
 
+A clone is a new list, so it follows your plan like any new list: it needs a free place, and it can't have more tasks than your plan allows. On the Free plan, a list with more than twenty tasks can't be cloned: see [What Premium unlocks](/docs/premium/).
+
 ## Row 2 — acts on a single task
 
 Each button in the second row is a **three-state switch**. Click it to cycle through the same colors Discord uses for its buttons:

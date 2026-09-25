@@ -11,7 +11,7 @@ TTM is **free and fully unlocked during the beta**, so nothing on this page appl
 
 | | Free | Premium |
 | :--- | :--- | :--- |
-| Lists in use (active lists) per server | **3** | Unlimited |
+| Lists in use per server | **3** | Unlimited |
 | Tasks per list | **20** | 50 \* |
 | Active reminders | **10** | Unlimited |
 | Repetitions per reminder | — (single reminders only) | 50 |
