@@ -17,7 +17,7 @@ The command has one option, **`file`**, and you can leave it out. Attach the `.t
 
 TTM refuses a file straight away if it isn't a `.txt` or is bigger than **64 KB**. Otherwise TTM reads the file. If something doesn't fit, TTM creates nothing and lists every problem in one message, each with its line or its task:
 
-- **The format** — the file isn't UTF-8 text, or it doesn't start with `#!ttm/1`. The title is missing or longer than 256 characters. A line isn't a task, the list starts with a subtask, or there are no tasks.
+- **The format** — the file isn't UTF-8 text, or it doesn't start with `#!ttm/1`. The title is missing or longer than 256 characters. A line isn't a task, a reminder is written in months (`M`), the list starts with a subtask, or there are no tasks.
 - **The size** — the list is too long for one message, or it has more tasks than a list can hold or your plan allows.
 - **The reminders** — a reminder has no owner, repeats more times than your plan allows, or is recurring where new recurring reminders can't be created (see [Reminders](/docs/reminders/#repeating-reminders)). Too many reminders would be waiting at the same time.
 - **This server** — a role, a channel or a webhook in the file doesn't exist on this server, or a user in the file isn't a member of it.

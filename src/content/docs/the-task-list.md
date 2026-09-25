@@ -133,7 +133,7 @@ If the list gets locked or sealed before you confirm Clean or Reopen, nothing ch
 
 ## When a bulk update can't be saved
 
-The list title can be up to **256 characters**. If the bot can't read your text as a list, it shows the text back, with an arrow on each wrong line. Otherwise, **one message lists every problem at once**, one per paragraph:
+The list title can be up to **256 characters**. If the bot can't read your text as a list, it shows the text back, with an arrow on each wrong line: a line without a dash, a list that starts with a subtask, or a reminder written in months (`M`). Otherwise, **one message lists every problem at once**, one per paragraph:
 
 - the list is too long;
 - the list has more tasks than a list can hold, or than your plan allows;
