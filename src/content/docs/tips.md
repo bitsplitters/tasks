@@ -1,8 +1,8 @@
 ---
 title: Tips & tricks
 description: Small habits that make TTM faster and quieter.
-group: Help & community
-order: 9
+group: Using the bot
+order: 7
 ---
 
 ## Reuse a list anywhere
@@ -10,6 +10,10 @@ order: 9
 Open **More** <img class="inline-ic" src="/icons/other.png" alt="" /> and pick **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: the list arrives as a `.txt` file that only you can see. Then run `/create-list` on any server and attach that file to its `file` option — tasks, completed states, owners, tags, reminders and webhooks come back as they were. Great for recurring checklists (releases, onboarding, events).
 
 If something in the file doesn't fit the new server — a role, channel, member or webhook it doesn't have, or a limit of its plan — TTM lists every problem at once and creates nothing until it's fixed. Reminders already in the past are simply dropped, and you're told which ones.
+
+## Skip the legend
+
+If your team already knows how to write a list, switch off the `/create-list` legend in [Configuration](/docs/configuration/#create-list-legend): the command then opens the creation form straight away.
 
 ## Clone instead of rebuilding
 

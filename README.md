@@ -12,13 +12,13 @@ Each file starts with a small header:
 ---
 title: Getting started
 description: One-line summary shown under the title and in the docs index.
-group: Start          # sidebar group: Start | Using the bot | More
-order: 1              # position within the group
+group: Getting started   # Getting started | Using the bot | Configuration | Reference | Plans | Help & community
+order: 1                 # position within the group
 ---
 ```
 
 ### Add a page
-Create a new `.md` file in `src/content/docs/` with the header above. It appears in the sidebar automatically, in the right group and order.
+Create a new `.md` file in `src/content/docs/` with the header above. It appears in the sidebar automatically, in the right group and order. A **new group** must also be added to `groupsOrder` in both `src/pages/docs/index.astro` and `src/pages/docs/[...slug].astro`: a page whose group isn't listed there doesn't show in the sidebar.
 
 ### Icons
 Button/feature icons live in `public/icons/`. Use them inline in Markdown:

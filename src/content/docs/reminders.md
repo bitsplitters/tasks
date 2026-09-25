@@ -9,7 +9,7 @@ A reminder turns a task into something that reminds *you*, instead of the other 
 
 ## Adding a reminder
 
-On the second button row, click **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> until it turns **blue** (edit mode), then pick the task from the check selector. TTM opens the **When** form:
+On the second button row, click **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> until it turns **blue** (edit mode), then pick the task from the check selector — one that isn't ticked yet. TTM opens the **When** form, titled *Set reminder for task …*:
 
 | Field | Format | Notes |
 | :--- | :--- | :--- |
@@ -19,11 +19,34 @@ On the second button row, click **Reminder** <img class="inline-ic" src="/icons/
 | **Time** | `HH:mm`, 24-hour | e.g. `15:30` |
 | **Time zone** | an official zone name | pre-filled with *your* zone |
 
-Everything arrives pre-filled with **ten minutes from now**, so a reminder for "in a moment" needs no typing at all — just submit. Submit and you're done: the task shows the scheduled time and the reminder fires **once**.
+Everything arrives pre-filled with **ten minutes from now**, so a reminder for "in a moment" needs no typing at all: submit it, and the task shows the scheduled time. The reminder fires **once**. With recurring reminders on, a summary card follows: press **Save** (see [Repeating reminders](#repeating-reminders)).
 
 The start must be at least **5 minutes** in the future.
 
 <div class="callout"><div class="callout-t">Your time zone is remembered</div>The first time, the field proposes the server's zone. Change it and TTM stores <strong>your</strong> choice: from then on it proposes your personal zone, so every member of the team can think in their own local time.</div>
+
+**Who gets it.** The reminder goes to the task's owner, by direct message if the owner is a person. If the task has no owner yet, you become it: from then on only you, and whoever has *Manage messages* on the channel, can tick that task. To give it to someone else, set the owner with **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> before or after creating the reminder. Nothing arrived? Check that you accept direct messages from members of that server — more in [How the reminder arrives](#how-the-reminder-arrives).
+
+## Finding your time zone
+
+TTM needs an official time-zone name like `Europe/Rome`. Look yours up on the **[time zone map](https://timezones.bitsplitters.app)**: select your area on the map, copy the value, and paste it into the field.
+
+## How the reminder arrives
+
+When the time comes, TTM reminds the task's owner, with the task, the date it was due for and a button that jumps straight to the list. If the owner is a **person**, the reminder is a **direct message**. If the owner is a **role**, it is a **message in the list's channel** that mentions the role, as a reply to the list: Discord notifies everyone who has that role and can see the channel. Either way it arrives **within about ten seconds** of the scheduled time — sends are spread out to stay within Discord's limits — and always in the right minute. With [Push notification](/docs/configuration/#push-notification) off it still arrives, without the plain text that makes phone previews readable.
+
+If the owner doesn't accept direct messages from server members, or no longer shares a server with the bot, the DM can't be delivered. TTM remembers it and doesn't try that person again for **6 hours**; after that it tries again, and the first DM that gets through clears the note.
+
+A role is notified only if it can be mentioned: either the role allows it (*Server Settings → Roles*, the role can be @mentioned by anyone), or the bot has the *Mention @everyone, @here and All Roles* permission in the list's channel — the invite link grants it. Otherwise the reminder still appears in the channel, but nobody gets a notification; TTM tells you when you set the reminder or make the role the owner. For a task owned by **@everyone**, only the permission counts. A role TTM creates for several owners is born mentionable, so its reminders notify it even without that permission — unless someone turns the setting off. Either way, only the members who can see the list's channel are notified. If the role has been **deleted**, no reminder is sent at all: TTM tells you that too, and the fix is to choose another owner.
+
+## Editing or removing a reminder
+
+- **Edit** — click **Reminder** to blue, pick the task, and set the new values. If the task already has a *repeating* reminder — or any reminder, with recurring reminders on — you land straight on the summary card (see [Repeating reminders](#repeating-reminders)), with the current date and badge ([Reading a reminder on the task](#reading-a-reminder-on-the-task)), so you can change only what you need. Otherwise **When** opens, pre-filled with the current date.
+- **Remove** — click **Reminder** until it turns **red** (delete mode), then pick the task. The reminder is removed.
+
+Completing a task also stops its reminder — no need to clean up afterwards.
+
+<div class="callout"><div class="callout-t">Closing a form is not cancelling</div>Discord never tells a bot that you closed a form with the ✕, so TTM cannot know: the list stays locked. Use <strong>Cancel</strong> on the <a href="#repeating-reminders">summary card</a> when it's there, and the <img class="inline-ic" src="/icons/unlock.png" alt="" /> unlock button if you closed a form the hard way.</div>
 
 ## Repeating reminders
 
@@ -49,19 +72,9 @@ With recurring reminders off — or on the Free plan — the card appears only w
 | Field | Meaning | Example |
 | :--- | :--- | :--- |
 | **Repetitions** | Extra repeats **after** the first reminder. `0` fires it **once only**; `N` adds `N` more (so `N + 1` in total), up to the maximum shown in the field: 50 on Premium, or the repetitions the reminder already has where they can't grow. | `0`, `3` |
-| **Interval** | Time between repeats. **Optional** — only needed when repetitions are `1` or more. Use days `d`, hours `h`, minutes `m` (no months). | `1d`, `24h`, `1d12h` |
+| **Interval** | Time between repeats. **Optional** — only needed when repetitions are `1` or more. Use days `d`, hours `h`, minutes `m` — there are no weeks or months: a week is `7d`. | `1d`, `7d` (weekly), `24h`, `1d12h` |
 
 <div class="callout"><div class="callout-t">Daylight saving — the detail that matters</div><code>1d</code> keeps the <strong>same wall-clock time</strong> across a DST change (e.g. always 09:00). <code>24h</code> means <strong>exactly 24 hours</strong>, which can shift by an hour after the clocks change. Pick the one that matches what you mean.</div>
-
-## How the reminder arrives
-
-When the time comes, TTM reminds the task's owner, with the task, the date it was due for and a button that jumps straight to the list. If the owner is a **person**, the reminder is a **direct message**. If the owner is a **role**, it is a **message in the list's channel** that mentions the role, as a reply to the list: Discord notifies everyone who has that role and can see the channel. Either way it arrives **within about ten seconds** of the scheduled time — sends are spread out to stay within Discord's limits — and always in the right minute. With [Push notification](/docs/configuration/#push-notification) off it still arrives, without the plain text that makes phone previews readable.
-
-If the owner doesn't accept direct messages from server members, or no longer shares a server with the bot, the DM can't be delivered. TTM remembers it and doesn't try that person again for **6 hours**; after that it tries again, and the first DM that gets through clears the note.
-
-A role is notified only if it can be mentioned: either the role allows it (*Server Settings → Roles*, the role can be @mentioned by anyone), or the bot has the *Mention @everyone, @here and All Roles* permission in the list's channel — the invite link grants it. Otherwise the reminder still appears in the channel, but nobody gets a notification; TTM tells you when you set the reminder or make the role the owner. For a task owned by **@everyone**, only the permission counts. A role TTM creates for several owners is born mentionable, so its reminders notify it even without that permission — unless someone turns the setting off. Either way, only the members who can see the list's channel are notified. If the role has been **deleted**, no reminder is sent at all: TTM tells you that too, and the fix is to choose another owner.
-
-If the task had no owner yet, whoever sets the reminder **becomes its owner** — a reminder always has someone to reach. Set a different owner with the **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> button before or after creating the reminder.
 
 ## Reading a reminder on the task
 
@@ -83,24 +96,12 @@ The same rules apply as in the forms. Where recurring reminders can't be created
 
 A reminder that could never arrive is taken out of the task's text: one **without an owner** (reminders go to the owner — by DM to a person, as a mention in the channel to a role — and a mention without the colon is a tag, not an owner) or one whose alerts are **all in the past**. The list is saved anyway, and a message only you can see tells you which tasks lost their reminder, and why.
 
-## Finding your time zone
-
-TTM needs an official time-zone name like `Europe/Rome`. Look yours up on the **[time zone map](https://timezones.bitsplitters.app)**: select your area on the map, copy the value, and paste it into the field.
-
-## Editing or removing a reminder
-
-- **Edit** — click **Reminder** to blue, pick the task, and set the new values. If the task already has a *repeating* reminder — or any reminder, with recurring reminders on — you land straight on the summary card, with the current date and badge, so you can change only what you need. Otherwise **When** opens, pre-filled with the current date.
-- **Remove** — click **Reminder** until it turns **red** (delete mode), then pick the task. The reminder is removed.
-
-Completing a task also stops its reminder — no need to clean up afterwards.
-
-<div class="callout"><div class="callout-t">Closing a form is not cancelling</div>Discord never tells a bot that you closed a form with the ✕, so TTM cannot know: the list stays locked. Use <strong>Cancel</strong> on the summary card when it's there, and the <img class="inline-ic" src="/icons/unlock.png" alt="" /> unlock button if you closed a form the hard way.</div>
-
 ## Common errors
 
 | Message | What to fix |
 | :--- | :--- |
 | *Invalid reminder* | The start must be at least 5 minutes in the future. |
+| *The reminder to work must be created on a task to be performed* | Pick a task that isn't ticked yet: a completed task can't get a reminder. |
 | *The date does not exist* | Check day, month and year together (e.g. 31 February). |
 | *Invalid time* | Use the 24-hour format `HH:mm`, e.g. `15:30`. |
 | *Incorrect interval* | Use the `d` / `h` / `m` pattern, e.g. `1d`, `24h`, `1d12h`. |

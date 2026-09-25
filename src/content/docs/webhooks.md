@@ -18,7 +18,7 @@ The command takes a few options:
 | Option | Required? | Values | Notes |
 | :--- | :--- | :--- | :--- |
 | **action** | Required | view · create · modify · delete | What you want to do. |
-| **webhook** | Required | a name | The webhook to act on, up to 100 characters. |
+| **webhook** | Required | a name | The webhook to act on, up to 96 characters. |
 | **trigger** | Optional | completion · reopen | Omit it to act on **both** directions at once. |
 
 Choosing **create** (or **modify**) opens a form with four fields:
@@ -62,7 +62,7 @@ The association is stored **in the task itself**, as a reserved token: in **Bulk
 - [] {{wb=deploy}} Ship the release notes
 ```
 
-You can move it, copy it onto another task or delete it by hand, exactly like a mention — the token never shows up in the rendered list, and `wb` is the only reserved key (every other `{{key=value}}` is a free variable, see below).
+You can move it, copy it onto another task or delete it by hand, exactly like a mention — the token never shows up in the rendered list, and `wb` is the only reserved key (every other `{{key=value}}` is a free variable, see [Tokens](#tokens) above).
 
 ## When a webhook fires
 

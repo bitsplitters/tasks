@@ -1,11 +1,13 @@
 ---
 title: Commands reference
 description: The complete list of slash commands — most of TTM lives in buttons, not commands.
-group: Using the bot
-order: 2.5
+group: Reference
+order: 9.4
 ---
 
-TTM deliberately keeps commands to a minimum: once a list exists, you drive everything from buttons. Here is the full set.
+TTM deliberately keeps commands to a minimum: once a list exists, you drive everything from buttons. To run one, type `/` in the message box and pick it, or open the **App Launcher** in the message bar and choose **Team Tasks Manager** under *Apps on this Server*. If your Discord is in another language, some names are translated: see [Command names in your language](#command-names-in-your-language) at the bottom.
+
+Here is the full set.
 
 ## `/create-list`
 
@@ -15,7 +17,7 @@ It has one option, **`file`**, and you can leave it out. Attach the `.txt` file 
 
 If something in the file doesn't fit, nothing is created, and TTM lists every problem at once, each with its line or its task: a file it doesn't recognise, a role, channel, member or webhook this server doesn't have, a reminder with no owner, a list too big for a message, or a limit — tasks per list, recurring reminders where they aren't allowed, repetitions, reminders waiting at the same time. Reminders whose alerts are all in the past are the exception: they are left out, the list is created, and TTM tells you which ones. A file that isn't a `.txt`, or is bigger than 64 KB, is refused straight away.
 
-→ See [The task list panel](/docs/the-task-list/), and [Getting started](/docs/getting-started/#import-a-list-from-a-file) for importing a list from a file.
+→ See [The task list panel](/docs/the-task-list/), and [Tips & tricks](/docs/tips/#reuse-a-list-anywhere) for reusing a list on another server.
 
 ## `/config app`
 
@@ -55,4 +57,19 @@ Your starting point inside Discord. It opens a panel with buttons:
 - <img class="inline-ic" src="/icons/premium_blue.png" alt="" /> **Premium** — what the paid plan will look like once the beta ends (free limits included).
 - <img class="inline-ic" src="/icons/abouts_blue.png" alt="" /> **About us** — who builds TTM.
 
-<div class="callout"><div class="callout-t">Note</div>Every command starts with one click, with a single exception: <code>/config webhook</code> asks for the <strong>action</strong> and the <strong>webhook name</strong> up front — the two parameters described above. The <code>file</code> of <code>/create-list</code> is optional: leave it out and the command starts with one click like the rest. Everything else you configure from buttons and menus, not from typed arguments.</div>
+<div class="callout"><div class="callout-t">Note</div>Every command starts with one click, with a single exception: <code>/config webhook</code> asks for the <strong>action</strong> and the <strong>webhook name</strong> up front — see <a href="/docs/webhooks/#creating-a-webhook">/config webhook</a>. The <code>file</code> of <code>/create-list</code> is optional: leave it out and the command starts with one click like the rest. Everything else you configure from buttons and menus, not from typed arguments.</div>
+
+## Command names in your language
+
+Discord shows each command in the language of your Discord app, and in English for a language TTM isn't translated into. `/config app`, `/config lists`, `/config webhook` (with its `webhook` option), `/beta` and `/help` keep the same name everywhere.
+
+| Language | `/create-list` | its `file` option | `/config webhook` options |
+| :--- | :--- | :--- | :--- |
+| English, and any other language | `/create-list` | `file` | `action` · `trigger` |
+| Italiano | `/crea-lista` | `file` | `azione` · `evento` |
+| Español | `/crear-lista` | `archivo` | `accion` · `evento` |
+| Português (Brasil) | `/criar-lista` | `arquivo` | `acao` · `evento` |
+| Français | `/creer-liste` | `fichier` | `action` · `evenement` |
+| Deutsch | `/liste-erstellen` | `datei` | `aktion` · `ereignis` |
+
+The choices inside the options — view, create, modify, delete; completion, reopen — appear in your language too.

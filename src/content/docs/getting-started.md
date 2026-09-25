@@ -1,61 +1,31 @@
 ---
 title: Getting started
-description: Invite the bot, run your first command and create a list in a couple of minutes.
+description: Invite the bot, create a list, tick a task and set a reminder — in a few minutes.
 group: Getting started
 order: 1
 ---
 
-Team Tasks Manager (TTM) improves team coordination by letting you share and manage tasks **without leaving Discord**. If you have ever lost track of who was doing what across a chat and a separate task tool, this is for you.
+Team Tasks Manager (TTM) lets your team share and manage tasks **without leaving Discord**. This page takes you from zero to a working list: create it, tick a task, set a reminder.
 
-This page takes you from zero to your first working list.
+<div class="callout"><div class="callout-t">Everything is free during the beta</div>Every feature is unlocked, for every server. Where these pages mention the Free plan or Premium, it applies only after the beta — see <a href="/docs/beta/">Free during the beta</a>.</div>
 
 ## 1. Invite the bot
 
 <p><a class="btn" href="/invite">Add to Discord</a></p>
 
-That button invites Team Tasks Manager to your server. During the invite, keep the permissions TTM asks for — it needs them to post lists, manage threads and run reminders. If you skip one, the bot will tell you exactly which permission is missing when it needs it.
+That button invites Team Tasks Manager to your server. Keep the permissions it asks for: TTM needs them to post lists, run reminders and write the timeline. If you skip one, the bot tells you exactly which permission is missing when it needs it. What each permission is for: [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
 
-The permissions TTM may use are:
+## 2. Create your first list
 
-| Permission | Why it is needed |
-| :--- | :--- |
-| View channel | See the channel where the list lives |
-| Send messages | Post and update the list |
-| Embed links | Render the list as a rich embed |
-| Manage messages | Clear the bot's own older notifications, so the channel stays readable |
-| Create public threads | Create the optional timeline thread |
-| Manage webhooks | Write the timeline and run the webhook feature |
-| Attach files | Provide the list download |
-| Read message history | Keep the list in sync |
-| Mention everyone | Notify the people you tag on a task, and the role that owns a task when its reminder comes due |
-| Manage roles | Create the role that makes several people the owner of a task (Premium) |
-| Use external emojis | Show the bot's own icons on buttons and lists |
-
-<div class="callout"><div class="callout-t">Good to know</div>You can grant these later from <em>Server Settings → Roles → Team Tasks Manager</em>, or per channel from the channel's permission settings — except <em>Manage roles</em>, which works only on the bot's role, not per channel.</div>
-
-## 2. Run a slash command
-
-TTM is built almost entirely on buttons, so there are only a few commands to remember. There are two ways to launch one:
-
-**Type `/`** in the message box, pick **Team Tasks Manager** from the app list, then choose the command. After the first character Discord suggests your most-used commands at the top.
-
-**App Launcher** — click the app launcher icon in the message bar, choose **Team Tasks Manager** under *Apps on this Server*, then pick the command.
-
-<div class="callout"><div class="callout-t">Tip</div>If your server has many apps, type part of the command name to filter the list.</div>
-
-## 3. Create your first list
-
-Run the command:
+Type `/` in the message box and pick the command, or start typing its name:
 
 ```
 /create-list
 ```
 
-TTM replies with a short legend on how to write a list and a **Create your list** button. Click it to open a form with two fields — the **list title** and the **list of activities**.
+If your Discord is in another language, the command has a translated name: in Italian it is `/crea-lista`. Every name is in [Commands reference](/docs/commands/#command-names-in-your-language).
 
-<div class="callout"><div class="callout-t">Already know the syntax?</div>The legend can be switched off in <a href="/docs/configuration/">Configuration</a>. With it off, <code>/create-list</code> opens the creation form immediately.</div>
-
-Type your activities one per line, each starting with a dash `-`:
+TTM replies with a short legend on how to write a list and a **Create your list** button. Click it: a form opens with two fields, the **list title** and the **list of activities**. Write one activity per line, each starting with a dash `-`:
 
 ```
 - Design the landing page
@@ -65,25 +35,35 @@ Type your activities one per line, each starting with a dash `-`:
 - Ship to staging
 ```
 
-TTM reads that text and builds the list for you. The rules are simple:
+The rules:
 
-- **A new line that starts with `-` is a new task.**
-- **Spaces after the dash make it a subtask.** No space → a task; one or more spaces → a subtask of the task above. A task with subtasks becomes a **task group**.
-- The title can be up to **256 characters**.
-- The list can hold up to **4000 characters** and up to **50 tasks in total** (subtasks included) — **20** on the Free plan, see [What Premium unlocks](/docs/premium/).
+- **A line that starts with `-` is a task.**
+- **Spaces before the dash make it a subtask** of the task above. A task with subtasks becomes a **group**.
+- The title can be up to **256 characters**. The list can be up to about **4000 characters** and **50 tasks**, subtasks included (20 on the Free plan after the beta — see [What Premium unlocks](/docs/premium/)).
 
-Once created, the list appears with a set of check controls and **two rows of buttons**. That panel is where the real power lives — head to [The task list panel](/docs/the-task-list/) to master it.
+Submit the form, and the list appears in the channel.
 
-### Import a list from a file
+## 3. Tick a task
 
-Already have the list as a file? `/create-list` has a **`file`** option: attach a `.txt` made by the list's **Download** (up to 64 KB), and TTM recreates the list in the channel — with its checked tasks, owners, tags, reminders and webhooks.
+Under the list there is the **check selector**, a drop-down menu labelled *check/uncheck tasks*, and two rows of buttons. Open the menu and pick a task: its box flips from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it. Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.
 
-If something doesn't fit, nothing is created, and one message lists every problem with its line or task: a file that isn't in the Download format; roles, channels, members or webhooks that don't exist in this server (when the file comes from another one); a reminder without an owner; a recurring reminder where recurring reminders aren't allowed; the limits of your plan — tasks, repetitions, reminders waiting at the same time. Reminders already in the past are the exception: the list is created without them, and the bot tells you which ones it dropped.
+<div class="callout"><div class="callout-t">Can't tick a task?</div>Every button in the second row must be <strong>grey</strong>: if one is blue or red, picking a task applies that button's action instead. And a task with an owner can be ticked only by its owner, and by whoever has <em>Manage messages</em> on the channel.</div>
 
-A file that isn't a `.txt`, or is larger than 64 KB, is refused straight away.
+## 4. Set a reminder
+
+In the second row, click the bell <img class="inline-ic" src="/icons/alertW.png" alt="" /> — **Reminder**, the fourth button — once: it turns **blue**. Then pick a task that is **not ticked yet**. TTM posts a short note that the list is being edited, and a form titled *Set reminder for task …* opens. It is already filled in with ten minutes from now: submit it as it is. The first time, the time zone in the last field is the server's: change it if yours is different. The task shows the time, and the reminder arrives once. If your server has turned on recurring reminders, a summary card follows the form: press **Save**.
+
+Good to know before the first try:
+
+- **The reminder goes to the task's owner**, by direct message if the owner is a person.
+- **If the task has no owner yet, you become its owner**, so the reminder comes to you. From then on only you, and whoever has *Manage messages*, can tick that task. To give it to someone else, set the owner first with the person button <img class="inline-ic" src="/icons/owner.png" alt="" /> — **Owner**, the second in the row.
+- **Nothing arrived?** Allow direct messages from server members: click the server name, then *Privacy Settings*. After a direct message is refused, TTM waits **6 hours** before writing to that person again.
+- **Closed the form with ✕?** The list stays locked: press the unlock button in TTM's note.
 
 ## Next steps
 
-- [Core concepts](/docs/core-concepts/) — tasks, subtasks, groups, owners, tags and states.
 - [The task list panel](/docs/the-task-list/) — every button, explained.
-- [Configuration](/docs/configuration/) — tailor notifications, time zone and more.
+- [Reminders](/docs/reminders/) — repeating reminders, time zones, editing and removing.
+- [Core concepts](/docs/core-concepts/) — owners, tags, groups and permissions.
+- [Tips & tricks](/docs/tips/) — small habits that save time, like reusing a list on another server.
+- [Configuration](/docs/configuration/) — notifications, the legend, time zone and more.

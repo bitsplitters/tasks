@@ -8,7 +8,7 @@ import Base from '../layouts/Base.astro';
     <p class="lede">Stop juggling Discord and a pile of external task tools. <strong>Team Tasks Manager</strong> brings shared checklists, reminders and roles right into your server &mdash; so attention stays in one place.</p>
     <div class="cta-row">
       <a class="btn" href="/invite">Add to Discord</a>
-      <a class="btn-ghost" href="/docs/">Read the docs &rarr;</a>
+      <a class="btn-ghost" href="/docs/getting-started/">Get started &rarr;</a>
     </div>
   </section>
 
@@ -52,7 +52,7 @@ import Base from '../layouts/Base.astro';
     <div class="grid3">
       <div class="card">
         <div class="card-head"><img class="ic" src="/icons/task_list.png" alt="" /><h3>Shared lists</h3></div>
-        <p>Create a checklist from plain text. Tasks, subtasks and task groups are recognized automatically from line breaks.</p>
+        <p>Create a checklist from plain text. One line per task, starting with a dash; a few spaces before the dash make a subtask. Groups are recognized automatically.</p>
       </div>
       <div class="card">
         <div class="card-head"><img class="ic" src="/icons/owner.png" alt="" /><h3>Owners &amp; tags</h3></div>
@@ -122,7 +122,7 @@ import Base from '../layouts/Base.astro';
               <div class="dc-line">
                 <span class="dc-n">3</span>
                 <img class="dc-mi" src="/icons/alert.png" alt="" />
-                <span class="dc-metatxt">in 2 days at 20:30 &middot; every week &times;3</span>
+                <span class="dc-metatxt">in 2 days at 20:30 &middot; &#8635;7d &times;3</span>
               </div>
               <div class="dc-line">
                 <span class="dc-sp"></span>
@@ -172,10 +172,10 @@ import Base from '../layouts/Base.astro';
 
           <div class="dc-select">
             <button type="button" class="dc-select-btn" id="dc-trigger" aria-expanded="false" aria-controls="dc-menu">
-              <span class="dc-select-lab">Check or uncheck tasks</span>
+              <span class="dc-select-lab">check/uncheck tasks</span>
               <span class="dc-caret">&#9662;</span>
             </button>
-            <div class="dc-select-menu" id="dc-menu" role="group" aria-label="Check or uncheck tasks">
+            <div class="dc-select-menu" id="dc-menu" role="group" aria-label="check/uncheck tasks">
               <button type="button" class="dc-opt" data-for="1" aria-pressed="true"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>1 &middot; Confirm the five-man roster</button>
               <button type="button" class="dc-opt dc-opt-pick" data-for="2" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2 &middot; Lock the scrim block vs. Nova Collective</button>
               <button type="button" class="dc-opt" data-for="2.1" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2.1 &middot; Clip the three teamfights</button>
@@ -282,9 +282,11 @@ import Base from '../layouts/Base.astro';
       opzioni.forEach((o) => o.addEventListener("click", () => {
         fermaAnimazione();
         applica(o.dataset.for);
-        // Il menu NON si chiude: la select del bot e' multipla, e chiuderla a ogni scelta
-        // costringerebbe a riaprirla per il task successivo.
-        if (hint) hint.textContent = "That's it — the message updates in place, and the selector stays open so you can tick more than one.";
+        // Il menu si chiude, come nel bot: la select di spunta e' a scelta singola (nessun
+        // setMaxValues nel codice), e Discord la chiude a ogni scelta.
+        apriChiudi(false);
+        trigger.focus();
+        if (hint) hint.textContent = "That's it — the message updates in place. Open the selector again to tick the next one.";
       }));
 
       document.addEventListener("click", (e) => {
