@@ -136,7 +136,7 @@ The owner menu works like the Tag menu (see *Two ways to tag* above). With "keep
 When you give a task to several people, TTM:
 
 - creates a role called **TTM** followed by the first free number — TTM1, TTM2, and so on — **mentionable** and **with no permissions**, at the bottom of the role list;
-- gives it to the people you picked, one at a time: with many people it can take a few seconds;
+- gives it to the people you picked, one at a time. Discord lets a bot do this ten times every ten seconds, so with many people it takes a while — about twenty seconds for 25. With more than ten, TTM tells you how long it will take;
 - makes it the owner of the task.
 
 Rename it and it becomes one of your server's roles, to use anywhere. A new colour or a new position doesn't change that: TTM would still delete it when no list uses it any more — so to keep a role, rename it.
