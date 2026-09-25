@@ -5,7 +5,7 @@ group: Reference
 order: 9.5
 ---
 
-Team Tasks Manager works entirely inside Discord, so most of the limits below aren't TTM's choice. They come from Discord itself: how long a message can be, how many menus fit in one message, how far back messages can be deleted in bulk. Where a limit is Discord's, we say so.
+Team Tasks Manager works entirely inside Discord, so most of the limits below aren't TTM's choice. They come from Discord itself. For example: how long a message can be, how many menus fit in one message, how far back messages can be deleted in bulk. Where a limit is Discord's, we say so.
 
 ## Lists and tasks
 
@@ -36,7 +36,7 @@ TTM doesn't notice on its own that a message is gone: [/config lists](/docs/conf
 | Limit | Value | Why |
 | :--- | :--- | :--- |
 | Reminders waiting at a time | **10** on the Free plan | See [What Premium unlocks](/docs/premium/). |
-| Repetitions per reminder | **up to 50** on Premium, none on Free | Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. On Premium a reminder can repeat at most 50 times after the first one (51 pings in total); set repetitions to `0` for a one-time reminder. |
+| Repetitions per reminder | **up to 50** on Premium, none on Free | Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. On Premium a reminder can repeat at most 50 times after the first one: 51 pings in total. Set repetitions to `0` for a one-time reminder. |
 | How soon a reminder can fire | **5 minutes** from now | The start date must be at least five minutes in the future, so the scheduler has time to pick it up. |
 | How punctual a reminder is | within about **10 seconds** | Reminders due together are spread over up to ten seconds, to stay within Discord's rate limits. The reminder still arrives within the right minute. |
 
@@ -57,7 +57,7 @@ When a task's owner is a role, the reminder is a message in the list's channel t
 - the role lets anyone mention it: in *Server Settings → Roles*, the role can be @mentioned by anyone;
 - the bot has the *Mention @everyone, @here and All Roles* permission in the list's channel. The invite link grants it.
 
-Otherwise the message appears in the channel, and nobody gets a notification. TTM warns you when you set such a reminder, or when you make such a role the owner of a task that already has a reminder.
+Otherwise the message appears in the channel, and nobody gets a notification. TTM warns you when you set such a reminder. It also warns you when you make such a role the owner of a task with a reminder.
 
 - **@everyone as owner**: only the bot's permission counts.
 - **A role TTM creates** for several owners is born mentionable. Its reminders notify it even without the permission, unless someone turns that setting off.
@@ -77,7 +77,7 @@ Each task has **one owner**: a person or a role. On Premium it can also be up to
 
 | Limit | Value |
 | :--- | :--- |
-| Webhooks per server | **25** on Premium, no new ones on the Free plan — the picker is a Discord dropdown, and 25 options is its maximum, so that is also the cap |
+| Webhooks per server | **25** on Premium, no new ones on the Free plan. The picker is a Discord dropdown, and 25 options is its maximum. |
 | Webhook name | up to **96** characters \* |
 | Webhook URL | up to **2000** characters |
 

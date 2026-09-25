@@ -15,7 +15,7 @@ A few terms come up throughout the app. Learn them once and everything else clic
 | **Subtask** | An activity that belongs to a larger one. |
 | **Task group** | A task made of subtasks. |
 
-You never pick these types from a menu — TTM infers them from how you write the list. A line starting with `-` is a task; spaces before the dash turn it into a subtask of the line above; a task that owns subtasks automatically becomes a **group**.
+You never pick these types from a menu — TTM infers them from how you write the list. A line starting with `-` is a task. Spaces before the dash turn it into a subtask of the line above. A task with subtasks automatically becomes a **group**.
 
 Groups behave as a unit: ticking a group ticks its subtasks too, and ticking every subtask marks the group as done.
 

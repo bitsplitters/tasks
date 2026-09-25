@@ -13,7 +13,7 @@ If something in the file doesn't fit the new server, TTM creates nothing and lis
 
 ## Skip the legend
 
-If your team already knows how to write a list, switch off the `/create-list` legend in [Configuration](/docs/configuration/#create-list-legend): the command then opens the creation form straight away.
+If your team already knows how to write a list, switch off the `/create-list` legend in [Configuration](/docs/configuration/#create-list-legend). The command then opens the creation form straight away.
 
 ## Clone instead of rebuilding
 
@@ -33,7 +33,7 @@ On a *repeating* reminder (a Premium feature), use `1d` when you mean "same time
 
 ## A reminder in two clicks
 
-The **When** form arrives pre-filled with ten minutes from now, in your own time zone: for "remind me shortly" you can submit it as it is, without typing anything. And since every reminder is a single event unless your server has turned on recurring reminders (a Premium feature, off by default), that's the whole flow — one form.
+The **When** form arrives pre-filled with ten minutes from now, in your own time zone. For "remind me shortly", submit it as it is, without typing anything. Every reminder is a single event unless your server has turned on recurring reminders, a Premium feature that is off by default. So that's the whole flow: one form.
 
 ## Link a channel without hunting for its ID
 

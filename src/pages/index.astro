@@ -316,7 +316,7 @@ import Base from '../layouts/Base.astro';
         const name = b.dataset.name;
         if (state === 1) info.innerHTML = "<strong>" + name + " &mdash; edit</strong><br>" + b.dataset.edit;
         else if (state === 2) info.innerHTML = "<strong>" + name + " &mdash; delete</strong><br>" + b.dataset.delete;
-        else info.innerHTML = "<strong>" + name + " &mdash; off</strong><br>Inactive. While every task button is grey, the check selector toggles tasks.";
+        else info.innerHTML = "<strong>" + name + " &mdash; off</strong><br>Inactive. While every task button is grey, the check selector ticks and unticks tasks.";
       });
     });
   </script>

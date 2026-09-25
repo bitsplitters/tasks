@@ -28,11 +28,11 @@ Each row has a single button that cycles every time you press it:
 
 Mark as many lists as you need — two to delete, one to seal and three to regenerate, if that's the case — then press **Apply**. Before anything happens, a confirmation window lists them by name, grouped by action: submit it to go ahead, close it to cancel.
 
-The block then runs **in order**: deletions first, then seals, then regenerations. That's what lets one block free a place and use it: a list you delete or seal hands its place to a list you regenerate in the same go.
+The block then runs **in order**: deletions first, then seals, then regenerations. So one block can free a place and use it: a list you delete or seal hands its place to a list you regenerate.
 
 At the end you get a summary, by name: the lists deleted, sealed and regenerated, and the ones that couldn't be handled. Each of those comes with its reason, for example a list that no longer exists, or a regeneration with no place left on your plan. The panel then redraws itself with the lists as they are now.
 
-**Cancel** closes the panel and does nothing. Your choices survive a change of page: the header tells you how many you have marked on other pages, and the confirmation includes them. The ones on the page in front of you live in the panel itself, so they never expire while you think about it; the ones on other pages are remembered for an hour after you last touch the panel.
+**Cancel** closes the panel and does nothing. Your choices survive a change of page: the header tells you how many you have marked on other pages, and the confirmation includes them. The choices on the page in front of you live in the panel itself, so they never expire while you think. Those on other pages are remembered for an hour after you last touch the panel.
 
 ## Regenerate
 
@@ -41,7 +41,7 @@ Publishes the list again, in its original channel, with the same contents: tasks
 Three things worth knowing:
 
 - **the activity timeline follows the list.** The new message reuses the same thread, so the history stays where it was and nothing is orphaned;
-- **the old message is removed** if it still exists. That's deliberate: a message left behind still has working buttons, and pressing them would make the bot rebuild the list a second time — leaving you with two lists that drift apart;
+- **the old message is removed** if it still exists. That's deliberate: a message left behind still has working buttons. Pressing them would make the bot rebuild the list a second time, leaving two lists that drift apart;
 - **regenerating counts as working on the list.** A list that already holds one of your plan's places keeps it. A list without a place needs a free one, or it ends up in the summary among the ones not done.
 
 ## Seal
@@ -65,7 +65,7 @@ It is the same sealing you get from **Seal list** in the <img class="inline-ic" 
 
 Removes the list permanently: tasks, owners, tags, reminders and the activity history. A receipt is posted in the list's channel, and the last line of the timeline records the deletion before the thread is left alone.
 
-It is the same deletion you get from **Delete list** in the <img class="inline-ic" src="/icons/other.png" alt="" /> *More* panel of a list — use this command when the list's message is no longer there to click.
+It is the same deletion you get from **Delete list** in the <img class="inline-ic" src="/icons/other.png" alt="" /> *More* panel of a list. Use this command when the list's message is no longer there to click.
 
 <div class="callout"><div class="callout-t">Why doesn't the bot know which lists are dead?</div>Telling a live list from a deleted one means asking Discord about every list, every time the panel opens. TTM doesn't: it shows you what exists and links each channel, so you can look for yourself. Guessing from silence is exactly how data gets destroyed by accident.</div>
 

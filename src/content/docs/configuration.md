@@ -30,7 +30,7 @@ When enabled, **every action on your lists is recorded in a dedicated thread**, 
 
 ## Push notification
 
-When enabled, TTM adds plain text alongside embeds so your **mobile push notifications** are readable at a glance (embeds alone often show up empty on a lock screen). On by default. Turning it off never stops a reminder: it arrives with just its card — or, for a role, just the mention.
+When enabled, TTM adds plain text alongside embeds, so your **mobile push notifications** are readable at a glance. Embeds alone often show up empty on a lock screen. On by default. Turning it off never stops a reminder: it arrives with just its card — or, for a role, just the mention.
 
 ## `/create-list` legend
 
@@ -54,7 +54,7 @@ Off by default. When it's off, every reminder is a **single event**: creating or
 
 Turn it **on** to unlock **repetitions and intervals**: reminder creation then uses the two-step flow (a summary screen plus a repetition dialog). See [Reminders](/docs/reminders/) for the repetition fields.
 
-Recurring reminders are a **Premium** feature (see [What Premium unlocks](/docs/premium/)). On the Free plan this dropdown is shown but switched off, with the note *"Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. The recurring ones created before keep working."* Your choice isn't lost: on Premium the dropdown comes back set the way you left it.
+Recurring reminders are a **Premium** feature (see [What Premium unlocks](/docs/premium/)). On the Free plan this dropdown is shown but switched off. Its note says: *"Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. The recurring ones created before keep working."* Your choice isn't lost: on Premium the dropdown comes back set the way you left it.
 
 A reminder that is *already* recurring keeps firing even while the toggle is off, or on the Free plan. What you can still change: see [Repeating reminders](/docs/reminders/#repeating-reminders).
 

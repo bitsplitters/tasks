@@ -9,7 +9,7 @@ A reminder turns a task into something that reminds *you*, instead of the other 
 
 ## Adding a reminder
 
-On the second button row, click **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> until it turns **blue** (edit mode), then pick the task from the check selector — one that isn't ticked yet. TTM opens the **When** form, titled *Set reminder for task …*:
+On the second button row, click **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> until it turns **blue** (edit mode). Then pick the task from the check selector: one that isn't ticked yet. TTM opens the **When** form, titled *Set reminder for task …*:
 
 | Field | Format | Notes |
 | :--- | :--- | :--- |
@@ -19,13 +19,13 @@ On the second button row, click **Reminder** <img class="inline-ic" src="/icons/
 | **Time** | `HH:mm`, 24-hour | e.g. `15:30` |
 | **Time zone** | an official zone name | pre-filled with *your* zone |
 
-Everything arrives pre-filled with **ten minutes from now**, so a reminder for "in a moment" needs no typing at all: submit it, and the task shows the scheduled time. The reminder fires **once**. With recurring reminders on, a summary card follows: press **Save** (see [Repeating reminders](#repeating-reminders)).
+Everything arrives pre-filled with **ten minutes from now**, so a reminder for "in a moment" needs no typing at all. Submit it, and the task shows the scheduled time. The reminder fires **once**. With recurring reminders on, a summary card follows: press **Save** (see [Repeating reminders](#repeating-reminders)).
 
 The start must be at least **5 minutes** in the future.
 
-<div class="callout"><div class="callout-t">Your time zone is remembered</div>The first time, the field proposes the server's zone. Change it and TTM stores <strong>your</strong> choice: from then on it proposes your personal zone, so every member of the team can think in their own local time.</div>
+<div class="callout"><div class="callout-t">Your time zone is remembered</div>The first time, the field proposes the server's zone. Change it and TTM stores <strong>your</strong> choice, and proposes it from then on. So every member of the team can think in their own local time.</div>
 
-**Who gets it.** The reminder goes to the task's owner, by direct message if the owner is a person. If the task has no owner yet, you become it: from then on only you, and whoever has *Manage messages* on the channel, can tick that task. To give it to someone else, set the owner with **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> before or after creating the reminder. Owners, and what they can do: see [Owners and tags](/docs/owners-and-tags/). Nothing arrived? The owner must accept direct messages from members of that server: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
+**Who gets it.** The reminder goes to the task's owner, by direct message if the owner is a person. If the task has no owner yet, you become it. From then on only you, and whoever has *Manage messages* on the channel, can tick that task. To give it to someone else, set the owner with **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> before or after creating the reminder. Owners, and what they can do: see [Owners and tags](/docs/owners-and-tags/). Nothing arrived? The owner must accept direct messages from members of that server: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 
 ## Finding your time zone
 
@@ -33,12 +33,12 @@ TTM needs an official time-zone name like `Europe/Rome`. Look yours up on the **
 
 ## How the reminder arrives
 
-When the time comes, TTM reminds the task's owner, with the task, the date it was due for and a button that jumps straight to the list.
+When the time comes, TTM reminds the task's owner. The reminder shows the task, the date it was due for and a button that jumps straight to the list.
 
 - If the owner is a **person**, the reminder is a **direct message**.
 - If the owner is a **role**, it is a **message in the list's channel** that mentions the role, as a reply to the list. Discord notifies everyone who has that role and can see the channel.
 
-Either way, it arrives **within about ten seconds** of the scheduled time, and always in the right minute: TTM spreads the sends out to stay within Discord's limits. With [Push notification](/docs/configuration/#push-notification) off it still arrives, without the plain text that makes phone previews readable.
+Either way, it arrives **within about ten seconds** of the scheduled time, and always in the right minute. TTM spreads the sends out to stay within Discord's limits. With [Push notification](/docs/configuration/#push-notification) off it still arrives, without the plain text that makes phone previews readable.
 
 A direct message can be refused, and then TTM waits some hours before it tries that person again: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 
@@ -46,7 +46,7 @@ A role is notified only if it can be mentioned. When that is the case, and what 
 
 ## Editing or removing a reminder
 
-- **Edit** — click **Reminder** to blue, pick the task, and set the new values. You land straight on the summary card if the task already has a *repeating* reminder, or any reminder when recurring reminders are on (see [Repeating reminders](#repeating-reminders)). The card shows the current date and badge ([Reading a reminder on the task](#reading-a-reminder-on-the-task)), so you can change only what you need. Otherwise **When** opens, pre-filled with the current date.
+- **Edit** — click **Reminder** to blue, pick the task, and set the new values. You land straight on the summary card if the task already has a *repeating* reminder. With recurring reminders on, you land there for any reminder (see [Repeating reminders](#repeating-reminders)). The card shows the current date and badge ([Reading a reminder on the task](#reading-a-reminder-on-the-task)), so you can change only what you need. Otherwise **When** opens, pre-filled with the current date.
 - **Remove** — click **Reminder** until it turns **red** (delete mode), then pick the task. The reminder is removed.
 
 Completing a task also stops its reminder — no need to clean up afterwards.
@@ -95,7 +95,7 @@ In **Bulk update** the same reminder appears as a timestamp followed by a triple
 - [] <t:1726497546> [2d3h,1h,3] Ship the release notes
 ```
 
-The triplet is `[distance,interval,repetitions]`. The first value lets you create a reminder **from text**, without an absolute date: it is counted from the moment you save the list. A single event uses the sentinel interval `0m` and `0` repetitions — `[2d3h,0m,0]`. Distance and interval use only `d`, `h` and `m`: a value in months, such as `[1M,0m,0]`, is refused and the line is marked with an arrow.
+The triplet is `[distance,interval,repetitions]`. The first value lets you create a reminder **from text**, without an absolute date: it is counted from the moment you save the list. A single event uses the sentinel interval `0m` and `0` repetitions — `[2d3h,0m,0]`. Distance and interval use only `d`, `h` and `m`. A value in months, such as `[1M,0m,0]`, is refused, and the line is marked with an arrow.
 
 The same rules apply as in the forms. Where new recurring reminders can't be created, a triplet with repetitions above `0` is accepted only for a reminder the list already had. Even then, the limits in [Repeating reminders](#repeating-reminders) apply. If several reminders break a rule, one message lists them all, one paragraph each. The same message also lists any other problem in the text, such as a list that's too long or has too many tasks.
 

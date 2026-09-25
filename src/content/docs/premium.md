@@ -43,7 +43,7 @@ Above a Free limit you can't add more, but nothing already there is deleted or h
 On the Free plan a server has three places for lists. A list that holds one is **in use**, and `/config lists` marks it that way.
 
 - **A list takes a place the first time someone works on it**, and keeps it. Working on a list means any of these:
-  - checking or unchecking a task;
+  - ticking or unticking a task;
   - a bulk update, or editing or removing a single task;
   - **Clean list** or **Reopen all**;
   - setting an owner, a tag or a reminder;

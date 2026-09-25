@@ -84,7 +84,7 @@ When you start **Clone list**, the cloning controls replace the first row:
 
 A clone gets new reminders, so a recurring reminder can be refused: see [Repeating reminders](/docs/reminders/#repeating-reminders).
 
-A clone is a new list, so it follows your plan like any new list: it needs a free place, and it can't have more tasks than your plan allows. On the Free plan, a list with more than twenty tasks can't be cloned: see [What Premium unlocks](/docs/premium/).
+A clone is a new list, so it follows your plan like any other. It needs a free place, and it can't have more tasks than your plan allows. On the Free plan, a list with more than twenty tasks can't be cloned: see [What Premium unlocks](/docs/premium/).
 
 ## Row 2 — acts on a single task
 
@@ -133,7 +133,7 @@ If the list gets locked or sealed before you confirm Clean or Reopen, nothing ch
 
 ## When a bulk update can't be saved
 
-The list title can be up to **256 characters**. If the bot can't read your text as a list, it shows the text back, with an arrow on each wrong line: a line without a dash, a list that starts with a subtask, or a reminder written in months (`M`). Otherwise, **one message lists every problem at once**, one per paragraph:
+The list title can be up to **256 characters**. If the bot can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). Otherwise, **one message lists every problem at once**, one per paragraph:
 
 - the list is too long;
 - the list has more tasks than a list can hold, or than your plan allows;

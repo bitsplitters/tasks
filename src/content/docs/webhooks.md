@@ -66,11 +66,11 @@ You can move it, copy it onto another task or delete it by hand, exactly like a 
 
 ## When a webhook fires
 
-A webhook fires only when someone **checks or unchecks its task from the check selector**, the drop-down menu under the list. In detail:
+A webhook fires only when someone **ticks or unticks its task in the check selector**, the drop-down menu under the list. In detail:
 
 - **only the task you picked** fires its webhook. The tasks that change with it don't fire theirs: subtasks ticked in cascade, or a group completed by its last subtask;
 - **Reopen all** and **Bulk update** change many tasks at once and fire **no** webhook;
-- **the list must be in use**, holding one of the places of your plan. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work). A list created during the beta is the exception: its tasks can still be ticked without a place, but their webhooks stay silent until the list takes one. TTM tells you so privately.
+- **the list must be in use**, holding one of the places of your plan. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work). A list created during the beta is the exception: its tasks can still be ticked without a place. Their webhooks stay silent until the list takes one. TTM tells you so privately.
 
 ## Example
 

@@ -5,7 +5,7 @@ group: Using the bot
 order: 6.5
 ---
 
-A task is just Discord text, so you can enrich it the way you enrich any message: mention people and roles, link channels, add clickable links. The **Owner** and **Tag** buttons do some of this for you, and Tag can apply several users and roles at once. In **Bulk update**, or when you edit a task's content, you can also write and adjust these by hand. Bulk update shows the raw codes, so it helps to know what they mean.
+A task is just Discord text, so you can enrich it like any message. Mention people and roles, link channels, add clickable links. The **Owner** and **Tag** buttons do some of this for you, and Tag can apply several users and roles at once. In **Bulk update**, or when you edit a task's content, you can also write and adjust these by hand. Bulk update shows the raw codes, so it helps to know what they mean.
 
 ## How Discord references things
 
@@ -52,7 +52,7 @@ A task's owner is a mention too, with one difference: it is followed by a **colo
 <@USER_ID>: Ship the release notes
 ```
 
-A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag, not an owner. This matters in **Bulk update**: a reminder goes to the task's owner, so on a task without an owner the reminder is removed when you save. The list is saved anyway, and TTM tells you which tasks lost their reminder: see [Reading a reminder on the task](/docs/reminders/#reading-a-reminder-on-the-task).
+A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag, not an owner. This matters in **Bulk update**. A reminder goes to the task's owner, so a task without an owner loses its reminder when you save. The list is saved anyway, and TTM tells you which tasks lost their reminder: see [Reading a reminder on the task](/docs/reminders/#reading-a-reminder-on-the-task).
 
 ## Linking channels
 
@@ -76,7 +76,7 @@ For links to anything outside Discord, use standard Markdown:
 
 So `[our roadmap](https://example.com/roadmap)` becomes **[our roadmap](https://example.com/roadmap)** — a clean, clickable link instead of a bare URL.
 
-The target doesn't have to be a web page: `mailto:`, `tel:` and `sms:` links work the same way and hand the task over to the reader's own app. `[the release owner](mailto:release@example.com)` turns a task into a one-click "write to this person", and `[the on-call phone](tel:+12025550100)` dials it straight from a phone.
+The target doesn't have to be a web page. `mailto:`, `tel:` and `sms:` links work the same way, and open the reader's own app. `[the release owner](mailto:release@example.com)` turns a task into a one-click "write to this person", and `[the on-call phone](tel:+12025550100)` dials it straight from a phone.
 
 A link can also point to **another list**: right-click its message → **Copy Message Link** and paste it inside the brackets. Message links are left as they are — only plain channel links get shortened to a `#channel` tag.
 
