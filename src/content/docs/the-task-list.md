@@ -26,11 +26,11 @@ These buttons never touch a single task; they operate on the **entire list**.
 
 | Button | Function | What it does |
 | :---: | :--- | :--- |
-| <img class="inline-ic" src="/icons/clone.png" alt="" /> | **Clone list** | Clone the list into another channel. Opens a channel picker and a small set of options (see below). |
-| <img class="inline-ic" src="/icons/edit.png" alt="" /> | **Bulk update** | Edit the title and the full list in one form — the fastest way to change two or more tasks at once. While you edit, the list is temporarily locked. |
-| <img class="inline-ic" src="/icons/clean.png" alt="" /> | **Clean list** | Remove every completed task, after a confirmation, and recalculate the remaining positions. |
-| <img class="inline-ic" src="/icons/reopen.png" alt="" /> | **Reopen all** | Bring every completed task back to to-do and, if you want, move the reminders to a new date. |
-| <img class="inline-ic" src="/icons/other.png" alt="" /> | **More** | Open the panel with the actions you need less often: sealing, deleting and downloading the list, and the in-Discord guide. |
+| <span class="dchip is-blue" role="img" aria-label="Clone list button, blue"><img src="/icons/clone.png" alt="" /></span> | **Clone list** | Clone the list into another channel. Opens a channel picker and a small set of options (see below). |
+| <span class="dchip is-blue" role="img" aria-label="Bulk update button, blue"><img src="/icons/edit.png" alt="" /></span> | **Bulk update** | Edit the title and the full list in one form — the fastest way to change two or more tasks at once. While you edit, the list is temporarily locked. |
+| <span class="dchip is-blue" role="img" aria-label="Clean list button, blue"><img src="/icons/clean.png" alt="" /></span> | **Clean list** | Remove every completed task, after a confirmation, and recalculate the remaining positions. |
+| <span class="dchip is-blue" role="img" aria-label="Reopen all button, blue"><img src="/icons/reopen.png" alt="" /></span> | **Reopen all** | Bring every completed task back to to-do and, if you want, move the reminders to a new date. |
+| <span class="dchip is-blue" role="img" aria-label="More button, blue"><img src="/icons/other.png" alt="" /></span> | **More** | Open the panel with the actions you need less often: sealing, deleting and downloading the list, and the in-Discord guide. |
 
 ### Clean list
 
@@ -91,11 +91,11 @@ The workflow is always the same: **turn a button blue or red, then pick the task
 
 | Button | Function | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :---: | :--- | :--- | :--- |
-| <img class="inline-ic" src="/icons/task.png" alt="" /> | **Content** | Change the task text (opens a form). | Delete the task. |
-| <img class="inline-ic" src="/icons/owner.png" alt="" /> | **Owner** | Set or change the task owner: one person, one role, or several people (see *Owner* below). | Remove the owner — and its reminder, which has no one left to reach. |
-| <img class="inline-ic" src="/icons/tag.png" alt="" /> | **Tag** | Set the users/roles to notify — pick several at once (see *Two ways to tag* below). | Remove every tag on the task. |
-| <img class="inline-ic" src="/icons/alertW.png" alt="" /> | **Reminder** | Add or edit a reminder (start date and time zone — plus interval and repetitions when recurring reminders are on: a Premium feature, switched on in [Configuration](/docs/configuration/#recurring-reminders)). | Remove the reminder. |
-| <img class="inline-ic" src="/icons/api.png" alt="" /> | **Webhook** | Associate a webhook, so completing/reopening the task fires an HTTP call. | Remove the webhook association from the task. |
+| <span class="dchip is-grey" role="img" aria-label="Content button, grey"><img src="/icons/task.png" alt="" /></span> | **Content** | Change the task text (opens a form). | Delete the task. |
+| <span class="dchip is-grey" role="img" aria-label="Owner button, grey"><img src="/icons/owner.png" alt="" /></span> | **Owner** | Set or change the task owner: one person, one role, or several people (see *Owner* below). | Remove the owner — and its reminder, which has no one left to reach. |
+| <span class="dchip is-grey" role="img" aria-label="Tag button, grey"><img src="/icons/tag.png" alt="" /></span> | **Tag** | Set the users/roles to notify — pick several at once (see *Two ways to tag* below). | Remove every tag on the task. |
+| <span class="dchip is-grey" role="img" aria-label="Reminder button, grey"><img src="/icons/alertW.png" alt="" /></span> | **Reminder** | Add or edit a reminder (start date and time zone — plus interval and repetitions when recurring reminders are on: a Premium feature, switched on in [Configuration](/docs/configuration/#recurring-reminders)). | Remove the reminder. |
+| <span class="dchip is-grey" role="img" aria-label="Webhook button, grey"><img src="/icons/api.png" alt="" /></span> | **Webhook** | Associate a webhook, so completing/reopening the task fires an HTTP call. | Remove the webhook association from the task. |
 
 <div class="callout"><div class="callout-t">Remember</div>You cannot delete the very last task in a list. To remove a list entirely, use <strong>Delete list</strong> in <strong>More</strong> — or <strong>Seal list</strong>, to keep it in the channel as a record.</div>
 
