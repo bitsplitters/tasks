@@ -7,9 +7,9 @@ order: 7
 
 ## Reuse a list anywhere
 
-Open **More** <img class="inline-ic" src="/icons/other.png" alt="" /> and pick **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: the list arrives as a `.txt` file that only you can see. Then run `/create-list` on any server and attach that file to its `file` option — tasks, completed states, owners, tags, reminders and webhooks come back as they were. Great for recurring checklists (releases, onboarding, events).
+Open **More** <img class="inline-ic" src="/icons/other.png" alt="" /> and pick **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: the list arrives as a `.txt` file that only you can see. Then run `/create-list` on any server and attach that file to its `file` option. Tasks, completed states, owners, tags, reminders and webhooks come back as they were. It works well for checklists you repeat, like releases, onboarding or events.
 
-If something in the file doesn't fit the new server — a role, channel, member or webhook it doesn't have, or a limit of its plan — TTM lists every problem at once and creates nothing until it's fixed. Reminders already in the past are simply dropped, and you're told which ones.
+If something in the file doesn't fit the new server, TTM creates nothing and lists every problem at once. What it checks: see [`/create-list`](/docs/commands/#create-list).
 
 ## Skip the legend
 
@@ -21,7 +21,7 @@ Running the same list in several channels? **Clone list** <img class="inline-ic"
 
 ## Apply one action to many tasks
 
-Set **Behavior on selection** to *keep status* in [Configuration](/docs/configuration/). The active button (owner, tag or reminder) stays on after each task, so you can tag five tasks in five clicks instead of fifteen.
+Set **Behavior on selection** to **Keep status after selection** in [Configuration](/docs/configuration/#behavior-on-selection). The active button (owner, tag or reminder) stays on after each task, so you can tag five tasks in five clicks instead of fifteen.
 
 ## Keep the channel quiet
 

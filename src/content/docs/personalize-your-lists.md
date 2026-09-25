@@ -5,7 +5,7 @@ group: Using the bot
 order: 6.5
 ---
 
-A task is just Discord text, so you can enrich it the way you enrich any message: mention people and roles, link channels, add clickable links. The **Owner** and **Tag** buttons do some of this for you (Tag can even apply several users and roles at once), but when you use **Bulk update** or edit a task's content you can also write and adjust these by hand — and in bulk edit you'll see the raw codes, so it helps to know what they mean.
+A task is just Discord text, so you can enrich it the way you enrich any message: mention people and roles, link channels, add clickable links. The **Owner** and **Tag** buttons do some of this for you, and Tag can apply several users and roles at once. In **Bulk update**, or when you edit a task's content, you can also write and adjust these by hand. Bulk update shows the raw codes, so it helps to know what they mean.
 
 ## How Discord references things
 
@@ -52,7 +52,7 @@ A task's owner is a mention too, with one difference: it is followed by a **colo
 <@USER_ID>: Ship the release notes
 ```
 
-A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag. It matters in **Bulk update**: reminders go to the owner — by DM to a person, as a mention in the list's channel to a role — so a reminder on a task with no owner is removed when you save — the list is saved anyway, and TTM tells you privately which tasks lost their reminder.
+A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag, not an owner. This matters in **Bulk update**: a reminder goes to the task's owner, so on a task without an owner the reminder is removed when you save. The list is saved anyway, and TTM tells you which tasks lost their reminder: see [Reading a reminder on the task](/docs/reminders/#reading-a-reminder-on-the-task).
 
 ## Linking channels
 

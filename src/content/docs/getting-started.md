@@ -45,7 +45,7 @@ Submit the form, and the list appears in the channel.
 
 ## 3. Tick a task
 
-Under the list there is the **check selector**, a drop-down menu labelled *check/uncheck tasks*, and two rows of buttons. Open the menu and pick a task: its box flips from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it. Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.
+Under the list there is the **check selector**, a drop-down menu labelled *check/uncheck tasks*, and two rows of buttons. Open the menu and pick a task: its box changes from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it. Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.
 
 <div class="callout"><div class="callout-t">Can't tick a task?</div>Every button in the second row must be <strong>grey</strong>: if one is blue or red, picking a task applies that button's action instead. And a task with an owner can be ticked only by its owner, and by whoever has <em>Manage messages</em> on the channel.</div>
 
@@ -57,13 +57,15 @@ Good to know before the first try:
 
 - **The reminder goes to the task's owner**, by direct message if the owner is a person.
 - **If the task has no owner yet, you become its owner**, so the reminder comes to you. From then on only you, and whoever has *Manage messages*, can tick that task. To give it to someone else, set the owner first with the person button <img class="inline-ic" src="/icons/owner.png" alt="" /> — **Owner**, the second in the row.
-- **Nothing arrived?** Allow direct messages from server members: click the server name, then *Privacy Settings*. After a direct message is refused, TTM waits **6 hours** before writing to that person again.
+- **Nothing arrived?** Allow direct messages from server members: click the server name, then *Privacy Settings*. After a refused message, TTM waits some hours before it writes to that person again: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 - **Closed the form with ✕?** The list stays locked: press the unlock button in TTM's note.
 
 ## Next steps
 
 - [The task list panel](/docs/the-task-list/) — every button, explained.
+- [Owners and tags](/docs/owners-and-tags/) — give a task to a person, a role or several people, and tag who to notify.
 - [Reminders](/docs/reminders/) — repeating reminders, time zones, editing and removing.
 - [Core concepts](/docs/core-concepts/) — owners, tags, groups and permissions.
 - [Tips & tricks](/docs/tips/) — small habits that save time, like reusing a list on another server.
 - [Configuration](/docs/configuration/) — notifications, the legend, time zone and more.
+- [Something not working?](/docs/troubleshooting/) — quick answers to the most common problems.

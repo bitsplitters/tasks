@@ -5,59 +5,60 @@ group: Reference
 order: 9.4
 ---
 
-TTM deliberately keeps commands to a minimum: once a list exists, you drive everything from buttons. To run one, type `/` in the message box and pick it, or open the **App Launcher** in the message bar and choose **Team Tasks Manager** under *Apps on this Server*. If your Discord is in another language, some names are translated: see [Command names in your language](#command-names-in-your-language) at the bottom.
+TTM keeps commands to a minimum: once a list exists, you do everything with buttons and menus. To run a command, type `/` in the message box and pick it. You can also open the **App Launcher** in the message bar and choose **Team Tasks Manager** under *Apps on this Server*.
 
-Here is the full set.
+If your Discord is in another language, some names are translated: see [Command names in your language](#command-names-in-your-language) at the bottom.
 
 ## `/create-list`
 
-Create and manage a task list. TTM checks it has the permissions it needs in the channel, then posts the list with its button panel. This is the command you'll use most.
+Create a task list. TTM checks that it has the permissions it needs in the channel, then posts the list with its button panel. This is the command you'll use most.
 
-It has one option, **`file`**, and you can leave it out. Attach the `.txt` file a list's **Download** gives you — up to 64 KB, even one downloaded on another server — and TTM rebuilds the list from it instead of opening the creation form: tasks with their state, owners, tags, reminders and webhooks. Like any new list, it needs a free place on your plan.
+The command has one option, **`file`**, and you can leave it out. Attach the `.txt` file that a list's **Download** gives you: it is named after the list, and it can come from another server. TTM then rebuilds the list from the file instead of opening the creation form. The list comes back with its tasks and their state, owners, tags, reminders and webhooks. Like any new list, it needs a free place on your plan (see [How the three places work](/docs/premium/#how-the-three-places-work)).
 
-If something in the file doesn't fit, nothing is created, and TTM lists every problem at once, each with its line or its task: a file it doesn't recognise, a role, channel, member or webhook this server doesn't have, a reminder with no owner, a list too big for a message, or a limit — tasks per list, recurring reminders where they aren't allowed, repetitions, reminders waiting at the same time. Reminders whose alerts are all in the past are the exception: they are left out, the list is created, and TTM tells you which ones. A file that isn't a `.txt`, or is bigger than 64 KB, is refused straight away.
+TTM refuses a file straight away if it isn't a `.txt` or is bigger than **64 KB**. Otherwise TTM reads the file. If something doesn't fit, TTM creates nothing and lists every problem in one message, each with its line or its task:
+
+- **The format** — the file isn't UTF-8 text, or it doesn't start with `#!ttm/1`. The title is missing or longer than 256 characters. A line isn't a task, the list starts with a subtask, or there are no tasks.
+- **The size** — the list is too long for one message, or it has more tasks than a list can hold or your plan allows.
+- **The reminders** — a reminder has no owner, repeats more times than your plan allows, or is recurring where new recurring reminders can't be created (see [Reminders](/docs/reminders/#repeating-reminders)). Too many reminders would be waiting at the same time.
+- **This server** — a role, a channel or a webhook in the file doesn't exist on this server, or a user in the file isn't a member of it.
+
+Reminders whose alerts are all in the past are the exception: TTM leaves them out, creates the list and tells you which ones.
 
 → See [The task list panel](/docs/the-task-list/), and [Tips & tricks](/docs/tips/#reuse-a-list-anywhere) for reusing a list on another server.
 
 ## `/config app`
 
-Open the configuration panel: notification mode, history tracking, push notifications, the `/create-list` legend, dimmed completed tasks, recurring reminders (a Premium feature — on the Free plan every reminder is a single event), behavior on selection, time zone and permission sync.
+Open the settings panel of your server: notifications, the activity timeline, the `/create-list` legend, recurring reminders, time zone, permissions and more.
 
 → See [/config app](/docs/configuration/).
 
 ## `/config lists`
 
-The lists of this server, with three actions per list: **regenerate** it — publish it again, with the same contents, when its message was deleted by mistake — **seal** it, so it stays in the channel as a record without buttons, or **delete** it.
-
-Each row has one button that cycles through four states: <img class="inline-ic" src="/icons/noaction.png" alt="" /> grey does nothing, <img class="inline-ic" src="/icons/refresh.png" alt="" /> blue regenerates, <img class="inline-ic" src="/icons/seal.png" alt="" /> green seals, <img class="inline-ic" src="/icons/delete.png" alt="" /> red deletes. Mark as many lists as you need, then press **Apply** and confirm: the whole block runs in one go — deletions first, then seals, then regenerations — and a summary tells you which lists were done, and which weren't and why.
-
-Two things worth knowing. The panel lists **every** list this server has ever used, including those whose message no longer exists — TTM does not check Discord for each one, so open the linked channel if you want to see for yourself. And **regeneration keeps the activity timeline**: the new message reuses the same thread, so the history stays where it was.
+See every list of this server, and regenerate, seal or delete several of them at once. Regenerating brings back a list whose message was deleted by mistake.
 
 → See [/config lists](/docs/config-lists/).
 
 ## `/config webhook`
 
-Create, view, modify or delete a webhook, optionally scoped to a **completion** or **reopen** trigger.
+Create, view, modify or delete a webhook, optionally limited to a **completion** or **reopen** trigger. It is the only command with options you must fill in: the **action** and the **webhook name**.
 
-→ See [/config webhook](/docs/webhooks/).
+→ See [/config webhook](/docs/webhooks/#creating-a-webhook).
 
 ## `/beta`
 
-What being in beta means for you: everything unlocked, for free, for the whole beta; what happens when it ends, and why there's a paid plan at all — plus a button that shows what that plan will look like.
+This command shows what the beta means for your server: every feature is unlocked and free for the whole beta. It also explains what happens when the beta ends, and why there's a paid plan. A button shows what that plan will look like.
 
 → See [Free during the beta](/docs/beta/).
 
 ## `/help`
 
-Your starting point inside Discord. It opens a panel with buttons:
+This command is your starting point inside Discord. It opens a panel with five buttons:
 
 - <img class="inline-ic" src="/icons/home_blue.png" alt="" /> **Home** — an overview of the app.
-- <img class="inline-ic" src="/icons/start_blue.png" alt="" /> **Get started** — a quick start with a link to this documentation.
-- <img class="inline-ic" src="/icons/config_blue.png" alt="" /> **Configuration** — points you to `/config app`.
-- <img class="inline-ic" src="/icons/premium_blue.png" alt="" /> **Premium** — what the paid plan will look like once the beta ends (free limits included).
+- <img class="inline-ic" src="/icons/start_blue.png" alt="" /> **Get started** — a quick start, with a link to this documentation.
+- <img class="inline-ic" src="/icons/config_blue.png" alt="" /> **Configuration** — what `/config app`, `/config lists` and `/config webhook` are for.
+- <img class="inline-ic" src="/icons/premium_blue.png" alt="" /> **Premium** — what the paid plan will look like once the beta ends, free limits included.
 - <img class="inline-ic" src="/icons/abouts_blue.png" alt="" /> **About us** — who builds TTM.
-
-<div class="callout"><div class="callout-t">Note</div>Every command starts with one click, with a single exception: <code>/config webhook</code> asks for the <strong>action</strong> and the <strong>webhook name</strong> up front — see <a href="/docs/webhooks/#creating-a-webhook">/config webhook</a>. The <code>file</code> of <code>/create-list</code> is optional: leave it out and the command starts with one click like the rest. Everything else you configure from buttons and menus, not from typed arguments.</div>
 
 ## Command names in your language
 

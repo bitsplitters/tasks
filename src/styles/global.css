@@ -56,6 +56,19 @@ a.btn[target="_blank"]::after, a.btn-ghost[target="_blank"]::after { content: no
 .site-top nav { display: flex; align-items: center; gap: clamp(.75rem, 2vw, 1.5rem); }
 .site-top nav a { font-family: var(--mono); font-size: .85rem; color: var(--muted); text-decoration: none; transition: color .18s ease; }
 .site-top nav a:hover { color: var(--text); }
+/* On a phone the header has room for three links: Release notes stays in the docs menu, Help
+   stays here, because someone reading on a phone is more likely stuck than curious. */
+@media (max-width: 480px) {
+  .site-top nav .nav-wide { display: none; }
+  .site-top nav a { white-space: nowrap; }
+}
+/* The smallest phones (320 px) still clip Help by a few pixels: tighter gaps and slightly smaller type. */
+@media (max-width: 359px) {
+  .site-top { gap: .6rem; padding-left: 1rem; padding-right: 1rem; }
+  .site-top .mark { font-size: .9rem; }
+  .site-top nav { gap: .6rem; }
+  .site-top nav a { font-size: .78rem; }
+}
 .btn { font-family: var(--mono); font-size: .85rem; font-weight: 600; color: var(--ink) !important; background: var(--accent); padding: .5em 1em; border-radius: 8px; text-decoration: none; transition: background .18s ease, transform .18s ease; }
 .btn:hover { background: var(--accent-bright); transform: translateY(-1px); }
 .hero { padding: clamp(3.5rem, 11vh, 7rem) 0 clamp(2rem, 6vh, 4rem); }

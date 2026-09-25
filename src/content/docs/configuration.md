@@ -42,9 +42,11 @@ Shows every completed task in Discord's smaller, grey text, so what is still to 
 
 ## Behavior on selection
 
-After you use **owner**, **tag** or **reminder**, this decides whether the button **resets** to its neutral state or **keeps** the active mode — handy when you are applying the same action to several tasks in a row.
+After you use **owner**, **tag** or **reminder**, this decides whether the button **resets** to its neutral state or **keeps** the active mode.
 
-It also changes what **Tag** can do: with it off, tagging always overwrites; with it on, you additionally get live editing of a task's existing tags. See [Two ways to tag](/docs/the-task-list/#two-ways-to-tag) for the full breakdown.
+It has two choices: **Reset status after selection** (the default) and **Keep status after selection**. The second is useful when you apply the same action to several tasks in a row.
+
+It also changes what **Tag** and **Owner** can do. With **Reset status after selection**, your choice always overwrites. With **Keep status after selection**, you also get live editing of a task's existing tags or owner. See [Two ways to tag](/docs/owners-and-tags/#two-ways-to-tag) for the full breakdown.
 
 ## Recurring reminders
 
@@ -54,7 +56,7 @@ Turn it **on** to unlock **repetitions and intervals**: reminder creation then u
 
 Recurring reminders are a **Premium** feature (see [What Premium unlocks](/docs/premium/)). On the Free plan this dropdown is shown but switched off, with the note *"Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. The recurring ones created before keep working."* Your choice isn't lost: on Premium the dropdown comes back set the way you left it.
 
-A reminder that is *already* recurring keeps firing even while the toggle is off, or on the Free plan, so existing schedules are never lost. It stays editable — you can change its date, move it to another task or lower its repetitions — but its repetitions can't go up.
+A reminder that is *already* recurring keeps firing even while the toggle is off, or on the Free plan. What you can still change: see [Repeating reminders](/docs/reminders/#repeating-reminders).
 
 ## Time zone
 

@@ -15,6 +15,22 @@ import rehypeExternalLinks from 'rehype-external-links';
 // marchio nell'intestazione e nel pie' di pagina (`Base.astro`): chi lo clicca sta scegliendo di
 // andarsene, e non deve ritrovarsi una scheda in piu' che non ha chiesto. Nessuna eccezione da
 // mantenere a mano: sta fuori dalla pipeline, quindi e' fuori dalla regola.
+// Comandi e blocchi di codice restano come sono anche con la traduzione automatica del browser.
+//
+// Il sito e' solo in inglese e il pubblico del soft launch lo legge tradotto: senza questo, Chrome
+// traduce anche `/create-list` (in un comando che non esiste) e gli esempi di lista, dove perde
+// l'indentazione che insegna proprio la regola dei sottotask. `translate="no"` e' l'attributo HTML
+// che i traduttori rispettano. Plugin locale di poche righe invece di una dipendenza.
+function rehypeNoTranslateCode() {
+  const visit = (node) => {
+    if (node.type === 'element' && (node.tagName === 'pre' || node.tagName === 'code')) {
+      node.properties = { ...node.properties, translate: 'no' };
+    }
+    (node.children ?? []).forEach(visit);
+  };
+  return (tree) => visit(tree);
+}
+
 export default defineConfig({
   site: 'https://tasks.bitsplitters.app',
 
@@ -33,6 +49,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       rehypePlugins: [
+        rehypeNoTranslateCode,
         [
           rehypeExternalLinks,
           {

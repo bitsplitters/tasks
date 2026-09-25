@@ -5,7 +5,7 @@ group: Configuration
 order: 3
 ---
 
-Webhooks let a task talk to the outside world. Associate one with a task and, when that task is **completed** or **reopened**, TTM sends an HTTP request you defined — to a CI system, a chat, a spreadsheet automation, anything that accepts a call.
+Webhooks let a task talk to the outside world. Associate one with a task: when that task is **completed** or **reopened**, TTM sends an HTTP request you defined. It can go to a CI system, a chat, a spreadsheet automation, or anything else that accepts a call.
 
 ## Creating a webhook
 
@@ -30,9 +30,9 @@ Choosing **create** (or **modify**) opens a form with four fields:
 
 A webhook is really a **pair of actions** — one for completion, one for reopen — under a single name. That's what the trigger picks.
 
-<div class="callout"><div class="callout-t">The trigger is optional on purpose</div>Omit it and one command covers both directions: <strong>create</strong> sets up completion and reopen with the same configuration (the <code>{{state}}</code> and <code>{{when}}</code> tokens tell the two events apart), <strong>view</strong> prints both, and <strong>delete</strong> removes the webhook entirely, with all its actions. <strong>Modify</strong> pre-fills from the completion action and overwrites both.</div>
+<div class="callout"><div class="callout-t">The trigger is optional on purpose</div>Omit it and one command covers both directions. <strong>Create</strong> sets up completion and reopen with the same configuration: the <code>{{state}}</code> and <code>{{when}}</code> tokens tell the two events apart. <strong>View</strong> prints both, and <strong>delete</strong> removes the webhook entirely, with all its actions. <strong>Modify</strong> pre-fills from the completion action and overwrites both.</div>
 
-Webhooks are a [Premium](/docs/premium/) feature — the Free plan has none, and during the beta they are unlocked for everyone. Each server can keep up to **25** webhooks. Reached the ceiling? Delete one you no longer use — TTM lists them all in the error.
+Webhooks are a [Premium](/docs/premium/) feature, and during the beta they are unlocked for everyone. On the Free plan you can't create new ones, but the ones created during the beta stay: see [What a beta list keeps](/docs/beta/#what-a-beta-list-keeps). Each server can keep up to **25** webhooks. Reached the ceiling? Delete one you no longer use — TTM lists them all in the error.
 
 ## Tokens
 
@@ -62,15 +62,15 @@ The association is stored **in the task itself**, as a reserved token: in **Bulk
 - [] {{wb=deploy}} Ship the release notes
 ```
 
-You can move it, copy it onto another task or delete it by hand, exactly like a mention — the token never shows up in the rendered list, and `wb` is the only reserved key (every other `{{key=value}}` is a free variable, see [Tokens](#tokens) above).
+You can move it, copy it onto another task or delete it by hand, exactly like a mention. The token never shows up in the rendered list. `wb` is the only reserved key: every other `{{key=value}}` is a free variable (see [Tokens](#tokens) above).
 
 ## When a webhook fires
 
-A webhook fires when someone **checks or unchecks its task from the list's check selector** — and only then:
+A webhook fires only when someone **checks or unchecks its task from the check selector**, the drop-down menu labelled *check/uncheck tasks*. In detail:
 
-- **only the task you picked** fires its webhook. The tasks that change along with it — subtasks checked in cascade, or a group completed by its last subtask — don't;
+- **only the task you picked** fires its webhook. The tasks that change with it don't fire theirs: subtasks ticked in cascade, or a group completed by its last subtask;
 - **Reopen all** and **Bulk update** change many tasks at once and fire **no** webhook;
-- **the list must be active** — one of the lists holding a place on your plan. On a list that isn't, checking a task or linking a webhook takes a free place first, and is refused when there is none. The exception is a list created during the beta that sits outside your places: its tasks can still be checked, but their webhooks stay silent — TTM tells you privately — until the list takes a place. Working on it in any other way — a bulk update, an owner, a reminder, linking a webhook — takes one, when a place is free.
+- **the list must be in use**, holding one of the places of your plan. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work). A list created during the beta is the exception: its tasks can still be ticked without a place, but their webhooks stay silent until the list takes one. TTM tells you so privately.
 
 ## Example
 
