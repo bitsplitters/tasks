@@ -3,6 +3,8 @@ layout: ../layouts/Legal.astro
 title: Self-hosting Licence
 description: The licence that comes with the Team Tasks Manager package you run yourself — what it lets you do, and what it does not.
 updated: "Version 1.0 — 5 September 2026"
+lang: en
+alt: /it/license/
 ---
 
 This is the licence for the **package you download and run on your own machine**. It is published here so you can read it *before* deciding to download anything; the same text ships inside the package as `LICENSE.txt`, together with an Italian translation.

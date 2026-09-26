@@ -2,7 +2,9 @@
 layout: ../layouts/Legal.astro
 title: Terms of Service
 description: The terms governing the use of the Team Tasks Manager Discord bot.
-updated: "Last updated: 11 September 2026"
+updated: "Last updated: 26 September 2026"
+lang: en
+alt: /it/terms/
 ---
 
 These Terms of Service ("Terms") govern your use of the **Team Tasks Manager** Discord bot ("TTM", "the bot", "the service"), provided by bitsplitters ("we", "us"). By adding the bot to a Discord server or using it, you agree to these Terms. If you do not agree, do not use the bot.
@@ -35,6 +37,8 @@ The webhook feature sends HTTP requests to endpoints **you** configure. You are 
 ## 6. Availability and "as is"
 
 The bot is provided **"as is" and "as available"**, without warranties of any kind. We do not guarantee uninterrupted availability, and we may modify, suspend, or discontinue the service (in whole or in part) at any time.
+
+Discontinuing the service means closing the project, not pushing anyone to pay. The Free plan described on the [Beta](/docs/beta/) and [Premium](/docs/premium/) pages is not switched off, reduced or made unusable in order to make you move to a paid plan. If we ever decide to close the service, we will announce it in advance on this site and on our [Discord server](/docs/community/), so that you have time to take your lists with you: the **Download** button exports each list as a file that `/create-list` can import, including into a copy of TTM you run yourself.
 
 ## 7. Limitation of liability
 

@@ -127,6 +127,9 @@ section.block { padding: clamp(2.5rem, 7vh, 5rem) 0; }
 .prose { min-width: 0; max-width: 74ch; }
 .prose h1 { font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -.02em; margin: 0 0 .5rem; }
 .prose .subtitle { color: var(--muted); font-size: 1.15rem; margin: 0 0 2rem; }
+/* Il sottotitolo perde il suo margine basso quando lo segue il cambio di lingua delle pagine legali. */
+.prose .subtitle:has(+ .lang-switch) { margin-bottom: .5rem; }
+.prose .lang-switch { margin: 0 0 2rem; font-size: .95rem; }
 .prose h2 { font-size: 1.5rem; margin: 2.2rem 0 .8rem; letter-spacing: -.01em; border-top: 1px solid var(--line); padding-top: 1.6rem; }
 .prose h3 { font-size: 1.15rem; margin: 1.6rem 0 .5rem; color: var(--text); }
 .prose p, .prose li { color: #C7CEDB; line-height: 1.7; }

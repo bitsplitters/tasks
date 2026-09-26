@@ -2,7 +2,9 @@
 layout: ../layouts/Legal.astro
 title: "GDPR & Your Data Rights"
 description: How Team Tasks Manager complies with the EU General Data Protection Regulation.
-updated: "Last updated: 24 September 2026"
+updated: "Last updated: 26 September 2026"
+lang: en
+alt: /it/gdpr/
 ---
 
 Because **bitsplitters** operates in the European Union, the use of **Team Tasks Manager** ("TTM") is subject to the **General Data Protection Regulation (GDPR)**. This page explains the legal basis for processing and the rights you have. It complements our [Privacy Policy](/privacy/), which lists exactly what data we handle.
@@ -14,7 +16,7 @@ Because **bitsplitters** operates in the European Union, the use of **Team Tasks
 ## Legal basis for processing (Art. 6 GDPR)
 
 - **Performance of the service** — most data (Discord IDs, task content, reminders, configuration, webhooks) is processed because it is necessary to provide the functionality you request when you add and use the bot.
-- **Legitimate interest** — aggregate, non-identifying usage statistics are processed to keep the bot reliable and to improve it, in a way that does not override your rights.
+- **Legitimate interest** — aggregate, non-identifying usage statistics are processed to keep the bot reliable and to improve it, in a way that does not override your rights. The same basis covers our community server: moderation and support tickets (see [Our community server](/privacy/#our-community-server)).
 
 We do not carry out automated decision-making with legal effects, nor profiling.
 
@@ -35,6 +37,8 @@ Much of your data is also directly under your control inside Discord: editing or
 ## How to exercise your rights
 
 Email **info@bitsplitters.app** with your request and enough information to identify the relevant server or data (e.g. the Discord server ID, or your Discord user ID for your personal time zone and direct-message channel). We will respond within the time limits set by the GDPR (normally within one month).
+
+An email address does not prove who owns a Discord account. Before acting on a request about data stored against a Discord user ID, we may ask you to confirm it **from that account** — for example by opening a support ticket on our [community server](/docs/community/). We ask only what we need to be sure the request is yours.
 
 ## Retention
 

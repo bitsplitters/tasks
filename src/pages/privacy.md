@@ -2,10 +2,12 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 24 September 2026"
+updated: "Last updated: 26 September 2026"
+lang: en
+alt: /it/privacy/
 ---
 
-This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") collects and how we handle it. It applies to the use of the bot on Discord. For your rights under EU data-protection law, see also our [GDPR page](/gdpr/).
+This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") collects and how we handle it. It applies to the use of the bot on Discord, and to our Discord community server (see [Our community server](#our-community-server)). For your rights under EU data-protection law, see also our [GDPR page](/gdpr/).
 
 ## Who we are
 
@@ -58,6 +60,17 @@ Data is kept while the bot is present and in use in your server.
 **A role TTM created** is forgotten — its record and the people it was given to — once no list uses it any more, as owner or as tag: if the role is still as TTM left it (the same name, no permissions, the same number of members), TTM also deletes it from the server; otherwise it leaves it to your server. TTM also forgets the roles of a list when you seal it, and all of them when the bot is removed from the server.
 
 You can request deletion at any time (see [GDPR](/gdpr/)); we may also delete data earlier.
+
+## Our community server
+
+We run a Discord server for TTM users ([how to join](/docs/community/)). Joining it is optional, and it is separate from using the bot: the bot does not need it.
+
+- **What we see.** As on any Discord server, its administrators and moderators can see your Discord username, avatar and profile as shown in the server, the roles you have there, and the messages you post in its channels. We do not copy them anywhere else.
+- **Moderation and roles.** The server uses **MEE6**, a third-party Discord bot, to give roles (for example the member role once you accept the rules) and to help moderate. MEE6 processes the data it needs for that under its own privacy policy.
+- **Support tickets.** A support request can be opened as a ticket: a private channel visible only to you and to the staff, managed by **Ticket Tool**, another third-party Discord bot. When a ticket is closed, a **transcript** — a copy of the messages in that ticket — is kept, so we can follow up on the same problem. Transcripts are kept for no longer than **12 months**, and you can ask us to delete yours earlier.
+- **Legal basis.** Our legitimate interest in running a support and discussion space for the bot, and in keeping it safe (Art. 6(1)(f) GDPR).
+
+Discord remains the provider of the platform, and what it collects is governed by [Discord's Privacy Policy](https://discord.com/privacy).
 
 ## Security
 

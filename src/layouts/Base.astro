@@ -1,10 +1,16 @@
 ---
 import '../styles/global.css';
-export interface Props { title: string; description?: string; }
-const { title, description = "Team Tasks Manager brings task coordination inside Discord: shared checklists, reminders and roles, without leaving your server." } = Astro.props;
+export interface Props { title: string; description?: string; lang?: 'en' | 'it'; }
+const { title, description = "Team Tasks Manager brings task coordination inside Discord: shared checklists, reminders and roles, without leaving your server.", lang = 'en' } = Astro.props;
+// Solo le pagine legali esistono anche in italiano (Codice del consumo, art. 9): il footer di una
+// pagina italiana punta alle copie italiane, quello delle altre alle inglesi.
+const it = lang === 'it';
+const legali = it
+  ? [['/it/terms/', 'Termini'], ['/it/privacy/', 'Privacy'], ['/it/gdpr/', 'GDPR'], ['/it/license/', 'Licenza']]
+  : [['/terms/', 'Terms'], ['/privacy/', 'Privacy'], ['/gdpr/', 'GDPR'], ['/license/', 'Licence']];
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,10 +39,8 @@ const { title, description = "Team Tasks Manager brings task coordination inside
     <div class="wrap foot-inner">
       <span>&copy; 2026 <a href="https://bitsplitters.app">bitsplitters</a> &middot; Team Tasks Manager</span>
       <nav class="foot-links">
-        <a href="/terms/">Terms</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/gdpr/">GDPR</a>
-        <a href="/license/">Licence</a>
+        {legali.map(([href, testo]) => <a href={href}>{testo}</a>)}
+        {it ? <a href="/terms/" lang="en">English</a> : <a href="/it/terms/" lang="it">Italiano</a>}
         <a href="mailto:info@bitsplitters.app">info@bitsplitters.app</a>
       </nav>
     </div>

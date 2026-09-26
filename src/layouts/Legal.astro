@@ -1,12 +1,18 @@
 ---
 import Base from './Base.astro';
 const { frontmatter } = Astro.props;
+// lang e alt stanno nel frontmatter di ogni pagina legale: alt e' la stessa pagina nell'altra lingua.
+const lang = frontmatter.lang === 'it' ? 'it' : 'en';
+const altro = lang === 'it'
+  ? { href: frontmatter.alt, testo: 'Read this page in English', lang: 'en' }
+  : { href: frontmatter.alt, testo: 'Leggi questa pagina in italiano', lang: 'it' };
 ---
-<Base title={frontmatter.title + " — bitsplitters"} description={frontmatter.description}>
+<Base title={frontmatter.title + " — bitsplitters"} description={frontmatter.description} lang={lang}>
   <div class="legal-page">
     <article class="prose">
       <h1>{frontmatter.title}</h1>
       <p class="subtitle">{frontmatter.updated}</p>
+      {altro.href && <p class="lang-switch"><a href={altro.href} lang={altro.lang} hreflang={altro.lang}>{altro.testo}</a></p>}
       <slot />
     </article>
   </div>
