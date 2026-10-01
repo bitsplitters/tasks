@@ -52,7 +52,7 @@ A task's owner is a mention too, with one difference: it is followed by a **colo
 <@USER_ID>: Ship the release notes
 ```
 
-A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag, not an owner. This matters in **Bulk update**. A reminder goes to the task's owner, so a task without an owner loses its reminder when you save. The list is saved anyway, and TTM tells you which tasks lost their reminder: see [Reading a reminder on the task](/docs/reminders/#reading-a-reminder-on-the-task).
+A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag, not an owner. This matters in **Bulk update**. A reminder goes to the task's owner, so TTM doesn't save a reminder on a task without an owner. The message names the task to fix: see [Reading a reminder on the task](/docs/reminders/#reading-a-reminder-on-the-task).
 
 ## Linking channels
 

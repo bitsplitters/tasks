@@ -57,14 +57,14 @@ Under the list there is the **check selector**, a drop-down menu that shows the 
 
 ## 4. Set a reminder
 
-In the second row, click the bell <img class="inline-ic" src="/icons/alertW.png" alt="" /> — **Reminder**, the fourth button — once: it turns **blue**. Then pick a task that is **not ticked yet**. TTM posts a short note that the list is being edited, and a form titled *Set reminder for task …* opens. It is already filled in with ten minutes from now: submit it as it is. The first time, the time zone in the last field is the server's: change it if yours is different. The task shows the time, and the reminder arrives once. If your server has turned on recurring reminders, a summary card follows the form: press **Save**.
+In the second row, click the bell <img class="inline-ic" src="/icons/alertW.png" alt="" /> — **Reminder**, the fourth button — once: it turns **blue**. Then pick a task that is **not ticked yet**. A form titled *Set reminder for task …* opens. It is already filled in with ten minutes from now: submit it as it is. The first time, the time zone in the last field is the server's: change it if yours is different. The task shows the time, and the reminder arrives once. If your server has turned on recurring reminders, a summary card follows the form: press **Save**.
 
 Good to know before the first try:
 
 - **The reminder goes to the task's owner**, by direct message if the owner is a person.
 - **If the task has no owner yet, you become its owner**, so the reminder comes to you. From then on only you, and whoever has *Manage messages*, can tick that task. To give it to someone else, set the owner first with the person button <img class="inline-ic" src="/icons/owner.png" alt="" /> — **Owner**, the second in the row.
 - **Nothing arrived?** Allow direct messages from server members: click the server name, then *Privacy Settings*. After a refused message, TTM waits some hours before it writes to that person again: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
-- **Closed the form with ✕?** The list stays locked: press the unlock button in TTM's note.
+- **Closed the form with ✕?** The list stays locked: open **More** under the list and press **Unlock list**.
 
 ## Next steps
 

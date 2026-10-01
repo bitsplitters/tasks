@@ -17,12 +17,12 @@ The command has one option, **`file`**, and you can leave it out. Attach the `.t
 
 TTM refuses a file straight away if it isn't a `.txt` or is bigger than **64 KB**. Otherwise TTM reads the file. If something doesn't fit, TTM creates nothing and lists every problem in one message, each with its line or its task:
 
-- **The format** — the file isn't UTF-8 text, or it doesn't start with `#!ttm/1`. The title is missing or longer than 256 characters. A line isn't a task, a reminder is written in months (`M`), the list starts with a subtask, or there are no tasks.
+- **The format** — the file isn't UTF-8 text, or it doesn't start with `#!ttm/1`. The title is missing or longer than 256 characters. A line isn't a task, a reminder is written in months (`M`) or written badly, the list starts with a subtask, or there are no tasks.
 - **The size** — the list is too long for one message, or it has more tasks than a list can hold or your plan allows.
-- **The reminders** — a reminder has no owner or repeats more times than your plan allows. A recurring reminder is refused where new ones can't be created (see [Reminders](/docs/reminders/#repeating-reminders)). Too many reminders would be waiting at the same time.
+- **The reminders** — a reminder has no owner, has no date and a distance of zero, or repeats more times than your plan allows. A recurring reminder is refused where new ones can't be created (see [Reminders](/docs/reminders/#repeating-reminders)). Too many reminders would be waiting at the same time.
 - **This server** — a role, a channel or a webhook in the file doesn't exist here, or a user in the file isn't a member.
 
-Reminders whose alerts are all in the past are the exception: TTM leaves them out, creates the list and tells you which ones.
+Reminders whose alerts are all in the past are not a problem: they come back on their tasks, and send nothing more.
 
 → See [The task list panel](/docs/the-task-list/), and [Tips & tricks](/docs/tips/#reuse-a-list-anywhere) for reusing a list on another server.
 

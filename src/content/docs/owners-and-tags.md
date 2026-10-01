@@ -65,7 +65,7 @@ For this, the bot needs the *Manage Roles* permission: see [What it needs](#what
 The owner menu works like the Tag menu (see [Two ways to tag](#two-ways-to-tag)):
 
 - With **Reset status after selection**, pick the owner, then the task.
-- With **Keep status after selection**, you can also **pick the task first**, with the menu empty. Its owner loads into the menu. For a role TTM created, the menu shows the people it gave the role to. Every change you confirm applies to that task at once. If you empty the menu, the owner is removed, and its reminder too, as in red mode.
+- With **Keep status after selection**, you can also **pick the task first**, with the menu empty. Its owner loads into the menu. For a role TTM created, the menu shows the people it gave the role to. Every change you confirm applies to that task at once. If you empty the menu, the owner is removed, and its reminder too, as in red mode. If the reminder hasn't fired yet, TTM asks you to confirm first.
 
 How the reminder reaches a person or a role: see [How the reminder arrives](/docs/reminders/#how-the-reminder-arrives).
 

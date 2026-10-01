@@ -46,12 +46,12 @@ A role is notified only if it can be mentioned. When that is the case, and what 
 
 ## Editing or removing a reminder
 
-- **Edit** — click **Reminder** to blue, pick the task, and set the new values. You land straight on the summary card if the task already has a *repeating* reminder. With recurring reminders on, you land there for any reminder (see [Repeating reminders](#repeating-reminders)). The card shows the current date and badge ([Reading a reminder on the task](#reading-a-reminder-on-the-task)), so you can change only what you need. Otherwise **When** opens, pre-filled with the current date.
+- **Edit** — click **Reminder** to blue, pick the task, and set the new values. You land straight on the summary card if the task already has a *repeating* reminder. With recurring reminders on, you land there for any reminder (see [Repeating reminders](#repeating-reminders)). The card shows the current date and badge ([Reading a reminder on the task](#reading-a-reminder-on-the-task)), so you can change only what you need. **Save** stays off until you change the date or the recurrence. Otherwise **When** opens, pre-filled with the current date. Submitting the same date and recurrence the reminder already has changes nothing: TTM tells you, and sends no notification.
 - **Remove** — click **Reminder** until it turns **red** (delete mode), then pick the task. The reminder is removed.
 
 Completing a task also stops its reminder — no need to clean up afterwards.
 
-<div class="callout"><div class="callout-t">Closing a form is not cancelling</div>Discord never tells a bot that you closed a form with the ✕, so TTM cannot know: the list stays locked. Use <strong>Cancel</strong> on the <a href="#repeating-reminders">summary card</a> when it's there, and the <img class="inline-ic" src="/icons/unlock.png" alt="" /> unlock button if you closed a form the hard way.</div>
+<div class="callout"><div class="callout-t">Closing a form is not cancelling</div>Discord never tells a bot that you closed a form with the ✕, so TTM cannot know: the list stays locked. Use <strong>Cancel</strong> on the <a href="#repeating-reminders">summary card</a> when it's there. If you closed a form the hard way, open <strong>More</strong> under the list and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> <strong>Unlock list</strong>.</div>
 
 ## Repeating reminders
 
@@ -63,10 +63,10 @@ With recurring reminders on, submitting **When** doesn't save yet. TTM shows you
 
 | Button | What it does |
 | :--- | :--- |
-| **Save** | Store the reminder exactly as the card shows it. |
+| **Save** | Store the reminder exactly as the card shows it. When you edit an existing reminder, it turns on once you change something. |
 | **Edit date** | Reopen **When**, pre-filled with the current values. |
 | **Edit recurrence** | Open the repetition form (repetitions + interval). |
-| **Cancel** | Drop the whole thing — the list is unlocked and the unlock message removed. |
+| **Cancel** | Drop the whole thing — the list is unlocked. |
 
 <div class="callout"><div class="callout-t">Nothing is saved until you press Save</div>Editing the date or the recurrence only updates the card. You can change them as often as you need, and <strong>Cancel</strong> really cancels.</div>
 
@@ -99,12 +99,17 @@ The triplet is `[distance,interval,repetitions]`. The first value lets you creat
 
 The same rules apply as in the forms. Where new recurring reminders can't be created, a triplet with repetitions above `0` is accepted only for a reminder the list already had. Even then, the limits in [Repeating reminders](#repeating-reminders) apply. If several reminders break a rule, one message lists them all, one paragraph each. The same message also lists any other problem in the text, such as a list that's too long or has too many tasks.
 
-A reminder that could never arrive is taken out of the task's text. This happens in two cases:
+Two kinds of reminder can't be saved, and the message names the task to fix:
 
-- the task has **no owner**. Reminders go to the owner, and a mention without the colon is only a tag: see [Owners: the mention with a colon](/docs/personalize-your-lists/#owners-the-mention-with-a-colon);
-- all its alerts are **in the past**.
+- a reminder on a task with **no owner**. Reminders go to the owner, and a mention without the colon is only a tag: see [Owners: the mention with a colon](/docs/personalize-your-lists/#owners-the-mention-with-a-colon);
+- a reminder with **no date** and a distance of zero, such as `[0m,0m,0]` on its own. Its only alert would be the moment you save, already gone;
+- a reminder that **can't be read**: a number too large, such as `[1h,1d,99999999999]`, or a date that doesn't exist.
 
-The list is saved anyway. A message that only you can see tells you which tasks lost their reminder, and why.
+A reminder written badly is marked with an arrow, like a line without a dash: two dates or two triplets on one line, a date without its triplet, or a reminder without task text. TTM doesn't guess which one you meant.
+
+TTM never removes a reminder by itself. A reminder whose alerts are all **in the past** stays on its task, as a record. It sends nothing more, and it doesn't count among the reminders waiting.
+
+These checks look only at the lines you change. **Bulk update** checks the lines you add or edit, and a task edit checks that task. A new list, a clone and an import check every line. **Clean list**, **Reopen all**, tags and deleting a task leave every reminder as it is.
 
 ## Common errors
 

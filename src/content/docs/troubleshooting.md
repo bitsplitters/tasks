@@ -27,7 +27,7 @@ Check these points, in this order:
 
 ### The list is locked
 
-TTM locks a list while someone edits it, for example with **Bulk update** or a reminder form. It posts a note in the channel with the name of that person. The list also stays locked when someone closes a form with the ✕, because Discord doesn't tell the bot. Anyone can press the <img class="inline-ic" src="/icons/unlock.png" alt="" /> unlock button in the note. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
+TTM locks a list while someone edits it, for example with **Bulk update** or a reminder form. The list also stays locked when someone closes a form with the ✕, because Discord doesn't tell the bot. Anyone can unlock it: open **More** under the list and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 
 ### My tags or owner didn't save
 
@@ -53,7 +53,7 @@ The data of the list is still in TTM, and its reminders keep arriving. Run `/con
 - **The owner must allow direct messages from server members:** click the server name, then *Privacy Settings*. After a refused message, TTM waits some hours before it writes to that person again. See [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 - **The owner is a role that can't be mentioned.** The reminder appears in the channel, but nobody gets a notification. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
 - **The owner role was deleted.** The reminder is not sent to anyone. Choose another owner for the task. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
-- **The owner was removed, or the list was sealed.** In these cases the reminder is gone. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task) and [Seal](/docs/config-lists/#seal).
+- **The owner was removed, or the list was sealed.** In these cases the reminder is gone. Before removing an owner whose reminder hasn't fired yet, TTM asks you to confirm. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task) and [Seal](/docs/config-lists/#seal).
 - **The task is ticked.** Completing a task stops its reminder, and a ticked task can't get a new one.
 
 ### I want a weekly reminder
