@@ -53,6 +53,7 @@ The data of the list is still in TTM, and its reminders keep arriving. Run `/con
 - **The owner must allow direct messages from server members:** click the server name, then *Privacy Settings*. After a refused message, TTM waits some hours before it writes to that person again. See [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 - **The owner is a role that can't be mentioned.** The reminder appears in the channel, but nobody gets a notification. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
 - **The owner role was deleted.** The reminder is not sent to anyone. Choose another owner for the task. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
+- **TTM can't post in the list's channel.** If the owner is a role TTM created for several people, each of them gets the reminder by direct message, with the reason. For any other role the reminder is not delivered until an admin grants the permission. See [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
 - **The owner was removed, or the list was sealed.** In these cases the reminder is gone. Before removing an owner whose reminder hasn't fired yet, TTM asks you to confirm. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task) and [Seal](/docs/config-lists/#seal).
 - **The task is ticked.** Completing a task stops its reminder, and a ticked task can't get a new one.
 
@@ -87,7 +88,7 @@ In the **More** panel of a list, only members with *Manage messages* on the chan
 
 There are two different cases:
 
-- **The bot is missing a permission.** Its message names the permission and the steps to grant it. What each permission is for: [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
+- **The bot is missing a permission.** Its message names the permission and the steps to grant it. When the bot can't post in the list's channel, the message reaches only you, and at most once an hour. What each permission is for: [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
 - **You are not allowed to use a feature.** The server's admins set this rule, not the bot. See [Sync permissions](/docs/configuration/#sync-permissions).
 
 ---

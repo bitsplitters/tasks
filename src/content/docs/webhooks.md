@@ -72,6 +72,12 @@ A webhook fires only when someone **ticks or unticks its task in the check selec
 - **Reopen all** and **Bulk update** change many tasks at once and fire **no** webhook;
 - **the list must be in use**, holding one of the places of your plan. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work). A list created during the beta is the exception: its tasks can still be ticked without a place. Their webhooks stay silent until the list takes one. TTM tells you so privately.
 
+## When a webhook fails
+
+If the call doesn't reach its destination, TTM writes a warning in the list's channel. It names the webhook and the task, then explains the error in one sentence. It also says what to check: the address, the headers, the method, or the server you are calling.
+
+If notifications are off on the server, or TTM can't post in that channel, the warning reaches only whoever ticked the task.
+
 ## Example
 
 A `POST` that announces a completion:

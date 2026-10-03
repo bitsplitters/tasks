@@ -41,6 +41,7 @@ The first release of Team Tasks Manager by **bitsplitters**. What it brings:
 - **The Free plan and Premium** — after the beta, the Free plan has limits and Premium lifts them: see [What Premium unlocks](/docs/premium/). What you build during the beta: see [Free during the beta](/docs/beta/).
 - **Configuration** — `/config app` sets notifications, the activity timeline, reminders, time zone and permissions for the server: see [/config app](/docs/configuration/).
 - **Webhooks** (Premium) send an HTTP request you define when a task is completed or reopened. They take `{{ }}` tokens, and only public `https` addresses: see [/config webhook](/docs/webhooks/).
+- **Told where it matters** — when TTM can't post in a list's channel, it tells the person who acted, privately. A failed webhook gets a warning too: see [The bot says a permission is missing](/docs/troubleshooting/#the-bot-says-a-permission-is-missing) and [When a webhook fails](/docs/webhooks/#when-a-webhook-fails).
 - **Localized interface** — the bot's texts and some command names appear in your language: see [Command names in your language](/docs/commands/#command-names-in-your-language). This site works with your browser's translation.
 
 <div class="callout"><div class="callout-t">Coming soon</div>An owner-only task view and a progress dashboard are on the way. This page will track every step.</div>
