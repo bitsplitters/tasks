@@ -101,7 +101,7 @@ The workflow is always the same: **turn a button blue or red, then pick the task
 
 | Button | Function | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :---: | :--- | :--- | :--- |
-| <span class="dchip is-grey" role="img" aria-label="Content button, grey"><img src="/icons/task.png" alt="" /></span> | **Content** | Change the task text (opens a form). | Delete the task. You can't delete the last task: use **Delete list** or **Seal list** in [More](#whats-inside-more). |
+| <span class="dchip is-grey" role="img" aria-label="Content button, grey"><img src="/icons/task.png" alt="" /></span> | **Content** | Change the task text (opens a form). Line breaks become spaces. Owners, reminders and webhooks typed there are removed, and the bot tells you what it removed: they have their own buttons. A text left empty, or with a reminder in months, isn't saved. | Delete the task. Deleting a group with subtasks asks you first. Its subtasks stay in place: they join the group above, or become tasks if there is none. You can't delete the last task: use **Delete list** or **Seal list** in [More](#whats-inside-more). |
 | <span class="dchip is-grey" role="img" aria-label="Owner button, grey"><img src="/icons/owner.png" alt="" /></span> | **Owner** | Set or change the owner: one person, one role, or several people (see [Owner](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people)). | Remove the owner, and its reminder too: nobody is left to receive it. If the reminder hasn't fired yet, TTM asks you to confirm first. |
 | <span class="dchip is-grey" role="img" aria-label="Tag button, grey"><img src="/icons/tag.png" alt="" /></span> | **Tag** | Set the users and roles to notify. You can pick several at once (see [Two ways to tag](/docs/owners-and-tags/#two-ways-to-tag)). | Remove every tag on the task. |
 | <span class="dchip is-grey" role="img" aria-label="Reminder button, grey"><img src="/icons/alertW.png" alt="" /></span> | **Reminder** | Add or edit a reminder: start date and time zone. Interval and repetitions come with recurring reminders, a Premium feature switched on in [Configuration](/docs/configuration/#recurring-reminders). | Remove the reminder. |
@@ -150,7 +150,7 @@ If the list gets locked or sealed before you confirm Clean or Reopen, nothing ch
 
 ## When a bulk update can't be saved
 
-The list title can be up to **256 characters**. If the bot can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, or a reminder without task text. Otherwise, **one message lists every problem at once**, one per paragraph:
+The list title can be up to **90 characters**. If the bot can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, or a reminder without task text. A webhook token (`{{wb=…}}`) without task text gets the arrow too. Otherwise, **one message lists every problem at once**, one per paragraph:
 
 - the list is too long;
 - the list has more tasks than a list can hold, or than your plan allows;

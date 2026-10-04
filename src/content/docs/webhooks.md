@@ -62,7 +62,7 @@ The association is stored **in the task itself**, as a reserved token: in **Bulk
 - [] {{wb=deploy}} Ship the release notes
 ```
 
-You can move it, copy it onto another task or delete it by hand, exactly like a mention. The token never shows up in the rendered list. `wb` is the only reserved key: every other `{{key=value}}` is a free variable (see [Tokens](#tokens) above).
+You can move it, copy it onto another task or delete it by hand, exactly like a mention. The token never shows up in the rendered list. A task with the token also needs some text. The **Content** form of a single task doesn't show the token, and removes one you type there, telling you. `wb` is the only reserved key: every other `{{key=value}}` is a free variable (see [Tokens](#tokens) above).
 
 ## When a webhook fires
 

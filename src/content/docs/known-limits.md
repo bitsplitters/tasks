@@ -14,7 +14,7 @@ Team Tasks Manager works entirely inside Discord, so most of the limits below ar
 | Lists in use per server | **3** on the Free plan | See [How the three places work](/docs/premium/#how-the-three-places-work). |
 | Characters per list | **4000** | The whole list is edited inside a single Discord field, and Discord caps that field at 4000 characters. This counts *everything shown* — task text, checkboxes, any reminder time and one line break per row — not just what you type. TTM keeps a small safety margin below the hard limit. |
 | Items per list | **50** (tasks + subtasks) | Discord allows 5 component rows per message and up to 25 options per dropdown. TTM reserves rows for the action buttons, which leaves room for 50 selectable items in total — subtasks included. Your plan can stop lower: see [What Premium unlocks](/docs/premium/). |
-| List title | **256** characters | The create, edit and clone windows don't let you type more. |
+| List title | **90** characters | The create, edit and clone windows don't let you type more. The title also names the list's menu and its history thread, which Discord keeps short. |
 | Imported file | `.txt`, up to **64 KB** | `/create-list` imports only the file made by **Download**. What else it checks: see [`/create-list`](/docs/commands/#create-list). |
 
 <div class="callout"><div class="callout-t">Hitting a ceiling?</div>Split the work across several lists. Two focused lists are easier to read than one that's maxed out — and each gets its own reminders, owners and tags.</div>

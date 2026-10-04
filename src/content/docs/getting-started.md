@@ -40,7 +40,7 @@ The rules:
 
 - **A line that starts with `-` is a task.**
 - **Spaces before the dash make it a subtask** of the task above. A task with subtasks becomes a **group**.
-- The title can be up to **256 characters**. The list can be up to about **4000 characters** and **50 tasks**, subtasks included. After the beta, the Free plan allows 20 tasks: see [What Premium unlocks](/docs/premium/).
+- The title can be up to **90 characters**. The list can be up to about **4000 characters** and **50 tasks**, subtasks included. After the beta, the Free plan allows 20 tasks: see [What Premium unlocks](/docs/premium/).
 
 Submit the form, and the list appears in the channel. Here is the same list after a few steps. The first task is ticked, *Prepare the brackets* has an owner and *Stream the final* has a reminder.
 
