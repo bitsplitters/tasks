@@ -132,6 +132,8 @@ TTM locks the list while someone edits it:
 
 For everyone else, these turn off: the check selector, **Bulk update**, **Clean list**, **Reopen all** and the task buttons. **Clone list** and **More** stay on. **More** shows who is editing, and a locked list can't be sealed or deleted from there.
 
+Locking the list also turns **Owner**, **Tag** and **Webhook** back to grey if one of them was on: open it again from its button when you need it.
+
 Saving the form unlocks the list. Closing it with the ✕ doesn't, because Discord doesn't tell the bot. Then anyone can unlock the list: open **More** and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**.
 
 An admin can still seal, delete or regenerate a locked list from [`/config lists`](/docs/config-lists/). If that happens while you are editing, your change isn't saved. The bot tells you, and gives you back the text you wrote.

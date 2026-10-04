@@ -59,13 +59,13 @@ By default every reminder is a **single event** — one form, one ping, nothing 
 
 <div class="callout"><div class="callout-t">Recurring reminders you already have keep working</div>A reminder that was already recurring, for example one created during the beta, keeps firing on the Free plan. It also keeps firing on Premium while the toggle is off. It stays editable: you can change its date, move it to another task or lower its repetitions. What you can't do is raise them, or add new recurring reminders.<br><br>Cloning or importing a list creates new reminders. So where new recurring reminders can't be created, on the Free plan or with the toggle off, a recurring reminder is refused there. Clone without reminders, or set its repetitions to <code>0</code>.</div>
 
-With recurring reminders on, submitting **When** doesn't save yet. TTM shows you a private summary card with the date it understood and four buttons:
+With recurring reminders on, submitting **When** doesn't save yet. TTM shows you a private summary card with the date it understood, a **Recurrence** line and four buttons. The line says *none* for a single reminder, or shows the repetitions badge:
 
 | Button | What it does |
 | :--- | :--- |
 | **Save** | Store the reminder exactly as the card shows it. When you edit an existing reminder, it turns on once you change something. |
 | **Edit date** | Reopen **When**, pre-filled with the current values. |
-| **Edit recurrence** | Open the repetition form (repetitions + interval). |
+| **Edit recurrence** | Open the repetition form (repetitions + interval). For a single reminder it opens with 1 repetition. With `0` the reminder stays single, and the interval doesn't count. |
 | **Cancel** | Drop the whole thing — the list is unlocked. |
 
 <div class="callout"><div class="callout-t">Nothing is saved until you press Save</div>Editing the date or the recurrence only updates the card. You can change them as often as you need, and <strong>Cancel</strong> really cancels.</div>
