@@ -119,7 +119,9 @@ These checks look only at the lines you change. **Bulk update** checks the lines
 | *The reminder to work must be created on a task to be performed* | Pick a task that isn't ticked yet: a completed task can't get a reminder. |
 | *The date does not exist* | Check day, month and year together (e.g. 31 February). |
 | *Invalid time* | Use the 24-hour format `HH:mm`, e.g. `15:30`. |
+| *Missing interval* | You set repetitions but left the interval empty. Write how often the reminder repeats, e.g. `1d`, or set `0` repetitions for a single reminder. |
 | *Incorrect interval* | Use the `d` / `h` / `m` pattern, e.g. `1d`, `24h`, `1d12h`. |
+| *Zero interval* | An interval of `0m` would send every repetition at the same moment. Write an interval greater than zero. |
 | *Incorrect repetitions* | Use a whole number between 0 and the maximum shown in the field (`0` = once only). |
 | *Repetitions over the plan* | On the Free plan recurring reminders are Premium: a reminder that was already recurring can keep its repetitions or go lower, not higher. |
 | *Repetitions over what is allowed* | Recurring reminders are turned off on this server: a reminder that was already recurring can keep its repetitions or go lower. An admin can turn them on in `/config app`. |
