@@ -57,7 +57,7 @@ Under the list there is the **check selector**, a drop-down menu that shows the 
 
 ## 4. Set a reminder
 
-In the second row, click the bell <img class="inline-ic" src="/icons/alertW.png" alt="" /> — **Reminder**, the fourth button — once: it turns **blue**. Then pick a task that is **not ticked yet**. A form titled *Set reminder for task …* opens. It is already filled in with ten minutes from now: submit it as it is. The first time, the time zone in the last field is the server's: change it if yours is different. The task shows the time, and the reminder arrives once. If your server has turned on recurring reminders, a summary card follows the form: press **Save**.
+In the second row, click the bell <img class="inline-ic" src="/icons/alertW.png" alt="" /> — **Reminder**, the fourth button — once: it turns **blue**. Then pick a task that is **not ticked yet**. A form titled *Set reminder for task …* opens. It is already filled in with ten minutes from now: submit it as it is. Until you change it, the time zone in the last field is the server's: change it if yours is different. The task shows the time, and the reminder arrives once. If your server has turned on recurring reminders, a summary card follows the form: press **Save**.
 
 Good to know before the first try:
 

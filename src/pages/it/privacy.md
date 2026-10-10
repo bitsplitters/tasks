@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "Informativa sulla privacy"
 description: "Quali dati raccoglie il bot Discord Team Tasks Manager, perché e come vengono trattati."
-updated: "Ultimo aggiornamento: 26 settembre 2026"
+updated: "Ultimo aggiornamento: 10 ottobre 2026"
 lang: it
 alt: /privacy/
 ---
@@ -20,7 +20,7 @@ TTM conserva solo ciò che serve per far funzionare le liste di task nel tuo ser
 - **Identificativi Discord** — ID di server (guild), canali e messaggi; ID di utenti e ruoli quando assegni un owner, aggiungi un tag o configuri i permessi.
 - **Contenuto dei task che crei** — titoli delle liste e testo dei task, compreso tutto ciò che vi scrivi (menzioni, link, note).
 - **Promemoria** — date, intervalli, ripetizioni e il fuso orario impostato per il server.
-- **Il tuo fuso orario personale** — il fuso orario che scegli mentre crei un promemoria, associato al tuo ID utente Discord e riutilizzato da un server all'altro.
+- **Il tuo fuso orario personale** — il fuso orario che scrivi al posto di quello proposto quando scegli una data: in un promemoria, in **Clona lista** con i promemoria, o nella nuova data di **Riapri tutti**. È associato al tuo ID utente Discord e riutilizzato da un server all'altro. Se lasci quello proposto, non viene salvato nulla.
 - **Il tuo canale di messaggi diretti** — quando sei l'owner di un task, i suoi promemoria ti arrivano per messaggio diretto, quindi il bot conserva l'ID del suo canale di messaggi diretti con te, per recapitarli con una sola richiesta a Discord. Se non accetti messaggi diretti, conserva anche il momento fino al quale non riprovare (sei ore dopo il tentativo non riuscito). Entrambi sono associati al tuo ID utente Discord, come il fuso orario; i messaggi in sé non vengono conservati.
 - **Ruoli creati da TTM** — quando un task viene assegnato a più persone, TTM crea un ruolo e ne conserva l'ID, il nome che gli ha dato, gli ID utente delle persone a cui l'ha assegnato, chi l'ha richiesto e quando: per mostrare quelle persone quando il task viene modificato, e per eliminare il ruolo quando nessuna lista lo usa più.
 - **Configurazione** — impostazioni di ciascun server come la modalità di notifica, la registrazione della cronologia, l'opzione push e il fuso orario.
@@ -51,7 +51,7 @@ I dati sono conservati finché il bot è presente e in uso nel tuo server.
 
 **Log operativi** — per diagnosticare i guasti, il bot scrive log tecnici sul server su cui è in esecuzione. Al livello di log usato in produzione questi **non** contengono il testo dei tuoi task né i titoli delle tue liste; possono contenere identificativi Discord, per esempio l'ID dell'utente coinvolto in un errore. I log vengono eliminati automaticamente dopo **30 giorni**.
 
-**Il tuo fuso orario personale e il tuo canale di messaggi diretti** — il fuso orario che imposti mentre crei un promemoria, e l'ID del tuo canale di messaggi diretti con il bot (insieme, se non accetti messaggi diretti, al momento fino al quale non riprovare), sono associati al tuo ID utente Discord e non sono legati a un singolo server, quindi rimuovere il bot da un server non li elimina. Scrivi a **info@bitsplitters.app** indicando il tuo ID utente Discord e li elimineremo.
+**Il tuo fuso orario personale e il tuo canale di messaggi diretti** — il fuso orario che imposti al posto di quello proposto, e l'ID del tuo canale di messaggi diretti con il bot (insieme, se non accetti messaggi diretti, al momento fino al quale non riprovare), sono associati al tuo ID utente Discord e non sono legati a un singolo server, quindi rimuovere il bot da un server non li elimina. Scrivi a **info@bitsplitters.app** indicando il tuo ID utente Discord e li elimineremo.
 
 **Puoi eliminare da solo una singola lista**, senza chiederlo a noi: il pulsante **Elimina lista** nel pannello *Altro* della lista (**Delete list** e *More* con Discord in inglese), oppure `/config lists` quando il messaggio della lista non c'è più. L'eliminazione è immediata e definitiva, e porta con sé i task, gli owner, i tag, i promemoria e la cronologia delle attività della lista.
 

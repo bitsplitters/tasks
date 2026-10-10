@@ -33,7 +33,7 @@ On a *repeating* reminder (a Premium feature), use `1d` when you mean "same time
 
 ## A reminder in two clicks
 
-The **When** form arrives pre-filled with ten minutes from now, in your own time zone. For "remind me shortly", submit it as it is, without typing anything. Every reminder is a single event unless your server has turned on recurring reminders, a Premium feature that is off by default. So that's the whole flow: one form.
+The **When** form arrives pre-filled with ten minutes from now, in your time zone (the server's, until you change it). For "remind me shortly", submit it as it is, without typing anything. Every reminder is a single event unless your server has turned on recurring reminders, a Premium feature that is off by default. So that's the whole flow: one form.
 
 ## Link a channel without hunting for its ID
 

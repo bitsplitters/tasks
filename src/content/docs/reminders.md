@@ -17,13 +17,13 @@ On the second button row, click **Reminder** <img class="inline-ic" src="/icons/
 | **Month** | a dropdown, in your language | no `dd/mm` ambiguity to worry about |
 | **Year** | a number | pre-filled |
 | **Time** | `HH:mm`, 24-hour | e.g. `15:30` |
-| **Time zone** | an official zone name | pre-filled with *your* zone |
+| **Time zone** | an official zone name | pre-filled with *your* zone (the server's, until you change it) |
 
 Everything arrives pre-filled with **ten minutes from now**, so a reminder for "in a moment" needs no typing at all. Submit it, and the task shows the scheduled time. The reminder fires **once**. With recurring reminders on, a summary card follows: press **Save** (see [Repeating reminders](#repeating-reminders)).
 
 The start must be at least **5 minutes** in the future.
 
-<div class="callout"><div class="callout-t">Your time zone is remembered</div>The first time, the field proposes the server's zone. Change it and TTM stores <strong>your</strong> choice, and proposes it from then on. So every member of the team can think in their own local time.</div>
+<div class="callout"><div class="callout-t">Your time zone is remembered</div>Until you change it, the field proposes the server's zone, and TTM stores nothing. Change it, and TTM stores <strong>your</strong> choice and proposes it from then on. So every member of the team can think in their own local time.</div>
 
 **Who gets it.** The reminder goes to the task's owner, by direct message if the owner is a person. If the task has no owner yet, you become it. From then on only you, and whoever has *Manage messages* on the channel, can tick that task. To give it to someone else, set the owner with **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> before or after creating the reminder. Owners, and what they can do: see [Owners and tags](/docs/owners-and-tags/). Nothing arrived? The owner must accept direct messages from members of that server: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 
