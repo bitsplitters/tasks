@@ -20,7 +20,7 @@ const grouped = groupsOrder
   .filter((g) => g.items.length);
 const current = entry.id;
 ---
-<Base title={entry.data.title + " — Team Tasks Manager docs"} description={entry.data.description}>
+<Base title={entry.data.title + " — Team Tasks Manager docs"} previewTitle={entry.data.title} description={entry.data.description}>
   <button class="docs-menu-toggle" id="docs-menu-toggle" aria-label="Open documentation menu">&#9776; Documentation</button>
   <div class="docs-shell">
     <aside class="docs-side" id="docs-side">

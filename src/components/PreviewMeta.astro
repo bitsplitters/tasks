@@ -1,0 +1,61 @@
+---
+// Descrizione della pagina e anteprima dei suoi link: la scheda che Discord (e chiunque legga
+// Open Graph) mostra quando qualcuno incolla un indirizzo del sito in chat.
+//
+// Discord fa una sola GET e legge l'HTML che il server restituisce, senza eseguire JavaScript:
+// per questo i tag stanno qui, nel markup statico, e non possono essere aggiunti dopo.
+// Riferimento: https://docs.discord.com/developers/link-previews/overview
+//
+// Due formati, scelti dalla pagina:
+// - `large`: l'immagine 1200x630 sotto il testo. Per le pagine che si condividono per far
+//   conoscere TTM (home, indice della documentazione, /invite).
+// - `small`: il logo in miniatura accanto al testo. Per le pagine della documentazione, che si
+//   incollano a raffica in una conversazione di supporto: dieci banner uguali uno sotto l'altro
+//   coprirebbero la conversazione senza dire niente di nuovo.
+//
+// `embed` e' il Component Embed di Discord: sostituisce la scheda standard con un layout a
+// componenti V2 (https://docs.discord.com/developers/link-previews/component-embeds). I tag Open
+// Graph restano comunque: sono la scheda che Discord mostra se scarta il JSON, e quella degli
+// altri servizi.
+export interface Props {
+  title: string;
+  description?: string;
+  card?: 'large' | 'small';
+  // Il Container (type 17) e i suoi componenti; questo file lo avvolge in `{ component: ... }`.
+  embed?: Record<string, unknown>;
+}
+
+const DEFAULT_DESCRIPTION = 'Team Tasks Manager brings task coordination inside Discord: shared checklists, reminders and roles, without leaving your server.';
+
+const { title, description = DEFAULT_DESCRIPTION, card = 'small', embed } = Astro.props;
+
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const image = card === 'large'
+  ? { path: '/og/ttm-card.png', width: 1200, height: 630, alt: 'Team Tasks Manager: coordinate your team where it already talks.' }
+  : { path: '/og/ttm-logo.png', width: 512, height: 512, alt: 'Team Tasks Manager logo' };
+
+// Discord ignora un payload oltre i 3.000 byte, contando gli escape per intero, e non lo segnala:
+// la scheda semplicemente non compare. Meglio fermare la build che pubblicarla.
+// `<` diventa < perche' il JSON sta dentro un <script>: un "</script>" in un testo lo chiuderebbe.
+let embedJson: string | undefined;
+if (embed) {
+  embedJson = JSON.stringify({ component: embed }).replace(/</g, '\\u003c');
+  const bytes = new TextEncoder().encode(embedJson).length;
+  if (bytes > 3000) {
+    throw new Error(`Component Embed di ${Astro.url.pathname}: ${bytes} byte, Discord ne accetta al massimo 3000`);
+  }
+}
+---
+<meta name="description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Team Tasks Manager" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={new URL(image.path, Astro.site).href} />
+<meta property="og:image:width" content={String(image.width)} />
+<meta property="og:image:height" content={String(image.height)} />
+<meta property="og:image:alt" content={image.alt} />
+<meta name="twitter:card" content={card === 'large' ? 'summary_large_image' : 'summary'} />
+<meta name="theme-color" content="#E9A44C" />
+{embedJson && <script is:inline id="discord:component-embed" type="application/json" set:html={embedJson} />}
