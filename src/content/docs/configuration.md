@@ -13,6 +13,14 @@ Run the command:
 
 TTM opens a private panel with a summary of your current settings, seven dropdowns and two buttons. Nothing here is permanent — change it whenever your team's needs change.
 
+## Who can open /config
+
+By default, only members with the *Manage Server* permission see `/config`. That covers `/config app`, `/config lists` and `/config webhook` alike.
+
+An admin can open it to other roles or members, or close it on some channels. Do it in *Server Settings → Integrations → Team Tasks Manager*, on the `/config` command. Whoever can open `/config` can use all its panels.
+
+The permissions you sync with **Load permissions** apply to your lists, not to `/config`.
+
 ## Notification mode
 
 Controls how much notification noise the bot leaves in the channel when tasks are selected:

@@ -21,6 +21,8 @@ The command takes a few options:
 | **webhook** | Required | a name | The webhook to act on, up to 96 characters. |
 | **trigger** | Optional | completion · reopen | Omit it to act on **both** directions at once. |
 
+Like the rest of `/config`, by default this command is only for members with *Manage Server*: see [Who can open /config](/docs/configuration/#who-can-open-config).
+
 Choosing **create** (or **modify**) opens a form with four fields:
 
 - **HTTP method** — `GET`, `POST`, `PUT` or `DELETE`.
