@@ -1,7 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
+import { PITCH, abs, previewCard } from '../lib/preview-card';
+
+// Scheda dell'anteprima su Discord: le righe della home e una lista vera, perché chi riceve il link
+// veda subito com'è TTM in un canale.
+const EMBED = previewCard(
+  PITCH,
+  [
+    { label: 'Add to Discord', url: abs('/invite/') },
+    { label: 'Get started', url: abs('/docs/getting-started/') },
+    { label: 'Docs', url: abs('/docs/') },
+  ],
+  { url: abs('/screens/list-desktop.png'), alt: 'A Team Tasks Manager list in a Discord channel' },
+);
 ---
-<Base title="Team Tasks Manager — team coordination, inside Discord" card="large">
+<Base title="Team Tasks Manager — team coordination, inside Discord" card="large" embed={EMBED}>
   <section class="hero wrap">
     <p class="eyebrow">Team Tasks Manager</p>
     <h1>Coordinate your team where it already talks.</h1>

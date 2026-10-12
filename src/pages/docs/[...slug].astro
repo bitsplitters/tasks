@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { docsCard } from '../../lib/preview-card';
 
 // `entry.id` e non `entry.slug`, `render(entry)` e non `entry.render()`: dal Content Layer le entry
 // sono oggetti serializzabili e non portano piu' metodi. Il NOME del parametro di rotta resta
@@ -20,7 +21,7 @@ const grouped = groupsOrder
   .filter((g) => g.items.length);
 const current = entry.id;
 ---
-<Base title={entry.data.title + " — Team Tasks Manager docs"} previewTitle={entry.data.title} description={entry.data.description}>
+<Base title={entry.data.title + " — Team Tasks Manager docs"} previewTitle={entry.data.title} description={entry.data.description} embed={docsCard(entry.data.title, entry.data.description, Astro.url.pathname)}>
   <button class="docs-menu-toggle" id="docs-menu-toggle" aria-label="Open documentation menu">&#9776; Documentation</button>
   <div class="docs-shell">
     <aside class="docs-side" id="docs-side">

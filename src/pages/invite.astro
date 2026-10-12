@@ -1,5 +1,6 @@
 ---
 import PreviewMeta from '../components/PreviewMeta.astro';
+import { PITCH, abs, previewCard } from '../lib/preview-card';
 
 // L'invito del bot vive QUI e in nessun altro posto.
 //
@@ -20,30 +21,12 @@ const INVITE = 'https://discord.com/api/oauth2/authorize?client_id=1531611457152
 
 // La scheda che Discord mostra quando qualcuno incolla questo indirizzo in chat (Component Embed,
 // vedi PreviewMeta). È il primo contatto con TTM di chi riceve l'invito: dice cosa fa e offre
-// l'invito con un clic. I pulsanti sono solo link (style 5), gli unici che Discord accetta qui, e i
-// testi riprendono la home senza promettere niente di nuovo.
-const EMBED = {
-  type: 17,
-  accent_color: 0xE9A44C,
-  components: [
-    {
-      type: 9,
-      components: [{
-        type: 10,
-        content: '## Team Tasks Manager\nCoordinate your team where it already talks.\n- Shared checklists inside the channel\n- Tasks for people or roles\n- Automatic reminders',
-      }],
-      accessory: { type: 11, media: { url: new URL('/og/ttm-logo.png', Astro.site).href }, description: 'Team Tasks Manager logo' },
-    },
-    {
-      type: 1,
-      components: [
-        { type: 2, style: 5, label: 'Add to Discord', url: INVITE },
-        { type: 2, style: 5, label: 'Docs', url: new URL('/docs/', Astro.site).href },
-        { type: 2, style: 5, label: 'Support server', url: 'https://discord.gg/ec7j5YRc4R' },
-      ],
-    },
-  ],
-};
+// l'invito con un clic. È l'unica scheda che punta all'URL OAuth2 diretto: le altre passano da qui.
+const EMBED = previewCard(PITCH, [
+  { label: 'Add to Discord', url: INVITE },
+  { label: 'Docs', url: abs('/docs/') },
+  { label: 'Support server', url: 'https://discord.gg/ec7j5YRc4R' },
+]);
 ---
 <!doctype html>
 <html lang="en">

@@ -2,9 +2,9 @@
 import '../styles/global.css';
 import PreviewMeta from '../components/PreviewMeta.astro';
 // `previewTitle`: il titolo della scheda di anteprima, quando quello della pagina porta gia' il nome
-// del sito, che la scheda mostra a parte (og:site_name). `card`: vedi PreviewMeta.
-export interface Props { title: string; description?: string; lang?: 'en' | 'it'; card?: 'large' | 'small'; previewTitle?: string; }
-const { title, description, lang = 'en', card, previewTitle } = Astro.props;
+// del sito, che la scheda mostra a parte (og:site_name). `card` ed `embed`: vedi PreviewMeta.
+export interface Props { title: string; description?: string; lang?: 'en' | 'it'; card?: 'large' | 'small'; previewTitle?: string; embed?: Record<string, unknown>; }
+const { title, description, lang = 'en', card, previewTitle, embed } = Astro.props;
 // Solo le pagine legali esistono anche in italiano (Codice del consumo, art. 9): il footer di una
 // pagina italiana punta alle copie italiane, quello delle altre alle inglesi.
 const it = lang === 'it';
@@ -18,7 +18,7 @@ const legali = it
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
-  <PreviewMeta title={previewTitle ?? title} description={description} card={card} />
+  <PreviewMeta title={previewTitle ?? title} description={description} card={card} embed={embed} />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
