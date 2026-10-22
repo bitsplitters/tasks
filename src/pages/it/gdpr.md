@@ -47,7 +47,7 @@ Conserviamo i dati solo per il tempo necessario a fornire il servizio, come desc
 
 ## Trasferimenti internazionali
 
-Il bot, il suo database e i suoi backup sono ospitati da **OVHcloud** in **Francia (Gravelines — regione `eu-west-gra`)**, all'interno dello Spazio economico europeo (SEE).
+Il bot, il suo database e i suoi backup sono ospitati da **OVHcloud** in **Francia (Gravelines — regione `eu-west-gra`)**, all'interno dello Spazio economico europeo (SEE). Una seconda copia dei backup è conservata in **Italia**, su un nostro computer.
 
 Alcuni dati escono dal SEE attraverso servizi con sede negli **Stati Uniti**:
 

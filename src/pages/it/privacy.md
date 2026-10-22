@@ -26,7 +26,7 @@ TTM conserva solo ciò che serve per far funzionare le liste di task nel tuo ser
 - **Configurazione** — impostazioni di ciascun server come la modalità di notifica, la registrazione della cronologia, l'opzione push e il fuso orario.
 - **Webhook** — il metodo HTTP, l'URL, gli header e il body che definisci, e la loro associazione ai task.
 - **Log delle attività** — registrazioni delle azioni eseguite sulle liste (chi ha fatto cosa, e quando), quando la registrazione della cronologia è attiva.
-- **Statistiche d'uso aggregate** — contatori per server: quante volte si usa ogni funzione e quando è stata usata l'ultima volta, e i totali giornalieri di liste, task, promemoria e webhook. Non contano mai i singoli utenti.
+- **Statistiche d'uso aggregate** — contatori per server: quante volte si usa ogni funzione e quando è stata usata l'ultima volta. Inoltre, ogni giorno, i totali di liste, task, promemoria e webhook e il numero di membri del server. Non contano mai i singoli utenti.
 
 ## Cosa NON raccogliamo
 

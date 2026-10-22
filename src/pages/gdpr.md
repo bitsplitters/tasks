@@ -47,7 +47,7 @@ We keep data only as long as needed to provide the service, as described in the 
 
 ## International transfers
 
-The bot, its database and its backups are hosted by **OVHcloud** in **France (Gravelines — region `eu-west-gra`)**, within the European Economic Area (EEA).
+The bot, its database and its backups are hosted by **OVHcloud** in **France (Gravelines — region `eu-west-gra`)**, within the European Economic Area (EEA). A second copy of the backups is kept in **Italy**, on our own computer.
 
 Some data leaves the EEA through services based in the **United States**:
 

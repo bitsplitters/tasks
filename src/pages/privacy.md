@@ -26,7 +26,7 @@ TTM only stores what is needed to run task lists inside your server:
 - **Configuration** — per-server settings such as notification mode, history logging, push option and time zone.
 - **Webhooks** — the HTTP method, URL, headers and body you define, and their association to tasks.
 - **Activity logs** — records of actions performed on lists (who did what, and when), when history logging is enabled.
-- **Aggregate usage statistics** — counters per server: how often each feature is used and when it was last used, and daily totals of lists, tasks, reminders and webhooks. They never count individual users.
+- **Aggregate usage statistics** — counters per server: how often each feature is used and when it was last used. Also, every day, the totals of lists, tasks, reminders and webhooks, and the server's member count. They never count individual users.
 
 ## What we do NOT collect
 
