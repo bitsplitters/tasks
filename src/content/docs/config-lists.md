@@ -71,6 +71,6 @@ It is the same deletion you get from **Delete list** in the <img class="inline-i
 
 ## Who can use it
 
-The same as the rest of `/config`: by default, members with the *Manage Server* permission. An admin can open it to other roles or members in *Server Settings → Integrations → Team Tasks Manager*. The permissions synced for your lists don't apply here: see [Who can open /config](/docs/configuration/#who-can-open-config).
+The same as the rest of `/config`: by default, members with the *Manage Server* permission. An admin can open it to other roles or members in *Server Settings → Integrations → Team Tasks Manager*. The permissions synced for your lists don't apply here: see [Who can open /config](/docs/config/#who-can-open-config).
 
 If the database is unreachable, the command refuses to open, and says so. Every row of that panel comes from the database. A deletion that can't remove the data would leave reminders firing for a list that no longer appears anywhere.

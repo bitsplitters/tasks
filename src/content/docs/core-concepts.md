@@ -53,7 +53,7 @@ When a task is ticked or unticked, TTM can post a notification and — if you en
 
 By default the app's commands follow Discord's own visibility rules (Server Settings → Integrations). Buttons and lists, however, stay usable by anyone unless you **sync permissions** — after which the list becomes read-only for users who are not allowed. This too lives in [Configuration](/docs/configuration/).
 
-`/config` has a rule of its own: by default only members with *Manage Server* see it. An admin can change that in *Server Settings → Integrations*. See [Who can open /config](/docs/configuration/#who-can-open-config).
+`/config` has a rule of its own: by default only members with *Manage Server* see it. An admin can change that in *Server Settings → Integrations*. See [Who can open /config](/docs/config/#who-can-open-config).
 
 A few actions have a rule of their own:
 

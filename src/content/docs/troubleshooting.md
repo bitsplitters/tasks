@@ -86,7 +86,7 @@ In the **More** panel of a list, only members with *Manage messages* on the chan
 
 ### I can't find the `/config` command
 
-By default, only members with the *Manage Server* permission see `/config`. An admin can open it to your role in *Server Settings → Integrations → Team Tasks Manager*. See [Who can open /config](/docs/configuration/#who-can-open-config).
+By default, only members with the *Manage Server* permission see `/config`. An admin can open it to your role in *Server Settings → Integrations → Team Tasks Manager*. See [Who can open /config](/docs/config/#who-can-open-config).
 
 ### The bot says a permission is missing
 
