@@ -2,12 +2,12 @@
 layout: ../../layouts/Legal.astro
 title: "Informativa sulla privacy"
 description: "Quali dati raccoglie il bot Discord Team Tasks Manager, perché e come vengono trattati."
-updated: "Ultimo aggiornamento: 10 ottobre 2026"
+updated: "Ultimo aggiornamento: 22 ottobre 2026"
 lang: it
 alt: /privacy/
 ---
 
-Questa Informativa sulla privacy spiega quali dati raccoglie il bot **Team Tasks Manager** («TTM») e come li trattiamo. Si applica all'uso del bot su Discord e al nostro server community su Discord (vedi [Il nostro server community](#il-nostro-server-community)). Per i tuoi diritti ai sensi della normativa UE sulla protezione dei dati, consulta anche la nostra [pagina GDPR](/it/gdpr/).
+Questa Informativa sulla privacy spiega quali dati raccoglie il bot **Team Tasks Manager** («TTM») e come li trattiamo. Si applica all'uso del bot su Discord, al nostro server community su Discord (vedi [Il nostro server community](#il-nostro-server-community)) e ai nostri siti web (vedi [I nostri siti web](#i-nostri-siti-web)). Per i tuoi diritti ai sensi della normativa UE sulla protezione dei dati, consulta anche la nostra [pagina GDPR](/it/gdpr/).
 
 ## Chi siamo
 
@@ -26,12 +26,12 @@ TTM conserva solo ciò che serve per far funzionare le liste di task nel tuo ser
 - **Configurazione** — impostazioni di ciascun server come la modalità di notifica, la registrazione della cronologia, l'opzione push e il fuso orario.
 - **Webhook** — il metodo HTTP, l'URL, gli header e il body che definisci, e la loro associazione ai task.
 - **Log delle attività** — registrazioni delle azioni eseguite sulle liste (chi ha fatto cosa, e quando), quando la registrazione della cronologia è attiva.
-- **Statistiche d'uso aggregate** — contatori non identificativi usati per capire l'uso complessivo del bot.
+- **Statistiche d'uso aggregate** — contatori per server: quante volte si usa ogni funzione e quando è stata usata l'ultima volta, e i totali giornalieri di liste, task, promemoria e webhook. Non contano mai i singoli utenti.
 
 ## Cosa NON raccogliamo
 
-- **Non** leggiamo né conserviamo i tuoi normali messaggi Discord, né i tuoi messaggi diretti (il bot non usa l'accesso privilegiato al «contenuto dei messaggi»).
-- **Non** raccogliamo indirizzi email, password o dati di pagamento.
+- **Non** leggiamo né conserviamo i tuoi normali messaggi Discord, né i tuoi messaggi diretti. Il bot non usa nessuno degli accessi privilegiati di Discord: né il contenuto dei messaggi, né l'elenco dei membri, né la presenza.
+- **Non** raccogliamo indirizzi email, password o dati di pagamento tramite il bot. Se ci scrivi per email, usiamo il tuo indirizzo solo per risponderti.
 
 ## Perché li usiamo
 
@@ -39,7 +39,9 @@ Trattiamo questi dati esclusivamente per **fornire il servizio**: mostrare e agg
 
 ## Condivisione
 
-**Non** vendiamo i tuoi dati. I dati sono trattati dal nostro fornitore di infrastruttura **OVHcloud**, che ospita il bot e il suo database in **Francia (UE)**, in qualità di responsabile del trattamento per nostro conto. Il bot funziona inoltre sulla piattaforma **Discord**, quindi il tuo utilizzo è soggetto all'[Informativa sulla privacy di Discord](https://discord.com/privacy). Quando usi i webhook, TTM invia i dati che hai configurato agli **endpoint di terze parti che scegli tu** — quei servizi sono al di fuori del nostro controllo.
+**Non** vendiamo i tuoi dati. I dati sono trattati dal nostro fornitore di infrastruttura **OVHcloud**, che ospita il bot e il suo database in **Francia (UE)**, in qualità di responsabile del trattamento per nostro conto. Il bot funziona inoltre sulla piattaforma **Discord**, quindi il tuo utilizzo è soggetto all'[Informativa sulla privacy di Discord](https://discord.com/privacy). Discord ha sede negli Stati Uniti: vedi [Trasferimenti internazionali](/it/gdpr/#trasferimenti-internazionali). Quando usi i webhook, TTM invia i dati che hai configurato agli **endpoint di terze parti che scegli tu** — quei servizi sono al di fuori del nostro controllo.
+
+**Segnalazioni di errore.** Quando qualcosa non va come previsto, il bot invia una segnalazione a un canale privato del nostro server Discord, visibile solo a noi. Una segnalazione contiene gli ID del server e degli utenti coinvolti e i dettagli tecnici del guasto. Può contenere un frammento di ciò che si stava elaborando, come un pezzo di un task. Eliminiamo queste segnalazioni una volta risolto il guasto, e comunque entro 12 mesi.
 
 ## Conservazione
 
@@ -50,6 +52,8 @@ I dati sono conservati finché il bot è presente e in uso nel tuo server.
 **Ciò che conserviamo** è il minimo necessario per far funzionare il servizio e misurarne l'adozione: l'ID del server insieme alle impostazioni configurate per esso, le date in cui il bot è entrato e uscito, le impostazioni dei permessi dei comandi, i record degli abbonamenti ove applicabile, e contatori d'uso non identificativi. **Non viene conservato alcun contenuto dei task.**
 
 **Log operativi** — per diagnosticare i guasti, il bot scrive log tecnici sul server su cui è in esecuzione. Al livello di log usato in produzione questi **non** contengono il testo dei tuoi task né i titoli delle tue liste; possono contenere identificativi Discord, per esempio l'ID dell'utente coinvolto in un errore. I log vengono eliminati automaticamente dopo **30 giorni**.
+
+**Backup** — eseguiamo ogni giorno un backup del database, per ripristinare il servizio dopo un guasto. I backup sono conservati per **14 giorni**, nell'UE. I dati che elimini, o che eliminiamo quando il bot lascia un server, possono quindi sopravvivere in un backup fino a 14 giorni; poi spariscono per sempre. Un backup si usa solo per ripristinare il servizio.
 
 **Il tuo fuso orario personale e il tuo canale di messaggi diretti** — il fuso orario che imposti al posto di quello proposto, e l'ID del tuo canale di messaggi diretti con il bot (insieme, se non accetti messaggi diretti, al momento fino al quale non riprovare), sono associati al tuo ID utente Discord e non sono legati a un singolo server, quindi rimuovere il bot da un server non li elimina. Scrivi a **info@bitsplitters.app** indicando il tuo ID utente Discord e li elimineremo.
 
@@ -71,6 +75,14 @@ Gestiamo un server Discord per gli utenti di TTM ([come entrare](/docs/community
 - **Base giuridica.** Il nostro legittimo interesse a gestire uno spazio di supporto e di discussione per il bot, e a mantenerlo sicuro (articolo 6, paragrafo 1, lettera f, del GDPR).
 
 Discord resta il fornitore della piattaforma, e ciò che raccoglie è disciplinato dall'[Informativa sulla privacy di Discord](https://discord.com/privacy).
+
+## I nostri siti web
+
+I nostri siti web — bitsplitters.app, tasks.bitsplitters.app e timezones.bitsplitters.app — non usano cookie, né strumenti di analisi o di tracciamento, e non salvano nulla nel tuo browser.
+
+- **Hosting.** Sono ospitati su **GitHub Pages**, un servizio di GitHub, Inc. (Stati Uniti). Come qualsiasi server web, GitHub registra dati tecnici di ogni visita, compreso il tuo indirizzo IP, per la sicurezza e per far funzionare il servizio. Vedi l'[Informativa sulla privacy di GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+- **La mappa dei fusi orari.** La mappa di timezones.bitsplitters.app carica le sue immagini dai server di **OpenStreetMap**, che ricevono quindi il tuo indirizzo IP. Vedi l'[informativa sulla privacy della OpenStreetMap Foundation](https://osmfoundation.org/wiki/Privacy_Policy).
+- **Base giuridica.** Il nostro legittimo interesse a pubblicare la documentazione e gli strumenti che accompagnano il bot (articolo 6, paragrafo 1, lettera f, del GDPR).
 
 ## Sicurezza
 

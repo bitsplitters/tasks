@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "Termini di servizio"
 description: "I termini che regolano l'uso del bot Discord Team Tasks Manager."
-updated: "Ultimo aggiornamento: 26 settembre 2026"
+updated: "Ultimo aggiornamento: 22 ottobre 2026"
 lang: it
 alt: /terms/
 ---
@@ -44,19 +44,33 @@ Cessare il servizio significa chiudere il progetto, non spingere nessuno a pagar
 
 Nella misura massima consentita dalla legge applicabile, non saremo responsabili di alcun danno indiretto, incidentale o consequenziale, né di alcuna perdita di dati, di profitti o di affari, derivanti dall'uso o dall'impossibilità di usare il bot.
 
+Nulla di quanto sopra esclude la responsabilità per dolo o colpa grave, né alcuna responsabilità che la legge applicabile non consente di escludere — comprese, se sei un consumatore, le tutele inderogabili del diritto dei consumatori.
+
 ## 8. Cessazione
 
 Puoi smettere di usare il bot in qualsiasi momento rimuovendolo dal tuo server. Possiamo sospendere l'accesso o porvi fine se questi Termini vengono violati o per proteggere il servizio e i suoi utenti.
 
 ## 9. Modifiche ai presenti Termini
 
-Possiamo aggiornare questi Termini di tanto in tanto. Le modifiche sostanziali saranno indicate aggiornando la data di «Ultimo aggiornamento» riportata in questa pagina. L'uso continuato del bot dopo le modifiche vale come accettazione.
+Possiamo aggiornare questi Termini di tanto in tanto, e la data di «Ultimo aggiornamento» in questa pagina indica la versione più recente. Annunciamo le modifiche sostanziali sul nostro [server Discord](/docs/community/) almeno **15 giorni** prima che entrino in vigore. Se non sei d'accordo, puoi smettere di usare il bot rimuovendolo dal tuo server. L'uso continuato del bot dopo quella data vale come accettazione.
+
+I piani a pagamento, quando saranno disponibili, avranno condizioni proprie, che ti mostreremo prima dell'acquisto.
 
 ## 10. Legge applicabile
 
 I presenti Termini sono regolati dalla legge italiana, senza tener conto delle norme sui conflitti di leggi. Qualsiasi controversia sarà sottoposta ai tribunali italiani competenti, salvo che le norme imperative a tutela dei consumatori dispongano diversamente.
 
-## 11. Contatti
+## 11. Segnalare contenuti, e il nostro punto di contatto
+
+Se trovi contenuti illegali memorizzati tramite TTM, o contenuti che violano questi Termini, scrivi a **info@bitsplitters.app**. Indicaci dove si trovano (il server e la lista), perché ritieni che siano illegali, e il tuo nome e la tua email. Puoi omettere nome ed email se segnali materiale pedopornografico.
+
+Esaminiamo ogni segnalazione senza indebito ritardo, e ti comunichiamo cosa abbiamo deciso. Se serve eliminiamo il contenuto, o fermiamo il bot su quel server. Comunichiamo agli amministratori del server cosa abbiamo fatto e perché, salvo che la legge lo vieti. Se non sei d'accordo con una decisione, rispondi alla nostra email e la riesamineremo.
+
+Le liste di TTM stanno in messaggi Discord, quindi puoi segnalarle anche a Discord.
+
+**info@bitsplitters.app** è il nostro punto di contatto unico per gli utenti e per le autorità, anche ai sensi del Regolamento UE sui servizi digitali (Digital Services Act). Puoi scriverci in italiano o in inglese.
+
+## 12. Contatti
 
 Domande su questi Termini: **info@bitsplitters.app**.
 

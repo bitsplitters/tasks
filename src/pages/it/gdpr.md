@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "GDPR e i tuoi diritti sui dati"
 description: "Come Team Tasks Manager si conforma al Regolamento generale sulla protezione dei dati dell'Unione europea."
-updated: "Ultimo aggiornamento: 26 settembre 2026"
+updated: "Ultimo aggiornamento: 22 ottobre 2026"
 lang: it
 alt: /gdpr/
 ---
@@ -15,8 +15,9 @@ Poiché **bitsplitters** opera nell'Unione europea, l'uso di **Team Tasks Manage
 
 ## Base giuridica del trattamento (art. 6 GDPR)
 
-- **Esecuzione del servizio** — la maggior parte dei dati (ID Discord, contenuto dei task, promemoria, configurazione, webhook) è trattata perché necessaria a fornire le funzionalità che richiedi quando aggiungi e usi il bot.
-- **Legittimo interesse** — statistiche d'uso aggregate e non identificative sono trattate per mantenere il bot affidabile e per migliorarlo, in un modo che non prevale sui tuoi diritti. La stessa base copre il nostro server community: moderazione e ticket di supporto (vedi [Il nostro server community](/it/privacy/#il-nostro-server-community)).
+- **Esecuzione del servizio (art. 6, par. 1, lett. b)** — per te, quando aggiungi il bot o lo usi. La maggior parte dei dati (ID Discord, contenuto dei task, promemoria, configurazione, webhook) è trattata perché necessaria a fornire le funzionalità che richiedi.
+- **Legittimo interesse (art. 6, par. 1, lett. f)** — per le persone che compaiono in una lista senza usare il bot, per esempio un owner scelto da altri o un membro menzionato in un task. L'interesse è quello del team: organizzare il proprio lavoro nel proprio server. Queste persone possono opporsi, e possono chiedere agli amministratori del server di essere rimosse.
+- **Legittimo interesse (art. 6, par. 1, lett. f)** — anche per mantenere il bot affidabile e sicuro: statistiche d'uso, log tecnici, segnalazioni di errore e backup. La stessa base copre il nostro server community, con la moderazione e i ticket di supporto (vedi [Il nostro server community](/it/privacy/#il-nostro-server-community)), e i nostri siti web (vedi [I nostri siti web](/it/privacy/#i-nostri-siti-web)). Abbiamo bilanciato questi interessi con i tuoi diritti, e puoi opporti a ciascuno di essi.
 
 Non effettuiamo processi decisionali automatizzati con effetti giuridici, né profilazione.
 
@@ -42,11 +43,16 @@ Un indirizzo email non dimostra a chi appartenga un account Discord. Prima di da
 
 ## Conservazione
 
-Conserviamo i dati solo per il tempo necessario a fornire il servizio, come descritto nell'[Informativa sulla privacy](/it/privacy/). La rimozione del bot elimina i dati di contenuto di quel server; i record residui a livello di server e i dati memorizzati in associazione al tuo ID utente Discord (fuso orario personale e canale di messaggi diretti) vengono eliminati a seguito di una richiesta di cancellazione valida, salvo che la legge disponga diversamente.
+Conserviamo i dati solo per il tempo necessario a fornire il servizio, come descritto nell'[Informativa sulla privacy](/it/privacy/). I dati eliminati dal servizio sopravvivono nei nostri backup fino a 14 giorni. La rimozione del bot elimina i dati di contenuto di quel server; i record residui a livello di server e i dati memorizzati in associazione al tuo ID utente Discord (fuso orario personale e canale di messaggi diretti) vengono eliminati a seguito di una richiesta di cancellazione valida, salvo che la legge disponga diversamente.
 
 ## Trasferimenti internazionali
 
-I dati sono ospitati da **OVHcloud** in **Francia (Gravelines — regione `eu-west-gra`)**, all'interno dello Spazio economico europeo (SEE). **Non** trasferiamo i tuoi dati personali al di fuori del SEE.
+Il bot, il suo database e i suoi backup sono ospitati da **OVHcloud** in **Francia (Gravelines — regione `eu-west-gra`)**, all'interno dello Spazio economico europeo (SEE).
+
+Alcuni dati escono dal SEE attraverso servizi con sede negli **Stati Uniti**:
+
+- **Discord** — il bot funziona su Discord, quindi ciò che mostra nel tuo server passa da Discord, come tutto il resto che fai lì. Anche le segnalazioni di errore descritte nell'[Informativa sulla privacy](/it/privacy/#condivisione) vanno a un canale privato su Discord. Discord trasferisce i dati con le garanzie descritte nella [sua informativa sulla privacy](https://discord.com/privacy).
+- **GitHub** — ospita i nostri siti web, e riceve i dati tecnici di ogni visita. GitHub trasferisce i dati con le garanzie descritte nella [sua informativa sulla privacy](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 
 ## Reclami
 

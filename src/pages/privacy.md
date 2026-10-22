@@ -2,12 +2,12 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 10 October 2026"
+updated: "Last updated: 22 October 2026"
 lang: en
 alt: /it/privacy/
 ---
 
-This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") collects and how we handle it. It applies to the use of the bot on Discord, and to our Discord community server (see [Our community server](#our-community-server)). For your rights under EU data-protection law, see also our [GDPR page](/gdpr/).
+This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") collects and how we handle it. It applies to the use of the bot on Discord, to our Discord community server (see [Our community server](#our-community-server)) and to our websites (see [Our websites](#our-websites)). For your rights under EU data-protection law, see also our [GDPR page](/gdpr/).
 
 ## Who we are
 
@@ -26,12 +26,12 @@ TTM only stores what is needed to run task lists inside your server:
 - **Configuration** — per-server settings such as notification mode, history logging, push option and time zone.
 - **Webhooks** — the HTTP method, URL, headers and body you define, and their association to tasks.
 - **Activity logs** — records of actions performed on lists (who did what, and when), when history logging is enabled.
-- **Aggregate usage statistics** — non-identifying counters used to understand overall usage of the bot.
+- **Aggregate usage statistics** — counters per server: how often each feature is used and when it was last used, and daily totals of lists, tasks, reminders and webhooks. They never count individual users.
 
 ## What we do NOT collect
 
-- We do **not** read or store your general Discord messages or direct messages (the bot uses no privileged "message content" access).
-- We do **not** collect email addresses, passwords, or payment information.
+- We do **not** read or store your general Discord messages or direct messages. The bot uses none of Discord's privileged access: not message content, not the member list, not presence.
+- We do **not** collect email addresses, passwords, or payment information through the bot. If you write to us by email, we use your address only to answer you.
 
 ## Why we use it
 
@@ -39,7 +39,9 @@ We process this data solely to **provide the service**: rendering and updating y
 
 ## Sharing
 
-We do **not** sell your data. Data is processed by our infrastructure provider **OVHcloud**, which hosts the bot and its database in **France (EU)**, acting as a processor on our behalf. The bot also runs on the **Discord** platform, so your use is subject to [Discord's Privacy Policy](https://discord.com/privacy). When you use webhooks, TTM sends the data you configured to the **third-party endpoints you choose** — those services are outside our control.
+We do **not** sell your data. Data is processed by our infrastructure provider **OVHcloud**, which hosts the bot and its database in **France (EU)**, acting as a processor on our behalf. The bot also runs on the **Discord** platform, so your use is subject to [Discord's Privacy Policy](https://discord.com/privacy). Discord is based in the United States: see [International transfers](/gdpr/#international-transfers). When you use webhooks, TTM sends the data you configured to the **third-party endpoints you choose** — those services are outside our control.
+
+**Error reports.** When something fails unexpectedly, the bot sends a report to a private channel on our Discord server, which only we can see. A report holds the server and user IDs involved and the technical details of the fault. It can contain a fragment of what was being processed, such as a piece of a task. We delete these reports once the fault is fixed, and within 12 months at the latest.
 
 ## Retention
 
@@ -50,6 +52,8 @@ Data is kept while the bot is present and in use in your server.
 **What we keep** is the minimum needed to run the service and to measure its adoption: the server ID together with the settings configured for it, the dates the bot joined and left, the command-permission settings, subscription records where applicable, and non-identifying usage counters. **No task content is kept.**
 
 **Operational logs** — to diagnose faults, the bot writes technical logs on the server where it runs. At the logging level used in production these do **not** contain the text of your tasks or your list titles; they can contain Discord identifiers, for example the user ID involved in an error. Logs are deleted automatically after **30 days**.
+
+**Backups** — we back up the database every day, to restore the service after a fault. Backups are kept for **14 days**, in the EU. Data you delete, or that we delete when the bot leaves a server, can therefore survive in a backup for up to 14 days; then it is gone for good. A backup is only ever used to restore the service.
 
 **Your personal time zone and direct-message channel** — the time zone you set in place of the proposed one, and the ID of your direct-message channel with the bot (with, if you don't accept direct messages, until when not to try again), are stored against your Discord user ID and are not tied to any single server, so removing the bot from a server does not delete them. Write to **info@bitsplitters.app** with your Discord user ID and we will delete them.
 
@@ -71,6 +75,14 @@ We run a Discord server for TTM users ([how to join](/docs/community/)). Joining
 - **Legal basis.** Our legitimate interest in running a support and discussion space for the bot, and in keeping it safe (Art. 6(1)(f) GDPR).
 
 Discord remains the provider of the platform, and what it collects is governed by [Discord's Privacy Policy](https://discord.com/privacy).
+
+## Our websites
+
+Our websites — bitsplitters.app, tasks.bitsplitters.app and timezones.bitsplitters.app — use no cookies, no analytics and no trackers, and store nothing in your browser.
+
+- **Hosting.** They are hosted on **GitHub Pages**, a service of GitHub, Inc. (United States). Like any web server, GitHub records technical data about each visit, including your IP address, for security and to run the service. See [GitHub's Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+- **The time zone map.** The map on timezones.bitsplitters.app loads its images from **OpenStreetMap**'s servers, which therefore receive your IP address. See the [OpenStreetMap Foundation's privacy policy](https://osmfoundation.org/wiki/Privacy_Policy).
+- **Legal basis.** Our legitimate interest in publishing the documentation and the tools that go with the bot (Art. 6(1)(f) GDPR).
 
 ## Security
 

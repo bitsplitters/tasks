@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Terms of Service
 description: The terms governing the use of the Team Tasks Manager Discord bot.
-updated: "Last updated: 26 September 2026"
+updated: "Last updated: 22 October 2026"
 lang: en
 alt: /it/terms/
 ---
@@ -44,19 +44,33 @@ Discontinuing the service means closing the project, not pushing anyone to pay. 
 
 To the maximum extent permitted by applicable law, we shall not be liable for any indirect, incidental, or consequential damages, or for any loss of data, profits, or business, arising from the use or inability to use the bot.
 
+Nothing here excludes liability for wilful misconduct or gross negligence, nor any liability that cannot be excluded under applicable law — including, where you are a consumer, the mandatory protections of consumer law.
+
 ## 8. Termination
 
 You may stop using the bot at any time by removing it from your server. We may suspend or terminate access if these Terms are violated or to protect the service and its users.
 
 ## 9. Changes to these Terms
 
-We may update these Terms from time to time. Material changes will be reflected by updating the "Last updated" date on this page. Continued use of the bot after changes constitutes acceptance.
+We may update these Terms from time to time, and the "Last updated" date on this page shows the latest version. We announce material changes on our [Discord server](/docs/community/) at least **15 days** before they take effect. If you do not agree, you can stop using the bot by removing it from your server. Continued use of the bot after that date constitutes acceptance.
+
+Paid plans, when they become available, will come with their own conditions, shown to you before you buy.
 
 ## 10. Governing law
 
 These Terms are governed by the laws of Italy, without regard to conflict-of-law rules. Any dispute shall be subject to the competent courts of Italy, unless mandatory consumer-protection law provides otherwise.
 
-## 11. Contact
+## 11. Reporting content, and our point of contact
+
+If you find illegal content stored through TTM, or content that breaks these Terms, write to **info@bitsplitters.app**. Tell us where it is (the server and the list), why you think it is illegal, and your name and email. You can leave out your name and email when you report child sexual abuse material.
+
+We review every report without undue delay, and tell you what we decided. Where needed we delete the content, or stop the bot on that server. We tell the server's admins what we did and why, unless the law forbids it. If you disagree with a decision, reply to our email and we will look at it again.
+
+TTM's lists live in Discord messages, so you can also report them to Discord.
+
+**info@bitsplitters.app** is our single point of contact for users and for authorities, including under the EU Digital Services Act. You can write to us in English or Italian.
+
+## 12. Contact
 
 Questions about these Terms: **info@bitsplitters.app**.
 
