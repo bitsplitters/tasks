@@ -82,7 +82,7 @@ Premium removes this limit. See [What happens to a fourth list](/docs/premium/#w
 
 ### Who can seal or delete a list?
 
-In the **More** panel of a list, only members with *Manage messages* on the channel see **Seal list** and **Delete list**. In `/config lists`, the rule of `/config` applies: by default, members with *Manage Server*. See [What's inside More](/docs/the-task-list/#whats-inside-more) and [Who can use it](/docs/config-lists/#who-can-use-it).
+In the **More** panel of a list, only members with *Manage messages* on the channel see **Seal list** and **Delete list**. In `/config lists`, the rule of `/config` applies: by default, members with *Manage Server*. See [What's inside More](/docs/the-task-list/#whats-inside-more) and [Who can open /config](/docs/config/#who-can-open-config).
 
 ### I can't find the `/config` command
 

@@ -15,6 +15,8 @@ It opens a private panel, which only you can see, with **every list this server 
 
 A list that holds one of the places of your plan is marked **in use** next to its channel. When you need to free a place, those are the lists to seal or delete. During the beta there is no limit, so no list is marked. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work).
 
+By default, only members with the *Manage Server* permission can use `/config lists`, like the rest of `/config`. See [Who can open /config](/docs/config/#who-can-open-config).
+
 ## One button, four states
 
 Each row has a single button that cycles every time you press it:
@@ -69,8 +71,6 @@ It is the same deletion you get from **Delete list** in the <img class="inline-i
 
 <div class="callout"><div class="callout-t">Why doesn't the bot know which lists are dead?</div>Telling a live list from a deleted one means asking Discord about every list, every time the panel opens. TTM doesn't: it shows you what exists and links each channel, so you can look for yourself. Guessing from silence is exactly how data gets destroyed by accident.</div>
 
-## Who can use it
-
-The same as the rest of `/config`: by default, members with the *Manage Server* permission. An admin can open it to other roles or members in *Server Settings → Integrations → Team Tasks Manager*. The permissions synced for your lists don't apply here: see [Who can open /config](/docs/config/#who-can-open-config).
+## If the database is unreachable
 
 If the database is unreachable, the command refuses to open, and says so. Every row of that panel comes from the database. A deletion that can't remove the data would leave reminders firing for a list that no longer appears anywhere.

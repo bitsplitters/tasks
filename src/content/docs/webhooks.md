@@ -7,6 +7,8 @@ order: 3
 
 Webhooks let a task talk to the outside world. Associate one with a task: when that task is **completed** or **reopened**, TTM sends an HTTP request you defined. It can go to a CI system, a chat, a spreadsheet automation, or anything else that accepts a call.
 
+By default, only members with the *Manage Server* permission can use `/config webhook`, like the rest of `/config`. See [Who can open /config](/docs/config/#who-can-open-config).
+
 ## Creating a webhook
 
 ```
@@ -20,8 +22,6 @@ The command takes a few options:
 | **action** | Required | view · create · modify · delete | What you want to do. |
 | **webhook** | Required | a name | The webhook to act on, up to 96 characters. |
 | **trigger** | Optional | completion · reopen | Omit it to act on **both** directions at once. |
-
-Like the rest of `/config`, by default this command is only for members with *Manage Server*: see [Who can open /config](/docs/config/#who-can-open-config).
 
 Choosing **create** (or **modify**) opens a form with four fields:
 
