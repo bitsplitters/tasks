@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "GDPR e i tuoi diritti sui dati"
 description: "Come Team Tasks Manager si conforma al Regolamento generale sulla protezione dei dati dell'Unione europea."
-updated: "Ultimo aggiornamento: 22 ottobre 2026"
+updated: "Ultimo aggiornamento: 23 ottobre 2026"
 lang: it
 alt: /gdpr/
 ---
@@ -47,7 +47,7 @@ Conserviamo i dati solo per il tempo necessario a fornire il servizio, come desc
 
 ## Trasferimenti internazionali
 
-Il bot, il suo database e i suoi backup sono ospitati da **OVHcloud** in **Francia (Gravelines — regione `eu-west-gra`)**, all'interno dello Spazio economico europeo (SEE). Una seconda copia dei backup è conservata in **Italia**, su un nostro computer.
+Il bot, il suo database e i suoi backup sono ospitati da **OVHcloud** su un server dedicato in **Francia (data center di Gravelines)**, all'interno dello Spazio economico europeo (SEE). Una seconda copia dei backup è conservata in **Italia**, su un nostro computer.
 
 Alcuni dati escono dal SEE attraverso servizi con sede negli **Stati Uniti**:
 
