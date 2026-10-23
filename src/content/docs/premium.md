@@ -97,7 +97,7 @@ When the beta ends, we'll open a **Founder** offer for the servers that came ear
 
 ## Rather run it yourself?
 
-You can, and this is the point: **you'll never be trapped.** Join our [Discord server](/docs/community/), download the executable and its configuration, and run it on your own machine. It is free forever, with every Premium feature unlocked, and every update is published there.
+You can, and this is the point: **you'll never be trapped.** The executable and its configuration will be available on our [Discord server](/docs/community/) shortly before the beta ends. You download them and run TTM on your own machine. It is free forever, with every Premium feature unlocked, and every update is published there.
 
 **What "free forever" covers.** You can run TTM for as long as you like, at no cost, for yourself, your community or your own company. It doesn't cover offering TTM to other people as a service, or passing the executable on to someone else. The terms are in the [self-hosting licence](/license/), which you accept before you get the package: read it before you decide.
 
