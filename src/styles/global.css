@@ -74,6 +74,7 @@ a.btn[target="_blank"]::after, a.btn-ghost[target="_blank"]::after { content: no
 .hero { padding: clamp(3.5rem, 11vh, 7rem) 0 clamp(2rem, 6vh, 4rem); }
 .eyebrow { font-family: var(--mono); font-size: .78rem; text-transform: uppercase; letter-spacing: .22em; color: var(--accent); margin: 0 0 1.1rem; }
 .hero h1 { font-size: clamp(2.4rem, 6.5vw, 4.4rem); line-height: 1.03; letter-spacing: -.025em; margin: 0; text-wrap: balance; font-weight: 750; }
+.hero .tagline { font-size: clamp(1.25rem, 3vw, 1.9rem); font-weight: 650; letter-spacing: -.01em; color: var(--accent); margin: .9rem 0 0; }
 .hero .lede { font-size: clamp(1.1rem, 2.3vw, 1.4rem); color: var(--muted); max-width: 46ch; margin: 1.4rem 0 2rem; line-height: 1.5; }
 .hero .lede strong { color: var(--text); font-weight: 600; }
 .cta-row { display: flex; flex-wrap: wrap; gap: .9rem; }
