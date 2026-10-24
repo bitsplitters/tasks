@@ -5,7 +5,7 @@ group: Reference
 order: 10
 ---
 
-Every change to TTM is listed here, newest first. Each entry links to the page that explains it.
+Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
 ## 1.0.0 — First public release
 
