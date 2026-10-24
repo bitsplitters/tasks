@@ -42,6 +42,16 @@ Either way, it arrives **within about ten seconds** of the scheduled time, and a
 
 A direct message can be refused, and then TTM waits some hours before it tries that person again: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 
+### Don't want reminders by direct message?
+
+You decide, from Discord's own settings:
+
+- **Keep them, without a ping.** Right-click your conversation with TTM and choose *Mute*. The reminders still arrive, silently.
+- **Stop them.** Click the server name, then *Privacy Settings*, and turn off *Direct Messages*. This stops direct messages from every member of that server, not only TTM.
+- **Hand the task over.** Ask whoever manages the list to give the task to someone else, with **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" />.
+
+Muting the server is not enough: it silences the server's channels, not your direct messages.
+
 A role is notified only if it can be mentioned. When that is the case, and what happens with @everyone or a deleted role: see [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
 
 ## Editing or removing a reminder
