@@ -7,6 +7,11 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 1.0.1 — Translations reviewed
+
+- **Spanish, Portuguese, French and German, reviewed in full** — one word for each feature, one tone throughout, and permission names as Discord shows them. Latin American Spanish now says *tú*, not *vos*.
+- **`/config webhook` options with accents** in the languages that use them, such as *acción*, *événement* or *löschen*: see [/config webhook](/docs/webhooks/).
+
 ## 1.0.0 — First public release
 
 The first release of Team Tasks Manager by **bitsplitters**. What it brings:
