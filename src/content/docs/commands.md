@@ -62,7 +62,7 @@ This command is your starting point inside Discord. It opens a panel with five b
 
 ## `/invite`
 
-Shows a card to add Team Tasks Manager to another server: a short pitch, the **Add to Discord** button (Discord's authorization page for the bot, with the same permissions as https://tasks.bitsplitters.app/invite), the docs and the support server. The card is visible to everyone in the channel, so you can run it where the people who will set up the other server can see it. It reads nothing from the server and needs no permission.
+Shows a card to add Team Tasks Manager to another server: the same presentation as its App Directory page (what it does, how to start), the **Add to Discord** button (Discord's authorization page for the bot, with the same permissions as https://tasks.bitsplitters.app/invite), the guide and the support server. The card is visible to everyone in the channel, so you can run it where the people who will set up the other server can see it. It reads nothing from the server and needs no permission.
 
 ## Command names in your language
 

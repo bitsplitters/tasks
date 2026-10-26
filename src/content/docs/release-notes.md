@@ -9,8 +9,8 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 1.1.0 — Invite card, welcome message, tips in the status
 
-- **`/invite`** — a public card with the logo, what the bot does and three buttons: add it to another server (Discord's authorization page, straight from the bot), the docs, the support server. Same name in every language: see [Commands](/docs/commands/).
-- **A welcome message on the first join** — once in a server's life, in its system channel: what the bot does, three steps to start, which permissions it asks for and why: see [Core concepts](/docs/core-concepts/#the-permissions-ttm-asks-for). Never a DM. Nothing is sent when the server has no system channel, hides join notifications there, or the bot cannot write in it.
+- **`/invite`** — a public card with the logo, what the bot does and how to start (the same presentation as its App Directory page) and three buttons: add it to another server (Discord's authorization page, straight from the bot), the guide, the support server. Same name in every language: see [Commands](/docs/commands/).
+- **A welcome card on the first join** — once in a server's life, in its system channel: what the bot does, three steps to start with `/create-list` and `/config app`, which permissions it asks for and why: see [Core concepts](/docs/core-concepts/#the-permissions-ttm-asks-for). Never a DM. Nothing is sent when the server has no system channel, hides join notifications there, or the bot cannot write in it.
 - **`/help` says who sees the configuration commands** — the Configuration page now says that Discord shows the three `/config` subcommands only to whoever has *Manage Server*, and where an admin can change that.
 - **`/config app` tells you when the time zone is still the default** — a line under the current zone, until you pick your team's.
 - **Tips in the bot's status** — the line under the bot's name changes every ten minutes.
