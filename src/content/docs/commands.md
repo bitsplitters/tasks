@@ -60,9 +60,13 @@ This command is your starting point inside Discord. It opens a panel with five b
 - <img class="inline-ic" src="/icons/premium_blue.png" alt="" /> **Premium** — what the paid plan will look like once the beta ends, free limits included.
 - <img class="inline-ic" src="/icons/abouts_blue.png" alt="" /> **About us** — who builds TTM.
 
+## `/invite`
+
+Shows a card to add Team Tasks Manager to another server: a short pitch, the **Add to Discord** button (Discord's authorization page for the bot, with the same permissions as https://tasks.bitsplitters.app/invite), the docs and the support server. The card is visible to everyone in the channel, so you can run it where the people who will set up the other server can see it. It reads nothing from the server and needs no permission.
+
 ## Command names in your language
 
-Discord shows each command in the language of your Discord app, and in English for a language TTM isn't translated into. `/config app`, `/config lists`, `/config webhook` (with its `webhook` option), `/beta` and `/help` keep the same name everywhere.
+Discord shows each command in the language of your Discord app, and in English for a language TTM isn't translated into. `/config app`, `/config lists`, `/config webhook` (with its `webhook` option), `/beta`, `/help` and `/invite` keep the same name everywhere.
 
 | Language | `/create-list` | its `file` option | `/config webhook` options |
 | :--- | :--- | :--- | :--- |
