@@ -7,6 +7,15 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 1.1.0 — Invite card, welcome message, tips in the status
+
+- **`/invite`** — a public card with the logo, what the bot does and three buttons: add it to another server (Discord's authorization page, straight from the bot), the docs, the support server. Same name in every language: see [Commands](/docs/commands/).
+- **A welcome message on the first join** — once in a server's life, in its system channel: what the bot does, three steps to start, which permissions it asks for and why: see [Core concepts](/docs/core-concepts/#the-permissions-ttm-asks-for). Never a DM. Nothing is sent when the server has no system channel, hides join notifications there, or the bot cannot write in it.
+- **`/help` says who sees the configuration commands** — the Configuration page now says that Discord shows the three `/config` subcommands only to whoever has *Manage Server*, and where an admin can change that.
+- **`/config app` tells you when the time zone is still the default** — a line under the current zone, until you pick your team's.
+- **Tips in the bot's status** — the line under the bot's name changes every ten minutes.
+- **The Other panel** closes with the footer, like every other page.
+
 ## 1.0.1 — Translations reviewed
 
 - **Spanish, Portuguese, French and German, reviewed in full** — one word for each feature, one tone throughout, and permission names as Discord shows them. Latin American Spanish now says *tú*, not *vos*.
