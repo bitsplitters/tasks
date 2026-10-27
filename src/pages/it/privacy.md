@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "Informativa sulla privacy"
 description: "Quali dati raccoglie il bot Discord Team Tasks Manager, perché e come vengono trattati."
-updated: "Ultimo aggiornamento: 22 ottobre 2026"
+updated: "Ultimo aggiornamento: 27 ottobre 2026"
 lang: it
 alt: /privacy/
 ---
@@ -70,9 +70,9 @@ Puoi richiedere la cancellazione in qualsiasi momento (vedi [GDPR](/it/gdpr/)); 
 Gestiamo un server Discord per gli utenti di TTM ([come entrare](/docs/community/)). Entrarci è facoltativo, ed è distinto dall'uso del bot: il bot non ne ha bisogno.
 
 - **Cosa vediamo.** Come in qualsiasi server Discord, i suoi amministratori e moderatori possono vedere il tuo nome utente Discord, l'avatar e il profilo come appaiono nel server, i ruoli che vi hai e i messaggi che pubblichi nei suoi canali. Non li copiamo da nessun'altra parte.
-- **Moderazione e ruoli.** Il server usa **MEE6**, un bot Discord di terze parti, per assegnare ruoli (per esempio il ruolo di membro dopo che hai accettato le regole) e per aiutare nella moderazione. MEE6 tratta i dati che gli servono a tale scopo in base alla propria informativa sulla privacy.
-- **Ticket di supporto.** Una richiesta di supporto può essere aperta come ticket: un canale privato visibile solo a te e allo staff, gestito da **Ticket Tool**, un altro bot Discord di terze parti. Quando un ticket viene chiuso, se ne conserva una **trascrizione** — una copia dei messaggi di quel ticket — così da poter dare seguito allo stesso problema. Le trascrizioni sono conservate per non più di **12 mesi**, e puoi chiederci di eliminare prima la tua.
-- **Base giuridica.** Il nostro legittimo interesse a gestire uno spazio di supporto e di discussione per il bot, e a mantenerlo sicuro (articolo 6, paragrafo 1, lettera f, del GDPR).
+- **Moderazione, ruoli e ticket.** Il server usa **MEE6**, un bot Discord di terze parti, per assegnare ruoli (per esempio il ruolo di membro dopo che hai accettato le regole), per aiutare nella moderazione e per gestire i ticket. MEE6 tratta i dati che gli servono a questi scopi in base alla propria informativa sulla privacy.
+- **Ticket.** Le candidature ad ambassador, le proposte di collaborazione e le richieste di supporto che hanno bisogno di riservatezza passano dai ticket: un canale privato visibile solo a te e allo staff. Quando un ticket viene chiuso, se ne conserva una **trascrizione** — una copia dei messaggi di quel ticket — così da poter dare seguito alla stessa richiesta. Le trascrizioni sono conservate per non più di **12 mesi**, e puoi chiederci di eliminare prima la tua.
+- **Base giuridica.** Il nostro legittimo interesse a gestire uno spazio di supporto e di discussione per il bot, a esaminare le candidature e le proposte che riceviamo lì, e a mantenerlo sicuro (articolo 6, paragrafo 1, lettera f, del GDPR).
 
 Discord resta il fornitore della piattaforma, e ciò che raccoglie è disciplinato dall'[Informativa sulla privacy di Discord](https://discord.com/privacy).
 

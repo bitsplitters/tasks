@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 22 October 2026"
+updated: "Last updated: 27 October 2026"
 lang: en
 alt: /it/privacy/
 ---
@@ -70,9 +70,9 @@ You can request deletion at any time (see [GDPR](/gdpr/)); we may also delete da
 We run a Discord server for TTM users ([how to join](/docs/community/)). Joining it is optional, and it is separate from using the bot: the bot does not need it.
 
 - **What we see.** As on any Discord server, its administrators and moderators can see your Discord username, avatar and profile as shown in the server, the roles you have there, and the messages you post in its channels. We do not copy them anywhere else.
-- **Moderation and roles.** The server uses **MEE6**, a third-party Discord bot, to give roles (for example the member role once you accept the rules) and to help moderate. MEE6 processes the data it needs for that under its own privacy policy.
-- **Support tickets.** A support request can be opened as a ticket: a private channel visible only to you and to the staff, managed by **Ticket Tool**, another third-party Discord bot. When a ticket is closed, a **transcript** — a copy of the messages in that ticket — is kept, so we can follow up on the same problem. Transcripts are kept for no longer than **12 months**, and you can ask us to delete yours earlier.
-- **Legal basis.** Our legitimate interest in running a support and discussion space for the bot, and in keeping it safe (Art. 6(1)(f) GDPR).
+- **Moderation, roles and tickets.** The server uses **MEE6**, a third-party Discord bot, to give roles (for example the member role once you accept the rules), to help moderate and to run tickets. MEE6 processes the data it needs for that under its own privacy policy.
+- **Tickets.** Ambassador applications, collaboration proposals and support requests that need privacy go through tickets: a private channel visible only to you and to the staff. When a ticket is closed, a **transcript** — a copy of the messages in that ticket — is kept, so we can follow up on the same request. Transcripts are kept for no longer than **12 months**, and you can ask us to delete yours earlier.
+- **Legal basis.** Our legitimate interest in running a support and discussion space for the bot, in reviewing the applications and proposals sent to us there, and in keeping it safe (Art. 6(1)(f) GDPR).
 
 Discord remains the provider of the platform, and what it collects is governed by [Discord's Privacy Policy](https://discord.com/privacy).
 
