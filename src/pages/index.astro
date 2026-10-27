@@ -13,13 +13,41 @@ const EMBED = previewCard(
   ],
   { url: abs('/screens/list-desktop.png'), alt: 'A Team Tasks Manager list in a Discord channel' },
 );
+
+// Title e descrizione sono quello che Google mostra nei risultati. Il nome da solo non dice né
+// «Discord» né «bot», e sono le parole con cui si cerca: le dicono loro (piano marketing, F4).
+const TITLE = 'Team Tasks Manager — Discord task list bot with reminders';
+const DESCRIPTION = 'Team Tasks Manager is a to-do list bot for Discord: shared task lists in your channels, with owners, tags and reminders by DM. Nothing to learn. Just click.';
+
+// Chi pubblica il sito, e il sito, per i motori di ricerca. Non `SoftwareApplication`: il risultato
+// arricchito di Google la vuole con valutazioni o recensioni, e non ne abbiamo.
+// `<` diventa < per la stessa ragione di PreviewMeta: il JSON sta dentro uno <script>.
+const JSON_LD = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'bitsplitters',
+    url: 'https://bitsplitters.app/',
+    logo: 'https://bitsplitters.app/brand/bs-icon.png',
+    email: 'info@bitsplitters.app',
+    sameAs: ['https://github.com/bitsplitters'],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Team Tasks Manager',
+    url: 'https://tasks.bitsplitters.app/',
+    publisher: { '@type': 'Organization', name: 'bitsplitters', url: 'https://bitsplitters.app/' },
+  },
+]).replace(/</g, '\\u003c');
 ---
-<Base title="Team Tasks Manager — team coordination, inside Discord" card="large" embed={EMBED}>
+<Base title={TITLE} description={DESCRIPTION} card="large" embed={EMBED}>
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON_LD} />
   <section class="hero wrap">
     <p class="eyebrow">Team Tasks Manager</p>
     <h1>Coordinate your team where it already talks.</h1>
     <p class="tagline">Nothing to learn. Just click.</p>
-    <p class="lede">Stop juggling Discord and a pile of external task tools. <strong>Team Tasks Manager</strong> brings shared checklists, reminders and roles right into your server &mdash; so attention stays in one place.</p>
+    <p class="lede">Stop juggling Discord and a pile of external task tools. <strong>Team Tasks Manager</strong> is a task list bot that brings shared checklists, reminders and roles right into your server &mdash; so attention stays in one place.</p>
     <div class="cta-row">
       <a class="btn" href="/invite">Add to Discord</a>
       <a class="btn-ghost" href="/docs/getting-started/">Get started &rarr;</a>
