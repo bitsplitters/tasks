@@ -3,8 +3,8 @@
 // cosa mostrare:
 // - previewCard: contenitore col colore del sito, testo con il logo a destra, un'immagine
 //   facoltativa, pulsanti. Per la home e le pagine della documentazione;
-// - bannerCard: contenitore col colore del sito, il banner in cima, testo, pulsanti. Per la pagina
-//   d'invito: è la forma della scheda di /invite del bot.
+// - bannerCard: contenitore col colore del bot, il banner in cima, testo, pulsanti. Per la pagina
+//   d'invito: è la forma della scheda di /invite del bot, barra verde compresa.
 // Regole e limiti: https://docs.discord.com/developers/link-previews/component-embeds
 
 // URL assoluti: Discord li vuole tali per immagini e pulsanti, e la scheda si apre fuori dal sito.
@@ -52,11 +52,13 @@ export function previewCard(text: string, links: Link[], picture?: Picture) {
   };
 }
 
-// La scheda col banner in cima e senza il logo, che il banner porta già.
+// La scheda col banner in cima e senza il logo, che il banner porta già. La barra è il verde del bot
+// (`embed.color` del bot, 30,199,133: la spunta del logo), come nella scheda di /invite del bot:
+// l'ambra è il colore del sito, non dell'invito.
 export function bannerCard(text: string, links: Link[]) {
   return {
     type: 17,
-    accent_color: 0xE9A44C,
+    accent_color: 0x1EC785,
     components: [
       { type: 12, items: [{ media: { url: abs(BANNER.path) }, description: BANNER.alt }] },
       { type: 10, content: text },

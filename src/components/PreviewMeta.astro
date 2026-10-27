@@ -48,6 +48,12 @@ if (embed) {
     throw new Error(`Component Embed di ${Astro.url.pathname}: ${bytes} byte, Discord ne accetta al massimo 3000`);
   }
 }
+
+// La barra della scheda Open Graph (theme-color) ha il colore della scheda a componenti, se la pagina
+// ne ha una: e' la scheda che Discord mostra quando scarta il JSON, e non deve cambiare colore.
+// Senza scheda a componenti, l'ambra del sito.
+const accent = embed?.accent_color;
+const themeColor = typeof accent === 'number' ? '#' + accent.toString(16).toUpperCase().padStart(6, '0') : '#E9A44C';
 ---
 <meta name="description" content={description} />
 <meta property="og:type" content="website" />
@@ -60,5 +66,5 @@ if (embed) {
 <meta property="og:image:height" content={String(image.height)} />
 <meta property="og:image:alt" content={image.alt} />
 <meta name="twitter:card" content={card === 'large' ? 'summary_large_image' : 'summary'} />
-<meta name="theme-color" content="#E9A44C" />
+<meta name="theme-color" content={themeColor} />
 {embedJson && <script is:inline id="discord:component-embed" type="application/json" set:html={embedJson} />}
