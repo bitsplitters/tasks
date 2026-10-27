@@ -14,7 +14,7 @@ Team Tasks Manager has an **official Discord community server**, published by bi
 - **Get help & support** — stuck on a setup, a permission or a webhook? Ask in the support channels and get an answer from us or another admin who's already been there.
 - **Report a bug** — found something off? Open a bug report so we can reproduce and fix it. Clear steps and a screenshot go a long way.
 - **Share feedback & request features** — tell us what would make TTM better for your team. A lot of the roadmap comes straight from these conversations.
-- **Follow announcements & roadmap** — see new releases and what's planned, all in one place.
+- **Follow announcements & roadmap** — see new releases and what's planned, all in one place. Want the announcements in your own server? Press **Follow** in #announcements and pick one of your channels: new posts land there by themselves. You need the *Manage Webhooks* permission in your server.
 - **Try features before they ship** — grab the 🔬 Insider role in the server to try new features in preview, before everyone else, and tell us what you think.
 - **Meet other teams** — swap tips with other server admins running shared checklists the same way you do.
 
