@@ -11,6 +11,10 @@ const it = lang === 'it';
 const legali = it
   ? [['/it/terms/', 'Termini'], ['/it/privacy/', 'Privacy'], ['/it/gdpr/', 'GDPR'], ['/it/license/', 'Licenza']]
   : [['/terms/', 'Terms'], ['/privacy/', 'Privacy'], ['/gdpr/', 'GDPR'], ['/license/', 'Licence']];
+// L'indirizzo canonico, lo stesso di og:url (PreviewMeta): senza query string, quindi un link con un
+// parametro (per esempio quello che dice da quale canale arriva chi legge) non diventa per Google una
+// seconda copia della pagina. /invite non passa da qui: ha il suo canonical, sull'URL OAuth2.
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -18,6 +22,7 @@ const legali = it
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
+  <link rel="canonical" href={canonical} />
   <PreviewMeta title={previewTitle ?? title} description={description} card={card} embed={embed} />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />

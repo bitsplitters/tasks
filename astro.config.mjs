@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
+import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
 
 // I link che portano FUORI dal sito si aprono in una scheda nuova; quelli interni no.
@@ -33,6 +34,16 @@ function rehypeNoTranslateCode() {
 
 export default defineConfig({
   site: 'https://tasks.bitsplitters.app',
+
+  // La mappa del sito per i motori di ricerca (sitemap-index.xml, citata da public/robots.txt).
+  // Fuori /invite: e' un rimando a Discord, con noindex e il canonical sull'URL OAuth2, e una pagina
+  // nella mappa che chiede di non essere indicizzata e' un segnale contraddittorio che Search Console
+  // riporta come errore.
+  integrations: [
+    sitemap({
+      filter: (page) => new URL(page).pathname !== '/invite/',
+    }),
+  ],
 
   // Il processore Markdown va dichiarato esplicitamente. Dalla 7 il default di Astro e' Satteri, e
   // `@astrojs/markdown-remark` non e' piu' installato d'ufficio: la vecchia forma
