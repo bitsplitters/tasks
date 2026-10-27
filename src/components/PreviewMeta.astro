@@ -8,7 +8,8 @@
 //
 // Due formati, scelti dalla pagina:
 // - `large`: l'immagine 1200x630 sotto il testo. Per le pagine che si condividono per far
-//   conoscere TTM (home, indice della documentazione, /invite).
+//   conoscere TTM (home, indice della documentazione, /invite). Di norma og/ttm-card.png; una
+//   pagina può passarne un'altra con `image`: /invite passa il banner.
 // - `small`: il logo in miniatura accanto al testo. Per le pagine della documentazione, che si
 //   incollano a raffica in una conversazione di supporto: dieci banner uguali uno sotto l'altro
 //   coprirebbero la conversazione senza dire niente di nuovo.
@@ -21,17 +22,19 @@ export interface Props {
   title: string;
   description?: string;
   card?: 'large' | 'small';
+  // L'immagine del formato `large` al posto di og/ttm-card.png.
+  image?: { path: string; width: number; height: number; alt: string };
   // Il Container (type 17) e i suoi componenti; questo file lo avvolge in `{ component: ... }`.
   embed?: Record<string, unknown>;
 }
 
 const DEFAULT_DESCRIPTION = 'Team Tasks Manager brings task coordination inside Discord: shared checklists, reminders and roles, without leaving your server.';
 
-const { title, description = DEFAULT_DESCRIPTION, card = 'small', embed } = Astro.props;
+const { title, description = DEFAULT_DESCRIPTION, card = 'small', image: largeImage, embed } = Astro.props;
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const image = card === 'large'
-  ? { path: '/og/ttm-card.png', width: 1200, height: 630, alt: 'Team Tasks Manager: coordinate your team where it already talks.' }
+  ? largeImage ?? { path: '/og/ttm-card.png', width: 1200, height: 630, alt: 'Team Tasks Manager: coordinate your team where it already talks.' }
   : { path: '/og/ttm-logo.png', width: 512, height: 512, alt: 'Team Tasks Manager logo' };
 
 // Discord ignora un payload oltre i 3.000 byte, contando gli escape per intero, e non lo segnala:

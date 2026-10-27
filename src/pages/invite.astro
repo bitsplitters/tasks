@@ -1,6 +1,6 @@
 ---
 import PreviewMeta from '../components/PreviewMeta.astro';
-import { PITCH, abs, previewCard } from '../lib/preview-card';
+import { BANNER, PITCH, abs, bannerCard } from '../lib/preview-card';
 
 // L'invito del bot vive QUI e in nessun altro posto.
 //
@@ -20,9 +20,10 @@ import { PITCH, abs, previewCard } from '../lib/preview-card';
 const INVITE = 'https://discord.com/api/oauth2/authorize?client_id=1531611457152618516&permissions=35165563904&scope=bot+applications.commands';
 
 // La scheda che Discord mostra quando qualcuno incolla questo indirizzo in chat (Component Embed,
-// vedi PreviewMeta). È il primo contatto con TTM di chi riceve l'invito: dice cosa fa e offre
-// l'invito con un clic. È l'unica scheda che punta all'URL OAuth2 diretto: le altre passano da qui.
-const EMBED = previewCard(PITCH, [
+// vedi PreviewMeta). È il primo contatto con TTM di chi riceve l'invito: il banner, cosa fa, e
+// l'invito con un clic, nella stessa forma della scheda di /invite del bot. È l'unica scheda che
+// punta all'URL OAuth2 diretto: le altre passano da qui.
+const EMBED = bannerCard(PITCH, [
   { label: 'Add to Discord', url: INVITE },
   { label: 'Docs', url: abs('/docs/') },
   { label: 'Support server', url: 'https://discord.gg/ec7j5YRc4R' },
@@ -34,7 +35,7 @@ const EMBED = previewCard(PITCH, [
     <meta charset="utf-8" />
     <title>Adding Team Tasks Manager to your server…</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <PreviewMeta title="Add Team Tasks Manager to your Discord server" card="large" embed={EMBED} />
+    <PreviewMeta title="Add Team Tasks Manager to your Discord server" card="large" image={BANNER} embed={EMBED} />
     <meta http-equiv="refresh" content={`0; url=${INVITE}`} />
     <link rel="canonical" href={INVITE} />
     <meta name="robots" content="noindex" />
