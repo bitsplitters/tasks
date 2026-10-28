@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "GDPR e i tuoi diritti sui dati"
 description: "Come Team Tasks Manager si conforma al Regolamento generale sulla protezione dei dati dell'Unione europea."
-updated: "Ultimo aggiornamento: 23 ottobre 2026"
+updated: "Ultimo aggiornamento: 28 ottobre 2026"
 lang: it
 alt: /gdpr/
 ---
@@ -53,6 +53,7 @@ Alcuni dati escono dal SEE attraverso servizi con sede negli **Stati Uniti**:
 
 - **Discord** — il bot funziona su Discord, quindi ciò che mostra nel tuo server passa da Discord, come tutto il resto che fai lì. Anche le segnalazioni di errore descritte nell'[Informativa sulla privacy](/it/privacy/#condivisione) vanno a un canale privato su Discord. Discord trasferisce i dati con le garanzie descritte nella [sua informativa sulla privacy](https://discord.com/privacy).
 - **GitHub** — ospita i nostri siti web, e riceve i dati tecnici di ogni visita. GitHub trasferisce i dati con le garanzie descritte nella [sua informativa sulla privacy](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+- **Cloudflare** — conta le visite dei nostri siti web (vedi [I nostri siti web](/it/privacy/#i-nostri-siti-web)). Cloudflare trasferisce i dati in base all'EU-U.S. Data Privacy Framework e, in subordine, alle clausole contrattuali tipo, come descritto nella [sua pagina sul GDPR](https://www.cloudflare.com/trust-hub/gdpr/).
 
 ## Reclami
 

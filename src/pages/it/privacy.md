@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "Informativa sulla privacy"
 description: "Quali dati raccoglie il bot Discord Team Tasks Manager, perché e come vengono trattati."
-updated: "Ultimo aggiornamento: 27 ottobre 2026"
+updated: "Ultimo aggiornamento: 28 ottobre 2026"
 lang: it
 alt: /privacy/
 ---
@@ -78,11 +78,12 @@ Discord resta il fornitore della piattaforma, e ciò che raccoglie è disciplina
 
 ## I nostri siti web
 
-I nostri siti web — bitsplitters.app, tasks.bitsplitters.app e timezones.bitsplitters.app — non usano cookie, né strumenti di analisi o di tracciamento, e non salvano nulla nel tuo browser.
+I nostri siti web — bitsplitters.app, tasks.bitsplitters.app e timezones.bitsplitters.app — non usano cookie e non salvano nulla nel tuo browser.
 
 - **Hosting.** Sono ospitati su **GitHub Pages**, un servizio di GitHub, Inc. (Stati Uniti). Come qualsiasi server web, GitHub registra dati tecnici di ogni visita, compreso il tuo indirizzo IP, per la sicurezza e per far funzionare il servizio. Vedi l'[Informativa sulla privacy di GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+- **Statistiche delle visite.** Per contare le visite e sapere quali siti ci mandano lettori, le nostre pagine caricano uno script di **Cloudflare Web Analytics**, un servizio di Cloudflare, Inc. (Stati Uniti). Per ogni pagina vista registra la pagina, il sito da cui arrivi, il paese, il browser, il sistema operativo e il tipo di dispositivo, e quanto ci ha messo la pagina a caricarsi. Non usa cookie, non salva nulla nel tuo browser e non ti identifica: noi vediamo solo totali, mai i singoli visitatori. Cloudflare riceve il tuo indirizzo IP con la richiesta, come qualsiasi server web, e non lo usa per riconoscerti. Vedi l'[informativa sulla privacy di Cloudflare](https://www.cloudflare.com/it-it/privacypolicy/).
 - **La mappa dei fusi orari.** La mappa di timezones.bitsplitters.app carica le sue immagini dai server di **OpenStreetMap**, che ricevono quindi il tuo indirizzo IP. Vedi l'[informativa sulla privacy della OpenStreetMap Foundation](https://osmfoundation.org/wiki/Privacy_Policy).
-- **Base giuridica.** Il nostro legittimo interesse a pubblicare la documentazione e gli strumenti che accompagnano il bot (articolo 6, paragrafo 1, lettera f, del GDPR).
+- **Base giuridica.** Il nostro legittimo interesse a pubblicare la documentazione e gli strumenti che accompagnano il bot, e a sapere in forma aggregata quante persone li leggono e da dove arrivano (articolo 6, paragrafo 1, lettera f, del GDPR).
 
 ## Sicurezza
 

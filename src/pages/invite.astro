@@ -1,17 +1,27 @@
 ---
 import PreviewMeta from '../components/PreviewMeta.astro';
+import Analytics from '../components/Analytics.astro';
 import { BANNER, PITCH, abs, bannerCard } from '../lib/preview-card';
 
 // L'invito del bot vive QUI e in nessun altro posto.
 //
-// Il sito è statico (GitHub Pages), quindi il rimando è un meta refresh più un link
-// cliccabile: senza JavaScript e senza server funziona comunque.
+// Il sito è statico (GitHub Pages), quindi il rimando lo fa la pagina stessa: in JavaScript, con
+// un meta refresh di riserva e un link cliccabile, così funziona anche senza JavaScript.
 //
 // Perché una pagina e non l'URL OAuth2 nei pulsanti: l'URL cambia — client id di un'app
 // diversa, maschera dei permessi rivista — e ogni pulsante sparso per il sito sarebbe una
 // copia da ricordarsi di aggiornare. Con /invite si cambia una riga. In più è un indirizzo
-// breve, dettabile a voce e condivisibile, e se un giorno servirà sapere quante volte viene
-// aperto basterà guardare le statistiche di questa pagina.
+// breve, dettabile a voce e condivisibile, e quante volte viene aperto lo dice il contatore delle
+// visite (Analytics, in fondo al body).
+//
+// Il rimando aspetta il contatore. Lo script di Cloudflare manda la visita all'evento `load`, e un
+// meta refresh a 0 secondi scatta proprio allora: le due richieste partono insieme, e se la pagina di
+// Discord arriva prima della risposta di Cloudflare il browser chiude questa pagina e tronca la
+// richiesta del contatore (provato con Playwright il 2026-10-28, con latenze simulate). Per questo il
+// rimando è in JavaScript, in fondo al body: parte appena il browser registra la risposta di
+// Cloudflare (Resource Timing), subito se lo script del contatore non si carica (un ad blocker), e
+// comunque al più 1,5 secondi dopo il caricamento. Il meta refresh resta, a 3 secondi, per chi non ha
+// JavaScript.
 //
 // La maschera 35165563904 è la stessa di `bot.invite` in app-properties.yaml e deve restare
 // un SOVRAINSIEME di TTMPermissions.requiredPermissions: se il gate chiede un permesso che
@@ -36,12 +46,24 @@ const EMBED = bannerCard(PITCH, [
     <title>Adding Team Tasks Manager to your server…</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <PreviewMeta title="Add Team Tasks Manager to your Discord server" card="large" image={BANNER} embed={EMBED} />
-    <meta http-equiv="refresh" content={`0; url=${INVITE}`} />
+    <meta http-equiv="refresh" content={`3; url=${INVITE}`} />
     <link rel="canonical" href={INVITE} />
     <meta name="robots" content="noindex" />
   </head>
   <body style="font-family: system-ui, sans-serif; padding: 3rem; line-height: 1.6;">
     <p>Taking you to Discord to add <strong>Team Tasks Manager</strong> to your server…</p>
     <p>If nothing happens, <a href={INVITE}>open the invite manually</a>.</p>
+    <Analytics />
+    <script is:inline define:vars={{ INVITE }}>
+      let partito = false;
+      const vai = () => { if (!partito) { partito = true; location.replace(INVITE); } };
+      try {
+        new PerformanceObserver((lista) => {
+          if (lista.getEntries().some((voce) => voce.name.includes('cloudflareinsights.com/cdn-cgi/rum'))) vai();
+        }).observe({ type: 'resource', buffered: true });
+      } catch (_) { /* senza Resource Timing decide il tempo massimo */ }
+      document.querySelector('script[data-cf-beacon]')?.addEventListener('error', vai);
+      addEventListener('load', () => setTimeout(vai, 1500));
+    </script>
   </body>
 </html>

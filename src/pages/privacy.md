@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 27 October 2026"
+updated: "Last updated: 28 October 2026"
 lang: en
 alt: /it/privacy/
 ---
@@ -78,11 +78,12 @@ Discord remains the provider of the platform, and what it collects is governed b
 
 ## Our websites
 
-Our websites — bitsplitters.app, tasks.bitsplitters.app and timezones.bitsplitters.app — use no cookies, no analytics and no trackers, and store nothing in your browser.
+Our websites — bitsplitters.app, tasks.bitsplitters.app and timezones.bitsplitters.app — use no cookies and store nothing in your browser.
 
 - **Hosting.** They are hosted on **GitHub Pages**, a service of GitHub, Inc. (United States). Like any web server, GitHub records technical data about each visit, including your IP address, for security and to run the service. See [GitHub's Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+- **Visit statistics.** To count visits and see which sites send people to us, our pages load a script from **Cloudflare Web Analytics**, a service of Cloudflare, Inc. (United States). For each page view it records the page, the site you came from, your country, browser, operating system and type of device, and how long the page took to load. It sets no cookies, stores nothing in your browser and does not identify you: we only see totals, never individual visitors. Cloudflare receives your IP address with the request, as any web server does, and does not use it to recognise you. See [Cloudflare's Privacy Policy](https://www.cloudflare.com/privacypolicy/).
 - **The time zone map.** The map on timezones.bitsplitters.app loads its images from **OpenStreetMap**'s servers, which therefore receive your IP address. See the [OpenStreetMap Foundation's privacy policy](https://osmfoundation.org/wiki/Privacy_Policy).
-- **Legal basis.** Our legitimate interest in publishing the documentation and the tools that go with the bot (Art. 6(1)(f) GDPR).
+- **Legal basis.** Our legitimate interest in publishing the documentation and the tools that go with the bot, and in knowing, in aggregate, how many people read them and where they come from (Art. 6(1)(f) GDPR).
 
 ## Security
 

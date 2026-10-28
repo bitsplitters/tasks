@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import PreviewMeta from '../components/PreviewMeta.astro';
+import Analytics from '../components/Analytics.astro';
 // `previewTitle`: il titolo della scheda di anteprima, quando quello della pagina porta gia' il nome
 // del sito, che la scheda mostra a parte (og:site_name). `card` ed `embed`: vedi PreviewMeta.
 export interface Props { title: string; description?: string; lang?: 'en' | 'it'; card?: 'large' | 'small'; previewTitle?: string; embed?: Record<string, unknown>; }
@@ -54,5 +55,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       </nav>
     </div>
   </footer>
+  <Analytics />
 </body>
 </html>

@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: "GDPR & Your Data Rights"
 description: How Team Tasks Manager complies with the EU General Data Protection Regulation.
-updated: "Last updated: 23 October 2026"
+updated: "Last updated: 28 October 2026"
 lang: en
 alt: /it/gdpr/
 ---
@@ -53,6 +53,7 @@ Some data leaves the EEA through services based in the **United States**:
 
 - **Discord** — the bot works on Discord, so what it shows in your server passes through Discord, as does everything else you do there. The error reports described in the [Privacy Policy](/privacy/#sharing) go to a private channel on Discord too. Discord transfers data under the safeguards set out in [its privacy policy](https://discord.com/privacy).
 - **GitHub** — it hosts our websites, and receives the technical data of each visit. GitHub transfers data under the safeguards set out in [its privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+- **Cloudflare** — it counts the visits to our websites (see [Our websites](/privacy/#our-websites)). Cloudflare transfers data under the EU-U.S. Data Privacy Framework, with the standard contractual clauses as a fallback, as set out on [its GDPR page](https://www.cloudflare.com/trust-hub/gdpr/).
 
 ## Complaints
 

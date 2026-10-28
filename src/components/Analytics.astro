@@ -1,0 +1,15 @@
+---
+// Il contatore delle visite: Cloudflare Web Analytics, senza cookie e senza niente salvato nel browser
+// (F6 del piano marketing). L'informativa lo dichiara in «Our websites» e la pagina GDPR tra i
+// trasferimenti verso gli Stati Uniti: chi toglie o cambia questo script cambia anche quelle frasi.
+//
+// Un solo sito di Web Analytics, `bitsplitters.app`, per tutti e tre i siti dell'org: Cloudflare
+// accetta lo snippet su ogni sottodominio, perché controlla l'hostname della pagina per suffisso, e
+// nella dashboard i siti si separano con la dimensione Host. Lo stesso token sta negli `index.html` di
+// timezones e di bitsplitters.github.io. Non è un segreto: chiunque lo legge nell'HTML della pagina.
+//
+// `is:inline` perché Astro non deve impacchettare lo script: va caricato da Cloudflare così com'è.
+// `type="module"` è la forma dello snippet che dà la dashboard, e parte a documento letto, come `defer`.
+const BEACON = JSON.stringify({ token: '8bd28aca9bb74eaba71cf835d832fef1' });
+---
+<script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={BEACON}></script>
