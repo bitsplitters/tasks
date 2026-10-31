@@ -47,7 +47,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   <slot />
   <footer class="site-foot">
     <div class="wrap foot-inner">
-      <span>&copy; 2026 <a href="https://bitsplitters.app">bitsplitters</a> &middot; Team Tasks Manager</span>
+      {/* Il badge e' il prezzo della scheda gratuita su Fazier, che lo cerca nel sito: si tiene. L'immagine
+          e' una copia locale (lo consente la loro guida), cosi' la pagina non chiama fazier.com. */}
+      <div class="foot-left">
+        <span>&copy; 2026 <a href="https://bitsplitters.app">bitsplitters</a> &middot; Team Tasks Manager</span>
+        <a class="foot-badge" href="https://fazier.com"><img src="/badges/fazier.svg" alt="Fazier badge" width="120" height="51" /></a>
+      </div>
       <nav class="foot-links">
         {legali.map(([href, testo]) => <a href={href}>{testo}</a>)}
         {it ? <a href="/terms/" lang="en">English</a> : <a href="/it/terms/" lang="it">Italiano</a>}
