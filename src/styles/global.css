@@ -115,7 +115,7 @@ section.block { padding: clamp(2.5rem, 7vh, 5rem) 0; }
 .board-info { margin-top: 1rem; padding: 1rem 1.2rem; border-radius: 10px; background: var(--ink); border: 1px solid var(--line); color: #C7CEDB; line-height: 1.6; min-height: 3rem; }
 .board-info b { color: var(--accent); }
 .site-foot { margin-top: auto; border-top: 1px solid var(--line); }
-.foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding: 1.5rem 0; font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+.foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-block: 1.5rem; font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 .foot-inner a { color: var(--muted); text-decoration: none; }
 .foot-inner a:hover { color: var(--accent); }
 .docs-shell { display: grid; grid-template-columns: 250px 1fr; gap: clamp(1.5rem, 4vw, 3rem); max-width: var(--wrap); margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 2.5rem) 4rem; width: 100%; }
