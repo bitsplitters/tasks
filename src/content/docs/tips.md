@@ -11,9 +11,9 @@ Open **More** <img class="inline-ic" src="/icons/other.png" alt="" /> and pick *
 
 If something in the file doesn't fit the new server, TTM creates nothing and lists every problem at once. What it checks: see [`/create-list`](/docs/commands/#create-list).
 
-## Skip the legend
+## Hide the tips
 
-If your team already knows how to write a list, switch off the `/create-list` legend in [Configuration](/docs/configuration/#create-list-legend). The command then opens the creation form straight away.
+If your team already knows how to write a list and what the buttons do, hide the **Tips** in [Configuration](/docs/configuration/#tips). `/create-list` then opens the creation form straight away, and lists end without the help line.
 
 ## Clone instead of rebuilding
 

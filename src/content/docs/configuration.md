@@ -34,9 +34,14 @@ When enabled, **every action on your lists is recorded in a dedicated thread**, 
 
 When enabled, TTM adds plain text alongside embeds, so your **mobile push notifications** are readable at a glance. Embeds alone often show up empty on a lock screen. On by default. Turning it off never stops a reminder: it arrives with just its card — or, for a role, just the mention.
 
-## `/create-list` legend
+## Tips
 
-Shows the explanatory legend when someone runs `/create-list` — handy while the team is learning the buttons, easy to switch off once everyone knows them. On by default, and only visible to whoever ran the command. With it off, `/create-list` opens the creation form straight away: one step fewer.
+Help for whoever is new to TTM, in two places:
+
+- when someone runs `/create-list`, a short explanation of how to write a list, only visible to whoever ran the command;
+- under every list, a small line that points to the guide in Discord: *Not sure what the buttons do? More → Guide*, with a link to [The task list panel](/docs/the-task-list/).
+
+On by default: handy while the team is learning the buttons, easy to switch off once everyone knows them. With tips hidden, `/create-list` opens the creation form straight away, one step fewer, and lists end without the line. A list picks up the change the next time it's updated. The [progress bar](/docs/the-task-list/#under-the-list) stays either way.
 
 ## Completed tasks dimmed
 

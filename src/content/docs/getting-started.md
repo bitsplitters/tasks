@@ -25,7 +25,7 @@ Type `/` in the message box and pick the command, or start typing its name:
 
 If your Discord is in another language, the command has a translated name: in Italian it is `/crea-lista`. Every name is in [Commands reference](/docs/commands/#command-names-in-your-language).
 
-TTM replies with a short legend on how to write a list and a **Create your list** button. Click it: a form opens with two fields, the **list title** and the **list of activities**. Write one activity per line, each starting with a dash `-`. For example, with the title *Saturday tournament*:
+TTM replies with a short explanation of how to write a list and a **Create your list** button. Click it: a form opens with two fields, the **list title** and the **list of activities**. Write one activity per line, each starting with a dash `-`. For example, with the title *Saturday tournament*:
 
 ```
 - Book the voice channels
@@ -73,5 +73,5 @@ Good to know before the first try:
 - [Reminders](/docs/reminders/) — repeating reminders, time zones, editing and removing.
 - [Core concepts](/docs/core-concepts/) — owners, tags, groups and permissions.
 - [Tips & tricks](/docs/tips/) — small habits that save time, like reusing a list on another server.
-- [Configuration](/docs/configuration/) — notifications, the legend, time zone and more.
+- [Configuration](/docs/configuration/) — notifications, the tips, time zone and more.
 - [Something not working?](/docs/troubleshooting/) — quick answers to the most common problems.

@@ -7,6 +7,12 @@ order: 3
 
 Once a list exists, TTM shows a **check selector** and **two rows of buttons** beneath it. This panel is the heart of the app: almost nothing here needs a command, you just click.
 
+## Under the list
+
+The list ends with a thin **progress bar**: the share of ticked boxes, tasks and subtasks alike, in steps of 5%. It moves as soon as one box is ticked, and it is full only when every box is. A sealed list keeps it, showing where the list ended.
+
+Above the bar, a small line helps whoever is new: *Not sure what the buttons do? More → Guide*. **Guide**, in [More](#whats-inside-more), explains every button without leaving Discord. If your team doesn't need it, hide the **Tips** in [Configuration](/docs/configuration/#tips): the line goes, the bar stays.
+
 ## The check selector
 
 Above the buttons sits the **check selector**: the drop-down menu that shows the list's title. A list with more than 25 tasks has two menus, each labelled with the position of its last task. Use it to:

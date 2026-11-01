@@ -28,7 +28,7 @@ Reminders whose alerts are all in the past are not a problem: they come back on 
 
 ## `/config app`
 
-Open the settings panel of your server: notifications, the activity timeline, the `/create-list` legend, recurring reminders, time zone, permissions and more.
+Open the settings panel of your server: notifications, the activity timeline, the tips for newcomers, recurring reminders, time zone, permissions and more.
 
 → See [/config app](/docs/configuration/).
 

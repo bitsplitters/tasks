@@ -9,7 +9,7 @@ order: 0.5
 
 | Subcommand | What it's for |
 | :--- | :--- |
-| [`/config app`](/docs/configuration/) | How the bot behaves here: notifications, history, the `/create-list` legend, reminders, time zone and permissions. |
+| [`/config app`](/docs/configuration/) | How the bot behaves here: notifications, history, the tips for newcomers, reminders, time zone and permissions. |
 | [`/config lists`](/docs/config-lists/) | Every list of the server: regenerate a deleted one, seal or delete the ones you are done with. |
 | [`/config webhook`](/docs/webhooks/) | Create, view, modify or delete the webhooks your tasks call when they are completed or reopened. |
 
