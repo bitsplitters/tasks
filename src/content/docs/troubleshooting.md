@@ -21,13 +21,13 @@ Check these points, in this order:
 
 - **A button in the second row is blue or red.** Click it until it turns grey. While a button is active, picking a task applies that button's action. See [The check selector](/docs/the-task-list/#the-check-selector).
 - **The task has an owner.** Only the owner, the members of the owner role and whoever has *Manage messages* on the channel can tick it. See [The check selector](/docs/the-task-list/#the-check-selector).
-- **The menu is disabled.** Someone is editing the list, so it is locked: see [The list is locked](#the-list-is-locked) below.
+- **The menu is disabled.** Someone is editing the list, so it is locked: see [I pressed Cancel and the list stays locked](#i-pressed-cancel-and-the-list-stays-locked) below.
 - **The bot says *You're not allowed to use this feature on this server*.** Your server has synced its permissions, and the list is read-only for you. Ask an admin, and see [Sync permissions](/docs/configuration/#sync-permissions).
 - **The beta is over and your server is on the Free plan.** When all the places of your plan are taken, a list outside them refuses the tick. A list created during the beta is the exception: its tasks can still be ticked. See [How the three places work](/docs/premium/#how-the-three-places-work) and [What a beta list keeps](/docs/beta/#what-a-beta-list-keeps).
 
-### The list is locked
+### I pressed Cancel and the list stays locked
 
-TTM locks a list while someone edits it, for example with **Bulk update** or a reminder form. The list also stays locked when someone closes a form with the ✕, because Discord doesn't tell the bot. Anyone can unlock it: open **More** under the list and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
+TTM locks a list while someone edits it: in **Bulk update**, in the form of a task's text and in a reminder form. Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot that the form was closed. Anyone can unlock the list: open **More** under the list and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 
 ### My tags or owner didn't save
 
