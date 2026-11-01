@@ -26,6 +26,8 @@ Controls how much notification noise the bot leaves in the channel when tasks ar
 | Keep all | Never delete notifications. |
 | Disabled | Don't post task-selection notifications at all. |
 
+When a tick completes the whole list, its notification says **List completed** under who ticked it, and so does the [history thread](#history-tracking).
+
 ## History tracking
 
 When enabled, **every action on your lists is recorded in a dedicated thread**, giving you an audit trail of who did what and when. Off by default.

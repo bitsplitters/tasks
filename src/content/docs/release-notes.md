@@ -7,6 +7,15 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 1.2.0 — Tips, progress bar, list completed
+
+- **The task menu tells you what comes next** — while a task button is blue or red, the menu above the buttons shows the action, such as *Edit content* or *Delete task*: pick the task there. With every button grey it shows the list title again. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task).
+- **Tips under every list** — a small last line points to **Guide**, in **More**, and to this site. The legend setting of `/config app` is now called **Tips**, and switches off both the line and the explanation shown by `/create-list`: see [Tips](/docs/configuration/#tips).
+- **A progress bar** — a thin green bar at the bottom of every list, in steps of 5%. It is full only when every box is ticked, and a sealed list keeps it: see [Under the list](/docs/the-task-list/#under-the-list).
+- **List completed** — the tick that completes a list says so in its notification and in the history thread: see [Notification mode](/docs/configuration/#notification-mode).
+- **The Guide** says what to do after pressing a task button: pick the task from the menu.
+- **More** starts with **Guide** and **Download**, then **Seal list** and **Delete list**. On a locked list, **Unlock list** stays at the top: see [What's inside More](/docs/the-task-list/#whats-inside-more).
+
 ## 1.1.0 — Invite card, welcome message, tips in the status
 
 - **`/invite`** — a public card with the logo, what the bot does and how to start (the same presentation as its App Directory page) and three buttons: add it to another server (Discord's authorization page, straight from the bot), the guide, the support server. Same name in every language: see [Commands](/docs/commands/).
