@@ -7,6 +7,11 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 1.3.0 — Space around groups
+
+- **Space around groups** — a new option of `/config app`: switch it off and your lists lose the blank lines above and below the tasks that have subtasks, for a more compact list. On by default: see [Space around groups](/docs/configuration/#space-around-groups).
+- **List appearance is one dropdown** — **Tips**, **Completed tasks dimmed** and **Space around groups** are now options of the same dropdown in `/config app`: tick the ones you want on. See [List appearance](/docs/configuration/#list-appearance).
+
 ## 1.2.1 — Tick a task
 
 - **The task menu says *Tick a task*** — with every task button grey, the menu above the buttons says what it is for, instead of showing the list title. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task).

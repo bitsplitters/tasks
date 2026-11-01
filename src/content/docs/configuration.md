@@ -11,7 +11,7 @@ Run the command:
 /config app
 ```
 
-TTM opens a private panel with a summary of your current settings, seven dropdowns and two buttons. Nothing here is permanent — change it whenever your team's needs change.
+TTM opens a private panel with a summary of your current settings, six dropdowns and two buttons. Nothing here is permanent — change it whenever your team's needs change.
 
 By default, only members with the *Manage Server* permission can use `/config app`, like the rest of `/config`. See [Who can open /config](/docs/config/#who-can-open-config).
 
@@ -36,7 +36,11 @@ When enabled, **every action on your lists is recorded in a dedicated thread**, 
 
 When enabled, TTM adds plain text alongside embeds, so your **mobile push notifications** are readable at a glance. Embeds alone often show up empty on a lock screen. On by default. Turning it off never stops a reminder: it arrives with just its card — or, for a role, just the mention.
 
-## Tips
+## List appearance
+
+One dropdown with three options: **Tips**, **Completed tasks dimmed** and **Space around groups**. Tick the ones you want on: you can tick all three, some, or none. A list picks up the change the next time it's updated.
+
+### Tips
 
 Help for whoever is new to TTM, in two places:
 
@@ -45,9 +49,13 @@ Help for whoever is new to TTM, in two places:
 
 On by default: handy while the team is learning the buttons, easy to switch off once everyone knows them. With tips hidden, `/create-list` opens the creation form straight away, one step fewer, and lists end without the line. A list picks up the change the next time it's updated. The [progress bar](/docs/the-task-list/#under-the-list) stays either way.
 
-## Completed tasks dimmed
+### Completed tasks dimmed
 
 Shows every completed task in Discord's smaller, grey text, so what is still to do stands out. On by default; switch it off to show completed tasks like all the others. A list picks up the change the next time it's updated.
+
+### Space around groups
+
+Puts a blank line above and below every task that has subtasks, so each group stands apart from the rest of the list. On by default; switch it off for a more compact list. It changes only the list itself: notifications stay as they are. Discord has no thinner blank line for a list, so the choice is between a full line and none.
 
 ## Behavior on selection
 
