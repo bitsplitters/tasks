@@ -35,7 +35,7 @@ These buttons never touch a single task: they act on the **entire list**.
 | <span class="dchip is-blue" role="img" aria-label="Bulk update button, blue"><img src="/icons/edit.png" alt="" /></span> | **Bulk update** | Edit the title and the whole list in one form: the fastest way to change two or more tasks. While you edit, the list is locked. |
 | <span class="dchip is-blue" role="img" aria-label="Clean list button, blue"><img src="/icons/clean.png" alt="" /></span> | **Clean list** | Remove every completed task, after a confirmation. |
 | <span class="dchip is-blue" role="img" aria-label="Reopen all button, blue"><img src="/icons/reopen.png" alt="" /></span> | **Reopen all** | Bring every completed task back to to-do. You can also move their reminders to a new date. |
-| <span class="dchip is-blue" role="img" aria-label="More button, blue"><img src="/icons/other.png" alt="" /></span> | **More** | Open a panel with the actions you need less often: seal, delete or download the list, and the in-Discord guide. When the list is locked, you unlock it here. |
+| <span class="dchip is-blue" role="img" aria-label="More button, blue"><img src="/icons/other.png" alt="" /></span> | **More** | Open a panel with the actions you need less often: the in-Discord guide, and download, seal or delete the list. When the list is locked, you unlock it here. |
 
 ### Clean list
 
@@ -65,12 +65,12 @@ If someone locks or seals the list before you confirm, nothing changes: see [Whe
 Discord allows five buttons per row, so the actions you need less often sit in a panel that only you can see:
 
 - <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list** — only while the list is locked. It shows who is editing, and turns the list's buttons back on for everyone. See [When the list is locked](#when-the-list-is-locked).
+- <img class="inline-ic" src="/icons/doc.png" alt="" /> **Guide** — the quick in-Discord guide, with a link back to this documentation.
+- <img class="inline-ic" src="/icons/download.png" alt="" /> **Download** — a `.txt` file of the list, written as in the Bulk update form and sent **only to you**. Keep it as a backup, or rebuild the list from it with `/create-list`, even on another server: see [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
 - <img class="inline-ic" src="/icons/seal.png" alt="" /> **Seal list** — keeps a finished list in the channel as a record, marked *Sealed list*, without buttons or menus. Its reminders stop, and it frees a [place on your plan](/docs/premium/#how-the-three-places-work). What stays and what goes: [Seal](/docs/config-lists/#seal).
 - <img class="inline-ic" src="/icons/delete.png" alt="" /> **Delete list** — deletes the list **permanently**, with its tasks, owners, tags and reminders. The message is removed, and a short receipt takes its place in the channel.
-- <img class="inline-ic" src="/icons/download.png" alt="" /> **Download** — a `.txt` file of the list, written as in the Bulk update form and sent **only to you**. Keep it as a backup, or rebuild the list from it with `/create-list`, even on another server: see [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
-- <img class="inline-ic" src="/icons/doc.png" alt="" /> **Guide** — the quick in-Discord guide, with a link back to this documentation.
 
-Sealing and deleting can't be undone, and the bot asks you to confirm first. Both need *Manage messages* on the channel: the same permission that lets you delete the list's message by hand. Without it, those two entries aren't there. Download and Guide are there for everyone, and so is Unlock list when the list is locked.
+Sealing and deleting can't be undone, and the bot asks you to confirm first. Both need *Manage messages* on the channel: the same permission that lets you delete the list's message by hand. Without it, those two entries aren't there. Guide and Download are there for everyone, and so is Unlock list when the list is locked.
 
 While the list is locked, Seal list and Delete list aren't there. Whoever is editing would save onto a list that no longer exists.
 
@@ -97,7 +97,7 @@ Each button in the second row is a **three-state switch**. Click it to cycle thr
 - <span class="c-blue">Blue</span> — active in <span class="c-blue">edit</span> mode.
 - <span class="c-red">Red</span> — active in <span class="c-red">delete</span> mode.
 
-The workflow is always the same: **turn a button blue or red, then pick the task** in the check selector. TTM applies the action to that task.
+The workflow is always the same: **turn a button blue or red, then pick the task** in the check selector. TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit content* or *Delete task*; with every button grey, it shows the list title.
 
 | Button | Function | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :---: | :--- | :--- | :--- |
