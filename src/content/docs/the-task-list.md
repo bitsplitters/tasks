@@ -103,7 +103,7 @@ Each button in the second row is a **three-state switch**. Click it to cycle thr
 - <span class="c-blue">Blue</span> — active in <span class="c-blue">edit</span> mode.
 - <span class="c-red">Red</span> — active in <span class="c-red">delete</span> mode.
 
-The workflow is always the same: **turn a button blue or red, then pick the task** in the check selector. TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit content* or *Delete task*; with every button grey, it shows the list title.
+The workflow is always the same: **turn a button blue or red, then pick the task** in the check selector. TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button grey, it shows the list title.
 
 | Button | Function | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :---: | :--- | :--- | :--- |

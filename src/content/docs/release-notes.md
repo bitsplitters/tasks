@@ -9,7 +9,7 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 1.2.0 — Tips, progress bar, list completed
 
-- **The task menu tells you what comes next** — while a task button is blue or red, the menu above the buttons shows the action, such as *Edit content* or *Delete task*: pick the task there. With every button grey it shows the list title again. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task).
+- **The task menu tells you what comes next** — while a task button is blue or red, the menu above the buttons shows the action, such as *Edit task* or *Delete task*: pick the task there. With every button grey it shows the list title again. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task).
 - **Tips under every list** — a small last line points to **Guide**, in **More**, and to this site. The legend setting of `/config app` is now called **Tips**, and switches off both the line and the explanation shown by `/create-list`: see [Tips](/docs/configuration/#tips).
 - **A progress bar** — a thin green bar at the bottom of every list, in steps of 5%. It is full only when every box is ticked, and a sealed list keeps it: see [Under the list](/docs/the-task-list/#under-the-list).
 - **List completed** — the tick that completes a list says so in its notification and in the history thread: see [Notification mode](/docs/configuration/#notification-mode).
