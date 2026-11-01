@@ -103,7 +103,7 @@ Each button in the second row is a **three-state switch**. Click it to cycle thr
 - <span class="c-blue">Blue</span> — active in <span class="c-blue">edit</span> mode.
 - <span class="c-red">Red</span> — active in <span class="c-red">delete</span> mode.
 
-The workflow is always the same: **turn a button blue or red, then pick the task** in the check selector. TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button grey, it shows the list title.
+The workflow is always the same: **turn a button blue or red, then pick the task** in the check selector. TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button grey, it says *Tick a task*: pick a task there to tick or untick it.
 
 | Button | Function | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :---: | :--- | :--- | :--- |
@@ -140,7 +140,7 @@ For everyone else, these turn off: the check selector, **Bulk update**, **Clean 
 
 Locking the list also turns **Owner**, **Tag** and **Webhook** back to grey if one of them was on: open it again from its button when you need it.
 
-Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot. Then anyone can unlock the list: open **More** and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**.
+Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot: **Bulk update** and the form of a task's text say so in their last line. Then anyone can unlock the list: open **More** and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**.
 
 An admin can still seal, delete or regenerate a locked list from [`/config lists`](/docs/config-lists/). If that happens while you are editing, your change isn't saved. The bot tells you, and gives you back the text you wrote.
 

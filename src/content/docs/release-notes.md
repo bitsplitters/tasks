@@ -7,6 +7,11 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 1.2.1 — Tick a task
+
+- **The task menu says *Tick a task*** — with every task button grey, the menu above the buttons says what it is for, instead of showing the list title. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task).
+- **The forms that lock the list say how to unlock it** — **Bulk update** and the form of a task's text end with a line: closing them with **Cancel** or the ✕ leaves the list locked, and **More → Unlock list** unlocks it. See [I pressed Cancel and the list stays locked](/docs/troubleshooting/#i-pressed-cancel-and-the-list-stays-locked).
+
 ## 1.2.0 — Tips, progress bar, list completed
 
 - **The task menu tells you what comes next** — while a task button is blue or red, the menu above the buttons shows the action, such as *Edit task* or *Delete task*: pick the task there. With every button grey it shows the list title again. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task).
