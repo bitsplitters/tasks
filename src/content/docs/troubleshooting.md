@@ -19,7 +19,7 @@ Discord shows each command in the language of your Discord app. In Italian, the 
 
 Check these points, in this order:
 
-- **A button in the second row is blue or red.** Click it until it turns grey. While a button is active, picking a task applies that button's action. See [The check selector](/docs/the-task-list/#the-check-selector).
+- **A button in the second row is blue or red.** Click it until it's off. While a button is active, picking a task applies that button's action. See [The check selector](/docs/the-task-list/#the-check-selector).
 - **The task has an owner.** Only the owner, the members of the owner role and whoever has *Manage messages* on the channel can tick it. See [The check selector](/docs/the-task-list/#the-check-selector).
 - **The menu is disabled.** Someone is editing the list, so it is locked: see [I pressed Cancel and the list stays locked](#i-pressed-cancel-and-the-list-stays-locked) below.
 - **The bot says *You're not allowed to use this feature on this server*.** Your server has synced its permissions, and the list is read-only for you. Ask an admin, and see [Sync permissions](/docs/configuration/#sync-permissions).

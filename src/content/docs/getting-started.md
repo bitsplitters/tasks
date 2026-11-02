@@ -53,7 +53,7 @@ Submit the form, and the list appears in the channel. Here is the same list afte
 
 Under the list there is the **check selector**, a drop-down menu that shows the list's title, and two rows of buttons. Open the menu and pick a task: its box changes from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it. Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.
 
-<div class="callout"><div class="callout-t">Can't tick a task?</div>Every button in the second row must be <strong>grey</strong>: if one is blue or red, picking a task applies that button's action instead. And a task with an owner can be ticked only by its owner, and by whoever has <em>Manage messages</em> on the channel.</div>
+<div class="callout"><div class="callout-t">Can't tick a task?</div>Every button in the second row must be <strong>off</strong>: if one is blue or red, picking a task applies that button's action instead. And a task with an owner can be ticked only by its owner, and by whoever has <em>Manage messages</em> on the channel.</div>
 
 ## 4. Set a reminder
 

@@ -23,7 +23,7 @@ Each row has a single button that cycles every time you press it:
 
 | State | Meaning |
 | :---: | :--- |
-| <span class="dchip is-grey" role="img" aria-label="Grey button"><img src="/icons/noaction.png" alt="" /></span> | nothing happens to this list |
+| <span class="dchip is-grey" role="img" aria-label="Grey button"><img src="/icons/noaction.png" alt="" /></span> | no action |
 | <span class="dchip is-blue" role="img" aria-label="Blue button"><img src="/icons/refresh.png" alt="" /></span> | **regenerate** it |
 | <span class="dchip is-green" role="img" aria-label="Green button"><img src="/icons/seal.png" alt="" /></span> | **seal** it |
 | <span class="dchip is-red" role="img" aria-label="Red button"><img src="/icons/delete.png" alt="" /></span> | **delete** it |

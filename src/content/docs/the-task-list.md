@@ -29,7 +29,7 @@ Ticking or unticking a group does the same to its subtasks. Completing all its s
 
 Anyone else gets a refusal that only they can see, and nothing changes. The rule covers subtasks too: you can't tick or untick a group if that changes a subtask that belongs to someone else. Anyone who can use the list can tick a task without an owner.
 
-<div class="callout"><div class="callout-t">Keep the task buttons grey</div>To tick or untick tasks, <strong>every button in the second row must be grey</strong> (off). If any task button is active (blue or red), picking a task applies that action instead of ticking it.</div>
+<div class="callout"><div class="callout-t">Keep the task buttons off</div>To tick or untick tasks, <strong>every button in the second row must be off</strong>. If any task button is active (blue or red), picking a task applies that action instead of ticking it.</div>
 
 ## Row 1 — acts on the whole list
 
@@ -103,7 +103,7 @@ Each button in the second row is a **three-state switch**. Click it to cycle thr
 - <span class="c-blue">Blue</span> — active in <span class="c-blue">edit</span> mode.
 - <span class="c-red">Red</span> — active in <span class="c-red">delete</span> mode.
 
-The workflow is always the same: **turn a button blue or red, then pick the task** in the check selector. TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button grey, it says *Tick a task*: pick a task there to tick or untick it.
+The workflow is always the same: **turn a button blue or red, then pick the task** in the check selector. TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button off, it says *Tick a task*: pick a task there to tick or untick it.
 
 | Button | Function | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :---: | :--- | :--- | :--- |
@@ -138,7 +138,7 @@ TTM locks the list while someone edits it:
 
 For everyone else, these turn off: the check selector, **Bulk update**, **Clean list**, **Reopen all** and the task buttons. **Clone list** and **More** stay on. **More** shows who is editing, and a locked list can't be sealed or deleted from there.
 
-Locking the list also turns **Owner**, **Tag** and **Webhook** back to grey if one of them was on: open it again from its button when you need it.
+Locking the list also turns **Owner**, **Tag** and **Webhook** off if one of them was on: open it again from its button when you need it.
 
 Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot: **Bulk update** and the form of a task's text say so in their last line. Then anyone can unlock the list: open **More** and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**.
 
