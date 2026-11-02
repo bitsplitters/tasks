@@ -11,7 +11,7 @@ Once a list exists, TTM shows a **check selector** and **two rows of buttons** b
 
 The list ends with a thin **progress bar**: the share of ticked boxes, tasks and subtasks alike, in steps of 5%. It moves as soon as one box is ticked, and it is full only when every box is. A sealed list keeps it, showing where the list ended.
 
-Above the bar, a small line helps whoever is new: *Not sure what the buttons do? More → Guide*. **Guide**, in [More](#whats-inside-more), explains every button without leaving Discord. If your team doesn't need it, hide the **Tips** in [Configuration](/docs/configuration/#tips): the line goes, the bar stays.
+Above the bar, a small line helps whoever is new: *Not sure what the buttons do? More → Guide*. **Guide**, in [More](#whats-inside-more), explains every button without leaving Discord. If your team doesn't need it, hide the **Tips** in [Configuration](/docs/configuration/#tips): the line goes, the bar stays. While the list is locked, the same line says who is editing it and how to unlock it, even with the Tips hidden: see [When the list is locked](#when-the-list-is-locked).
 
 ## The check selector
 
@@ -137,6 +137,8 @@ TTM locks the list while someone edits it:
 - in a reminder form.
 
 For everyone else, these turn off: the check selector, **Bulk update**, **Clean list**, **Reopen all** and the task buttons. **Clone list** and **More** stay on. **More** shows who is editing, and a locked list can't be sealed or deleted from there.
+
+The last line of the list says it too: *🔒 @name is editing this list. Stuck? More → Unlock list*. It takes the place of the Tips line, and it shows even when your server hides the Tips. The mention shows the name and doesn't notify anyone. When the list is unlocked, the Tips line comes back, if your server shows it.
 
 Locking the list also turns **Owner**, **Tag** and **Webhook** off if one of them was on: open it again from its button when you need it.
 

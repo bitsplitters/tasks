@@ -27,7 +27,7 @@ Check these points, in this order:
 
 ### I pressed Cancel and the list stays locked
 
-TTM locks a list while someone edits it: in **Bulk update**, in the form of a task's text and in a reminder form. Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot that the form was closed. Anyone can unlock the list: open **More** under the list and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
+TTM locks a list while someone edits it: in **Bulk update**, in the form of a task's text and in a reminder form. Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot that the form was closed. The last line of the list says who locked it. Anyone can unlock the list: open **More** under the list and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 
 ### My tags or owner didn't save
 
