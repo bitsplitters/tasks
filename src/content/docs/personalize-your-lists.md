@@ -80,6 +80,19 @@ The target doesn't have to be a web page. `mailto:`, `tel:` and `sms:` links wor
 
 A link can also point to **another list**: right-click its message → **Copy Message Link** and paste it inside the brackets. Message links are left as they are — only plain channel links get shortened to a `#channel` tag.
 
+## Button emoji
+
+A task can show the emoji of a list button, as the lessons of the [Tutorial](/docs/getting-started/#2-create-your-first-list) do. In **Bulk update**, in the form of a task's text and in the **Download** file, these emoji don't show as a long code but as a short name:
+
+| Name | Button |
+| :--- | :--- |
+| `:owner:` | <img class="inline-ic" src="/icons/owner_blue.png" alt="" /> **Owner** |
+| `:reminder:` | <img class="inline-ic" src="/icons/alert_blue.png" alt="" /> **Reminder** |
+| `:content:` | <img class="inline-ic" src="/icons/task_blue.png" alt="" /> **Content** |
+| `:more:` | <img class="inline-ic" src="/icons/other_blue.png" alt="" /> **More** |
+
+Leave a name where it is and the emoji stays. Write one yourself, in lowercase, and the list shows the button's emoji: handy when a task says which button to press. Any other word between colons stays as you wrote it.
+
 ## Quick reference
 
 | You want | You write | It shows |
@@ -91,6 +104,7 @@ A link can also point to **another list**: right-click its message → **Copy Me
 | Add a link | `[text](https://url)` | text |
 | Link an email address | `[text](mailto:name@example.com)` | text |
 | Link a phone number | `[text](tel:+12025550100)` | text |
+| Show a button's emoji | `:owner:`, `:reminder:`, `:content:`, `:more:` | the button's emoji |
 
 ## Putting it together
 
