@@ -11,7 +11,7 @@ If your Discord is in another language, some names are translated: see [Command 
 
 ## `/create-list`
 
-Create a task list. TTM checks that it has the permissions it needs in the channel, then posts the list with its button panel. This is the command you'll use most.
+Create a task list. TTM checks that it has the permissions it needs in the channel, then posts the list with its button panel. This is the command you'll use most. With [Tips](/docs/configuration/#tips) on, it also offers a **Tutorial**: a practice list that teaches the buttons (see [Getting started](/docs/getting-started/#2-create-your-first-list)).
 
 The command has one option, **`file`**, and you can leave it out. Attach the `.txt` file that a list's **Download** gives you: it is named after the list, and it can come from another server. TTM then rebuilds the list from the file instead of opening the creation form. The list comes back with its tasks and their state, owners, tags, reminders and webhooks. Like any new list, it needs a free place on your plan (see [How the three places work](/docs/premium/#how-the-three-places-work)).
 

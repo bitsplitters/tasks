@@ -49,6 +49,8 @@ Submit the form, and the list appears in the channel. Here is the same list afte
   <img src="/screens/list-desktop.png" width="424" height="371" loading="lazy" alt="The Saturday tournament list in Discord: six numbered tasks with checkboxes. The first is ticked and greyed out; Prepare the brackets has two subtasks and an owner; Stream the final has an owner and a reminder date. Below the list are the drop-down menu, showing the list's title, and two rows of buttons." />
 </picture>
 
+Rather learn by doing? Next to **Create your list** there's a **Tutorial** button <img class="inline-ic" src="/icons/start.png" alt="" />: it turns the explanation into a practice list of six lessons, in your language, and sends you a map of the buttons that only you can see. Each task asks you to do something to itself: tick it, give it an owner and a reminder, change its text, delete it. The practice list is a normal list: like any new list, it needs a free place on your plan (see [How the three places work](/docs/premium/#how-the-three-places-work)), and you can delete it from **More** → **Delete list** when you're done.
+
 ## 3. Tick a task
 
 Under the list there is the **check selector**, a drop-down menu that shows the list's title, and two rows of buttons. Open the menu and pick a task: its box changes from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it. Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.

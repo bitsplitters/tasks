@@ -13,7 +13,7 @@ If something in the file doesn't fit the new server, TTM creates nothing and lis
 
 ## Hide the tips
 
-If your team already knows how to write a list and what the buttons do, hide the **Tips** in [Configuration](/docs/configuration/#tips). `/create-list` then opens the creation form straight away, and lists end without the help line.
+If your team already knows how to write a list and what the buttons do, hide the **Tips** in [Configuration](/docs/configuration/#tips). `/create-list` then opens the creation form straight away, without the **Tutorial**, and lists end without the help line.
 
 ## Clone instead of rebuilding
 

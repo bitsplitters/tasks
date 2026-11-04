@@ -44,10 +44,10 @@ One dropdown with three options: **Tips**, **Completed tasks dimmed** and **Spac
 
 Help for whoever is new to TTM, in two places:
 
-- when someone runs `/create-list`, a short explanation of how to write a list, only visible to whoever ran the command;
+- when someone runs `/create-list`, a short explanation of how to write a list, with the **Create your list** and **Tutorial** buttons: the new list takes the place of the explanation;
 - under every list, a small line that points to the guide in Discord: *Not sure what the buttons do? More → Guide*, with a link to [The task list panel](/docs/the-task-list/).
 
-On by default: handy while the team is learning the buttons, easy to switch off once everyone knows them. With tips hidden, `/create-list` opens the creation form straight away, one step fewer, and lists end without the line. A list picks up the change the next time it's updated. A locked list still ends with a line that says who is editing it: see [When the list is locked](/docs/the-task-list/#when-the-list-is-locked). The [progress bar](/docs/the-task-list/#under-the-list) stays either way.
+On by default: handy while the team is learning the buttons, easy to switch off once everyone knows them. With tips hidden, `/create-list` opens the creation form straight away, one step fewer, and lists end without the line. Turning Tips off also removes the **Tutorial** button, which lives in the same explanation: see [Getting started](/docs/getting-started/#2-create-your-first-list). A list picks up the change the next time it's updated. A locked list still ends with a line that says who is editing it: see [When the list is locked](/docs/the-task-list/#when-the-list-is-locked). The [progress bar](/docs/the-task-list/#under-the-list) stays either way.
 
 ### Completed tasks dimmed
 
