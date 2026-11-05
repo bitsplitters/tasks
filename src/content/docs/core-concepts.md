@@ -72,12 +72,13 @@ When you invite the bot, Discord shows the permissions it asks for. This is what
 | Manage messages | Clear the bot's own older notifications, so the channel stays readable |
 | Create public threads | Create the optional timeline thread, in text channels |
 | Manage webhooks | Write into the timeline thread, in text channels |
+| Connect | Post the list in the chat of a voice channel |
 | Attach files | Provide the list download |
 | Read message history | Keep the list in sync |
 | Mention everyone | Notify the people you tag on a task, and the role that owns a task when its reminder comes due |
 | Manage roles | Create the role that makes several people the owner of a task (Premium) |
 | Use external emojis | Show the bot's own icons on buttons and lists |
 
-**In a voice channel** a list lives in the channel's chat, which has no timeline: TTM doesn't need *Create public threads* and *Manage webhooks* there. It needs *Connect*, the permission to join the voice channel, because without it TTM can't post in the chat. Discord gives *Connect* to everyone by default; if your server takes it away, grant it to TTM on that channel, or `/create-list` will tell you it's missing. See [Voice channels](/docs/known-limits/#voice-channels).
+**In a voice channel** a list lives in the channel's chat, which has no timeline: TTM doesn't need *Create public threads* and *Manage webhooks* there. It needs *Connect*, the permission to join the voice channel, because without it TTM can't post in the chat. TTM asks for it when you invite it, and Discord gives it to everyone by default; if your server takes it away on a voice channel, grant it to TTM there, or `/create-list` will tell you it's missing. See [Voice channels](/docs/known-limits/#voice-channels).
 
 <div class="callout"><div class="callout-t">Good to know</div>You can grant these later from <em>Server Settings → Roles → Team Tasks Manager</em>, or per channel from the channel's permission settings. <em>Manage roles</em> is the exception: it works only on the bot's role, not per channel.</div>

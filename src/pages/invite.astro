@@ -23,11 +23,12 @@ import { BANNER, PITCH, abs, bannerCard } from '../lib/preview-card';
 // comunque al più 1,5 secondi dopo il caricamento. Il meta refresh resta, a 3 secondi, per chi non ha
 // JavaScript.
 //
-// La maschera 35165563904 è la stessa di `bot.invite` in app-properties.yaml e deve restare
-// un SOVRAINSIEME di TTMPermissions.requiredPermissions: se il gate chiede un permesso che
-// l'invito non concede, il primo /create-list viene rifiutato all'admin che ha appena
+// La maschera 35166612480 è la stessa di `bot.invite` in app-properties.yaml e deve restare
+// un SOVRAINSIEME dei due gate, TTMPermissions.requiredPermissions (canale testuale) e
+// permessiNelVocale (chat di un vocale, con Connect dalla 1.4.0): se il gate chiede un permesso
+// che l'invito non concede, il primo /create-list viene rifiutato all'admin che ha appena
 // invitato il bot.
-const INVITE = 'https://discord.com/api/oauth2/authorize?client_id=1531611457152618516&permissions=35165563904&scope=bot+applications.commands';
+const INVITE = 'https://discord.com/api/oauth2/authorize?client_id=1531611457152618516&permissions=35166612480&scope=bot+applications.commands';
 
 // La scheda che Discord mostra quando qualcuno incolla questo indirizzo in chat (Component Embed,
 // vedi PreviewMeta). È il primo contatto con TTM di chi riceve l'invito: il banner, cosa fa, e
