@@ -7,10 +7,11 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
-## 1.4.0 — Tutorial (not released yet)
+## 1.4.0 — Tutorial, lists in voice channels (not released yet)
 
 - **A tutorial for your first list** — the explanation shown by `/create-list` has a **Tutorial** button next to **Create your list**. It turns the explanation into a practice list of six lessons, in your language, and sends you the Guide, the same one in **More** → **Guide**, in a message only you can see. The practice list is a normal list: delete it from **More** when you're done. The button comes with Tips on, and the welcome card and `/help` point to it. See [Getting started](/docs/getting-started/#2-create-your-first-list).
 - **Button emoji have short names** — in **Bulk update**, in the form of a task's text and in the Download file, the emoji of a list button, like the ones in the Tutorial's lessons, show as `:owner:`, `:reminder:`, `:content:` and `:more:` instead of a long code. Write one of these names in a task and the list shows the emoji. See [Button emoji](/docs/personalize-your-lists/#button-emoji).
+- **Lists in voice channels** — `/create-list` works in the chat of a voice channel, and **Clone list** offers voice channels too. A list there does everything it does in a text channel except the activity timeline, because Discord doesn't allow threads in voice channels: whoever creates one gets a short message that explains it. In a voice channel TTM needs *Connect* instead of the two timeline permissions. See [Voice channels](/docs/known-limits/#voice-channels).
 
 ## 1.3.0 — Space around groups
 

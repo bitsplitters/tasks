@@ -91,6 +91,14 @@ When the timeline is on, TTM posts each action into a thread next to the list, t
 
 If a channel has already reached Discord's 15 (because of other bots or integrations), the timeline for a new list can't start. Free one up in **Channel settings → Integrations → Webhooks**.
 
+## Voice channels
+
+Lists work in the chat of a voice channel too, with one difference: there they have no [activity timeline](#the-activity-timeline). The timeline is a thread next to the list, and Discord doesn't allow threads in voice channels. Everything else works as in a text channel: the buttons, notifications, reminders, **Clone list**, **Download**, **Seal list** and **Delete list**.
+
+When the timeline is on in [`/config app`](/docs/configuration/#history-tracking), whoever creates a list in a voice channel gets a short message about it, visible only to them; the Tutorial's practice list skips it. If you need the timeline, create the list in a text channel, or copy it there with **Clone list**.
+
+In a voice channel TTM doesn't need *Create public threads* and *Manage webhooks*, which only serve the timeline. It needs *Connect* instead: without it, TTM can't post in the voice channel's chat. See [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
+
 ## Notifications
 
 When TTM tidies up its own notification messages, Discord only allows bulk-deleting messages from the **last 14 days**. Older notifications may stay in the channel — you can remove them manually.

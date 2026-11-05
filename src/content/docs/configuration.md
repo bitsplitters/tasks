@@ -30,7 +30,7 @@ When a tick completes the whole list, its notification says **List completed** u
 
 ## History tracking
 
-When enabled, **every action on your lists is recorded in a dedicated thread**, giving you an audit trail of who did what and when. Off by default.
+When enabled, **every action on your lists is recorded in a dedicated thread**, giving you an audit trail of who did what and when. On by default. Lists in voice channels have no history thread, because Discord doesn't allow threads there: see [Voice channels](/docs/known-limits/#voice-channels).
 
 ## Push notification
 

@@ -91,6 +91,8 @@ When you start **Clone list**, the cloning controls replace the first row:
 - **Reminder option** — keep the reminders in the clone, or not.
 - **Exit** — go back to the list panel as it was. If someone was editing the list, it stays locked.
 
+The dropdown offers text channels and voice channels. A clone in a voice channel has no activity timeline: see [Voice channels](/docs/known-limits/#voice-channels).
+
 A clone gets new reminders, so a recurring reminder can be refused: see [Repeating reminders](/docs/reminders/#repeating-reminders).
 
 A clone is a new list, so it follows your plan like any other. It needs a free place, and it can't have more tasks than your plan allows. On the Free plan, a list with more than twenty tasks can't be cloned: see [What Premium unlocks](/docs/premium/).
