@@ -32,7 +32,7 @@ Above a Free limit you can't add more, but nothing already there is deleted or h
 
 **Active reminders — 10 → unlimited.** The limit counts reminders *waiting at the same time*, not reminders per day. A reminder stops counting after its last ping or when you remove it, and a repeating one counts once.
 
-**Repetitions per reminder — single only → up to 50.** On the Free plan every reminder fires once. On Premium a reminder can repeat up to 50 times after the first, if an admin turns on **Recurring reminders** in [Configuration](/docs/configuration/#recurring-reminders). Recurring reminders you already have keep firing on the Free plan: see [Reminders](/docs/reminders/#repeating-reminders).
+**Repetitions per reminder — single only → up to 50.** On the Free plan every reminder fires once. On Premium a reminder can arrive up to 50 times in total, the first included, if an admin turns on **Recurring reminders** in [Configuration](/docs/configuration/#recurring-reminders). Recurring reminders you already have keep firing on the Free plan: see [Reminders](/docs/reminders/#repeating-reminders).
 
 **People per owner — 1 → up to 25 \*.** On the Free plan a task's owner is one person or one role. On Premium it can be up to 25 people, who share a role that TTM creates: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates). It is Premium because each person costs a Discord request. Discord limits the requests a bot can send, and all its servers share that limit.
 

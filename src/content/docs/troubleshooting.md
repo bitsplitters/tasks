@@ -59,12 +59,12 @@ The data of the list is still in TTM, and its reminders keep arriving. Run `/con
 
 ### I want a weekly reminder
 
-TTM has no unit for weeks, so a week is `7d`.
+TTM has no unit for weeks, so a week is 7 days.
 
 1. An admin turns on **Recurring reminders** in [`/config app`](/docs/configuration/#recurring-reminders) (Premium, unlocked during the beta).
 2. Click **Reminder** until it turns blue, pick the task and submit the **When** form.
 3. On the card that appears, press **Edit recurrence**.
-4. Write `7d` as the interval and the number of extra weeks in **Repetitions**, then submit the form.
+4. Choose **Every** 7 and **Unit** days, and in **How many times, in total** the number of weeks, e.g. 4 for four weeks. Then submit the form.
 5. Press **Save** on the card.
 
 See [The repetition fields](/docs/reminders/#the-repetition-fields).

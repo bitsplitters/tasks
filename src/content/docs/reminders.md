@@ -67,37 +67,42 @@ Completing a task also stops its reminder — no need to clean up afterwards.
 
 By default every reminder is a **single event** — one form, one ping, nothing else to decide. Repetitions are a **Premium** feature, like webhooks: on the Free plan every reminder is single (see [What Premium unlocks](/docs/premium/); during the [beta](/docs/beta/) everything is unlocked). On a plan that includes them they are still an opt-in: a server manager enables **Recurring reminders** in [Configuration](/docs/configuration/).
 
-<div class="callout"><div class="callout-t">Recurring reminders you already have keep working</div>A reminder that was already recurring, for example one created during the beta, keeps firing on the Free plan. It also keeps firing on Premium while the toggle is off. It stays editable: you can change its date, move it to another task or lower its repetitions. What you can't do is raise them, or add new recurring reminders.<br><br>Cloning or importing a list creates new reminders. So where new recurring reminders can't be created, on the Free plan or with the toggle off, a recurring reminder is refused there. Clone without reminders, or set its repetitions to <code>0</code>.</div>
+<div class="callout"><div class="callout-t">Recurring reminders you already have keep working</div>A reminder that was already recurring, for example one created during the beta, keeps firing on the Free plan. It also keeps firing on Premium while the toggle is off. It stays editable: you can change its date, move it to another task or lower the number of times it arrives. What you can't do is raise that number, or add new recurring reminders.<br><br>Cloning or importing a list creates new reminders. So where new recurring reminders can't be created, on the Free plan or with the toggle off, a recurring reminder is refused there. Clone without reminders, or set its repetitions to <code>0</code>.</div>
 
-With recurring reminders on, submitting **When** doesn't save yet. TTM shows you a private summary card with the date it understood, a **Recurrence** line and four buttons. The line says *none* for a single reminder, or shows the repetitions badge:
+With recurring reminders on, submitting **When** doesn't save yet. TTM shows you a private summary card with the date it understood, a **Recurrence** line and four buttons. The line says *none* for a single reminder, or shows the recurrence badge:
 
 | Button | What it does |
 | :--- | :--- |
 | **Save** | Store the reminder exactly as the card shows it. When you edit an existing reminder, it turns on once you change something. |
 | **Edit date** | Reopen **When**, pre-filled with the current values. |
-| **Edit recurrence** | Open the repetition form (repetitions + interval). For a single reminder it opens with 1 repetition. With `0` the reminder stays single, and the interval doesn't count. |
+| **Edit recurrence** | Open the repetition form: how many times in total, and how often. For a single reminder it opens on 2 times, every 1 day. With **1 time** the reminder stays single, and the interval doesn't count. |
 | **Cancel** | Drop the whole thing — the list is unlocked. |
 
 <div class="callout"><div class="callout-t">Nothing is saved until you press Save</div>Editing the date or the recurrence only updates the card. You can change them as often as you need, and <strong>Cancel</strong> really cancels.</div>
 
-With recurring reminders off, or on the Free plan, the card appears only when you edit a reminder that is **already recurring**. That way the reminder doesn't lose its repetitions: **Edit recurrence** lets you keep them or lower them, never go above the number it already has. A new reminder goes straight through **When** and is saved as a single event.
+With recurring reminders off, or on the Free plan, the card appears only when you edit a reminder that is **already recurring**. That way the reminder doesn't lose its repetitions: **Edit recurrence** lets you keep the number of times it arrives or lower it, never go above the number it already has, and the form says why. A new reminder goes straight through **When** and is saved as a single event.
 
 ### The repetition fields
 
-| Field | Meaning | Example |
-| :--- | :--- | :--- |
-| **Repetitions** | Extra repeats **after** the first reminder. `0` fires it **once only**. `N` adds `N` more, so `N + 1` in total. The maximum is shown in the field: 50 on Premium, or the repetitions the reminder already has where they can't grow. | `0`, `3` |
-| **Interval** | Time between repeats. **Optional** — only needed when repetitions are `1` or more. Use days `d`, hours `h`, minutes `m` — there are no weeks or months: a week is `7d`. | `1d`, `7d` (weekly), `24h`, `1d12h` |
+The form has three menus, so there is nothing to type and no format to get wrong.
 
-<div class="callout"><div class="callout-t">Daylight saving — the detail that matters</div><code>1d</code> keeps the <strong>same wall-clock time</strong> across a DST change (e.g. always 09:00). <code>24h</code> means <strong>exactly 24 hours</strong>, which can shift by an hour after the clocks change. Pick the one that matches what you mean.</div>
+| Menu | Meaning | Choices |
+| :--- | :--- | :--- |
+| **How many times, in total** | How many pings the reminder sends, the **first included**. **1 time** is a single reminder. The most is 50 on Premium. Where recurring reminders can't grow, on the Free plan or with the toggle off, the menu stops at the number the reminder already has, and the form says why. | 1 to 10, then 15 to 50 in steps of 5 |
+| **Every** | The time between two pings, in the unit of the next menu. It doesn't count with **1 time**. | 1 to 10, 12, 14, then 15 to 50 in steps of 5, 60 and 90 |
+| **Unit** | Minutes, hours or days. There are no weeks or months: a week is 7 days. | minutes, hours, days |
+
+The menus always offer the values the reminder already has, even when they aren't in the list: a reminder set in **Bulk update** can run 37 times, or every 48 hours. One that already runs more than 50 times keeps its number. An interval that mixes units, such as `1d12h` from **Bulk update**, shows in its smallest unit, 36 hours: leave **Every** and **Unit** as they are and it stays `1d12h`.
+
+<div class="callout"><div class="callout-t">Daylight saving — the detail that matters</div><strong>Days</strong> keep the <strong>same wall-clock time</strong> across a DST change (e.g. always 09:00). <strong>Hours</strong> are <strong>exact</strong>: every 24 hours can shift by an hour after the clocks change. Pick the one that matches what you mean. In <strong>Bulk update</strong> it's the difference between <code>1d</code> and <code>24h</code>.</div>
 
 ## Reading a reminder on the task
 
 On the task line the reminder always shows the date of the **first** ping, rendered by Discord in each reader's local time. A repeating reminder adds two compact values:
 
-`↻` interval · `×` repetitions
+`↻` interval · `×` times in total
 
-So `↻1h ×3` means: after the first ping it repeats every hour, three more times. A single event shows **just the timestamp** — there is no badge, because there is nothing to repeat.
+So `↻1h ×4` means four pings, one an hour, the first included. A single event shows **just the timestamp** — there is no badge, because there is nothing to repeat.
 
 In **Bulk update** the same reminder appears as a timestamp followed by a triplet:
 
@@ -105,7 +110,7 @@ In **Bulk update** the same reminder appears as a timestamp followed by a triple
 - [] <t:1726497546> [2d3h,1h,3] Ship the release notes
 ```
 
-The triplet is `[distance,interval,repetitions]`. The first value lets you create a reminder **from text**, without an absolute date: it is counted from the moment you save the list. A single event uses the sentinel interval `0m` and `0` repetitions — `[2d3h,0m,0]`. Distance and interval use only `d`, `h` and `m`. A value in months, such as `[1M,0m,0]`, is refused, and the line is marked with an arrow.
+The triplet is `[distance,interval,repetitions]`. The first value lets you create a reminder **from text**, without an absolute date: it is counted from the moment you save the list. The repetitions are the pings **after** the first one, so the task line shows one more: `[2d3h,1h,3]` is `↻1h ×4`, and the most a plan allows here is 49, 50 pings in total. A single event uses the sentinel interval `0m` and `0` repetitions — `[2d3h,0m,0]`. Distance and interval use only `d`, `h` and `m`. A value in months, such as `[1M,0m,0]`, is refused, and the line is marked with an arrow.
 
 The same rules apply as in the forms. Where new recurring reminders can't be created, a triplet with repetitions above `0` is accepted only for a reminder the list already had. Even then, the limits in [Repeating reminders](#repeating-reminders) apply. If several reminders break a rule, one message lists them all, one paragraph each. The same message also lists any other problem in the text, such as a list that's too long or has too many tasks.
 
@@ -129,12 +134,8 @@ These checks look only at the lines you change. **Bulk update** checks the lines
 | *The reminder to work must be created on a task to be performed* | Pick a task that isn't ticked yet: a completed task can't get a reminder. |
 | *The date does not exist* | Check day, month and year together (e.g. 31 February). |
 | *Invalid time* | Use the 24-hour format `HH:mm`, e.g. `15:30`. |
-| *Missing interval* | You set repetitions but left the interval empty. Write how often the reminder repeats, e.g. `1d`, or set `0` repetitions for a single reminder. |
-| *Incorrect interval* | Use the `d` / `h` / `m` pattern, e.g. `1d`, `24h`, `1d12h`. |
-| *Zero interval* | An interval of `0m` would send every repetition at the same moment. Write an interval greater than zero. |
-| *Incorrect repetitions* | Use a whole number between 0 and the maximum shown in the field (`0` = once only). |
-| *Repetitions over the plan* | On the Free plan recurring reminders are Premium: a reminder that was already recurring can keep its repetitions or go lower, not higher. |
-| *Repetitions over what is allowed* | Recurring reminders are turned off on this server: a reminder that was already recurring can keep its repetitions or go lower. An admin can turn them on in `/config app`. |
+| *Over the plan* | On the Free plan recurring reminders are Premium: a reminder that was already recurring can keep the number of times it arrives or go lower, not higher. The menu offers only what is allowed, so you see this if the plan changed while the form was open: open **Edit recurrence** again. |
+| *Over what is allowed* | Recurring reminders are turned off on this server: a reminder that was already recurring can keep the number of times it arrives or go lower. You see this if they were turned off while the form was open. An admin can turn them on in `/config app`. |
 | *Incorrect time zone* | The name doesn't match an official zone — copy it from the time zone map. |
 
 A reminder didn't arrive, or something else went wrong? See [Something not working?](/docs/troubleshooting/)

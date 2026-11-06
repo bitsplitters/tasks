@@ -7,6 +7,12 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 1.5.0 — Recurrence from menus
+
+- **Choose the recurrence from menus** — **Edit recurrence** opens a form with three menus instead of two fields to type: **How many times, in total**, **Every** and **Unit** (minutes, hours or days). There is no interval to write and no format to get wrong, and for four pings you choose 4. See [The repetition fields](/docs/reminders/#the-repetition-fields).
+- **The badge counts every ping** — on the task line, `↻1d ×4` now means four pings, one a day, the first included. Before, `×` counted the repetitions after the first one. A list written before this version shows the old number until someone changes it. See [Reading a reminder on the task](/docs/reminders/#reading-a-reminder-on-the-task).
+- **Up to 50 times in total** — on Premium a reminder arrives at most 50 times, the first included, and a reminder that already had more keeps them. In **Bulk update** the triplet still counts the repetitions after the first: at most 49. See [Known limits](/docs/known-limits/#reminders).
+
 ## 1.4.0 — Tutorial, lists in voice channels
 
 - **A tutorial for your first list** — the explanation shown by `/create-list` has a **Tutorial** button next to **Create your list**. It turns the explanation into a practice list of six lessons, in your language, and sends you the Guide, the same one in **More** → **Guide**, in a message only you can see. The practice list is a normal list: delete it from **More** when you're done. The button comes with Tips on, and the welcome card and `/help` point to it. See [Getting started](/docs/getting-started/#2-create-your-first-list).

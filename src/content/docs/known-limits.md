@@ -36,7 +36,7 @@ TTM doesn't notice on its own that a message is gone: [/config lists](/docs/conf
 | Limit | Value | Why |
 | :--- | :--- | :--- |
 | Reminders waiting at a time | **10** on the Free plan | See [What Premium unlocks](/docs/premium/). |
-| Repetitions per reminder | **up to 50** on Premium, none on Free | Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. On Premium a reminder can repeat at most 50 times after the first one: 51 pings in total. Set repetitions to `0` for a one-time reminder. |
+| Repetitions per reminder | **up to 50** on Premium, none on Free | Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. On Premium a reminder can arrive at most 50 times in total, the first included; choose **1 time** for a one-time reminder. In **Bulk update** the triplet counts the repetitions after the first: at most 49. |
 | How soon a reminder can fire | **5 minutes** from now | The start date must be at least five minutes in the future, so the scheduler has time to pick it up. |
 | How punctual a reminder is | within about **10 seconds** | Reminders due together are spread over up to ten seconds, to stay within Discord's rate limits. The reminder still arrives within the right minute. |
 
