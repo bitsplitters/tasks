@@ -13,6 +13,8 @@ The list ends with a thin **progress bar**: the share of ticked boxes, tasks and
 
 Above the bar, a small line helps whoever is new: *Not sure what the buttons do? More → Guide*. **Guide**, in [More](#whats-inside-more), explains every button without leaving Discord. If your team doesn't need it, hide the **Tips** in [Configuration](/docs/configuration/#tips): the line goes, the bar stays. While the list is locked, the same line says who is editing it and how to unlock it, even with the Tips hidden: see [When the list is locked](#when-the-list-is-locked).
 
+While the list is in the [Activity](/docs/activity/), the line says so, and **Join the Activity** is the only button under the list.
+
 ## The check selector
 
 Above the buttons sits the **check selector**: the drop-down menu that shows the list's title. A list with more than 25 tasks has two menus, each labelled with the position of its last task. Use it to:
@@ -37,11 +39,11 @@ These buttons never touch a single task: they act on the **entire list**.
 
 | Button | Function | What it does |
 | :---: | :--- | :--- |
-| <span class="dchip is-blue" role="img" aria-label="Clone list button, blue"><img src="/icons/clone.png" alt="" /></span> | **Clone list** | Clone the list into another channel. It opens a channel picker and a few options (see [Clone options](#clone-options)). |
+| <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span> | **Activity** | Open the list in the Activity, a window inside Discord where you work on it together. See [The Activity](/docs/activity/). |
 | <span class="dchip is-blue" role="img" aria-label="Bulk update button, blue"><img src="/icons/edit.png" alt="" /></span> | **Bulk update** | Edit the title and the whole list in one form: the fastest way to change two or more tasks. While you edit, the list is locked. |
 | <span class="dchip is-blue" role="img" aria-label="Clean list button, blue"><img src="/icons/clean.png" alt="" /></span> | **Clean list** | Remove every completed task, after a confirmation. |
 | <span class="dchip is-blue" role="img" aria-label="Reopen all button, blue"><img src="/icons/reopen.png" alt="" /></span> | **Reopen all** | Bring every completed task back to to-do. You can also move their reminders to a new date. |
-| <span class="dchip is-blue" role="img" aria-label="More button, blue"><img src="/icons/other.png" alt="" /></span> | **More** | Open a panel with the actions you need less often: the in-Discord guide, and download, seal or delete the list. When the list is locked, you unlock it here. |
+| <span class="dchip is-blue" role="img" aria-label="More button, blue"><img src="/icons/other.png" alt="" /></span> | **More** | Open a panel with the actions you need less often: the in-Discord guide, and clone, download, seal or delete the list. When the list is locked, you unlock it here. |
 
 ### Clean list
 
@@ -72,11 +74,12 @@ Discord allows five buttons per row, so the actions you need less often sit in a
 
 - <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list** — only while the list is locked. It shows who is editing, and turns the list's buttons back on for everyone. See [When the list is locked](#when-the-list-is-locked).
 - <img class="inline-ic" src="/icons/doc.png" alt="" /> **Guide** — the quick in-Discord guide, with a link back to this documentation.
+- <img class="inline-ic" src="/icons/clone.png" alt="" /> **Clone list** — clone the list into another channel, even while the list is locked. See [Clone options](#clone-options).
 - <img class="inline-ic" src="/icons/download.png" alt="" /> **Download** — a `.txt` file of the list, written as in the Bulk update form and sent **only to you**. Keep it as a backup, or rebuild the list from it with `/create-list`, even on another server: see [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
 - <img class="inline-ic" src="/icons/seal.png" alt="" /> **Seal list** — keeps a finished list in the channel as a record, marked *Sealed list*, without buttons or menus. Its reminders stop, and it frees a [place on your plan](/docs/premium/#how-the-three-places-work). What stays and what goes: [Seal](/docs/config-lists/#seal).
 - <img class="inline-ic" src="/icons/delete.png" alt="" /> **Delete list** — deletes the list **permanently**, with its tasks, owners, tags and reminders. The message is removed, and a short receipt takes its place in the channel.
 
-Sealing and deleting can't be undone, and the bot asks you to confirm first. Both need *Manage messages* on the channel: the same permission that lets you delete the list's message by hand. Without it, those two entries aren't there. Guide and Download are there for everyone, and so is Unlock list when the list is locked.
+Sealing and deleting can't be undone, and the bot asks you to confirm first. Both need *Manage messages* on the channel: the same permission that lets you delete the list's message by hand. Without it, those two entries aren't there. Guide, Clone list and Download are there for everyone, and so is Unlock list when the list is locked.
 
 While the list is locked, Seal list and Delete list aren't there. Whoever is editing would save onto a list that no longer exists.
 
@@ -84,7 +87,7 @@ While the list is locked, Seal list and Delete list aren't there. Whoever is edi
 
 ### Clone options
 
-When you start **Clone list**, the cloning controls replace the first row:
+When you press **Clone list** in **More**, the cloning controls replace the first row under the list, and the panel links you to the list:
 
 - **Create list** — start cloning into the channel you picked in the dropdown.
 - **Selection option** — keep the ticks in the clone, or not.
@@ -138,7 +141,7 @@ TTM locks the list while someone edits it:
 - in the form of a task's text;
 - in a reminder form.
 
-For everyone else, these turn off: the check selector, **Bulk update**, **Clean list**, **Reopen all** and the task buttons. **Clone list** and **More** stay on. **More** shows who is editing, and a locked list can't be sealed or deleted from there.
+For everyone else, these turn off: the check selector, the Activity button, **Bulk update**, **Clean list**, **Reopen all** and the task buttons. **More** stays on, with **Clone list** inside. **More** shows who is editing, and a locked list can't be sealed or deleted from there.
 
 The last line of the list says it too: *🔒 @name is editing this list. Stuck? More → Unlock list*. It takes the place of the Tips line, and it shows even when your server hides the Tips. The mention shows the name and doesn't notify anyone. When the list is unlocked, the Tips line comes back, if your server shows it.
 
@@ -175,6 +178,7 @@ A reminder whose alerts are all in the past doesn't stop the save: it stays on i
 
 ## Where to go next
 
+- [The Activity](/docs/activity/) — work on a list together, in a window inside Discord.
 - [Owners and tags](/docs/owners-and-tags/) — the owner menu, the two ways to tag, and the roles TTM creates.
 - [Reminders](/docs/reminders/) — the full reminder form, explained field by field.
 - [Personalize your lists](/docs/personalize-your-lists/) — write mentions, channel links and hyperlinks by hand, in Bulk update and in task edits.

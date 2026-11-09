@@ -7,6 +7,15 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 2.0.0 — The Activity
+
+- **The Activity** — a list opens in a window inside Discord, on desktop and on mobile. Several people work on it at once, and everyone sees each change as it happens. When the last person leaves, the list goes back to its channel, with a summary of the changes. See [The Activity](/docs/activity/).
+- **A new first button** — <img class="inline-ic" src="/icons/activity.png" alt="" /> takes the list into the Activity, in text channels and in the chat of voice channels. It needs Discord's *Use Activities* permission on the channel. A list already in your channels gets it the next time it changes. See [Open a list in the Activity](/docs/activity/#open-a-list-in-the-activity).
+- **Clone list is in More** — above **Download**, and there even while the list is locked. The Guide says so too. See [What's inside More](/docs/the-task-list/#whats-inside-more).
+- **While a list is in the Activity** — its message in the channel has only **Join the Activity**, and the list can't be changed there. See [Join the others](/docs/activity/#join-the-others).
+- **Launch** — Discord's **App Launcher**, or the Activities button of a voice call, opens the lists of the channel. Join one, bring another into the Activity, or create a new one. See [The lists of the channel](/docs/activity/#the-lists-of-the-channel).
+- **`/config lists`** — a list in the Activity is marked *in the Activity*. **Delete** removes it for everyone, and **Seal** first brings it back to the channel. See [What stays in the channel](/docs/activity/#what-stays-in-the-channel).
+
 ## 1.5.0 — Recurrence from menus
 
 - **Choose the recurrence from menus** — **Edit recurrence** opens a form with three menus instead of two fields to type: **How many times, in total**, **Every** and **Unit** (minutes, hours or days). There is no interval to write and no format to get wrong, and for four pings you choose 4. See [The repetition fields](/docs/reminders/#the-repetition-fields).

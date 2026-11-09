@@ -15,6 +15,8 @@ It opens a private panel, which only you can see, with **every list this server 
 
 A list that holds one of the places of your plan is marked **in use** next to its channel. When you need to free a place, those are the lists to seal or delete. During the beta there is no limit, so no list is marked. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work).
 
+A list that someone is working on in the [Activity](/docs/activity/) is marked **in the Activity**. You can still regenerate, seal or delete it, and the confirmation warns you first: see [What stays in the channel](/docs/activity/#what-stays-in-the-channel).
+
 By default, only members with the *Manage Server* permission can use `/config lists`, like the rest of `/config`. See [Who can open /config](/docs/config/#who-can-open-config).
 
 ## One button, four states

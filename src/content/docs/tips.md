@@ -17,7 +17,7 @@ If your team already knows how to write a list and what the buttons do, hide the
 
 ## Clone instead of rebuilding
 
-Running the same list in several channels? **Clone list** <img class="inline-ic" src="/icons/clone.png" alt="" /> copies it in one step — and lets you decide whether to carry over selections and reminders.
+Running the same list in several channels? **Clone list** <img class="inline-ic" src="/icons/clone.png" alt="" />, in the **More** panel of the list, copies it in one step — and lets you decide whether to carry over selections and reminders.
 
 ## Apply one action to many tasks
 

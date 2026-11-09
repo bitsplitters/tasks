@@ -45,6 +45,21 @@ This is a Premium feature, unlocked during the beta. The bot needs the *Manage R
 
 The data of the list is still in TTM, and its reminders keep arriving. Run `/config lists` and press the button of that list until it turns blue (**regenerate**). Then press **Apply** and confirm. TTM publishes the list again in its channel, with the same contents and the same timeline. See [Regenerate](/docs/config-lists/#regenerate).
 
+### The Activity doesn't open
+
+Check these points, in this order:
+
+- **The first button under the list is still Clone list.** The list was posted before the Activity arrived: it gets the Activity button the next time it changes.
+- **The Activity button is off.** Someone is editing the list in the channel. The button turns on when the list is unlocked: see [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
+- **The bot says you need *Use Activities*.** It is a Discord permission on the channel, and a server administrator enables it for you in the channel's *Permissions*.
+- **The bot says *I can't see the Activity yet*.** Your Discord app may not support the Activity. Update it, or try another device.
+
+See [When the list doesn't open](/docs/activity/#when-the-list-doesnt-open).
+
+### The list shows only Join the Activity
+
+The list is in the [Activity](/docs/activity/), and while it is there it can't be changed in the channel. Press **Join the Activity** to work on it with the others. When everyone leaves, the list comes back to the channel with all its buttons. See [Join the others](/docs/activity/#join-the-others).
+
 ## Reminders
 
 ### My reminder didn't arrive
