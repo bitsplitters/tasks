@@ -15,7 +15,7 @@ Because **bitsplitters** operates in the European Union, the use of **Team Tasks
 
 ## Legal basis for processing (Art. 6 GDPR)
 
-- **Performance of the service (Art. 6(1)(b))** — for you, when you add the bot or use it. Most data (Discord IDs, task content, reminders, configuration, webhooks) is processed because it is necessary to provide the functionality you request.
+- **Performance of the service (Art. 6(1)(b))** — for you, when you add the bot or use it. Most data (Discord IDs, task content, reminders, configuration, webhooks, the sign-in to the [Activity](/privacy/#the-activity) and its records) is processed because it is necessary to provide the functionality you request.
 - **Legitimate interest (Art. 6(1)(f))** — for the people who appear in a list without using the bot themselves, for example an owner chosen by someone else or a member mentioned in a task. The interest is the team's: organising its work in its own server. Those people can object, and can ask the server's admins to remove them.
 - **Legitimate interest (Art. 6(1)(f))** — also for keeping the bot reliable and safe: usage statistics, technical logs, error reports and backups. The same basis covers our community server, with its moderation and support tickets (see [Our community server](/privacy/#our-community-server)), and our websites (see [Our websites](/privacy/#our-websites)). We have weighed these interests against your rights, and you can object to any of them.
 
@@ -51,9 +51,9 @@ The bot, its database and its backups are hosted by **OVHcloud** on a dedicated 
 
 Some data leaves the EEA through services based in the **United States**:
 
-- **Discord** — the bot works on Discord, so what it shows in your server passes through Discord, as does everything else you do there. The error reports described in the [Privacy Policy](/privacy/#sharing) go to a private channel on Discord too. Discord transfers data under the safeguards set out in [its privacy policy](https://discord.com/privacy).
+- **Discord** — the bot works on Discord, so what it shows in your server passes through Discord, as does everything else you do there, the Activity included. The error reports described in the [Privacy Policy](/privacy/#sharing) go to a private channel on Discord too. Discord transfers data under the safeguards set out in [its privacy policy](https://discord.com/privacy).
 - **GitHub** — it hosts our websites, and receives the technical data of each visit. GitHub transfers data under the safeguards set out in [its privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
-- **Cloudflare** — it counts the visits to our websites (see [Our websites](/privacy/#our-websites)). Cloudflare transfers data under the EU-U.S. Data Privacy Framework, with the standard contractual clauses as a fallback, as set out on [its GDPR page](https://www.cloudflare.com/trust-hub/gdpr/).
+- **Cloudflare** — it counts the visits to our websites (see [Our websites](/privacy/#our-websites)) and hosts the page of the Activity (see [The Activity](/privacy/#the-activity)). Cloudflare transfers data under the EU-U.S. Data Privacy Framework, with the standard contractual clauses as a fallback, as set out on [its GDPR page](https://www.cloudflare.com/trust-hub/gdpr/).
 
 ## Complaints
 

@@ -15,7 +15,7 @@ Poiché **bitsplitters** opera nell'Unione europea, l'uso di **Team Tasks Manage
 
 ## Base giuridica del trattamento (art. 6 GDPR)
 
-- **Esecuzione del servizio (art. 6, par. 1, lett. b)** — per te, quando aggiungi il bot o lo usi. La maggior parte dei dati (ID Discord, contenuto dei task, promemoria, configurazione, webhook) è trattata perché necessaria a fornire le funzionalità che richiedi.
+- **Esecuzione del servizio (art. 6, par. 1, lett. b)** — per te, quando aggiungi il bot o lo usi. La maggior parte dei dati (ID Discord, contenuto dei task, promemoria, configurazione, webhook, l'accesso all'[Activity](/it/privacy/#lactivity) e le sue registrazioni) è trattata perché necessaria a fornire le funzionalità che richiedi.
 - **Legittimo interesse (art. 6, par. 1, lett. f)** — per le persone che compaiono in una lista senza usare il bot, per esempio un owner scelto da altri o un membro menzionato in un task. L'interesse è quello del team: organizzare il proprio lavoro nel proprio server. Queste persone possono opporsi, e possono chiedere agli amministratori del server di essere rimosse.
 - **Legittimo interesse (art. 6, par. 1, lett. f)** — anche per mantenere il bot affidabile e sicuro: statistiche d'uso, log tecnici, segnalazioni di errore e backup. La stessa base copre il nostro server community, con la moderazione e i ticket di supporto (vedi [Il nostro server community](/it/privacy/#il-nostro-server-community)), e i nostri siti web (vedi [I nostri siti web](/it/privacy/#i-nostri-siti-web)). Abbiamo bilanciato questi interessi con i tuoi diritti, e puoi opporti a ciascuno di essi.
 
@@ -51,9 +51,9 @@ Il bot, il suo database e i suoi backup sono ospitati da **OVHcloud** su un serv
 
 Alcuni dati escono dal SEE attraverso servizi con sede negli **Stati Uniti**:
 
-- **Discord** — il bot funziona su Discord, quindi ciò che mostra nel tuo server passa da Discord, come tutto il resto che fai lì. Anche le segnalazioni di errore descritte nell'[Informativa sulla privacy](/it/privacy/#condivisione) vanno a un canale privato su Discord. Discord trasferisce i dati con le garanzie descritte nella [sua informativa sulla privacy](https://discord.com/privacy).
+- **Discord** — il bot funziona su Discord, quindi ciò che mostra nel tuo server passa da Discord, come tutto il resto che fai lì, Activity compresa. Anche le segnalazioni di errore descritte nell'[Informativa sulla privacy](/it/privacy/#condivisione) vanno a un canale privato su Discord. Discord trasferisce i dati con le garanzie descritte nella [sua informativa sulla privacy](https://discord.com/privacy).
 - **GitHub** — ospita i nostri siti web, e riceve i dati tecnici di ogni visita. GitHub trasferisce i dati con le garanzie descritte nella [sua informativa sulla privacy](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
-- **Cloudflare** — conta le visite dei nostri siti web (vedi [I nostri siti web](/it/privacy/#i-nostri-siti-web)). Cloudflare trasferisce i dati in base all'EU-U.S. Data Privacy Framework e, in subordine, alle clausole contrattuali tipo, come descritto nella [sua pagina sul GDPR](https://www.cloudflare.com/trust-hub/gdpr/).
+- **Cloudflare** — conta le visite dei nostri siti web (vedi [I nostri siti web](/it/privacy/#i-nostri-siti-web)) e ospita la pagina dell'Activity (vedi [L'Activity](/it/privacy/#lactivity)). Cloudflare trasferisce i dati in base all'EU-U.S. Data Privacy Framework e, in subordine, alle clausole contrattuali tipo, come descritto nella [sua pagina sul GDPR](https://www.cloudflare.com/trust-hub/gdpr/).
 
 ## Reclami
 

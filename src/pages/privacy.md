@@ -7,7 +7,7 @@ lang: en
 alt: /it/privacy/
 ---
 
-This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") collects and how we handle it. It applies to the use of the bot on Discord, to our Discord community server (see [Our community server](#our-community-server)) and to our websites (see [Our websites](#our-websites)). For your rights under EU data-protection law, see also our [GDPR page](/gdpr/).
+This Privacy Policy explains what data the **Team Tasks Manager** bot ("TTM") collects and how we handle it. It applies to the use of the bot on Discord, its Activity included (see [The Activity](#the-activity)), to our Discord community server (see [Our community server](#our-community-server)) and to our websites (see [Our websites](#our-websites)). For your rights under EU data-protection law, see also our [GDPR page](/gdpr/).
 
 ## Who we are
 
@@ -20,12 +20,13 @@ TTM only stores what is needed to run task lists inside your server:
 - **Discord identifiers** — server (guild), channel, and message IDs; user and role IDs when you assign an owner, add a tag, or configure permissions.
 - **Task content you create** — list titles and task text, including anything you type into them (mentions, links, notes).
 - **Reminders** — dates, intervals, repetitions and the time zone set for the server.
-- **Your personal time zone** — the time zone you write in place of the proposed one when you pick a date: in a reminder, in **Clone list** with reminders, or in the new date of **Reopen all**. It is stored against your Discord user ID and reused across servers. Keeping the proposed zone stores nothing.
+- **Your personal time zone** — the time zone you set in place of the proposed one when you pick a date: in a reminder, in **Clone list** with reminders, or in the new date of **Reopen all**, in the channel as in the [Activity](#the-activity). It is stored against your Discord user ID and reused across servers. Keeping the proposed zone stores nothing.
 - **Your direct-message channel** — when you own a task, its reminders reach you by direct message, so the bot keeps the ID of its direct-message channel with you, to deliver them with a single request to Discord. If you don't accept direct messages, it also keeps until when not to try again (six hours after the failed attempt). Both are stored against your Discord user ID, like the time zone; the messages themselves are not stored.
 - **Roles TTM creates** — when a task is given to several people, TTM creates a role and keeps its ID, the name it gave it, the user IDs of the people it gave it to, who asked for it and when: to show those people when the task is edited, and to delete the role when no list uses it any more.
 - **Configuration** — per-server settings such as notification mode, history logging, push option and time zone.
 - **Webhooks** — the HTTP method, URL, headers and body you define, and their association to tasks.
 - **Activity logs** — records of actions performed on lists (who did what, and when), when history logging is enabled.
+- **The Activity** — when you open a list in the Activity, TTM's window inside Discord: who you are, a key for the window, and a record of the changes until their summary is posted. See [The Activity](#the-activity).
 - **Aggregate usage statistics** — counters per server: how often each feature is used and when it was last used. Also, every day, the totals of lists, tasks, reminders and webhooks, and the server's member count. They never count individual users.
 
 ## What we do NOT collect
@@ -39,7 +40,7 @@ We process this data solely to **provide the service**: rendering and updating y
 
 ## Sharing
 
-We do **not** sell your data. Data is processed by our infrastructure provider **OVHcloud**, which hosts the bot and its database in **France (EU)**, acting as a processor on our behalf. The bot also runs on the **Discord** platform, so your use is subject to [Discord's Privacy Policy](https://discord.com/privacy). Discord is based in the United States: see [International transfers](/gdpr/#international-transfers). When you use webhooks, TTM sends the data you configured to the **third-party endpoints you choose** — those services are outside our control.
+We do **not** sell your data. Data is processed by our infrastructure provider **OVHcloud**, which hosts the bot and its database in **France (EU)**, acting as a processor on our behalf. The bot also runs on the **Discord** platform, so your use is subject to [Discord's Privacy Policy](https://discord.com/privacy). Discord is based in the United States: see [International transfers](/gdpr/#international-transfers). The page of the [Activity](#the-activity) is hosted by **Cloudflare**, also based in the United States. When you use webhooks, TTM sends the data you configured to the **third-party endpoints you choose** — those services are outside our control.
 
 **Error reports.** When something fails unexpectedly, the bot sends a report to a private channel on our Discord server, which only we can see. A report holds the server and user IDs involved and the technical details of the fault. It can contain a fragment of what was being processed, such as a piece of a task. We delete these reports once the fault is fixed, and within 12 months at the latest.
 
@@ -57,6 +58,8 @@ Data is kept while the bot is present and in use in your server.
 
 **Your personal time zone and direct-message channel** — the time zone you set in place of the proposed one, and the ID of your direct-message channel with the bot (with, if you don't accept direct messages, until when not to try again), are stored against your Discord user ID and are not tied to any single server, so removing the bot from a server does not delete them. Write to **info@bitsplitters.app** with your Discord user ID and we will delete them.
 
+**The Activity** — the key of its window lasts 24 hours, and the record of the changes made there is deleted once their summary is posted in the channel. See [The Activity](#the-activity).
+
 **You can delete a single list yourself**, without asking us: the **Delete list** button in the list's *More* panel, or `/config lists` when the list's message is no longer there. Deletion is immediate and permanent, and it takes the list's tasks, owners, tags, reminders and activity history with it.
 
 **Seal list**, in the same panel, also removes the list's data from TTM, but leaves its message — and its timeline thread — in the channel as ordinary Discord messages, under your server's control. The roles TTM created for that list stay too, and TTM forgets them.
@@ -64,6 +67,17 @@ Data is kept while the bot is present and in use in your server.
 **A role TTM created** is forgotten — its record and the people it was given to — once no list uses it any more, as owner or as tag: if the role is still as TTM left it (the same name, no permissions, the same number of members), TTM also deletes it from the server; otherwise it leaves it to your server. TTM also forgets the roles of a list when you seal it, and all of them when the bot is removed from the server.
 
 You can request deletion at any time (see [GDPR](/gdpr/)); we may also delete data earlier.
+
+## The Activity
+
+The [Activity](/docs/activity/) opens a list in a window inside Discord. On top of what the bot already handles:
+
+- **Signing in.** When you open it, you let TTM know who you are, through Discord: Discord gives TTM your user ID and your public profile (name and avatar), never your email. TTM keeps only your user ID, and does not store the access Discord grants it.
+- **The key of the window.** TTM gives the window a key that lasts 24 hours, so that it reconnects by itself after a restart of the bot. TTM stores only a fingerprint of the key, with your user ID, the server and channel it is for, and when it was created. Expired fingerprints are deleted as the Activity is used.
+- **The changes.** While a list is in the Activity, TTM records each change with who made it, the text of the task and when, to write the summary posted when the list goes back to the channel. These records are deleted once the summary is sent. What remains is a line with no personal data — which list, when it opened and closed, and why — which goes with the list.
+- **Who is there.** Who is in the Activity, and who is editing what, is kept only in memory, while the list is there. **Owner** and **Tag** ask Discord for the members whose name matches what you type: TTM shows them and does not store them.
+- **The page.** The window is a page hosted on **Cloudflare Pages**, a service of Cloudflare, Inc. (United States), which Discord loads through its own proxy. Like our websites, it uses no cookies, stores nothing in your browser and loads no visit statistics. Like any web server, Cloudflare records technical data about each request, for security and to run the service. See [Cloudflare's Privacy Policy](https://www.cloudflare.com/privacypolicy/).
+- **Legal basis.** Performance of the service you ask for when you open a list in the Activity (Art. 6(1)(b) GDPR).
 
 ## Our community server
 

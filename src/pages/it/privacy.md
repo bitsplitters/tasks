@@ -7,7 +7,7 @@ lang: it
 alt: /privacy/
 ---
 
-Questa Informativa sulla privacy spiega quali dati raccoglie il bot **Team Tasks Manager** («TTM») e come li trattiamo. Si applica all'uso del bot su Discord, al nostro server community su Discord (vedi [Il nostro server community](#il-nostro-server-community)) e ai nostri siti web (vedi [I nostri siti web](#i-nostri-siti-web)). Per i tuoi diritti ai sensi della normativa UE sulla protezione dei dati, consulta anche la nostra [pagina GDPR](/it/gdpr/).
+Questa Informativa sulla privacy spiega quali dati raccoglie il bot **Team Tasks Manager** («TTM») e come li trattiamo. Si applica all'uso del bot su Discord, Activity compresa (vedi [L'Activity](#lactivity)), al nostro server community su Discord (vedi [Il nostro server community](#il-nostro-server-community)) e ai nostri siti web (vedi [I nostri siti web](#i-nostri-siti-web)). Per i tuoi diritti ai sensi della normativa UE sulla protezione dei dati, consulta anche la nostra [pagina GDPR](/it/gdpr/).
 
 ## Chi siamo
 
@@ -20,12 +20,13 @@ TTM conserva solo ciò che serve per far funzionare le liste di task nel tuo ser
 - **Identificativi Discord** — ID di server (guild), canali e messaggi; ID di utenti e ruoli quando assegni un owner, aggiungi un tag o configuri i permessi.
 - **Contenuto dei task che crei** — titoli delle liste e testo dei task, compreso tutto ciò che vi scrivi (menzioni, link, note).
 - **Promemoria** — date, intervalli, ripetizioni e il fuso orario impostato per il server.
-- **Il tuo fuso orario personale** — il fuso orario che scrivi al posto di quello proposto quando scegli una data: in un promemoria, in **Clona lista** con i promemoria, o nella nuova data di **Riapri tutti**. È associato al tuo ID utente Discord e riutilizzato da un server all'altro. Se lasci quello proposto, non viene salvato nulla.
+- **Il tuo fuso orario personale** — il fuso orario che imposti al posto di quello proposto quando scegli una data: in un promemoria, in **Clona lista** con i promemoria, o nella nuova data di **Riapri tutti**, nel canale come nell'[Activity](#lactivity). È associato al tuo ID utente Discord e riutilizzato da un server all'altro. Se lasci quello proposto, non viene salvato nulla.
 - **Il tuo canale di messaggi diretti** — quando sei l'owner di un task, i suoi promemoria ti arrivano per messaggio diretto, quindi il bot conserva l'ID del suo canale di messaggi diretti con te, per recapitarli con una sola richiesta a Discord. Se non accetti messaggi diretti, conserva anche il momento fino al quale non riprovare (sei ore dopo il tentativo non riuscito). Entrambi sono associati al tuo ID utente Discord, come il fuso orario; i messaggi in sé non vengono conservati.
 - **Ruoli creati da TTM** — quando un task viene assegnato a più persone, TTM crea un ruolo e ne conserva l'ID, il nome che gli ha dato, gli ID utente delle persone a cui l'ha assegnato, chi l'ha richiesto e quando: per mostrare quelle persone quando il task viene modificato, e per eliminare il ruolo quando nessuna lista lo usa più.
 - **Configurazione** — impostazioni di ciascun server come la modalità di notifica, la registrazione della cronologia, l'opzione push e il fuso orario.
 - **Webhook** — il metodo HTTP, l'URL, gli header e il body che definisci, e la loro associazione ai task.
 - **Log delle attività** — registrazioni delle azioni eseguite sulle liste (chi ha fatto cosa, e quando), quando la registrazione della cronologia è attiva.
+- **L'Activity** — quando apri una lista nell'Activity, la finestra di TTM dentro Discord: chi sei, una chiave per la finestra e una registrazione delle modifiche finché il loro riepilogo non è inviato. Vedi [L'Activity](#lactivity).
 - **Statistiche d'uso aggregate** — contatori per server: quante volte si usa ogni funzione e quando è stata usata l'ultima volta. Inoltre, ogni giorno, i totali di liste, task, promemoria e webhook e il numero di membri del server. Non contano mai i singoli utenti.
 
 ## Cosa NON raccogliamo
@@ -39,7 +40,7 @@ Trattiamo questi dati esclusivamente per **fornire il servizio**: mostrare e agg
 
 ## Condivisione
 
-**Non** vendiamo i tuoi dati. I dati sono trattati dal nostro fornitore di infrastruttura **OVHcloud**, che ospita il bot e il suo database in **Francia (UE)**, in qualità di responsabile del trattamento per nostro conto. Il bot funziona inoltre sulla piattaforma **Discord**, quindi il tuo utilizzo è soggetto all'[Informativa sulla privacy di Discord](https://discord.com/privacy). Discord ha sede negli Stati Uniti: vedi [Trasferimenti internazionali](/it/gdpr/#trasferimenti-internazionali). Quando usi i webhook, TTM invia i dati che hai configurato agli **endpoint di terze parti che scegli tu** — quei servizi sono al di fuori del nostro controllo.
+**Non** vendiamo i tuoi dati. I dati sono trattati dal nostro fornitore di infrastruttura **OVHcloud**, che ospita il bot e il suo database in **Francia (UE)**, in qualità di responsabile del trattamento per nostro conto. Il bot funziona inoltre sulla piattaforma **Discord**, quindi il tuo utilizzo è soggetto all'[Informativa sulla privacy di Discord](https://discord.com/privacy). Discord ha sede negli Stati Uniti: vedi [Trasferimenti internazionali](/it/gdpr/#trasferimenti-internazionali). La pagina dell'[Activity](#lactivity) è ospitata da **Cloudflare**, che ha sede anch'essa negli Stati Uniti. Quando usi i webhook, TTM invia i dati che hai configurato agli **endpoint di terze parti che scegli tu** — quei servizi sono al di fuori del nostro controllo.
 
 **Segnalazioni di errore.** Quando qualcosa non va come previsto, il bot invia una segnalazione a un canale privato del nostro server Discord, visibile solo a noi. Una segnalazione contiene gli ID del server e degli utenti coinvolti e i dettagli tecnici del guasto. Può contenere un frammento di ciò che si stava elaborando, come un pezzo di un task. Eliminiamo queste segnalazioni una volta risolto il guasto, e comunque entro 12 mesi.
 
@@ -57,6 +58,8 @@ I dati sono conservati finché il bot è presente e in uso nel tuo server.
 
 **Il tuo fuso orario personale e il tuo canale di messaggi diretti** — il fuso orario che imposti al posto di quello proposto, e l'ID del tuo canale di messaggi diretti con il bot (insieme, se non accetti messaggi diretti, al momento fino al quale non riprovare), sono associati al tuo ID utente Discord e non sono legati a un singolo server, quindi rimuovere il bot da un server non li elimina. Scrivi a **info@bitsplitters.app** indicando il tuo ID utente Discord e li elimineremo.
 
+**L'Activity** — la chiave della sua finestra vale 24 ore, e la registrazione delle modifiche fatte lì viene eliminata appena il loro riepilogo è inviato nel canale. Vedi [L'Activity](#lactivity).
+
 **Puoi eliminare da solo una singola lista**, senza chiederlo a noi: il pulsante **Elimina lista** nel pannello *Altro* della lista (**Delete list** e *More* con Discord in inglese), oppure `/config lists` quando il messaggio della lista non c'è più. L'eliminazione è immediata e definitiva, e porta con sé i task, gli owner, i tag, i promemoria e la cronologia delle attività della lista.
 
 Anche **Sigilla lista** (**Seal list**), nello stesso pannello, rimuove i dati della lista da TTM, ma lascia il suo messaggio — e il suo thread della timeline — nel canale come normali messaggi Discord, sotto il controllo del tuo server. Restano anche i ruoli che TTM ha creato per quella lista, e TTM li dimentica.
@@ -64,6 +67,17 @@ Anche **Sigilla lista** (**Seal list**), nello stesso pannello, rimuove i dati d
 **Un ruolo creato da TTM** viene dimenticato — il suo record e le persone a cui era stato assegnato — una volta che nessuna lista lo usa più, come owner o come tag: se il ruolo è ancora come TTM lo ha lasciato (lo stesso nome, nessun permesso, lo stesso numero di membri), TTM lo elimina anche dal server; altrimenti lo lascia al tuo server. TTM dimentica inoltre i ruoli di una lista quando la sigilli, e tutti quanti quando il bot viene rimosso dal server.
 
 Puoi richiedere la cancellazione in qualsiasi momento (vedi [GDPR](/it/gdpr/)); possiamo anche eliminare i dati prima.
+
+## L'Activity
+
+L'[Activity](/docs/activity/) apre una lista in una finestra dentro Discord. Oltre a ciò che il bot tratta già:
+
+- **L'accesso.** Quando la apri, fai sapere a TTM chi sei, tramite Discord: Discord gli dà il tuo ID utente e il tuo profilo pubblico (nome e avatar), mai la tua email. TTM conserva solo il tuo ID utente, e non salva l'accesso che Discord gli concede.
+- **La chiave della finestra.** TTM dà alla finestra una chiave che vale 24 ore, così che si ricolleghi da sola dopo un riavvio del bot. Della chiave TTM conserva solo un'impronta, con il tuo ID utente, il server e il canale per cui vale, e quando è stata creata. Le impronte scadute vengono eliminate man mano che l'Activity si usa.
+- **Le modifiche.** Mentre una lista è nell'Activity, TTM registra ogni modifica con chi l'ha fatta, il testo del task e quando, per scrivere il riepilogo che arriva nel canale quando la lista vi torna. Queste registrazioni vengono eliminate appena il riepilogo è inviato. Resta una riga senza dati personali — quale lista, quando si è aperta e chiusa, e perché — che se ne va con la lista.
+- **Chi c'è.** Chi è nell'Activity, e chi sta modificando cosa, resta solo in memoria, finché la lista è lì. **Owner** e **Tag** chiedono a Discord i membri il cui nome corrisponde a ciò che scrivi: TTM li mostra e non li conserva.
+- **La pagina.** La finestra è una pagina ospitata su **Cloudflare Pages**, un servizio di Cloudflare, Inc. (Stati Uniti), che Discord carica attraverso il proprio proxy. Come i nostri siti web, non usa cookie, non salva nulla nel tuo browser e non carica statistiche delle visite. Come qualsiasi server web, Cloudflare registra dati tecnici di ogni richiesta, per la sicurezza e per far funzionare il servizio. Vedi l'[informativa sulla privacy di Cloudflare](https://www.cloudflare.com/it-it/privacypolicy/).
+- **Base giuridica.** L'esecuzione del servizio che richiedi quando apri una lista nell'Activity (articolo 6, paragrafo 1, lettera b, del GDPR).
 
 ## Il nostro server community
 
