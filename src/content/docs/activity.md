@@ -130,6 +130,16 @@ Before Delete and Seal, the confirmation warns that someone is working on the li
 - A list already in the Activity becomes read-only, and a strip says so. You can bring it back to the channel from the strip, or wait: editing comes back by itself.
 - The lists of the channel show only the lists already in the Activity, without **New list**. The others appear when the database is back.
 
+## Your settings
+
+The gear at the top right, on the lists of the channel and on a list, opens your settings:
+
+- **Text size** — the size of the list's text, boxes included: as in Discord, or one of four sizes. Only the list changes.
+- **Theme** — as in Discord, dark or light.
+- **Spaced rows** — more room around each task, easier to tap on a phone.
+
+They apply at once, only for you, and only on the device where you choose them: on your phone you can keep a larger text than on your computer.
+
 ## Languages
 
 The Activity speaks your Discord language, if TTM speaks it too, and English otherwise. The list's message and its summary, in the channel and in the thread, use the language of the person who brought the list into the Activity.
