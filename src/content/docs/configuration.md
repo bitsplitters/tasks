@@ -55,7 +55,7 @@ Shows every completed task in Discord's smaller, grey text, so what is still to 
 
 ### Space around groups
 
-Puts a blank line above and below every task that has subtasks, so each group stands apart from the rest of the list. On by default; switch it off for a more compact list. It changes only the list itself: notifications stay as they are. Discord has no thinner blank line for a list, so the choice is between a full line and none.
+Puts a blank line above and below every task that has subtasks, so each group stands apart from the rest of the list. Off by default, for a more compact list: servers that added TTM before version 2.0.0 have it on until an admin switches it off. It changes only the list itself: notifications stay as they are. Discord has no thinner blank line for a list, so the choice is between a full line and none.
 
 ## Behavior on selection
 
