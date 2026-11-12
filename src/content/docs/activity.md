@@ -103,7 +103,7 @@ Rarely, someone changes the same thing just before you save, for example around 
 - **Leave alone** — you leave, and the others go on;
 - **Bring the list back to the channel** — the Activity closes for everyone. The others see who brought the list back.
 
-The list also goes back by itself when the last person leaves, and nobody returns within 30 seconds. Closing the window counts as leaving, and so does a phone that stays locked for 30 seconds.
+The list also goes back by itself when the last person leaves, and nobody returns within 30 seconds. Closing the window counts as leaving, and so does a phone that stays locked for 30 seconds. To have the list back at once, press **Exit** instead of closing the window.
 
 When the list is back, its message gets the usual buttons again. A **summary** of the session follows: one line per change, in order, with who made it.
 

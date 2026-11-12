@@ -60,6 +60,12 @@ See [When the list doesn't open](/docs/activity/#when-the-list-doesnt-open).
 
 The list is in the [Activity](/docs/activity/), and while it is there it can't be changed in the channel. Press **Join the Activity** to work on it with the others. When everyone leaves, the list comes back to the channel with all its buttons. See [Join the others](/docs/activity/#join-the-others).
 
+### The list takes a while to come back from the Activity
+
+The Activity was closed without pressing **Exit**. For TTM, a closed window looks like a connection that dropped for a moment: it waits 30 seconds for you to come back, then brings the list back to the channel. With a phone left in the background or locked, it can take up to a minute, because the bot first has to notice that the page has stopped answering.
+
+**Exit** tells the bot at once that you are done: if you are the last one in the list, it is back in the channel right away. See [Back to the channel](/docs/activity/#back-to-the-channel).
+
 ## Reminders
 
 ### My reminder didn't arrive
