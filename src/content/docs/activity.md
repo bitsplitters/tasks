@@ -110,7 +110,7 @@ When the list is back, its message gets the usual buttons again. A **summary** o
 - In the channel, the summary follows your server's [Notification mode](/docs/configuration/#notification-mode). With the default, it shows the last change and how many more there were.
 - With the [activity timeline](/docs/configuration/#history-tracking) on, its thread gets every change.
 
-The summary is in the server's language. If nothing changed, there is no summary.
+The summary is in the language of the person who brought the list into the Activity. If nothing changed, there is no summary.
 
 ## What stays in the channel
 
@@ -132,7 +132,7 @@ Before Delete and Seal, the confirmation warns that someone is working on the li
 
 ## Languages
 
-The Activity speaks your Discord language, if TTM speaks it too, and English otherwise. The summary in the channel uses the server's language.
+The Activity speaks your Discord language, if TTM speaks it too, and English otherwise. The list's message and its summary, in the channel and in the thread, use the language of the person who brought the list into the Activity.
 
 ## Where to go next
 
