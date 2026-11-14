@@ -7,6 +7,8 @@ import VetrinaFont from '../components/VetrinaFont.astro';
 import '../styles/vetrina.css';
 import '../styles/premium.css';
 import Plans from '../components/premium/Plans.astro';
+import Compare from '../components/premium/Compare.astro';
+import Included from '../components/premium/Included.astro';
 
 // La pagina per scegliere un piano (spec docs/superpowers/specs/2026-11-14-pagina-premium-design.md, nel repo
 // team-tasks-manager). Il riferimento tecnico dei limiti resta /docs/premium/; i prezzi stanno solo qui.
@@ -29,5 +31,7 @@ const EMBED = docsCard(PAGINA_PIANI.title, PAGINA_PIANI.description, PAGINA_PIAN
     </section>
 
     <Plans />
+    <Compare />
+    <Included />
   </main>
 </Base>

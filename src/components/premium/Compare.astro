@@ -1,0 +1,45 @@
+---
+import DiscordLimit from './DiscordLimit.astro';
+/*
+ * Il confronto dei limiti (spec della pagina Premium, §3.4 e §6), con la tabella della home (vetrina.css):
+ * Premium è la colonna accesa, Free quella spenta. Sotto i 720 px ogni riga diventa un blocco, Free e poi
+ * Premium. Il nome della colonna ripetuto in ogni cella è solo per gli occhi (aria-hidden): gli screen reader lo
+ * hanno già dall'intestazione.
+ */
+const COLONNE = { free: 'Free', premium: 'Premium' };
+const RIGHE = [
+  { voce: 'Lists in use per server', free: '3', premium: 'Unlimited' },
+  { voce: 'Tasks per list', free: '20', premium: '50', discord: true },
+  { voce: 'Reminders waiting at a time', free: '10', premium: 'Unlimited' },
+  { voce: 'Repetitions per reminder', free: 'Single reminders only', premium: 'Up to 50' },
+  { voce: 'People per owner', free: '1, a person or a role', premium: 'Up to 25', discord: true },
+  { voce: 'Webhooks', free: 'No new ones', premium: 'Up to 25', discord: true },
+];
+---
+<section class="h-sec wrap p-compare" aria-labelledby="p-compare-title">
+  <h2 id="p-compare-title">Free and Premium, side by side.</h2>
+  <table class="h-table" role="table">
+    <caption class="sr-only">The limits of the Free and Premium plans</caption>
+    <thead role="rowgroup">
+      <tr role="row">
+        <td role="cell"></td>
+        <th scope="col" role="columnheader" class="h-col-dim">{COLONNE.free}</th>
+        <th scope="col" role="columnheader" class="h-col-acc">{COLONNE.premium}</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup">
+      {RIGHE.map((r) => (
+        <tr role="row">
+          <th scope="row" role="rowheader">{r.voce}</th>
+          <td role="cell" class="h-dim">
+            <span class="h-cell-col" aria-hidden="true">{COLONNE.free}</span>{r.free}
+          </td>
+          <td role="cell" class="h-acc">
+            <span class="h-cell-col" aria-hidden="true">{COLONNE.premium}</span>{r.premium}{r.discord && <DiscordLimit />}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <p class="p-after">Planned limits, which may be tuned before the beta ends. <a class="h-link" href="/docs/premium/">What each limit changes, in practice</a></p>
+</section>
