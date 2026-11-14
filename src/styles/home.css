@@ -349,3 +349,12 @@
   .h-cell-col { display: block; margin-bottom: .2rem; font-size: .85rem; font-weight: 650; }
   .h-ttm .h-cell-col { color: var(--accent); }
 }
+
+/* ── Il resto di oggi ─────────────────────────────────────────────────────────────────────────────────── */
+/* section.block (global.css) batte .wrap e ne azzera il margine laterale: sulla home lo si rimette. */
+.home section.block { padding: clamp(3rem, 9vh, 6rem) clamp(1.25rem, 5vw, 2.5rem); }
+/* Niente maiuscole spaziate in mono: il titolo del riquadro e le etichette della pulsantiera in Mona Sans. */
+.home .callout .callout-t { font-family: var(--display); font-size: 1rem; font-weight: 700; text-transform: none; letter-spacing: 0; }
+.home .board-lab { font-family: var(--display); font-size: .85rem; text-transform: none; letter-spacing: 0; }
+/* Il messaggio di «Try it» è Discord: il carattere di sistema, come la scena. */
+.home .dc-demo { font-family: var(--sans); }
