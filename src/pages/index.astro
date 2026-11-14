@@ -8,6 +8,7 @@ import '@fontsource-variable/mona-sans/wdth.css';
 import MONA_SANS from '@fontsource-variable/mona-sans/files/mona-sans-latin-wdth-normal.woff2?url';
 import '../styles/home.css';
 import HeroScene from '../components/home/HeroScene.astro';
+import Pillars from '../components/home/Pillars.astro';
 
 // Scheda dell'anteprima su Discord: le righe della home e una lista vera, perché chi riceve il link
 // veda subito com'è TTM in un canale.
@@ -68,6 +69,8 @@ const JSON_LD = JSON.stringify([
       </div>
     </section>
 
+    <Pillars />
+
     <section class="block wrap">
       <p class="section-eyebrow">The problem</p>
       <h2>Coordination shouldn't cost you your focus.</h2>
@@ -101,25 +104,6 @@ const JSON_LD = JSON.stringify([
       <div class="callout" style="max-width:60ch; margin-top:1.4rem"><div class="callout-t">Where does this site fit, then?</div>It's documentation, not a control panel. The same goes for the <a href="https://timezones.bitsplitters.app" target="_blank" rel="noopener noreferrer">time zone picker<span class="sr-only"> (opens in a new tab)</span></a> the bot links to: a helper page, one job, no account. Neither one holds your data or your settings &mdash; there is nothing to log into, because there is nothing there that belongs to you.</div>
     </section>
 
-    <section class="block wrap">
-      <p class="section-eyebrow">What you get</p>
-      <h2>Everything runs on Discord's own interface.</h2>
-      <p class="big">One command to remember, nothing to study. Every feature is a button with a familiar icon, designed to take the fewest clicks possible. It feels like you've always used it.</p>
-      <div class="grid3">
-        <div class="card">
-          <div class="card-head"><img class="ic" src="/icons/task_list.png" alt="" /><h3>Shared lists</h3></div>
-          <p>Create a checklist from plain text. One line per task, starting with a dash; a few spaces before the dash make a subtask. Groups are recognized automatically.</p>
-        </div>
-        <div class="card">
-          <div class="card-head"><img class="ic" src="/icons/owner.png" alt="" /><h3>Owners &amp; tags</h3></div>
-          <p>Give each task an owner and tag the people or roles to notify &mdash; right on the task, not in a side conversation.</p>
-        </div>
-        <div class="card">
-          <div class="card-head"><img class="ic" src="/icons/alertW.png" alt="" /><h3>Reminders</h3></div>
-          <p>Attach a reminder with a start date and a time zone &mdash; and, on Premium, repetitions. TTM remembers so you don't have to.</p>
-        </div>
-      </div>
-    </section>
     <section class="block wrap">
       <p class="section-eyebrow">Try it</p>
       <h2>This is what a list looks like in your server.</h2>
