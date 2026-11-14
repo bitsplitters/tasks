@@ -43,11 +43,9 @@ The Free plan gives every server:
 - one person or one role as the owner of a task;
 - no new webhooks.
 
-The full table, what Premium lifts and the planned price are on one page:
+The plans side by side and the prices are on the [Premium page](/premium/). How each limit works is in [What Premium unlocks](/docs/premium/).
 
-**→ [What Premium unlocks](/docs/premium/)**
-
-Rather run TTM yourself? You can host it for free, with every Premium feature unlocked, but not offer it as a service to others. See [Rather run it yourself?](/docs/premium/#rather-run-it-yourself)
+Rather run TTM yourself? You can host it for free, with every Premium feature unlocked, but not offer it as a service to others. See [Rather run it yourself?](/premium/#self-host)
 
 ## Questions?
 
