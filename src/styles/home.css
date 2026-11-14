@@ -291,3 +291,27 @@
 @media (min-width: 860px) {
   .h-pillars, .h-feats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); }
 }
+
+/* ── Canale e Activity ────────────────────────────────────────────────────────────────────────────────── */
+#two-ways { scroll-margin-top: 5rem; }
+.h-modes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2rem; margin-top: 2rem; }
+.h-mode { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: clamp(1.4rem, 3vw, 2rem); }
+.h-mode--act { border-color: rgba(233, 164, 76, .38); }
+.h-mode-ic { display: inline-grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 8px; margin-bottom: 1rem; }
+/* Il canale in un tondo grigio, l'Activity col suo pulsante blu (spec, §3.3). */
+.h-mode-ic--channel { border-radius: 50%; background: #4e5058; color: #fff; font-family: var(--sans); font-size: 1.35rem; font-weight: 600; }
+.h-mode-ic--act { background: #5865f2; }
+.h-mode-ic--act img { width: 24px; height: 24px; }
+.h-mode h3 {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .6rem;
+  font-size: 1.35rem; font-weight: 750; font-stretch: 106%; margin: 0 0 .6rem;
+}
+.h-new {
+  font-size: .78rem; font-weight: 650; font-stretch: 100%; color: var(--accent);
+  border: 1px solid rgba(233, 164, 76, .5); border-radius: 999px; padding: .1rem .6rem;
+}
+.h-mode p { margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.6; max-width: 62ch; }
+.h-mode .h-link { display: inline-block; margin-top: 1rem; }
+@media (min-width: 760px) {
+  .h-modes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+}
