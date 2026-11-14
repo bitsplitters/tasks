@@ -122,3 +122,19 @@
 .p-tick { grid-row: span 2; font-size: 1.1rem; font-weight: 700; line-height: 1.45; color: var(--accent); }
 .p-grid h3 { margin: 0 0 .3rem; font-size: 1.1rem; font-weight: 700; font-stretch: 105%; line-height: 1.45; }
 .p-grid p { margin: 0; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
+
+/* ── Perché, self-host, Founder e domande ─────────────────────────────────────────────────────────────── */
+/* Righe di 62ch al massimo (§3.6); il riquadro prende la stessa misura dei paragrafi. */
+.p-text { max-width: 62ch; font-size: 1.08rem; line-height: 1.65; color: var(--muted); text-wrap: pretty; }
+.p-text p { margin: 0 0 1rem; }
+/* «self-hosting licence» non si spezza sul trattino: i link di questi paragrafi sono di due parole. */
+.p-text .h-link { white-space: nowrap; }
+.p-text .callout { margin: 1.5rem 0 0; color: var(--text); }
+/* Una fascia sottile col bordo ambra a sinistra, come un .callout più basso (§3.8). */
+.p-founder {
+  margin: 0; padding: .8rem 1.15rem; border: 1px solid var(--line-2); border-left: 3px solid var(--accent);
+  border-radius: 8px; background: var(--surface); line-height: 1.55; color: var(--text);
+}
+.p-founder strong { color: var(--accent); }
+/* Link testuali, non pulsanti: i pulsanti della pagina restano i due «Add to Discord» (§3.9). */
+.p-links { display: flex; flex-wrap: wrap; gap: .6rem 1.75rem; margin: 1.25rem 0 0; font-size: 1.05rem; }
