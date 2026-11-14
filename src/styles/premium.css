@@ -93,19 +93,21 @@
 .p-card-premium .p-per, .p-card-premium .p-cost .p-note, .p-card-premium .p-tagline { color: var(--text); }
 /* align-content: start: nella riga condivisa l'elenco più corto non allarga gli spazi fra le voci. */
 .p-list { list-style: none; margin: 0; padding: 0; display: grid; align-content: start; gap: .6rem; line-height: 1.45; }
-.p-list li { display: flex; gap: .6rem; }
+/* balance: una voce che va a capo si divide in due righe pari, senza una parola sola sotto. */
+.p-list li { display: flex; gap: .6rem; text-wrap: balance; }
 /* La spunta è decorativa: il testo alternativo vuoto (dopo la barra) la toglie agli screen reader dove è supportato. */
 .p-list li::before { content: "\2713"; content: "\2713" / ""; flex: none; font-weight: 700; color: var(--muted); }
 .p-card-premium .p-list li::before { color: var(--accent); }
 .p-card .btn { display: block; text-align: center; padding-block: .75em; font-size: .9rem; }
-.p-included { margin: 0; text-align: center; font-size: .92rem; font-weight: 600; color: var(--accent); }
-.p-fine { max-width: 60rem; margin: 1.5rem auto 0; text-align: center; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+.p-included { margin: 0; text-align: center; font-size: .92rem; font-weight: 600; color: var(--accent); text-wrap: balance; }
+.p-fine { max-width: 60rem; margin: 1.5rem auto 0; text-align: center; font-size: .9rem; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
 .p-fine p { margin: .35rem 0 0; }
 
 /* ── Confronto e incluso ──────────────────────────────────────────────────────────────────────────────── */
 /* La riga sotto una sezione: la nota del confronto col suo link, la frase sugli aggiornamenti. */
-.p-after { margin: 1.25rem 0 0; font-size: .95rem; line-height: 1.55; color: var(--muted); }
-.p-after .h-link { margin-left: .35rem; }
+.p-after { margin: 1.25rem 0 0; font-size: .95rem; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
+/* inline-block: il link va a capo intero, non a metà; si spezza solo se è più largo della riga. */
+.p-after .h-link { display: inline-block; margin-left: .35rem; }
 
 /* Qui le voci sono più lunghe di quelle della home e i valori più corti: la prima colonna si allarga, così
    le voci non vanno a capo. Solo da 720 px: sotto, le celle sono blocchi e la larghezza resta automatica. */
@@ -133,7 +135,7 @@
 /* Una fascia sottile col bordo ambra a sinistra, come un .callout più basso (§3.8). */
 .p-founder {
   margin: 0; padding: .8rem 1.15rem; border: 1px solid var(--line-2); border-left: 3px solid var(--accent);
-  border-radius: 8px; background: var(--surface); line-height: 1.55; color: var(--text);
+  border-radius: 8px; background: var(--surface); line-height: 1.55; color: var(--text); text-wrap: pretty;
 }
 .p-founder strong { color: var(--accent); }
 /* Link testuali, non pulsanti: i pulsanti della pagina restano i due «Add to Discord» (§3.9). */
