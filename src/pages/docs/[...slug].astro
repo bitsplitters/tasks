@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { docsCard } from '../../lib/preview-card';
+import { PAGINA_PIANI } from '../../lib/pagina-piani';
 
 // `entry.id` e non `entry.slug`, `render(entry)` e non `entry.render()`: dal Content Layer le entry
 // sono oggetti serializzabili e non portano piu' metodi. Il NOME del parametro di rotta resta
@@ -36,6 +37,8 @@ const current = entry.id;
           {g.items.map((it) => (
             <a href={`/docs/${it.id}/`} class={it.id === current ? 'active' : ''}>{it.data.title}</a>
           ))}
+          {/* La pagina dei piani sta fuori dalla collezione docs: in fondo al gruppo Plans, mai `active`. */}
+          {g.name === 'Plans' && <a href={PAGINA_PIANI.path}>{PAGINA_PIANI.title}</a>}
         </div>
       ))}
     </aside>

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { docsCard } from '../../lib/preview-card';
+import { PAGINA_PIANI } from '../../lib/pagina-piani';
 
 // Il sottotitolo serve due volte: sotto il titolo della pagina e come descrizione dell'anteprima.
 const SUBTITLE = 'Everything you need to run Team Tasks Manager on your Discord server.';
@@ -21,6 +22,8 @@ const grouped = groupsOrder
           {g.items.map((it) => (
             <a href={`/docs/${it.id}/`}>{it.data.title}</a>
           ))}
+          {/* La pagina dei piani sta fuori dalla collezione docs: in fondo al gruppo Plans. */}
+          {g.name === 'Plans' && <a href={PAGINA_PIANI.path}>{PAGINA_PIANI.title}</a>}
         </div>
       ))}
     </aside>
@@ -33,6 +36,9 @@ const grouped = groupsOrder
           {g.items.map((it) => (
             <p><a href={`/docs/${it.id}/`}><strong>{it.data.title}</strong></a>{it.data.description ? ' — ' + it.data.description : ''}</p>
           ))}
+          {g.name === 'Plans' && (
+            <p><a href={PAGINA_PIANI.path}><strong>{PAGINA_PIANI.title}</strong></a>{' — ' + PAGINA_PIANI.description}</p>
+          )}
         </div>
       ))}
     </article>
