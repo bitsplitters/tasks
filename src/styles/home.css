@@ -1,0 +1,31 @@
+/*
+ * La home del sito (spec docs/superpowers/specs/2026-11-14-home-del-sito-activity-design.md, nel repo
+ * team-tasks-manager). La importa solo index.astro: le pagine della documentazione non la caricano.
+ *
+ * Ogni regola sta sotto `.home` o usa i prefissi `h-` (sezioni) e `sc-` (scena), così non tocca le classi
+ * condivise di global.css. Le sezioni usano `padding-block`, mai lo shorthand `padding`: azzererebbe il
+ * margine laterale di `.wrap`.
+ */
+
+/* Mona Sans, variabile in peso e larghezza: la larghezza è la scelta che dà carattere ai titoli (spec, §2.2). */
+.home {
+  --display: 'Mona Sans Variable', var(--sans);
+  font-family: var(--display);
+}
+
+.home h2,
+.home .block h2 {
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+  font-weight: 750;
+  font-stretch: 108%;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+  text-wrap: balance;
+}
+
+.h-sec { padding-block: clamp(3rem, 9vh, 6rem); }
+.h-intro { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--muted); max-width: 60ch; margin: 0; }
+.h-link { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
+.h-link:hover { color: var(--accent-bright); }

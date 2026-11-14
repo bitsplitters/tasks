@@ -1,6 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import { PITCH, abs, previewCard } from '../lib/preview-card';
+// Il carattere della home, ospitato dal sito: nessuna richiesta a Google (spec, §2.2). Il CSS di fontsource
+// dichiara tutti i sottoinsiemi con la loro unicode-range, e il browser scarica solo quello latino, che si
+// precarica: l'URL viene dallo stesso file, quindi Vite gli dà lo stesso nome con l'hash.
+import '@fontsource-variable/mona-sans/wdth.css';
+import MONA_SANS from '@fontsource-variable/mona-sans/files/mona-sans-latin-wdth-normal.woff2?url';
+import '../styles/home.css';
 
 // Scheda dell'anteprima su Discord: le righe della home e una lista vera, perché chi riceve il link
 // veda subito com'è TTM in un canale.
@@ -43,226 +49,229 @@ const JSON_LD = JSON.stringify([
 ---
 <Base title={TITLE} description={DESCRIPTION} card="large" embed={EMBED}>
   <script is:inline slot="head" type="application/ld+json" set:html={JSON_LD} />
-  <section class="hero wrap">
-    <p class="eyebrow">Team Tasks Manager</p>
-    <h1>Coordinate your team where it already talks.</h1>
-    <p class="tagline">Nothing to learn. Just click.</p>
-    <p class="lede">Stop juggling Discord and a pile of external task tools. <strong>Team Tasks Manager</strong> is a task list bot that brings shared checklists, reminders and roles right into your server &mdash; so attention stays in one place.</p>
-    <div class="cta-row">
-      <a class="btn" href="/invite">Add to Discord</a>
-      <a class="btn-ghost" href="/docs/getting-started/">Get started &rarr;</a>
-    </div>
-  </section>
-
-  <section class="block wrap">
-    <p class="section-eyebrow">The problem</p>
-    <h2>Coordination shouldn't cost you your focus.</h2>
-    <div class="split-cols">
-      <div class="panel pain">
-        <h3>Without TTM</h3>
-        <ul>
-          <li><span class="tick">&mdash;</span><span>Tasks live in a <b>separate tool</b> (boards, spreadsheets, another app) while the team talks on Discord.</span></li>
-          <li><span class="tick">&mdash;</span><span>Every update means <b>switching context</b>, copying links, re-explaining status.</span></li>
-          <li><span class="tick">&mdash;</span><span>Deadlines slip because <b>nobody owns the reminder</b>.</span></li>
-          <li><span class="tick">&mdash;</span><span>Attention is <b>scattered</b> across windows and no one has the full picture.</span></li>
-        </ul>
+  <link slot="head" rel="preload" href={MONA_SANS} as="font" type="font/woff2" crossorigin />
+  <main class="home">
+    <section class="hero wrap">
+      <p class="eyebrow">Team Tasks Manager</p>
+      <h1>Coordinate your team where it already talks.</h1>
+      <p class="tagline">Nothing to learn. Just click.</p>
+      <p class="lede">Stop juggling Discord and a pile of external task tools. <strong>Team Tasks Manager</strong> is a task list bot that brings shared checklists, reminders and roles right into your server &mdash; so attention stays in one place.</p>
+      <div class="cta-row">
+        <a class="btn" href="/invite">Add to Discord</a>
+        <a class="btn-ghost" href="/docs/getting-started/">Get started &rarr;</a>
       </div>
-      <div class="panel gain">
-        <h3>With TTM</h3>
-        <ul>
-          <li><span class="tick">+</span><span>Shared, trackable checklists <b>inside the channel</b> where work is discussed.</span></li>
-          <li><span class="tick">+</span><span>Assign tasks to <b>people or roles</b>, and tag who to notify on completion.</span></li>
-          <li><span class="tick">+</span><span>Automatic <b>reminders</b> carry the burden of remembering for you.</span></li>
-          <li><span class="tick">+</span><span>One source of truth &mdash; the whole team sees the same board, in real time.</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="block wrap">
-    <p class="section-eyebrow">Why we built it</p>
-    <h2>The tools weren't bad. They were somewhere else.</h2>
-    <p class="big">We built TTM for ourselves first. As the work grew, every external tool we tried to coordinate the team with failed for the same reason: it lived <strong>outside Discord</strong>. Each update meant leaving the conversation and coming back, so none of them ever became part of the routine &mdash; and carrying information across, in both directions, quietly turned into a job of its own.</p>
-    <p class="big" style="margin-top:1.2rem">So we're firm about one thing: <strong>a tool is only effective if it's easy to use and easy to configure</strong>, and it only stays easy if it never asks you to leave the place where you already are. That's why <strong>you will never find an external dashboard here</strong>. Everything TTM does &mdash; and everything you configure &mdash; happens inside Discord, with buttons, menus and modals.</p>
-    <div class="callout" style="max-width:60ch; margin-top:1.4rem"><div class="callout-t">Where does this site fit, then?</div>It's documentation, not a control panel. The same goes for the <a href="https://timezones.bitsplitters.app" target="_blank" rel="noopener noreferrer">time zone picker<span class="sr-only"> (opens in a new tab)</span></a> the bot links to: a helper page, one job, no account. Neither one holds your data or your settings &mdash; there is nothing to log into, because there is nothing there that belongs to you.</div>
-  </section>
-
-  <section class="block wrap">
-    <p class="section-eyebrow">What you get</p>
-    <h2>Everything runs on Discord's own interface.</h2>
-    <p class="big">One command to remember, nothing to study. Every feature is a button with a familiar icon, designed to take the fewest clicks possible. It feels like you've always used it.</p>
-    <div class="grid3">
-      <div class="card">
-        <div class="card-head"><img class="ic" src="/icons/task_list.png" alt="" /><h3>Shared lists</h3></div>
-        <p>Create a checklist from plain text. One line per task, starting with a dash; a few spaces before the dash make a subtask. Groups are recognized automatically.</p>
-      </div>
-      <div class="card">
-        <div class="card-head"><img class="ic" src="/icons/owner.png" alt="" /><h3>Owners &amp; tags</h3></div>
-        <p>Give each task an owner and tag the people or roles to notify &mdash; right on the task, not in a side conversation.</p>
-      </div>
-      <div class="card">
-        <div class="card-head"><img class="ic" src="/icons/alertW.png" alt="" /><h3>Reminders</h3></div>
-        <p>Attach a reminder with a start date and a time zone &mdash; and, on Premium, repetitions. TTM remembers so you don't have to.</p>
-      </div>
-    </div>
-  </section>
-  <section class="block wrap">
-    <p class="section-eyebrow">Try it</p>
-    <h2>This is what a list looks like in your server.</h2>
-    <p class="big">A message the bot keeps up to date, with a dropdown underneath to tick tasks off. Nothing to learn: it's Discord's own interface, so it already behaves the way you expect.</p>
-
-    <!-- Mock della lista come la rende il bot: intestazione del messaggio, titolo H2, righe
-         numerate con checkbox, e sotto la select per spuntare i task. L'animazione mostra il
-         gesto piu' frequente — apri la select, scegli un task, la riga si spunta — perche' e'
-         quello che rende il bot familiare prima ancora di invitarlo. -->
-    <div class="dc-demo">
-      <div class="dc-msg">
-        <img class="dc-avatar" src="/icons/ttm-avatar.png" alt="" />
-        <div class="dc-body">
-          <div class="dc-head">
-            <span class="dc-name">Team Tasks Manager</span>
-            <span class="dc-app">APP</span>
-            <span class="dc-time">Today at 18:04</span>
-          </div>
-
-          <div class="dc-title">Roster &amp; scrims &mdash; week 12</div>
-          <ul class="dc-tasks">
-            <li data-task="1" class="dc-done">
-              <div class="dc-line">
-                <span class="dc-n">1</span>
-                <span class="dc-cb">
-                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                </span>
-                <span class="dc-txt">Confirm the five-man roster for Saturday's scrim block</span>
-              </div>
-            </li>
-            <li data-task="2" class="dc-flip">
-              <div class="dc-line">
-                <span class="dc-n">2</span>
-                <span class="dc-cb">
-                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                </span>
-                <span class="dc-txt">Lock the scrim block vs. Nova Collective</span>
-              </div>
-            </li>
-            <li data-task="2.1" data-parent="2" class="dc-sub">
-              <div class="dc-line">
-                <span class="dc-n">2.1</span>
-                <span class="dc-cb">
-                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                </span>
-                <span class="dc-txt">Clip the three teamfights for the review</span>
-              </div>
-            </li>
-            <li data-task="3">
-              <!-- Promemoria SOPRA il testo, e il numero sulla prima riga del blocco: e' l'ordine
-                   che compone taskToText (webhook, poi promemoria, poi checkbox + contenuto), con
-                   le righe successive che prendono lo spaziatore invece del numero. -->
-              <div class="dc-line">
-                <span class="dc-n">3</span>
-                <img class="dc-mi" src="/icons/alert.png" alt="" />
-                <span class="dc-metatxt">in 2 days at 20:30 &middot; &#8635;7d &times;3</span>
-              </div>
-              <div class="dc-line">
-                <span class="dc-sp"></span>
-                <span class="dc-cb">
-                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                </span>
-                <span class="dc-txt">VOD review: mid rotations, game 3 <span class="dc-pill">@coach</span></span>
-              </div>
-            </li>
-            <li data-task="4" class="dc-done">
-              <div class="dc-line">
-                <span class="dc-n">4</span>
-                <span class="dc-cb">
-                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                </span>
-                <span class="dc-txt">Submit the tournament registration</span>
-              </div>
-            </li>
-            <li data-task="5">
-              <div class="dc-line">
-                <span class="dc-n">5</span>
-                <img class="dc-mi" src="/icons/wb.png" alt="" />
-                <span class="dc-metatxt">post-to-x</span>
-              </div>
-              <div class="dc-line">
-                <span class="dc-sp"></span>
-                <span class="dc-cb">
-                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                </span>
-                <span class="dc-txt">Publish the match-day graphic <span class="dc-pill">@social</span></span>
-              </div>
-            </li>
-            <li data-task="6">
-              <div class="dc-line">
-                <span class="dc-n">6</span>
-                <span class="dc-cb">
-                  <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                  <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                </span>
-                <span class="dc-txt">Chase the two missing player contracts</span>
-              </div>
-            </li>
+    <section class="block wrap">
+      <p class="section-eyebrow">The problem</p>
+      <h2>Coordination shouldn't cost you your focus.</h2>
+      <div class="split-cols">
+        <div class="panel pain">
+          <h3>Without TTM</h3>
+          <ul>
+            <li><span class="tick">&mdash;</span><span>Tasks live in a <b>separate tool</b> (boards, spreadsheets, another app) while the team talks on Discord.</span></li>
+            <li><span class="tick">&mdash;</span><span>Every update means <b>switching context</b>, copying links, re-explaining status.</span></li>
+            <li><span class="tick">&mdash;</span><span>Deadlines slip because <b>nobody owns the reminder</b>.</span></li>
+            <li><span class="tick">&mdash;</span><span>Attention is <b>scattered</b> across windows and no one has the full picture.</span></li>
           </ul>
-
-          <div class="dc-select">
-            <button type="button" class="dc-select-btn" id="dc-trigger" aria-expanded="false" aria-controls="dc-menu">
-              <span class="dc-select-lab">Roster &amp; scrims &mdash; week 12</span>
-              <span class="dc-caret">&#9662;</span>
-            </button>
-            <div class="dc-select-menu" id="dc-menu" role="group" aria-label="Tick or untick a task">
-              <button type="button" class="dc-opt" data-for="1" aria-pressed="true"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>1 &middot; Confirm the five-man roster</button>
-              <button type="button" class="dc-opt dc-opt-pick" data-for="2" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2 &middot; Lock the scrim block vs. Nova Collective</button>
-              <button type="button" class="dc-opt" data-for="2.1" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2.1 &middot; Clip the three teamfights</button>
-              <button type="button" class="dc-opt" data-for="3" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>3 &middot; VOD review: mid rotations</button>
-              <button type="button" class="dc-opt" data-for="4" aria-pressed="true"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>4 &middot; Submit the tournament registration</button>
-              <button type="button" class="dc-opt" data-for="5" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>5 &middot; Publish the match-day graphic</button>
-              <button type="button" class="dc-opt" data-for="6" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>6 &middot; Chase the two missing contracts</button>
-            </div>
-          </div>
-          <p class="dc-hint" id="dc-hint">Open the selector and tick a task &mdash; it works exactly like this in Discord. Group <strong>2</strong> and its subtask move together.</p>
+        </div>
+        <div class="panel gain">
+          <h3>With TTM</h3>
+          <ul>
+            <li><span class="tick">+</span><span>Shared, trackable checklists <b>inside the channel</b> where work is discussed.</span></li>
+            <li><span class="tick">+</span><span>Assign tasks to <b>people or roles</b>, and tag who to notify on completion.</span></li>
+            <li><span class="tick">+</span><span>Automatic <b>reminders</b> carry the burden of remembering for you.</span></li>
+            <li><span class="tick">+</span><span>One source of truth &mdash; the whole team sees the same board, in real time.</span></li>
+          </ul>
         </div>
       </div>
-    </div>
+    </section>
 
-    <p class="big" style="margin-top:2.5rem">And these are the buttons that sit under it &mdash; no labels, on purpose. Trust your intuition, then click to confirm what each one does.</p>
-    <div class="board-teaser">
-      <div class="board-lab">Row 1 &mdash; acts on the whole list</div>
-      <div class="board-row">
-        <button class="dbtn" data-name="Activity" data-desc="Open the list in the Activity, a window inside Discord where your team works on it together and sees every change as it happens."><img src="/icons/activity.png" alt="Activity" /></button>
-        <button class="dbtn" data-name="Bulk update" data-desc="Edit the title and the whole list at once — the fastest way to change two or more tasks together."><img src="/icons/edit.png" alt="Bulk update" /></button>
-        <button class="dbtn" data-name="Clean list" data-desc="Remove every completed task, after a confirmation, and recalculate the remaining positions automatically."><img src="/icons/clean.png" alt="Clean list" /></button>
-        <button class="dbtn" data-name="Reopen all" data-desc="Bring every completed task back to to-do and, if you want, move the reminders to a new date."><img src="/icons/reopen.png" alt="Reopen all" /></button>
-        <button class="dbtn" data-name="More" data-desc="Opens a panel only you can see: the in-Discord guide to every button, and clone the list into another channel, download it as a file, seal it as a record or delete it."><img src="/icons/other.png" alt="More" /></button>
-      </div>
-      <div class="board-lab">Row 2 &mdash; acts on a single task &middot; click to cycle grey &rarr; blue (edit) &rarr; red (delete)</div>
-      <div class="board-row">
-        <button class="dbtn task-btn" data-name="Content" data-edit="Change the task text." data-delete="Delete the task."><img src="/icons/task.png" alt="Content" /></button>
-        <button class="dbtn task-btn" data-name="Owner" data-edit="Set or change the task owner: one person, one role, or several people." data-delete="Remove the owner, and its reminder."><img src="/icons/owner.png" alt="Owner" /></button>
-        <button class="dbtn task-btn" data-name="Tag" data-edit="Add a user or role to notify at the end of the task." data-delete="Remove every tag on the task."><img src="/icons/tag.png" alt="Tag" /></button>
-        <button class="dbtn task-btn" data-name="Reminder" data-edit="Add or edit a reminder (start date and time zone; interval and repetitions on Premium)." data-delete="Remove the reminder."><img src="/icons/alertW.png" alt="Reminder" /></button>
-        <button class="dbtn task-btn" data-name="Webhook" data-edit="Associate a webhook, so completing or reopening the task fires an HTTP call." data-delete="Remove the webhook association from the task."><img src="/icons/api.png" alt="Webhook" /></button>
-      </div>
-      <div class="board-info" id="board-info">Click any button above. <strong>Row 1</strong> acts on the whole list; <strong>Row 2</strong> buttons cycle through three states &mdash; click one to walk through them.</div>
-    </div>
-  </section>
+    <section class="block wrap">
+      <p class="section-eyebrow">Why we built it</p>
+      <h2>The tools weren't bad. They were somewhere else.</h2>
+      <p class="big">We built TTM for ourselves first. As the work grew, every external tool we tried to coordinate the team with failed for the same reason: it lived <strong>outside Discord</strong>. Each update meant leaving the conversation and coming back, so none of them ever became part of the routine &mdash; and carrying information across, in both directions, quietly turned into a job of its own.</p>
+      <p class="big" style="margin-top:1.2rem">So we're firm about one thing: <strong>a tool is only effective if it's easy to use and easy to configure</strong>, and it only stays easy if it never asks you to leave the place where you already are. That's why <strong>you will never find an external dashboard here</strong>. Everything TTM does &mdash; and everything you configure &mdash; happens inside Discord, with buttons, menus and modals.</p>
+      <div class="callout" style="max-width:60ch; margin-top:1.4rem"><div class="callout-t">Where does this site fit, then?</div>It's documentation, not a control panel. The same goes for the <a href="https://timezones.bitsplitters.app" target="_blank" rel="noopener noreferrer">time zone picker<span class="sr-only"> (opens in a new tab)</span></a> the bot links to: a helper page, one job, no account. Neither one holds your data or your settings &mdash; there is nothing to log into, because there is nothing there that belongs to you.</div>
+    </section>
 
-  <section class="block wrap">
-    <p class="section-eyebrow">Go deeper</p>
-    <h2>Ready to set it up?</h2>
-    <p class="big">The documentation walks you through inviting the bot, creating your first list, mastering the panel, configuring the app and connecting webhooks.</p>
-    <div class="cta-row" style="margin-top:1.5rem">
-      <a class="btn" href="/docs/getting-started/">Get started &rarr;</a>
-      <a class="btn-ghost" href="/docs/">Browse all docs</a>
-    </div>
-  </section>
+    <section class="block wrap">
+      <p class="section-eyebrow">What you get</p>
+      <h2>Everything runs on Discord's own interface.</h2>
+      <p class="big">One command to remember, nothing to study. Every feature is a button with a familiar icon, designed to take the fewest clicks possible. It feels like you've always used it.</p>
+      <div class="grid3">
+        <div class="card">
+          <div class="card-head"><img class="ic" src="/icons/task_list.png" alt="" /><h3>Shared lists</h3></div>
+          <p>Create a checklist from plain text. One line per task, starting with a dash; a few spaces before the dash make a subtask. Groups are recognized automatically.</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><img class="ic" src="/icons/owner.png" alt="" /><h3>Owners &amp; tags</h3></div>
+          <p>Give each task an owner and tag the people or roles to notify &mdash; right on the task, not in a side conversation.</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><img class="ic" src="/icons/alertW.png" alt="" /><h3>Reminders</h3></div>
+          <p>Attach a reminder with a start date and a time zone &mdash; and, on Premium, repetitions. TTM remembers so you don't have to.</p>
+        </div>
+      </div>
+    </section>
+    <section class="block wrap">
+      <p class="section-eyebrow">Try it</p>
+      <h2>This is what a list looks like in your server.</h2>
+      <p class="big">A message the bot keeps up to date, with a dropdown underneath to tick tasks off. Nothing to learn: it's Discord's own interface, so it already behaves the way you expect.</p>
+
+      <!-- Mock della lista come la rende il bot: intestazione del messaggio, titolo H2, righe
+           numerate con checkbox, e sotto la select per spuntare i task. L'animazione mostra il
+           gesto piu' frequente — apri la select, scegli un task, la riga si spunta — perche' e'
+           quello che rende il bot familiare prima ancora di invitarlo. -->
+      <div class="dc-demo">
+        <div class="dc-msg">
+          <img class="dc-avatar" src="/icons/ttm-avatar.png" alt="" />
+          <div class="dc-body">
+            <div class="dc-head">
+              <span class="dc-name">Team Tasks Manager</span>
+              <span class="dc-app">APP</span>
+              <span class="dc-time">Today at 18:04</span>
+            </div>
+
+            <div class="dc-title">Roster &amp; scrims &mdash; week 12</div>
+            <ul class="dc-tasks">
+              <li data-task="1" class="dc-done">
+                <div class="dc-line">
+                  <span class="dc-n">1</span>
+                  <span class="dc-cb">
+                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                  </span>
+                  <span class="dc-txt">Confirm the five-man roster for Saturday's scrim block</span>
+                </div>
+              </li>
+              <li data-task="2" class="dc-flip">
+                <div class="dc-line">
+                  <span class="dc-n">2</span>
+                  <span class="dc-cb">
+                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                  </span>
+                  <span class="dc-txt">Lock the scrim block vs. Nova Collective</span>
+                </div>
+              </li>
+              <li data-task="2.1" data-parent="2" class="dc-sub">
+                <div class="dc-line">
+                  <span class="dc-n">2.1</span>
+                  <span class="dc-cb">
+                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                  </span>
+                  <span class="dc-txt">Clip the three teamfights for the review</span>
+                </div>
+              </li>
+              <li data-task="3">
+                <!-- Promemoria SOPRA il testo, e il numero sulla prima riga del blocco: e' l'ordine
+                     che compone taskToText (webhook, poi promemoria, poi checkbox + contenuto), con
+                     le righe successive che prendono lo spaziatore invece del numero. -->
+                <div class="dc-line">
+                  <span class="dc-n">3</span>
+                  <img class="dc-mi" src="/icons/alert.png" alt="" />
+                  <span class="dc-metatxt">in 2 days at 20:30 &middot; &#8635;7d &times;3</span>
+                </div>
+                <div class="dc-line">
+                  <span class="dc-sp"></span>
+                  <span class="dc-cb">
+                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                  </span>
+                  <span class="dc-txt">VOD review: mid rotations, game 3 <span class="dc-pill">@coach</span></span>
+                </div>
+              </li>
+              <li data-task="4" class="dc-done">
+                <div class="dc-line">
+                  <span class="dc-n">4</span>
+                  <span class="dc-cb">
+                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                  </span>
+                  <span class="dc-txt">Submit the tournament registration</span>
+                </div>
+              </li>
+              <li data-task="5">
+                <div class="dc-line">
+                  <span class="dc-n">5</span>
+                  <img class="dc-mi" src="/icons/wb.png" alt="" />
+                  <span class="dc-metatxt">post-to-x</span>
+                </div>
+                <div class="dc-line">
+                  <span class="dc-sp"></span>
+                  <span class="dc-cb">
+                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                  </span>
+                  <span class="dc-txt">Publish the match-day graphic <span class="dc-pill">@social</span></span>
+                </div>
+              </li>
+              <li data-task="6">
+                <div class="dc-line">
+                  <span class="dc-n">6</span>
+                  <span class="dc-cb">
+                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
+                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
+                  </span>
+                  <span class="dc-txt">Chase the two missing player contracts</span>
+                </div>
+              </li>
+            </ul>
+
+            <div class="dc-select">
+              <button type="button" class="dc-select-btn" id="dc-trigger" aria-expanded="false" aria-controls="dc-menu">
+                <span class="dc-select-lab">Roster &amp; scrims &mdash; week 12</span>
+                <span class="dc-caret">&#9662;</span>
+              </button>
+              <div class="dc-select-menu" id="dc-menu" role="group" aria-label="Tick or untick a task">
+                <button type="button" class="dc-opt" data-for="1" aria-pressed="true"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>1 &middot; Confirm the five-man roster</button>
+                <button type="button" class="dc-opt dc-opt-pick" data-for="2" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2 &middot; Lock the scrim block vs. Nova Collective</button>
+                <button type="button" class="dc-opt" data-for="2.1" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2.1 &middot; Clip the three teamfights</button>
+                <button type="button" class="dc-opt" data-for="3" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>3 &middot; VOD review: mid rotations</button>
+                <button type="button" class="dc-opt" data-for="4" aria-pressed="true"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>4 &middot; Submit the tournament registration</button>
+                <button type="button" class="dc-opt" data-for="5" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>5 &middot; Publish the match-day graphic</button>
+                <button type="button" class="dc-opt" data-for="6" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>6 &middot; Chase the two missing contracts</button>
+              </div>
+            </div>
+            <p class="dc-hint" id="dc-hint">Open the selector and tick a task &mdash; it works exactly like this in Discord. Group <strong>2</strong> and its subtask move together.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="big" style="margin-top:2.5rem">And these are the buttons that sit under it &mdash; no labels, on purpose. Trust your intuition, then click to confirm what each one does.</p>
+      <div class="board-teaser">
+        <div class="board-lab">Row 1 &mdash; acts on the whole list</div>
+        <div class="board-row">
+          <button class="dbtn" data-name="Activity" data-desc="Open the list in the Activity, a window inside Discord where your team works on it together and sees every change as it happens."><img src="/icons/activity.png" alt="Activity" /></button>
+          <button class="dbtn" data-name="Bulk update" data-desc="Edit the title and the whole list at once — the fastest way to change two or more tasks together."><img src="/icons/edit.png" alt="Bulk update" /></button>
+          <button class="dbtn" data-name="Clean list" data-desc="Remove every completed task, after a confirmation, and recalculate the remaining positions automatically."><img src="/icons/clean.png" alt="Clean list" /></button>
+          <button class="dbtn" data-name="Reopen all" data-desc="Bring every completed task back to to-do and, if you want, move the reminders to a new date."><img src="/icons/reopen.png" alt="Reopen all" /></button>
+          <button class="dbtn" data-name="More" data-desc="Opens a panel only you can see: the in-Discord guide to every button, and clone the list into another channel, download it as a file, seal it as a record or delete it."><img src="/icons/other.png" alt="More" /></button>
+        </div>
+        <div class="board-lab">Row 2 &mdash; acts on a single task &middot; click to cycle grey &rarr; blue (edit) &rarr; red (delete)</div>
+        <div class="board-row">
+          <button class="dbtn task-btn" data-name="Content" data-edit="Change the task text." data-delete="Delete the task."><img src="/icons/task.png" alt="Content" /></button>
+          <button class="dbtn task-btn" data-name="Owner" data-edit="Set or change the task owner: one person, one role, or several people." data-delete="Remove the owner, and its reminder."><img src="/icons/owner.png" alt="Owner" /></button>
+          <button class="dbtn task-btn" data-name="Tag" data-edit="Add a user or role to notify at the end of the task." data-delete="Remove every tag on the task."><img src="/icons/tag.png" alt="Tag" /></button>
+          <button class="dbtn task-btn" data-name="Reminder" data-edit="Add or edit a reminder (start date and time zone; interval and repetitions on Premium)." data-delete="Remove the reminder."><img src="/icons/alertW.png" alt="Reminder" /></button>
+          <button class="dbtn task-btn" data-name="Webhook" data-edit="Associate a webhook, so completing or reopening the task fires an HTTP call." data-delete="Remove the webhook association from the task."><img src="/icons/api.png" alt="Webhook" /></button>
+        </div>
+        <div class="board-info" id="board-info">Click any button above. <strong>Row 1</strong> acts on the whole list; <strong>Row 2</strong> buttons cycle through three states &mdash; click one to walk through them.</div>
+      </div>
+    </section>
+
+    <section class="block wrap">
+      <p class="section-eyebrow">Go deeper</p>
+      <h2>Ready to set it up?</h2>
+      <p class="big">The documentation walks you through inviting the bot, creating your first list, mastering the panel, configuring the app and connecting webhooks.</p>
+      <div class="cta-row" style="margin-top:1.5rem">
+        <a class="btn" href="/docs/getting-started/">Get started &rarr;</a>
+        <a class="btn-ghost" href="/docs/">Browse all docs</a>
+      </div>
+    </section>
+  </main>
 
   <script>
     /* ── Il mock della lista: interattivo come la pulsantiera ──────────────────────────────────
