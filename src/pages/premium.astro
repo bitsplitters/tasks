@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { docsCard } from '../lib/preview-card';
+import { PAGINA_PIANI } from '../lib/pagina-piani';
+import VetrinaFont from '../components/VetrinaFont.astro';
+// vetrina.css prima di premium.css: le regole della pagina vengono dopo quelle comuni.
+import '../styles/vetrina.css';
+import '../styles/premium.css';
+
+// La pagina per scegliere un piano (spec docs/superpowers/specs/2026-11-14-pagina-premium-design.md, nel repo
+// team-tasks-manager). Il riferimento tecnico dei limiti resta /docs/premium/; i prezzi stanno solo qui.
+// Niente data-pagefind-body: la ricerca copre la documentazione, e questa pagina si trova dal menu, dalle barre
+// laterali e dai rimandi. Nella cartella dist/premium/ stanno anche le immagini che il bot linka
+// (/premium/premium-*.png): la pagina ci finisce accanto, e i loro indirizzi non cambiano.
+const TITLE = `${PAGINA_PIANI.title} — Team Tasks Manager`;
+const EMBED = docsCard(PAGINA_PIANI.title, PAGINA_PIANI.description, PAGINA_PIANI.path, 'See the plans');
+---
+<Base title={TITLE} previewTitle={PAGINA_PIANI.title} description={PAGINA_PIANI.description} embed={EMBED}>
+  <VetrinaFont slot="head" />
+  <main class="vetrina">
+    <section class="p-beta" aria-label="Open beta">
+      <p class="wrap"><strong>Open beta.</strong> Every Premium feature is unlocked, for every server. Prices apply when the beta ends. <a class="h-link" href="/docs/beta/">How the beta works</a></p>
+    </section>
+
+    <section class="p-hero wrap">
+      <h1><span>Start on Free.</span> <span>Grow into Premium.</span></h1>
+      <p class="h-intro">Free covers a small team, and stays free. Premium lifts the limits for the servers that need more, with one price for the whole server and no cost per member.</p>
+    </section>
+  </main>
+</Base>

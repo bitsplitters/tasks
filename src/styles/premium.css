@@ -1,0 +1,24 @@
+/*
+ * La pagina dei piani, /premium/ (spec docs/superpowers/specs/2026-11-14-pagina-premium-design.md, nel repo
+ * team-tasks-manager). La importa solo premium.astro, dopo vetrina.css: carattere, titoli, sezioni e confronto
+ * vengono da lì. Le classi di questa pagina hanno il prefisso `p-`.
+ */
+
+/* ── La fascia della beta ─────────────────────────────────────────────────────────────────────────────── */
+/* Larga quanto la pagina, subito sotto il menu. Sul fondo ambra il testo pieno, non quello attenuato (§7).
+   margin-block e non margin: .wrap centra la riga con i margini laterali. */
+.p-beta { background: rgba(233, 164, 76, .1); border-bottom: 1px solid rgba(233, 164, 76, .45); }
+.p-beta p { margin-block: 0; padding-block: .8rem; text-align: center; font-size: .98rem; line-height: 1.5; color: var(--text); }
+.p-beta strong { color: var(--accent-bright); font-weight: 700; }
+.p-beta .h-link { white-space: nowrap; }
+
+/* ── L'apertura ───────────────────────────────────────────────────────────────────────────────────────── */
+/* Il titolo ha lo stile di quello della home, più grande: qui non divide la riga con la scena (§3.2). Ogni
+   frase va a capo intera, quando ci sta. */
+.p-hero { padding-block: clamp(3rem, 9vh, 6rem) clamp(1.5rem, 4vh, 2.5rem); text-align: center; }
+.p-hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 850; font-stretch: 112%;
+  line-height: 1.02; letter-spacing: -0.03em; margin: 0; text-wrap: balance;
+}
+.p-hero h1 span { display: inline-block; }
+.p-hero .h-intro { max-width: 46ch; margin: 1.25rem auto 0; }
