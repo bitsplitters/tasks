@@ -101,7 +101,7 @@ Rarely, someone changes the same thing just before you save, for example around 
 **Exit** brings the list back to the channel when you are alone. With others, you choose:
 
 - **Leave alone** — you leave, and the others go on;
-- **Bring the list back to the channel** — the Activity closes for everyone. The others see who brought the list back.
+- **Bring back to the channel for everyone** — the Activity closes, and the others see who brought the list back.
 
 The list also goes back by itself when the last person leaves, and nobody returns within 30 seconds. Closing the window counts as leaving, and so does a phone that stays locked for 30 seconds. To have the list back at once, press **Exit** or **Lists** instead of closing the window.
 
