@@ -1,0 +1,74 @@
+---
+import DiscordLimit from './DiscordLimit.astro';
+/*
+ * Lo switch fra annuale e mensile e le due card (spec della pagina Premium, §3.3, §4 e §6). Lo switch è un
+ * gruppo radio senza JavaScript: premium.css mostra il prezzo scelto con :has(), dalla sezione .p-plans che
+ * contiene sia i radio sia le card. Dove :has() manca si vedono tutti e due i prezzi, uno sotto l'altro.
+ *
+ * I nomi delle card sono h2: la sezione non ha un titolo visibile, e un h3 subito dopo l'h1 salterebbe un livello.
+ * La card Free elenca solo quello che il piano dà: il «No new ones» dei webhook sta nel confronto.
+ */
+const FREE = [
+  '3 lists in use',
+  '20 tasks per list',
+  '10 reminders waiting at a time',
+  'Single reminders',
+  'One person or one role per owner',
+];
+const PREMIUM = [
+  { testo: 'Unlimited lists' },
+  { testo: '50 tasks per list', discord: true },
+  { testo: 'Unlimited reminders' },
+  { testo: 'Repeating reminders, up to 50 times' },
+  { testo: 'Up to 25 people per owner', discord: true },
+  { testo: 'Up to 25 webhooks', discord: true },
+];
+---
+<section class="p-plans wrap">
+  <fieldset class="p-switch">
+    <legend class="sr-only">Billing period</legend>
+    <input type="radio" name="periodo" id="p-mensile" value="mensile" />
+    <label for="p-mensile">Monthly</label>
+    <input type="radio" name="periodo" id="p-annuale" value="annuale" checked />
+    <label for="p-annuale">Annual <span class="p-save">save 40%</span></label>
+  </fieldset>
+
+  <div class="p-cards">
+    <article class="p-card" aria-labelledby="p-free-name">
+      <h2 class="p-name" id="p-free-name">Free</h2>
+      <div class="p-cost">
+        <p class="p-price"><span class="p-amount">€0</span></p>
+        <p class="p-note">For small teams, for good.</p>
+      </div>
+      <ul class="p-list" role="list">
+        {FREE.map((v) => <li><span>{v}</span></li>)}
+      </ul>
+      <a class="btn" href="/invite/">Add to Discord</a>
+    </article>
+
+    <article class="p-card p-card-premium" aria-labelledby="p-premium-name">
+      <h2 class="p-name" id="p-premium-name">Premium</h2>
+      <div class="p-cost">
+        <div class="p-annuale">
+          <p class="p-price"><span class="p-amount">€3</span> <span class="p-per">/ month</span></p>
+          <p class="p-note">€36 billed once a year · or €5 month to month</p>
+        </div>
+        <div class="p-mensile">
+          <p class="p-price"><span class="p-amount">€5</span> <span class="p-per">/ month</span></p>
+          <p class="p-note">Billed every month · or €3 a month on the annual plan</p>
+        </div>
+      </div>
+      <p class="p-tagline">One price for the whole server, with no cost per member.</p>
+      <ul class="p-list" role="list">
+        {PREMIUM.map((v) => <li><span>{v.testo}{v.discord && <DiscordLimit />}</span></li>)}
+      </ul>
+      <a class="btn" href="/invite/">Add to Discord</a>
+      <p class="p-included">Included for every server during the beta.</p>
+    </article>
+  </div>
+
+  <div class="p-fine">
+    <p>Planned prices, final when the beta ends. The annual plan is the same product: it costs less because you pay for a year up front.</p>
+    <p><span aria-hidden="true">*</span> A limit set by Discord, not by us. Premium lets you reach it, never go past it. See <a class="h-link" href="/docs/known-limits/">Known limits</a>.</p>
+  </div>
+</section>

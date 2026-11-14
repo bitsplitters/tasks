@@ -22,3 +22,82 @@
 }
 .p-hero h1 span { display: inline-block; }
 .p-hero .h-intro { max-width: 46ch; margin: 1.25rem auto 0; }
+
+/* ── Lo switch ────────────────────────────────────────────────────────────────────────────────────────── */
+/* Un interruttore a pillola: i radio restano nel documento e nella tastiera, fuori dalla vista, e si vedono le
+   label. La scelta attiva ha il fondo chiaro e il testo scuro (§3.3). */
+.p-plans { padding-block: 0 clamp(2rem, 6vh, 4rem); }
+.p-switch {
+  position: relative; display: flex; gap: .25rem; width: fit-content; min-inline-size: 0;
+  margin: 0 auto 2rem; padding: .3rem; border: 1px solid var(--line-2); border-radius: 999px; background: var(--surface);
+}
+.p-switch input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+.p-switch label {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1.1rem; border-radius: 999px;
+  font-size: .98rem; font-weight: 650; line-height: 1.3; color: var(--muted); cursor: pointer;
+}
+.p-switch label:hover { color: var(--text); }
+.p-switch input:checked + label { background: var(--text); color: var(--ink); }
+/* global.css dà l'anello ai soli a e button: qui il focus sta sul radio, e l'anello va sulla sua label. */
+.p-switch input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+.p-save {
+  font-size: .78rem; font-weight: 700; color: var(--accent); white-space: nowrap;
+  border: 1px solid rgba(233, 164, 76, .5); border-radius: 999px; padding: .05rem .5rem;
+}
+/* Sul fondo chiaro della scelta attiva l'ambra non si legge: la pillola si riempie. */
+.p-switch input:checked + label .p-save { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .p-switch label { transition: background-color .18s ease, color .18s ease; }
+}
+
+/* Il prezzo scelto (§4). Con display: none la versione nascosta esce anche dall'albero dell'accessibilità. Dove
+   :has() manca, la regola intera non vale e si vedono le due versioni, una sotto l'altra. */
+.p-plans:has(#p-mensile:checked) .p-annuale,
+.p-plans:not(:has(#p-mensile:checked)) .p-mensile { display: none; }
+
+/* ── Le card ──────────────────────────────────────────────────────────────────────────────────────────── */
+.p-cards { display: grid; gap: 1.25rem; max-width: 60rem; margin-inline: auto; }
+.p-card {
+  display: flex; flex-direction: column; gap: 1rem;
+  padding: clamp(1.4rem, 3vw, 2rem); border: 1px solid var(--line-2); border-radius: 16px; background: var(--surface);
+}
+.p-card-premium { background: rgba(233, 164, 76, .06); border-color: rgba(233, 164, 76, .45); }
+/* Affiancate, le card condividono le righe (subgrid): elenchi e pulsanti partono alla stessa altezza anche se Free
+   non ha la frase del piano né la riga della beta. Dove subgrid manca, ogni card mette le sue righe in colonna. */
+@media (min-width: 760px) {
+  .p-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .p-card { display: grid; grid-row: span 6; grid-template-rows: subgrid; gap: 1rem; }
+  .p-name { grid-row: 1; }
+  .p-cost { grid-row: 2; }
+  .p-tagline { grid-row: 3; }
+  .p-list { grid-row: 4; }
+  .p-card .btn { grid-row: 5; }
+  .p-included { grid-row: 6; }
+}
+/* .vetrina h2 vale anche qui: il nome della card lo batte con una classe in più. */
+.vetrina .p-name {
+  margin: 0; font-size: 1.2rem; font-weight: 750; font-stretch: 108%; letter-spacing: 0; line-height: 1.3; color: var(--text);
+}
+.vetrina .p-card-premium .p-name { color: var(--accent); }
+.p-cost p { margin: 0; }
+.p-price { display: flex; align-items: baseline; gap: .45rem; }
+/* Cifre tabellari: il cambio da 3 a 5 non sposta la riga (§3.3). */
+.p-amount {
+  font-size: clamp(2.8rem, 5vw, 3.5rem); font-weight: 800; font-stretch: 112%; line-height: 1;
+  letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+}
+.p-per { font-size: 1.05rem; color: var(--muted); }
+.p-cost .p-note { margin-top: .55rem; font-size: .95rem; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
+.p-tagline { margin: 0; font-size: 1rem; line-height: 1.55; text-wrap: pretty; }
+/* Sul fondo ambra il testo pieno, non quello attenuato (§7). */
+.p-card-premium .p-per, .p-card-premium .p-cost .p-note, .p-card-premium .p-tagline { color: var(--text); }
+/* align-content: start: nella riga condivisa l'elenco più corto non allarga gli spazi fra le voci. */
+.p-list { list-style: none; margin: 0; padding: 0; display: grid; align-content: start; gap: .6rem; line-height: 1.45; }
+.p-list li { display: flex; gap: .6rem; }
+/* La spunta è decorativa: il testo alternativo vuoto (dopo la barra) la toglie agli screen reader dove è supportato. */
+.p-list li::before { content: "\2713"; content: "\2713" / ""; flex: none; font-weight: 700; color: var(--muted); }
+.p-card-premium .p-list li::before { color: var(--accent); }
+.p-card .btn { display: block; text-align: center; padding-block: .75em; font-size: .9rem; }
+.p-included { margin: 0; text-align: center; font-size: .92rem; font-weight: 600; color: var(--accent); }
+.p-fine { max-width: 60rem; margin: 1.5rem auto 0; text-align: center; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+.p-fine p { margin: .35rem 0 0; }

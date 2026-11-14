@@ -6,6 +6,7 @@ import VetrinaFont from '../components/VetrinaFont.astro';
 // vetrina.css prima di premium.css: le regole della pagina vengono dopo quelle comuni.
 import '../styles/vetrina.css';
 import '../styles/premium.css';
+import Plans from '../components/premium/Plans.astro';
 
 // La pagina per scegliere un piano (spec docs/superpowers/specs/2026-11-14-pagina-premium-design.md, nel repo
 // team-tasks-manager). Il riferimento tecnico dei limiti resta /docs/premium/; i prezzi stanno solo qui.
@@ -26,5 +27,7 @@ const EMBED = docsCard(PAGINA_PIANI.title, PAGINA_PIANI.description, PAGINA_PIAN
       <h1><span>Start on Free.</span> <span>Grow into Premium.</span></h1>
       <p class="h-intro">Free covers a small team, and stays free. Premium lifts the limits for the servers that need more, with one price for the whole server and no cost per member.</p>
     </section>
+
+    <Plans />
   </main>
 </Base>
