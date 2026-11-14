@@ -1,11 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import { PITCH, abs, previewCard } from '../lib/preview-card';
-// Il carattere della home, ospitato dal sito: nessuna richiesta a Google (spec, §2.2). Il CSS di fontsource
-// dichiara tutti i sottoinsiemi con la loro unicode-range, e il browser scarica solo quello latino, che si
-// precarica: l'URL viene dallo stesso file, quindi Vite gli dà lo stesso nome con l'hash.
-import '@fontsource-variable/mona-sans/wdth.css';
-import MONA_SANS from '@fontsource-variable/mona-sans/files/mona-sans-latin-wdth-normal.woff2?url';
+import VetrinaFont from '../components/VetrinaFont.astro';
+// vetrina.css prima di home.css: le regole della home vengono dopo quelle comuni, come quando stavano in un
+// foglio solo.
+import '../styles/vetrina.css';
 import '../styles/home.css';
 import HeroScene from '../components/home/HeroScene.astro';
 import Pillars from '../components/home/Pillars.astro';
@@ -53,8 +52,8 @@ const JSON_LD = JSON.stringify([
 ---
 <Base title={TITLE} description={DESCRIPTION} card="large" embed={EMBED}>
   <script is:inline slot="head" type="application/ld+json" set:html={JSON_LD} />
-  <link slot="head" rel="preload" href={MONA_SANS} as="font" type="font/woff2" crossorigin />
-  <main class="home">
+  <VetrinaFont slot="head" />
+  <main class="home vetrina">
     <section class="h-hero">
       <div class="h-hero-in">
         <div class="h-hero-text">

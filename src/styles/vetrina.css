@@ -1,0 +1,74 @@
+/*
+ * Le pagine in stile vetrina: la home (index.astro) e la pagina dei piani (premium.astro). Spec
+ * docs/superpowers/specs/2026-11-14-pagina-premium-design.md, §2.1, nel repo team-tasks-manager.
+ *
+ * Qui sta quello che le due pagine hanno in comune: il carattere, i titoli delle sezioni, il loro margine,
+ * l'introduzione, i link in ambra, il titolo dei riquadri e la tabella del confronto. Le regole proprie di
+ * ciascuna pagina stanno in home.css e in premium.css, che si importano dopo questo foglio: a parità di
+ * specificità vincono loro, come quando stava tutto in home.css. Le sezioni usano `padding-block`, mai lo
+ * shorthand `padding`: azzererebbe il margine laterale di `.wrap`.
+ */
+
+/* Mona Sans, variabile in peso e larghezza: la larghezza è la scelta che dà carattere ai titoli. */
+.vetrina {
+  --display: 'Mona Sans Variable', var(--sans);
+  font-family: var(--display);
+}
+
+.vetrina h2,
+.vetrina .block h2 {
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+  font-weight: 750;
+  font-stretch: 108%;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+  text-wrap: balance;
+}
+
+.h-sec { padding-block: clamp(3rem, 9vh, 6rem); }
+.h-intro { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--muted); max-width: 60ch; margin: 0; }
+.h-link { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
+.h-link:hover { color: var(--accent-bright); }
+
+/* Niente maiuscole spaziate in mono: il titolo dei riquadri in Mona Sans. */
+.vetrina .callout .callout-t { font-family: var(--display); font-size: 1rem; font-weight: 700; text-transform: none; letter-spacing: 0; }
+
+/* ── Il confronto ─────────────────────────────────────────────────────────────────────────────────────── */
+/* Due colonne: quella accesa (h-col-acc, h-acc) ha la superficie ambra e il bordo chiuso in alto e in basso,
+   quella spenta (h-col-dim, h-dim) il testo attenuato. Nella home sono TTM e l'altra app, nella pagina dei
+   piani Premium e Free. */
+.h-table { width: 100%; margin-top: 2rem; border-collapse: separate; border-spacing: 0; font-size: 1.02rem; line-height: 1.5; }
+.h-table th, .h-table td { text-align: left; vertical-align: top; padding: 1rem 1.2rem; border-top: 1px solid var(--line); }
+.h-table thead th, .h-table thead td { border-top: 0; padding-block: .9rem; font-size: 1.05rem; font-weight: 700; }
+.h-table tbody th { width: 22%; font-weight: 650; color: var(--text); }
+.h-table .h-col-acc, .h-table .h-acc {
+  width: 39%; background: rgba(233, 164, 76, .06);
+  border-left: 1px solid rgba(233, 164, 76, .4); border-right: 1px solid rgba(233, 164, 76, .4);
+}
+.h-table thead .h-col-acc { color: var(--accent); border-top: 1px solid rgba(233, 164, 76, .4); border-radius: 12px 12px 0 0; }
+.h-table tbody tr:last-child .h-acc { border-bottom: 1px solid rgba(233, 164, 76, .4); border-radius: 0 0 12px 12px; }
+.h-table .h-acc { color: var(--text); }
+.h-table thead .h-col-dim { color: var(--muted); font-weight: 600; }
+.h-table .h-dim { color: var(--muted); }
+.h-mark { display: inline-block; width: 1.3em; font-weight: 700; }
+.h-acc .h-mark { color: var(--accent); }
+.h-dim .h-mark { color: var(--line-2); }
+.h-cell-col { display: none; }
+@media (max-width: 719px) {
+  .h-table, .h-table tbody, .h-table tr, .h-table th, .h-table td { display: block; width: auto; }
+  .h-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .h-table tbody tr { margin-bottom: 1.4rem; }
+  /* width: auto va ripetuto qui: le larghezze delle colonne (22% e 39%) hanno una specificità più alta. */
+  .h-table tbody th { width: auto; border-top: 0; padding: 0 0 .5rem; font-size: 1.1rem; }
+  .h-table td { border: 0; border-radius: 10px; padding: .8rem 1rem; }
+  .h-table .h-acc, .h-table tbody tr:last-child .h-acc {
+    width: auto; border: 1px solid rgba(233, 164, 76, .4); border-radius: 10px;
+  }
+  .h-table .h-dim { background: var(--surface); }
+  /* La seconda cella della riga, quale che sia: nella home è la spenta, nella pagina dei piani l'accesa. */
+  .h-table td + td { margin-top: .4rem; }
+  .h-cell-col { display: block; margin-bottom: .2rem; font-size: .85rem; font-weight: 650; }
+  .h-acc .h-cell-col { color: var(--accent); }
+}

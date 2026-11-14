@@ -44,19 +44,19 @@ const RIGHE = [
     <thead role="rowgroup">
       <tr role="row">
         <td role="cell"></td>
-        <th scope="col" role="columnheader" class="h-col-ttm">{COLONNE.ttm}</th>
-        <th scope="col" role="columnheader" class="h-col-altra">{COLONNE.altra}</th>
+        <th scope="col" role="columnheader" class="h-col-acc">{COLONNE.ttm}</th>
+        <th scope="col" role="columnheader" class="h-col-dim">{COLONNE.altra}</th>
       </tr>
     </thead>
     <tbody role="rowgroup">
       {RIGHE.map((r) => (
         <tr role="row">
           <th scope="row" role="rowheader">{r.voce}</th>
-          <td role="cell" class="h-ttm">
+          <td role="cell" class="h-acc">
             <span class="h-cell-col" aria-hidden="true">{COLONNE.ttm}</span>
             <span class="h-mark" aria-hidden="true">&#10003;</span>{r.ttm}
           </td>
-          <td role="cell" class="h-altra">
+          <td role="cell" class="h-dim">
             <span class="h-cell-col" aria-hidden="true">{COLONNE.altra}</span>
             <span class="h-mark" aria-hidden="true">&ndash;</span>{r.altra}
           </td>

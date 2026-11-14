@@ -1,0 +1,9 @@
+---
+// Il carattere delle pagine in stile vetrina (la home e la pagina dei piani), ospitato dal sito: nessuna
+// richiesta a Google. Il CSS di fontsource dichiara tutti i sottoinsiemi con la loro unicode-range, e il
+// browser scarica solo quello latino, che qui si precarica: l'URL viene dallo stesso file, quindi Vite gli dà
+// lo stesso nome con l'hash. Va nello slot `head` di Base: <VetrinaFont slot="head" />.
+import '@fontsource-variable/mona-sans/wdth.css';
+import MONA_SANS from '@fontsource-variable/mona-sans/files/mona-sans-latin-wdth-normal.woff2?url';
+---
+<link rel="preload" href={MONA_SANS} as="font" type="font/woff2" crossorigin />
