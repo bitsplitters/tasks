@@ -152,10 +152,11 @@
 .sc-joinnote img { width: 1.2em; height: 1.2em; }
 
 /* la finestra dell'Activity: si apre dal rettangolo del pulsante (--ft/--fr/--fb/--fl, li calcola scene.ts) */
+/* Sta sotto l'intestazione del canale (2.6em): a metà, il «#» sbucava sopra il bordo della finestra. */
 .sc-shade { position: absolute; inset: 0; background: rgba(0, 0, 0, .55); opacity: 0; pointer-events: none; transition: opacity .45s ease; }
 .is-open .sc-shade { opacity: 1; }
 .sc-window {
-  position: absolute; inset: 1em 1.4em; display: flex; flex-direction: column; overflow: hidden;
+  position: absolute; inset: 3em 1.4em .8em; display: flex; flex-direction: column; overflow: hidden;
   background: #1a1a1e; border: 1px solid #35353b; border-radius: .9em; box-shadow: 0 1.5em 3em rgba(0, 0, 0, .55);
   clip-path: inset(var(--ft, 45%) var(--fr, 45%) var(--fb, 45%) var(--fl, 45%) round .5em);
   opacity: 0; visibility: hidden;
