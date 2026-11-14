@@ -1,0 +1,67 @@
+---
+/*
+ * Il confronto (spec della home, §3.4 e §6): una tabella, la colonna di TTM accesa in ambra e quella dell'altra app
+ * spenta. Gli otto punti di oggi («Without TTM» / «With TTM») sono diventati queste righe; «Getting started» è nuova,
+ * ed è vera: per TTM basta l'account Discord.
+ *
+ * Sotto i 720 px ogni riga diventa un blocco. I role restano sulla tabella perché, cambiando display, alcuni browser
+ * ne perdono la semantica; il nome della colonna ripetuto in ogni cella è solo per gli occhi (aria-hidden), perché gli
+ * screen reader lo hanno già dall'intestazione.
+ */
+const COLONNE = { ttm: 'Team Tasks Manager', altra: 'A separate task app' };
+const RIGHE = [
+  {
+    voce: 'Where the tasks are',
+    ttm: 'In the channel where the work is discussed.',
+    altra: 'In another tool, while the team talks on Discord.',
+  },
+  {
+    voce: 'Keeping up to date',
+    ttm: 'The whole team sees the same list, in real time.',
+    altra: 'Every update means switching windows, copying links, re-explaining status.',
+  },
+  {
+    voce: 'The full picture',
+    ttm: 'One list, in the place everyone already looks.',
+    altra: 'Scattered across windows: no one has the full picture.',
+  },
+  {
+    voce: 'Deadlines',
+    ttm: 'The owner gets the reminder on Discord.',
+    altra: 'Nobody owns the reminder, so deadlines slip.',
+  },
+  {
+    voce: 'Getting started',
+    ttm: 'Add the bot and type one command. No new accounts.',
+    altra: 'Sign-ups for everyone, and a new tool to learn.',
+  },
+];
+---
+<section class="h-sec wrap" aria-labelledby="h-compare-title">
+  <h2 id="h-compare-title">Coordination shouldn't cost you your focus.</h2>
+  <table class="h-table" role="table">
+    <caption class="sr-only">Team Tasks Manager compared with a separate task app</caption>
+    <thead role="rowgroup">
+      <tr role="row">
+        <td role="cell"></td>
+        <th scope="col" role="columnheader" class="h-col-ttm">{COLONNE.ttm}</th>
+        <th scope="col" role="columnheader" class="h-col-altra">{COLONNE.altra}</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup">
+      {RIGHE.map((r) => (
+        <tr role="row">
+          <th scope="row" role="rowheader">{r.voce}</th>
+          <td role="cell" class="h-ttm">
+            <span class="h-cell-col" aria-hidden="true">{COLONNE.ttm}</span>
+            <span class="h-mark" aria-hidden="true">&#10003;</span>{r.ttm}
+          </td>
+          <td role="cell" class="h-altra">
+            <span class="h-cell-col" aria-hidden="true">{COLONNE.altra}</span>
+            <span class="h-mark" aria-hidden="true">&ndash;</span>{r.altra}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</section>

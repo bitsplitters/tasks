@@ -10,6 +10,7 @@ import '../styles/home.css';
 import HeroScene from '../components/home/HeroScene.astro';
 import Pillars from '../components/home/Pillars.astro';
 import Modes from '../components/home/Modes.astro';
+import Compare from '../components/home/Compare.astro';
 
 // Scheda dell'anteprima su Discord: le righe della home e una lista vera, perché chi riceve il link
 // veda subito com'è TTM in un canale.
@@ -73,30 +74,7 @@ const JSON_LD = JSON.stringify([
     <Pillars />
     <Modes />
 
-    <section class="block wrap">
-      <p class="section-eyebrow">The problem</p>
-      <h2>Coordination shouldn't cost you your focus.</h2>
-      <div class="split-cols">
-        <div class="panel pain">
-          <h3>Without TTM</h3>
-          <ul>
-            <li><span class="tick">&mdash;</span><span>Tasks live in a <b>separate tool</b> (boards, spreadsheets, another app) while the team talks on Discord.</span></li>
-            <li><span class="tick">&mdash;</span><span>Every update means <b>switching context</b>, copying links, re-explaining status.</span></li>
-            <li><span class="tick">&mdash;</span><span>Deadlines slip because <b>nobody owns the reminder</b>.</span></li>
-            <li><span class="tick">&mdash;</span><span>Attention is <b>scattered</b> across windows and no one has the full picture.</span></li>
-          </ul>
-        </div>
-        <div class="panel gain">
-          <h3>With TTM</h3>
-          <ul>
-            <li><span class="tick">+</span><span>Shared, trackable checklists <b>inside the channel</b> where work is discussed.</span></li>
-            <li><span class="tick">+</span><span>Assign tasks to <b>people or roles</b>, and tag who to notify on completion.</span></li>
-            <li><span class="tick">+</span><span>Automatic <b>reminders</b> carry the burden of remembering for you.</span></li>
-            <li><span class="tick">+</span><span>One source of truth &mdash; the whole team sees the same board, in real time.</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <Compare />
 
     <section class="block wrap">
       <p class="section-eyebrow">Why we built it</p>

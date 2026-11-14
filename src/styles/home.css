@@ -315,3 +315,37 @@
 @media (min-width: 760px) {
   .h-modes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
 }
+
+/* ── Il confronto ─────────────────────────────────────────────────────────────────────────────────────── */
+.h-table { width: 100%; margin-top: 2rem; border-collapse: separate; border-spacing: 0; font-size: 1.02rem; line-height: 1.5; }
+.h-table th, .h-table td { text-align: left; vertical-align: top; padding: 1rem 1.2rem; border-top: 1px solid var(--line); }
+.h-table thead th, .h-table thead td { border-top: 0; padding-block: .9rem; font-size: 1.05rem; font-weight: 700; }
+.h-table tbody th { width: 22%; font-weight: 650; color: var(--text); }
+/* La colonna di TTM: superficie rialzata e bordo ambra, chiusa in alto e in basso. */
+.h-table .h-col-ttm, .h-table .h-ttm {
+  width: 39%; background: rgba(233, 164, 76, .06);
+  border-left: 1px solid rgba(233, 164, 76, .4); border-right: 1px solid rgba(233, 164, 76, .4);
+}
+.h-table thead .h-col-ttm { color: var(--accent); border-top: 1px solid rgba(233, 164, 76, .4); border-radius: 12px 12px 0 0; }
+.h-table tbody tr:last-child .h-ttm { border-bottom: 1px solid rgba(233, 164, 76, .4); border-radius: 0 0 12px 12px; }
+.h-table .h-ttm { color: var(--text); }
+.h-table thead .h-col-altra { color: var(--muted); font-weight: 600; }
+.h-table .h-altra { color: var(--muted); }
+.h-mark { display: inline-block; width: 1.3em; font-weight: 700; }
+.h-ttm .h-mark { color: var(--accent); }
+.h-altra .h-mark { color: var(--line-2); }
+.h-cell-col { display: none; }
+@media (max-width: 719px) {
+  .h-table, .h-table tbody, .h-table tr, .h-table th, .h-table td { display: block; width: auto; }
+  .h-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .h-table tbody tr { margin-bottom: 1.4rem; }
+  /* width: auto va ripetuto qui: le larghezze delle colonne (22% e 39%) hanno una specificità più alta. */
+  .h-table tbody th { width: auto; border-top: 0; padding: 0 0 .5rem; font-size: 1.1rem; }
+  .h-table td { border: 0; border-radius: 10px; padding: .8rem 1rem; }
+  .h-table .h-ttm, .h-table tbody tr:last-child .h-ttm {
+    width: auto; border: 1px solid rgba(233, 164, 76, .4); border-radius: 10px;
+  }
+  .h-table .h-altra { margin-top: .4rem; background: var(--surface); }
+  .h-cell-col { display: block; margin-bottom: .2rem; font-size: .85rem; font-weight: 650; }
+  .h-ttm .h-cell-col { color: var(--accent); }
+}
