@@ -66,6 +66,12 @@ The Activity was closed without pressing **Exit**. For TTM, a closed window look
 
 **Exit** tells the bot at once that you are done: if you are the last one in the list, it is back in the channel right away. See [Back to the channel](/docs/activity/#back-to-the-channel).
 
+### The Activity reloads after I change Discord's theme
+
+When you change its theme, Discord reloads the Activity on its own, sometimes up to a minute later: TTM can't stop it. The list comes back by itself in a moment, with the theme you had. If your theme was **Match Discord**, it becomes the theme you were seeing: to follow Discord again, choose **Match Discord** with the gear. See [Your settings](/docs/activity/#your-settings).
+
+After a reload, **Exit** still takes you out of the list, but because of a Discord bug it can't close the window: close it from Discord.
+
 ## Reminders
 
 ### My reminder didn't arrive
