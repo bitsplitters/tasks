@@ -247,7 +247,11 @@
 
 /* le tre tappe e il comando */
 .sc-cap { margin-top: 1.1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-.sc-steps { list-style: none; counter-reset: tappa; display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 0; padding: 0; font-size: .95rem; }
+/* Le tappe prendono lo spazio che resta e vanno a capo fra loro: il comando resta sulla stessa riga, a destra. */
+.sc-steps {
+  list-style: none; counter-reset: tappa; display: flex; flex-wrap: wrap; flex: 1 1 14rem; min-width: 0;
+  gap: .5rem 1rem; margin: 0; padding: 0; font-size: .9rem;
+}
 .sc-steps li { counter-increment: tappa; display: flex; align-items: center; gap: .5rem; color: var(--muted); transition: color .3s ease; }
 .sc-steps li::before {
   content: counter(tappa); display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;

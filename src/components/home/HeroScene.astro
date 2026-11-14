@@ -181,3 +181,23 @@ const PIENA = '/icons/checkbox_marked.png';
     </button>
   </figcaption>
 </figure>
+
+<script is:inline>
+  // Prima del primo disegno (spec della home, §4.3): chi accetta il movimento vede la scena dall'inizio. Gli altri, e
+  // chi non ha JavaScript, restano sull'ultimo fotogramma con cui nasce il markup. Uno script a modulo arriverebbe
+  // dopo il primo disegno: si vedrebbe prima la fine, poi l'inizio.
+  (function () {
+    var scena = document.querySelector('[data-scene]');
+    if (!scena || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    scena.classList.add('sc-noanim');
+    scena.classList.remove('is-open', 'is-ticked', 'has-owner', 'has-reminder');
+    scena.setAttribute('data-start', '');
+    var tappe = scena.parentNode.querySelectorAll('.sc-steps li');
+    for (var i = 0; i < tappe.length; i++) tappe[i].classList.remove('is-lit');
+  })();
+</script>
+
+<script>
+  import { avviaScena } from './scene';
+  avviaScena();
+</script>
