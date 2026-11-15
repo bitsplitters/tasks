@@ -23,8 +23,8 @@ export interface Promemoria {
 }
 
 /**
- * Un task come lo salva il bot: il testo è la prosa coi tag in coda (`<@id>`, `<@&id>`); l'owner è un campo, e la
- * riga lo mostra davanti al testo; il webhook è il suo nome.
+ * Un task come lo salva il bot: il testo è la prosa coi tag in coda (`<@id>`, `<@&id>`); l'owner è un campo, che la
+ * riga mostra davanti al testo; il webhook è il suo nome.
  */
 export interface Task {
   pos: Pos;
@@ -67,6 +67,11 @@ export interface Stato {
   ruoli: Ruolo[];
   bloccata: boolean;
   inActivity: boolean;
+  /**
+   * Il fuso di chi guarda, quando ne ha scritto uno al posto di quello proposto, in una modale «Quando» o nel pannello
+   * del promemoria (UserTimezoneService.learn). Senza, vale quello del server (fusoDi).
+   */
+  fuso?: string;
 }
 
 /*
@@ -102,7 +107,7 @@ export const WEBHOOK: readonly Webhook[] = [
 /** Chi è nell'Activity: le pillole del selettore delle persone prima di scrivere (activity.picker.here). */
 export const NELL_ACTIVITY: readonly string[] = [SAM, MIA];
 
-/** Il fuso del server e di chi guarda. */
+/** Il fuso del server: anche quello di chi guarda, finché non ne scrive un altro (fusoDi). */
 export const ZONA = 'Europe/Rome';
 
 /** L'orologio fermo: il 15 novembre 2026 alle 18:04 di Roma, l'ora del messaggio della lista. */
@@ -149,7 +154,7 @@ export function listaDeiVideo(): Lista {
   return listaDiPartenza(false);
 }
 
-/** La demo all'inizio, e dopo «Start over»: nessun ruolo `TTM<n>`, la lista sbloccata nel canale. */
+/** La demo all'inizio o dopo «Start over»: nessun ruolo `TTM<n>`, la lista sbloccata nel canale. */
 export function statoIniziale(lista: Lista = listaDellaDemo()): Stato {
   return {
     lista,
@@ -157,6 +162,11 @@ export function statoIniziale(lista: Lista = listaDellaDemo()): Stato {
     bloccata: false,
     inActivity: false,
   };
+}
+
+/** Il fuso di chi guarda, come FusoDiChiAgisce: il suo, se ne ha scritto uno, altrimenti quello del server. */
+export function fusoDi(stato: Stato): string {
+  return stato.fuso ?? ZONA;
 }
 
 /** La posizione come la scrive la riga: '2', '2.1'. */

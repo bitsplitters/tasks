@@ -5,16 +5,18 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { FUSI_DEL_BOT } from '../src/components/home/demo/fusi-del-bot.ts';
 import {
-  ADESSO, COACHES, LEO, MIA, SAM, ZONA, idRuoloTtm, posizione, statoIniziale,
+  ADESSO, COACHES, LEO, MIA, PROPOSTO, SAM, ZONA, fusoDi, idRuoloTtm, posizione, statoIniziale,
 } from '../src/components/home/demo/modello.ts';
 import type { Stato, Task } from '../src/components/home/demo/modello.ts';
 import {
-  applicaOwner, applicaOwnerActivity, applicaTag, applicaTagActivity, avanzamento, carrello, eliminaTask,
-  eliminaTaskConfermato, prosa, prosaDelTask, rifiutoDelCarrello, rinumera, salvaTesto, salvaTestoActivity,
-  sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, togliOwner, togliOwnerConfermato, togliTag, tokenTolti,
+  applicaOwner, applicaOwnerActivity, applicaPromemoria, applicaTag, applicaTagActivity, applicaWebhook, avanzamento,
+  campiDelPromemoria, carrello, eliminaTask, eliminaTaskConfermato, prosa, prosaDelTask, rifiutoDelCarrello, rinumera,
+  salvaTesto, salvaTestoActivity, sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, togliOwner,
+  togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook, tokenTolti, validaPromemoria,
 } from '../src/components/home/demo/regole.ts';
-import type { Esito } from '../src/components/home/demo/regole.ts';
+import type { Campi, Esito } from '../src/components/home/demo/regole.ts';
 
 /** I task come «posizione prima parola»: '2.1 Clip'. */
 const elenco = (s: Stato) => s.lista.tasks.map((t) => `${posizione(t.pos)} ${t.testo.split(' ')[0]}`);
@@ -318,4 +320,128 @@ test('il pulsante rosso dei tag li toglie tutti, se al task resta un testo (TagL
   const conTag = conTesto(1, `Lock ${LEO_TAG} the  scrim block ${COACHES_TAG}`);
   assert.equal(statoDi(togliTag(conTag, '2')).lista.tasks[1].testo, 'Lock the scrim block');
   assert.deepEqual(togliTag(conTesto(1, LEO_TAG), '2'), rifiutoDi('tasklist.slct.tag.delete.blank.error'));
+});
+
+// 5d — Il promemoria, il webhook
+
+/** I campi che la modale del promemoria propone sul task 2: adesso più dieci minuti, a Roma. */
+const CAMPI: Campi = { giorno: '15', mese: '11', anno: '2026', ora: '18:14', zona: ZONA };
+const conCampi = (diversi: Partial<Campi>): Campi => ({ ...CAMPI, ...diversi });
+const E_FUSO = 'tasklist.modal.alert.timezone.error';
+const E_MESE = 'tasklist.modal.when.month.error';
+const E_ANNO = 'tasklist.modal.when.year.error';
+const E_DATA = 'tasklist.modal.when.date.error';
+const E_ORA = 'tasklist.modal.when.time.error';
+const E_MINUTI = 'tasklist.modal.alert.date.minutes.error';
+
+/** Lo stato iniziale, o `s`, col task `i` cambiato. */
+function conIlTask(i: number, cambi: Partial<Task>, s = statoIniziale()): Stato {
+  return { ...s, lista: { ...s.lista, tasks: s.lista.tasks.map((t, j) => (j === i ? { ...t, ...cambi } : t)) } };
+}
+
+test('i fusi della modale sono quelli del bot, maiuscole comprese: Intl li converte tutti (TimeZones)', () => {
+  assert.equal(FUSI_DEL_BOT.size, 604);
+  const presi = ['Europe/Rome', 'Asia/Kolkata', 'Asia/Calcutta', 'America/Argentina/Buenos_Aires', 'UTC', 'GMT'];
+  for (const z of [...presi, 'Etc/GMT-14', 'SystemV/AST4', 'US/Eastern']) assert.ok(FUSI_DEL_BOT.has(z), z);
+  for (const z of ['europe/rome', 'Mars/Olympus', 'Europe/Rome ', '']) assert.ok(!FUSI_DEL_BOT.has(z), z);
+  // daiCampi converte con Intl: nessun fuso del bot va perso per colpa del motore.
+  for (const z of FUSI_DEL_BOT) assert.doesNotThrow(() => new Intl.DateTimeFormat('en', { timeZone: z }), z);
+});
+
+test('la modale del promemoria propone adesso più dieci minuti, o la data del task (WhenModalFields)', () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(campiDelPromemoria(s0, '2'), CAMPI);
+  const alle2030 = Date.UTC(2026, 10, 15, 19, 30) / 1000;
+  const conLe2030 = conIlTask(3, { promemoria: { at: alle2030, zona: ZONA } });
+  assert.deepEqual(campiDelPromemoria(conLe2030, '3'), conCampi({ ora: '20:30' }));
+  // Il giorno senza zero davanti, l'ora con.
+  const il5 = conIlTask(3, { promemoria: { at: Date.UTC(2026, 11, 5, 8, 0) / 1000, zona: ZONA } });
+  assert.deepEqual(campiDelPromemoria(il5, '3'), conCampi({ giorno: '5', mese: '12', ora: '09:00' }));
+  assert.deepEqual(campiDelPromemoria(s0, '1'), rifiutoDi('tasklist.slct.alert.checkedtask.error'));
+});
+
+test('la modale controlla il fuso e il mese, poi anno, data e ora: il primo che non va (WhenFieldsValidator)', () => {
+  assert.deepEqual(validaPromemoria(CAMPI), { at: PROPOSTO });
+  assert.deepEqual(validaPromemoria(conCampi({ zona: 'Mars/Olympus' })), { errori: [E_FUSO] });
+  assert.deepEqual(validaPromemoria(conCampi({ zona: 'europe/rome' })), { errori: [E_FUSO] });
+  assert.deepEqual(validaPromemoria(conCampi({ zona: 'Asia/Kolkata', ora: '22:44' })), { at: PROPOSTO });
+  assert.deepEqual(validaPromemoria(conCampi({ zona: 'Asia/Calcutta', ora: '22:44' })), { at: PROPOSTO });
+  assert.deepEqual(validaPromemoria(conCampi({ zona: 'Mars/Olympus', mese: '' })), { errori: [E_FUSO, E_MESE] });
+  assert.deepEqual(validaPromemoria(conCampi({ mese: '' })), { errori: [E_MESE] });
+  // Anno, data e ora si guardano solo col fuso e il mese a posto.
+  assert.deepEqual(validaPromemoria(conCampi({ zona: 'Mars/Olympus', anno: '2025' })), { errori: [E_FUSO] });
+  assert.deepEqual(validaPromemoria(conCampi({ anno: '2025' })), { errori: [E_ANNO] });
+  assert.deepEqual(validaPromemoria(conCampi({ anno: '2025', ora: '25:00' })), { errori: [E_ANNO] });
+  const date: Partial<Campi>[] = [
+    { anno: 'abcd' }, { giorno: '31' }, { giorno: 'x' }, { giorno: '0' }, { giorno: '31', ora: '25:00' },
+    { giorno: '29', mese: '2', anno: '2027' },
+  ];
+  for (const d of date) assert.deepEqual(validaPromemoria(conCampi(d)), { errori: [E_DATA] }, JSON.stringify(d));
+  for (const ora of ['18.14', '25:00', '24:00', '8:140']) {
+    assert.deepEqual(validaPromemoria(conCampi({ ora })), { errori: [E_ORA] }, ora);
+  }
+  // Integer.parseInt dopo trim(): il segno davanti va; il 29 febbraio negli anni bisestili.
+  assert.deepEqual(validaPromemoria(conCampi({ giorno: '+5', mese: '12' })), { at: PROPOSTO + 20 * 86400 });
+  const bisestile = conCampi({ giorno: '29', mese: '2', anno: '2028' });
+  assert.deepEqual(validaPromemoria(bisestile), { at: Date.UTC(2028, 1, 29, 17, 14) / 1000 });
+  // L'anno di adesso è quello di UTC (TimeUtil.nowZoned).
+  assert.deepEqual(validaPromemoria(CAMPI, Date.UTC(2027, 0, 1) / 1000), { errori: [E_ANNO] });
+});
+
+test('il promemoria sta almeno cinque minuti avanti, in minuti interi (RegoleDelPromemoria.abbastanzaAvanti)', () => {
+  assert.deepEqual(validaPromemoria(conCampi({ ora: '18:09' })), { at: ADESSO + 300 });
+  assert.deepEqual(validaPromemoria(conCampi({ ora: '18:08' })), { errori: [E_MINUTI] });
+  assert.deepEqual(validaPromemoria(conCampi({ ora: '17:00' })), { errori: [E_MINUTI] });
+  assert.deepEqual(validaPromemoria(conCampi({ giorno: '14' })), { errori: [E_MINUTI] });
+  assert.deepEqual(validaPromemoria(CAMPI, PROPOSTO - 300), { at: PROPOSTO });
+  assert.deepEqual(validaPromemoria(CAMPI, PROPOSTO - 299), { errori: [E_MINUTI] });
+});
+
+test('il promemoria salvato dà al task senza owner chi lo salva; lo stesso minuto non cambia (ReminderSaver)', () => {
+  const s0 = statoIniziale();
+  const due = statoDi(applicaPromemoria(s0, '2', PROPOSTO, ZONA));
+  const sam = { tipo: 'persona', id: SAM };
+  assert.deepEqual(due.lista.tasks[1], { ...s0.lista.tasks[1], owner: sam, promemoria: { at: PROPOSTO, zona: ZONA } });
+  const tre = statoDi(applicaPromemoria(s0, '3', PROPOSTO + 3600, ZONA));
+  assert.deepEqual(tre.lista.tasks[3], { ...s0.lista.tasks[3], promemoria: { at: PROPOSTO + 3600, zona: ZONA } });
+  assert.deepEqual(tre.lista.tasks[3].owner, { tipo: 'persona', id: MIA });
+  assert.deepEqual(applicaPromemoria(s0, '1', PROPOSTO, ZONA), rifiutoDi('tasklist.slct.alert.checkedtask.error'));
+  const invariato = { tipo: 'fatto', stato: s0, messaggio: { chiave: 'tasklist.reminder.unchanged' } };
+  assert.deepEqual(applicaPromemoria(s0, '3', PROPOSTO, ZONA), invariato);
+  assert.deepEqual(applicaPromemoria(s0, '3', PROPOSTO + 59, ZONA), invariato);
+  assert.deepEqual(s0, statoIniziale());
+});
+
+test('il fuso scritto al posto di quello proposto diventa quello di chi agisce (UserTimezoneService.learn)', () => {
+  const s0 = statoIniziale();
+  assert.equal(fusoDi(s0), ZONA);
+  assert.equal('fuso' in statoDi(applicaPromemoria(s0, '2', PROPOSTO, ZONA)), false);
+  const kolkata = statoDi(applicaPromemoria(s0, '2', PROPOSTO, 'Asia/Kolkata'));
+  assert.equal(fusoDi(kolkata), 'Asia/Kolkata');
+  assert.deepEqual(kolkata.lista.tasks[1].promemoria, { at: PROPOSTO, zona: 'Asia/Kolkata' });
+  assert.deepEqual(campiDelPromemoria(kolkata, '4'), conCampi({ ora: '22:44', zona: 'Asia/Kolkata' }));
+  assert.equal(fusoDi(statoDi(applicaPromemoria(kolkata, '4', PROPOSTO, ZONA))), ZONA);
+  // Anche quando il promemoria poi resta com'era.
+  assert.equal(fusoDi(statoDi(applicaPromemoria(s0, '3', PROPOSTO, 'Asia/Kolkata'))), 'Asia/Kolkata');
+});
+
+test('il pulsante rosso del promemoria lascia owner, tag e webhook, anche su un task completato (AlertLogic)', () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(togliPromemoria(s0, '2'), rifiutoDi('tasklist.slct.alert.noreminder.error'));
+  const tre = statoDi(togliPromemoria(s0, '3')).lista.tasks[3];
+  assert.equal('promemoria' in tre, false);
+  assert.deepEqual(tre.owner, { tipo: 'persona', id: MIA });
+  const completato = conIlTask(0, { promemoria: { at: PROPOSTO, zona: ZONA } });
+  assert.deepEqual(statoDi(togliPromemoria(completato, '1')), s0);
+});
+
+test('il webhook del menu va sul task, anche completato; senza una scelta il bot la chiede (WebhookLogic)', () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(applicaWebhook(s0, '2', null), rifiutoDi('tasklist.slct.webhook.none'));
+  const scrim = statoDi(applicaWebhook(s0, '2', 'Scrim results'));
+  assert.deepEqual(scrim.lista.tasks[1], { ...s0.lista.tasks[1], webhook: 'Scrim results' });
+  assert.equal(statoDi(applicaWebhook(scrim, '2', 'Staff alerts')).lista.tasks[1].webhook, 'Staff alerts');
+  assert.equal(statoDi(applicaWebhook(s0, '1', 'Staff alerts')).lista.tasks[0].webhook, 'Staff alerts');
+  assert.deepEqual(togliWebhook(s0, '2'), rifiutoDi('tasklist.slct.webhook.delete.notpresent.error'));
+  assert.deepEqual(statoDi(togliWebhook(scrim, '2')), s0);
 });

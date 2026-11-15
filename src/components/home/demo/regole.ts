@@ -4,7 +4,8 @@
  * che ricevono lo stato con la scelta di chi guarda e restituiscono un esito, cioè lo stato nuovo, un rifiuto oppure
  * una domanda. Qui anche i tipi che le regole condividono coi testi (testi.ts) e con l'interfaccia.
  */
-import { ADESSO, idRuoloTtm, posizione } from './modello.ts';
+import { FUSI_DEL_BOT } from './fusi-del-bot.ts';
+import { ADESSO, PROPOSTO, SAM, campiDi, daiCampi, fusoDi, idRuoloTtm, posizione } from './modello.ts';
 import type { Lista, Owner, Pos, Ruolo, Stato, Task } from './modello.ts';
 import { elencoDeiTolti } from './testi.ts';
 
@@ -31,9 +32,12 @@ export type Domanda =
   | { tipo: 'pulisci'; completati: number; avvertenza: 'all' | 'reminders' | 'tags' | 'plain' }
   | { tipo: 'riapri'; spuntati: number; nuovaData: boolean };
 
-/** L'esito di una regola: lo stato nuovo, a volte con un avviso; un rifiuto (lo stato non cambia); una domanda. */
+/**
+ * L'esito di una regola: lo stato nuovo, a volte con un avviso (TTMEmbed.avviso) o col messaggio che il bot scrive al
+ * posto di quello della riuscita; un rifiuto (lo stato non cambia); una domanda.
+ */
 export type Esito =
-  | { tipo: 'fatto'; stato: Stato; avviso?: Testo }
+  | { tipo: 'fatto'; stato: Stato; avviso?: Testo; messaggio?: Testo }
   | { tipo: 'rifiuto'; testo: Testo }
   | { tipo: 'domanda'; domanda: Domanda };
 
@@ -67,7 +71,7 @@ function fatto(stato: Stato, avviso?: Testo): Esito {
   return avviso ? { tipo: 'fatto', stato, avviso } : { tipo: 'fatto', stato };
 }
 
-function rifiuto(chiave: string): Esito {
+function rifiuto(chiave: string): Extract<Esito, { tipo: 'rifiuto' }> {
   return { tipo: 'rifiuto', testo: { chiave } };
 }
 
@@ -211,7 +215,7 @@ const IN_MESI = /\[(?:[\ddhm]*M[\dMdhm]*,[\dMdhm]+?|[\ddhm]+?,[\ddhm]*M[\dMdhm]*
 /** Gli spazi di Java (`\s` senza Unicode), gli a capo di `\R` con gli spazi intorno, i bordi di String.trim. */
 const SPAZI = /[ \t\n\v\f\r]+/g;
 const A_CAPO = /[ \t\n\v\f\r]*(?:\r\n|[\n\v\f\r\u0085\u2028\u2029])[ \t\n\v\f\r]*/g;
-const BORDI = /^[\u0000- ]+|[\u0000- ]+$/g;
+const BORDI = /^[\u0000-\u0020]+|[\u0000-\u0020]+$/g;
 
 /** StringUtil.removeExtraSpaces: i bordi tolti, ogni fila di spazi ridotta a uno. */
 function senzaSpaziInPiu(testo: string): string {
@@ -534,4 +538,152 @@ export function applicaTagActivity(stato: Stato, pos: string, scelte: Menzione[]
   const scelti = senzaDoppioni(scelte);
   if (stesseMenzioni(scelti, tagDelTesto(stato.lista.tasks[indice(stato, pos)].testo))) return fatto(stato);
   return conITagDelTask(stato, pos, scelti.map(menzione), 'activity.tag.delete.blank');
+}
+
+/* 5d — Il promemoria, il webhook. */
+
+/**
+ * I campi della modale «Quando» (WhenModalFields) come arrivano al bot: giorno, anno e ora come li scrive chi guarda,
+ * il mese col valore della select (da '1' a '12'), il fuso scritto o lasciato com'era.
+ */
+export interface Campi {
+  giorno: string;
+  mese: string;
+  anno: string;
+  ora: string;
+  zona: string;
+}
+
+const PROMEMORIA_SU_COMPLETATO = 'tasklist.slct.alert.checkedtask.error';
+const DATA_CHE_NON_ESISTE = 'tasklist.modal.when.date.error';
+
+/** I minuti interi che devono stare fra adesso e la data scelta, almeno (RegoleDelPromemoria.MARGINE_MINUTI). */
+const MARGINE_MINUTI = 5;
+
+/** L'ora come la legge LocalTime.parse col formato «HH:mm» STRICT: due cifre per le ore fino a 23, due per i minuti. */
+const HH_MM = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
+
+/**
+ * I campi che la modale del promemoria propone (AlertLogic.openWhenModal, WhenModalFields.prefillBase): la data del
+ * promemoria che il task ha già, o adesso più dieci minuti, nel fuso di chi agisce; il giorno senza zero davanti, l'ora
+ * con. Su un task completato la modale non si apre (AlertLogic.addOrReplaceAlert).
+ */
+export function campiDelPromemoria(stato: Stato, pos: string): Campi | Extract<Esito, { tipo: 'rifiuto' }> {
+  const task = stato.lista.tasks[indice(stato, pos)];
+  if (task.fatto) return rifiuto(PROMEMORIA_SU_COMPLETATO);
+  const zona = fusoDi(stato);
+  const c = campiDi(task.promemoria ? task.promemoria.at : PROPOSTO, zona);
+  return { giorno: String(c.giorno), mese: String(c.mese), anno: String(c.anno), ora: c.ora, zona };
+}
+
+/**
+ * Un intero come Integer.parseInt dopo trim(): un segno, poi solo cifre; `null` dove Java lancia NumberFormatException.
+ * Le cifre di altre scritture, che parseInt accetta, qui no: nei campi di due e quattro caratteri nessuno le scrive.
+ */
+function intero(testo: string): number | null {
+  const t = testo.replace(BORDI, '');
+  return /^[+-]?\d+$/.test(t) ? Number(t) : null;
+}
+
+/** I giorni di un mese, come li conta LocalDate.of. */
+function giorniDelMese(anno: number, mese: number): number {
+  if (mese === 2) return anno % 4 === 0 && (anno % 100 !== 0 || anno % 400 === 0) ? 29 : 28;
+  return [4, 6, 9, 11].includes(mese) ? 30 : 31;
+}
+
+/**
+ * Se il bot conosce il fuso (TimeZones.getZones, che distingue le maiuscole) e la pagina lo sa convertire: un fuso del
+ * bot che il motore del browser non conosce, in Node nessuno, vale come uno che non c'è.
+ */
+function fusoDelBot(zona: string): boolean {
+  if (!FUSI_DEL_BOT.has(zona)) return false;
+  try {
+    return new Intl.DateTimeFormat('en', { timeZone: zona }).resolvedOptions().timeZone !== '';
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * L'istante dei campi, o il primo errore, come il blocco try di WhenFieldsValidator.validate: l'anno che non è un
+ * numero; l'anno prima di quello di adesso, in UTC (TimeUtil.nowZoned); la data che non c'è (LocalDate.of, che viene
+ * prima dell'ora); l'ora che non è «HH:mm».
+ */
+function istanteDeiCampi(campi: Campi, adesso: number): { at: number } | { errore: string } {
+  const anno = intero(campi.anno);
+  if (anno === null) return { errore: DATA_CHE_NON_ESISTE };
+  if (anno < new Date(adesso * 1000).getUTCFullYear()) return { errore: 'tasklist.modal.when.year.error' };
+  const mese = intero(campi.mese);
+  const giorno = intero(campi.giorno);
+  if (mese === null || mese < 1 || mese > 12) return { errore: DATA_CHE_NON_ESISTE };
+  if (giorno === null || giorno < 1 || giorno > giorniDelMese(anno, mese)) return { errore: DATA_CHE_NON_ESISTE };
+  const ora = campi.ora.replace(BORDI, '');
+  if (!HH_MM.test(ora)) return { errore: 'tasklist.modal.when.time.error' };
+  return { at: daiCampi(giorno, mese, anno, ora, campi.zona) };
+}
+
+/**
+ * Il submit della modale del promemoria (TaskListMdlWhen): gli errori di WhenFieldsValidator.validate, cioè il fuso
+ * che il bot non conosce, il mese vuoto, poi, con quei due a posto, il primo errore della data; senza errori, la data
+ * a meno di cinque minuti da adesso. Il testo degli errori lo compone testoDegliErrori.
+ */
+export function validaPromemoria(campi: Campi, adesso = ADESSO): { at: number } | { errori: string[] } {
+  const errori: string[] = [];
+  if (!fusoDelBot(campi.zona)) errori.push('tasklist.modal.alert.timezone.error');
+  if (campi.mese.trim() === '') errori.push('tasklist.modal.when.month.error');
+  if (errori.length) return { errori };
+  const istante = istanteDeiCampi(campi, adesso);
+  if ('errore' in istante) return { errori: [istante.errore] };
+  if (Math.trunc((istante.at - adesso) / 60) < MARGINE_MINUTI)
+    return { errori: ['tasklist.modal.alert.date.minutes.error'] };
+  return istante;
+}
+
+/**
+ * Il promemoria della modale (TaskListMdlWhen, poi ReminderSaver; i ricorrenti sono spenti, come nel piano Free). Il
+ * fuso scritto al posto di quello proposto diventa quello di chi agisce (UserTimezoneService.learn), anche quando il
+ * promemoria poi resta com'era: lo stesso minuto del promemoria che c'è non si scrive, il bot risponde «No changes».
+ * Un task senza owner prende come owner chi salva (RegoleDelPromemoria.conPromemoria). `at` viene da validaPromemoria:
+ * la data passata, che il bot ricontrolla al salvataggio, qui non arriva.
+ */
+export function applicaPromemoria(stato: Stato, pos: string, at: number, zona: string): Esito {
+  const dopo = zona === fusoDi(stato) ? stato : { ...stato, fuso: zona };
+  const i = indice(dopo, pos);
+  const task = dopo.lista.tasks[i];
+  if (task.fatto) return rifiuto(PROMEMORIA_SU_COMPLETATO);
+  if (task.promemoria && Math.floor(task.promemoria.at / 60) === Math.floor(at / 60))
+    return { tipo: 'fatto', stato: dopo, messaggio: { chiave: 'tasklist.reminder.unchanged' } };
+  const owner: Owner = task.owner ?? { tipo: 'persona', id: SAM };
+  return fatto(conTask(dopo, i, { ...task, owner, promemoria: { at, zona } }));
+}
+
+/**
+ * Il pulsante rosso del promemoria (AlertLogic.deleteAlert): toglie il promemoria, anche da un task completato; owner,
+ * tag e webhook restano.
+ */
+export function togliPromemoria(stato: Stato, pos: string): Esito {
+  const i = indice(stato, pos);
+  const resto = { ...stato.lista.tasks[i] };
+  if (!resto.promemoria) return rifiuto('tasklist.slct.alert.noreminder.error');
+  delete resto.promemoria;
+  return fatto(conTask(stato, i, resto));
+}
+
+/**
+ * Il webhook scelto nel menu sul task scelto (WebhookLogic.manageWebhook): prende il posto di quello che c'era, anche
+ * su un task completato. Senza una scelta nel menu il bot chiede di farla.
+ */
+export function applicaWebhook(stato: Stato, pos: string, nome: string | null): Esito {
+  const i = indice(stato, pos);
+  if (nome === null) return rifiuto('tasklist.slct.webhook.none');
+  return fatto(conTask(stato, i, { ...stato.lista.tasks[i], webhook: nome }));
+}
+
+/** Il pulsante rosso del webhook (WebhookLogic.manageWebhook): toglie il webhook dal task che ce l'ha. */
+export function togliWebhook(stato: Stato, pos: string): Esito {
+  const i = indice(stato, pos);
+  const resto = { ...stato.lista.tasks[i] };
+  if (resto.webhook === undefined) return rifiuto('tasklist.slct.webhook.delete.notpresent.error');
+  delete resto.webhook;
+  return fatto(conTask(stato, i, resto));
 }

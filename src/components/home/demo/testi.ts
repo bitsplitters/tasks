@@ -223,6 +223,7 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.modal.when.month.error': 'Invalid month: pick one from the list.',
   'tasklist.slct.alert.checkedtask.error': 'The reminder to work must be created on a task to be performed.',
   'tasklist.slct.alert.noreminder.error': 'There is no reminder in the selected task.',
+  'tasklist.reminder.unchanged': 'No changes: the reminder stays as it was.',
   // Il webhook
   'tasklist.slct.webhook': 'Choose the webhook to associate',
   'tasklist.slct.webhook.none': 'Choose a webhook first, then select the task to associate it with.',
