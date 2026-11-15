@@ -50,7 +50,7 @@ One dropdown with three options: **Tips**, **Completed tasks dimmed** and **Spac
 
 Help for whoever is new to TTM, in three places:
 
-- when someone runs `/create-list`, a short explanation of how to write a list, with the **Create your list** and **Tutorial** buttons: the new list takes the place of the explanation;
+- when someone runs `/create-list`, a short explanation of how to write a list and an invite to try Activity mode, with the **Create your list** and **Tutorial** buttons: the new list takes the place of the explanation;
 - under every list in the channel, a small line that points to the guide in Discord: *Not sure what the buttons do? More → Guide*, with a link to [The list in the channel](/docs/the-task-list/);
 - under the list in the Activity, a line that says where to tap: *Not sure where to start? Tap a box to tick a task, tap its text for the rest.* See [Working on a list in the Activity](/docs/activity-list/).
 
