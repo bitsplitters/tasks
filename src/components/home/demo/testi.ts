@@ -274,9 +274,16 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.reopen.done': '{0} *List reopened: every task is to-do again.*',
   'tasklist.reopen.cancelled': 'Reopening cancelled.',
   'tasklist.modal.reopen': 'New date for the reminders',
+  'tasklist.modal.clone.date.now.error':
+    '- **Invalid date**. The base date must be at least 5 minutes away from now.',
   'tasklist.btn.reopen.confirm': 'Reopen',
   'tasklist.btn.reopen.newdate': 'New date',
   'tasklist.btn.reopen.cancel': 'Cancel',
+  'tasklist.modal.activity.error':
+    'In the meantime the list moved into the Activity: the change was not saved. To continue there, use ' +
+    '**Join the Activity** under the list.',
+  'tasklist.action.unavailable.error':
+    "{0} This list can't be changed right now: someone is editing it, or it has been sealed.",
   // More
   'tasklist.btn.other.listunlock': 'Unlock list',
   'tasklist.btn.listunlock.desc.who':

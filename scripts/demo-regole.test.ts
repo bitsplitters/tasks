@@ -7,16 +7,18 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { FUSI_DEL_BOT } from '../src/components/home/demo/fusi-del-bot.ts';
 import {
-  ADESSO, COACHES, LEO, MIA, PROPOSTO, SAM, ZONA, fusoDi, idRuoloTtm, posizione, statoIniziale,
+  ADESSO, COACHES, LEO, MIA, PROPOSTO, SAM, ZONA, fusoDi, idRuoloTtm, listaDellaDemo, posizione, statoIniziale,
 } from '../src/components/home/demo/modello.ts';
 import type { Stato, Task } from '../src/components/home/demo/modello.ts';
 import {
   applicaOwner, applicaOwnerActivity, applicaPromemoria, applicaTag, applicaTagActivity, applicaWebhook, avanzamento,
-  campiDelPromemoria, carrello, eliminaTask, eliminaTaskConfermato, prosa, prosaDelTask, rifiutoDelCarrello, rinumera,
-  salvaTesto, salvaTestoActivity, sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, togliOwner,
-  togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook, tokenTolti, validaPromemoria,
+  campiDelPromemoria, campiDellaNuovaData, carrello, eliminaTask, eliminaTaskConfermato, imparaIlFuso, prosa,
+  prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri, riapriConfermato, rifiutoDelCarrello, rinumera,
+  salvaTesto, salvaTestoActivity, sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, testoDellaLista, togliOwner,
+  togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook, tokenTolti, validaNuovaData, validaPromemoria,
 } from '../src/components/home/demo/regole.ts';
-import type { Campi, Esito } from '../src/components/home/demo/regole.ts';
+import type { Campi, Domanda, Esito } from '../src/components/home/demo/regole.ts';
+import { PRIMA_RIGA, TASTI } from '../src/components/home/scene-data.ts';
 
 /** I task come «posizione prima parola»: '2.1 Clip'. */
 const elenco = (s: Stato) => s.lista.tasks.map((t) => `${posizione(t.pos)} ${t.testo.split(' ')[0]}`);
@@ -444,4 +446,135 @@ test('il webhook del menu va sul task, anche completato; senza una scelta il bot
   assert.equal(statoDi(applicaWebhook(s0, '1', 'Staff alerts')).lista.tasks[0].webhook, 'Staff alerts');
   assert.deepEqual(togliWebhook(s0, '2'), rifiutoDi('tasklist.slct.webhook.delete.notpresent.error'));
   assert.deepEqual(statoDi(togliWebhook(scrim, '2')), s0);
+});
+
+// 5e — Pulisci, Riapri tutti, il blocco, il testo della lista
+
+/** Lo stato iniziale, o `s`, coi task in `posizioni` spuntati: un gruppo porta con sé i suoi subtask (spunta). */
+function conSpunte(posizioni: string[], s = statoIniziale()): Stato {
+  return posizioni.reduce((stato, pos) => spunta(stato, pos, true), s);
+}
+const domandaDi = (domanda: Domanda) => ({ tipo: 'domanda', domanda });
+const pulizia = (completati: number, avvertenza: 'all' | 'reminders' | 'tags' | 'plain') =>
+  domandaDi({ tipo: 'pulisci', completati, avvertenza });
+const riapertura = (spuntati: number, nuovaData: boolean) => domandaDi({ tipo: 'riapri', spuntati, nuovaData });
+/** La data scelta con New date: le 9 del 16 novembre a Roma. */
+const DOMANI = Date.UTC(2026, 10, 16, 8, 0) / 1000;
+
+test("Pulisci chiede con l'avvertenza di ciò che esce; l'owner non è un tag (TaskListBtnClean, Pulizia)", () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(pulisci(s0), pulizia(1, 'plain'));
+  assert.deepEqual(pulisci(spunta(s0, '1', false)), rifiutoDi('tasklist.btn.clean.noselection'));
+  assert.deepEqual(pulisci(conSpunte(['2', '3', '4'])), rifiutoDi('tasklist.btn.clean.emptylist'));
+  assert.deepEqual(pulisci(conSpunte(['3'])), pulizia(2, 'reminders'));
+  const conTag = conTesto(4, `Publish the match-day graphic ${LEO_TAG}`);
+  assert.deepEqual(pulisci(conSpunte(['4'], conTag)), pulizia(2, 'tags'));
+  assert.deepEqual(pulisci(conSpunte(['3', '4'], conTag)), pulizia(3, 'all'));
+  assert.deepEqual(pulisci(conSpunte(['2'])), pulizia(3, 'plain'));
+});
+
+test('il gruppo di un subtask completato resta col suo promemoria: non conta (Pulizia)', () => {
+  const gruppo: Task = { ...task(1, 0, 'Group'), promemoria: { at: PROPOSTO, zona: ZONA } };
+  const s = conTasks([gruppo, task(1, 1, 'Done', true), task(1, 2, 'Open')]);
+  assert.deepEqual(pulisci(s), pulizia(1, 'plain'));
+  const pulita = pulisciConfermato(s);
+  assert.deepEqual(elenco(pulita), ['1 Group', '1.1 Open']);
+  assert.deepEqual(pulita.lista.tasks[0], gruppo);
+});
+
+test('Pulisci confermato toglie i completati e rinumera gli altri (TaskListMdlCleanConfirm)', () => {
+  const s0 = statoIniziale();
+  const pulita = pulisciConfermato(s0);
+  assert.deepEqual(elenco(pulita), ['1 Lock', '1.1 Clip', '2 VOD', '3 Publish']);
+  assert.deepEqual(pulita.lista.tasks[2], { ...s0.lista.tasks[3], pos: { main: 2, sub: 0 } });
+  assert.deepEqual({ ...pulita, lista: s0.lista }, s0);
+  assert.deepEqual(elenco(pulisciConfermato(conSpunte(['2']))), ['1 VOD', '2 Publish']);
+});
+
+test('Riapri tutti chiede quanti task riapre; New date solo per un promemoria da riaprire (Riapertura)', () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(riapri(spunta(s0, '1', false)), rifiutoDi('tasklist.reopen.none.error'));
+  assert.deepEqual(riapri(s0), riapertura(1, false));
+  assert.deepEqual(riapri(conSpunte(['3'])), riapertura(2, true));
+  assert.deepEqual(riapri(conSpunte(['2'])), riapertura(3, false));
+});
+
+test('Reopen riapre tutto e lascia i promemoria dove stavano (Riapertura.riaperti)', () => {
+  const s0 = statoIniziale();
+  const daFare = { ...s0, lista: { ...s0.lista, tasks: s0.lista.tasks.map((t) => ({ ...t, fatto: false })) } };
+  assert.deepEqual(statoDi(riapriConfermato(conSpunte(['2', '3']))), daFare);
+  assert.deepEqual(statoDi(riapriConfermato(s0, { at: DOMANI, zona: ZONA })), daFare);
+});
+
+test("Reopen rifiuta la lista cambiata col ponte aperto: nell'Activity, bloccata, senza completati", () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(riapriConfermato(spunta(s0, '1', false)), rifiutoDi('tasklist.reopen.none.error'));
+  assert.deepEqual(riapriConfermato({ ...s0, bloccata: true }), rifiutoDi('tasklist.action.unavailable.error'));
+  assert.deepEqual(riapriConfermato({ ...s0, inActivity: true }), rifiutoDi('tasklist.modal.activity.error'));
+  const tutte = { ...s0, inActivity: true, bloccata: true };
+  assert.deepEqual(riapriConfermato(tutte, { at: DOMANI, zona: ZONA }), rifiutoDi('tasklist.modal.activity.error'));
+});
+
+test('New date: il primo promemoria dei riaperti cade sulla data, gli altri lo seguono (ReminderReanchorer)', () => {
+  // Il 2, da fare, ha il promemoria più vecchio: resta dov'è e non conta.
+  const alle18 = PROPOSTO - 14 * 60;
+  const conIl2 = conIlTask(1, { promemoria: { at: alle18, zona: ZONA } }, conSpunte(['3', '4']));
+  const s = conIlTask(4, { promemoria: { at: PROPOSTO + 3600, zona: ZONA } }, conIl2);
+  const riaperta = statoDi(riapriConfermato(s, { at: DOMANI, zona: ZONA }));
+  assert.deepEqual(fatti(riaperta), []);
+  const date = riaperta.lista.tasks.map((t) => t.promemoria?.at);
+  assert.deepEqual(date, [undefined, alle18, undefined, DOMANI, DOMANI + 3600]);
+  assert.equal('fuso' in riaperta, false);
+  const kolkata = statoDi(riapriConfermato(s, { at: DOMANI, zona: 'Asia/Kolkata' }));
+  assert.equal(fusoDi(kolkata), 'Asia/Kolkata');
+  assert.deepEqual(kolkata.lista.tasks[3].promemoria, { at: DOMANI, zona: 'Asia/Kolkata' });
+  assert.deepEqual(kolkata.lista.tasks[1].promemoria, { at: alle18, zona: ZONA });
+});
+
+test('New date: adesso più dieci minuti; la data troppo vicina ha il testo del clone (TaskListMdlReopenWhen)', () => {
+  const conPromemoria = conIlTask(3, { promemoria: { at: DOMANI, zona: ZONA } }, conSpunte(['3']));
+  assert.deepEqual(campiDellaNuovaData(conPromemoria), CAMPI);
+  const kolkata = imparaIlFuso(statoIniziale(), 'Asia/Kolkata');
+  assert.deepEqual(campiDellaNuovaData(kolkata), conCampi({ ora: '22:44', zona: 'Asia/Kolkata' }));
+  assert.deepEqual(validaNuovaData(CAMPI), { at: PROPOSTO });
+  assert.deepEqual(validaNuovaData(conCampi({ ora: '18:08' })), { errori: ['tasklist.modal.clone.date.now.error'] });
+  assert.deepEqual(validaNuovaData(conCampi({ zona: 'Mars/Olympus', mese: '' })), { errori: [E_FUSO, E_MESE] });
+  assert.deepEqual(validaNuovaData(conCampi({ anno: '2025' })), { errori: [E_ANNO] });
+  assert.deepEqual(validaPromemoria(conCampi({ ora: '18:08' })), { errori: [E_MINUTI] });
+});
+
+test('il fuso scritto al posto di quello proposto diventa quello di chi guarda (UserTimezoneService.learn)', () => {
+  const s0 = statoIniziale();
+  assert.equal(imparaIlFuso(s0, ZONA), s0);
+  const kolkata = imparaIlFuso(s0, 'Asia/Kolkata');
+  assert.deepEqual(kolkata, { ...s0, fuso: 'Asia/Kolkata' });
+  assert.equal(imparaIlFuso(kolkata, 'Asia/Kolkata'), kolkata);
+  assert.equal(fusoDi(imparaIlFuso(kolkata, ZONA)), ZONA);
+});
+
+test("la lista libera ha tutto acceso; bloccata, solo More; nell'Activity, solo Join (BloccoLista)", () => {
+  const s0 = statoIniziale();
+  const tutti = [...PRIMA_RIGA.map((p) => p.k), ...TASTI.map((t) => t.k), 'sel'];
+  assert.equal(new Set(tutti).size, 11);
+  assert.deepEqual([...pulsantiAccesi(s0)].sort(), tutti.sort());
+  assert.deepEqual([...pulsantiAccesi({ ...s0, bloccata: true })], ['more']);
+  assert.deepEqual([...pulsantiAccesi({ ...s0, inActivity: true })], ['join']);
+});
+
+test('il testo della lista è quello della modale di Modifica in blocco (ModalUITaskConverter.taskToText)', () => {
+  const vod = `<t:1794762840> [0m,0m,0] ${MIA_TAG}: VOD review: mid rotations, game 3`;
+  assert.equal(testoDellaLista(listaDellaDemo()), [
+    "- [X] Confirm the five-man roster for Saturday's scrim block",
+    '- [] Lock the scrim block vs. Nova Collective',
+    ' - [] Clip the three teamfights for the review',
+    `- [] ${vod}`,
+    '- [] Publish the match-day graphic',
+  ].join('\n'));
+  const riga = (s: Stato, i: number) => testoDellaLista(s.lista).split('\n')[i];
+  const coaches = conIlTask(1, { webhook: 'Scrim results', owner: { tipo: 'ruolo', id: COACHES } });
+  assert.equal(riga(coaches, 1), `- [] {{wb=Scrim results}} ${COACHES_TAG}: Lock the scrim block vs. Nova Collective`);
+  assert.equal(riga(coaches, 2), ' - [] Clip the three teamfights for the review');
+  assert.equal(riga(conIlTask(3, { webhook: 'Staff alerts' }), 3), `- [] {{wb=Staff alerts}} ${vod}`);
+  assert.equal(riga(conTesto(1, `Lock the scrim block ${LEO_TAG}`), 1), `- [] Lock the scrim block ${LEO_TAG}`);
+  assert.equal(riga(conSpunte(['2']), 2), ' - [X] Clip the three teamfights for the review');
 });

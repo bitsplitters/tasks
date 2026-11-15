@@ -563,6 +563,12 @@ const MARGINE_MINUTI = 5;
 /** L'ora come la legge LocalTime.parse col formato «HH:mm» STRICT: due cifre per le ore fino a 23, due per i minuti. */
 const HH_MM = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
 
+/** I campi di una modale «Quando» con la data `at` scritta nel fuso `zona` (WhenModalFields.build). */
+function campiDa(at: number, zona: string): Campi {
+  const c = campiDi(at, zona);
+  return { giorno: String(c.giorno), mese: String(c.mese), anno: String(c.anno), ora: c.ora, zona };
+}
+
 /**
  * I campi che la modale del promemoria propone (AlertLogic.openWhenModal, WhenModalFields.prefillBase): la data del
  * promemoria che il task ha già, o adesso più dieci minuti, nel fuso di chi agisce; il giorno senza zero davanti, l'ora
@@ -571,9 +577,7 @@ const HH_MM = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
 export function campiDelPromemoria(stato: Stato, pos: string): Campi | Extract<Esito, { tipo: 'rifiuto' }> {
   const task = stato.lista.tasks[indice(stato, pos)];
   if (task.fatto) return rifiuto(PROMEMORIA_SU_COMPLETATO);
-  const zona = fusoDi(stato);
-  const c = campiDi(task.promemoria ? task.promemoria.at : PROPOSTO, zona);
-  return { giorno: String(c.giorno), mese: String(c.mese), anno: String(c.anno), ora: c.ora, zona };
+  return campiDa(task.promemoria ? task.promemoria.at : PROPOSTO, fusoDi(stato));
 }
 
 /**
@@ -623,20 +627,36 @@ function istanteDeiCampi(campi: Campi, adesso: number): { at: number } | { error
 }
 
 /**
- * Il submit della modale del promemoria (TaskListMdlWhen): gli errori di WhenFieldsValidator.validate, cioè il fuso
- * che il bot non conosce, il mese vuoto, poi, con quei due a posto, il primo errore della data; senza errori, la data
- * a meno di cinque minuti da adesso. Il testo degli errori lo compone testoDegliErrori.
+ * I controlli del submit di una modale «Quando»: gli errori di WhenFieldsValidator.validate, cioè il fuso che il bot
+ * non conosce, il mese vuoto, poi, con quei due a posto, il primo errore della data; senza errori, la data a meno di
+ * cinque minuti da adesso, che ogni modale dice con la sua chiave (`troppoVicina`).
  */
-export function validaPromemoria(campi: Campi, adesso = ADESSO): { at: number } | { errori: string[] } {
+function controlliDelQuando(campi: Campi, adesso: number, troppoVicina: string): { at: number } | { errori: string[] } {
   const errori: string[] = [];
   if (!fusoDelBot(campi.zona)) errori.push('tasklist.modal.alert.timezone.error');
   if (campi.mese.trim() === '') errori.push('tasklist.modal.when.month.error');
   if (errori.length) return { errori };
   const istante = istanteDeiCampi(campi, adesso);
   if ('errore' in istante) return { errori: [istante.errore] };
-  if (Math.trunc((istante.at - adesso) / 60) < MARGINE_MINUTI)
-    return { errori: ['tasklist.modal.alert.date.minutes.error'] };
+  if (Math.trunc((istante.at - adesso) / 60) < MARGINE_MINUTI) return { errori: [troppoVicina] };
   return istante;
+}
+
+/**
+ * Il submit della modale del promemoria (TaskListMdlWhen): i controlli di una modale «Quando», con
+ * `tasklist.modal.alert.date.minutes.error` per la data troppo vicina. Il testo degli errori lo compone
+ * testoDegliErrori.
+ */
+export function validaPromemoria(campi: Campi, adesso = ADESSO): { at: number } | { errori: string[] } {
+  return controlliDelQuando(campi, adesso, 'tasklist.modal.alert.date.minutes.error');
+}
+
+/**
+ * Lo stato col fuso che chi guarda ha scritto in una modale «Quando» al posto di quello proposto: diventa il suo
+ * (UserTimezoneService.learn, che salva il fuso valido diverso da quello proposto). Si chiama dopo i controlli.
+ */
+export function imparaIlFuso(stato: Stato, zona: string): Stato {
+  return zona === fusoDi(stato) ? stato : { ...stato, fuso: zona };
 }
 
 /**
@@ -647,7 +667,7 @@ export function validaPromemoria(campi: Campi, adesso = ADESSO): { at: number } 
  * la data passata, che il bot ricontrolla al salvataggio, qui non arriva.
  */
 export function applicaPromemoria(stato: Stato, pos: string, at: number, zona: string): Esito {
-  const dopo = zona === fusoDi(stato) ? stato : { ...stato, fuso: zona };
+  const dopo = imparaIlFuso(stato, zona);
   const i = indice(dopo, pos);
   const task = dopo.lista.tasks[i];
   if (task.fatto) return rifiuto(PROMEMORIA_SU_COMPLETATO);
@@ -686,4 +706,125 @@ export function togliWebhook(stato: Stato, pos: string): Esito {
   if (resto.webhook === undefined) return rifiuto('tasklist.slct.webhook.delete.notpresent.error');
   delete resto.webhook;
   return fatto(conTask(stato, i, resto));
+}
+
+/* 5e — Pulisci, Riapri tutti, il blocco, il testo della lista. */
+
+/**
+ * Pulisci (TaskListBtnClean, Pulizia): tutti completati, o nessun task, lascerebbero la lista vuota; senza completati
+ * non c'è niente da togliere. Altrimenti la domanda, con l'avvertenza di ciò che esce: i promemoria e i tag dei soli
+ * task completati (TaskListMdlCleanConfirm.avvertenza). Il gruppo di un subtask completato resta: non conta.
+ */
+export function pulisci(stato: Stato): Esito {
+  const { tasks } = stato.lista;
+  const completati = tasks.filter((t) => t.fatto);
+  if (completati.length === tasks.length) return rifiuto('tasklist.btn.clean.emptylist');
+  if (completati.length === 0) return rifiuto('tasklist.btn.clean.noselection');
+  const promemoria = completati.some((t) => t.promemoria !== undefined);
+  const tag = completati.some((t) => tagDelTesto(t.testo).length > 0);
+  const avvertenza = promemoria && tag ? 'all' : promemoria ? 'reminders' : tag ? 'tags' : 'plain';
+  return { tipo: 'domanda', domanda: { tipo: 'pulisci', completati: completati.length, avvertenza } };
+}
+
+/**
+ * Pulisci confermato (TaskListMdlCleanConfirm.pulisci): la lista senza i completati, rinumerata
+ * (TaskListUpdater.updateTasksPosition). La modale copre la lista: fra la domanda e la conferma non cambia niente,
+ * quindi i due rifiuti della domanda qui non servono.
+ */
+export function pulisciConfermato(stato: Stato): Stato {
+  return conTasks(stato, rinumera(stato.lista.tasks.filter((t) => !t.fatto)));
+}
+
+/**
+ * Riapri tutti (ReopenLogic.apri, Riapertura.proposta): senza completati non c'è niente da riaprire; altrimenti il
+ * ponte, con New date se uno dei task da riaprire ha un promemoria (Riapertura.haPromemoriaDaSpostare). Il database
+ * della demo non va mai giù.
+ */
+export function riapri(stato: Stato): Esito {
+  const daRiaprire = stato.lista.tasks.filter((t) => t.fatto);
+  if (daRiaprire.length === 0) return rifiuto('tasklist.reopen.none.error');
+  const nuovaData = daRiaprire.some((t) => t.promemoria !== undefined);
+  return { tipo: 'domanda', domanda: { tipo: 'riapri', spuntati: daRiaprire.length, nuovaData } };
+}
+
+/** La data scelta con New date, col fuso in cui è stata scritta (Riapertura.Ancora). */
+export interface Ancora {
+  at: number;
+  zona: string;
+}
+
+/**
+ * I task coi promemoria dei completati, cioè di quelli che si riaprono, ri-ancorati (ReminderReanchorer.reanchor): il
+ * più vecchio cade sull'ancora, gli altri lo seguono alle stesse distanze, nel fuso dell'ancora. I promemoria dei task
+ * da fare restano dove sono.
+ */
+function riancorati(tasks: Task[], ancora: Ancora): Task[] {
+  const date = tasks.flatMap((t) => (t.fatto && t.promemoria ? [t.promemoria.at] : []));
+  if (date.length === 0) return tasks;
+  const primo = Math.min(...date);
+  return tasks.map((t) => (t.fatto && t.promemoria
+    ? { ...t, promemoria: { at: ancora.at + (t.promemoria.at - primo), zona: ancora.zona } }
+    : t));
+}
+
+/**
+ * Reopen, o il submit di New date (ReopenLogic.riapertura, Riapertura.riaperti). Il ponte resta aperto sotto la lista,
+ * che intanto può cambiare: passata nell'Activity, bloccata (Riapri tutti è spento), senza completati, il bot
+ * rifiuta. Altrimenti tutti i task tornano da fare. Con l'ancora si spostano i promemoria dei soli task che si
+ * riaprono; il fuso della modale diventa quello di chi guarda (imparaIlFuso). Il bot lo impara anche quando poi
+ * rifiuta, la demo no: un rifiuto non porta uno stato, per arrivarci serve una lista cambiata col ponte aperto.
+ */
+export function riapriConfermato(stato: Stato, ancora?: Ancora): Esito {
+  if (stato.inActivity) return rifiuto('tasklist.modal.activity.error');
+  if (stato.bloccata) return rifiuto('tasklist.action.unavailable.error');
+  const { tasks } = stato.lista;
+  if (!tasks.some((t) => t.fatto)) return rifiuto('tasklist.reopen.none.error');
+  const riaperti = (ancora ? riancorati(tasks, ancora) : tasks).map((t) => (t.fatto ? { ...t, fatto: false } : t));
+  return fatto(conTasks(ancora ? imparaIlFuso(stato, ancora.zona) : stato, riaperti));
+}
+
+/**
+ * I campi della modale di New date (TaskListBtnReopenNewDate, TaskListMdlReopenWhen.createModal): adesso più dieci
+ * minuti nel fuso di chi agisce, qualunque promemoria abbiano i task.
+ */
+export function campiDellaNuovaData(stato: Stato): Campi {
+  return campiDa(PROPOSTO, fusoDi(stato));
+}
+
+/**
+ * Il submit di New date (TaskListMdlReopenWhen): i controlli di una modale «Quando», con il testo del clone per la
+ * data troppo vicina (`tasklist.modal.clone.date.now.error`). Poi riapriConfermato con l'ancora.
+ */
+export function validaNuovaData(campi: Campi, adesso = ADESSO): { at: number } | { errori: string[] } {
+  return controlliDelQuando(campi, adesso, 'tasklist.modal.clone.date.now.error');
+}
+
+/** I pulsanti sotto la lista coi nomi della scena: la prima riga (CreateListUI.getFirstButtonsLine), poi la seconda. */
+const PULSANTI = ['activity', 'bulk', 'clean', 'reopen', 'more', 'content', 'owner', 'tag', 'reminder', 'webhook'];
+
+/**
+ * Ciò che è acceso sotto la lista, coi nomi della scena; `sel` è il selettore dei task. Libera, tutto. Bloccata, solo
+ * More: BloccoLista.bloccate spegne ogni pulsante tranne Clona, che con l'Activity accesa sta in More
+ * (CreateListUI.getFirstButtonsLine). Nell'Activity, solo Join the Activity: è l'unico pulsante sotto la lista.
+ */
+export function pulsantiAccesi(stato: Stato): ReadonlySet<string> {
+  if (stato.inActivity) return new Set(['join']);
+  if (stato.bloccata) return new Set(['more']);
+  return new Set([...PULSANTI, 'sel']);
+}
+
+/**
+ * Il testo della lista nella modale di Modifica in blocco (TaskListSignature.Precompilazione.di, una riga per task con
+ * ModalUITaskConverter.taskToText): il trattino, con uno spazio davanti per un subtask; la casella; il webhook; il
+ * promemoria con la sua tripletta, sempre un evento singolo con la distanza di un task letto dall'embed
+ * (EmbedUITaskConverter.FALLBACK_DISTANCE); il testo con l'owner in testa (OwnerNelTesto.conOwner).
+ */
+export function testoDellaLista(lista: Lista): string {
+  return lista.tasks.map((t) => {
+    const parti = [t.pos.sub ? ' -' : '-', t.fatto ? '[X]' : '[]'];
+    if (t.webhook !== undefined) parti.push(`{{wb=${t.webhook}}}`);
+    if (t.promemoria) parti.push(`<t:${t.promemoria.at}> [0m,0m,0]`);
+    parti.push(t.owner ? `${menzione({ ruolo: t.owner.tipo === 'ruolo', id: t.owner.id })}: ${t.testo}` : t.testo);
+    return parti.join(' ');
+  }).join('\n');
 }
