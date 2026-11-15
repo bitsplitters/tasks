@@ -137,42 +137,57 @@
 
 /* ── Il Founder ───────────────────────────────────────────────────────────────────────────────────────── */
 /* Spec docs/superpowers/specs/2026-11-15-founder-design.md, §4. Il riquadro più marcato della pagina, perché è
-   l'unica cosa a tempo: bordo ambra e un alone nell'angolo in alto. Dentro il testo è pieno, non attenuato. */
+   l'unica cosa a tempo: la fascia ambra in testa dice l'evento, il prezzo sta in chiaro accanto al titolo. Dentro il
+   testo è pieno, non attenuato, tranne la riga delle condizioni. */
 .p-fd {
-  padding: clamp(1.5rem, 4vw, 2.75rem); border: 1px solid rgba(233, 164, 76, .5); border-radius: 20px;
-  background: radial-gradient(120% 90% at 0% 0%, rgba(233, 164, 76, .16), transparent 55%), var(--surface);
+  overflow: hidden; border: 1px solid rgba(233, 164, 76, .55); border-radius: 20px;
+  background: radial-gradient(120% 90% at 0% 0%, rgba(233, 164, 76, .14), transparent 55%), var(--surface);
 }
-.p-fd-tag {
-  display: inline-block; margin: 0 0 1.1rem; padding: .3rem .8rem; border: 1px solid rgba(233, 164, 76, .55);
-  border-radius: 999px; font-size: .85rem; font-weight: 700; line-height: 1.3; color: var(--accent-bright);
+.p-fd-band {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .3rem .55rem; margin: 0;
+  padding: .7rem 1rem; background: var(--accent); color: var(--ink); font-size: .98rem; font-weight: 600;
+  line-height: 1.35; text-align: center;
 }
-.p-fd .h-intro { color: var(--text); }
-/* I tre passi: la cifra in ambra sopra il titolo, su tre colonne dagli 860 px. La cifra è decorativa: l'elenco
-   ordinato dice già il numero agli screen reader. Affiancati, i passi condividono le righe (subgrid): se un titolo va
-   a capo, i testi partono lo stesso alla stessa altezza. */
-.p-fd-steps { list-style: none; counter-reset: passo; margin: 2.25rem 0 0; padding: 0; display: grid; gap: 1.75rem 2rem; }
-@media (min-width: 860px) {
-  .p-fd-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .p-fd-steps li { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+.p-fd-band > span { display: inline-flex; align-items: center; gap: .55rem; white-space: nowrap; }
+.p-fd-band svg { flex: none; }
+.p-fd-band strong { font-weight: 800; }
+.p-fd-body { padding: clamp(1.5rem, 4vw, 2.75rem); }
+.p-fd-head { display: grid; gap: 1.75rem; align-items: center; }
+@media (min-width: 860px) { .p-fd-head { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 2.75rem; } }
+/* Il titolo più grande di quello delle altre sezioni: è la frase che deve arrivare. */
+.vetrina .p-fd h2 { font-size: clamp(2rem, 4.6vw, 3.25rem); font-weight: 800; margin-bottom: 1.1rem; }
+.p-fd-status { display: flex; gap: .65rem; margin: 0 0 1rem; font-size: 1.08rem; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+/* Il punto grigio: la promozione non è ancora attiva. */
+.p-fd-dot {
+  flex: none; width: .6rem; height: .6rem; margin-top: .45em; border-radius: 50%;
+  background: var(--muted); box-shadow: 0 0 0 3px rgba(138, 148, 167, .25);
 }
-.p-fd-steps li { counter-increment: passo; padding-top: 1rem; border-top: 1px solid rgba(233, 164, 76, .4); }
-.p-fd-steps li::before {
-  content: counter(passo); content: counter(passo) / ""; display: block; margin-bottom: .6rem;
-  font-size: 2rem; font-weight: 800; font-stretch: 112%; line-height: 1; color: var(--accent);
+.p-fd-lead { margin: 0; max-width: 46ch; font-size: clamp(1.05rem, 2vw, 1.2rem); line-height: 1.55; color: var(--text); text-wrap: pretty; }
+/* In colonna, sotto gli 860 px, il riquadro del prezzo non si allarga su tutta la riga. */
+.p-fd-price {
+  max-width: 30rem; padding: 1.4rem 1.5rem; border: 1px solid rgba(233, 164, 76, .5); border-radius: 16px; background: rgba(233, 164, 76, .08);
 }
-.p-fd-steps h3 { margin: 0 0 .4rem; font-size: 1.15rem; font-weight: 700; font-stretch: 105%; line-height: 1.35; text-wrap: balance; }
-.p-fd-steps p { margin: 0; line-height: 1.6; color: var(--text); text-wrap: pretty; }
-/* I vantaggi come in «Included», su due colonne: sono due. */
-.p-fd-keep { margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid var(--line-2); }
-.p-fd-keep > h3 { margin: 0; font-size: 1.15rem; font-weight: 700; font-stretch: 105%; line-height: 1.35; }
-.p-fd-perks { margin-top: 1.25rem; }
-@media (min-width: 860px) { .p-fd-perks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.p-fd-perks p, .p-fd-note { color: var(--text); }
-.p-fd-note { max-width: 62ch; margin: 1.5rem 0 0; line-height: 1.55; text-wrap: pretty; }
-/* La chiusura in una fascia col bordo ambra a sinistra, come un .callout più basso. */
-.p-fd-last {
-  margin: 2rem 0 0; padding: .9rem 1.15rem; border-left: 3px solid var(--accent); border-radius: 8px;
-  background: rgba(233, 164, 76, .08); line-height: 1.55; color: var(--text); text-wrap: pretty;
+.p-fd-price p { margin: 0; }
+.p-fd-price-t { font-size: .98rem; font-weight: 700; color: var(--accent); }
+/* .p-fd davanti: «.p-fd-price p» azzera i margini con una specificità più alta. */
+.p-fd .p-fd-amount { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .7rem; margin-top: .5rem; }
+.p-fd-now {
+  font-size: clamp(3rem, 6vw, 4rem); font-weight: 850; font-stretch: 112%; line-height: 1;
+  letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--text);
 }
-.p-fd-last strong { color: var(--accent-bright); }
-.p-fd-last .h-link { white-space: nowrap; }
+.p-fd-per { margin-left: -.45rem; font-size: 1.05rem; color: var(--text); }
+/* Il prezzo pieno e lo sconto vanno a capo insieme. */
+.p-fd-sconto { display: inline-flex; align-items: baseline; gap: .7rem; }
+.p-fd-was { font-size: 1.3rem; font-weight: 600; color: var(--muted); text-decoration-thickness: 2px; }
+.p-fd-off {
+  padding: .15rem .6rem; border-radius: 999px; background: var(--accent); color: var(--ink);
+  font-size: .95rem; font-weight: 800; line-height: 1.4;
+}
+.p-fd .p-fd-price-note { margin-top: .8rem; font-size: 1rem; line-height: 1.5; color: var(--text); }
+/* I tre punti: tre riquadri affiancati dagli 860 px, in colonna sotto. */
+.p-fd-tiles { list-style: none; margin: 2.25rem 0 0; padding: 0; display: grid; gap: 1rem; }
+@media (min-width: 860px) { .p-fd-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.p-fd-tiles li { padding: 1.15rem 1.25rem; border: 1px solid var(--line-2); border-radius: 12px; background: rgba(10, 14, 22, .35); }
+.p-fd-tiles h3 { margin: 0 0 .35rem; font-size: 1.15rem; font-weight: 750; font-stretch: 105%; line-height: 1.3; color: var(--accent); }
+.p-fd-tiles p { margin: 0; font-size: .98rem; line-height: 1.55; color: var(--text); text-wrap: pretty; }
+.p-fd-fine { max-width: 80ch; margin: 1.5rem 0 0; font-size: .92rem; line-height: 1.55; color: var(--muted); text-wrap: pretty; }

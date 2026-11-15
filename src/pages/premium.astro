@@ -18,33 +18,20 @@ import Included from '../components/premium/Included.astro';
 const TITLE = `${PAGINA_PIANI.title} — Team Tasks Manager`;
 const EMBED = docsCard(PAGINA_PIANI.title, PAGINA_PIANI.description, PAGINA_PIANI.path, 'See the plans');
 
-// Il Founder (spec docs/superpowers/specs/2026-11-15-founder-design.md): le cifre scritte, 5,000 e 30 giorni, sono
-// regole vere; quella del prezzo Founder non c'è, finché il tracker non la fissa.
-const PASSI = [
+// Il Founder (spec docs/superpowers/specs/2026-11-15-founder-design.md, §4): un evento a tempo, il prezzo in chiaro.
+// Le cifre scritte (20 € contro 36 €, 5,000 posti, 30 giorni) sono regole vere.
+const PUNTI = [
   {
-    titolo: 'Reserve during the beta.',
-    testo: 'Your server gets its Founder number the moment it reserves: the earlier, the lower. '
-      + 'Without a reservation there is no Founder price and no badge.',
+    titolo: 'Once, never again.',
+    testo: 'Badges unlock in a limited window before the beta ends. When it closes, it never reopens.',
   },
   {
-    titolo: 'Be one of the first 5,000 to buy.',
-    testo: 'When Premium opens, reserved servers have 30 days to buy a full year at roughly half price. '
-      + "There are 5,000, and a reservation doesn't hold one: they go to the first 5,000 servers that buy.",
+    titolo: 'Only 5,000 spots.',
+    testo: "The Founder price goes to the first 5,000 Founders who buy. A badge alone doesn't hold one.",
   },
   {
-    titolo: 'Or keep the badge at the regular price.',
-    testo: 'Once the 5,000 are gone, a reserved server keeps its badge by buying a regular month or year within the '
-      + 'same 30 days. After that the badge is lost, and its number is never given to anyone else.',
-  },
-];
-const VANTAGGI = [
-  {
-    titolo: 'Your number, for good.',
-    testo: 'Founder #N shows in the bot on your server, and it stays even if your Premium ends later.',
-  },
-  {
-    titolo: 'A place on the Founders wall.',
-    testo: "Your server's name and number on this site, if you want them there.",
+    titolo: 'Founder #N, forever.',
+    testo: "A numbered badge in the bot and a place on our Founders wall. Buy within 30 days and it's yours for good.",
   },
 ];
 ---
@@ -84,31 +71,33 @@ const VANTAGGI = [
 
     <section class="h-sec wrap" id="founder" aria-labelledby="p-founder-title">
       <div class="p-fd">
-        <p class="p-fd-tag">Founder · only during the beta</p>
-        <h2 id="p-founder-title">Founder. Once, and never again.</h2>
-        <p class="h-intro">A numbered badge for the servers that back TTM from the start, and the only way to get a full year of Premium at roughly half price. It exists only during the beta: once the beta ends, nobody can become a Founder again.</p>
-        <ol class="p-fd-steps" role="list">
-          {PASSI.map((p) => (
-            <li>
-              <h3>{p.titolo}</h3>
-              <p>{p.testo}</p>
-            </li>
-          ))}
-        </ol>
-        <div class="p-fd-keep">
-          <h3>What a Founder keeps</h3>
-          <ul class="p-grid p-fd-perks" role="list">
-            {VANTAGGI.map((v) => (
+        <p class="p-fd-band">
+          <span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg> <strong>Limited-time event</strong> ·</span>
+          <span>only before the beta ends</span>
+        </p>
+        <div class="p-fd-body">
+          <div class="p-fd-head">
+            <div>
+              <h2 id="p-founder-title">Get your exclusive Founder badge.</h2>
+              <p class="p-fd-status"><span class="p-fd-dot" aria-hidden="true"></span><span><strong>Not live yet.</strong> Join our <a class="h-link" href="/docs/community/">Discord server</a> so you don't miss a single update.</span></p>
+              <p class="p-fd-lead">We love our community, and we want to reward the servers that believed in us first.</p>
+            </div>
+            <div class="p-fd-price">
+              <p class="p-fd-price-t">Founder price</p>
+              <p class="p-fd-amount"><span class="p-fd-now">€20</span><span class="p-fd-per">/year</span> <span class="p-fd-sconto"><s class="p-fd-was"><span class="sr-only">instead of </span>€36</s> <span class="p-fd-off">&minus;44%</span></span></p>
+              <p class="p-fd-price-note">A full year of Premium, for Founders only.</p>
+            </div>
+          </div>
+          <ul class="p-fd-tiles" role="list">
+            {PUNTI.map((p) => (
               <li>
-                <span class="p-tick" aria-hidden="true">&#10003;</span>
-                <h4>{v.titolo}</h4>
-                <p>{v.testo}</p>
+                <h3>{p.titolo}</h3>
+                <p>{p.testo}</p>
               </li>
             ))}
           </ul>
-          <p class="p-fd-note">Nothing else is planned for Founders today. What we do promise is to give back to the servers that believed in us first.</p>
+          <p class="p-fd-fine">No badge, no Founder price. When Premium opens, Founders have 30 days to buy, at €20 while spots last or at the standard price, and keep their badge. No other Founder perks are planned today.</p>
         </div>
-        <p class="p-fd-last"><strong>No second round.</strong> Reservations open in the bot during the beta and close when it ends. The day they open is announced first on our <a class="h-link" href="/docs/community/">Discord server</a>.</p>
       </div>
     </section>
 
