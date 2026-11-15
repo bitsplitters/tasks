@@ -56,6 +56,7 @@
 .h-line { display: flex; }
 .h-line > span:last-child { min-width: 0; text-wrap: pretty; }
 .h-nobr { white-space: nowrap; }
+.h-frase { display: block; }
 .h-mark { flex: none; width: 1.3em; font-weight: 700; }
 /* Le voci su una riga sola dove la tabella è larga; più stretta, a capo bilanciate, per non rubare spazio al testo. */
 .h-compare .h-table tbody th { text-wrap: balance; }
