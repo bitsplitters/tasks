@@ -270,7 +270,9 @@
 .sc-winx { margin-left: auto; font-size: calc(20 * var(--u)); line-height: 1; font-weight: 400; color: #b5bac1; }
 /* La pagina scorre nella demo; nei video la fa scorrere render-activity.ts (scrollTop vale anche con hidden). */
 .sc-apage { flex: 1; min-height: 0; overflow: hidden; }
-.sc-live .sc-apage { overflow-y: auto; overscroll-behavior: contain; }
+/* Lo spazio della barra sempre riservato: il pannello allunga la colonna e la barra che comparirebbe la stringerebbe
+   dopo la misura di posizionaPannello, con le righe di nuovo a capo e il pannello sopra il suo task. */
+.sc-live .sc-apage { overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
 /* La colonna (app.css, .app e .stage): larga quanto l'embed del canale più 32, 16 intorno, 8 fra un pezzo e l'altro. */
 .sc-apage-in {
   position: relative; display: flex; flex-direction: column; gap: calc(8 * var(--u));

@@ -48,8 +48,6 @@ import ActivityScene from './ActivityScene.astro';
   </div>
 </section>
 <script>
-  // Solo per provare i tooltip (Task 10): il Task 11 mette al suo posto avviaDemo, che li avvia da sé.
-  import { avviaTooltip } from './tooltip';
-  const demo = document.querySelector<HTMLElement>('[data-demo]');
-  if (demo) avviaTooltip(demo);
+  import { avviaDemo } from './demo';
+  avviaDemo();
 </script>

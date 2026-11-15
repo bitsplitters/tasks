@@ -192,24 +192,24 @@ export const TOOLTIP: Record<string, Tooltip> = Object.fromEntries([
 /** I fumetti della demo del canale, quando si sceglie un task con un pulsante acceso (§8). */
 export const FUMETTI: Record<Tasto, Record<Colore, (n: string) => string>> = {
   content: {
-    blue: (n) => `In Discord, this opens the form to edit task ${n}.`,
-    red: (n) => `In Discord, this deletes task ${n}.`,
+    blue: (n) => `In Discord, this opens the form to edit task\u00a0${n}.`,
+    red: (n) => `In Discord, this deletes task\u00a0${n}.`,
   },
   owner: {
-    blue: (n) => `In Discord, the owner you picked goes to task ${n}.`,
-    red: (n) => `In Discord, this removes the owner of task ${n}.`,
+    blue: (n) => `In Discord, the owner you picked goes to task\u00a0${n}.`,
+    red: (n) => `In Discord, this removes the owner of task\u00a0${n}.`,
   },
   tag: {
-    blue: (n) => `In Discord, the tags you picked go to task ${n}.`,
-    red: (n) => `In Discord, this removes every tag from task ${n}.`,
+    blue: (n) => `In Discord, the tags you picked go to task\u00a0${n}.`,
+    red: (n) => `In Discord, this removes every tag from task\u00a0${n}.`,
   },
   reminder: {
-    blue: (n) => `In Discord, this opens the reminder form for task ${n}.`,
-    red: (n) => `In Discord, this removes the reminder of task ${n}.`,
+    blue: (n) => `In Discord, this opens the reminder form for task\u00a0${n}.`,
+    red: (n) => `In Discord, this removes the reminder of task\u00a0${n}.`,
   },
   webhook: {
-    blue: (n) => `In Discord, this lets you link a webhook to task ${n}.`,
-    red: (n) => `In Discord, this unlinks the webhook from task ${n}.`,
+    blue: (n) => `In Discord, this lets you link a webhook to task\u00a0${n}.`,
+    red: (n) => `In Discord, this unlinks the webhook from task\u00a0${n}.`,
   },
 };
 

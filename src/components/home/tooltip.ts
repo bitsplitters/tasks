@@ -5,8 +5,8 @@
  *
  * Col mouse fermo sopra o col focus da tastiera compare dopo 500 ms; se ne è appena sparito un altro (meno di 300 ms
  * fa), subito, come in Discord lungo una fila di pulsanti. Sparisce quando il mouse esce, col blur, con Esc, quando
- * qualcosa scorre e quando si preme altrove. Sui telefoni compare tenendo premuto 500 ms, e il clic che segue non
- * fa l'azione. Ce n'è uno solo, in fondo al body, position fixed: sopra tutto.
+ * il pulsante si sposta scorrendo e quando si preme altrove. Sui telefoni compare tenendo premuto 500 ms, e il clic
+ * che segue non fa l'azione. Ce n'è uno solo, in fondo al body, position fixed: sopra tutto.
  *
  * aria-describedby si mette appena arrivano il puntatore o il focus: un elemento nascosto, se citato per id, vale
  * comunque come descrizione.
@@ -46,6 +46,8 @@ export function avviaTooltip(radice: HTMLElement): Tooltips {
   let timer = 0;
   let premuto = 0;
   let chiusoAlle = -Infinity;
+  /** Dov'era il pulsante quando il fumetto è comparso. */
+  let posto: DOMRect | null = null;
   /** Il clic che segue un tocco lungo non fa l'azione. */
   let sopprimi = false;
 
@@ -71,6 +73,7 @@ export function avviaTooltip(radice: HTMLElement): Tooltips {
     prepara(b);
     tt.hidden = false;
     const r = b.getBoundingClientRect();
+    posto = r;
     const w = tt.offsetWidth;
     const h = tt.offsetHeight;
     const sopra = r.top - h - STACCO >= MARGINE;
@@ -146,7 +149,17 @@ export function avviaTooltip(radice: HTMLElement): Tooltips {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') nascondi();
   });
-  addEventListener('scroll', nascondi, { capture: true, passive: true });
+  // Scorrendo, il fumetto resterebbe dov'era mentre il pulsante va altrove. Se scorre un'altra parte della pagina, o
+  // la pagina dell'Activity risale perché la demo ha chiuso il pannello prima di mostrarlo, il pulsante è fermo.
+  addEventListener(
+    'scroll',
+    () => {
+      if (tt.hidden || !corrente || !posto) return;
+      const r = corrente.getBoundingClientRect();
+      if (Math.abs(r.top - posto.top) > 1 || Math.abs(r.left - posto.left) > 1) nascondi();
+    },
+    { capture: true, passive: true },
+  );
 
   return { mostra, nascondi };
 }
