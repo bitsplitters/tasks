@@ -1,0 +1,129 @@
+---
+/*
+ * Il canale della home (spec 2026-11-15-home-video-e-demo-design.md, §4.2 e §5.2): il messaggio della lista com'è
+ * nel bot (EmbedDellaLista), col selettore, la prima riga con l'Activity per prima, la seconda coi pulsanti del
+ * task, il menu dell'owner sotto i pulsanti e la modale del promemoria. Lo usano la demo e la pagina della
+ * registrazione, anche dentro ActivityScene, sotto la finestra.
+ *
+ * Nasce nello stato di partenza; lo cambiano le funzioni di scene-dom.ts con gli attributi data-*. Gli elementi che
+ * si cercano hanno data-k; le righe e le opzioni del selettore hanno data-task. I testi sono quelli del bot, con la
+ * chiave del bundle accanto.
+ */
+import {
+  FATTI_INIZIALI, FRASE_SPUNTA, LEO, MIA, PRIMA_RIGA, PROMEMORIA, SAM, TASKS, TASTI, TITOLO, avanzamento,
+} from './scene-data';
+
+interface Props {
+  /** La lista è nell'Activity: al posto dei pulsanti, «Join the Activity». */
+  inActivity?: boolean;
+  /** Il task 3 ha già Mia come owner. */
+  owner?: boolean;
+  /** Il task 3 ha già il promemoria. */
+  promemoria?: boolean;
+}
+const { inActivity = false, owner = false, promemoria = false } = Astro.props;
+const fatti = new Set(FATTI_INIZIALI);
+const icona = (n: string) => `/icons/${n}.png`;
+const si = (v: boolean) => (v ? '' : undefined);
+const CHEV = 'M5.3 9.3a1 1 0 0 1 1.4 0l5.3 5.3 5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6a1 1 0 0 1-1.4 0l-6-6a1 1 0 0 1 0-1.4Z';
+---
+<div class="sc-chan" data-k="chan" data-inact={si(inActivity)} data-owner={si(owner)} data-reminder={si(promemoria)}>
+  <div class="sc-chhead" aria-hidden="true"><span class="sc-hash">#</span>scrims</div>
+  <div class="sc-feed" data-k="feed">
+    <div class="sc-msg">
+      <img class="sc-avatar" src="/icons/ttm-avatar.png" alt="" />
+      <p class="sc-mhead" data-k="msghead">
+        <span class="sc-name">Team Tasks Manager</span><span class="sc-app">APP</span><span class="sc-time">Today at 18:04</span>
+      </p>
+      <div class="sc-embed">
+        <p class="sc-title">{TITOLO}</p>
+        <div class="sc-rows">
+          {TASKS.map((t) => (
+            <Fragment>
+              {t.id === '3' && (
+                <div class="sc-row sc-row-rem" data-task="3">
+                  <span class="sc-num"><code>3</code></span>
+                  <img class="sc-emoji" src={icona('alert')} alt="" />
+                  <span class="sc-text"><span class="sc-ts">{PROMEMORIA.canale}</span></span>
+                </div>
+              )}
+              <div class:list={['sc-row', { 'sc-sub': t.padre }]} data-task={t.id} data-done={si(fatti.has(t.id))}>
+                <span class:list={['sc-num', { 'sc-num3': t.id === '3' }]}><code>{t.id}</code></span>
+                <span class="sc-cb"><img class="sc-off" src={icona('checkbox_empty')} alt="" /><img class="sc-on" src={icona('checkbox_marked')} alt="" /></span>
+                <span class="sc-text">{t.id === '3' && <Fragment><span class="sc-mention">@{MIA.nome}</span><span class="sc-colon">: </span></Fragment>}{t.testo}</span>
+              </div>
+            </Fragment>
+          ))}
+        </div>
+        {/* tasklist.activity.line, al posto della riga dei consigli */}
+        <p class="sc-actline"><img src={icona('activity_blue')} alt="" /> This list is being worked on in the Activity.</p>
+        <div class="sc-bar" data-bar style={`--pct: ${avanzamento(fatti)}%`}><div class="sc-bar-fill"></div></div>
+      </div>
+      <div class="sc-comps">
+        <div class="sc-selwrap">
+          <button type="button" class="sc-sel" data-k="sel" aria-expanded="false">
+            <span data-k="sel-text">{FRASE_SPUNTA}</span>
+            <svg class="sc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d={CHEV} fill="currentColor" /></svg>
+          </button>
+          {/* Le opzioni: l'emoji della casella e «<posizione> <testo>», senza descrizione (TaskActivityConverter). */}
+          <div class="sc-menu" data-k="menu">
+            {TASKS.map((t) => (
+              <button type="button" class="sc-opt" data-k={`opt-${t.id}`} data-task={t.id} data-done={si(fatti.has(t.id))}>
+                <span class="sc-cb"><img class="sc-off" src={icona('checkbox_empty')} alt="" /><img class="sc-on" src={icona('checkbox_marked')} alt="" /></span>
+                <span class="sc-optlab">{t.id} {t.testo}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        <div class="sc-btns">
+          {PRIMA_RIGA.map((p) => (
+            <button type="button" class="sc-btn sc-blue" data-k={`b-${p.k}`} data-tt={`ch-${p.k}`} aria-label={p.nome}><img src={icona(p.icona)} alt="" /></button>
+          ))}
+        </div>
+        <div class="sc-btns">
+          {TASTI.map((t) => (
+            <button type="button" class="sc-btn" data-k={`b-${t.k}`} data-tasto={t.k} data-tt={`ch-${t.k}`} aria-label={t.nome} aria-pressed="false"><img src={icona(t.icona)} alt="" /></button>
+          ))}
+        </div>
+        {/* Il menu di Owner, Tag o Webhook acceso (tasklist.slct.owner, .tag, .webhook): la frase la scrive
+            scene-dom.ts. Le persone e la scelta servono solo al video; nella demo resta chiuso. */}
+        <div class="sc-submenu" data-k="sub" hidden>
+          <div class="sc-subsel" data-k="pick-owner">
+            <span class="sc-subph" data-k="sub-text"></span>
+            <span class="sc-subchosen"><span class="sc-av" style={`--av: ${MIA.colore}`}>{MIA.nome[0]}</span>{MIA.nome}</span>
+            <svg class="sc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d={CHEV} fill="currentColor" /></svg>
+          </div>
+          <div class="sc-subopts" aria-hidden="true">
+            {[MIA, LEO, SAM].map((p) => (
+              <div class="sc-subopt" data-k={`own-${p.id}`} data-persona={p.id}>
+                <span class="sc-av" style={`--av: ${p.colore}`}>{p.nome[0]}</span>{p.nome}
+                <svg class="sc-check" viewBox="0 0 24 24"><path d="M9.5 16.2 5.3 12l-1.4 1.4 5.6 5.6 11-11-1.4-1.4z" fill="currentColor" /></svg>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="sc-join">
+        <button type="button" class="sc-btn sc-blue sc-joinbtn" data-k="b-join"><img src={icona('activity')} alt="" />Join the Activity</button>
+      </div>
+    </div>
+  </div>
+  <div class="sc-input" aria-hidden="true">Message #scrims</div>
+  {/* La modale vera (tasklist.modal.alert.*, tasklist.modal.when.*): i campi già proposti, adesso + 10 minuti. */}
+  <div class="sc-modalwrap" data-k="modalwrap" aria-hidden="true">
+    <div class="sc-modal" data-k="modal">
+      <div class="sc-mhd"><p class="sc-mtitle">Set reminder for task 3</p><span class="sc-mx">&times;</span></div>
+      <div class="sc-mfield"><span class="sc-mlab">Day</span><span class="sc-minput">{PROMEMORIA.giorno}</span></div>
+      <div class="sc-mfield">
+        <span class="sc-mlab">Month</span>
+        <span class="sc-minput">{PROMEMORIA.mese}<svg class="sc-chev" viewBox="0 0 24 24"><path d={CHEV} fill="currentColor" /></svg></span>
+      </div>
+      <div class="sc-mfield"><span class="sc-mlab">Year (yyyy)</span><span class="sc-minput">{PROMEMORIA.anno}</span></div>
+      <div class="sc-mfield"><span class="sc-mlab">Time (HH:mm)</span><span class="sc-minput">{PROMEMORIA.ora}</span></div>
+      <div class="sc-mfield">
+        <span class="sc-mlab">Time zone at: timezones.bitsplitters.app</span><span class="sc-minput">{PROMEMORIA.fuso}</span>
+      </div>
+      <div class="sc-mfoot"><span class="sc-mbtn">Cancel</span><span class="sc-mbtn sc-mbtn-blue" data-k="m-submit">Submit</span></div>
+    </div>
+  </div>
+</div>

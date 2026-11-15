@@ -1,0 +1,245 @@
+/*
+ * Le due scene della home (spec docs/superpowers/specs/2026-11-15-home-video-e-demo-design.md, §4 e §7.1, nel repo
+ * team-tasks-manager): il canale di Discord e la pagina dell'Activity. Le usano la demo (Demo.astro) e la pagina
+ * della registrazione dei video (src/video/Registrazione.astro).
+ *
+ * Le misure sono i px di Discord e della pagina dell'Activity (activity/src/styles/tokens.css e i CSS dei
+ * componenti), scritte come multipli di --u, un px di Discord. Largo, la scena è un Discord di 847 × 565 mostrato
+ * alla larghezza del riquadro: a 720 px, nei video, è il fattore 0,85 (alla misura vera il pannello dell'Activity e
+ * la modale non ci starebbero); nella demo, che arriva al massimo a 847 px, è la misura vera. Sotto i 640 px di
+ * riquadro: nei video (sc-rec) un Discord di 460 px in 390, nella demo il telefono alla sua misura, con la chat che
+ * scorre.
+ *
+ * Gli stati stanno negli attributi, scritti da scene-dom.ts: data-done sulle righe e sulle opzioni; data-owner e
+ * data-reminder sulla lista (il canale .sc-chan, la finestra .sc-win); data-mode sui pulsanti; data-menu,
+ * data-inact, data-modal, data-subopen, data-subpick sul canale; data-open, data-panel, data-view, data-save,
+ * data-picked, data-delete sulla finestra.
+ */
+
+/* Registrata, --u resta una lunghezza calcolata sulla scena: i figli ereditano i px, non la formula. */
+@property --u { syntax: '<length>'; inherits: true; initial-value: 1px; }
+
+/* ── La scena ─────────────────────────────────────────────────────────────────────────────────────────── */
+.sc-box { container: scene / inline-size; min-width: 0; }
+.scene {
+  --u: calc(100cqi / 847);
+  position: relative; overflow: hidden; aspect-ratio: 3 / 2; box-sizing: border-box;
+  /* Il carattere di sistema, quello del sito (--sans in global.css), scritto per intero: la pagina della
+     registrazione non carica global.css. Niente Noto Sans da scaricare, come chiede la spec (§7.1). */
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-stretch: normal; font-weight: 400;
+  font-size: calc(14 * var(--u)); line-height: 1.375; letter-spacing: 0; text-align: left;
+  color: #dbdee1; background: #1a1a1e;
+  border: 1px solid #2a3547; border-radius: 16px; box-shadow: 0 24px 48px -18px rgba(0, 0, 0, .7);
+}
+/* :where() tiene a zero la specificità: le classi delle scene vincono sempre su questi azzeramenti. */
+:where(.scene) *, :where(.scene) *::before, :where(.scene) *::after { box-sizing: border-box; }
+:where(.scene) p { margin: 0; }
+:where(.scene) img { display: block; }
+:where(.scene) code { font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', monospace; }
+:where(.scene) button {
+  font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer;
+  text-align: inherit;
+}
+:where(.scene) [hidden] { display: none !important; }
+/* Nei video ogni fotogramma lo calcola render(t): niente transizioni, niente cornice. */
+.sc-rec { border: 0; border-radius: 0; box-shadow: none; }
+.sc-rec, .sc-rec * { transition: none !important; animation: none !important; }
+
+/* ── Il canale ────────────────────────────────────────────────────────────────────────────────────────── */
+.sc-chan { position: absolute; inset: 0; display: flex; flex-direction: column; background: #1a1a1e; }
+.sc-chhead {
+  flex: none; height: calc(48 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u));
+  padding: 0 calc(16 * var(--u)); border-bottom: 1px solid rgba(255, 255, 255, .06);
+  font-size: calc(16 * var(--u)); font-weight: 600; color: #f2f3f5;
+}
+.sc-hash { font-size: calc(24 * var(--u)); font-weight: 400; line-height: 1; color: #80848e; }
+/* La chat è ancorata in basso, come in Discord. margin-top: auto tiene il messaggio sul fondo e, se non ci sta, lo
+   lascia scorrere: con justify-content: flex-end la parte che esce in alto non si potrebbe raggiungere. */
+.sc-feed { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+.sc-msg {
+  position: relative; margin-top: auto;
+  padding: calc(16 * var(--u)) calc(16 * var(--u)) calc(8 * var(--u)) calc(72 * var(--u));
+}
+.sc-avatar {
+  position: absolute; left: calc(16 * var(--u)); top: calc(18 * var(--u));
+  width: calc(40 * var(--u)); height: calc(40 * var(--u)); border-radius: 50%;
+}
+.sc-mhead { display: flex; align-items: baseline; gap: calc(4 * var(--u)); min-height: calc(22 * var(--u)); line-height: calc(22 * var(--u)); }
+.sc-name { font-size: calc(16 * var(--u)); font-weight: 500; color: #f2f3f5; }
+.sc-app {
+  align-self: center; padding: 0 calc(4 * var(--u)); border-radius: calc(3 * var(--u));
+  font-size: calc(10 * var(--u)); font-weight: 600; line-height: calc(15 * var(--u)); background: #5865f2; color: #fff;
+}
+.sc-time { margin-left: calc(4 * var(--u)); font-size: calc(12 * var(--u)); color: #949ba4; }
+.sc-input {
+  flex: none; display: flex; align-items: center; height: calc(44 * var(--u));
+  margin: 0 calc(16 * var(--u)) calc(24 * var(--u)); padding: 0 calc(16 * var(--u)); border-radius: calc(8 * var(--u));
+  background: #242429; color: #80848e; font-size: calc(16 * var(--u));
+}
+
+/* l'embed della lista (EmbedDellaLista nel bot) */
+.sc-embed {
+  max-width: calc(520 * var(--u)); margin-top: calc(2 * var(--u));
+  padding: calc(8 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u)) calc(12 * var(--u));
+  background: #242429; border-left: calc(4 * var(--u)) solid #1ec786; border-radius: calc(4 * var(--u));
+}
+.sc-title { margin-bottom: calc(8 * var(--u)); font-size: calc(20 * var(--u)); line-height: 1.4; font-weight: 700; color: #fbfbfb; }
+/* Tre colonne, come nel canale e nella pagina dell'Activity: il numero, l'emoji, il testo. */
+.sc-row { display: grid; grid-template-columns: 1.5em 1.375em minmax(0, 1fr); align-items: start; min-height: 1.375em; line-height: 1.375em; }
+.sc-row.sc-sub { grid-template-columns: 3em 1.375em minmax(0, 1fr); }
+/* Fatto: tutta la riga è subtext (-#), numero compreso, come nel bot con DimDoneMode acceso, il default. */
+.sc-row[data-done] { font-size: calc(13 * var(--u)); color: #abacb2; }
+.sc-num code {
+  font-size: .85em; padding: 0 .2em; color: inherit;
+  background: #2b2c3a; border: 1px solid #3e3f4e; border-radius: calc(4 * var(--u));
+}
+.sc-text { padding-left: .25em; overflow-wrap: anywhere; }
+.sc-emoji { width: 1.375em; height: 1.375em; object-fit: contain; }
+.sc-cb { position: relative; display: inline-block; flex: none; width: 1.375em; height: 1.375em; }
+.sc-cb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.sc-cb .sc-on, [data-done] .sc-cb .sc-off { display: none; }
+[data-done] .sc-cb .sc-on { display: block; }
+/* L'owner davanti al testo: la menzione, poi i due punti. */
+.sc-mention {
+  display: none; padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u));
+  font-weight: 500; color: #a9bbff; background: #303359;
+}
+.sc-colon { display: none; }
+[data-owner] .sc-mention, [data-owner] .sc-colon { display: inline; }
+/* Il promemoria sopra il task 3, col numero; la riga della casella prende lo spaziatore (RigheDellaLista). */
+.sc-row-rem { display: none; }
+[data-reminder] .sc-row-rem { display: grid; }
+[data-reminder] .sc-num3 { visibility: hidden; }
+.sc-ts { padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u)); color: #efeff1; background: #36363c; }
+/* Nell'Activity: una riga vuota, poi la riga in subtext che prende il posto dei consigli. */
+.sc-actline { display: none; margin-top: 1.375em; font-size: calc(13 * var(--u)); color: #abacb2; }
+.sc-actline img { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -.35em; }
+[data-inact] .sc-actline { display: block; }
+/* La barra: nel bot è un'immagine (public/bar/NN.png), qui lo stesso disegno in CSS, come nell'Activity
+   (Embed.css): il binario grigio, il verde del bot, gli estremi tondi, mai più stretta di quanto è alta. */
+.sc-bar {
+  width: 100%; max-width: calc(400 * var(--u)); aspect-ratio: 50 / 1; margin-top: calc(16 * var(--u));
+  border-radius: 999px; background: rgba(128, 132, 142, .39); overflow: hidden;
+}
+.sc-bar-fill { height: 100%; width: var(--pct, 0%); min-width: 2%; border-radius: 999px; background: #1ec786; }
+.sc-bar[data-empty] .sc-bar-fill { display: none; }
+
+/* sotto la lista: il selettore e le due righe */
+.sc-comps { display: flex; flex-direction: column; gap: calc(8 * var(--u)); margin-top: calc(8 * var(--u)); }
+[data-inact] .sc-comps { display: none; }
+.sc-selwrap, .sc-submenu { position: relative; max-width: calc(400 * var(--u)); }
+.sc-sel, .sc-subsel {
+  width: 100%; height: calc(40 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u));
+  padding: 0 calc(8 * var(--u)) 0 calc(12 * var(--u));
+  background: #17171a; border: 1px solid #35353b; border-radius: calc(8 * var(--u));
+  font-size: calc(16 * var(--u)); color: #949ba4;
+}
+.sc-sel:is(:hover, .is-hover) { border-color: #4e5058; }
+.sc-sel > span, .sc-subph { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sc-chev { flex: none; width: calc(24 * var(--u)); height: calc(24 * var(--u)); margin-left: auto; color: #b5bac1; }
+/* Aperto, il menu sale sopra il selettore e ne prende il bordo: in fondo alla chat non c'è spazio sotto. */
+[data-menu] .sc-sel, [data-subopen] .sc-subsel { border-radius: 0 0 calc(8 * var(--u)) calc(8 * var(--u)); }
+[data-menu] .sc-sel .sc-chev, [data-subopen] .sc-subsel .sc-chev { transform: rotate(180deg); }
+.sc-menu, .sc-subopts {
+  display: none; position: absolute; left: 0; right: 0; bottom: calc(100% - 1px); z-index: 4;
+  padding: calc(4 * var(--u)) 0; background: #17171a; border: 1px solid #35353b;
+  border-radius: calc(8 * var(--u)) calc(8 * var(--u)) 0 0; box-shadow: 0 calc(-4 * var(--u)) calc(16 * var(--u)) rgba(0, 0, 0, .35);
+}
+[data-menu] .sc-menu, [data-subopen] .sc-subopts { display: block; }
+.sc-opt, .sc-subopt {
+  display: flex; align-items: center; gap: calc(8 * var(--u)); width: 100%; min-height: calc(40 * var(--u));
+  padding: calc(8 * var(--u)) calc(12 * var(--u)); font-size: calc(16 * var(--u)); color: #dbdee1;
+}
+.sc-opt:is(:hover, .is-hover), .sc-subopt.is-hover { background: #26262b; }
+.sc-opt .sc-cb { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
+.sc-optlab { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sc-btns { display: flex; flex-wrap: wrap; gap: calc(8 * var(--u)); }
+.sc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: calc(6 * var(--u)); flex: none;
+  width: calc(58 * var(--u)); height: calc(30 * var(--u)); border-radius: calc(8 * var(--u));
+  background: #29292d; color: #fff;
+}
+.sc-btn img { width: calc(20 * var(--u)); height: calc(20 * var(--u)); object-fit: contain; }
+.sc-btn:is(:hover, .is-hover) { background: #36363c; }
+.sc-btn:is(.sc-blue, [data-mode="blue"]) { background: #5865f2; }
+.sc-btn:is(.sc-blue, [data-mode="blue"]):is(:hover, .is-hover) { background: #4752c4; }
+.sc-btn[data-mode="red"] { background: #da373c; }
+.sc-btn[data-mode="red"]:is(:hover, .is-hover) { background: #a12829; }
+/* Mentre la lista è nell'Activity: il solo «Join the Activity», con l'emoji e la scritta (TaskListBtnActivityEnter). */
+.sc-join { display: none; margin-top: calc(8 * var(--u)); }
+[data-inact] .sc-join { display: block; }
+.sc-joinbtn { width: auto; padding: 0 calc(16 * var(--u)); font-size: calc(14 * var(--u)); font-weight: 500; }
+
+/* il menu dell'owner, sotto i pulsanti */
+.sc-subchosen {
+  display: none; align-items: center; gap: calc(6 * var(--u)); height: calc(26 * var(--u));
+  padding: 0 calc(8 * var(--u)) 0 calc(4 * var(--u)); border-radius: calc(4 * var(--u));
+  background: #2b2b31; color: #dbdee1; font-size: calc(14 * var(--u));
+}
+[data-subpick] .sc-subph { display: none; }
+[data-subpick] .sc-subchosen { display: inline-flex; }
+.sc-check { flex: none; width: calc(20 * var(--u)); height: calc(20 * var(--u)); margin-left: auto; color: #5865f2; visibility: hidden; }
+[data-subpick="mia"] [data-persona="mia"] { background: rgba(88, 101, 242, .16); }
+[data-subpick="mia"] [data-persona="mia"] .sc-check { visibility: visible; }
+.sc-av {
+  display: inline-flex; flex: none; align-items: center; justify-content: center;
+  width: calc(24 * var(--u)); height: calc(24 * var(--u)); border-radius: 50%; background: var(--av); color: #fff;
+  font-size: calc(12 * var(--u)); font-weight: 600; line-height: 1; text-shadow: 0 1px 1px rgba(0, 0, 0, .35);
+}
+.sc-subchosen .sc-av { width: calc(18 * var(--u)); height: calc(18 * var(--u)); font-size: calc(9 * var(--u)); }
+
+/* la modale del promemoria: si apre in 0,15 s (--in da 0 a 1, lo scrive render-channel.ts) */
+.sc-modalwrap {
+  display: none; position: absolute; inset: 0; z-index: 6; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, .7); opacity: var(--in, 1);
+}
+[data-modal] .sc-modalwrap { display: flex; }
+.sc-modal {
+  width: calc(440 * var(--u)); max-width: calc(100% - 32 * var(--u)); padding: calc(16 * var(--u));
+  background: #242429; border: 1px solid #35353b; border-radius: calc(12 * var(--u));
+  box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0, 0, 0, .45);
+  transform: scale(calc(.95 + .05 * var(--in, 1)));
+}
+.sc-mhd { display: flex; align-items: center; justify-content: space-between; margin-bottom: calc(16 * var(--u)); }
+.sc-mtitle { font-size: calc(20 * var(--u)); line-height: 1.2; font-weight: 700; color: #f2f3f5; }
+.sc-mx { font-size: calc(24 * var(--u)); line-height: 1; color: #b5bac1; }
+.sc-mfield { margin-bottom: calc(12 * var(--u)); }
+.sc-mlab { display: block; margin-bottom: calc(6 * var(--u)); font-size: calc(14 * var(--u)); font-weight: 600; color: #dbdee1; }
+.sc-minput {
+  display: flex; align-items: center; height: calc(40 * var(--u)); padding: 0 calc(12 * var(--u));
+  background: #17171a; border: 1px solid #35353b; border-radius: calc(8 * var(--u));
+  font-size: calc(16 * var(--u)); color: #dbdee1;
+}
+.sc-mfoot { display: flex; justify-content: flex-end; gap: calc(8 * var(--u)); margin-top: calc(16 * var(--u)); }
+.sc-mbtn {
+  display: inline-flex; align-items: center; height: calc(38 * var(--u)); padding: 0 calc(16 * var(--u));
+  border-radius: calc(8 * var(--u)); font-size: calc(14 * var(--u)); font-weight: 500; color: #dbdee1;
+}
+.sc-mbtn-blue { background: #5865f2; color: #fff; }
+.sc-mbtn-blue.is-hover { background: #4752c4; }
+
+/* ── Sotto i 640 px di riquadro ───────────────────────────────────────────────────────────────────────── */
+@container scene (max-width: 639px) {
+  /* La demo: il telefono alla sua misura, alta quanto basta per lavorarci, con la chat che scorre. */
+  .scene { --u: 1px; aspect-ratio: auto; height: min(600px, 80svh); }
+  /* I video: un Discord di 460 px mostrato in 390 (3:4), il fattore 0,85 del largo. */
+  .sc-rec { --u: calc(100cqi / 460); aspect-ratio: 3 / 4; height: auto; }
+  /* Sul telefono la modale prende lo schermo. */
+  .sc-modalwrap { align-items: stretch; }
+  .sc-modal {
+    width: 100%; max-width: none; overflow: auto; border: 0; border-radius: 0;
+    padding: calc(12 * var(--u)) calc(16 * var(--u));
+  }
+  .sc-mfield { margin-bottom: calc(10 * var(--u)); }
+}
+
+/* ── Solo nei video: il cursore e il tocco (li muove render-comune.ts) ─────────────────────────────── */
+.sc-cursor {
+  position: absolute; left: 0; top: 0; z-index: 20; width: calc(24 * var(--u)); height: calc(24 * var(--u));
+  pointer-events: none; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .5));
+}
+.sc-tap {
+  position: absolute; left: 0; top: 0; z-index: 19; width: calc(36 * var(--u)); height: calc(36 * var(--u));
+  border-radius: 50%; border: calc(2 * var(--u)) solid rgba(255, 255, 255, .9); opacity: 0; pointer-events: none;
+}

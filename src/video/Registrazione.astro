@@ -1,0 +1,39 @@
+---
+/*
+ * La pagina da cui si registrano i video della home (spec 2026-11-15-home-video-e-demo-design.md, §2 e §7.1).
+ * Esiste solo con `astro dev` (l'integrazione registrazione-video in astro.config.mjs): la build non la conosce.
+ *
+ *   /registrazione-video?modo=channel|activity&misura=wide|narrow[&t=12.5]
+ *
+ * Disegna le scene della demo nello stato d'inizio dei video, col cursore e il tocco. registrazione.ts prepara
+ * render(t) e DURATA per scripts/registra-video.cjs; con &t ferma la scena su quell'istante.
+ */
+import '../components/home/scene.css';
+import ChannelScene from '../components/home/ChannelScene.astro';
+
+const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Registrazione dei video</title>
+    <style is:global>
+      html, body { margin: 0; background: #1a1a1e; }
+      .rec-box { width: 720px; }
+      /* La barra degli strumenti di astro dev finirebbe nei fotogrammi. */
+      astro-dev-toolbar { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div class="sc-box rec-box" data-modo="channel">
+      <div class="scene sc-rec">
+        <ChannelScene />
+        <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
+        <span class="sc-tap" aria-hidden="true"></span>
+      </div>
+    </div>
+  </body>
+</html>

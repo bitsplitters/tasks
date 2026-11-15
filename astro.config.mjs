@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
+import { fileURLToPath } from 'node:url';
 
 // I link che portano FUORI dal sito si aprono in una scheda nuova; quelli interni no.
 //
@@ -32,6 +33,23 @@ function rehypeNoTranslateCode() {
   return (tree) => visit(tree);
 }
 
+// La pagina da cui si registrano i video della home (spec 2026-11-15-home-video-e-demo-design.md, §7.1, nel repo
+// team-tasks-manager). Esiste solo con `astro dev`: injectRoute la aggiunge quando il comando è dev, e così
+// `astro build` non la conosce e `dist` non la contiene. Non è una pagina del sito: disegna le scene per
+// scripts/registra-video.cjs.
+const registrazioneVideo = {
+  name: 'registrazione-video',
+  hooks: {
+    'astro:config:setup': ({ command, injectRoute }) => {
+      if (command !== 'dev') return;
+      injectRoute({
+        pattern: '/registrazione-video',
+        entrypoint: fileURLToPath(new URL('./src/video/Registrazione.astro', import.meta.url)),
+      });
+    },
+  },
+};
+
 export default defineConfig({
   site: 'https://tasks.bitsplitters.app',
 
@@ -43,6 +61,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => new URL(page).pathname !== '/invite/',
     }),
+    registrazioneVideo,
   ],
 
   // Il processore Markdown va dichiarato esplicitamente. Dalla 7 il default di Astro e' Satteri, e
