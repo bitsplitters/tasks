@@ -112,16 +112,6 @@ section.block { padding: clamp(2.5rem, 7vh, 5rem) 0; }
 .card .ic { width: 34px; height: 34px; margin-bottom: .7rem; object-fit: contain; }
 .card h3 { margin: 0 0 .5rem; font-size: 1.15rem; }
 .card p { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.55; }
-.board-teaser { border: 1px dashed var(--line-2); border-radius: 14px; padding: clamp(1.4rem,3vw,2rem); margin-top: 2rem; background: var(--surface); }
-.board-row { display: flex; flex-wrap: wrap; gap: .6rem; margin: .6rem 0; align-items: center; }
-.board-lab { font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-right: .4rem; }
-.dbtn { font-family: var(--sans); font-size: .9rem; font-weight: 600; background: #2B2D31; color: #fff; border: 1px solid #1E1F22; border-radius: 8px; padding: .45em .7em; cursor: pointer; display: inline-flex; align-items: center; gap: .45em; transition: transform .12s ease, filter .12s ease; }
-.dbtn:hover { transform: translateY(-1px); filter: brightness(1.15); }
-.dbtn img { width: 20px; height: 20px; object-fit: contain; }
-.dbtn.primary { border-color: #3b45c4; }
-.board-note { font-family: var(--mono); font-size: .8rem; color: var(--muted); margin-top: .8rem; }
-.board-info { margin-top: 1rem; padding: 1rem 1.2rem; border-radius: 10px; background: var(--ink); border: 1px solid var(--line); color: #C7CEDB; line-height: 1.6; min-height: 3rem; }
-.board-info b { color: var(--accent); }
 .site-foot { margin-top: auto; border-top: 1px solid var(--line); }
 .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-block: 1.5rem; font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 .foot-inner a { color: var(--muted); text-decoration: none; }
@@ -158,14 +148,6 @@ section.block { padding: clamp(2.5rem, 7vh, 5rem) 0; }
 .callout { border: 1px solid var(--line-2); border-left: 3px solid var(--accent); background: var(--surface); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
 .callout .callout-t { font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .4rem; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-/* Toccato = l'animazione dimostrativa finisce. Non si "mette in pausa": riprendere a muovere
-   caselle sotto le dita di chi sta giocando col mock e' peggio che non animare affatto. */
-.dc-demo.dc-live .dc-select-menu,
-.dc-demo.dc-live .dc-opt-pick,
-.dc-demo.dc-live .dc-caret,
-.dc-demo.dc-live .dc-flip,
-.dc-demo.dc-live .dc-flip .dc-cb-on,
-.dc-demo.dc-live .dc-flip .dc-cb-off { animation: none; }
 
 @media (prefers-reduced-motion: no-preference) {
   .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
@@ -194,38 +176,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 @media (max-width: 640px) {
   .prose .screen img { max-width: 100%; }
 }
-/* Interactive button board (home): icon-only buttons + Discord state colors */
-.board-row .dbtn { background: #4E5058 !important; border: none !important; gap: 0 !important; padding: .55em !important; }
-.board-row .dbtn img { width: 24px !important; height: 24px !important; }
-.board-row .dbtn.is-edit { background: #5865F2 !important; }
-.board-row .dbtn.is-delete { background: #ED4245 !important; }
-.board-info br + * , .board-info strong { }
-.board-info strong { color: var(--accent); }
 /* "What you get": icon and title on the same line */
 .card .card-head { display: flex; align-items: center; gap: .7rem; margin-bottom: .6rem; }
 .card .card-head .ic { margin-bottom: 0; flex: none; }
 .card .card-head h3 { margin: 0; }
-/* Board buttons: wider rectangles that fill the row (and stretch on mobile) */
-.board-row { flex-wrap: wrap; }
-.board-row .dbtn { flex: 1 1 72px; padding: .85em .6em !important; }
 /* Prevent horizontal overflow / rubber-band scroll on mobile */
 html { overflow-x: hidden; }
-.board-info { overflow-wrap: anywhere; }
-/* Board buttons: fixed width (~40% wider than the old square), icon centered */
-.board-row .dbtn { flex: 0 0 auto !important; width: 56px; padding: .55em 0 !important; justify-content: center; }
-/* Keep each row on a single line: 56px ideal, shrink to fit narrow screens */
-.board-row { flex-wrap: nowrap !important; }
-.board-row .dbtn { flex: 0 1 56px !important; width: auto !important; min-width: 0; }
-/* On mobile, center the button rows; left-aligned on larger screens */
-@media (max-width: 640px) {
-  .board-row { justify-content: center; }
-}
-/* Row 1 buttons always blue (PRIMARY), like the bot */
-.board-row .dbtn:not(.task-btn) { background: #5865F2 !important; }
-/* Desktop only: ~20% wider board buttons (56px -> 67px) */
-@media (min-width: 641px) {
-  .board-row .dbtn { flex-basis: 70px !important; }
-}
 /* Docs mobile navigation: hamburger + full overlay, styled to match the site */
 .docs-menu-toggle { display: none; }
 .docs-side-close { display: none; }
@@ -291,142 +247,3 @@ html { overflow-x: hidden; }
 .docs-search .pagefind-ui__results-area { max-height: 60vh; overflow-y: auto; }
 .docs-search .pagefind-ui__result-title a { color: var(--text); }
 .docs-search .pagefind-ui__result-excerpt { color: var(--muted); font-size: .85rem; }
-
-/* ── Mock della lista Discord in home page ─────────────────────────────────────
-   Riproduce il messaggio che il bot tiene aggiornato: intestazione, titolo H2,
-   righe numerate col checkbox, e la select con cui si spuntano i task. Serve a
-   far riconoscere il bot PRIMA di invitarlo, quindi le proporzioni contano piu'
-   della fedelta' pixel-per-pixel: numerazione monospace come il bot (che la
-   rende in code-span), sotto-task rientrato, riga di dettaglio per promemoria e
-   webhook.
-   L'animazione sta tutta dentro @media (prefers-reduced-motion: no-preference),
-   come il resto del sito: chi chiede meno movimento vede un fotogramma fermo e
-   coerente, non una pagina rotta. */
-.dc-demo { margin-top: 1.8rem; }
-.dc-msg {
-  display: flex; gap: .9rem; padding: 1.1rem 1.2rem;
-  background: #313338;                 /* il grigio del tema Dark di Discord */
-  border: 1px solid var(--line-2); border-radius: 12px;
-}
-.dc-avatar { width: 40px; height: 40px; border-radius: 50%; flex: 0 0 40px; }
-.dc-body { min-width: 0; flex: 1; }
-.dc-head { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; margin-bottom: .5rem; }
-.dc-name { color: #f2f3f5; font-weight: 600; }
-.dc-app {
-  background: #5865F2; color: #fff; font-size: .62rem; font-weight: 700;
-  padding: .1rem .3rem; border-radius: 3px; letter-spacing: .04em; text-transform: uppercase;
-}
-.dc-time { color: #949BA4; font-size: .72rem; }
-.dc-title { color: #f2f3f5; font-size: 1.15rem; font-weight: 700; margin: .2rem 0 .7rem; }
-.dc-tasks { list-style: none; margin: 0; padding: 0; }
-/* Un task e' una PILA di righe, come in app: webhook, poi promemoria, poi checkbox + contenuto.
-   Il numero sta solo sulla PRIMA riga del blocco; le successive prendono uno spaziatore della sua
-   stessa larghezza (nel bot e' un code-span vuoto). Mettere le righe di dettaglio sotto il testo,
-   come facevo prima, e' un ordine che in Discord non si vede mai. */
-/* UNA griglia per task, non una per riga. Con una griglia per riga le colonne si calcolano
-   indipendentemente e non c'e' modo di allinearle: l'emoji del promemoria finiva fuori asse
-   rispetto alla checkbox sotto, e lo spaziatore risolveva il suo 1.6em su una dimensione di font
-   diversa da quella della pastiglia del numero. Con display:contents sulle righe i loro figli
-   entrano in questa griglia, quindi le tre colonne sono le stesse per tutte le righe del task. */
-.dc-tasks li {
-  display: grid; grid-template-columns: auto auto 1fr; align-items: start;
-  gap: .1rem .5rem; padding: .22rem 0; color: #dbdee1; line-height: 1.45; font-size: .92rem;
-}
-.dc-line { display: contents; }
-/* Stessa larghezza minima e stesso padding orizzontale della pastiglia del numero, cosi' le
-   colonne restano allineate fra le righe dello stesso task. */
-/* Lo spaziatore deve misurare ESATTAMENTE come la pastiglia del numero: stessa famiglia e
-   dimensione di font (l'em di 1.6em dipende da quelle) e stesso padding. */
-.dc-sp { font-family: var(--mono); font-size: .78rem; min-width: 1.6em; padding: .05rem .32rem; }
-/* 18px come la checkbox: nella colonna 2 si alternano, e un pixel di scarto si vede. */
-.dc-mi { width: 18px; height: 18px; }
-.dc-metatxt { color: #949BA4; font-size: .84rem; min-width: 0; }
-.dc-sub { padding-left: 1.6rem; }
-.dc-n {
-  font-family: var(--mono); font-size: .78rem; color: #b5bac1;
-  background: #2b2d31; border-radius: 4px; padding: .05rem .32rem; min-width: 1.6em; text-align: center;
-}
-.dc-cb { position: relative; width: 18px; height: 18px; display: inline-block; }
-.dc-cb img { width: 18px; height: 18px; display: block; }
-.dc-cb-on { position: absolute; inset: 0; opacity: 0; }
-/* Stato spuntato: lo comanda la classe, cosi' vale sia per i valori iniziali sia per i click.
-   L'animazione dimostrativa resta, ma solo finche' nessuno ha toccato niente (.dc-live). */
-.dc-tasks li.dc-done .dc-cb-off { opacity: 0; }
-.dc-tasks li.dc-done .dc-cb-on { opacity: 1; }
-.dc-tasks li.dc-done .dc-txt { color: #949BA4; }
-.dc-txt { min-width: 0; }
-/* Menzione: Discord la disegna come pastiglia blu tenue, non come testo semplice. */
-.dc-pill { background: rgba(88,101,242,.18); color: #c9cdfb; border-radius: 4px; padding: 0 .28rem; }
-
-
-/* La select: chiusa e' un bottone grigio; aperta scopre le opzioni sopra di se'. */
-.dc-select { position: relative; margin-top: .9rem; max-width: 420px; }
-.dc-select-btn {
-  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
-  background: #2b2d31; border: 1px solid #1e1f22; border-radius: 8px;
-  padding: .55rem .75rem; color: #b5bac1; font-size: .88rem;
-}
-.dc-caret { color: #949BA4; }
-/* Si apre verso il BASSO, come Discord quando c'e' spazio. Verso l'alto coprirebbe
-   proprio la lista che il mock deve far vedere — compresa la riga che poi si spunta. */
-.dc-select-menu {
-  position: absolute; left: 0; right: 0; top: calc(100% + .35rem); z-index: 2;
-  background: #2b2d31; border: 1px solid #1e1f22; border-radius: 8px;
-  padding: .3rem; box-shadow: 0 8px 24px rgba(0,0,0,.45);
-  opacity: 0; transform: translateY(-6px); pointer-events: none;
-}
-.dc-opt {
-  display: flex; align-items: center; gap: .45rem; padding: .4rem .5rem;
-  border-radius: 5px; color: #dbdee1; font-size: .84rem;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.dc-opt img { width: 16px; height: 16px; flex: 0 0 16px; }
-.dc-optcb { position: relative; width: 16px; height: 16px; flex: 0 0 16px; display: inline-block; }
-.dc-optcb .dc-cb-on { position: absolute; inset: 0; opacity: 0; }
-.dc-opt[aria-pressed="true"] .dc-cb-off { opacity: 0; }
-.dc-opt[aria-pressed="true"] .dc-cb-on { opacity: 1; }
-
-/* Interattivita': la select e' un vero controllo, non un disegno. */
-.dc-select-btn { width: 100%; font: inherit; font-size: .88rem; cursor: pointer; text-align: left; }
-.dc-select-btn:hover { border-color: var(--line-2); }
-.dc-opt { width: 100%; border: 0; background: transparent; font: inherit; font-size: .84rem; cursor: pointer; text-align: left; }
-.dc-opt:hover { background: #404249; }
-.dc-select.open .dc-select-menu { opacity: 1; transform: none; pointer-events: auto; }
-.dc-select.open .dc-caret { transform: rotate(180deg); }
-.dc-select-menu { max-height: 280px; overflow-y: auto; overscroll-behavior: contain; transition: opacity .16s ease, transform .16s ease; }
-.dc-hint { color: var(--muted); font-size: .85rem; margin: .8rem 0 0; max-width: 52ch; }
-.dc-hint strong { color: var(--text); }
-
-@media (max-width: 640px) {
-  .dc-msg { padding: .9rem; gap: .6rem; }
-  .dc-avatar { width: 32px; height: 32px; flex-basis: 32px; }
-  .dc-tasks li { font-size: .86rem; }
-  .dc-select { max-width: none; }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  /* Un solo giro da 9s con un solo gesto: apri, scegli, la riga si spunta. Due
-     scelte per giro rendevano la sequenza difficile da seguire e non aggiungevano
-     niente. Le percentuali sono i secondi divisi 9. */
-  .dc-select-menu { animation: dc-menu 9s ease-in-out infinite; }
-  .dc-opt-pick { animation: dc-pick 9s ease-in-out infinite; }
-  .dc-caret { animation: dc-caret 9s ease-in-out infinite; }
-  .dc-flip .dc-cb-on { animation: dc-check 9s ease-in-out infinite; }
-  .dc-flip .dc-cb-off { animation: dc-uncheck 9s ease-in-out infinite; }
-  .dc-flip { animation: dc-row 9s ease-in-out infinite; }
-
-  @keyframes dc-menu {              /* chiusa → aperta 1,2-2,9s → richiusa 3,5s */
-    0%, 13% { opacity: 0; transform: translateY(-6px); }
-    21%, 32% { opacity: 1; transform: none; }
-    39%, 100% { opacity: 0; transform: translateY(-6px); }
-  }
-  @keyframes dc-pick {              /* l'opzione si illumina appena prima del click */
-    0%, 24% { background: transparent; }
-    28%, 36% { background: #404249; }
-    40%, 100% { background: transparent; }
-  }
-  @keyframes dc-caret { 0%, 13% { transform: none; } 21%, 36% { transform: rotate(180deg); } 44%, 100% { transform: none; } }
-  @keyframes dc-check { 0%, 39% { opacity: 0; } 46%, 89% { opacity: 1; } 96%, 100% { opacity: 0; } }
-  @keyframes dc-uncheck { 0%, 39% { opacity: 1; } 46%, 89% { opacity: 0; } 96%, 100% { opacity: 1; } }
-  @keyframes dc-row { 0%, 39% { background: transparent; } 46% { background: rgba(88,101,242,.14); } 60%, 100% { background: transparent; } }
-}
