@@ -4,7 +4,8 @@
  * che ricevono lo stato con la scelta di chi guarda e restituiscono un esito, cioè lo stato nuovo, un rifiuto oppure
  * una domanda. Qui anche i tipi che le regole condividono coi testi (testi.ts) e con l'interfaccia.
  */
-import type { Lista, Pos, Stato, Task } from './modello.ts';
+import { ADESSO, idRuoloTtm, posizione } from './modello.ts';
+import type { Lista, Owner, Pos, Ruolo, Stato, Task } from './modello.ts';
 import { elencoDeiTolti } from './testi.ts';
 
 /** Un testo del bot per chiave, con gli argomenti: lo compone `testo` di testi.ts. */
@@ -320,4 +321,217 @@ export function salvaTestoActivity(stato: Stato, pos: string, scritto: string): 
   const avviso = avvisoDeiTolti(tolti);
   if (pulita === prosaDelTask(task)) return fatto(stato, avviso);
   return fatto(conTask(stato, i, { ...task, testo: conITag(pulita, tokenDeiTag(task.testo)) }), avviso);
+}
+
+/* 5c — Owner e tag. */
+
+const OWNER_MISTO = 'tasklist.slct.owner.mixed.error';
+const OWNER_UGUALE = 'tasklist.slct.owner.sameselection.error';
+
+/** Il carrello della select owner, come RuoliTtm.Carrello.di; più ruoli, come persone e ruoli insieme, sono «misto». */
+export type Carrello = 'vuoto' | 'persona' | 'ruolo' | 'gruppo' | 'misto';
+
+export function carrello(persone: string[], ruoli: string[]): Carrello {
+  const p = new Set(persone).size;
+  const r = new Set(ruoli).size;
+  if (r > 0 && p > 0) return 'misto';
+  if (r > 1) return 'misto';
+  if (r === 1) return 'ruolo';
+  if (p === 1) return 'persona';
+  return p > 1 ? 'gruppo' : 'vuoto';
+}
+
+/**
+ * Il rifiuto del carrello, come RegoleDellOwner.rifiuto: l'owner è uno, quindi niente persone e ruoli insieme né più
+ * ruoli. Nel canale il bot lo dice alla chiusura del menu (TaskListSlctOwner). Più persone vanno bene: in beta i
+ * gruppi sono sbloccati per tutti.
+ */
+export function rifiutoDelCarrello(persone: string[], ruoli: string[]): Testo | null {
+  return carrello(persone, ruoli) === 'misto' ? { chiave: OWNER_MISTO } : null;
+}
+
+/** Gli stessi elementi, in qualunque ordine. */
+function stessoInsieme(a: readonly string[], b: readonly string[]): boolean {
+  const x = new Set(a);
+  const y = new Set(b);
+  return x.size === y.size && [...x].every((v) => y.has(v));
+}
+
+function chiaveDi(m: Menzione): string {
+  return `${m.ruolo ? '&' : ''}${m.id}`;
+}
+
+/** Le stesse menzioni in qualunque ordine: il confronto del pannello fra due insiemi (Set.equals). */
+function stesseMenzioni(a: readonly Menzione[], b: readonly Menzione[]): boolean {
+  return stessoInsieme(a.map(chiaveDi), b.map(chiaveDi));
+}
+
+/** Le menzioni una volta ciascuna, nell'ordine in cui arrivano (il LinkedHashSet del pannello). */
+function senzaDoppioni(scelte: readonly Menzione[]): Menzione[] {
+  const viste = new Set<string>();
+  return scelte.filter((m) => {
+    const chiave = chiaveDi(m);
+    if (viste.has(chiave)) return false;
+    viste.add(chiave);
+    return true;
+  });
+}
+
+/** La menzione come la scrive il testo del task (TagContentEditor.mentionOf). */
+function menzione(m: Menzione): string {
+  return m.ruolo ? `<@&${m.id}>` : `<@${m.id}>`;
+}
+
+/** Il task senza owner: il promemoria se ne va con lui, perché non arriverebbe a nessuno (Flusso.OWNER_TOGLI). */
+function senzaOwner(task: Task): Task {
+  const resto = { ...task };
+  delete resto.owner;
+  delete resto.promemoria;
+  return resto;
+}
+
+/** Il ruolo di TTM che è questo owner, se lo è. */
+function ruoloDiTtm(stato: Stato, owner: Owner | undefined): Ruolo | undefined {
+  return owner?.tipo === 'ruolo' ? stato.ruoli.find((r) => r.id === owner.id && r.diTtm) : undefined;
+}
+
+/**
+ * Lo stato col ruolo nuovo di queste persone, come RuoliOwner.crea: `TTM<n>` col primo numero libero fra i nomi dei
+ * ruoli del server (RuoliTtm.primoNomeLibero). Da quel momento il ruolo compare fra quelli del menu.
+ */
+function conUnRuoloNuovo(stato: Stato, persone: string[]): { stato: Stato; id: string } {
+  const presi = new Set(stato.ruoli.map((r) => r.nome));
+  let n = 1;
+  while (presi.has(`TTM${n}`)) n++;
+  const ruolo: Ruolo = { id: idRuoloTtm(n), nome: `TTM${n}`, membri: [...new Set(persone)], diTtm: true };
+  return { stato: { ...stato, ruoli: [...stato.ruoli, ruolo] }, id: ruolo.id };
+}
+
+/** Lo stato col task `i` dato a questo owner. */
+function conLOwner(stato: Stato, i: number, owner: Owner): Stato {
+  return conTask(stato, i, { ...stato.lista.tasks[i], owner });
+}
+
+/**
+ * L'owner dalla select del canale alla scelta del task (OwnerLogic.manageOwner, col default OptionMode.DISABLED).
+ * Senza scelta si rifiuta, come per persone e ruoli insieme. La persona o il ruolo che il task ha già non cambiano
+ * niente: il bot lo dice. Più persone fanno un ruolo `TTM<n>` nuovo anche quando uno con loro c'è già; il solo caso
+ * senza ruolo nuovo è l'owner di adesso, un ruolo di TTM con quelle persone (RisoluzioneDellOwner.gruppo). L'owner non
+ * guarda lo stato del task; il promemoria resta, per il nuovo owner.
+ */
+export function applicaOwner(stato: Stato, pos: string, persone: string[], ruoli: string[]): Esito {
+  const i = indice(stato, pos);
+  const task = stato.lista.tasks[i];
+  const tipo = carrello(persone, ruoli);
+  if (tipo === 'vuoto') return rifiuto('tasklist.slct.owner.noselection.error');
+  if (tipo === 'misto') return rifiuto(OWNER_MISTO);
+  if (tipo === 'gruppo') {
+    const attuale = ruoloDiTtm(stato, task.owner);
+    if (attuale && stessoInsieme(attuale.membri, persone)) return rifiuto(OWNER_UGUALE);
+    const nuovo = conUnRuoloNuovo(stato, persone);
+    return fatto(conLOwner(nuovo.stato, i, { tipo: 'ruolo', id: nuovo.id }));
+  }
+  const owner: Owner = tipo === 'persona' ? { tipo: 'persona', id: persone[0] } : { tipo: 'ruolo', id: ruoli[0] };
+  if (task.owner?.tipo === owner.tipo && task.owner.id === owner.id) return rifiuto(OWNER_UGUALE);
+  return fatto(conLOwner(stato, i, owner));
+}
+
+/**
+ * L'owner come lo mostra il pannello dell'Activity (QuadroDellaLista.ownerPerLaPagina): una persona; un ruolo di TTM
+ * con le sue persone, che nella demo TTM conosce sempre tutte (RuoliTtm.preselezioneDiPersone); un altro ruolo com'è.
+ */
+export function sceltaDellOwner(stato: Stato, task: Task): Menzione[] {
+  if (!task.owner) return [];
+  if (task.owner.tipo === 'persona') return [{ ruolo: false, id: task.owner.id }];
+  const ttm = ruoloDiTtm(stato, task.owner);
+  return ttm ? ttm.membri.map((id) => ({ ruolo: false, id })) : [{ ruolo: true, id: task.owner.id }];
+}
+
+/**
+ * L'owner dal pannello dell'Activity (PannelloDelTask.owner). Una scelta uguale, come insieme, a quella che il pannello
+ * mostra non cambia niente; vuota toglie l'owner col suo promemoria. Più persone riusano il ruolo di TTM che è owner di
+ * un task della lista con loro, se c'è; altrimenti se ne crea uno (PannelloDelTask.ruolo). La pagina non manda mai
+ * persone e ruoli insieme, ma la regola c'è.
+ */
+export function applicaOwnerActivity(stato: Stato, pos: string, scelte: Menzione[]): Esito {
+  const i = indice(stato, pos);
+  const task = stato.lista.tasks[i];
+  const scelti = senzaDoppioni(scelte);
+  const persone = scelti.filter((m) => !m.ruolo).map((m) => m.id);
+  const ruoli = scelti.filter((m) => m.ruolo).map((m) => m.id);
+  const tipo = carrello(persone, ruoli);
+  if (tipo === 'misto') return rifiuto(OWNER_MISTO);
+  if (stesseMenzioni(scelti, sceltaDellOwner(stato, task))) return fatto(stato);
+  if (tipo === 'vuoto') return fatto(conTask(stato, i, senzaOwner(task)));
+  if (tipo === 'persona') return fatto(conLOwner(stato, i, { tipo: 'persona', id: persone[0] }));
+  if (tipo === 'ruolo') return fatto(conLOwner(stato, i, { tipo: 'ruolo', id: ruoli[0] }));
+  const riusato = stato.lista.tasks
+    .map((t) => ruoloDiTtm(stato, t.owner))
+    .find((r) => r !== undefined && stessoInsieme(r.membri, persone));
+  if (riusato) return fatto(conLOwner(stato, i, { tipo: 'ruolo', id: riusato.id }));
+  const nuovo = conUnRuoloNuovo(stato, persone);
+  return fatto(conLOwner(nuovo.stato, i, { tipo: 'ruolo', id: nuovo.id }));
+}
+
+/**
+ * Il pulsante rosso dell'owner nel canale (OwnerLogic.manageOwner, TOGLI): un task senza owner si rifiuta; con un
+ * promemoria che deve ancora partire si chiede prima (TaskListMdlOwnerRemoveConfirm). Altrimenti l'owner si toglie,
+ * col promemoria già passato se c'è.
+ */
+export function togliOwner(stato: Stato, pos: string): Esito {
+  const i = indice(stato, pos);
+  const task = stato.lista.tasks[i];
+  if (!task.owner) return rifiuto('tasklist.slct.owner.delete.notpresent.error');
+  if (task.promemoria && task.promemoria.at > ADESSO)
+    return { tipo: 'domanda', domanda: { tipo: 'togliOwner', pos: posizione(task.pos) } };
+  return fatto(conTask(stato, i, senzaOwner(task)));
+}
+
+/** La rimozione confermata nella modale: l'owner se ne va col suo promemoria. */
+export function togliOwnerConfermato(stato: Stato, pos: string): Stato {
+  const i = indice(stato, pos);
+  return conTask(stato, i, senzaOwner(stato.lista.tasks[i]));
+}
+
+/** Il task coi tag nuovi in fondo al testo, al posto dei suoi; un testo che resterebbe vuoto si rifiuta con `vuoto`. */
+function conITagDelTask(stato: Stato, pos: string, tag: string[], vuoto: string): Esito {
+  const i = indice(stato, pos);
+  const task = stato.lista.tasks[i];
+  const testo = conITag(task.testo, tag);
+  if (testo === '') return rifiuto(vuoto);
+  return fatto(conTask(stato, i, { ...task, testo }));
+}
+
+/**
+ * I tag dalla select del canale alla scelta del task (TagLogic.manageTag, col default OptionMode.DISABLED): prendono il
+ * posto di quelli del task, in fondo al testo, prima i ruoli poi le persone, ognuno nell'ordine scelto
+ * (TagContentEditor.mentionsFrom). Senza scelta si rifiuta.
+ */
+export function applicaTag(stato: Stato, pos: string, persone: string[], ruoli: string[]): Esito {
+  const tag = [
+    ...ruoli.map((id) => menzione({ ruolo: true, id })),
+    ...persone.map((id) => menzione({ ruolo: false, id })),
+  ];
+  if (tag.length === 0) return rifiuto('tasklist.slct.tag.noselection.error');
+  return conITagDelTask(stato, pos, tag, 'tasklist.slct.tag.delete.blank.error');
+}
+
+/**
+ * Il pulsante rosso dei tag nel canale (TagLogic.manageTag, TOGLI): toglie tutti i tag. Un task senza tag si rifiuta;
+ * uno di soli tag pure, perché resterebbe senza testo (TagLogic.restaSenzaTesto).
+ */
+export function togliTag(stato: Stato, pos: string): Esito {
+  if (tokenDeiTag(stato.lista.tasks[indice(stato, pos)].testo).length === 0)
+    return rifiuto('tasklist.slct.tag.delete.notpresent.error');
+  return conITagDelTask(stato, pos, [], 'tasklist.slct.tag.delete.blank.error');
+}
+
+/**
+ * I tag dal pannello dell'Activity (PannelloDelTask.tag): nell'ordine scelto, al posto di quelli del task. Gli stessi
+ * di adesso, come insieme, non cambiano niente; nessuno li toglie tutti, ma non da un task di soli tag.
+ */
+export function applicaTagActivity(stato: Stato, pos: string, scelte: Menzione[]): Esito {
+  const scelti = senzaDoppioni(scelte);
+  if (stesseMenzioni(scelti, tagDelTesto(stato.lista.tasks[indice(stato, pos)].testo))) return fatto(stato);
+  return conITagDelTask(stato, pos, scelti.map(menzione), 'activity.tag.delete.blank');
 }

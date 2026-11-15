@@ -5,11 +5,14 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { COACHES, LEO, MIA, posizione, statoIniziale } from '../src/components/home/demo/modello.ts';
+import {
+  ADESSO, COACHES, LEO, MIA, SAM, ZONA, idRuoloTtm, posizione, statoIniziale,
+} from '../src/components/home/demo/modello.ts';
 import type { Stato, Task } from '../src/components/home/demo/modello.ts';
 import {
-  avanzamento, eliminaTask, eliminaTaskConfermato, prosa, prosaDelTask, rinumera, salvaTesto, salvaTestoActivity,
-  spunta, statoDeiGruppi, tagDelTesto, tokenTolti,
+  applicaOwner, applicaOwnerActivity, applicaTag, applicaTagActivity, avanzamento, carrello, eliminaTask,
+  eliminaTaskConfermato, prosa, prosaDelTask, rifiutoDelCarrello, rinumera, salvaTesto, salvaTestoActivity,
+  sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, togliOwner, togliOwnerConfermato, togliTag, tokenTolti,
 } from '../src/components/home/demo/regole.ts';
 import type { Esito } from '../src/components/home/demo/regole.ts';
 
@@ -173,4 +176,146 @@ test("i tag del testo: nell'ordine, senza doppioni, senza l'owner; la prosa del 
     [{ ruolo: false, id: LEO }, { ruolo: true, id: COACHES }]);
   const task = { pos: { main: 1, sub: 0 }, testo: `Lock ${LEO_TAG} the  block <@&1181730456203947590>`, fatto: false };
   assert.equal(prosaDelTask(task), 'Lock the block');
+});
+
+// 5c — Owner e tag
+
+const TTM1 = idRuoloTtm(1);
+const TTM2 = idRuoloTtm(2);
+const MIA_TAG = '<@1181730456203947581>';
+const COACHES_TAG = '<@&1181730456203947590>';
+const persona = (id: string) => ({ ruolo: false, id });
+const ruolo = (id: string) => ({ ruolo: true, id });
+const rifiutoDi = (chiave: string) => ({ tipo: 'rifiuto', testo: { chiave } });
+/** L'owner del task in `pos`. */
+const ownerDi = (s: Stato, pos: string) => s.lista.tasks.find((t) => posizione(t.pos) === pos)?.owner;
+/** Il task 3 della lista della demo senza owner né promemoria. */
+function treSenzaOwner(): Task {
+  const t = { ...statoIniziale().lista.tasks[3] };
+  delete t.owner;
+  delete t.promemoria;
+  return t;
+}
+
+test("il carrello dell'owner: persona, ruolo o gruppo; persone e ruoli insieme, o più ruoli, no (RuoliTtm)", () => {
+  assert.equal(carrello([], []), 'vuoto');
+  assert.equal(carrello([MIA], []), 'persona');
+  assert.equal(carrello([MIA, MIA], []), 'persona');
+  assert.equal(carrello([MIA, LEO], []), 'gruppo');
+  assert.equal(carrello([], [COACHES]), 'ruolo');
+  assert.equal(carrello([], [COACHES, TTM1]), 'misto');
+  assert.equal(carrello([MIA], [COACHES]), 'misto');
+  // Il controllo del bot alla chiusura del menu (TaskListSlctOwner, RegoleDellOwner).
+  assert.deepEqual(rifiutoDelCarrello([MIA], [COACHES]), { chiave: 'tasklist.slct.owner.mixed.error' });
+  assert.equal(rifiutoDelCarrello([MIA, LEO], []), null);
+  assert.equal(rifiutoDelCarrello([], []), null);
+});
+
+test("nel canale la scelta diventa l'owner; senza scelta, o con quella di adesso, si rifiuta (OwnerLogic)", () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(ownerDi(statoDi(applicaOwner(s0, '2', [MIA], [])), '2'), { tipo: 'persona', id: MIA });
+  assert.deepEqual(ownerDi(statoDi(applicaOwner(s0, '2', [], [COACHES])), '2'), { tipo: 'ruolo', id: COACHES });
+  assert.deepEqual(applicaOwner(s0, '3', [MIA], []), rifiutoDi('tasklist.slct.owner.sameselection.error'));
+  assert.deepEqual(applicaOwner(s0, '2', [], []), rifiutoDi('tasklist.slct.owner.noselection.error'));
+  assert.deepEqual(applicaOwner(s0, '2', [MIA], [COACHES]), rifiutoDi('tasklist.slct.owner.mixed.error'));
+  // L'owner non guarda lo stato del task; il promemoria del 3 resta col nuovo owner.
+  assert.deepEqual(ownerDi(statoDi(applicaOwner(s0, '1', [LEO], [])), '1'), { tipo: 'persona', id: LEO });
+  assert.deepEqual(statoDi(applicaOwner(s0, '3', [LEO], [])).lista.tasks[3],
+    { ...s0.lista.tasks[3], owner: { tipo: 'persona', id: LEO } });
+  assert.deepEqual(s0, statoIniziale());
+});
+
+test('nel canale più persone fanno sempre un ruolo TTM<n> nuovo, col primo nome libero (RuoliOwner.crea)', () => {
+  const uno = statoDi(applicaOwner(statoIniziale(), '2', [MIA, LEO], []));
+  assert.deepEqual(uno.ruoli.at(-1), { id: TTM1, nome: 'TTM1', membri: [MIA, LEO], diTtm: true });
+  assert.deepEqual(ownerDi(uno, '2'), { tipo: 'ruolo', id: TTM1 });
+  const due = statoDi(applicaOwner(uno, '4', [LEO, MIA], []));
+  assert.deepEqual(due.ruoli.at(-1), { id: TTM2, nome: 'TTM2', membri: [LEO, MIA], diTtm: true });
+  assert.deepEqual(ownerDi(due, '4'), { tipo: 'ruolo', id: TTM2 });
+  // Il solo caso senza ruolo nuovo: l'owner di adesso è un ruolo di TTM con quelle persone (RisoluzioneDellOwner).
+  assert.deepEqual(applicaOwner(due, '2', [LEO, MIA], []), rifiutoDi('tasklist.slct.owner.sameselection.error'));
+  // @Coaches ha Mia e Leo, ma non è di TTM: le stesse persone fanno un ruolo nuovo.
+  const coaches = statoDi(applicaOwner(statoIniziale(), '2', [], [COACHES]));
+  assert.deepEqual(ownerDi(statoDi(applicaOwner(coaches, '2', [MIA, LEO], [])), '2'), { tipo: 'ruolo', id: TTM1 });
+  // Con TTM1 e TTM3 nel server il primo nome libero è TTM2 (RuoliTtm.primoNomeLibero).
+  const s0 = statoIniziale();
+  const buco: Stato = {
+    ...s0,
+    ruoli: [...s0.ruoli, { id: TTM1, nome: 'TTM1', membri: [MIA, LEO], diTtm: true },
+      { id: idRuoloTtm(3), nome: 'TTM3', membri: [LEO, SAM], diTtm: true }],
+  };
+  const tre = statoDi(applicaOwner(buco, '4', [MIA, SAM], []));
+  assert.deepEqual(tre.ruoli.map((r) => r.nome), ['Coaches', 'TTM1', 'TTM3', 'TTM2']);
+  assert.deepEqual(ownerDi(tre, '4'), { tipo: 'ruolo', id: TTM2 });
+});
+
+test("nell'Activity più persone riusano il ruolo di TTM della lista con loro (PannelloDelTask.ruolo)", () => {
+  const s0 = statoIniziale();
+  const miaLeo = [persona(MIA), persona(LEO)];
+  assert.deepEqual(ownerDi(statoDi(applicaOwnerActivity(s0, '2', [persona(MIA)])), '2'), { tipo: 'persona', id: MIA });
+  assert.deepEqual(applicaOwnerActivity(s0, '3', [persona(MIA)]), { tipo: 'fatto', stato: s0 });
+  const uno = statoDi(applicaOwnerActivity(s0, '2', miaLeo));
+  assert.deepEqual(uno.ruoli.at(-1), { id: TTM1, nome: 'TTM1', membri: [MIA, LEO], diTtm: true });
+  const riuso = statoDi(applicaOwnerActivity(uno, '4', [persona(LEO), persona(MIA)]));
+  assert.deepEqual(ownerDi(riuso, '4'), { tipo: 'ruolo', id: TTM1 });
+  assert.deepEqual(riuso.ruoli, uno.ruoli);
+  // Le persone che il pannello mostra già, in un altro ordine: niente cambia.
+  assert.deepEqual(applicaOwnerActivity(uno, '2', [persona(LEO), persona(MIA), persona(LEO)]),
+    { tipo: 'fatto', stato: uno });
+  // Un ruolo di TTM che non è più owner di un task della lista non si riusa: ne nasce un altro.
+  const lasciato = statoDi(applicaOwnerActivity(uno, '2', [persona(SAM)]));
+  assert.deepEqual(ownerDi(statoDi(applicaOwnerActivity(lasciato, '4', miaLeo)), '4'), { tipo: 'ruolo', id: TTM2 });
+  // Vuota toglie l'owner col promemoria: è il Delete del pannello, dopo la sua domanda.
+  assert.deepEqual(statoDi(applicaOwnerActivity(s0, '3', [])).lista.tasks[3], treSenzaOwner());
+  assert.deepEqual(applicaOwnerActivity(s0, '2', []), { tipo: 'fatto', stato: s0 });
+  assert.deepEqual(applicaOwnerActivity(s0, '2', [persona(MIA), ruolo(COACHES)]),
+    rifiutoDi('tasklist.slct.owner.mixed.error'));
+});
+
+test("il pannello mostra un ruolo di TTM con le sue persone, un altro ruolo com'è (QuadroDellaLista)", () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(sceltaDellOwner(s0, s0.lista.tasks[3]), [persona(MIA)]);
+  assert.deepEqual(sceltaDellOwner(s0, s0.lista.tasks[1]), []);
+  const uno = statoDi(applicaOwner(s0, '2', [MIA, LEO], []));
+  assert.deepEqual(sceltaDellOwner(uno, uno.lista.tasks[1]), [persona(MIA), persona(LEO)]);
+  const coaches = statoDi(applicaOwner(s0, '2', [], [COACHES]));
+  assert.deepEqual(sceltaDellOwner(coaches, coaches.lista.tasks[1]), [ruolo(COACHES)]);
+});
+
+test("il pulsante rosso toglie l'owner col promemoria; se deve ancora partire, prima chiede (OwnerLogic)", () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(togliOwner(s0, '2'), rifiutoDi('tasklist.slct.owner.delete.notpresent.error'));
+  assert.deepEqual(togliOwner(s0, '3'), { tipo: 'domanda', domanda: { tipo: 'togliOwner', pos: '3' } });
+  assert.deepEqual(togliOwnerConfermato(s0, '3').lista.tasks[3], treSenzaOwner());
+  assert.deepEqual(togliOwner(statoDi(applicaOwner(s0, '2', [MIA], [])), '2'), { tipo: 'fatto', stato: s0 });
+  // Un promemoria già passato si toglie senza chiedere.
+  const tasks = s0.lista.tasks.map((t, i) => (i === 3 ? { ...t, promemoria: { at: ADESSO - 60, zona: ZONA } } : t));
+  assert.deepEqual(statoDi(togliOwner({ ...s0, lista: { ...s0.lista, tasks } }, '3')).lista.tasks[3], treSenzaOwner());
+});
+
+test('nel canale i tag scelti prendono il posto di quelli del task: prima i ruoli, poi le persone (TagLogic)', () => {
+  const s0 = statoIniziale();
+  const leo = statoDi(applicaTag(s0, '2', [LEO], []));
+  assert.equal(leo.lista.tasks[1].testo, `Lock the scrim block vs. Nova Collective ${LEO_TAG}`);
+  const due = statoDi(applicaTag(leo, '2', [MIA], [COACHES]));
+  assert.equal(due.lista.tasks[1].testo, `Lock the scrim block vs. Nova Collective ${COACHES_TAG} ${MIA_TAG}`);
+  assert.deepEqual(applicaTag(s0, '2', [], []), rifiutoDi('tasklist.slct.tag.noselection.error'));
+});
+
+test("nell'Activity i tag vanno nell'ordine scelto; gli stessi di adesso non cambiano niente (PannelloDelTask)", () => {
+  const s0 = statoIniziale();
+  const due = statoDi(applicaTagActivity(s0, '2', [persona(MIA), ruolo(COACHES)]));
+  assert.equal(due.lista.tasks[1].testo, `Lock the scrim block vs. Nova Collective ${MIA_TAG} ${COACHES_TAG}`);
+  assert.deepEqual(applicaTagActivity(due, '2', [ruolo(COACHES), persona(MIA)]), { tipo: 'fatto', stato: due });
+  assert.deepEqual(statoDi(applicaTagActivity(due, '2', [])), s0);
+  assert.deepEqual(applicaTagActivity(s0, '2', []), { tipo: 'fatto', stato: s0 });
+  assert.deepEqual(applicaTagActivity(conTesto(1, LEO_TAG), '2', []), rifiutoDi('activity.tag.delete.blank'));
+});
+
+test('il pulsante rosso dei tag li toglie tutti, se al task resta un testo (TagLogic.restaSenzaTesto)', () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(togliTag(s0, '2'), rifiutoDi('tasklist.slct.tag.delete.notpresent.error'));
+  const conTag = conTesto(1, `Lock ${LEO_TAG} the  scrim block ${COACHES_TAG}`);
+  assert.equal(statoDi(togliTag(conTag, '2')).lista.tasks[1].testo, 'Lock the scrim block');
+  assert.deepEqual(togliTag(conTesto(1, LEO_TAG), '2'), rifiutoDi('tasklist.slct.tag.delete.blank.error'));
 });
