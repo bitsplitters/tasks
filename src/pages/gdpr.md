@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: "GDPR & Your Data Rights"
 description: How Team Tasks Manager complies with the EU General Data Protection Regulation.
-updated: "Last updated: 28 October 2026"
+updated: "Last updated: 15 November 2026"
 lang: en
 alt: /it/gdpr/
 ---

@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "Informativa sulla privacy"
 description: "Quali dati raccoglie il bot Discord Team Tasks Manager, perché e come vengono trattati."
-updated: "Ultimo aggiornamento: 28 ottobre 2026"
+updated: "Ultimo aggiornamento: 15 novembre 2026"
 lang: it
 alt: /privacy/
 ---

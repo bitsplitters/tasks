@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "GDPR e i tuoi diritti sui dati"
 description: "Come Team Tasks Manager si conforma al Regolamento generale sulla protezione dei dati dell'Unione europea."
-updated: "Ultimo aggiornamento: 28 ottobre 2026"
+updated: "Ultimo aggiornamento: 15 novembre 2026"
 lang: it
 alt: /gdpr/
 ---

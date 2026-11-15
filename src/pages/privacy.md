@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 28 October 2026"
+updated: "Last updated: 15 November 2026"
 lang: en
 alt: /it/privacy/
 ---
