@@ -24,7 +24,7 @@ TTM refuses a file straight away if it isn't a `.txt` or is bigger than **64 KB*
 
 Reminders whose alerts are all in the past are not a problem: they come back on their tasks, and send nothing more.
 
-→ See [The task list panel](/docs/the-task-list/), and [Tips & tricks](/docs/tips/#reuse-a-list-anywhere) for reusing a list on another server.
+→ See [The list in the channel](/docs/the-task-list/), and [Tips & tricks](/docs/tips/#reuse-a-list-anywhere) for reusing a list on another server.
 
 ## `/config app`
 
@@ -48,7 +48,7 @@ Create, view, modify or delete a webhook, optionally limited to a **completion**
 
 This command shows what the beta means for your server: every feature is unlocked and free for the whole beta. It also explains what happens when the beta ends, and why there's a paid plan. A button shows what that plan will look like.
 
-→ See [Free during the beta](/docs/beta/).
+→ See [How the beta works](/docs/beta/).
 
 ## `/help`
 

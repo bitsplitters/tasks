@@ -1,35 +1,28 @@
 ---
 title: Reminders
-description: Attach a schedule to a task so TTM pings its owner on time, every time.
-group: Using the bot
-order: 5
+description: Attach a schedule to a task so TTM pings its owner on time — who gets it, time zones, repetitions.
+group: Features
+order: 3
 ---
 
-A reminder turns a task into something that reminds *you*, instead of the other way round. You set it once; TTM handles the pings.
+A reminder turns a task into something that reminds *you*, instead of the other way round. You set it once; TTM handles the pings. You add one with **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" />: in the channel, in the second row under the list; in the Activity, in the panel of a task. Where to press: [How to do it](#how-to-do-it), at the bottom.
 
-## Adding a reminder
+## The rules
 
-On the second button row, click **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> until it turns **blue** (edit mode). Then pick the task from the check selector: one that isn't ticked yet. TTM opens the **When** form, titled *Set reminder for task …*:
+- **A reminder has a date, a time and a time zone.** It fires **once**, unless your server uses [repeating reminders](#repeating-reminders).
+- **The start must be at least 5 minutes in the future.** The form starts from ten minutes from now, so a reminder for "in a moment" needs no typing at all.
+- **Only a task still to do can get one.** Completing a task stops its reminder — no need to clean up afterwards.
+- **The reminder goes to the task's owner**, by direct message if the owner is a person. If the task has no owner yet, **you become it** when you save the reminder. From then on only you, and whoever has *Manage messages* on the channel, can tick that task. To give it to someone else, set the owner before or after creating the reminder: see [Owners and tags](/docs/owners-and-tags/).
+- **Nothing changes until you save.** When you edit a reminder, Save stays off until you change the date or the recurrence.
+- **Removing the owner removes the reminder**, because nobody is left to receive it.
 
-| Field | Format | Notes |
-| :--- | :--- | :--- |
-| **Day** | a number (1–31) | pre-filled |
-| **Month** | a dropdown, in your language | no `dd/mm` ambiguity to worry about |
-| **Year** | a number | pre-filled |
-| **Time** | `HH:mm`, 24-hour | e.g. `15:30` |
-| **Time zone** | an official zone name | pre-filled with *your* zone (the server's, until you change it) |
+Nothing arrived? The owner must accept direct messages from members of that server: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 
-Everything arrives pre-filled with **ten minutes from now**, so a reminder for "in a moment" needs no typing at all. Submit it, and the task shows the scheduled time. The reminder fires **once**. With recurring reminders on, a summary card follows: press **Save** (see [Repeating reminders](#repeating-reminders)).
+## Your time zone
 
-The start must be at least **5 minutes** in the future.
+TTM needs an official time-zone name like `Europe/Rome`. Look yours up on the **[time zone map](https://timezones.bitsplitters.app)**: select your area on the map, copy the value, and paste it into the field. The Activity also lets you search by city or country.
 
-<div class="callout"><div class="callout-t">Your time zone is remembered</div>Until you change it, the field proposes the server's zone, and TTM stores nothing. Change it, and TTM stores <strong>your</strong> choice and proposes it from then on. So every member of the team can think in their own local time.</div>
-
-**Who gets it.** The reminder goes to the task's owner, by direct message if the owner is a person. If the task has no owner yet, you become it. From then on only you, and whoever has *Manage messages* on the channel, can tick that task. To give it to someone else, set the owner with **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> before or after creating the reminder. Owners, and what they can do: see [Owners and tags](/docs/owners-and-tags/). Nothing arrived? The owner must accept direct messages from members of that server: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
-
-## Finding your time zone
-
-TTM needs an official time-zone name like `Europe/Rome`. Look yours up on the **[time zone map](https://timezones.bitsplitters.app)**: select your area on the map, copy the value, and paste it into the field.
+<div class="callout"><div class="callout-t">Your time zone is remembered</div>Choose a zone, and TTM stores <strong>your</strong> choice and proposes it from then on, in the channel and in the Activity. Until you choose one, the channel proposes the server's zone, and the Activity your device's. So every member of the team can think in their own local time.</div>
 
 ## How the reminder arrives
 
@@ -54,37 +47,15 @@ Muting the server is not enough: it silences the server's channels, not your dir
 
 A role is notified only if it can be mentioned. When that is the case, and what happens with @everyone or a deleted role: see [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
 
-## Editing or removing a reminder
-
-- **Edit** — click **Reminder** to blue, pick the task, and set the new values. You land straight on the summary card if the task already has a *repeating* reminder. With recurring reminders on, you land there for any reminder (see [Repeating reminders](#repeating-reminders)). The card shows the current date and badge ([Reading a reminder on the task](#reading-a-reminder-on-the-task)), so you can change only what you need. **Save** stays off until you change the date or the recurrence. Otherwise **When** opens, pre-filled with the current date. Submitting the same date and recurrence the reminder already has changes nothing: TTM tells you, and sends no notification.
-- **Remove** — click **Reminder** until it turns **red** (delete mode), then pick the task. The reminder is removed.
-
-Completing a task also stops its reminder — no need to clean up afterwards.
-
-<div class="callout"><div class="callout-t">Closing a form is not cancelling</div>Discord never tells a bot that you closed a form with the ✕, so TTM cannot know: the list stays locked. Use <strong>Cancel</strong> on the <a href="#repeating-reminders">summary card</a> when it's there. If you closed a form the hard way, open <strong>More</strong> under the list and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> <strong>Unlock list</strong>.</div>
-
 ## Repeating reminders
 
-By default every reminder is a **single event** — one form, one ping, nothing else to decide. Repetitions are a **Premium** feature, like webhooks: on the Free plan every reminder is single (see [What Premium unlocks](/docs/premium/); during the [beta](/docs/beta/) everything is unlocked). On a plan that includes them they are still an opt-in: a server manager enables **Recurring reminders** in [Configuration](/docs/configuration/).
+By default every reminder is a **single event** — one ping, nothing else to decide. Repetitions are a **Premium** feature, like webhooks: on the Free plan every reminder is single (see [What Premium unlocks](/docs/premium/); during the [beta](/docs/beta/) everything is unlocked). On a plan that includes them they are still an opt-in: a server manager enables **Recurring reminders** in [/config app](/docs/configuration/#recurring-reminders). Until then, only a reminder that is already recurring shows the repetition menus.
 
 <div class="callout"><div class="callout-t">Recurring reminders you already have keep working</div>A reminder that was already recurring, for example one created during the beta, keeps firing on the Free plan. It also keeps firing on Premium while the toggle is off. It stays editable: you can change its date, move it to another task or lower the number of times it arrives. What you can't do is raise that number, or add new recurring reminders.<br><br>Cloning or importing a list creates new reminders. So where new recurring reminders can't be created, on the Free plan or with the toggle off, a recurring reminder is refused there. Clone without reminders, or set its repetitions to <code>0</code>.</div>
 
-With recurring reminders on, submitting **When** doesn't save yet. TTM shows you a private summary card with the date it understood, a **Recurrence** line and four buttons. The line says *none* for a single reminder, or shows the recurrence badge:
-
-| Button | What it does |
-| :--- | :--- |
-| **Save** | Store the reminder exactly as the card shows it. When you edit an existing reminder, it turns on once you change something. |
-| **Edit date** | Reopen **When**, pre-filled with the current values. |
-| **Edit recurrence** | Open the repetition form: how many times in total, and how often. For a single reminder it opens on 2 times, every 1 day. With **1 time** the reminder stays single, and the interval doesn't count. |
-| **Cancel** | Drop the whole thing — the list is unlocked. |
-
-<div class="callout"><div class="callout-t">Nothing is saved until you press Save</div>Editing the date or the recurrence only updates the card. You can change them as often as you need, and <strong>Cancel</strong> really cancels.</div>
-
-With recurring reminders off, or on the Free plan, the card appears only when you edit a reminder that is **already recurring**. That way the reminder doesn't lose its repetitions: **Edit recurrence** lets you keep the number of times it arrives or lower it, never go above the number it already has, and the form says why. A new reminder goes straight through **When** and is saved as a single event.
-
 ### The repetition fields
 
-The form has three menus, so there is nothing to type and no format to get wrong.
+There are three menus, in the channel and in the Activity, so there is nothing to type and no format to get wrong.
 
 | Menu | Meaning | Choices |
 | :--- | :--- | :--- |
@@ -92,9 +63,9 @@ The form has three menus, so there is nothing to type and no format to get wrong
 | **Every** | The time between two pings, in the unit of the next menu. It doesn't count with **1 time**. | 1 to 10, 12, 14, then 15 to 50 in steps of 5, 60 and 90 |
 | **Unit** | Minutes, hours or days. There are no weeks or months: a week is 7 days. | minutes, hours, days |
 
-The menus always offer the values the reminder already has, even when they aren't in the list: a reminder set in **Bulk update** can run 37 times, or every 48 hours. One that already runs more than 50 times keeps its number. An interval that mixes units, such as `1d12h` from **Bulk update**, shows in its smallest unit, 36 hours: leave **Every** and **Unit** as they are and it stays `1d12h`.
+Going from one time to more, **Every** starts from 1 day. The menus always offer the values the reminder already has, even when they aren't in the list: a reminder written in the text of a list can run 37 times, or every 48 hours. One that already runs more than 50 times keeps its number. An interval that mixes units, such as `1d12h` from the text, shows in its smallest unit, 36 hours: leave **Every** and **Unit** as they are and it stays `1d12h`.
 
-<div class="callout"><div class="callout-t">Daylight saving — the detail that matters</div><strong>Days</strong> keep the <strong>same wall-clock time</strong> across a DST change (e.g. always 09:00). <strong>Hours</strong> are <strong>exact</strong>: every 24 hours can shift by an hour after the clocks change. Pick the one that matches what you mean. In <strong>Bulk update</strong> it's the difference between <code>1d</code> and <code>24h</code>.</div>
+<div class="callout"><div class="callout-t">Daylight saving — the detail that matters</div><strong>Days</strong> keep the <strong>same wall-clock time</strong> across a DST change (e.g. always 09:00). <strong>Hours</strong> are <strong>exact</strong>: every 24 hours can shift by an hour after the clocks change. Pick the one that matches what you mean. In the text of a list it's the difference between <code>1d</code> and <code>24h</code>.</div>
 
 ## Reading a reminder on the task
 
@@ -104,29 +75,13 @@ On the task line the reminder always shows the date of the **first** ping, rende
 
 So `↻1h ×4` means four pings, one an hour, the first included. A single event shows **just the timestamp** — there is no badge, because there is nothing to repeat.
 
-In **Bulk update** the same reminder appears as a timestamp followed by a triplet:
+TTM never removes a reminder by itself. A reminder whose alerts are all **in the past** stays on its task, as a record. It sends nothing more, and it doesn't count among the reminders waiting. To set it again, choose a new date: until then, Save stays off.
 
-```
-- [] <t:1726497546> [2d3h,1h,3] Ship the release notes
-```
-
-The triplet is `[distance,interval,repetitions]`. The first value lets you create a reminder **from text**, without an absolute date: it is counted from the moment you save the list. The repetitions are the pings **after** the first one, so the task line shows one more: `[2d3h,1h,3]` is `↻1h ×4`, and the most a plan allows here is 49, 50 pings in total. A single event uses the sentinel interval `0m` and `0` repetitions — `[2d3h,0m,0]`. Distance and interval use only `d`, `h` and `m`. A value in months, such as `[1M,0m,0]`, is refused, and the line is marked with an arrow.
-
-The same rules apply as in the forms. Where new recurring reminders can't be created, a triplet with repetitions above `0` is accepted only for a reminder the list already had. Even then, the limits in [Repeating reminders](#repeating-reminders) apply. If several reminders break a rule, one message lists them all, one paragraph each. The same message also lists any other problem in the text, such as a list that's too long or has too many tasks.
-
-Two kinds of reminder can't be saved, and the message names the task to fix:
-
-- a reminder on a task with **no owner**. Reminders go to the owner, and a mention without the colon is only a tag: see [Owners: the mention with a colon](/docs/personalize-your-lists/#owners-the-mention-with-a-colon);
-- a reminder with **no date** and a distance of zero, such as `[0m,0m,0]` on its own. Its only alert would be the moment you save, already gone;
-- a reminder that **can't be read**: a number too large, such as `[1h,1d,99999999999]`, or a date that doesn't exist.
-
-A reminder written badly is marked with an arrow, like a line without a dash: two dates or two triplets on one line, a date without its triplet, or a reminder without task text. TTM doesn't guess which one you meant.
-
-TTM never removes a reminder by itself. A reminder whose alerts are all **in the past** stays on its task, as a record. It sends nothing more, and it doesn't count among the reminders waiting.
-
-These checks look only at the lines you change. **Bulk update** checks the lines you add or edit, and a task edit checks that task. A new list, a clone and an import check every line. **Clean list**, **Reopen all**, tags and deleting a task leave every reminder as it is.
+In the text of a list, the same reminder is a timestamp and a triplet: see [Reminders in the text](/docs/writing-a-list/#reminders-in-the-text).
 
 ## Common errors
+
+Several of these come from the channel's **When** form, where you type the date, the time and the zone. In the Activity you pick them from menus, so those can't go wrong there.
 
 | Message | What to fix |
 | :--- | :--- |
@@ -134,8 +89,10 @@ These checks look only at the lines you change. **Bulk update** checks the lines
 | *The reminder to work must be created on a task to be performed* | Pick a task that isn't ticked yet: a completed task can't get a reminder. |
 | *The date does not exist* | Check day, month and year together (e.g. 31 February). |
 | *Invalid time* | Use the 24-hour format `HH:mm`, e.g. `15:30`. |
-| *Over the plan* | On the Free plan recurring reminders are Premium: a reminder that was already recurring can keep the number of times it arrives or go lower, not higher. The menu offers only what is allowed, so you see this if the plan changed while the form was open: open **Edit recurrence** again. |
+| *Over the plan* | On the Free plan recurring reminders are Premium: a reminder that was already recurring can keep the number of times it arrives or go lower, not higher. The menu offers only what is allowed, so you see this if the plan changed while the form was open: open the repetitions again. |
 | *Over what is allowed* | Recurring reminders are turned off on this server: a reminder that was already recurring can keep the number of times it arrives or go lower. You see this if they were turned off while the form was open. An admin can turn them on in `/config app`. |
 | *Incorrect time zone* | The name doesn't match an official zone — copy it from the time zone map. |
 
-A reminder didn't arrive, or something else went wrong? See [Something not working?](/docs/troubleshooting/)
+A reminder didn't arrive, or something else went wrong? See [Something not working?](/docs/troubleshooting/#reminders)
+
+<div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">Reminder, in the second row under the list: the When form and the summary card.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Reminder, in the panel of a task: date, time, time zone and repetitions together.</span></a></div></div>

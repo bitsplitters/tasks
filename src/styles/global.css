@@ -147,6 +147,30 @@ section.block { padding: clamp(2.5rem, 7vh, 5rem) 0; }
 .prose blockquote { border-left: 3px solid var(--accent); margin: 1.2rem 0; padding: .3rem 0 .3rem 1.2rem; color: var(--muted); }
 .callout { border: 1px solid var(--line-2); border-left: 3px solid var(--accent); background: var(--surface); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
 .callout .callout-t { font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .4rem; }
+
+/* Il posto: canale o Activity (spec della documentazione divisa fra canale e Activity, §5, nel repo
+   team-tasks-manager). Un segno solo, ripetuto in quattro punti: la pillola sopra il titolo delle pagine d'uso, i
+   due gruppi della barra laterale, i titoli dell'indice e il riquadro «How to do it». Il colore è quello dei
+   pulsanti di Discord: grigio per il canale, il blu del pulsante Activity per l'Activity. */
+.place-ic { display: inline-block; width: 1.35em; height: 1.35em; padding: .22em; border-radius: 5px !important; background: #4E5058; object-fit: contain; vertical-align: -.3em; margin-right: .45em; flex: none; }
+.is-activity .place-ic, .place-ic.is-activity { background: #5865F2; }
+.prose .place-pill { display: inline-flex; align-items: center; margin: 0 0 .9rem; padding: .25rem .75rem .25rem .3rem; border: 1px solid #4E5058; border-radius: 999px; font-family: var(--mono); font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text); }
+.prose .place-pill.is-activity { border-color: #5865F2; }
+.prose .place-pill .place-ic { margin-right: .55em; }
+.docs-side .grp-place { display: flex; align-items: center; color: var(--text); }
+.prose h2.h-place { display: flex; align-items: center; }
+.prose .grp-intro { color: var(--muted); margin-top: -.3rem; }
+.howto { margin: 2.2rem 0 1rem; }
+.howto .howto-t { font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .6rem; }
+.howto-grid { display: grid; gap: .75rem; }
+@media (min-width: 560px) { .howto-grid { grid-template-columns: 1fr 1fr; } }
+.prose .howto-go { display: flex; flex-direction: column; gap: .35rem; padding: .9rem 1rem; border: 1px solid var(--line-2); border-radius: 10px; background: var(--surface); color: #C7CEDB; text-decoration: none; transition: border-color .2s ease; }
+.prose a.howto-go:hover { border-color: #4E5058; }
+.prose a.howto-go.is-activity:hover { border-color: #5865F2; }
+.prose .howto-go.is-none { opacity: .75; }
+.howto-go .howto-k { display: flex; align-items: center; font-family: var(--mono); font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text); }
+.howto-go .howto-d { line-height: 1.55; }
+.prose a.howto-go .howto-d { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(233,164,76,.4); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
 @media (prefers-reduced-motion: no-preference) {

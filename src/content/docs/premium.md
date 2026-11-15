@@ -5,13 +5,13 @@ group: Plans
 order: 0.6
 ---
 
-TTM is **free and fully unlocked during the beta**, so nothing on this page applies yet. It describes the Free plan, and what Premium will lift once the beta ends. What happens to your server when the beta ends is on [Free during the beta](/docs/beta/).
+TTM is **fully unlocked during the beta**, so nothing on this page applies yet. It describes the Free plan, and what Premium will lift once the beta ends. What happens to your server when the beta ends is on [How the beta works](/docs/beta/).
 
 <div class="callout"><div class="callout-t">Plans and prices</div>The two plans side by side, the prices and self-hosting are on the <a href="/premium/">Premium page</a>.</div>
 
 ## What each one changes, in practice
 
-Above a Free limit you can't add more, but nothing already there is deleted or hidden: see [Free during the beta](/docs/beta/#when-the-beta-ends).
+Above a Free limit you can't add more, but nothing already there is deleted or hidden: see [How the beta works](/docs/beta/#when-the-beta-ends).
 
 \* **A limit set by Discord, not by us.** It is the same on every plan: Premium lets you *reach* it, never go past it. See [Known limits](/docs/known-limits/).
 

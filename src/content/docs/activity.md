@@ -1,11 +1,14 @@
 ---
 title: The Activity
 description: Open a list in a window inside Discord, where your team works on it together and sees every change as it happens.
-group: Using the bot
-order: 3.2
+group: In the Activity
+place: activity
+order: 1
 ---
 
 The **Activity** opens a list in a window inside Discord, on desktop and on mobile. Several people work on it at once and see every change live. When the last one leaves, the list goes back to its channel with a summary of what changed. It speaks your Discord language if TTM does, English otherwise.
+
+This page is about getting in and out. How you work on the list once inside: [Working on a list in the Activity](/docs/activity-list/).
 
 ## Open a list in the Activity
 
@@ -32,34 +35,9 @@ You can also start from Discord: the **App Launcher** in a text channel's messag
 
 - **Now in the Activity** — who is on each list, and who is editing. Tap one to join.
 - **In the channel** — the other lists, newest first. Tap one to read it, then **Bring into the Activity**, which waits while someone edits it in the channel.
-- **New list** — a title and the tasks, written as in [Bulk update](/docs/the-task-list/#row-1--acts-on-the-whole-list), created here and already in the Activity. Files are imported with `/create-list`, in the channel.
+- **New list** — a title and the tasks, written as in [Writing a list](/docs/writing-a-list/), created here and already in the Activity. Files are imported with `/create-list`, in the channel.
 
 **Lists**, at the top of every list, takes you back there.
-
-## Working on the list
-
-The rules are those of the channel: owners, server settings, plan limits.
-
-- **Tap a box** to tick a task, as with [the check selector](/docs/the-task-list/#the-check-selector).
-- **Tap a task's text** to open its panel, with the [second row](/docs/the-task-list/#row-2--acts-on-a-single-task): Content, Owner, Tag, Reminder and Webhook. One tap turns a button blue, to change; a second, red, to delete. Nothing happens until **Save** or **Delete**, and the panel stays open for the next change.
-
-**Owner** and **Tag** search by name and show first who is in the Activity. **Reminder** suggests your device's time zone, and makes you the owner of a task without one. **Webhook** shows the server's webhooks by name only.
-
-| Button | Function | What it does |
-| :---: | :--- | :--- |
-| <span class="dchip is-blue" role="img" aria-label="Guide button, blue"><img src="/icons/doc.png" alt="" /></span> | **Guide** | A short guide to the Activity. |
-| <span class="dchip is-blue" role="img" aria-label="Edit the list button, blue"><img src="/icons/edit.png" alt="" /></span> | **Edit the list** | The whole list as text, as in **Bulk update**. |
-| <span class="dchip is-blue" role="img" aria-label="Clean the list button, blue"><img src="/icons/clean.png" alt="" /></span> | **Clean the list** | Removes the completed tasks. |
-| <span class="dchip is-blue" role="img" aria-label="Reopen all button, blue"><img src="/icons/reopen.png" alt="" /></span> | **Reopen all** | Brings the completed tasks back to to-do; **New date** moves their reminders. |
-| <span class="dchip is-grey" role="img" aria-label="Exit button, grey"><img src="/icons/back.png" alt="" /></span> | **Exit** | Leaves the Activity: see [Back to the channel](#back-to-the-channel). |
-
-## Who is editing what
-
-Two people never change the same thing at once. Your first change to a task locks it for the others, and a tap on its box tells them who is editing; meanwhile Edit, Clean and Reopen all wait. **Edit the list** locks the whole list.
-
-An edit left alone for 20 seconds asks *Still there?*; at 30 it closes, and what wasn't saved is lost. Reading has no time limit.
-
-If someone changes the same thing just before you save, you choose: **Overwrite**, **Reload** with your text kept below, or **Cancel**.
 
 ## Back to the channel
 
@@ -74,7 +52,7 @@ Then a **summary** follows, one line per change with who made it: in the channel
 
 ## What stays in the channel
 
-**Clone**, **Download**, **Seal**, **Delete**, **Unlock** and the import from a file. In the Activity a list unlocks by itself.
+**Clone**, **Download**, **Seal**, **Delete**, **Unlock** and the import from a file: see [List actions](/docs/list-actions/). In the Activity a list unlocks by itself.
 
 An admin can still **Delete**, **Seal** or **Regenerate** a list in the Activity from [`/config lists`](/docs/config-lists/). Delete removes it for the people inside too; Seal brings it back to the channel first.
 
@@ -88,7 +66,7 @@ The gear at the top right sets **Text size**, **Theme** and **Spaced rows**, mor
 
 ## Where to go next
 
-- [The task list panel](/docs/the-task-list/) — every button under the list, in the channel.
-- [Owners and tags](/docs/owners-and-tags/) — who a task belongs to, and who it mentions.
-- [Reminders](/docs/reminders/) — the reminder of a task, field by field.
+- [Working on a list in the Activity](/docs/activity-list/) — the boxes, the panel of a task, and who is editing what.
+- [The list in the channel](/docs/the-task-list/) — every button under the list, in the channel.
 - [What Premium unlocks](/docs/premium/) — the places on your plan, and what the paid plan lifts.
+- [Something not working?](/docs/troubleshooting/#in-the-activity) — quick answers to the most common problems.

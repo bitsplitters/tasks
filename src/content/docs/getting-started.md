@@ -1,13 +1,13 @@
 ---
 title: Getting started
-description: Invite the bot, create a list, tick a task and set a reminder — in a few minutes.
+description: Invite the bot, create a list, then tick a task and set a reminder — in the channel or in the Activity.
 group: Getting started
 order: 1
 ---
 
 Team Tasks Manager (TTM) lets your team share and manage tasks **without leaving Discord**. This page takes you from zero to a working list: create it, tick a task, set a reminder.
 
-<div class="callout"><div class="callout-t">Everything is free during the beta</div>Every feature is unlocked, for every server. Where these pages mention the Free plan or Premium, it applies only after the beta — see <a href="/docs/beta/">Free during the beta</a>.</div>
+<div class="callout"><div class="callout-t">Every feature is unlocked during the beta</div>Every feature is unlocked, for every server. Where these pages mention the Free plan or Premium, it applies only after the beta — see <a href="/docs/beta/">How the beta works</a>.</div>
 
 ## 1. Invite the bot
 
@@ -42,6 +42,8 @@ The rules:
 - **Spaces before the dash make it a subtask** of the task above. A task with subtasks becomes a **group**.
 - The title can be up to **90 characters**. The list can be up to about **4000 characters** and **50 tasks**, subtasks included. After the beta, the Free plan allows 20 tasks: see [What Premium unlocks](/docs/premium/).
 
+Mentions, owners, links and reminders can be written in the text too: see [Writing a list](/docs/writing-a-list/).
+
 Submit the form, and the list appears in the channel. Here is the same list after a few steps. The first task is ticked, *Prepare the brackets* has an owner and *Stream the final* has a reminder.
 
 <picture class="screen">
@@ -51,29 +53,51 @@ Submit the form, and the list appears in the channel. Here is the same list afte
 
 Rather learn by doing? Next to **Create your list** there's a **Tutorial** button: it turns the explanation into a practice list of six lessons, in your language, and sends you the Guide, the same one you'll find in **More** → **Guide**, in a message only you can see. Do the lessons in order: each one asks you to do something to itself, and names the button with its icon. Tick it, give it an owner and a reminder, change its text, delete it. The practice list is a normal list: like any new list, it needs a free place on your plan (see [How the three places work](/docs/premium/#how-the-three-places-work)), and you can delete it from **More** → **Delete list** when you're done.
 
-## 3. Tick a task
+Now pick where to work on it. The list is the same in both places, and it is [in one place at a time](/docs/core-concepts/#one-list-two-places).
+
+## <img class="place-ic" src="/icons/posto-canale.svg" alt="" />3. In the channel
+
+### Tick a task
 
 Under the list there is the **check selector**, a drop-down menu that shows the list's title, and two rows of buttons. Open the menu and pick a task: its box changes from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it. Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.
 
 <div class="callout"><div class="callout-t">Can't tick a task?</div>Every button in the second row must be <strong>off</strong>: if one is blue or red, picking a task applies that button's action instead. And a task with an owner can be ticked only by its owner, and by whoever has <em>Manage messages</em> on the channel.</div>
 
-## 4. Set a reminder
+### Set a reminder
 
 In the second row, click the bell <img class="inline-ic" src="/icons/alertW.png" alt="" /> — **Reminder**, the fourth button — once: it turns **blue**. Then pick a task that is **not ticked yet**. A form titled *Set reminder for task …* opens. It is already filled in with ten minutes from now: submit it as it is. Until you change it, the time zone in the last field is the server's: change it if yours is different. The task shows the time, and the reminder arrives once. If your server has turned on recurring reminders, a summary card follows the form: press **Save**.
 
-Good to know before the first try:
+**Closed the form with ✕?** The list stays locked: open **More** under the list and press **Unlock list**.
+
+Every button under the list: [The list in the channel](/docs/the-task-list/) and [Editing a task in the channel](/docs/channel-tasks/).
+
+## <img class="place-ic is-activity" src="/icons/activity.png" alt="" />4. In the Activity
+
+Press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button under the list. The list opens in a window inside Discord, and the others in the channel can join you there.
+
+### Tick a task
+
+Tap a task's box. The list updates for everyone in the window, and a group ticks its subtasks too.
+
+### Set a reminder
+
+Tap the text of a task that is not ticked yet: its panel opens. Tap the bell <img class="inline-ic" src="/icons/alertW.png" alt="" />, **Reminder**, once: it turns **blue**, and the date, the time and the time zone appear, set to ten minutes from now in your device's time zone. Tap **Save**.
+
+When you are done, press **Exit**: the list goes back to the channel, with a summary of what changed.
+
+Everything in the window: [The Activity](/docs/activity/) and [Working on a list in the Activity](/docs/activity-list/).
+
+## Good to know before the first reminder
 
 - **The reminder goes to the task's owner**, by direct message if the owner is a person.
-- **If the task has no owner yet, you become its owner**, so the reminder comes to you. From then on only you, and whoever has *Manage messages*, can tick that task. To give it to someone else, set the owner first with the person button <img class="inline-ic" src="/icons/owner.png" alt="" /> — **Owner**, the second in the row.
+- **If the task has no owner yet, you become its owner**, so the reminder comes to you. From then on only you, and whoever has *Manage messages*, can tick that task. To give it to someone else, set the owner first, with the person button <img class="inline-ic" src="/icons/owner.png" alt="" />, **Owner**.
 - **Nothing arrived?** Allow direct messages from server members: click the server name, then *Privacy Settings*. After a refused message, TTM waits some hours before it writes to that person again: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
-- **Closed the form with ✕?** The list stays locked: open **More** under the list and press **Unlock list**.
 
 ## Next steps
 
-- [The task list panel](/docs/the-task-list/) — every button, explained.
+- [Core concepts](/docs/core-concepts/) — one list in two places, owners, tags, groups and permissions.
 - [Owners and tags](/docs/owners-and-tags/) — give a task to a person, a role or several people, and tag who to notify.
-- [Reminders](/docs/reminders/) — repeating reminders, time zones, editing and removing.
-- [Core concepts](/docs/core-concepts/) — owners, tags, groups and permissions.
+- [Reminders](/docs/reminders/) — who gets them, time zones, repeating reminders.
 - [Tips & tricks](/docs/tips/) — small habits that save time, like reusing a list on another server.
-- [Configuration](/docs/configuration/) — notifications, the tips, time zone and more.
+- [/config app](/docs/configuration/) — notifications, the tips, time zone and more.
 - [Something not working?](/docs/troubleshooting/) — quick answers to the most common problems.

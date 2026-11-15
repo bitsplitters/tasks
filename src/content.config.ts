@@ -19,6 +19,9 @@ const docs = defineCollection({
     description: z.string().optional(),
     order: z.number().default(99),
     group: z.string().default('Guide'),
+    // Il posto di una pagina d'uso: la pillola sotto il titolo (spec della documentazione divisa fra canale e
+    // Activity, §5). Le pagine comuni, che valgono nei due posti, non ce l'hanno.
+    place: z.enum(['channel', 'activity']).optional(),
   }),
 });
 

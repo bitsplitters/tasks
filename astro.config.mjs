@@ -53,6 +53,13 @@ const registrazioneVideo = {
 export default defineConfig({
   site: 'https://tasks.bitsplitters.app',
 
+  // Le pagine che hanno cambiato indirizzo: il vecchio è già pubblicato, e chi l'ha salvato o linkato arriva alla
+  // pagina nuova. «Personalize your lists» è confluita in «Writing a list» (spec della documentazione divisa fra
+  // canale e Activity, §6, nel repo team-tasks-manager).
+  redirects: {
+    '/docs/personalize-your-lists': '/docs/writing-a-list/',
+  },
+
   // La mappa del sito per i motori di ricerca (sitemap-index.xml, citata da public/robots.txt).
   // Fuori /invite: e' un rimando a Discord, con noindex e il canonical sull'URL OAuth2, e una pagina
   // nella mappa che chiede di non essere indicizzata e' un segnale contraddittorio che Search Console

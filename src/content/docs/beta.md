@@ -1,11 +1,11 @@
 ---
-title: Free during the beta
-description: TTM is completely free while it's in beta — and even after, you'll never lose what you've built.
+title: How the beta works
+description: Every feature is unlocked during the beta — and even after, you'll never lose what you've built.
 group: Plans
 order: 0.5
 ---
 
-Team Tasks Manager is in **open beta**. Every feature is unlocked and free, for every server, for the entire beta: lists, reminders, webhooks and everything else. There is no trial period, no credit card to enter and no locked button.
+Team Tasks Manager is in **open beta**. Every feature is unlocked, for every server, for the entire beta: lists, reminders, webhooks and everything else. There is no trial period, no credit card to enter and no locked button.
 
 ## When the beta ends
 
@@ -22,7 +22,7 @@ When TTM leaves beta it becomes **freemium**: a Free plan, plus a paid plan call
 
 On the Free plan a server has [three places for lists](/docs/premium/#how-the-three-places-work), and a list that holds one is **in use**. When the beta ends, no list holds a place yet. A list created during the beta:
 
-- **stays in the channel as it is.** Its reminders keep arriving, and you can still download it.
+- **stays in the channel as it is.** Its reminders keep arriving, and you can still download it there.
 - **lets you tick or untick its tasks**, without taking a place. Its webhooks stay silent until the list takes a place.
 - **takes a place for any other work**, such as a bulk update, Clean list, owners or reminders. Without a free place, that work is refused: see [What happens to a fourth list](/docs/premium/#what-happens-to-a-fourth-list).
 - **keeps its recurring reminders firing.** [Reminders](/docs/reminders/#repeating-reminders) explains what you can still change.

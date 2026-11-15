@@ -56,22 +56,16 @@ Inside the URL, headers and body you can drop `{{ }}` tokens that TTM replaces a
 
 ## Associating a webhook with a task
 
-Creating a webhook doesn't wire it to anything yet. Open the list, click **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" /> on the second button row until it turns **blue**, pick the webhook from the selector and then the task. From then on, completing or reopening that task fires the call. Click **Webhook** until it turns **red** and pick the task to remove the association.
+Creating a webhook doesn't wire it to anything yet: you link it to a task with **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" />, in blue to link it and in red to remove it. From then on, completing or reopening that task fires the call. Where to press: [How to do it](#how-to-do-it), at the bottom.
 
-The association is stored **in the task itself**, as a reserved token: in **Bulk update** you'll see it in front of the task text.
-
-```
-- [] {{wb=deploy}} Ship the release notes
-```
-
-You can move it, copy it onto another task or delete it by hand, exactly like a mention. The token never shows up in the rendered list. A task with the token also needs some text. The **Content** form of a single task doesn't show the token, and removes one you type there, telling you. `wb` is the only reserved key: every other `{{key=value}}` is a free variable (see [Tokens](#tokens) above).
+The link is stored **in the task itself**, as the reserved token `{{wb=…}}`, which you see in **Bulk update** and in **Edit the list**: see [Webhooks in the text](/docs/writing-a-list/#webhooks-in-the-text). The **Content** form of a single task doesn't show the token, and removes one you type there, telling you.
 
 ## When a webhook fires
 
-A webhook fires only when someone **ticks or unticks its task in the check selector**, the drop-down menu under the list. In detail:
+A webhook fires only when someone **ticks or unticks its task**: in the channel with the check selector, the drop-down menu under the list; in the Activity with its box. In detail:
 
 - **only the task you picked** fires its webhook. The tasks that change with it don't fire theirs: subtasks ticked in cascade, or a group completed by its last subtask;
-- **Reopen all** and **Bulk update** change many tasks at once and fire **no** webhook;
+- **Reopen all**, **Bulk update** and **Edit the list** change many tasks at once and fire **no** webhook;
 - **the list must be in use**, holding one of the places of your plan. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work). A list created during the beta is the exception: its tasks can still be ticked without a place. Their webhooks stay silent until the list takes one. TTM tells you so privately.
 
 ## When a webhook fails
@@ -79,6 +73,8 @@ A webhook fires only when someone **ticks or unticks its task in the check selec
 If the call doesn't reach its destination, TTM writes a warning in the list's channel. It names the webhook and the task, then explains the error in one sentence. It also says what to check: the address, the headers, the method, or the server you are calling.
 
 If notifications are off on the server, or TTM can't post in that channel, the warning reaches only whoever ticked the task.
+
+In the Activity, the warning reaches whoever ticked the task, in a bubble on its box.
 
 ## Example
 
@@ -98,3 +94,5 @@ Body:
 ## Security
 
 For everyone's safety, TTM only accepts **public `https` URLs**. Internal or non-routable destinations — `localhost`, private IP ranges, link-local addresses — are blocked. The body must be valid JSON, and every header line must follow the `Key: value` format.
+
+<div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#webhook"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">Webhook, in the second row under the list: pick the webhook, then the task.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#webhook"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Webhook, in the panel of a task: the server's webhooks by name.</span></a></div></div>

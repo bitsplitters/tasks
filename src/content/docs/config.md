@@ -13,7 +13,7 @@ order: 0.5
 | [`/config lists`](/docs/config-lists/) | Every list of the server: regenerate a deleted one, seal or delete the ones you are done with. |
 | [`/config webhook`](/docs/webhooks/) | Create, view, modify or delete the webhooks your tasks call when they are completed or reopened. |
 
-The tasks themselves are never handled here: everything about a single list lives in its buttons. See [The task list panel](/docs/the-task-list/).
+The tasks themselves are never handled here: everything about a single list lives in its buttons, in the channel and in the Activity. See [The list in the channel](/docs/the-task-list/) and [Working on a list in the Activity](/docs/activity-list/).
 
 ## Who can open /config
 

@@ -5,11 +5,11 @@ group: Help & community
 order: 8.5
 ---
 
-Find the problem you see below. Each answer is short and links to the page that explains it in full.
+Find the problem you see below. Each answer is short and links to the page that explains it in full. The problems of the list are split by place: [in the channel](#in-the-channel) and [in the Activity](#in-the-activity).
 
 The search works with English words: try *tick*, *owner*, *reminder*.
 
-## Lists and tasks
+## In the channel
 
 ### I can't find the `/create-list` command
 
@@ -20,7 +20,7 @@ Discord shows each command in the language of your Discord app. In Italian, the 
 Check these points, in this order:
 
 - **A button in the second row is blue or red.** Click it until it's off. While a button is active, picking a task applies that button's action. See [The check selector](/docs/the-task-list/#the-check-selector).
-- **The task has an owner.** Only the owner, the members of the owner role and whoever has *Manage messages* on the channel can tick it. See [The check selector](/docs/the-task-list/#the-check-selector).
+- **The task has an owner.** Only the owner, the members of the owner role and whoever has *Manage messages* on the channel can tick it. See [Who can tick a task](/docs/core-concepts/#who-can-tick-a-task).
 - **The menu is disabled.** Someone is editing the list, so it is locked: see [I pressed Cancel and the list stays locked](#i-pressed-cancel-and-the-list-stays-locked) below.
 - **The bot says *You're not allowed to use this feature on this server*.** Your server has synced its permissions, and the list is read-only for you. Ask an admin, and see [Sync permissions](/docs/configuration/#sync-permissions).
 - **The beta is over and your server is on the Free plan.** When all the places of your plan are taken, a list outside them refuses the tick. A list created during the beta is the exception: its tasks can still be ticked. See [How the three places work](/docs/premium/#how-the-three-places-work) and [What a beta list keeps](/docs/beta/#what-a-beta-list-keeps).
@@ -31,19 +31,21 @@ TTM locks a list while someone edits it: in **Bulk update**, in the form of a ta
 
 ### My tags or owner didn't save
 
-The **Tag** and **Owner** menus wait for you to confirm your choice. On mobile, tap **Save** under the open menu. On desktop there is no Save button: click anywhere outside the menu, and closing it applies your choice. See [Confirming a tag selection](/docs/the-task-list/#confirming-a-tag-selection--desktop-vs-mobile).
+The **Tag** and **Owner** menus wait for you to confirm your choice. On mobile, tap **Save** under the open menu. On desktop there is no Save button: click anywhere outside the menu, and closing it applies your choice. See [Confirming a selection](/docs/channel-tasks/#confirming-a-selection--desktop-vs-mobile).
 
-With **Reset status after selection** (the default), pick the people first and the task second. See [Two ways to tag](/docs/owners-and-tags/#two-ways-to-tag).
+With **Reset status after selection** (the default), pick the people first and the task second. See [Tag](/docs/channel-tasks/#tag).
 
 ### I want to give a task to several people
 
-Click **Owner** until it turns blue. In the menu under the buttons, labelled *Choose one or more people, or a role, then the task*, pick the people. Confirm your choice, then pick the task. TTM creates a role for those people and makes it the owner.
+Click **Owner** until it turns blue. In the menu under the buttons, labelled *Choose one or more people, or a role, then the task*, pick the people. Confirm your choice, then pick the task. TTM creates a role for those people and makes it the owner. In the Activity, choose them in the panel of the task: see [Owner](/docs/activity-list/#owner).
 
 This is a Premium feature, unlocked during the beta. The bot needs the *Manage Roles* permission: an admin grants it on the bot's role in *Server Settings → Roles*, not on a channel. See [Owner: a person, a role, or several people](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
 ### I deleted the list message by mistake
 
 The data of the list is still in TTM, and its reminders keep arriving. Run `/config lists` and press the button of that list until it turns blue (**regenerate**). Then press **Apply** and confirm. TTM publishes the list again in its channel, with the same contents and the same timeline. See [Regenerate](/docs/config-lists/#regenerate).
+
+## In the Activity
 
 ### The Activity doesn't open
 
@@ -59,6 +61,15 @@ See [When the list doesn't open](/docs/activity/#when-the-list-doesnt-open).
 ### The list shows only Join the Activity
 
 The list is in the [Activity](/docs/activity/), and while it is there it can't be changed in the channel. Press **Join the Activity** to work on it with the others. When everyone leaves, the list comes back to the channel with all its buttons. See [Join the others](/docs/activity/#join-the-others).
+
+### I can't tick a task in the Activity
+
+TTM tells you why. Usually:
+
+- **The task has an owner.** A bubble on the box says so. The rule is the same as in the channel: see [Who can tick a task](/docs/core-concepts/#who-can-tick-a-task).
+- **Someone is editing that task.** A tap on its box says who. The other tasks stay free.
+- **Someone is editing the whole list** with **Edit the list**. The line under the list says who, and the boxes come back when they are done. See [Who is editing what](/docs/activity-list/#who-is-editing-what).
+- **The database isn't responding.** A strip says so, and the list is read-only until it is back: see [When the database isn't responding](/docs/activity/#when-the-database-isnt-responding).
 
 ### The list takes a while to come back from the Activity
 
@@ -76,23 +87,26 @@ After a reload, **Exit** still takes you out of the list, but because of a Disco
 
 ### My reminder didn't arrive
 
-- **The reminder goes to the task's owner.** That is you only if the task had no owner when you set it. A person gets a direct message, and a role gets a mention in the list's channel. See [Adding a reminder](/docs/reminders/#adding-a-reminder).
+- **The reminder goes to the task's owner.** That is you only if the task had no owner when you set it. A person gets a direct message, and a role gets a mention in the list's channel. See [The rules](/docs/reminders/#the-rules).
 - **The owner must allow direct messages from server members:** click the server name, then *Privacy Settings*. After a refused message, TTM waits some hours before it writes to that person again. See [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 - **The owner is a role that can't be mentioned.** The reminder appears in the channel, but nobody gets a notification. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
 - **The owner role was deleted.** The reminder is not sent to anyone. Choose another owner for the task. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
 - **TTM can't post in the list's channel.** If the owner is a role TTM created for several people, each of them gets the reminder by direct message, with the reason. For any other role the reminder is not delivered until an admin grants the permission. See [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
-- **The owner was removed, or the list was sealed.** In these cases the reminder is gone. Before removing an owner whose reminder hasn't fired yet, TTM asks you to confirm. See [Row 2](/docs/the-task-list/#row-2--acts-on-a-single-task) and [Seal](/docs/config-lists/#seal).
+- **The owner was removed, or the list was sealed.** In these cases the reminder is gone. Before removing an owner whose reminder hasn't fired yet, TTM asks you to confirm. See [Owners and tags](/docs/owners-and-tags/) and [Seal](/docs/config-lists/#seal).
 - **The task is ticked.** Completing a task stops its reminder, and a ticked task can't get a new one.
 
 ### I want a weekly reminder
 
-TTM has no unit for weeks, so a week is 7 days.
+TTM has no unit for weeks, so a week is 7 days. First, an admin turns on **Recurring reminders** in [`/config app`](/docs/configuration/#recurring-reminders) (Premium, unlocked during the beta).
 
-1. An admin turns on **Recurring reminders** in [`/config app`](/docs/configuration/#recurring-reminders) (Premium, unlocked during the beta).
-2. Click **Reminder** until it turns blue, pick the task and submit the **When** form.
-3. On the card that appears, press **Edit recurrence**.
-4. Choose **Every** 7 and **Unit** days, and in **How many times, in total** the number of weeks, e.g. 4 for four weeks. Then submit the form.
-5. Press **Save** on the card.
+In the channel:
+
+1. Click **Reminder** until it turns blue, pick the task and submit the **When** form.
+2. On the card that appears, press **Edit recurrence**.
+3. Choose **Every** 7 and **Unit** days, and in **How many times, in total** the number of weeks, e.g. 4 for four weeks. Then submit the form.
+4. Press **Save** on the card.
+
+In the Activity, tap the task's text, then **Reminder**: the same three menus are in the panel, under the date. Choose them, then tap **Save**.
 
 See [The repetition fields](/docs/reminders/#the-repetition-fields).
 
@@ -102,7 +116,7 @@ See [The repetition fields](/docs/reminders/#the-repetition-fields).
 
 During the beta, there is no limit on lists. After the beta, the Free plan lets you work on three lists at a time. When all three places are taken, TTM refuses to create, clone or import a list. The same refusal appears when you work on a list that isn't in use. To free a place, use one of these:
 
-- **Seal list** or **Delete list**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel of a list you no longer need. A sealed list stays in the channel as a record.
+- **Seal list** or **Delete list**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel of a list you no longer need, in the channel. A sealed list stays in the channel as a record.
 - `/config lists`, which marks the lists **in use** and can seal or delete several at once.
 
 Premium removes this limit. See [What happens to a fourth list](/docs/premium/#what-happens-to-a-fourth-list).

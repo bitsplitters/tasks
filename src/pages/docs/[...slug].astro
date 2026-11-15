@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { docsCard } from '../../lib/preview-card';
 import { PAGINA_PIANI } from '../../lib/pagina-piani';
+import { GRUPPI_DOCS, POSTI } from '../../lib/gruppi-docs';
 
 // `entry.id` e non `entry.slug`, `render(entry)` e non `entry.render()`: dal Content Layer le entry
 // sono oggetti serializzabili e non portano piu' metodi. Il NOME del parametro di rotta resta
@@ -16,11 +17,11 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 
 const all = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
-const groupsOrder = ['Getting started', 'Using the bot', 'Configuration', 'Reference', 'Plans', 'Help & community'];
-const grouped = groupsOrder
-  .map((g) => ({ name: g, items: all.filter((d) => d.data.group === g) }))
+const grouped = GRUPPI_DOCS
+  .map((g) => ({ ...g, items: all.filter((d) => d.data.group === g.name) }))
   .filter((g) => g.items.length);
 const current = entry.id;
+const posto = entry.data.place ? POSTI[entry.data.place] : null;
 ---
 <Base title={entry.data.title + " — Team Tasks Manager docs"} previewTitle={entry.data.title} description={entry.data.description} embed={docsCard(entry.data.title, entry.data.description, Astro.url.pathname)}>
   <button class="docs-menu-toggle" id="docs-menu-toggle" aria-label="Open documentation menu">&#9776; Documentation</button>
@@ -33,7 +34,9 @@ const current = entry.id;
       {import.meta.env.PROD && <div class="docs-search" id="docs-search"></div>}
       {grouped.map((g) => (
         <div>
-          <div class="grp">{g.name}</div>
+          <div class={g.place ? `grp grp-place is-${g.place}` : 'grp'}>
+            {g.place && <img class="place-ic" src={POSTI[g.place].icon} alt="" />}{g.name}
+          </div>
           {g.items.map((it) => (
             <a href={`/docs/${it.id}/`} class={it.id === current ? 'active' : ''}>{it.data.title}</a>
           ))}
@@ -48,6 +51,11 @@ const current = entry.id;
         attributo del genere esiste, Pagefind indicizza SOLO le pagine che lo hanno, quindi la
         ricerca copre la documentazione e non le pagine legali. */}
     <article class="prose" data-pagefind-body>
+      {/* La pillola del posto sta sopra il titolo: si legge prima di tutto il resto, e dice di quale dei due posti
+          parlano i pulsanti della pagina. */}
+      {posto && (
+        <p class={`place-pill is-${entry.data.place}`}><img class="place-ic" src={posto.icon} alt="" />{posto.label}</p>
+      )}
       <h1>{entry.data.title}</h1>
       {entry.data.description && <p class="subtitle">{entry.data.description}</p>}
       <Content />

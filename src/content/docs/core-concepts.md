@@ -1,11 +1,25 @@
 ---
 title: Core concepts
-description: The vocabulary of TTM — tasks, subtasks, groups, states, owners, tags and reminders — and the permissions it asks for.
+description: One list in two places, the vocabulary of TTM — tasks, groups, owners, tags, reminders — and the permissions it asks for.
 group: Getting started
 order: 2
 ---
 
 A few terms come up throughout the app. Learn them once and everything else clicks into place.
+
+## One list, two places
+
+A list lives in a message in a Discord channel, where everyone finds it. The **Activity** opens the same list in a window inside Discord, where several people work on it together and see every change live. It is the same list, not a copy.
+
+A list is in one place at a time. While it is in the Activity, its message in the channel keeps only **Join the Activity**. When everyone leaves, the list goes back to the channel with a summary of what changed.
+
+What a list can do is the same in both places: owners, tags, reminders, webhooks, your server's settings and the limits of your plan. What changes is how you do it. In the channel you use the menus and buttons under the message. In the Activity you tap a task's box, or its text. These pages are split the same way:
+
+- **Features** — what each feature does and its rules, the same in both places.
+- **In the channel** — the list's message, its menus and its buttons.
+- **In the Activity** — the window, the boxes and the panel of each task.
+
+A few actions exist only in the channel: Clone, Download, Seal, Delete, Unlock and the import from a file. See [What stays in the channel](/docs/activity/#what-stays-in-the-channel).
 
 ## Tasks, subtasks and groups
 
@@ -15,7 +29,7 @@ A few terms come up throughout the app. Learn them once and everything else clic
 | **Subtask** | An activity that belongs to a larger one. |
 | **Task group** | A task made of subtasks. |
 
-You never pick these types from a menu — TTM infers them from how you write the list. A line starting with `-` is a task. Spaces before the dash turn it into a subtask of the line above. A task with subtasks automatically becomes a **group**.
+You never pick these types from a menu — TTM infers them from how you write the list. A line starting with `-` is a task. Spaces before the dash turn it into a subtask of the line above. A task with subtasks automatically becomes a **group**. The whole format: [Writing a list](/docs/writing-a-list/).
 
 Groups behave as a unit: ticking a group ticks its subtasks too, and ticking every subtask marks the group as done.
 
@@ -26,9 +40,16 @@ Every task is either **open** or **completed**, shown by its checkbox:
 - <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> **Open** — still to do.
 - <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" /> **Completed** — done.
 
-You tick or untick a task in the **check selector**, the drop-down menu that shows the list's title. It sits above the button rows. Completing or reopening a task is what can trigger notifications and webhooks.
+In the channel you tick or untick a task in the [check selector](/docs/the-task-list/#the-check-selector), the menu under the list. In the Activity you tap its [box](/docs/activity-list/#tick-a-task). Completing or reopening a task is what can trigger notifications and webhooks.
 
-A task **with an owner** can be ticked only by its owner, or by the members of the owner role. Whoever has *Manage messages* on the channel can tick it too. Anyone who can use the list can tick a task without an owner. The full rule: [The check selector](/docs/the-task-list/#the-check-selector).
+### Who can tick a task
+
+**Only the owner can tick or untick a task that has an owner.** These people can do it:
+
+- the owner, or the members of the owner role;
+- whoever has *Manage messages* on the channel.
+
+Anyone else gets a refusal that only they see, and nothing changes. The rule covers subtasks too: you can't tick or untick a group if that changes a subtask that belongs to someone else. Anyone who can use the list can tick a task without an owner.
 
 ## Owner vs. tag
 
@@ -37,7 +58,7 @@ These look similar but do different jobs:
 - **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> — the person or role *responsible* for the task. A task has one owner, and it can be several people: TTM creates a role for them (see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates)).
 - **Tag** <img class="inline-ic" src="/icons/tag.png" alt="" /> — one or more users or roles *mentioned* on the task, for example the people to notify when it is completed.
 
-How to set them: [Owners and tags](/docs/owners-and-tags/).
+The rules of both: [Owners and tags](/docs/owners-and-tags/).
 
 ## Reminders
 
@@ -47,18 +68,19 @@ One ping is the default, and on the Free plan it is the only kind. Repeating rem
 
 ## Notifications & history
 
-When a task is ticked or unticked, TTM can post a notification and — if you enable it — record every action in a dedicated **history thread**. How much noise you want is entirely up to you: see [Configuration](/docs/configuration/).
+When a task is ticked or unticked, TTM can post a notification and — if you enable it — record every action in a dedicated **history thread**. Changes made in the Activity arrive as one summary, when the list goes back to the channel. How much noise you want is entirely up to you: see [Configuration](/docs/configuration/).
 
 ## Who can use lists and commands
 
-By default the app's commands follow Discord's own visibility rules (Server Settings → Integrations). Buttons and lists, however, stay usable by anyone unless you **sync permissions** — after which the list becomes read-only for users who are not allowed. This too lives in [Configuration](/docs/configuration/).
+By default the app's commands follow Discord's own visibility rules (Server Settings → Integrations). Buttons and lists, however, stay usable by anyone unless you **sync permissions** — after which the list becomes read-only for users who are not allowed, in the channel and in the Activity. This too lives in [Configuration](/docs/configuration/#sync-permissions).
 
 `/config` has a rule of its own: by default only members with *Manage Server* see it. An admin can change that in *Server Settings → Integrations*. See [Who can open /config](/docs/config/#who-can-open-config).
 
 A few actions have a rule of their own:
 
-- only the owner can tick or untick a task that has an owner: see [The check selector](/docs/the-task-list/#the-check-selector);
-- sealing or deleting a list from its *More* panel needs *Manage messages* on the channel. From `/config lists`, the `/config` permissions apply.
+- only the owner can tick or untick a task that has an owner: see [Who can tick a task](#who-can-tick-a-task);
+- sealing or deleting a list from its *More* panel, in the channel, needs *Manage messages* on the channel. From `/config lists`, the `/config` permissions apply;
+- opening a list in the Activity needs Discord's *Use Activities* permission on the channel: see [When the list doesn't open](/docs/activity/#when-the-list-doesnt-open).
 
 ## The permissions TTM asks for
 

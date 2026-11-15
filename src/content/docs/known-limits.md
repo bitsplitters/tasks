@@ -19,13 +19,13 @@ Team Tasks Manager works entirely inside Discord, so most of the limits below ar
 
 <div class="callout"><div class="callout-t">Hitting a ceiling?</div>Split the work across several lists. Two focused lists are easier to read than one that's maxed out — and each gets its own reminders, owners and tags.</div>
 
-**Download always gives you a file.** A normal Discord message is capped at 2000 characters. So **Download**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel, never posts the list as text. It sends a `.txt` file to you alone, in a message only you can see. It's the same file `/create-list` can import back.
+**Download always gives you a file.** A normal Discord message is capped at 2000 characters. So **Download**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel under the list in the channel, never posts the list as text. It sends a `.txt` file to you alone, in a message only you can see. It's the same file `/create-list` can import back.
 
 **Deleting the message is not the same as deleting the list.** A list lives in its message, but its data lives in TTM: tasks, owners, tags and above all **reminders**. If you delete the message by hand, the list disappears from the channel. Its reminders keep arriving, and they point to a message that no longer exists.
 
 TTM doesn't notice on its own that a message is gone: [/config lists](/docs/config-lists/) explains why. You have three ways out:
 
-- **Delete list**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel of the list: the ordinary way, and it takes the reminders with it.
+- **Delete list**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel of the list in the channel: the ordinary way, and it takes the reminders with it.
 - **Seal list**, in the same panel, to keep the message as a record. Sealing is final: see [Seal](/docs/config-lists/#seal).
 - **`/config lists`**, when the message is already gone. It can delete the leftovers, or **regenerate** the list if you deleted the message by mistake. It can't seal a list whose message is gone.
 
@@ -36,7 +36,7 @@ TTM doesn't notice on its own that a message is gone: [/config lists](/docs/conf
 | Limit | Value | Why |
 | :--- | :--- | :--- |
 | Reminders waiting at a time | **10** on the Free plan | See [What Premium unlocks](/docs/premium/). |
-| Repetitions per reminder | **up to 50** on Premium, none on Free | Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. On Premium a reminder can arrive at most 50 times in total, the first included; choose **1 time** for a one-time reminder. In **Bulk update** the triplet counts the repetitions after the first: at most 49. |
+| Repetitions per reminder | **up to 50** on Premium, none on Free | Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. On Premium a reminder can arrive at most 50 times in total, the first included; choose **1 time** for a one-time reminder. In the text of a list, in **Bulk update** or **Edit the list**, the triplet counts the repetitions after the first: at most 49. |
 | How soon a reminder can fire | **5 minutes** from now | The start date must be at least five minutes in the future, so the scheduler has time to pick it up. |
 | How punctual a reminder is | within about **10 seconds** | Reminders due together are spread over up to ten seconds, to stay within Discord's rate limits. The reminder still arrives within the right minute. |
 
@@ -93,7 +93,7 @@ If a channel has already reached Discord's 15 (because of other bots or integrat
 
 ## Voice channels
 
-Lists work in the chat of a voice channel too, with one difference: there they have no [activity timeline](#the-activity-timeline). The timeline is a thread next to the list, and Discord doesn't allow threads in voice channels. Everything else works as in a text channel: the buttons, notifications, reminders, **Clone list**, **Download**, **Seal list** and **Delete list**.
+Lists work in the chat of a voice channel too, with one difference: there they have no [activity timeline](#the-activity-timeline). The timeline is a thread next to the list, and Discord doesn't allow threads in voice channels. Everything else works as in a text channel: the buttons, notifications, reminders, the [Activity](/docs/activity/), **Clone list**, **Download**, **Seal list** and **Delete list**.
 
 When the timeline is on in [`/config app`](/docs/configuration/#history-tracking), whoever creates a list in a voice channel gets a short message about it, visible only to them; the Tutorial's practice list skips it. If you need the timeline, create the list in a text channel, or copy it there with **Clone list**.
 
