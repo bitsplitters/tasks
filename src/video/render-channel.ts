@@ -4,15 +4,15 @@
  * pulsante torna grigio dopo l'azione, come il bot col default (OptionMode.DISABLED). Gli istanti sono in secondi;
  * un evento cade poco dopo il tocco del cursore che lo provoca.
  */
-import { FATTI_INIZIALI, spunta } from '../components/home/scene-data';
+import { FATTI_INIZIALI, MIA, spunta } from '../components/home/scene-data';
 import {
   apriSelettore, disegnaLista, menuSottoAperto, modale, sceltaNelMenuSotto, tastoDelCanale, type StatoLista,
 } from '../components/home/scene-dom';
 import { tra, type Copione } from './render-comune';
 
-const S0: StatoLista = { fatti: new Set(FATTI_INIZIALI), owner: false, promemoria: false };
+const S0: StatoLista = { fatti: new Set(FATTI_INIZIALI), owner: {}, tag: {}, promemoria: false };
 const S1: StatoLista = { ...S0, fatti: spunta(S0.fatti, '2', true) };
-const S2: StatoLista = { ...S1, owner: true };
+const S2: StatoLista = { ...S1, owner: { '3': MIA.id } };
 const S3: StatoLista = { ...S2, promemoria: true };
 
 const chan = (s: HTMLElement) => s.querySelector<HTMLElement>('[data-k="chan"]')!;
@@ -24,8 +24,8 @@ export function copioneDelCanale(): Copione {
       { t: 1.2, k: 'sel' },
       { t: 2.3, k: 'opt-2' },
       { t: 3.9, k: 'b-owner' },
-      { t: 4.9, k: 'pick-owner' },
-      { t: 5.6, k: 'own-mia' },
+      { t: 4.9, k: 'sub-sel' },
+      { t: 5.6, k: 'sub-mia' },
       { t: 6.2, k: 'msghead' },
       { t: 7.0, k: 'sel' },
       { t: 7.8, k: 'opt-3' },
@@ -40,7 +40,7 @@ export function copioneDelCanale(): Copione {
       { t: 2.6, fai: (s) => disegnaLista(chan(s), S1) },
       { t: 4.05, fai: (s) => tastoDelCanale(chan(s), 'owner', 'blue') },
       { t: 4.95, fai: (s) => menuSottoAperto(chan(s), true) },
-      { t: 5.65, fai: (s) => sceltaNelMenuSotto(chan(s), 'mia') },
+      { t: 5.65, fai: (s) => sceltaNelMenuSotto(chan(s), [MIA.id]) },
       // Il clic fuori chiude il menu: la scelta resta, il selettore dice «Edit owner».
       { t: 6.25, fai: (s) => menuSottoAperto(chan(s), false) },
       { t: 7.05, fai: (s) => apriSelettore(chan(s), true) },

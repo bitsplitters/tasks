@@ -1,17 +1,18 @@
 ---
 /*
- * L'Activity della home (spec 2026-11-15-home-video-e-demo-design.md, §4.3, §4.5 e §5.3): il canale sotto, scurito,
+ * L'Activity della home (spec 2026-11-15-home-video-e-demo-design.md, §4.3, §4.5, §5.3 e §5.6): il canale sotto, scurito,
  * con la lista nell'Activity; la finestra di Discord; dentro, la pagina com'è nel codice (activity/src/app/App.tsx):
  * «Lists», chi è dentro e la rotella, l'embed con la barra, la prima riga, l'avviso di Exit e il pannello del task col
  * selettore delle persone e i campi del promemoria.
  *
  * aperta = false è l'inizio del video: la finestra chiusa, il canale com'è prima del clic sull'Activity. Gli stati
  * cambiano con scene-dom.ts (data-open, data-panel, data-view, data-save, data-picked, data-delete sulla finestra).
+ * Nel testo di ogni riga data-own e data-tags sono i posti dell'owner e dei tag, come nel canale.
  */
 import ChannelScene from './ChannelScene.astro';
 import {
-  FATTI_INIZIALI, IN_CIMA_ACTIVITY, MIA, PRIMA_RIGA_ACTIVITY, PROMEMORIA, SAM, TASKS, TASTI, TITOLO, avanzamento,
-  fraseDelPannello,
+  FATTI_INIZIALI, IN_CIMA_ACTIVITY, MIA, PARTECIPANTI, PERSONE, PRIMA_RIGA_ACTIVITY, PROMEMORIA, SAM, TASKS, TASTI,
+  TITOLO, avanzamento, fraseDelPannello, type Persona,
 } from './scene-data';
 
 interface Props {
@@ -25,6 +26,8 @@ const fatti = new Set(FATTI_INIZIALI);
 const pct = avanzamento(fatti);
 const icona = (n: string) => `/icons/${n}.png`;
 const si = (v: boolean) => (v ? '' : undefined);
+// Chi guarda è «Sam (you)» (activity.picker.you).
+const nome = (p: Persona) => (p.id === SAM.id ? `${p.nome} (you)` : p.nome);
 // Le icone dei campi nativi di Chrome, il calendario e l'orologio.
 const CAL = 'M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm-2 8h14v9H5v-9Z';
 // L'orologio del campo dell'ora di Chrome: l'anello e le lancette (evenodd, se no il cerchio è un disco pieno).
@@ -35,8 +38,7 @@ const ORA = 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2a8 8 0 1 1 0 16 8 8 0 0
 </div>
 <div class="sc-shade" data-k="shade" aria-hidden="true"></div>
 <div
-  class="sc-win" data-k="win" data-open={si(aperta)} data-owner={si(owner)} data-reminder={si(promemoria)}
-  data-save="off"
+  class="sc-win" data-k="win" data-open={si(aperta)} data-reminder={si(promemoria)} data-save="off"
 >
   <div class="sc-winbar" aria-hidden="true">
     <img src="/icons/ttm-avatar.png" alt="" /><span>Team Tasks Manager</span><span class="sc-winx">&times;</span>
@@ -86,7 +88,7 @@ const ORA = 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2a8 8 0 1 1 0 16 8 8 0 0
                     aria-pressed={fatti.has(t.id) ? 'true' : 'false'} aria-label={`Task ${t.id}`}
                   ><img class="sc-off" src={icona('checkbox_empty')} alt="" /><img class="sc-on" src={icona('checkbox_marked')} alt="" /></button>
                 </span>
-                <button type="button" class="sc-atext" data-k={`a-txt-${t.id}`}>{t.id === '3' && <Fragment><span class="sc-mention">@{MIA.nome}</span><span class="sc-colon">: </span></Fragment>}{t.testo}</button>
+                <button type="button" class="sc-atext" data-k={`a-txt-${t.id}`}><span data-own>{owner && t.id === '3' && <Fragment><span class="sc-mention">@{MIA.nome}</span>{': '}</Fragment>}</span>{t.testo}<span data-tags></span></button>
               </div>
             </Fragment>
           ))}
@@ -121,22 +123,32 @@ const ORA = 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2a8 8 0 1 1 0 16 8 8 0 0
           ))}
         </div>
         <div class="sc-parea">
-          {/* Owner in blu (PeopleAction.tsx, PeoplePicker.tsx): le scelte, il campo, chi è nell'Activity. */}
-          <div class="sc-pview sc-pview-owner" aria-hidden="true">
+          {/* L'avviso del bot (NoticeBox, con l'emoji del consiglio) e la domanda sopra Delete (Question): li scrive
+              avvisoNelPannello. */}
+          <p class="sc-pnotice" data-k="p-notice" hidden><img src={icona('tip')} alt="" /> <span data-k="p-notice-text"></span></p>
+          <p class="sc-pquestion" data-k="p-question" hidden><img src={icona('owner_blue')} alt="" /> <span data-k="p-question-text"></span></p>
+          {/* Owner e Tag in blu (PeopleAction.tsx, PeoplePicker.tsx): le scelte con la ×, il campo, chi è
+              nell'Activity con il + (activity.picker.*). */}
+          <div class="sc-pview sc-pview-people">
             <ul class="sc-pills sc-pills-chosen">
-              <li class="sc-pill" data-chosen data-pick="mia">
-                <span class="sc-av" style={`--av: ${MIA.colore}`}>{MIA.nome[0]}</span>{MIA.nome}<span class="sc-pmark">&times;</span>
-              </li>
+              {PERSONE.map((p) => (
+                <li data-pick={p.id} hidden>
+                  <button type="button" class="sc-pill" data-chosen data-k={`pc-${p.id}`} aria-label={`Remove ${nome(p)}`}>
+                    <span class="sc-av" style={`--av: ${p.colore}`}>{p.nome[0]}</span>{nome(p)}<span class="sc-pmark" aria-hidden="true">&times;</span>
+                  </button>
+                </li>
+              ))}
             </ul>
-            <span class="sc-fin"><span class="sc-fph">Search people and roles</span></span>
+            <span class="sc-fin" aria-hidden="true"><span class="sc-fph">Search people and roles</span></span>
             <p class="sc-pnote">Now in the Activity</p>
             <ul class="sc-pills">
-              <li class="sc-pill" data-k="pk-sam" data-sugg="sam">
-                <span class="sc-pmark">+</span><span class="sc-av" style={`--av: ${SAM.colore}`}>{SAM.nome[0]}</span>{SAM.nome} (you)
-              </li>
-              <li class="sc-pill" data-k="pk-mia" data-sugg="mia">
-                <span class="sc-pmark">+</span><span class="sc-av" style={`--av: ${MIA.colore}`}>{MIA.nome[0]}</span>{MIA.nome}
-              </li>
+              {PARTECIPANTI.map((p) => (
+                <li data-sugg={p.id}>
+                  <button type="button" class="sc-pill" data-k={`pk-${p.id}`} aria-label={`Add ${nome(p)}`}>
+                    <span class="sc-pmark" aria-hidden="true">+</span><span class="sc-av" style={`--av: ${p.colore}`}>{p.nome[0]}</span>{nome(p)}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
           {/* Reminder in blu (ReminderFields.tsx): data e ora proposte, il fuso del dispositivo. */}

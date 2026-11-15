@@ -10,10 +10,10 @@
  * riquadro: nei video (sc-rec) un Discord di 460 px in 390, nella demo il telefono alla sua misura, con la chat che
  * scorre.
  *
- * Gli stati stanno negli attributi, scritti da scene-dom.ts: data-done sulle righe e sulle opzioni; data-owner e
- * data-reminder sulla lista (il canale .sc-chan, la finestra .sc-win); data-mode sui pulsanti; data-menu,
- * data-inact, data-modal, data-subopen, data-subpick sul canale; data-open, data-panel, data-view, data-save,
- * data-picked, data-delete sulla finestra.
+ * Gli stati stanno negli attributi, scritti da scene-dom.ts: data-done sulle righe e sulle opzioni; data-reminder
+ * sulla lista (il canale .sc-chan, la finestra .sc-win); data-mode sui pulsanti; data-on sulle persone del menu;
+ * data-menu, data-inact, data-modal, data-subopen, data-subpick sul canale; data-open, data-panel, data-view,
+ * data-save, data-picked, data-delete sulla finestra. L'owner e i tag sono menzioni scritte nel testo delle righe.
  */
 
 /* Registrata, --u resta una lunghezza calcolata sulla scena: i figli ereditano i px, non la formula. */
@@ -100,13 +100,11 @@
 .sc-cb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .sc-cb .sc-on, [data-done] .sc-cb .sc-off { display: none; }
 [data-done] .sc-cb .sc-on { display: block; }
-/* L'owner davanti al testo: la menzione, poi i due punti. */
+/* L'owner davanti al testo («@Mia: »), i tag in fondo: le menzioni di Discord. */
 .sc-mention {
-  display: none; padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u));
+  padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u));
   font-weight: 500; color: #a9bbff; background: #303359;
 }
-.sc-colon { display: none; }
-[data-owner] .sc-mention, [data-owner] .sc-colon { display: inline; }
 /* Il promemoria sopra il task 3, col numero; la riga della casella prende lo spaziatore (RigheDellaLista). */
 /* .sc-arow.sc-row-rem: .sc-arow (più sotto, display: grid) a parità di peso vincerebbe. */
 .sc-row-rem, .sc-arow.sc-row-rem { display: none; }
@@ -136,7 +134,9 @@
   background: #17171a; border: 1px solid #35353b; border-radius: calc(8 * var(--u));
   font-size: calc(16 * var(--u)); color: #949ba4;
 }
-.sc-sel:is(:hover, .is-hover) { border-color: #4e5058; }
+.sc-sel:is(:hover, .is-hover), .sc-subsel:not([aria-disabled="true"]):is(:hover, .is-hover) { border-color: #4e5058; }
+.sc-subsel { overflow: hidden; text-align: left; }
+.sc-subsel[aria-disabled="true"] { cursor: default; }
 .sc-sel > span, .sc-subph { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sc-chev { flex: none; width: calc(24 * var(--u)); height: calc(24 * var(--u)); margin-left: auto; color: #b5bac1; }
 /* Aperto, il menu sale sopra il selettore e ne prende il bordo: in fondo alla chat non c'è spazio sotto. */
@@ -152,7 +152,7 @@
   display: flex; align-items: center; gap: calc(8 * var(--u)); width: 100%; min-height: calc(40 * var(--u));
   padding: calc(8 * var(--u)) calc(12 * var(--u)); font-size: calc(16 * var(--u)); color: #dbdee1;
 }
-.sc-opt:is(:hover, .is-hover), .sc-subopt.is-hover { background: #26262b; }
+.sc-opt:is(:hover, .is-hover), .sc-subopt:is(:hover, .is-hover) { background: #26262b; }
 .sc-opt .sc-cb { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
 .sc-optlab { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sc-btns { display: flex; flex-wrap: wrap; gap: calc(8 * var(--u)); }
@@ -172,17 +172,18 @@
 [data-inact] .sc-join { display: block; }
 .sc-joinbtn { width: auto; padding: 0 calc(16 * var(--u)); font-size: calc(14 * var(--u)); font-weight: 500; }
 
-/* il menu dell'owner, sotto i pulsanti */
+/* il menu delle persone, sotto i pulsanti: le scelte nel selettore, la spunta nel menu */
 .sc-subchosen {
-  display: none; align-items: center; gap: calc(6 * var(--u)); height: calc(26 * var(--u));
+  display: inline-flex; flex: none; align-items: center; gap: calc(6 * var(--u)); height: calc(26 * var(--u));
   padding: 0 calc(8 * var(--u)) 0 calc(4 * var(--u)); border-radius: calc(4 * var(--u));
   background: #2b2b31; color: #dbdee1; font-size: calc(14 * var(--u));
 }
+.sc-subchosen[hidden] { display: none; }
 [data-subpick] .sc-subph { display: none; }
-[data-subpick] .sc-subchosen { display: inline-flex; }
+.sc-subopt { text-align: left; }
 .sc-check { flex: none; width: calc(20 * var(--u)); height: calc(20 * var(--u)); margin-left: auto; color: #5865f2; visibility: hidden; }
-[data-subpick="mia"] [data-persona="mia"] { background: rgba(88, 101, 242, .16); }
-[data-subpick="mia"] [data-persona="mia"] .sc-check { visibility: visible; }
+.sc-subopt[data-on] { background: rgba(88, 101, 242, .16); }
+.sc-subopt[data-on] .sc-check { visibility: visible; }
 .sc-av {
   display: inline-flex; flex: none; align-items: center; justify-content: center;
   width: calc(24 * var(--u)); height: calc(24 * var(--u)); border-radius: 50%; background: var(--av); color: #fff;
@@ -371,7 +372,17 @@
 /* L'area ha la stessa altezza per ogni azione, anche vuota (parts.tsx, Area). */
 .sc-parea { display: flex; flex-direction: column; gap: calc(8 * var(--u)); height: calc(264 * var(--u)); overflow: hidden; }
 .sc-pview { display: none; flex-direction: column; gap: calc(8 * var(--u)); }
-.sc-win[data-view="owner"] .sc-pview-owner, .sc-win[data-view="reminder"] .sc-pview-reminder { display: flex; }
+.sc-win:is([data-view="owner"], [data-view="tag"]) .sc-pview-people, .sc-win[data-view="reminder"] .sc-pview-reminder {
+  display: flex;
+}
+/* L'avviso del bot nel riquadro bianco (Notice.css, il tema chiaro di Discord dentro il fumetto) e la domanda. */
+.sc-pnotice {
+  padding: calc(10 * var(--u)) calc(12 * var(--u)); border-radius: calc(8 * var(--u));
+  background: #fff; color: #313338; font-size: calc(14 * var(--u)); line-height: 1.375;
+}
+.sc-pquestion { color: #efeff1; line-height: 1.375; overflow-wrap: anywhere; }
+.sc-pnotice img, .sc-pquestion img { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -.35em; }
+.sc-pnotice[hidden], .sc-pquestion[hidden] { display: none; }
 .sc-pfoot { display: flex; justify-content: space-between; gap: calc(12 * var(--u)); padding-top: calc(2 * var(--u)); }
 /* Save è spento finché non c'è una modifica; in attesa i tre puntini al posto della scritta. Rosso, Delete. */
 .sc-win:not([data-save="on"], [data-save="pending"]) .sc-psave { opacity: .5; cursor: not-allowed; }
@@ -381,6 +392,7 @@
 .sc-win[data-save="pending"] .sc-savetext { visibility: hidden; }
 .sc-pdelete, .sc-win[data-delete] .sc-psave { display: none; }
 .sc-win[data-delete] .sc-pdelete { display: inline-flex; }
+.sc-pdelete[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
 
 /* il selettore delle persone (PeoplePicker.css) */
 .sc-pills { display: flex; flex-wrap: wrap; gap: calc(6 * var(--u)); margin: 0; padding: 0; list-style: none; }
@@ -389,14 +401,15 @@
   padding: 0 calc(10 * var(--u)) 0 calc(5 * var(--u)); border: 1px solid #4e5058; border-radius: 999px;
   color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 500;
 }
-.sc-pill.is-hover { background: rgba(255, 255, 255, .04); }
+.sc-pill:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
 .sc-pill[data-chosen] { padding: 0 calc(8 * var(--u)) 0 calc(5 * var(--u)); border-color: transparent; background: #3b3d44; }
+.sc-pill[data-chosen]:is(:hover, .is-hover) { background: #4e5058; }
+.sc-pills > [hidden] { display: none; }
 .sc-pill .sc-av { width: calc(18 * var(--u)); height: calc(18 * var(--u)); font-size: calc(9 * var(--u)); }
 .sc-pmark { flex: none; color: #abacb2; font-size: calc(16 * var(--u)); line-height: 1; }
 .sc-pnote { color: #abacb2; font-size: calc(12 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
 .sc-pills-chosen { display: none; }
 .sc-win[data-picked] .sc-pills-chosen { display: flex; }
-.sc-win[data-picked="mia"] [data-sugg="mia"] { display: none; }
 
 /* i campi (Field.css) e il promemoria (ReminderFields.css) */
 .sc-field { display: flex; flex-direction: column; gap: calc(6 * var(--u)); min-width: 0; }

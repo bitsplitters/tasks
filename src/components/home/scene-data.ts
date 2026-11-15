@@ -39,6 +39,12 @@ export const LEO: Persona = { id: 'leo', nome: 'Leo', colore: '#23a55a' };
 /** Chi guarda: nell'Activity è «Sam (you)» (activity.picker.you). */
 export const SAM: Persona = { id: 'sam', nome: 'Sam', colore: '#f0b232' };
 
+/** Le persone del menu dell'owner e dei tag nel canale, in quest'ordine. */
+export const PERSONE: readonly Persona[] = [MIA, LEO, SAM];
+/** Chi è nell'Activity: le pillole del selettore prima di scrivere (activity.picker.here). */
+export const PARTECIPANTI: readonly Persona[] = [SAM, MIA];
+export const nomeDi = (id: string) => PERSONE.find((p) => p.id === id)?.nome ?? id;
+
 /**
  * Il promemoria del task 3, all'ora che propongono la modale del bot e l'Activity: adesso più 10 minuti, cioè le
  * 18:14 della scena (il messaggio è delle 18:04) del giorno della registrazione. Si registra un altro giorno? Si
@@ -189,19 +195,14 @@ export const TOOLTIP: Record<string, Tooltip> = Object.fromEntries([
   ...Object.entries(IN_CIMA_ACTIVITY).map(([k, v]) => [`ac-${k}`, { ...v }]),
 ]);
 
+/** Owner e Tag la demo li applica davvero; gli altri tre pulsanti hanno il fumetto. */
+export type TastoConFumetto = Exclude<Tasto, 'owner' | 'tag'>;
+
 /** I fumetti della demo del canale, quando si sceglie un task con un pulsante acceso (§8). */
-export const FUMETTI: Record<Tasto, Record<Colore, (n: string) => string>> = {
+export const FUMETTI: Record<TastoConFumetto, Record<Colore, (n: string) => string>> = {
   content: {
     blue: (n) => `In Discord, this opens the form to edit task\u00a0${n}.`,
     red: (n) => `In Discord, this deletes task\u00a0${n}.`,
-  },
-  owner: {
-    blue: (n) => `In Discord, the owner you picked goes to task\u00a0${n}.`,
-    red: (n) => `In Discord, this removes the owner of task\u00a0${n}.`,
-  },
-  tag: {
-    blue: (n) => `In Discord, the tags you picked go to task\u00a0${n}.`,
-    red: (n) => `In Discord, this removes every tag from task\u00a0${n}.`,
   },
   reminder: {
     blue: (n) => `In Discord, this opens the reminder form for task\u00a0${n}.`,
@@ -212,6 +213,30 @@ export const FUMETTI: Record<Tasto, Record<Colore, (n: string) => string>> = {
     red: (n) => `In Discord, this unlinks the webhook from task\u00a0${n}.`,
   },
 };
+
+/**
+ * Le risposte del bot quando owner e tag non si possono cambiare: nella demo del canale nel fumetto, nell'Activity
+ * nell'avviso del pannello.
+ */
+export const RIFIUTI = {
+  /** tasklist.slct.owner.noselection.error */
+  ownerNessuno: 'Select one or more people, or a role, as the task owner.',
+  /** tasklist.slct.owner.sameselection.error */
+  ownerUguale: 'What you chose is already the owner of the task.',
+  /** tasklist.slct.owner.delete.notpresent.error */
+  ownerAssente: 'The selected task has no owner.',
+  /** tasklist.slct.tag.noselection.error */
+  tagNessuno: 'Select a role or user to add to the task.',
+  /** tasklist.slct.tag.delete.notpresent.error */
+  tagAssenti: 'There are no tags in the selected task.',
+} as const;
+
+/**
+ * Il primo paragrafo di tasklist.modal.owner.remove.question: senza owner il promemoria non arriverebbe a nessuno:
+ * va via con lui. Nell'Activity è la domanda sopra Delete; nel canale, dove la modale non c'è, il fumetto dopo.
+ */
+export const fraseOwnerEPromemoria = (n: string) =>
+  `Task\u00a0**${n}** has a reminder: without an owner it would reach no one, so the reminder is removed too.`;
 
 export type Modo = 'channel' | 'activity';
 

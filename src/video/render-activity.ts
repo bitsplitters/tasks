@@ -4,16 +4,16 @@
  * il testo del task 3 apre il pannello, Owner sceglie Mia, Save; Reminder propone data, ora e fuso, Save; Close.
  * I pulsanti tornano grigi dopo il salvataggio, come nella pagina vera.
  */
-import { FATTI_INIZIALI, spunta } from '../components/home/scene-data';
+import { FATTI_INIZIALI, MIA, spunta } from '../components/home/scene-data';
 import {
   apriPannello, disegnaLista, inActivity, salva, sceltaNelPannello, scorrimentoPerIlPannello, tastoDelPannello,
   unita, vistaDelPannello, type StatoLista,
 } from '../components/home/scene-dom';
 import { easeInOutCubic, easeOut, tra, type Copione } from './render-comune';
 
-const SA0: StatoLista = { fatti: new Set(FATTI_INIZIALI), owner: false, promemoria: false };
+const SA0: StatoLista = { fatti: new Set(FATTI_INIZIALI), owner: {}, tag: {}, promemoria: false };
 const SA1: StatoLista = { ...SA0, fatti: spunta(SA0.fatti, '2', true) };
-const SA2: StatoLista = { ...SA1, owner: true };
+const SA2: StatoLista = { ...SA1, owner: { '3': MIA.id } };
 const SA3: StatoLista = { ...SA2, promemoria: true };
 
 const q = (s: HTMLElement, k: string) => s.querySelector<HTMLElement>(`[data-k="${k}"]`)!;
@@ -23,7 +23,7 @@ const win = (s: HTMLElement) => q(s, 'win');
 function dopoIlSalvataggio(w: HTMLElement): void {
   tastoDelPannello(w, null, null);
   vistaDelPannello(w, null);
-  sceltaNelPannello(w, null);
+  sceltaNelPannello(w, []);
   salva(w, 'off');
 }
 
@@ -48,7 +48,7 @@ export function copioneDellActivity(): Copione {
       { t: 4.0, fai: (s) => disegnaLista(win(s), SA1) },
       { t: 5.8, fai: (s) => apriPannello(win(s), '3') },
       { t: 6.7, fai: (s) => { tastoDelPannello(win(s), 'owner', 'blue'); vistaDelPannello(win(s), 'owner'); } },
-      { t: 7.6, fai: (s) => { sceltaNelPannello(win(s), 'mia'); salva(win(s), 'on'); } },
+      { t: 7.6, fai: (s) => { sceltaNelPannello(win(s), [MIA.id]); salva(win(s), 'on'); } },
       { t: 8.5, fai: (s) => salva(win(s), 'pending') },
       { t: 8.9, fai: (s) => { disegnaLista(win(s), SA2); dopoIlSalvataggio(win(s)); } },
       // Data e ora proposte (adesso + 10 minuti) e il fuso del dispositivo: Save è già acceso.
