@@ -116,6 +116,14 @@
 }
 .h-pcard p { margin: 0; color: var(--muted); font-size: 1.075rem; line-height: 1.6; max-width: 40ch; }
 .h-pcard .h-link { display: inline-block; margin-top: .9rem; }
+/* In colonna, sul telefono, il titolo sta sopra l'immagine: sotto sembrava la didascalia della scheda seguente
+   (segnalazione dell'utente del 15/11). L'immagine è aria-hidden: l'ordine letto resta titolo e testo. */
+@media (max-width: 859px) {
+  .h-pcard { display: flex; flex-direction: column; align-items: flex-start; }
+  .h-pcard .h-art { align-self: stretch; }
+  .h-pcard h3 { order: -1; margin: 0 0 1rem; }
+  .h-pcard p { margin-top: 1rem; }
+}
 @media (min-width: 860px) {
   .h-pcards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); }
 }

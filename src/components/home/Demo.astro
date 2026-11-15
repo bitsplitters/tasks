@@ -28,7 +28,7 @@ import ActivityScene from './ActivityScene.astro';
     <div class="dm-panel" role="tabpanel" id="dm-p-channel" data-panel="channel" aria-labelledby="dm-t-channel">
       <p class="dm-say"><strong>On the fly.</strong> The list lives in the conversation: everyone sees it, and a tick takes two clicks.</p>
       <div class="sc-box dm-box">
-        <div class="scene sc-live" data-scene="channel">
+        <div class="scene sc-live sc-auto" data-scene="channel">
           <ChannelScene owner promemoria />
           {/* Il fumetto: cosa farebbe Discord col pulsante acceso. Sempre nel DOM, vuoto quando non serve, perché
               gli screen reader annunciano il testo che arriva in una regione role="status" già presente. */}

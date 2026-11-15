@@ -29,6 +29,12 @@ export interface Copione {
   eventi: Evento[];
   fermate: Fermata[];
   continui?: (scena: HTMLElement, t: number) => void;
+  /**
+   * La chat non scorre mai: il messaggio resta fermo in alto e, dopo ogni evento, deve starci tutto. Se non ci sta,
+   * motore() si ferma con un errore invece di farlo scorrere: è l'inquadratura (sc-rec-chan in scene.css) da
+   * rifare. Senza, la chat scorre in fondo come nella demo (chatInBasso).
+   */
+  chatFerma?: boolean;
 }
 
 interface Punto {
@@ -66,8 +72,20 @@ export async function motore(scena: HTMLElement, copione: Copione): Promise<(t: 
     ultimo = t;
     while (applicati < eventi.length && eventi[applicati].t <= t) eventi[applicati++].fai(scena);
     copione.continui?.(scena, t);
-    chatInBasso(scena);
+    if (!copione.chatFerma) chatInBasso(scena);
   };
+
+  if (copione.chatFerma) {
+    for (const e of eventi) {
+      await stato(e.t);
+      scena.querySelectorAll<HTMLElement>('[data-k="feed"]').forEach((f) => {
+        if (f.scrollHeight > f.clientHeight + 1) {
+          throw new Error(`a ${e.t} s il messaggio non ci sta: ${f.scrollHeight} px in una chat di ${f.clientHeight}`);
+        }
+      });
+    }
+    await azzera();
+  }
 
   const punti: Punto[] = [];
   for (const f of [...copione.fermate].sort((a, b) => a.t - b.t)) {

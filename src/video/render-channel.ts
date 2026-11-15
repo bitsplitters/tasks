@@ -19,6 +19,9 @@ const chan = (s: HTMLElement) => s.querySelector<HTMLElement>('[data-k="chan"]')
 
 export function copioneDelCanale(): Copione {
   return {
+    // Il messaggio resta fermo dall'inizio alla fine: crescendo, prima, saliva a ogni riga in più (segnalazione
+    // dell'utente del 15/11).
+    chatFerma: true,
     fermate: [
       { t: 0, x: 0.62, y: 0.3 },
       { t: 1.2, k: 'sel' },

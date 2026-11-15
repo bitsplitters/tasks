@@ -7,8 +7,8 @@
  * componenti), scritte come multipli di --u, un px di Discord. Largo, la scena è un Discord di 847 × 565 mostrato
  * alla larghezza del riquadro: a 720 px, nei video, è il fattore 0,85 (alla misura vera il pannello dell'Activity e
  * la modale non ci starebbero); nella demo, che arriva al massimo a 847 px, è la misura vera. Sotto i 640 px di
- * riquadro: nei video (sc-rec) un Discord di 460 px in 390, nella demo il telefono alla sua misura, con la chat che
- * scorre.
+ * riquadro: nei video (sc-rec) un Discord di 460 px in 390, nella demo il telefono alla sua misura, col canale alto
+ * quanto il messaggio (sc-auto).
  *
  * Gli stati stanno negli attributi, scritti da scene-dom.ts: data-done sulle righe e sulle opzioni; data-reminder
  * sulla lista (il canale .sc-chan, la finestra .sc-win); data-mode sui pulsanti; data-on sulle persone del menu;
@@ -45,6 +45,10 @@
 /* Nei video ogni fotogramma lo calcola render(t): niente transizioni, niente cornice. */
 .sc-rec { border: 0; border-radius: 0; box-shadow: none; }
 .sc-rec, .sc-rec * { transition: none !important; animation: none !important; }
+/* Il video del canale inquadra stretto: un Discord di 800 px, non 847, perché il messaggio, fermo in alto, nel suo
+   stato più alto arrivi fin sopra il campo del messaggio (sotto i 640 px, 420 al posto di 460). render-comune.ts
+   (chatFerma) si ferma se un giorno non ci sta più. */
+.sc-rec-chan { --u: calc(100cqi / 800); }
 
 /* ── Il canale ────────────────────────────────────────────────────────────────────────────────────────── */
 .sc-chan { position: absolute; inset: 0; display: flex; flex-direction: column; background: #1a1a1e; }
@@ -54,18 +58,25 @@
   font-size: calc(16 * var(--u)); font-weight: 600; color: #f2f3f5;
 }
 .sc-hash { font-size: calc(24 * var(--u)); font-weight: 400; line-height: 1; color: #80848e; }
-/* La chat è ancorata in basso, come in Discord. margin-top: auto tiene il messaggio sul fondo e, se non ci sta, lo
-   lascia scorrere: con justify-content: flex-end la parte che esce in alto non si potrebbe raggiungere. */
+/* Il messaggio sta in alto, sotto l'intestazione del canale, e resta fermo: quando compare una riga (il menu delle
+   persone, il promemoria) cresce verso il basso. Ancorato in basso, come in Discord, saliva a ogni riga in più, e il
+   pulsante appena premuto scappava da sotto il cursore (segnalazione dell'utente del 15/11, sul video). Solo se non
+   ci sta la chat scorre, e chatInBasso (scene-dom.ts) tiene in vista i pulsanti. */
 .sc-feed { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
 .sc-msg {
-  position: relative; margin-top: auto;
+  position: relative;
   padding: calc(16 * var(--u)) calc(16 * var(--u)) calc(8 * var(--u)) calc(72 * var(--u));
 }
 .sc-avatar {
   position: absolute; left: calc(16 * var(--u)); top: calc(18 * var(--u));
   width: calc(40 * var(--u)); height: calc(40 * var(--u)); border-radius: 50%;
 }
-.sc-mhead { display: flex; align-items: baseline; gap: calc(4 * var(--u)); min-height: calc(22 * var(--u)); line-height: calc(22 * var(--u)); }
+/* Stretta, sul telefono, l'ora va a capo intera: non si spezzano né il nome né l'ora. */
+.sc-mhead {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 calc(4 * var(--u));
+  min-height: calc(22 * var(--u)); line-height: calc(22 * var(--u));
+}
+.sc-mhead > span { white-space: nowrap; }
 .sc-name { font-size: calc(16 * var(--u)); font-weight: 500; color: #f2f3f5; }
 .sc-app {
   align-self: center; padding: 0 calc(4 * var(--u)); border-radius: calc(3 * var(--u));
@@ -155,7 +166,10 @@
 .sc-opt:is(:hover, .is-hover), .sc-subopt:is(:hover, .is-hover) { background: #26262b; }
 .sc-opt .sc-cb { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
 .sc-optlab { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sc-btns { display: flex; flex-wrap: wrap; gap: calc(8 * var(--u)); }
+/* Una riga di Discord porta al massimo cinque pulsanti e non va mai a capo: sul telefono si stringono. A capo, la
+   demo metteva le due righe su quattro (segnalazione dell'utente del 15/11). */
+.sc-btns { display: grid; grid-template-columns: repeat(5, minmax(0, calc(58 * var(--u)))); gap: calc(8 * var(--u)); }
+.sc-btns .sc-btn { width: 100%; min-width: 0; }
 .sc-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: calc(6 * var(--u)); flex: none;
   width: calc(58 * var(--u)); height: calc(30 * var(--u)); border-radius: calc(8 * var(--u));
@@ -223,10 +237,16 @@
 
 /* ── Sotto i 640 px di riquadro ───────────────────────────────────────────────────────────────────────── */
 @container scene (max-width: 639px) {
-  /* La demo: il telefono alla sua misura, alta quanto basta per lavorarci, con la chat che scorre. */
+  /* La demo: il telefono alla sua misura, alta quanto basta per lavorarci. */
   .scene { --u: 1px; aspect-ratio: auto; height: min(600px, 80svh); }
+  /* Il canale della demo (sc-auto) è alto quanto il suo messaggio, che si vede tutto, dall'avatar alla seconda riga
+     di pulsanti: in 600 px non ci stava, la chat scorreva in fondo e restava la colonna vuota dell'avatar, con la
+     lista spostata a destra (segnalazione dell'utente del 15/11). Una riga in più allunga il riquadro in basso. */
+  .sc-auto { height: auto; }
+  .sc-auto > .sc-chan { position: relative; }
   /* I video: un Discord di 460 px mostrato in 390 (3:4), il fattore 0,85 del largo. */
   .sc-rec { --u: calc(100cqi / 460); aspect-ratio: 3 / 4; height: auto; }
+  .sc-rec-chan { --u: calc(100cqi / 420); }
   /* Sul telefono la modale prende lo schermo. */
   .sc-modalwrap { align-items: stretch; }
   .sc-modal {
