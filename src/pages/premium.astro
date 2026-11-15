@@ -9,6 +9,7 @@ import '../styles/premium.css';
 import Plans from '../components/premium/Plans.astro';
 import Compare from '../components/premium/Compare.astro';
 import Included from '../components/premium/Included.astro';
+import FounderStato from '../components/FounderStato.astro';
 
 // La pagina per scegliere un piano (spec docs/superpowers/specs/2026-11-14-pagina-premium-design.md, nel repo
 // team-tasks-manager). Il riferimento tecnico dei limiti resta /docs/premium/; i prezzi stanno solo qui.
@@ -79,7 +80,7 @@ const PUNTI = [
           <div class="p-fd-head">
             <div>
               <h2 id="p-founder-title">Get your exclusive Founder badge.</h2>
-              <p class="p-fd-status"><span class="p-fd-dot" aria-hidden="true"></span><span><strong>Not live yet.</strong> Join our <a class="h-link" href="/docs/community/">Discord server</a> so you don't miss a single update.</span></p>
+              <p class="p-fd-status"><span class="p-fd-dot" aria-hidden="true"></span><span><FounderStato /></span></p>
               <p class="p-fd-lead">We love our community, and we want to reward the servers that believed in us first.</p>
             </div>
             <div class="p-fd-price">

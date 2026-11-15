@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import { docsCard } from '../lib/preview-card';
+import VetrinaFont from '../components/VetrinaFont.astro';
+// vetrina.css prima di beta.css: le regole della pagina vengono dopo quelle comuni.
+import '../styles/vetrina.css';
+import '../styles/beta.css';
+import Unlocked from '../components/beta/Unlocked.astro';
+import Timeline from '../components/beta/Timeline.astro';
+
+// La pagina che vende la beta (spec docs/superpowers/specs/2026-11-15-pagina-beta-design.md, nel repo
+// team-tasks-manager). Il riferimento resta /docs/beta/, «How the beta works», che il bot linka: questa è per chi
+// arriva dal sito. Niente cifre (scelta dell'utente del 15/11): i prezzi stanno su /premium/. Niente
+// data-pagefind-body, come /premium/: la ricerca copre la documentazione.
+const PREVIEW_TITLE = 'Open beta';
+const TITLE = `${PREVIEW_TITLE} — Team Tasks Manager`;
+const DESCRIPTION =
+  'Every feature of Team Tasks Manager is unlocked during the open beta, on every server. ' +
+  'What you build now stays yours when the beta ends.';
+const EMBED = docsCard(PREVIEW_TITLE, DESCRIPTION, '/beta/', 'See the beta');
+
+// Le tre frasi di «When the beta ends» di /docs/beta/, accorciate: nessuna promessa nuova (§4.3).
+const PROMESSE = [
+  {
+    titolo: 'Nothing is deleted or hidden.',
+    testo: 'Your lists, tasks and reminders stay exactly where they are.',
+  },
+  {
+    titolo: 'What you build now stays.',
+    testo: 'Even above the Free limits: its reminders keep arriving, and its tasks can still be ticked.',
+  },
+  {
+    titolo: 'The Free plan stays, forever.',
+    testo: 'Hosted by us. A small team can keep using TTM for good.',
+  },
+];
+---
+<Base title={TITLE} previewTitle={PREVIEW_TITLE} description={DESCRIPTION} embed={EMBED}>
+  <VetrinaFont slot="head" />
+  <main class="beta vetrina">
+    <section class="b-hero wrap">
+      <p class="b-pill"><span class="b-pill-dot" aria-hidden="true"></span>Open beta</p>
+      <h1><span>Everything unlocked.</span> <span>Nothing to lose.</span></h1>
+      <p class="h-intro">Team Tasks Manager is in open beta: every feature works on every server, with no trial clock and no locked buttons. What you build now stays yours when the beta ends.</p>
+      <div class="cta-row">
+        <a class="btn" href="/invite">Add to Discord</a>
+        <a class="btn-ghost" href="/docs/community/">Join the Discord</a>
+      </div>
+    </section>
+
+    <Unlocked />
+
+    <section class="h-sec wrap" id="promise" aria-labelledby="b-promise-title">
+      <h2 id="b-promise-title">Our promise for when the beta ends.</h2>
+      <ul class="b-promise" role="list">
+        {PROMESSE.map((p) => (
+          <li>
+            <span class="b-tick" aria-hidden="true">✓</span>
+            <h3>{p.titolo}</h3>
+            <p>{p.testo}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="callout b-callout"><div class="callout-t">We will never switch the bot off to make you pay.</div>A task manager that stops working is useless, and we know it.</div>
+      <p class="b-after"><a class="h-link" href="/docs/beta/">All the details: How the beta works</a></p>
+    </section>
+
+    <Timeline />
+
+    <section class="h-sec wrap b-shape" aria-labelledby="b-shape-title">
+      <h2 id="b-shape-title">Shape what comes next.</h2>
+      <p class="h-intro">The beta is when your voice counts most. Ask questions, report bugs and tell us what's missing on our Discord server: it's where we decide what comes next.</p>
+      <p class="b-pace">A new release almost every week since launch. <a class="h-link" href="/docs/release-notes/">See the release notes</a></p>
+      <div class="cta-row"><a class="btn-ghost" href="/docs/community/">Join the Discord</a></div>
+    </section>
+
+    <section class="h-sec wrap b-final" aria-labelledby="b-final-title">
+      <h2 id="b-final-title">Start while everything is unlocked.</h2>
+      <p class="h-intro">Add TTM to your server and create your first list with a single command.</p>
+      <div class="cta-row">
+        <a class="btn" href="/invite">Add to Discord</a>
+        <a class="btn-ghost" href="/docs/getting-started/">Get started</a>
+      </div>
+    </section>
+  </main>
+</Base>

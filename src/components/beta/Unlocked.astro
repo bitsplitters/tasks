@@ -1,0 +1,49 @@
+---
+/*
+ * Cosa è sbloccato adesso (spec 2026-11-15-pagina-beta-design.md, §4.2): i sei limiti che Premium toglie dopo la beta,
+ * oggi per tutti. Le icone sono quelle della home per le stesse cose (home/Features.astro), nel grigio dei pulsanti di
+ * Discord. I promemoria ripetuti non hanno un'icona loro: prendono il ↻ che la lista mostra accanto all'intervallo.
+ * Ogni riga è vera coi limiti di oggi (/docs/premium/, /docs/known-limits/). Nessun prezzo.
+ */
+interface Voce {
+  icona?: string;
+  titolo: string;
+  testo: string;
+}
+const VOCI: Voce[] = [
+  { icona: 'task_list', titolo: 'Unlimited lists', testo: 'Every project, squad or event gets its own list.' },
+  { icona: 'single_task', titolo: '50 tasks per list', testo: 'Room for a real backlog, subtasks included.' },
+  { icona: 'alertW', titolo: 'Reminders without a cap', testo: 'As many waiting at once as your team needs.' },
+  {
+    titolo: 'Repeating reminders',
+    testo: 'Up to 50 pings, every day or every two hours. An admin turns them on first.',
+  },
+  {
+    icona: 'owner',
+    titolo: 'A team as owner',
+    testo: 'Up to 25 people share a task, through a role TTM creates.',
+  },
+  {
+    icona: 'api',
+    titolo: 'Webhooks',
+    testo: 'A ticked task calls your deploy, your spreadsheet or your ticket system.',
+  },
+];
+---
+<section class="h-sec wrap" aria-labelledby="b-unlocked-title">
+  <h2 id="b-unlocked-title">Unlocked for you, right now.</h2>
+  <ul class="b-tiles" role="list">
+    {VOCI.map((v) => (
+      <li>
+        <span class="b-chip" aria-hidden="true">
+          {v.icona ? <img src={`/icons/${v.icona}.png`} alt="" width="24" height="24" /> : <span class="b-glyph">↻</span>}
+        </span>
+        <div>
+          <h3>{v.titolo}</h3>
+          <p>{v.testo}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+  <p class="b-after">After the beta, these are what <a class="h-link" href="/premium/">Premium</a> adds. What you set up during the beta stays: see <a class="h-link" href="#promise">our promise</a> below.</p>
+</section>

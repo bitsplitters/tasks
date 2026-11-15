@@ -1,0 +1,38 @@
+---
+/*
+ * I tre tempi (spec 2026-11-15-pagina-beta-design.md, §4.4): adesso, la finestra Founder, dopo la beta. Orizzontale
+ * dagli 860 px, verticale sotto. Il Founder è la tappa più in vista, nello stile della sezione di /premium/: ogni pezzo
+ * della frase viene dalle regole della spec del Founder (§2), senza cifre; le cifre stanno su /premium/#founder.
+ */
+import FounderStato from '../FounderStato.astro';
+---
+<section class="h-sec wrap" aria-labelledby="b-tl-title">
+  <h2 id="b-tl-title">No surprises, step by step.</h2>
+  <ol class="b-tl" role="list">
+    <li class="b-step b-now">
+      <span class="b-dot" aria-hidden="true"></span>
+      <p class="b-when">Now</p>
+      <h3>Open beta</h3>
+      <p>Every feature, on every server. Add TTM, build your lists, set your reminders.</p>
+    </li>
+    <li class="b-step b-fd">
+      <span class="b-dot" aria-hidden="true"></span>
+      <p class="b-when">Before the beta ends</p>
+      <div class="b-fd-card">
+        <p class="b-fd-band"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg> Limited-time event</p>
+        <div class="b-fd-in">
+          <h3>The Founder window</h3>
+          <p>For a limited time, any server can unlock a numbered Founder badge. It opens the Founder price on Premium, while spots last. Once, never again.</p>
+          <p class="b-fd-status"><span class="b-fd-dot" aria-hidden="true"></span><span><FounderStato /></span></p>
+          <a class="h-link" href="/premium/#founder">How Founder works</a>
+        </div>
+      </div>
+    </li>
+    <li class="b-step b-later">
+      <span class="b-dot" aria-hidden="true"></span>
+      <p class="b-when">After the beta</p>
+      <h3>Free and Premium</h3>
+      <p>The Free plan stays, forever. Premium lifts the limits for the servers that need more.</p>
+    </li>
+  </ol>
+</section>
