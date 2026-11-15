@@ -93,7 +93,7 @@ The list is locked for the others from the moment it opens until you save or can
 
 ## Clean the list and Reopen all
 
-**Clean the list** asks you to confirm first. The tasks you remove end up in the summary at the end of the session. With no task completed, or with every task completed, it says so and changes nothing.
+**Clean the list** asks you to confirm first. The summary at the end of the session records how many tasks you removed. With no task completed, or with every task completed, it says so and changes nothing.
 
 **Reopen all** asks you to confirm every time. **New date**, in the same window, moves the reminders of the tasks you reopen. Reopening calls no webhook. What both actions change: [List actions](/docs/list-actions/).
 
