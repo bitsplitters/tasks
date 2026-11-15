@@ -4,9 +4,11 @@
  * spenta. Gli otto punti di oggi («Without TTM» / «With TTM») sono diventati queste righe; «Getting started» è nuova,
  * ed è vera: per TTM basta l'account Discord.
  *
- * Sotto i 720 px ogni riga diventa un blocco. I role restano sulla tabella perché, cambiando display, alcuni browser
- * ne perdono la semantica; il nome della colonna ripetuto in ogni cella è solo per gli occhi (aria-hidden), perché gli
- * screen reader lo hanno già dall'intestazione.
+ * Sotto i 720 px la tabella diventa una scheda sola, accesa in ambra (home.css): l'intestazione fa da legenda, coi due
+ * segni, poi per ogni voce la riga di TTM e, sotto, quella dell'altra app, spenta. Prima ogni cella era un blocco col
+ * nome della colonna ripetuto: un muro alto il doppio (segnalazione dell'utente del 15/11). I role restano sulla
+ * tabella perché, cambiando display, alcuni browser ne perdono la semantica; i segni della legenda sono solo per gli
+ * occhi (aria-hidden).
  *
  * Il segno (✓, –) sta fuori dal testo, così le righe che vanno a capo si allineano al testo e non al segno; le parole
  * col trattino («re-explaining») non si spezzano. Un testo in più frasi (un array) va a capo dopo ognuna: la seconda,
@@ -51,8 +53,12 @@ const parti = (testo: string) => testo.split(/(\S+-\S+)/);
     <thead role="rowgroup">
       <tr role="row">
         <td role="cell"></td>
-        <th scope="col" role="columnheader" class="h-col-acc">{COLONNE.ttm}</th>
-        <th scope="col" role="columnheader" class="h-col-dim">{COLONNE.altra}</th>
+        <th scope="col" role="columnheader" class="h-col-acc">
+          <span class="h-legend" aria-hidden="true">&#10003;</span>{COLONNE.ttm}
+        </th>
+        <th scope="col" role="columnheader" class="h-col-dim">
+          <span class="h-legend" aria-hidden="true">&ndash;</span>{COLONNE.altra}
+        </th>
       </tr>
     </thead>
     <tbody role="rowgroup">
@@ -60,7 +66,6 @@ const parti = (testo: string) => testo.split(/(\S+-\S+)/);
         <tr role="row">
           <th scope="row" role="rowheader">{r.voce}</th>
           <td role="cell" class="h-acc">
-            <span class="h-cell-col" aria-hidden="true">{COLONNE.ttm}</span>
             <span class="h-line">
               <span class="h-mark" aria-hidden="true">&#10003;</span>
               <span>{frasi(r.ttm).map((f) => (
@@ -69,7 +74,6 @@ const parti = (testo: string) => testo.split(/(\S+-\S+)/);
             </span>
           </td>
           <td role="cell" class="h-dim">
-            <span class="h-cell-col" aria-hidden="true">{COLONNE.altra}</span>
             <span class="h-line">
               <span class="h-mark" aria-hidden="true">&ndash;</span>
               <span>{frasi(r.altra).map((f) => (

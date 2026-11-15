@@ -181,6 +181,37 @@
 a.h-premium { text-decoration: none; transition: background-color .18s ease, color .18s ease; }
 a.h-premium:hover { background: var(--accent); color: var(--ink); }
 
+/* ── Il confronto (Compare.astro) ─────────────────────────────────────────────────────────────────────── */
+/* I segni della legenda servono solo sul telefono: sul largo le colonne si leggono già. */
+.h-legend { display: none; }
+/* Sotto i 720 px una scheda sola, accesa in ambra: in cima la legenda, poi per ogni voce la riga di TTM e, sotto, quella
+   dell'altra app, spenta. A 390 px è alta 1069 px, contro i 1577 delle celle a blocchi col nome della colonna ripetuto
+   (segnalazione dell'utente del 15/11, variante «B»). La pagina dei piani tiene i blocchi di vetrina.css. */
+@media (max-width: 719px) {
+  .h-compare .h-table {
+    padding: .2rem 1rem; border: 1px solid rgba(233, 164, 76, .4); border-radius: 12px;
+    background: rgba(233, 164, 76, .05);
+  }
+  /* L'intestazione torna visibile e fa da legenda. La cella vuota resta per gli screen reader, che contano le colonne. */
+  .h-compare .h-table thead {
+    display: block; position: static; width: auto; height: auto; overflow: visible; clip-path: none;
+  }
+  .h-compare .h-table thead tr { display: flex; flex-direction: column; gap: .15rem; padding: .75rem 0; }
+  .h-compare .h-table thead td {
+    position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%);
+  }
+  .h-compare .h-table thead th {
+    width: auto; padding: 0; border: 0; border-radius: 0; background: none; font-size: .88rem;
+  }
+  .h-compare .h-legend { display: inline-block; width: 1.3em; font-weight: 700; }
+  .h-compare .h-col-dim .h-legend { color: var(--line-2); }
+  .h-compare .h-table tbody tr { margin: 0; padding: .7rem 0; border-top: 1px solid var(--line); }
+  .h-compare .h-table tbody th { padding: 0 0 .25rem; font-size: 1rem; }
+  .h-compare .h-table td,
+  .h-compare .h-table tbody tr:last-child .h-acc { padding: 0; border: 0; border-radius: 0; background: none; }
+  .h-compare .h-table td + td { margin-top: .3rem; font-size: .92rem; }
+}
+
 /* ── La demo ──────────────────────────────────────────────────────────────────────────────────────────── */
 #two-ways { scroll-margin-top: 5rem; }
 .h-touch { display: none; }
