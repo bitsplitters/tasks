@@ -6,11 +6,12 @@
 import { DURATA, type Modo } from '../components/home/scene-data';
 import { motore, type Copione } from './render-comune';
 import { copioneDelCanale } from './render-channel';
+import { copioneDellActivity } from './render-activity';
 
 const LARGHEZZA = { wide: 720, narrow: 390 } as const;
 type Misura = keyof typeof LARGHEZZA;
 
-const COPIONI: Partial<Record<Modo, () => Copione>> = { channel: copioneDelCanale };
+const COPIONI: Partial<Record<Modo, () => Copione>> = { channel: copioneDelCanale, activity: copioneDellActivity };
 
 declare global {
   interface Window {
