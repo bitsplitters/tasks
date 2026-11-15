@@ -17,6 +17,36 @@ import Included from '../components/premium/Included.astro';
 // (/premium/premium-*.png): la pagina ci finisce accanto, e i loro indirizzi non cambiano.
 const TITLE = `${PAGINA_PIANI.title} — Team Tasks Manager`;
 const EMBED = docsCard(PAGINA_PIANI.title, PAGINA_PIANI.description, PAGINA_PIANI.path, 'See the plans');
+
+// Il Founder (spec docs/superpowers/specs/2026-11-15-founder-design.md): le cifre scritte, 5,000 e 30 giorni, sono
+// regole vere; quella del prezzo Founder non c'è, finché il tracker non la fissa.
+const PASSI = [
+  {
+    titolo: 'Reserve during the beta.',
+    testo: 'Your server gets its Founder number the moment it reserves: the earlier, the lower. '
+      + 'Without a reservation there is no Founder price and no badge.',
+  },
+  {
+    titolo: 'Be one of the first 5,000 to buy.',
+    testo: 'When Premium opens, reserved servers have 30 days to buy a full year at roughly half price. '
+      + "There are 5,000, and a reservation doesn't hold one: they go to the first 5,000 servers that buy.",
+  },
+  {
+    titolo: 'Or keep the badge at the regular price.',
+    testo: 'Once the 5,000 are gone, a reserved server keeps its badge by buying a regular month or year within the '
+      + 'same 30 days. After that the badge is lost, and its number is never given to anyone else.',
+  },
+];
+const VANTAGGI = [
+  {
+    titolo: 'Your number, for good.',
+    testo: 'Founder #N shows in the bot on your server, and it stays even if your Premium ends later.',
+  },
+  {
+    titolo: 'A place on the Founders wall.',
+    testo: "Your server's name and number on this site, if you want them there.",
+  },
+];
 ---
 <Base title={TITLE} previewTitle={PAGINA_PIANI.title} description={PAGINA_PIANI.description} embed={EMBED}>
   <VetrinaFont slot="head" />
@@ -52,9 +82,35 @@ const EMBED = docsCard(PAGINA_PIANI.title, PAGINA_PIANI.description, PAGINA_PIAN
       </div>
     </section>
 
-    <div class="wrap">
-      <p class="p-founder"><strong>Founder offer.</strong> When the beta ends, servers that came early get a full year of Premium at roughly half price, as a thank-you.</p>
-    </div>
+    <section class="h-sec wrap" id="founder" aria-labelledby="p-founder-title">
+      <div class="p-fd">
+        <p class="p-fd-tag">Founder · only during the beta</p>
+        <h2 id="p-founder-title">Founder. Once, and never again.</h2>
+        <p class="h-intro">A numbered badge for the servers that back TTM from the start, and the only way to get a full year of Premium at roughly half price. It exists only during the beta: once the beta ends, nobody can become a Founder again.</p>
+        <ol class="p-fd-steps" role="list">
+          {PASSI.map((p) => (
+            <li>
+              <h3>{p.titolo}</h3>
+              <p>{p.testo}</p>
+            </li>
+          ))}
+        </ol>
+        <div class="p-fd-keep">
+          <h3>What a Founder keeps</h3>
+          <ul class="p-grid p-fd-perks" role="list">
+            {VANTAGGI.map((v) => (
+              <li>
+                <span class="p-tick" aria-hidden="true">&#10003;</span>
+                <h4>{v.titolo}</h4>
+                <p>{v.testo}</p>
+              </li>
+            ))}
+          </ul>
+          <p class="p-fd-note">Nothing else is planned for Founders today. What we do promise is to give back to the servers that believed in us first.</p>
+        </div>
+        <p class="p-fd-last"><strong>No second round.</strong> Reservations open in the bot during the beta and close when it ends. The day they open is announced first on our <a class="h-link" href="/docs/community/">Discord server</a>.</p>
+      </div>
+    </section>
 
     <section class="h-sec wrap" aria-labelledby="p-questions-title">
       <h2 id="p-questions-title">Questions?</h2>

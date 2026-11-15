@@ -122,21 +122,57 @@
 @media (min-width: 860px) { .p-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .p-grid li { display: grid; grid-template-columns: 1.6em minmax(0, 1fr); align-content: start; }
 .p-tick { grid-row: span 2; font-size: 1.1rem; font-weight: 700; line-height: 1.45; color: var(--accent); }
-.p-grid h3 { margin: 0 0 .3rem; font-size: 1.1rem; font-weight: 700; font-stretch: 105%; line-height: 1.45; }
+.p-grid :is(h3, h4) { margin: 0 0 .3rem; font-size: 1.1rem; font-weight: 700; font-stretch: 105%; line-height: 1.45; }
 .p-grid p { margin: 0; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
 
-/* ── Perché, self-host, Founder e domande ─────────────────────────────────────────────────────────────── */
+/* ── Perché, self-host e domande ─────────────────────────────────────────────────────────────── */
 /* Righe di 62ch al massimo (§3.6); il riquadro prende la stessa misura dei paragrafi. */
 .p-text { max-width: 62ch; font-size: 1.08rem; line-height: 1.65; color: var(--muted); text-wrap: pretty; }
 .p-text p { margin: 0 0 1rem; }
 /* «self-hosting licence» non si spezza sul trattino: i link di questi paragrafi sono di due parole. */
 .p-text .h-link { white-space: nowrap; }
 .p-text .callout { margin: 1.5rem 0 0; color: var(--text); }
-/* Una fascia sottile col bordo ambra a sinistra, come un .callout più basso (§3.8). */
-.p-founder {
-  margin: 0; padding: .8rem 1.15rem; border: 1px solid var(--line-2); border-left: 3px solid var(--accent);
-  border-radius: 8px; background: var(--surface); line-height: 1.55; color: var(--text); text-wrap: pretty;
-}
-.p-founder strong { color: var(--accent); }
 /* Link testuali, non pulsanti: i pulsanti della pagina restano i due «Add to Discord» (§3.9). */
 .p-links { display: flex; flex-wrap: wrap; gap: .6rem 1.75rem; margin: 1.25rem 0 0; font-size: 1.05rem; }
+
+/* ── Il Founder ───────────────────────────────────────────────────────────────────────────────────────── */
+/* Spec docs/superpowers/specs/2026-11-15-founder-design.md, §4. Il riquadro più marcato della pagina, perché è
+   l'unica cosa a tempo: bordo ambra e un alone nell'angolo in alto. Dentro il testo è pieno, non attenuato. */
+.p-fd {
+  padding: clamp(1.5rem, 4vw, 2.75rem); border: 1px solid rgba(233, 164, 76, .5); border-radius: 20px;
+  background: radial-gradient(120% 90% at 0% 0%, rgba(233, 164, 76, .16), transparent 55%), var(--surface);
+}
+.p-fd-tag {
+  display: inline-block; margin: 0 0 1.1rem; padding: .3rem .8rem; border: 1px solid rgba(233, 164, 76, .55);
+  border-radius: 999px; font-size: .85rem; font-weight: 700; line-height: 1.3; color: var(--accent-bright);
+}
+.p-fd .h-intro { color: var(--text); }
+/* I tre passi: la cifra in ambra sopra il titolo, su tre colonne dagli 860 px. La cifra è decorativa: l'elenco
+   ordinato dice già il numero agli screen reader. Affiancati, i passi condividono le righe (subgrid): se un titolo va
+   a capo, i testi partono lo stesso alla stessa altezza. */
+.p-fd-steps { list-style: none; counter-reset: passo; margin: 2.25rem 0 0; padding: 0; display: grid; gap: 1.75rem 2rem; }
+@media (min-width: 860px) {
+  .p-fd-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .p-fd-steps li { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+}
+.p-fd-steps li { counter-increment: passo; padding-top: 1rem; border-top: 1px solid rgba(233, 164, 76, .4); }
+.p-fd-steps li::before {
+  content: counter(passo); content: counter(passo) / ""; display: block; margin-bottom: .6rem;
+  font-size: 2rem; font-weight: 800; font-stretch: 112%; line-height: 1; color: var(--accent);
+}
+.p-fd-steps h3 { margin: 0 0 .4rem; font-size: 1.15rem; font-weight: 700; font-stretch: 105%; line-height: 1.35; text-wrap: balance; }
+.p-fd-steps p { margin: 0; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+/* I vantaggi come in «Included», su due colonne: sono due. */
+.p-fd-keep { margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid var(--line-2); }
+.p-fd-keep > h3 { margin: 0; font-size: 1.15rem; font-weight: 700; font-stretch: 105%; line-height: 1.35; }
+.p-fd-perks { margin-top: 1.25rem; }
+@media (min-width: 860px) { .p-fd-perks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.p-fd-perks p, .p-fd-note { color: var(--text); }
+.p-fd-note { max-width: 62ch; margin: 1.5rem 0 0; line-height: 1.55; text-wrap: pretty; }
+/* La chiusura in una fascia col bordo ambra a sinistra, come un .callout più basso. */
+.p-fd-last {
+  margin: 2rem 0 0; padding: .9rem 1.15rem; border-left: 3px solid var(--accent); border-radius: 8px;
+  background: rgba(233, 164, 76, .08); line-height: 1.55; color: var(--text); text-wrap: pretty;
+}
+.p-fd-last strong { color: var(--accent-bright); }
+.p-fd-last .h-link { white-space: nowrap; }
