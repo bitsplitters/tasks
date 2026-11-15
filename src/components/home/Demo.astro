@@ -47,3 +47,9 @@ import ActivityScene from './ActivityScene.astro';
     <button type="button" class="btn-ghost dm-reset" data-k="reset" hidden>Start over</button>
   </div>
 </section>
+<script>
+  // Solo per provare i tooltip (Task 10): il Task 11 mette al suo posto avviaDemo, che li avvia da sé.
+  import { avviaTooltip } from './tooltip';
+  const demo = document.querySelector<HTMLElement>('[data-demo]');
+  if (demo) avviaTooltip(demo);
+</script>
