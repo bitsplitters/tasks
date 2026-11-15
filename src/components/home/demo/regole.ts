@@ -5,6 +5,7 @@
  * una domanda. Qui anche i tipi che le regole condividono coi testi (testi.ts) e con l'interfaccia.
  */
 import type { Lista, Pos, Stato, Task } from './modello.ts';
+import { elencoDeiTolti } from './testi.ts';
 
 /** Un testo del bot per chiave, con gli argomenti: lo compone `testo` di testi.ts. */
 export interface Testo {
@@ -55,8 +56,14 @@ function conTasks(stato: Stato, tasks: Task[]): Stato {
   return { ...stato, lista: { ...stato.lista, tasks } };
 }
 
-function fatto(stato: Stato): Esito {
-  return { tipo: 'fatto', stato };
+/** Lo stato col task `i` al posto di quello di prima. */
+function conTask(stato: Stato, i: number, task: Task): Stato {
+  return conTasks(stato, stato.lista.tasks.map((t, j) => (j === i ? task : t)));
+}
+
+/** Un esito riuscito; l'avviso, se c'è, accompagna lo stato nuovo. */
+function fatto(stato: Stato, avviso?: Testo): Esito {
+  return avviso ? { tipo: 'fatto', stato, avviso } : { tipo: 'fatto', stato };
 }
 
 function rifiuto(chiave: string): Esito {
@@ -180,4 +187,137 @@ export function eliminaTask(stato: Stato, pos: string): Esito {
 export function eliminaTaskConfermato(stato: Stato, pos: string): Stato {
   const p = stato.lista.tasks[indice(stato, pos)].pos;
   return conTasks(stato, statoDeiGruppi(senzaIlTask(stato.lista.tasks, p)));
+}
+
+/* 5b — Il testo del task. */
+
+/*
+ * I token che la modale del singolo task toglie dal testo, coi pattern del bot (Patterns): la data (DISCORD_TIMESTAMP),
+ * il promemoria (REMINDER_DATA), l'owner (OWNER_ENTITY) e il webhook (WEBHOOK_ASSOCIATION). Si impostano coi pulsanti.
+ * In Java `[\d[dhm]]` è l'unione delle due classi, cioè `[\ddhm]`.
+ */
+const DATA = /<t:(\d+)(?::([tTdDfFR]))?>/g;
+const PROMEMORIA = /\[([\ddhm]+?),([\ddhm]+?),(\d{1,50})\]/g;
+const OWNER = /<@(?:!?&?)?(\d{17,20})>:/g;
+const WEBHOOK = /\{\{wb=([^{}]*)\}\}/g;
+const TOKEN = [DATA, PROMEMORIA, OWNER, WEBHOOK];
+/** I token in un'unica alternanza, come TOKEN_UNITI: si trovano nell'ordine in cui compaiono. */
+const TOKEN_UNITI = new RegExp(TOKEN.map((r) => `(?:${r.source})`).join('|'), 'g');
+/** Un tag: la menzione di una persona o di un ruolo non seguita da «:», che ne farebbe l'owner (TAG_ENTITY). */
+const TAG = /<@(?:!?&?)?(\d{17,20})>(?!:)/g;
+/** Un promemoria in mesi, che non esiste più (REMINDER_DATA_IN_MONTHS). */
+const IN_MESI = /\[(?:[\ddhm]*M[\dMdhm]*,[\dMdhm]+?|[\ddhm]+?,[\ddhm]*M[\dMdhm]*),\d{1,50}\]/;
+/** Gli spazi di Java (`\s` senza Unicode), gli a capo di `\R` con gli spazi intorno, i bordi di String.trim. */
+const SPAZI = /[ \t\n\v\f\r]+/g;
+const A_CAPO = /[ \t\n\v\f\r]*(?:\r\n|[\n\v\f\r\u0085\u2028\u2029])[ \t\n\v\f\r]*/g;
+const BORDI = /^[\u0000- ]+|[\u0000- ]+$/g;
+
+/** StringUtil.removeExtraSpaces: i bordi tolti, ogni fila di spazi ridotta a uno. */
+function senzaSpaziInPiu(testo: string): string {
+  return testo.replace(BORDI, '').replace(SPAZI, ' ');
+}
+
+/** DataReplacer.senzaToken: ogni token diventa uno spazio, a giri, finché il testo non cambia più. */
+function senzaToken(testo: string): string {
+  let prima: string;
+  let adesso = testo;
+  do {
+    prima = adesso;
+    for (const t of TOKEN) adesso = adesso.replace(t, ' ');
+  } while (adesso !== prima);
+  return adesso;
+}
+
+/**
+ * Il testo che la modale del singolo task salva, come ModaleDelSingoloTask.prosa: senza i token dei pulsanti, ognuno
+ * al posto di uno spazio, su una riga sola, con gli spazi normalizzati. Due cose del bot la demo non le ha: i link ai
+ * canali accorciati in `<#id>` e i segnaposto delle emoji dei pulsanti.
+ */
+export function prosa(scritto: string): string {
+  return senzaSpaziInPiu(senzaToken(scritto).replace(A_CAPO, ' ')).trim();
+}
+
+/**
+ * I token che `prosa` toglie, una volta ciascuno, nell'ordine in cui compaiono (ModaleDelSingoloTask.tokenTolti):
+ * ogni giro li raccoglie, poi li sostituisce con uno spazio, così si trovano anche quelli che si formano togliendone
+ * un altro.
+ */
+export function tokenTolti(scritto: string): string[] {
+  const tolti = new Set<string>();
+  let testo = scritto;
+  for (let giro = testo.match(TOKEN_UNITI); giro; giro = testo.match(TOKEN_UNITI)) {
+    for (const t of giro) tolti.add(t.trim());
+    testo = testo.replace(TOKEN_UNITI, ' ');
+  }
+  return [...tolti];
+}
+
+/** I tag di un testo in forma canonica, `<@id>` o `<@&id>`, una volta ciascuno, nell'ordine (TagNelTesto.token). */
+function tokenDeiTag(testo: string): string[] {
+  return [...new Set([...testo.matchAll(TAG)].map((m) => (m[0].includes('&') ? `<@&${m[1]}>` : `<@${m[1]}>`)))];
+}
+
+/** I tag di un testo, nell'ordine in cui compaiono, senza doppioni (TagNelTesto.token, QuadroDellaLista.tag). */
+export function tagDelTesto(testo: string): Menzione[] {
+  return tokenDeiTag(testo).map((t) => ({ ruolo: t.startsWith('<@&'), id: t.replace(/\D/g, '') }));
+}
+
+/**
+ * Il testo coi tag nuovi in fondo, come TagContentEditor.replaceTags: ogni tag di prima lascia uno spazio, poi gli
+ * spazi si normalizzano. Un testo di soli tag, senza tag nuovi, resta vuoto: chi lo usa lo rifiuta.
+ */
+function conITag(testo: string, tag: string[]): string {
+  const senza = senzaSpaziInPiu(testo.replace(TAG, ' '));
+  return tag.length ? senzaSpaziInPiu(`${senza} ${tag.join(' ')}`) : senza;
+}
+
+/** Il testo del task come lo mostra il pannello dell'Activity: senza i tag (QuadroDellaLista.prosa). */
+export function prosaDelTask(task: Task): string {
+  return conITag(task.testo, []);
+}
+
+/** Il rifiuto di un testo che la lista non saprebbe rileggere (RegoleDelTesto): vuoto, o con un promemoria in mesi. */
+function rifiutoDelTesto(contenuto: string): string | null {
+  if (contenuto.trim() === '') return 'tasklist.modal.task.blank.error';
+  if (IN_MESI.test(contenuto)) return 'tasklist.modal.task.months.error';
+  return null;
+}
+
+/** L'avviso dei token tolti, se ce ne sono (TokenTolti.testo). */
+function avvisoDeiTolti(tolti: string[]): Testo | undefined {
+  if (tolti.length === 0) return undefined;
+  return { chiave: 'tasklist.modal.task.filtered.warning', argomenti: [elencoDeiTolti(tolti)] };
+}
+
+/**
+ * Il testo nuovo dalla modale del canale (TaskListMdlTask): la prosa di quello scritto, che porta anche i tag. Uguale
+ * a quello di prima non cambia niente; vuoto o con un promemoria in mesi non si salva. Owner, promemoria e webhook sono
+ * campi del task: restano. I token tolti li dice l'avviso, anche quando il testo non cambia.
+ */
+export function salvaTesto(stato: Stato, pos: string, scritto: string): Esito {
+  const i = indice(stato, pos);
+  const task = stato.lista.tasks[i];
+  const nuovo = prosa(scritto);
+  const avviso = avvisoDeiTolti(tokenTolti(scritto));
+  if (nuovo === prosa(task.testo)) return fatto(stato, avviso);
+  const no = rifiutoDelTesto(nuovo);
+  if (no) return rifiuto(no);
+  return fatto(conTask(stato, i, { ...task, testo: nuovo }), avviso);
+}
+
+/**
+ * Il testo nuovo dal pannello dell'Activity (PannelloDelTask.contenuto). Il campo ha la sola prosa: anche i tag scritti
+ * si tolgono, dopo gli altri token; l'avviso li elenca. I tag del task restano, in fondo al testo.
+ */
+export function salvaTestoActivity(stato: Stato, pos: string, scritto: string): Esito {
+  const i = indice(stato, pos);
+  const task = stato.lista.tasks[i];
+  const scritta = prosa(scritto);
+  const tolti = [...new Set([...tokenTolti(scritto), ...tokenDeiTag(scritta)])];
+  const pulita = conITag(scritta, []);
+  const no = rifiutoDelTesto(pulita);
+  if (no) return rifiuto(no);
+  const avviso = avvisoDeiTolti(tolti);
+  if (pulita === prosaDelTask(task)) return fatto(stato, avviso);
+  return fatto(conTask(stato, i, { ...task, testo: conITag(pulita, tokenDeiTag(task.testo)) }), avviso);
 }

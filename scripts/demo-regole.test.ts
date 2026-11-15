@@ -5,10 +5,11 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { MIA, posizione, statoIniziale } from '../src/components/home/demo/modello.ts';
+import { COACHES, LEO, MIA, posizione, statoIniziale } from '../src/components/home/demo/modello.ts';
 import type { Stato, Task } from '../src/components/home/demo/modello.ts';
 import {
-  avanzamento, eliminaTask, eliminaTaskConfermato, rinumera, spunta, statoDeiGruppi,
+  avanzamento, eliminaTask, eliminaTaskConfermato, prosa, prosaDelTask, rinumera, salvaTesto, salvaTestoActivity,
+  spunta, statoDeiGruppi, tagDelTesto, tokenTolti,
 } from '../src/components/home/demo/regole.ts';
 import type { Esito } from '../src/components/home/demo/regole.ts';
 
@@ -99,4 +100,77 @@ test("dopo l'eliminazione il gruppo segue i subtask che restano; l'ultimo task n
   assert.deepEqual(fatti(statoDi(eliminaTask(s, '1.2'))), ['1', '1.1']);
   assert.deepEqual(eliminaTask(conTasks([task(1, 0, 'a')]), '1'),
     { tipo: 'rifiuto', testo: { chiave: 'tasklist.slct.task.last.error' } });
+});
+
+// 5b — Il testo del task
+
+const LEO_TAG = '<@1181730456203947582>';
+const filtrati = (elenco: string) => ({ chiave: 'tasklist.modal.task.filtered.warning', argomenti: [elenco] });
+/** Lo stato iniziale col testo del task `i` cambiato. */
+function conTesto(i: number, testo: string, s: Stato = statoIniziale()): Stato {
+  return { ...s, lista: { ...s.lista, tasks: s.lista.tasks.map((t, j) => (j === i ? { ...t, testo } : t)) } };
+}
+
+test('la prosa: senza i token dei pulsanti, su una riga, con gli spazi normalizzati (ModaleDelSingoloTask)', () => {
+  assert.equal(prosa('  two\nlines  '), 'two lines');
+  assert.equal(prosa('a \r\n\t b\u2028c'), 'a b c');
+  assert.equal(prosa('Check <t:1794762840> now'), 'Check now');
+  assert.equal(prosa('Ask <@1181730456203947581>: soon'), 'Ask soon');
+  assert.equal(prosa('Ping {{wb=Staff alerts}} me'), 'Ping me');
+  assert.equal(prosa('[1d,0m,3] go'), 'go');
+  assert.equal(prosa('Compra{{wb=ci}}latte'), 'Compra latte');
+  assert.equal(prosa(`Hi ${LEO_TAG}`), `Hi ${LEO_TAG}`);
+  assert.equal(prosa('{{wb={{wb=x}} y}}'), '');
+});
+
+test('i token tolti: una volta ciascuno, nell\'ordine, anche quelli che si formano togliendone un altro', () => {
+  assert.deepEqual(tokenTolti('Check <t:1794762840> now'), ['<t:1794762840>']);
+  assert.deepEqual(tokenTolti('x <t:5> y <t:5> z <t:6>'), ['<t:5>', '<t:6>']);
+  assert.deepEqual(tokenTolti('Ask <@1181730456203947581>: soon'), ['<@1181730456203947581>:']);
+  assert.deepEqual(tokenTolti('{{wb=a}} [1d,0m,3] <t:5:F>'), ['{{wb=a}}', '[1d,0m,3]', '<t:5:F>']);
+  assert.deepEqual(tokenTolti('{{wb={{wb=x}} y}}'), ['{{wb=x}}', '{{wb=  y}}']);
+  assert.deepEqual(tokenTolti(`Hi ${LEO_TAG}`), []);
+});
+
+test('la modale del canale salva la prosa, coi tag scritti; owner e promemoria restano (TaskListMdlTask)', () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(salvaTesto(s0, '2', 'New text'), { tipo: 'fatto', stato: conTesto(1, 'New text') });
+  assert.deepEqual(salvaTesto(s0, '2', 'New <t:5> text'),
+    { tipo: 'fatto', stato: conTesto(1, 'New text'), avviso: filtrati('`<t:5>`') });
+  assert.deepEqual(salvaTesto(s0, '2', LEO_TAG), { tipo: 'fatto', stato: conTesto(1, LEO_TAG) });
+  assert.deepEqual(salvaTesto(s0, '3', 'VOD review'), { tipo: 'fatto', stato: conTesto(3, 'VOD review') });
+  // Uguale a prima: niente cambia, ma i token tolti si dicono lo stesso.
+  assert.deepEqual(salvaTesto(s0, '2', ' Lock the scrim block vs. Nova Collective <t:5>'),
+    { tipo: 'fatto', stato: s0, avviso: filtrati('`<t:5>`') });
+  assert.deepEqual(salvaTesto(s0, '2', '<t:5>'),
+    { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.task.blank.error' } });
+  assert.deepEqual(salvaTesto(s0, '2', 'Plan [1M,0m,0]'),
+    { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.task.months.error' } });
+  assert.deepEqual(s0, statoIniziale());
+});
+
+test("il pannello dell'Activity toglie anche i tag scritti; quelli del task restano in coda (PannelloDelTask)", () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(salvaTestoActivity(s0, '2', `New ${LEO_TAG}`),
+    { tipo: 'fatto', stato: conTesto(1, 'New'), avviso: filtrati(`\`${LEO_TAG}\``) });
+  const conTag = conTesto(1, `Lock the scrim block vs. Nova Collective ${LEO_TAG}`);
+  assert.deepEqual(salvaTestoActivity(conTag, '2', 'Other'), { tipo: 'fatto', stato: conTesto(1, `Other ${LEO_TAG}`) });
+  assert.deepEqual(salvaTestoActivity(conTag, '2', 'Lock the scrim block vs. Nova Collective'),
+    { tipo: 'fatto', stato: conTag });
+  assert.deepEqual(salvaTestoActivity(s0, '2', 'X <@&1181730456203947590> <t:5> <@!1181730456203947582>'), {
+    tipo: 'fatto', stato: conTesto(1, 'X'),
+    avviso: filtrati(`\`<t:5>\`, \`<@&1181730456203947590>\`, \`${LEO_TAG}\``),
+  });
+  const vuoto = { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.task.blank.error' } };
+  assert.deepEqual(salvaTestoActivity(s0, '2', '<t:5>'), vuoto);
+  assert.deepEqual(salvaTestoActivity(s0, '2', LEO_TAG), vuoto);
+});
+
+test("i tag del testo: nell'ordine, senza doppioni, senza l'owner; la prosa del task senza tag", () => {
+  assert.deepEqual(tagDelTesto('a <@&1181730456203947590> <@1181730456203947581>: b <@&1181730456203947590>'),
+    [{ ruolo: true, id: COACHES }]);
+  assert.deepEqual(tagDelTesto(`<@!1181730456203947582> <@&1181730456203947590> ${LEO_TAG}`),
+    [{ ruolo: false, id: LEO }, { ruolo: true, id: COACHES }]);
+  const task = { pos: { main: 1, sub: 0 }, testo: `Lock ${LEO_TAG} the  block <@&1181730456203947590>`, fatto: false };
+  assert.equal(prosaDelTask(task), 'Lock the block');
 });

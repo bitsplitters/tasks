@@ -186,6 +186,9 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.modal.task.blank.error':
     'The task was left without text, so the change was not saved. Reminders, owners and webhooks don\'t count as ' +
     'text: you set them with their buttons.',
+  'tasklist.modal.task.months.error':
+    'The task text contains a reminder in months (`M`), which aren\'t accepted, so the change was not saved. A ' +
+    'task\'s reminder is set with its button, in days, hours or minutes.',
   'tasklist.modal.task.filtered.warning':
     'I removed {0} from the task text.\n\nThis form only changes the task\'s content: owners, tags, reminders and ' +
     'webhooks have their own buttons.',
