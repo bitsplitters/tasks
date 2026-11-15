@@ -1,16 +1,17 @@
 /*
- * La home del sito (spec docs/superpowers/specs/2026-11-14-home-del-sito-activity-design.md, nel repo
- * team-tasks-manager). La importa solo index.astro, dopo vetrina.css: carattere, titoli delle sezioni, il loro
- * margine, i link in ambra e il confronto vengono da lì, perché li usa anche la pagina dei piani.
+ * La home del sito (spec docs/superpowers/specs/2026-11-15-home-video-e-demo-design.md, nel repo team-tasks-manager;
+ * la direzione visiva, colori e Mona Sans, è quella della spec del 2026-11-14). La importa solo index.astro, dopo
+ * vetrina.css: carattere, titoli delle sezioni, il loro margine, i link in ambra e il confronto vengono da lì, perché
+ * li usa anche la pagina dei piani. Le due scene, canale e Activity, hanno il loro foglio: components/home/scene.css.
  *
- * Ogni regola sta sotto `.home` o usa i prefissi `h-` (sezioni) e `sc-` (scena), così non tocca le classi
- * condivise di global.css. Le sezioni usano `padding-block`, mai lo shorthand `padding`: azzererebbe il
- * margine laterale di `.wrap`.
+ * Ogni regola sta sotto `.home` o usa i prefissi `h-` (sezioni), `hv-` (video), `dm-` (demo) e `tt` (tooltip), così
+ * non tocca le classi condivise di global.css. Le sezioni usano `padding-block`, mai lo shorthand `padding`:
+ * azzererebbe il margine laterale di `.wrap`.
  */
 
 /* ── Apertura ─────────────────────────────────────────────────────────────────────────────────────────── */
-/* Più larga del resto (1240 px contro 1120): la scena ha bisogno di spazio. Un solo bagliore ambra, tenue,
-   dietro la scena; isolation crea il contesto in cui lo z-index negativo resta sopra il fondo della pagina. */
+/* Più larga del resto (1240 px contro 1120): i video hanno bisogno di spazio. Un solo bagliore ambra, tenue,
+   dietro i video; isolation crea il contesto in cui lo z-index negativo resta sopra il fondo della pagina. */
 .h-hero { position: relative; isolation: isolate; padding-block: clamp(3rem, 9vh, 6rem) clamp(2.5rem, 7vh, 5rem); }
 .h-hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
@@ -29,7 +30,7 @@
   background: #5865f2; color: #fff; font-size: .62rem; font-weight: 700;
   padding: .12rem .32rem; border-radius: 3px; letter-spacing: .04em;
 }
-/* In colonna unica il titolo si misura sulla pagina; affiancato alla scena, sulla sua colonna (5/12). */
+/* In colonna unica il titolo si misura sulla pagina; affiancato ai video, sulla sua colonna (5/12). */
 .h-hero h1 {
   font-size: clamp(2.4rem, 7.4vw, 3.6rem); font-weight: 800; font-stretch: 112%;
   line-height: 1.02; letter-spacing: -0.03em; margin: 0; text-wrap: balance;
@@ -45,261 +46,181 @@
   .h-hero h1 { font-size: clamp(2.6rem, 3.7vw, 3.4rem); }
 }
 
-/* ── Scena ────────────────────────────────────────────────────────────────────────────────────────────── */
-/* Le misure interne sono in em, e l'em della scena dipende dalla sua larghezza (2.5cqi = 40em di larghezza):
-   tutto scala insieme dal computer al telefono. L'aspect-ratio fisso tiene ferma la pagina mentre si anima. */
-.sc-fig { margin: 0; min-width: 0; container: scene / inline-size; }
-.scene {
-  position: relative; overflow: hidden;
-  font-family: var(--sans); font-stretch: normal; font-size: 2.5cqi; line-height: 1.35;
-  aspect-ratio: 40 / 32;
-  background: #1a1a1e; color: #efeff1;
-  border: 1px solid var(--line-2); border-radius: 16px;
-  box-shadow: 0 2em 4em -1.5em rgba(0, 0, 0, .7);
+/* ── I tab, dei video e della demo ────────────────────────────────────────────────────────────────────── */
+/* Pillole: quella scelta è piena d'ambra. Il focus da tastiera è quello di global.css (il contorno ambra). */
+.hv-tabs, .dm-tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; }
+.hv-tab, .dm-tab {
+  display: inline-flex; align-items: center; gap: .55rem; min-height: 2.5rem; padding: .4rem 1rem;
+  border: 1px solid var(--line-2); border-radius: 999px; background: transparent; color: var(--muted);
+  font: inherit; font-size: .95rem; font-weight: 600; cursor: pointer;
+  transition: border-color .18s ease, color .18s ease, background-color .18s ease;
 }
-.scene img { display: block; }
-.scene p { margin: 0; }
-.scene.sc-noanim, .scene.sc-noanim * { transition: none !important; animation: none !important; }
+.hv-tab:hover, .dm-tab:hover { border-color: var(--muted); color: var(--text); }
+.hv-tab[aria-selected="true"], .dm-tab[aria-selected="true"] {
+  border-color: var(--accent); background: var(--accent); color: var(--ink);
+}
+/* «New in 2.0» sul tab scelto: sul fondo ambra prende il colore del testo. */
+.dm-tab[aria-selected="true"] .h-new { color: var(--ink); border-color: rgba(10, 14, 22, .45); }
 
-/* il canale */
-.sc-channel { position: absolute; inset: 0; }
-.sc-chhead {
-  height: 2.6em; display: flex; align-items: center; gap: .4em; padding: 0 1.2em;
-  border-bottom: 1px solid rgba(255, 255, 255, .06); font-weight: 600; color: #f2f3f5;
+/* ── I video ──────────────────────────────────────────────────────────────────────────────────────────── */
+.hv { margin: 0; min-width: 0; }
+/* 3:2 come il video largo; 3:4 sotto i 600 px di finestra, come lo stretto (la soglia delle sorgenti, in
+   HeroVideo.astro e hero-video.ts). Il video, quando parte, copre l'immagine ferma. */
+.hv-box {
+  position: relative; overflow: hidden; aspect-ratio: 3 / 2;
+  background: #1a1a1e; border: 1px solid var(--line-2); border-radius: 16px;
+  box-shadow: 0 24px 48px -18px rgba(0, 0, 0, .7);
 }
-.sc-hash { color: #80848e; font-size: 1.15em; font-weight: 500; }
-.sc-msg { display: flex; gap: .9em; padding: 1em 1.2em; }
-.sc-avatar { width: 2.5em; height: 2.5em; border-radius: 50%; flex: none; }
-.sc-msgbody { min-width: 0; flex: 1; }
-.sc-head { display: flex; align-items: baseline; gap: .45em; margin-bottom: .35em; }
-.sc-name { font-weight: 600; color: #f2f3f5; }
-.sc-app { background: #5865f2; color: #fff; font-size: .62em; font-weight: 700; padding: .1em .32em; border-radius: .25em; letter-spacing: .04em; }
-.sc-time { color: #949ba4; font-size: .75em; }
-.sc-input {
-  position: absolute; left: 1.2em; right: 1.2em; bottom: 1em; height: 2.4em;
-  display: flex; align-items: center; padding: 0 1em; border-radius: .5em;
-  background: #242429; color: #80848e; font-size: .9em;
-}
-
-/* la lista: la stessa nel canale e nell'Activity, coi colori della pagina dell'Activity (tokens.css) */
-.sc-embed { background: #242429; border-left: .25em solid #1ec786; border-radius: .3em; padding: .75em 1em .85em; max-width: 26em; }
-.sc-title { font-weight: 700; font-size: 1.05em; color: #fbfbfb; margin: 0 0 .45em !important; }
-.sc-tasks { list-style: none; margin: 0; padding: 0; font-size: .85em; }
-.sc-task { border-radius: .25em; transition: background-color .6s ease; }
-.sc-task.is-flash { background-color: rgba(88, 101, 242, .2); transition-duration: .1s; }
-/* Colonne di larghezza fissa: le righe dello stesso task (promemoria e casella) restano allineate. */
-.sc-line { display: grid; grid-template-columns: 1.9em 1.25em minmax(0, 1fr); column-gap: .5em; align-items: center; padding: .14em 0; }
-.sc-n { font-family: var(--mono); font-size: .9em; line-height: 1.5; color: #b5bac1; background: #2b2b31; border-radius: .25em; text-align: center; }
-.sc-cb { position: relative; width: 1.2em; height: 1.2em; }
-.sc-cb img { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .2s ease; }
-.sc-on { opacity: 0; }
-.sc-txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #dbdee1; transition: color .2s ease; }
-.sc-task.is-done .sc-on, .is-ticked .sc-t2 .sc-on { opacity: 1; }
-.sc-task.is-done .sc-off, .is-ticked .sc-t2 .sc-off { opacity: 0; }
-.sc-task.is-done .sc-txt, .is-ticked .sc-t2 .sc-txt { color: #949ba4; }
-.sc-bell { width: 1.2em; height: 1.2em; }
-.sc-meta { color: #949ba4; }
-.sc-owner, .sc-colon { display: none; }
-.sc-owner { background: #303359; color: #a9bbff; border-radius: .2em; padding: 0 .2em; }
-.has-owner .sc-owner, .has-owner .sc-colon { display: inline; }
-/* Col promemoria il numero sale sulla sua riga, e quella della casella prende lo spaziatore. */
-.has-reminder .sc-n3 { visibility: hidden; }
-
-/* Si apre in altezza: il promemoria sopra il task 3, il pannello sotto. */
-.sc-reveal { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
-.sc-reveal > div { min-height: 0; overflow: hidden; }
-.has-reminder .sc-reveal-rem, .is-panel .sc-reveal-panel { grid-template-rows: 1fr; }
-
-/* sotto la lista nel canale */
-.sc-sel {
-  margin-top: .55em; max-width: 26em; height: 2.1em; display: flex; align-items: center; justify-content: space-between;
-  padding: 0 .8em; background: #17171a; border: 1px solid #35353b; border-radius: .4em; color: #abacb2; font-size: .85em;
-}
-.sc-row { display: flex; gap: .4em; margin-top: .45em; }
-.sc-b, .sc-pb {
-  display: grid; place-items: center; width: 2.9em; height: 1.95em; border-radius: .4em; background: #5865f2;
-  transition: background-color .15s ease, transform .12s ease, filter .12s ease;
-}
-.sc-b img, .sc-pb img { width: 1.15em; height: 1.15em; }
-.sc-b-grey { background: #29292d; }
-.sc-b-raised, .sc-pb { background: #4e5058; }
-.sc-join-wrap { display: none; margin-top: .55em; }
-.is-open .sc-ctrls { display: none; }
-.is-open .sc-join-wrap { display: block; }
-.sc-joinnote { display: flex; align-items: center; gap: .4em; margin-top: .45em !important; color: #abacb2; font-size: .8em; font-style: italic; }
-.sc-joinnote img { width: 1.2em; height: 1.2em; }
-
-/* la finestra dell'Activity: si apre dal rettangolo del pulsante (--ft/--fr/--fb/--fl, li calcola scene.ts) */
-/* Sta sotto l'intestazione del canale (2.6em): a metà, il «#» sbucava sopra il bordo della finestra. */
-.sc-shade { position: absolute; inset: 0; background: rgba(0, 0, 0, .55); opacity: 0; pointer-events: none; transition: opacity .45s ease; }
-.is-open .sc-shade { opacity: 1; }
-.sc-window {
-  position: absolute; inset: 3em 1.4em .8em; display: flex; flex-direction: column; overflow: hidden;
-  background: #1a1a1e; border: 1px solid #35353b; border-radius: .9em; box-shadow: 0 1.5em 3em rgba(0, 0, 0, .55);
-  clip-path: inset(var(--ft, 45%) var(--fr, 45%) var(--fb, 45%) var(--fl, 45%) round .5em);
-  opacity: 0; visibility: hidden;
-  transition: clip-path .45s cubic-bezier(.2, .7, .2, 1), opacity .2s ease, visibility 0s linear .45s;
-}
-.is-open .sc-window {
-  clip-path: inset(0 round .9em); opacity: 1; visibility: visible;
-  transition: clip-path .45s cubic-bezier(.2, .7, .2, 1), opacity .15s ease, visibility 0s;
-}
-.sc-winbar {
-  flex: none; height: 2.1em; display: flex; align-items: center; gap: .5em; padding: 0 .9em;
-  background: #141416; border-bottom: 1px solid #2b2b31; font-size: .85em; font-weight: 600;
-}
-.sc-winbar img { width: 1.4em; height: 1.4em; border-radius: 50%; }
-.sc-winx { margin-left: auto; color: #80848e; font-weight: 400; font-size: 1.2em; }
-.sc-winbody { padding: .8em 1.1em; min-height: 0; }
-.sc-firstrow { display: flex; gap: .4em; }
-.sc-firstrow .sc-b { width: 2.6em; height: 1.75em; }
-.sc-winbody .sc-embed { margin-top: .7em; max-width: none; }
-
-/* il pannello del task */
-.sc-panel { margin: .3em 0 .4em; padding: .65em .75em; background: #2b2b31; border: 1px solid #3b3b42; border-radius: .5em; font-size: .92em; }
-.sc-phrase { display: flex; justify-content: space-between; color: #abacb2; margin-bottom: .5em; }
-.sc-prow { display: flex; gap: .35em; }
-.sc-pb { width: 2.6em; height: 1.8em; }
-.tab-owner [data-k="p-owner"], .tab-rem [data-k="p-rem"] { background: #5865f2; }
-.sc-area { position: relative; height: 6.6em; margin: .55em 0; }
-.sc-view {
-  position: absolute; inset: 0; display: flex; flex-direction: column; gap: .35em;
-  opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility 0s linear .2s;
-}
-.tab-owner .sc-view-owner, .tab-rem .sc-view-rem { opacity: 1; visibility: visible; transition: opacity .2s ease, visibility 0s; }
-.sc-field {
-  display: flex; align-items: center; justify-content: space-between; gap: .6em; height: 1.9em; padding: 0 .65em;
-  background: #17171a; border: 1px solid #35353b; border-radius: .35em;
-}
-.sc-search { justify-content: flex-start; color: #80848e; }
-.sc-search svg { width: 1em; height: 1em; }
-.sc-person { display: flex; align-items: center; gap: .5em; height: 1.8em; padding: 0 .5em; border-radius: .35em; transition: background-color .15s ease; }
-.sc-av { display: grid; place-items: center; width: 1.35em; height: 1.35em; border-radius: 50%; background: var(--av); color: #fff; font-size: .8em; font-weight: 700; }
-.sc-tick { margin-left: auto; opacity: 0; transition: opacity .15s ease; }
-.is-picked [data-k="mia"] { background: rgba(88, 101, 242, .16); }
-.is-picked [data-k="mia"] .sc-tick { opacity: 1; }
-.sc-fields { display: grid; grid-template-columns: 1fr 1fr; gap: .35em; }
-.sc-lab { color: #abacb2; font-size: .9em; }
-/* Date e Time «si scrivono»: il valore si scopre da sinistra a scatti. Il fuso no: lo propone il dispositivo. */
-.sc-val { clip-path: inset(0 100% 0 0); transition: clip-path .5s steps(12, end); }
-.sc-val-time { transition-delay: .5s; }
-.is-filled .sc-val { clip-path: inset(0); }
-.sc-device { color: #abacb2; font-size: .85em; }
-/* Un fuso come America/Argentina/Buenos_Aires non deve uscire dal campo. */
-.sc-zone, .sc-device { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sc-pfoot { display: flex; justify-content: space-between; }
-.sc-btn {
-  display: inline-grid; place-items: center; height: 1.85em; padding: 0 .9em; border-radius: .35em;
-  font-weight: 600; color: #fff; background: #4e5058; transition: opacity .15s ease, filter .12s ease, transform .12s ease;
-}
-.sc-btn-blue { background: #5865f2; }
-.sc-save { opacity: .45; }
-.can-save .sc-save { opacity: 1; }
-
-/* il gesto: il cursore, il tocco, il pulsante premuto */
-.scene .is-press { filter: brightness(.8); transform: scale(.96); }
-.scene .sc-b-act.is-press { background: #4752c4; filter: none; }
-.sc-cursor {
-  position: absolute; left: 0; top: 0; z-index: 5; width: 1.5em; height: 1.5em; pointer-events: none; opacity: 0;
-  filter: drop-shadow(0 .1em .2em rgba(0, 0, 0, .5));
-  transform: translate(var(--cx, 34em), var(--cy, 28em));
-  transition: transform .5s cubic-bezier(.4, 0, .2, 1), opacity .3s ease;
-}
-.scene.is-playing .sc-cursor { opacity: 1; }
-.sc-tap {
-  position: absolute; left: -1.1em; top: -1.1em; z-index: 4; width: 2.2em; height: 2.2em; border-radius: 50%;
-  border: .15em solid rgba(255, 255, 255, .75); opacity: 0; pointer-events: none;
-  transform: translate(var(--cx, 34em), var(--cy, 28em));
-}
-.sc-tap.is-on { animation: sc-tap .45s ease-out; }
-@keyframes sc-tap {
-  from { opacity: .85; transform: translate(var(--cx), var(--cy)) scale(.3); }
-  to { opacity: 0; transform: translate(var(--cx), var(--cy)) scale(1.4); }
-}
-
-/* Sotto i 480 px di scena la finestra prende tutto lo spazio, e l'em cresce (32em di larghezza). */
-@container scene (max-width: 479px) {
-  .scene { font-size: 3.125cqi; aspect-ratio: 1 / 1; }
-  .sc-window { inset: 0; border: 0; border-radius: 0; }
-  .is-open .sc-window { clip-path: inset(0); }
-}
-
-/* le tre tappe e il comando */
-.sc-cap { margin-top: 1.1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-/* Le tappe prendono lo spazio che resta e vanno a capo fra loro: il comando resta sulla stessa riga, a destra. */
-.sc-steps {
-  list-style: none; counter-reset: tappa; display: flex; flex-wrap: wrap; flex: 1 1 14rem; min-width: 0;
+.hv-still img, .hv-vid { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.hv-vid[hidden] { display: none; }
+@media (max-width: 599px) { .hv-box { aspect-ratio: 3 / 4; } }
+/* i tre passi e il comando */
+.hv-cap { margin-top: 1.1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+/* I passi prendono lo spazio che resta e vanno a capo fra loro: il comando resta sulla stessa riga, a destra. */
+.hv-steps {
+  list-style: none; counter-reset: passo; display: flex; flex-wrap: wrap; flex: 1 1 14rem; min-width: 0;
   gap: .5rem 1rem; margin: 0; padding: 0; font-size: .9rem;
 }
-.sc-steps li { counter-increment: tappa; display: flex; align-items: center; gap: .5rem; color: var(--muted); transition: color .3s ease; }
-.sc-steps li::before {
-  content: counter(tappa); display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+.hv-steps li { counter-increment: passo; display: flex; align-items: center; gap: .5rem; color: var(--muted); transition: color .3s ease; }
+.hv-steps li::before {
+  content: counter(passo); display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
   border: 1px solid var(--line-2); font-size: .8rem; font-weight: 700;
   transition: background-color .3s ease, border-color .3s ease, color .3s ease;
 }
-.sc-steps li.is-lit { color: var(--text); }
-.sc-steps li.is-lit::before { background: var(--accent); border-color: var(--accent); color: var(--ink); }
-.sc-ctl {
+.hv-steps li.is-lit { color: var(--text); }
+.hv-steps li.is-lit::before { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.hv-ctl {
   flex: none; width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: 50%;
   border: 1px solid var(--line-2); background: var(--surface); color: var(--text); cursor: pointer;
   transition: border-color .18s ease, color .18s ease;
 }
-.sc-ctl:hover { border-color: var(--accent); color: var(--accent); }
-.sc-ctl[hidden] { display: none; }
-.sc-i { width: 1rem; height: 1rem; display: none; }
-.sc-ctl[data-mode="playing"] .sc-i-pause,
-.sc-ctl[data-mode="paused"] .sc-i-play,
-.sc-ctl[data-mode="static"] .sc-i-play,
-.sc-ctl[data-mode="done"] .sc-i-replay { display: block; }
+.hv-ctl:hover { border-color: var(--accent); color: var(--accent); }
+.hv-ctl[hidden] { display: none; }
+.hv-i { width: 1rem; height: 1rem; display: none; }
+.hv-ctl[data-mode="playing"] .hv-i-pause, .hv-ctl[data-mode="paused"] .hv-i-play { display: block; }
+
+/* ── Il problema ──────────────────────────────────────────────────────────────────────────────────────── */
+.h-problem .h-intro { max-width: 62ch; }
+/* La risposta, in chiaro e col filo ambra: è la promessa su cui si regge il resto della pagina. */
+.h-why {
+  max-width: 62ch; margin: 1.6rem 0 0; padding-left: 1.1rem; border-left: 2px solid var(--accent);
+  font-size: 1.075rem; line-height: 1.65; color: var(--text);
+}
 
 /* ── I tre punti di forza ─────────────────────────────────────────────────────────────────────────────── */
-.h-pillars { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.2rem; margin-top: 2.5rem; }
-.h-pillar { border-top: 1px solid var(--line-2); padding-top: 1.4rem; }
+.h-pcards { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.4rem; }
 /* La parola larga e pesante è la forza della fascia: wdth 125, peso 850. */
-.h-pillar h3 {
-  font-size: clamp(1.9rem, 3.6vw, 2.75rem); font-weight: 850; font-stretch: 125%;
-  line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 .9rem; text-wrap: balance;
+.h-pcard h3 {
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem); font-weight: 850; font-stretch: 125%;
+  line-height: 1.05; letter-spacing: -0.02em; margin: 1.3rem 0 .7rem; text-wrap: balance;
 }
-.h-pillar p { font-size: 1.125rem; line-height: 1.6; color: var(--muted); margin: 0; max-width: 36ch; }
-.h-pillar .h-link { display: inline-block; margin-top: .9rem; }
-.h-feats { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
-.h-feats li { display: flex; gap: .9rem; align-items: flex-start; }
-.h-feats img { width: 30px; height: 30px; flex: none; object-fit: contain; margin-top: .15rem; }
-.h-feats h3 { font-size: 1.05rem; font-weight: 700; margin: 0 0 .35rem; }
-.h-feats p { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.55; max-width: 62ch; }
+.h-pcard p { margin: 0; color: var(--muted); font-size: 1.075rem; line-height: 1.6; max-width: 40ch; }
+.h-pcard .h-link { display: inline-block; margin-top: .9rem; }
 @media (min-width: 860px) {
-  .h-pillars, .h-feats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); }
+  .h-pcards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); }
 }
+/* Le immagini: pezzi d'interfaccia di Discord, fermi, col carattere di sistema come le scene. */
+.h-art {
+  position: relative; display: grid; place-items: center; align-content: center; gap: 18px;
+  height: 180px; overflow: hidden; padding: 0 16px;
+  background: #1a1a1e; border: 1px solid var(--line); border-radius: 14px;
+  font-family: var(--sans); font-stretch: normal; color: #dbdee1;
+}
+/* Simple to use: il campo del messaggio col comando, sotto un pulsante di Discord una volta e mezza, col cursore. */
+.h-art-cmd {
+  display: flex; align-items: center; width: min(100%, 260px); height: 44px; padding: 0 12px;
+  border-radius: 8px; background: #242429;
+}
+.h-art-chip { padding: 2px 8px; border-radius: 4px; background: rgba(88, 101, 242, .3); color: #c9cdfb; font-size: 15px; font-weight: 500; }
+.h-art-btn { position: relative; display: grid; place-items: center; width: 87px; height: 45px; border-radius: 12px; background: #5865f2; }
+.h-art-btn img { width: 30px; height: 30px; object-fit: contain; }
+.h-art-btn svg {
+  position: absolute; left: 58%; top: 52%; width: 30px; height: 30px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .5));
+}
+/* Multilanguage: tre titoli della lista a ventaglio, l'inglese davanti. */
+.h-art-lang { display: block; }
+.h-art-t {
+  position: absolute; left: 50%; top: 50%; max-width: calc(100% - 40px); padding: 10px 14px;
+  border-left: 4px solid #1ec786; border-radius: 6px; background: #242429; box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
+  font-size: 16px; font-weight: 700; color: #fbfbfb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.h-art-en { z-index: 3; transform: translate(-50%, -50%) translateY(26px); }
+.h-art-it { z-index: 2; opacity: .7; transform: translate(-50%, -50%) translateY(-6px) rotate(-4deg); }
+.h-art-de { z-index: 1; opacity: .45; transform: translate(-50%, -50%) translateY(-36px) rotate(3deg); }
+/* Two ways to work: due tessere uguali, il canale grigio e l'Activity blu, coi nomi sotto. */
+.h-art-ways { grid-auto-flow: column; gap: 32px; }
+.h-art-tile { display: grid; justify-items: center; gap: 10px; }
+.h-art-ic { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 20px; }
+.h-art-hash { background: #4e5058; color: #fff; font-size: 44px; font-weight: 500; line-height: 1; }
+.h-art-app { background: #5865f2; }
+.h-art-app img { width: 40px; height: 40px; object-fit: contain; }
+.h-art-name { font-size: 14px; font-weight: 600; color: #dbdee1; }
 
-/* ── Canale e Activity ────────────────────────────────────────────────────────────────────────────────── */
-#two-ways { scroll-margin-top: 5rem; }
-.h-modes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2rem; margin-top: 2rem; }
-.h-mode { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: clamp(1.4rem, 3vw, 2rem); }
-.h-mode--act { border-color: rgba(233, 164, 76, .38); }
-.h-mode-ic { display: inline-grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 8px; margin-bottom: 1rem; }
-/* Il canale in un tondo grigio, l'Activity col suo pulsante blu (spec, §3.3). */
-.h-mode-ic--channel { border-radius: 50%; background: #4e5058; color: #fff; font-family: var(--sans); font-size: 1.35rem; font-weight: 600; }
-.h-mode-ic--act { background: #5865f2; }
-.h-mode-ic--act img { width: 24px; height: 24px; }
-.h-mode h3 {
-  display: flex; align-items: center; flex-wrap: wrap; gap: .6rem;
-  font-size: 1.35rem; font-weight: 750; font-stretch: 106%; margin: 0 0 .6rem;
-}
+/* ── Le sei funzionalità ──────────────────────────────────────────────────────────────────────────────── */
+.h-feats { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.8rem 2rem; }
+.h-feats li { display: flex; gap: 1rem; align-items: flex-start; }
+.h-feats img { width: 32px; height: 32px; flex: none; object-fit: contain; margin-top: .1rem; }
+.h-feats h3 { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; margin: 0 0 .35rem; font-size: 1.1rem; font-weight: 700; }
+.h-feats p { margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.55; max-width: 48ch; }
+@media (min-width: 640px) { .h-feats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 960px) { .h-feats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* Le etichette: «New in 2.0» sul tab della demo, «Premium» su Webhooks (un link ai piani). */
 .h-new {
-  font-size: .78rem; font-weight: 650; font-stretch: 100%; color: var(--accent);
+  font-size: .78rem; font-weight: 650; font-stretch: 100%; line-height: 1.4; color: var(--accent);
   border: 1px solid rgba(233, 164, 76, .5); border-radius: 999px; padding: .1rem .6rem;
 }
-.h-mode p { margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.6; max-width: 62ch; }
-.h-mode .h-link { display: inline-block; margin-top: 1rem; }
-@media (min-width: 760px) {
-  .h-modes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
-}
+a.h-premium { text-decoration: none; transition: background-color .18s ease, color .18s ease; }
+a.h-premium:hover { background: var(--accent); color: var(--ink); }
 
-/* ── Il resto di oggi ─────────────────────────────────────────────────────────────────────────────────── */
-/* section.block (global.css) batte .wrap e ne azzera il margine laterale: sulla home lo si rimette. */
-.home section.block { padding: clamp(3rem, 9vh, 6rem) clamp(1.25rem, 5vw, 2.5rem); }
-/* Niente maiuscole spaziate in mono: le etichette della pulsantiera in Mona Sans. Il titolo del riquadro è in
-   vetrina.css. */
-.home .board-lab { font-family: var(--display); font-size: .85rem; text-transform: none; letter-spacing: 0; }
-/* Il messaggio di «Try it» è Discord: il carattere di sistema, come la scena. */
-.home .dc-demo { font-family: var(--sans); }
+/* ── La demo ──────────────────────────────────────────────────────────────────────────────────────────── */
+#two-ways { scroll-margin-top: 5rem; }
+.h-touch { display: none; }
+@media (hover: none) {
+  .h-hover { display: none; }
+  .h-touch { display: inline; }
+}
+/* Al massimo 847 px, la misura vera della scena (scene.css): sul computer la demo è Discord a grandezza naturale. */
+.dm { max-width: 847px; margin-top: 2rem; }
+.dm-say { margin: 0 0 1rem; color: var(--muted); font-size: 1.05rem; line-height: 1.6; max-width: 62ch; }
+.dm-say strong { color: var(--text); font-weight: 650; }
+.dm-reset { margin-top: 1.2rem; background: transparent; cursor: pointer; }
+.dm-reset[hidden] { display: none; }
+/* global.css arrotonda a 4 px ogni pulsante col focus: nelle scene della demo restano gli angoli di Discord. È
+   l'unica regola di questo foglio sulle classi delle scene. */
+.dm .scene button:focus-visible { border-radius: calc(8 * var(--u)); }
+.dm .scene :is(.sc-acb, .sc-atext):focus-visible { border-radius: calc(4 * var(--u)); }
+/* Il fumetto del canale: lo scuro dei tooltip di Discord, accanto al task scelto (lo posiziona demo.ts). */
+.dm-bubble {
+  position: absolute; z-index: 10; left: 0; top: 0; max-width: min(300px, calc(100% - 24px)); margin: 0;
+  padding: 8px 12px; border-radius: 8px; background: #111214; color: #f2f3f5;
+  font-family: var(--sans); font-size: 14px; font-weight: 500; line-height: 1.35;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, .4); pointer-events: none;
+}
+.dm-bubble:empty { opacity: 0; }
+
+/* ── La chiamata finale ───────────────────────────────────────────────────────────────────────────────── */
+.h-final { text-align: center; }
+.h-final .h-intro { margin: 0 auto 2rem; }
+.h-final .cta-row { justify-content: center; }
+
+/* ── I tooltip della demo (tooltip.ts) ────────────────────────────────────────────────────────────────── */
+/* Il fumetto scuro di Discord con la freccia: il nome in grassetto, cosa fa, la nota in grigio. Testo chiaro su
+   #111214: 17:1 il bianco, 9,6:1 il grigio, sopra il 7:1 della spec (§9). */
+.tt {
+  position: fixed; z-index: 100; left: 0; top: 0; max-width: 260px; padding: 8px 12px; border-radius: 8px;
+  background: #111214; color: #f2f3f5; font-family: var(--sans); font-size: 14px; line-height: 1.35;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, .45); pointer-events: none;
+}
+.tt[hidden] { display: none; }
+.tt-name { display: block; font-weight: 700; }
+.tt-text { display: block; margin-top: 2px; }
+.tt-note { display: block; margin-top: 4px; color: #b5bac1; }
+/* Senza nota (i pulsanti della prima riga), la riga sparisce: display: block vincerebbe su hidden. */
+.tt-note:empty { display: none; }
+.tt::after {
+  content: ""; position: absolute; left: var(--ax, 50%); width: 10px; height: 10px; background: #111214;
+  transform: translateX(-50%) rotate(45deg);
+}
+.tt[data-side="top"]::after { bottom: -5px; }
+.tt[data-side="bottom"]::after { top: -5px; }

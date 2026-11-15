@@ -1,0 +1,70 @@
+---
+/*
+ * I video in apertura (spec 2026-11-15-home-video-e-demo-design.md, §4.6 e §4.7, nel repo team-tasks-manager): due
+ * tab, «In the channel» e «In the Activity», ognuno col suo video e l'immagine ferma dell'ultimo fotogramma, alle
+ * due misure (larga 1440 × 960; stretta 780 × 1040, sotto i 600 px di finestra). hero-video.ts sceglie la sorgente,
+ * fa partire il canale quando il riquadro si vede e la pagina ha finito di caricare, passa da solo all'Activity e
+ * torna, accende i passi e muove il comando. Senza JavaScript resta l'immagine ferma del canale, coi passi accesi.
+ *
+ * I video sono decorativi (aria-hidden): per gli screen reader parlano i tab e la frase nascosta di ogni pannello.
+ */
+const VIDEO = [
+  {
+    k: 'channel',
+    tab: 'In the channel',
+    frase:
+      'Video: a Team Tasks Manager list in a Discord channel. A task is ticked from the menu under the list, then ' +
+      'another gets an owner and a reminder.',
+  },
+  {
+    k: 'activity',
+    tab: 'In the Activity',
+    frase:
+      'Video: the Activity button opens the list in a window inside Discord, where a task is ticked and another ' +
+      'gets an owner and a reminder.',
+  },
+];
+const PASSI = ['Tick a task', 'Set an owner', 'Add a reminder'];
+---
+<figure class="hv" data-hv>
+  <div class="hv-tabs" role="tablist" aria-label="Two ways to work">
+    {VIDEO.map((v, i) => (
+      <button
+        type="button" role="tab" class="hv-tab" id={`hv-t-${v.k}`} data-tab={v.k} aria-controls={`hv-p-${v.k}`}
+        aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? '0' : '-1'}
+      >{v.tab}</button>
+    ))}
+  </div>
+  {VIDEO.map((v, i) => (
+    <div
+      class="hv-panel" role="tabpanel" id={`hv-p-${v.k}`} data-panel={v.k} aria-labelledby={`hv-t-${v.k}`}
+      hidden={i !== 0}
+    >
+      <p class="sr-only">{v.frase}</p>
+      <div class="hv-box">
+        <picture class="hv-still">
+          <source media="(max-width: 599px)" srcset={`/video/${v.k}-narrow.webp`} width="780" height="1040" />
+          <img
+            src={`/video/${v.k}-wide.webp`} alt="" width="1440" height="960"
+            loading={i === 0 ? 'eager' : 'lazy'} decoding="async"
+          />
+        </picture>
+        {/* Niente src né <source>: la sorgente la sceglie hero-video.ts quando serve, così arriva un video solo. */}
+        <video
+          class="hv-vid" data-wide={`/video/${v.k}-wide.mp4`} data-narrow={`/video/${v.k}-narrow.mp4`}
+          muted playsinline preload="none" aria-hidden="true" tabindex="-1" hidden
+        ></video>
+      </div>
+    </div>
+  ))}
+  <figcaption class="hv-cap">
+    {/* role="list": con list-style none Safari toglie all'elenco il suo ruolo. Accesi come l'immagine ferma, che è
+        l'ultimo fotogramma; hero-video.ts li accende col tempo del video. */}
+    <ol class="hv-steps" role="list">{PASSI.map((p) => <li class="is-lit">{p}</li>)}</ol>
+    <button type="button" class="hv-ctl" data-k="ctl" data-mode="paused" hidden>
+      <svg class="hv-i hv-i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor" /><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor" /></svg>
+      <svg class="hv-i hv-i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.2-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5z" fill="currentColor" /></svg>
+      <span class="sr-only" data-label>Play the video</span>
+    </button>
+  </figcaption>
+</figure>

@@ -6,10 +6,12 @@ import VetrinaFont from '../components/VetrinaFont.astro';
 // foglio solo.
 import '../styles/vetrina.css';
 import '../styles/home.css';
-import HeroScene from '../components/home/HeroScene.astro';
+import HeroVideo from '../components/home/HeroVideo.astro';
+import Problem from '../components/home/Problem.astro';
 import Pillars from '../components/home/Pillars.astro';
-import Modes from '../components/home/Modes.astro';
+import Features from '../components/home/Features.astro';
 import Compare from '../components/home/Compare.astro';
+import Demo from '../components/home/Demo.astro';
 
 // Scheda dell'anteprima su Discord: le righe della home e una lista vera, perché chi riceve il link
 // veda subito com'è TTM in un canale.
@@ -66,275 +68,23 @@ const JSON_LD = JSON.stringify([
             <a class="btn-ghost" href="/docs/getting-started/">Get started</a>
           </div>
         </div>
-        <HeroScene />
+        <HeroVideo />
       </div>
     </section>
 
+    <Problem />
     <Pillars />
-    <Modes />
-
+    <Features />
     <Compare />
+    <Demo />
 
-    <section class="block wrap">
-      <h2>The tools weren't bad. They were somewhere else.</h2>
-      <p class="big">We built TTM for ourselves first. As the work grew, every external tool we tried to coordinate the team with failed for the same reason: it lived <strong>outside Discord</strong>. Each update meant leaving the conversation and coming back, so none of them ever became part of the routine &mdash; and carrying information across, in both directions, quietly turned into a job of its own.</p>
-      <p class="big" style="margin-top:1.2rem">So we're firm about one thing: <strong>a tool is only effective if it's easy to use and easy to configure</strong>, and it only stays easy if it never asks you to leave the place where you already are. That's why <strong>you will never find an external dashboard here</strong>. Everything TTM does &mdash; and everything you configure &mdash; happens inside Discord, with buttons, menus and modals.</p>
-      <div class="callout" style="max-width:60ch; margin-top:1.4rem"><div class="callout-t">Where does this site fit, then?</div>It's documentation, not a control panel. The same goes for the <a href="https://timezones.bitsplitters.app" target="_blank" rel="noopener noreferrer">time zone picker<span class="sr-only"> (opens in a new tab)</span></a> the bot links to: a helper page, one job, no account. Neither one holds your data or your settings &mdash; there is nothing to log into, because there is nothing there that belongs to you.</div>
-    </section>
-
-    <section class="block wrap">
-      <h2>This is what a list looks like in your server.</h2>
-      <p class="big">A message the bot keeps up to date, with a dropdown underneath to tick tasks off. Nothing to learn: it's Discord's own interface, so it already behaves the way you expect.</p>
-
-      <!-- Mock della lista come la rende il bot: intestazione del messaggio, titolo H2, righe
-           numerate con checkbox, e sotto la select per spuntare i task. L'animazione mostra il
-           gesto piu' frequente — apri la select, scegli un task, la riga si spunta — perche' e'
-           quello che rende il bot familiare prima ancora di invitarlo. -->
-      <div class="dc-demo">
-        <div class="dc-msg">
-          <img class="dc-avatar" src="/icons/ttm-avatar.png" alt="" />
-          <div class="dc-body">
-            <div class="dc-head">
-              <span class="dc-name">Team Tasks Manager</span>
-              <span class="dc-app">APP</span>
-              <span class="dc-time">Today at 18:04</span>
-            </div>
-
-            <div class="dc-title">Roster &amp; scrims &mdash; week 12</div>
-            <ul class="dc-tasks">
-              <li data-task="1" class="dc-done">
-                <div class="dc-line">
-                  <span class="dc-n">1</span>
-                  <span class="dc-cb">
-                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                  </span>
-                  <span class="dc-txt">Confirm the five-man roster for Saturday's scrim block</span>
-                </div>
-              </li>
-              <li data-task="2" class="dc-flip">
-                <div class="dc-line">
-                  <span class="dc-n">2</span>
-                  <span class="dc-cb">
-                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                  </span>
-                  <span class="dc-txt">Lock the scrim block vs. Nova Collective</span>
-                </div>
-              </li>
-              <li data-task="2.1" data-parent="2" class="dc-sub">
-                <div class="dc-line">
-                  <span class="dc-n">2.1</span>
-                  <span class="dc-cb">
-                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                  </span>
-                  <span class="dc-txt">Clip the three teamfights for the review</span>
-                </div>
-              </li>
-              <li data-task="3">
-                <!-- Promemoria SOPRA il testo, e il numero sulla prima riga del blocco: e' l'ordine
-                     che compone taskToText (webhook, poi promemoria, poi checkbox + contenuto), con
-                     le righe successive che prendono lo spaziatore invece del numero. -->
-                <div class="dc-line">
-                  <span class="dc-n">3</span>
-                  <img class="dc-mi" src="/icons/alert.png" alt="" />
-                  <span class="dc-metatxt">in 2 days at 20:30 &middot; &#8635;7d &times;3</span>
-                </div>
-                <div class="dc-line">
-                  <span class="dc-sp"></span>
-                  <span class="dc-cb">
-                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                  </span>
-                  <span class="dc-txt">VOD review: mid rotations, game 3 <span class="dc-pill">@coach</span></span>
-                </div>
-              </li>
-              <li data-task="4" class="dc-done">
-                <div class="dc-line">
-                  <span class="dc-n">4</span>
-                  <span class="dc-cb">
-                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                  </span>
-                  <span class="dc-txt">Submit the tournament registration</span>
-                </div>
-              </li>
-              <li data-task="5">
-                <div class="dc-line">
-                  <span class="dc-n">5</span>
-                  <img class="dc-mi" src="/icons/wb.png" alt="" />
-                  <span class="dc-metatxt">post-to-x</span>
-                </div>
-                <div class="dc-line">
-                  <span class="dc-sp"></span>
-                  <span class="dc-cb">
-                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                  </span>
-                  <span class="dc-txt">Publish the match-day graphic <span class="dc-pill">@social</span></span>
-                </div>
-              </li>
-              <li data-task="6">
-                <div class="dc-line">
-                  <span class="dc-n">6</span>
-                  <span class="dc-cb">
-                    <img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" />
-                    <img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" />
-                  </span>
-                  <span class="dc-txt">Chase the two missing player contracts</span>
-                </div>
-              </li>
-            </ul>
-
-            <div class="dc-select">
-              <button type="button" class="dc-select-btn" id="dc-trigger" aria-expanded="false" aria-controls="dc-menu">
-                <span class="dc-select-lab">Roster &amp; scrims &mdash; week 12</span>
-                <span class="dc-caret">&#9662;</span>
-              </button>
-              <div class="dc-select-menu" id="dc-menu" role="group" aria-label="Tick or untick a task">
-                <button type="button" class="dc-opt" data-for="1" aria-pressed="true"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>1 &middot; Confirm the five-man roster</button>
-                <button type="button" class="dc-opt dc-opt-pick" data-for="2" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2 &middot; Lock the scrim block vs. Nova Collective</button>
-                <button type="button" class="dc-opt" data-for="2.1" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>2.1 &middot; Clip the three teamfights</button>
-                <button type="button" class="dc-opt" data-for="3" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>3 &middot; VOD review: mid rotations</button>
-                <button type="button" class="dc-opt" data-for="4" aria-pressed="true"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>4 &middot; Submit the tournament registration</button>
-                <button type="button" class="dc-opt" data-for="5" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>5 &middot; Publish the match-day graphic</button>
-                <button type="button" class="dc-opt" data-for="6" aria-pressed="false"><span class="dc-optcb"><img class="dc-cb-off" src="/icons/checkbox_empty.png" alt="" /><img class="dc-cb-on" src="/icons/checkbox_marked.png" alt="" /></span>6 &middot; Chase the two missing contracts</button>
-              </div>
-            </div>
-            <p class="dc-hint" id="dc-hint">Open the selector and tick a task &mdash; it works exactly like this in Discord. Group <strong>2</strong> and its subtask move together.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="big" style="margin-top:2.5rem">And these are the buttons that sit under it &mdash; no labels, on purpose. Trust your intuition, then click to confirm what each one does.</p>
-      <div class="board-teaser">
-        <div class="board-lab">Row 1 &mdash; acts on the whole list</div>
-        <div class="board-row">
-          <button class="dbtn" data-name="Activity" data-desc="Open the list in the Activity, a window inside Discord where your team works on it together and sees every change as it happens."><img src="/icons/activity.png" alt="Activity" /></button>
-          <button class="dbtn" data-name="Bulk update" data-desc="Edit the title and the whole list at once — the fastest way to change two or more tasks together."><img src="/icons/edit.png" alt="Bulk update" /></button>
-          <button class="dbtn" data-name="Clean list" data-desc="Remove every completed task, after a confirmation, and recalculate the remaining positions automatically."><img src="/icons/clean.png" alt="Clean list" /></button>
-          <button class="dbtn" data-name="Reopen all" data-desc="Bring every completed task back to to-do and, if you want, move the reminders to a new date."><img src="/icons/reopen.png" alt="Reopen all" /></button>
-          <button class="dbtn" data-name="More" data-desc="Opens a panel only you can see: the in-Discord guide to every button, and clone the list into another channel, download it as a file, seal it as a record or delete it."><img src="/icons/other.png" alt="More" /></button>
-        </div>
-        <div class="board-lab">Row 2 &mdash; acts on a single task &middot; click to cycle grey &rarr; blue (edit) &rarr; red (delete)</div>
-        <div class="board-row">
-          <button class="dbtn task-btn" data-name="Content" data-edit="Change the task text." data-delete="Delete the task."><img src="/icons/task.png" alt="Content" /></button>
-          <button class="dbtn task-btn" data-name="Owner" data-edit="Set or change the task owner: one person, one role, or several people." data-delete="Remove the owner, and its reminder."><img src="/icons/owner.png" alt="Owner" /></button>
-          <button class="dbtn task-btn" data-name="Tag" data-edit="Add a user or role to notify at the end of the task." data-delete="Remove every tag on the task."><img src="/icons/tag.png" alt="Tag" /></button>
-          <button class="dbtn task-btn" data-name="Reminder" data-edit="Add or edit a reminder (start date and time zone; interval and repetitions on Premium)." data-delete="Remove the reminder."><img src="/icons/alertW.png" alt="Reminder" /></button>
-          <button class="dbtn task-btn" data-name="Webhook" data-edit="Associate a webhook, so completing or reopening the task fires an HTTP call." data-delete="Remove the webhook association from the task."><img src="/icons/api.png" alt="Webhook" /></button>
-        </div>
-        <div class="board-info" id="board-info">Click any button above. <strong>Row 1</strong> acts on the whole list; <strong>Row 2</strong> buttons cycle through three states &mdash; click one to walk through them.</div>
-      </div>
-    </section>
-
-    <section class="block wrap">
-      <h2>Ready to set it up?</h2>
-      <p class="big">The documentation walks you through inviting the bot, creating your first list, mastering the panel, configuring the app and connecting webhooks.</p>
-      <div class="cta-row" style="margin-top:1.5rem">
-        <a class="btn" href="/docs/getting-started/">Get started</a>
-        <a class="btn-ghost" href="/docs/">Browse all docs</a>
+    <section class="h-sec wrap h-final" aria-labelledby="h-final-title">
+      <h2 id="h-final-title">Give your team one place to look.</h2>
+      <p class="h-intro">Add TTM to your server and create your first list with a single command.</p>
+      <div class="cta-row">
+        <a class="btn" href="/invite">Add to Discord</a>
+        <a class="btn-ghost" href="/docs/getting-started/">Get started</a>
       </div>
     </section>
   </main>
-
-  <script>
-    /* ── Il mock della lista: interattivo come la pulsantiera ──────────────────────────────────
-       Riproduce il "check selector" descritto in /docs/the-task-list/: spunta e despunta i task,
-       e un gruppo trascina i suoi sottotask. La cascata e' nei DUE sensi, come nel bot: spuntare
-       il gruppo spunta i figli, e quando TUTTI i figli sono spuntati il gruppo si spunta da se'.
-       Riprodurre solo il primo senso avrebbe insegnato mezza verita'. */
-    const demo = document.querySelector(".dc-demo");
-    if (demo) {
-      const sel = demo.querySelector(".dc-select");
-      const trigger = demo.querySelector(".dc-select-btn");
-      const opzioni = Array.from(demo.querySelectorAll(".dc-opt"));
-      const righe = Array.from(demo.querySelectorAll(".dc-tasks li"));
-      const hint = document.getElementById("dc-hint");
-
-      const riga = (id) => righe.find((r) => r.dataset.task === id);
-      const opzione = (id) => opzioni.find((o) => o.dataset.for === id);
-      const spuntato = (id) => { const r = riga(id); return !!r && r.classList.contains("dc-done"); };
-
-      // Al primo tocco l'animazione dimostrativa si ferma: da quel momento comanda la persona, e
-      // vedere la riga 2 spuntarsi da sola mentre ci si sta giocando sarebbe solo confusione.
-      const fermaAnimazione = () => demo.classList.add("dc-live");
-
-      const imposta = (id, valore) => {
-        const r = riga(id);
-        if (!r) return;
-        r.classList.toggle("dc-done", valore);
-        const o = opzione(id);
-        if (o) o.setAttribute("aria-pressed", String(valore));
-      };
-
-      const applica = (id) => {
-        const valore = !spuntato(id);
-        imposta(id, valore);
-
-        // giu': il gruppo trascina i figli
-        righe.filter((r) => r.dataset.parent === id).forEach((r) => imposta(r.dataset.task, valore));
-
-        // su': se tutti i figli sono spuntati il genitore lo diventa, e basta un figlio aperto
-        // perche' il genitore torni aperto
-        const r = riga(id);
-        const padre = r && r.dataset.parent;
-        if (padre) {
-          const figli = righe.filter((x) => x.dataset.parent === padre);
-          imposta(padre, figli.every((x) => x.classList.contains("dc-done")));
-        }
-      };
-
-      const apriChiudi = (aperto) => {
-        sel.classList.toggle("open", aperto);
-        trigger.setAttribute("aria-expanded", String(aperto));
-      };
-
-      trigger.addEventListener("click", () => {
-        fermaAnimazione();
-        apriChiudi(!sel.classList.contains("open"));
-      });
-
-      opzioni.forEach((o) => o.addEventListener("click", () => {
-        fermaAnimazione();
-        applica(o.dataset.for);
-        // Il menu si chiude, come nel bot: la select di spunta e' a scelta singola (nessun
-        // setMaxValues nel codice), e Discord la chiude a ogni scelta.
-        apriChiudi(false);
-        trigger.focus();
-        if (hint) hint.textContent = "That's it — the message updates in place. Open the selector again to tick the next one.";
-      }));
-
-      document.addEventListener("click", (e) => {
-        if (sel.classList.contains("open") && !sel.contains(e.target)) apriChiudi(false);
-      });
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && sel.classList.contains("open")) { apriChiudi(false); trigger.focus(); }
-      });
-    }
-
-    const info = document.getElementById("board-info");
-    document.querySelectorAll(".board-row .dbtn:not(.task-btn)").forEach((b) => {
-      b.addEventListener("click", () => {
-        info.innerHTML = "<strong>" + b.dataset.name + "</strong><br>" + b.dataset.desc;
-      });
-    });
-    const taskBtns = document.querySelectorAll(".task-btn");
-    taskBtns.forEach((b) => {
-      b.dataset.state = "0";
-      b.addEventListener("click", () => {
-        // Only one task button can be active at a time: reset the others to grey
-        taskBtns.forEach((o) => { if (o !== b) { o.dataset.state = "0"; o.classList.remove("is-edit", "is-delete"); } });
-        const state = (parseInt(b.dataset.state, 10) + 1) % 3;
-        b.dataset.state = String(state);
-        b.classList.toggle("is-edit", state === 1);
-        b.classList.toggle("is-delete", state === 2);
-        const name = b.dataset.name;
-        if (state === 1) info.innerHTML = "<strong>" + name + " &mdash; edit</strong><br>" + b.dataset.edit;
-        else if (state === 2) info.innerHTML = "<strong>" + name + " &mdash; delete</strong><br>" + b.dataset.delete;
-        else info.innerHTML = "<strong>" + name + " &mdash; off</strong><br>Inactive. While every task button is grey, the check selector ticks and unticks tasks.";
-      });
-    });
-  </script>
 </Base>

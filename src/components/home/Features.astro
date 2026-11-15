@@ -1,0 +1,67 @@
+---
+/*
+ * Le funzionalità principali (spec 2026-11-15-home-video-e-demo-design.md, §6.2 e §8.4): sei voci con l'emoji del bot,
+ * tre colonne sul computer, due sul tablet, una sul telefono. Webhooks porta l'etichetta «Premium», un link ai piani:
+ * col piano Free non se ne creano di nuovi (premium.md). Nessun prezzo.
+ */
+interface Voce {
+  icona: string;
+  titolo: string;
+  testo: string;
+  premium?: boolean;
+}
+const VOCI: Voce[] = [
+  {
+    icona: 'task_list',
+    titolo: 'Shared lists',
+    testo: 'One list, one version of the truth. Everyone sees the same tasks, updated the moment someone ticks one.',
+  },
+  {
+    icona: 'owner',
+    titolo: 'Owners & tags',
+    testo: "Every task has a name on it. Tag whoever needs to know, and they hear about it when it's done.",
+  },
+  {
+    icona: 'alertW',
+    titolo: 'Reminders',
+    testo: 'Deadlines stop slipping: the owner gets a nudge on Discord, right when you planned it.',
+  },
+  {
+    icona: 'single_task',
+    titolo: 'Groups & subtasks',
+    testo: 'Break big jobs into steps. Tick the last one, and the whole group is done.',
+  },
+  {
+    icona: 'doc',
+    titolo: 'Activity timeline',
+    testo: 'Who did what, and when. Every change to the list stays on record.',
+  },
+  {
+    icona: 'api',
+    titolo: 'Webhooks',
+    testo:
+      'Tick or reopen a task, and TTM calls your other systems: a CI, a ticket tracker, a spreadsheet, anything ' +
+      'that takes an HTTP request.',
+    premium: true,
+  },
+];
+---
+<section class="h-sec wrap" aria-labelledby="h-features-title">
+  <h2 id="h-features-title">Everything a team needs. Nothing it has to learn.</h2>
+  <ul class="h-feats" role="list">
+    {VOCI.map((v) => (
+      <li>
+        <img src={`/icons/${v.icona}.png`} alt="" width="32" height="32" />
+        <div>
+          <h3>
+            {v.titolo}
+            {v.premium && (
+              <a class="h-new h-premium" href="/premium/" aria-label="Premium feature: see the plans">Premium</a>
+            )}
+          </h3>
+          <p>{v.testo}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>
