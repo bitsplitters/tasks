@@ -7,6 +7,9 @@
  * Sotto i 720 px ogni riga diventa un blocco. I role restano sulla tabella perché, cambiando display, alcuni browser
  * ne perdono la semantica; il nome della colonna ripetuto in ogni cella è solo per gli occhi (aria-hidden), perché gli
  * screen reader lo hanno già dall'intestazione.
+ *
+ * Il segno (✓, –) sta fuori dal testo, così le righe che vanno a capo si allineano al testo e non al segno; le parole
+ * col trattino («re-explaining») non si spezzano.
  */
 const COLONNE = { ttm: 'Team Tasks Manager', altra: 'A separate task app' };
 const RIGHE = [
@@ -36,8 +39,9 @@ const RIGHE = [
     altra: 'Sign-ups for everyone, and a new tool to learn.',
   },
 ];
+const parti = (testo: string) => testo.split(/(\S+-\S+)/);
 ---
-<section class="h-sec wrap" aria-labelledby="h-compare-title">
+<section class="h-sec wrap h-compare" aria-labelledby="h-compare-title">
   <h2 id="h-compare-title">Coordination shouldn't cost you your focus.</h2>
   <table class="h-table" role="table">
     <caption class="sr-only">Team Tasks Manager compared with a separate task app</caption>
@@ -54,11 +58,17 @@ const RIGHE = [
           <th scope="row" role="rowheader">{r.voce}</th>
           <td role="cell" class="h-acc">
             <span class="h-cell-col" aria-hidden="true">{COLONNE.ttm}</span>
-            <span class="h-mark" aria-hidden="true">&#10003;</span>{r.ttm}
+            <span class="h-line">
+              <span class="h-mark" aria-hidden="true">&#10003;</span>
+              <span>{parti(r.ttm).map((p, i) => (i % 2 ? <span class="h-nobr">{p}</span> : p))}</span>
+            </span>
           </td>
           <td role="cell" class="h-dim">
             <span class="h-cell-col" aria-hidden="true">{COLONNE.altra}</span>
-            <span class="h-mark" aria-hidden="true">&ndash;</span>{r.altra}
+            <span class="h-line">
+              <span class="h-mark" aria-hidden="true">&ndash;</span>
+              <span>{parti(r.altra).map((p, i) => (i % 2 ? <span class="h-nobr">{p}</span> : p))}</span>
+            </span>
           </td>
         </tr>
       ))}

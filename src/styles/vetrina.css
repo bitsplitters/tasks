@@ -52,7 +52,20 @@
 .h-table .h-acc { color: var(--text); }
 .h-table thead .h-col-dim { color: var(--muted); font-weight: 600; }
 .h-table .h-dim { color: var(--muted); }
-.h-mark { display: inline-block; width: 1.3em; font-weight: 700; }
+/* Nella home: il segno in una colonna sua, il testo che va a capo senza lasciare una parola sola sull'ultima riga. */
+.h-line { display: flex; }
+.h-line > span:last-child { min-width: 0; text-wrap: pretty; }
+.h-nobr { white-space: nowrap; }
+.h-mark { flex: none; width: 1.3em; font-weight: 700; }
+/* Le voci su una riga sola dove la tabella è larga; più stretta, a capo bilanciate, per non rubare spazio al testo. */
+.h-compare .h-table tbody th { text-wrap: balance; }
+@media (min-width: 900px) {
+  .h-compare .h-table tbody th { white-space: nowrap; }
+}
+/* Fra 720 e 900 px le colonne sono strette: le righe di una cella si bilanciano, nessuna resta corta. */
+@media (min-width: 720px) and (max-width: 899px) {
+  .h-line > span:last-child { text-wrap: balance; }
+}
 .h-acc .h-mark { color: var(--accent); }
 .h-dim .h-mark { color: var(--line-2); }
 .h-cell-col { display: none; }
