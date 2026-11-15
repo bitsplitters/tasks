@@ -10,6 +10,7 @@
  */
 import '../components/home/scene.css';
 import ChannelScene from '../components/home/ChannelScene.astro';
+import ActivityScene from '../components/home/ActivityScene.astro';
 
 const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
 ---
@@ -31,6 +32,13 @@ const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
     <div class="sc-box rec-box" data-modo="channel">
       <div class="scene sc-rec">
         <ChannelScene />
+        <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
+        <span class="sc-tap" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="sc-box rec-box" data-modo="activity" hidden>
+      <div class="scene sc-rec">
+        <ActivityScene aperta={false} />
         <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
         <span class="sc-tap" aria-hidden="true"></span>
       </div>

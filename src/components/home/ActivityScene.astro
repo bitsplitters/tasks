@@ -1,0 +1,176 @@
+---
+/*
+ * L'Activity della home (spec 2026-11-15-home-video-e-demo-design.md, §4.3, §4.5 e §5.3): il canale sotto, scurito,
+ * con la lista nell'Activity; la finestra di Discord; dentro, la pagina com'è nel codice (activity/src/app/App.tsx):
+ * «Lists», chi è dentro e la rotella, l'embed con la barra, la prima riga, l'avviso di Exit e il pannello del task col
+ * selettore delle persone e i campi del promemoria.
+ *
+ * aperta = false è l'inizio del video: la finestra chiusa, il canale com'è prima del clic sull'Activity. Gli stati
+ * cambiano con scene-dom.ts (data-open, data-panel, data-view, data-save, data-picked, data-delete sulla finestra).
+ */
+import ChannelScene from './ChannelScene.astro';
+import {
+  FATTI_INIZIALI, IN_CIMA_ACTIVITY, MIA, PRIMA_RIGA_ACTIVITY, PROMEMORIA, SAM, TASKS, TASTI, TITOLO, avanzamento,
+  fraseDelPannello,
+} from './scene-data';
+
+interface Props {
+  /** La finestra è già aperta, la lista nell'Activity: com'è nella demo. */
+  aperta?: boolean;
+  owner?: boolean;
+  promemoria?: boolean;
+}
+const { aperta = true, owner = false, promemoria = false } = Astro.props;
+const fatti = new Set(FATTI_INIZIALI);
+const pct = avanzamento(fatti);
+const icona = (n: string) => `/icons/${n}.png`;
+const si = (v: boolean) => (v ? '' : undefined);
+// Le icone dei campi nativi di Chrome, il calendario e l'orologio.
+const CAL = 'M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm-2 8h14v9H5v-9Z';
+// L'orologio del campo dell'ora di Chrome: l'anello e le lancette (evenodd, se no il cerchio è un disco pieno).
+const ORA = 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm1 3h-2v6l5 3 1-1.7-4-2.3V7Z';
+---
+<div class="sc-under" inert>
+  <ChannelScene inActivity={aperta} owner={owner} promemoria={promemoria} />
+</div>
+<div class="sc-shade" data-k="shade" aria-hidden="true"></div>
+<div
+  class="sc-win" data-k="win" data-open={si(aperta)} data-owner={si(owner)} data-reminder={si(promemoria)}
+  data-save="off"
+>
+  <div class="sc-winbar" aria-hidden="true">
+    <img src="/icons/ttm-avatar.png" alt="" /><span>Team Tasks Manager</span><span class="sc-winx">&times;</span>
+  </div>
+  <div class="sc-apage" data-k="page">
+    <div class="sc-apage-in" data-k="page-in">
+      <div class="sc-atop">
+        <button type="button" class="sc-abtn" data-k="a-lists" data-tt="ac-lists">{IN_CIMA_ACTIVITY.lists.nome}</button>
+        <div class="sc-atools">
+          {/* activity.here.list */}
+          <button type="button" class="sc-who" data-k="a-people" data-tt="ac-people">
+            <span class="sc-whoav" aria-hidden="true">
+              {[SAM, MIA].map((p) => <span class="sc-av" style={`--av: ${p.colore}`}>{p.nome[0]}</span>)}
+            </span>
+            <span>2 people in this list</span>
+          </button>
+          <button
+            type="button" class="sc-abtn sc-gear" data-k="a-settings" data-tt="ac-settings"
+            aria-label={IN_CIMA_ACTIVITY.settings.nome}
+          >
+            {/* GearIcon.tsx */}
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <circle cx="10" cy="10" r="7.6" fill="none" stroke="currentColor" stroke-width="3.2"
+                stroke-dasharray="2.98 2.99" transform="rotate(-11.25 10 10)" />
+              <circle cx="10" cy="10" r="4.6" fill="none" stroke="currentColor" stroke-width="3.6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="sc-embed sc-aembed">
+        <p class="sc-title">{TITOLO}</p>
+        <div class="sc-arows">
+          {TASKS.map((t) => (
+            <Fragment>
+              {t.id === '3' && (
+                <div class="sc-arow sc-row-rem" data-task="3">
+                  <span class="sc-anum">3</span>
+                  <span class="sc-aicon"><img class="sc-emoji" src={icona('alert')} alt="" /></span>
+                  <span class="sc-atext-fermo"><span class="sc-ts">{PROMEMORIA.activity}</span></span>
+                </div>
+              )}
+              <div class:list={['sc-arow', { 'sc-sub': t.padre }]} data-task={t.id} data-done={si(fatti.has(t.id))}>
+                <span class:list={['sc-anum', { 'sc-num3': t.id === '3' }]}><span class="sc-nmain">{t.id.split('.')[0]}</span>{t.padre && `.${t.id.split('.')[1]}`}</span>
+                <span class="sc-aicon">
+                  <button
+                    type="button" class="sc-cb sc-acb" data-k={`a-cb-${t.id}`}
+                    aria-pressed={fatti.has(t.id) ? 'true' : 'false'} aria-label={`Task ${t.id}`}
+                  ><img class="sc-off" src={icona('checkbox_empty')} alt="" /><img class="sc-on" src={icona('checkbox_marked')} alt="" /></button>
+                </span>
+                <button type="button" class="sc-atext" data-k={`a-txt-${t.id}`}>{t.id === '3' && <Fragment><span class="sc-mention">@{MIA.nome}</span><span class="sc-colon">: </span></Fragment>}{t.testo}</button>
+              </div>
+            </Fragment>
+          ))}
+        </div>
+        <div class="sc-bar" data-bar data-empty={si(pct === 0)} style={`--pct: ${pct}%`}><div class="sc-bar-fill"></div></div>
+      </div>
+      <div class="sc-afirst">
+        {PRIMA_RIGA_ACTIVITY.map((p) => (
+          <button
+            type="button" class:list={['sc-abtn', { 'sc-blue': p.k !== 'exit' }]} data-k={`a-${p.k}`}
+            data-tt={`ac-${p.k}`} aria-label={p.nome}
+          ><img src={icona(p.icona)} alt="" /></button>
+        ))}
+      </div>
+      {/* activity.exit.hint, con l'emoji di Exit al posto di {0} */}
+      <p class="sc-exitnote">
+        ⚠️ <strong>Important</strong>:<br />To leave this mode properly, click <img src={icona('back')} alt="" />
+        <strong>Exit</strong>: this lets TTM update the list in the channel instantly.
+      </p>
+      {/* Il pannello del task (TaskPanel.tsx): la frase, la X, i cinque pulsanti, l'area, Close e Save o Delete. */}
+      <section class="sc-panel" data-k="panel" aria-label="Task 3">
+        <div class="sc-phead">
+          <p class="sc-phrase" data-k="p-phrase" aria-live="polite">{fraseDelPannello('3')}</p>
+          <button type="button" class="sc-px" data-k="p-x" aria-label="Close">&times;</button>
+        </div>
+        <div class="sc-pbtns" role="toolbar">
+          {TASTI.map((t) => (
+            <button
+              type="button" class="sc-abtn" data-k={`p-${t.k}`} data-ptasto={t.k} data-tt={`ac-p-${t.k}`}
+              aria-label={t.nome} aria-pressed="false"
+            ><img src={icona(t.icona)} alt="" /></button>
+          ))}
+        </div>
+        <div class="sc-parea">
+          {/* Owner in blu (PeopleAction.tsx, PeoplePicker.tsx): le scelte, il campo, chi è nell'Activity. */}
+          <div class="sc-pview sc-pview-owner" aria-hidden="true">
+            <ul class="sc-pills sc-pills-chosen">
+              <li class="sc-pill" data-chosen data-pick="mia">
+                <span class="sc-av" style={`--av: ${MIA.colore}`}>{MIA.nome[0]}</span>{MIA.nome}<span class="sc-pmark">&times;</span>
+              </li>
+            </ul>
+            <span class="sc-fin"><span class="sc-fph">Search people and roles</span></span>
+            <p class="sc-pnote">Now in the Activity</p>
+            <ul class="sc-pills">
+              <li class="sc-pill" data-k="pk-sam" data-sugg="sam">
+                <span class="sc-pmark">+</span><span class="sc-av" style={`--av: ${SAM.colore}`}>{SAM.nome[0]}</span>{SAM.nome} (you)
+              </li>
+              <li class="sc-pill" data-k="pk-mia" data-sugg="mia">
+                <span class="sc-pmark">+</span><span class="sc-av" style={`--av: ${MIA.colore}`}>{MIA.nome[0]}</span>{MIA.nome}
+              </li>
+            </ul>
+          </div>
+          {/* Reminder in blu (ReminderFields.tsx): data e ora proposte, il fuso del dispositivo. */}
+          <div class="sc-pview sc-pview-reminder" aria-hidden="true">
+            <div class="sc-when">
+              <div class="sc-whenrow">
+                <div class="sc-field">
+                  <span class="sc-flabel">Date</span>
+                  <span class="sc-fin">{PROMEMORIA.campoData}<svg viewBox="0 0 24 24"><path d={CAL} fill="currentColor" /></svg></span>
+                </div>
+                <div class="sc-field">
+                  <span class="sc-flabel">Time</span>
+                  <span class="sc-fin">{PROMEMORIA.campoOra}<svg viewBox="0 0 24 24"><path d={ORA} fill="currentColor" fill-rule="evenodd" /></svg></span>
+                </div>
+              </div>
+              <div class="sc-field">
+                <span class="sc-flabel">Time zone</span>
+                <span class="sc-fin">
+                  <img src={icona('timeZone')} alt="" />
+                  <span class="sc-zplace"><span class="sc-zcity">{PROMEMORIA.citta}</span><span class="sc-zcountry">{PROMEMORIA.paese}</span></span>
+                  <span class="sc-zoff">{PROMEMORIA.scarto}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-pfoot">
+          <button type="button" class="sc-abtn sc-raised" data-k="p-close">Close</button>
+          <button type="button" class="sc-abtn sc-blue sc-psave" data-k="p-save" aria-disabled="true">
+            <span class="sc-savetext">Save</span><span class="sc-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+          <button type="button" class="sc-abtn sc-red sc-pdelete" data-k="p-delete" aria-disabled="true">Delete</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

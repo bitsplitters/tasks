@@ -108,7 +108,8 @@
 .sc-colon { display: none; }
 [data-owner] .sc-mention, [data-owner] .sc-colon { display: inline; }
 /* Il promemoria sopra il task 3, col numero; la riga della casella prende lo spaziatore (RigheDellaLista). */
-.sc-row-rem { display: none; }
+/* .sc-arow.sc-row-rem: .sc-arow (più sotto, display: grid) a parità di peso vincerebbe. */
+.sc-row-rem, .sc-arow.sc-row-rem { display: none; }
 [data-reminder] .sc-row-rem { display: grid; }
 [data-reminder] .sc-num3 { visibility: hidden; }
 .sc-ts { padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u)); color: #efeff1; background: #36363c; }
@@ -242,4 +243,183 @@
 .sc-tap {
   position: absolute; left: 0; top: 0; z-index: 19; width: calc(36 * var(--u)); height: calc(36 * var(--u));
   border-radius: 50%; border: calc(2 * var(--u)) solid rgba(255, 255, 255, .9); opacity: 0; pointer-events: none;
+}
+
+/* ── L'Activity: il canale sotto, la finestra di Discord, la pagina (activity/src) ──────────────────────── */
+.sc-under { position: absolute; inset: 0; }
+/* Il canale si scurisce sotto la finestra; nel video l'opacità la scrive render-activity.ts. */
+.sc-shade {
+  position: absolute; inset: 0; z-index: 7; background: rgba(0, 0, 0, .7); opacity: 0; pointer-events: none;
+}
+.sc-shade:has(+ .sc-win[data-open]) { opacity: 1; }
+.sc-win {
+  position: absolute; z-index: 8;
+  top: calc(56 * var(--u)); right: calc(24 * var(--u)); bottom: calc(16 * var(--u)); left: calc(24 * var(--u));
+  display: flex; flex-direction: column; overflow: hidden; color: #efeff1;
+  background: #1a1a1e; border: 1px solid #35353b; border-radius: calc(12 * var(--u));
+  box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0, 0, 0, .45);
+}
+.sc-win:not([data-open]) { display: none; }
+/* La cornice è di Discord: il titolo della finestra, come nella scena di prima. */
+.sc-winbar {
+  flex: none; display: flex; align-items: center; gap: calc(8 * var(--u)); height: calc(40 * var(--u));
+  padding: 0 calc(12 * var(--u)); background: #121214; border-bottom: 1px solid #2a2a2f;
+  font-weight: 600; color: #f2f3f5;
+}
+.sc-winbar img { width: calc(20 * var(--u)); height: calc(20 * var(--u)); border-radius: 50%; }
+.sc-winx { margin-left: auto; font-size: calc(20 * var(--u)); line-height: 1; font-weight: 400; color: #b5bac1; }
+/* La pagina scorre nella demo; nei video la fa scorrere render-activity.ts (scrollTop vale anche con hidden). */
+.sc-apage { flex: 1; min-height: 0; overflow: hidden; }
+.sc-live .sc-apage { overflow-y: auto; overscroll-behavior: contain; }
+/* La colonna (app.css, .app e .stage): larga quanto l'embed del canale più 32, 16 intorno, 8 fra un pezzo e l'altro. */
+.sc-apage-in {
+  position: relative; display: flex; flex-direction: column; gap: calc(8 * var(--u));
+  max-width: calc(552 * var(--u)); margin: 0 auto;
+  padding: calc(16 * var(--u)) calc(16 * var(--u)) calc(24 * var(--u));
+}
+
+/* in cima: «Lists» a sinistra, chi è dentro e la rotella a destra (.list-top, .list-tools) */
+.sc-atop {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: calc(8 * var(--u)) calc(12 * var(--u)); margin-bottom: calc(4 * var(--u));
+}
+.sc-atools { display: flex; align-items: center; gap: calc(12 * var(--u)); margin-left: auto; }
+.sc-who { display: flex; align-items: center; gap: calc(8 * var(--u)); color: #abacb2; font-size: calc(13 * var(--u)); }
+.sc-whoav { display: inline-flex; }
+.sc-whoav .sc-av { box-shadow: 0 0 0 calc(2 * var(--u)) #1a1a1e; }
+.sc-whoav .sc-av + .sc-av { margin-left: calc(-6 * var(--u)); }
+
+/* i pulsanti della pagina (Button.css): 58 × 30, il grigio, il blu, il rosso, il grigio rialzato del pannello */
+.sc-abtn {
+  position: relative; display: inline-flex; flex: none; align-items: center; justify-content: center;
+  min-width: calc(58 * var(--u)); height: calc(30 * var(--u)); padding: 0 calc(16 * var(--u));
+  border-radius: calc(8 * var(--u)); background: #29292d; color: #fff;
+  font-size: calc(14 * var(--u)); font-weight: 500; line-height: calc(16 * var(--u)); white-space: nowrap;
+}
+.sc-abtn img, .sc-abtn svg { width: calc(20 * var(--u)); height: calc(20 * var(--u)); object-fit: contain; }
+.sc-abtn:is(:hover, .is-hover) { background: #36363c; }
+.sc-abtn:is(.sc-blue, [data-mode="blue"]) { background: #5865f2; }
+.sc-abtn:is(.sc-blue, [data-mode="blue"]):is(:hover, .is-hover) { background: #4752c4; }
+.sc-abtn:is(.sc-red, [data-mode="red"]) { background: #da373c; }
+.sc-abtn:is(.sc-red, [data-mode="red"]):is(:hover, .is-hover) { background: #a12829; }
+.sc-abtn.sc-raised { background: #4e5058; }
+.sc-abtn.sc-raised:is(:hover, .is-hover) { background: #3f4147; }
+.sc-gear { color: #fff; }
+
+/* l'embed della pagina: quello del canale, largo quanto la colonna */
+.sc-aembed { max-width: none; margin-top: 0; }
+.sc-arow {
+  display: grid; grid-template-columns: 1.5em 1.375em minmax(0, 1fr); align-items: start;
+  min-height: 1.375em; line-height: 1.375em;
+}
+.sc-arow.sc-sub { grid-template-columns: 3em 1.375em minmax(0, 1fr); }
+/* Fatto: grigio come il subtext, ma della stessa misura (TaskList.css: chiesto dall'utente il 2026-11-12). */
+.sc-arow[data-done] { color: #abacb2; }
+.sc-arow[data-selected] {
+  background: rgba(88, 101, 242, .16);
+  box-shadow: calc(-4 * var(--u)) 0 0 rgba(88, 101, 242, .16), calc(4 * var(--u)) 0 0 rgba(88, 101, 242, .16);
+}
+.sc-anum { display: flex; padding-left: .2em; white-space: pre; font-variant-numeric: tabular-nums; }
+/* Il numero principale ha la sua larghezza: «2 .1», come .num-main di TaskList.css. */
+.sc-nmain { display: inline-block; min-width: 1.1em; }
+.sc-aicon { display: inline-flex; width: 1.375em; height: 1.375em; align-items: center; }
+.sc-acb { width: 1.375em; height: 1.375em; border-radius: calc(4 * var(--u)); }
+.sc-acb:is(:hover, .is-hover) { filter: brightness(1.25); }
+.sc-atext {
+  display: block; width: 100%; padding-left: .2em; border-radius: calc(4 * var(--u)); overflow-wrap: anywhere;
+}
+.sc-atext:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
+.sc-arow .sc-atext-fermo { padding-left: .2em; }
+
+.sc-afirst { display: flex; flex-wrap: wrap; gap: calc(10 * var(--u)); }
+/* L'avviso di Exit (activity.exit.hint), nel riquadro del colore della lista, senza la barra (.exit-note). */
+.sc-exitnote {
+  max-width: calc(520 * var(--u)); padding: calc(8 * var(--u)) calc(16 * var(--u));
+  border-radius: calc(4 * var(--u)); background: #242429; color: #abacb2;
+}
+.sc-exitnote strong { font-weight: 700; }
+.sc-exitnote img { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -.35em; }
+
+/* il pannello: galleggia sotto le righe del task (TaskPanel.css); il top lo scrive posizionaPannello */
+/* left: al bordo delle righe del task, come bottom-start di floating-ui in TaskPanel.tsx; sul telefono shift() lo
+   riporta dentro, a 8 px dal bordo. */
+.sc-panel {
+  display: none; position: absolute; top: 0; z-index: 3; margin-top: calc(6 * var(--u));
+  left: min(calc(32 * var(--u)), calc(100% - 8 * var(--u) - min(480 * var(--u), 100% - 32 * var(--u))));
+  flex-direction: column; gap: calc(10 * var(--u)); width: min(calc(480 * var(--u)), calc(100% - 32 * var(--u)));
+  padding: calc(12 * var(--u)); background: #2b2b31; border: 1px solid #3b3b42; border-radius: calc(12 * var(--u));
+  box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0, 0, 0, .45);
+}
+.sc-win[data-panel] .sc-panel { display: flex; }
+.sc-live .sc-panel { animation: sc-panel-in .12s ease-out; }
+@keyframes sc-panel-in { from { opacity: 0; transform: translateY(calc(-4 * var(--u))); } }
+.sc-phead { display: flex; align-items: flex-start; gap: calc(8 * var(--u)); }
+.sc-phrase { flex: 1; min-width: 0; color: #fbfbfb; font-weight: 600; line-height: calc(20 * var(--u)); }
+.sc-px {
+  flex: none; width: calc(28 * var(--u)); height: calc(28 * var(--u));
+  margin: calc(-4 * var(--u)) calc(-6 * var(--u)) calc(-4 * var(--u)) 0; border-radius: calc(6 * var(--u));
+  color: #abacb2; font-size: calc(24 * var(--u)); line-height: calc(28 * var(--u)); text-align: center;
+}
+.sc-px:is(:hover, .is-hover) { background: #3f4147; color: #efeff1; }
+.sc-pbtns { display: flex; gap: calc(10 * var(--u)); }
+/* Cinque pulsanti sul telefono più stretto: si dividono la riga invece di tenere la larghezza di Discord. */
+.sc-pbtns .sc-abtn { flex: 1 1 0; min-width: 0; max-width: calc(58 * var(--u)); padding: 0; }
+.sc-pbtns .sc-abtn:not([data-mode]) { background: #4e5058; }
+.sc-pbtns .sc-abtn:not([data-mode]):is(:hover, .is-hover) { background: #3f4147; }
+/* L'area ha la stessa altezza per ogni azione, anche vuota (parts.tsx, Area). */
+.sc-parea { display: flex; flex-direction: column; gap: calc(8 * var(--u)); height: calc(264 * var(--u)); overflow: hidden; }
+.sc-pview { display: none; flex-direction: column; gap: calc(8 * var(--u)); }
+.sc-win[data-view="owner"] .sc-pview-owner, .sc-win[data-view="reminder"] .sc-pview-reminder { display: flex; }
+.sc-pfoot { display: flex; justify-content: space-between; gap: calc(12 * var(--u)); padding-top: calc(2 * var(--u)); }
+/* Save è spento finché non c'è una modifica; in attesa i tre puntini al posto della scritta. Rosso, Delete. */
+.sc-win:not([data-save="on"], [data-save="pending"]) .sc-psave { opacity: .5; cursor: not-allowed; }
+.sc-dots { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; gap: calc(4 * var(--u)); }
+.sc-dots i { width: calc(6 * var(--u)); height: calc(6 * var(--u)); border-radius: 50%; background: currentColor; }
+.sc-win[data-save="pending"] .sc-dots { display: flex; }
+.sc-win[data-save="pending"] .sc-savetext { visibility: hidden; }
+.sc-pdelete, .sc-win[data-delete] .sc-psave { display: none; }
+.sc-win[data-delete] .sc-pdelete { display: inline-flex; }
+
+/* il selettore delle persone (PeoplePicker.css) */
+.sc-pills { display: flex; flex-wrap: wrap; gap: calc(6 * var(--u)); margin: 0; padding: 0; list-style: none; }
+.sc-pill {
+  display: inline-flex; align-items: center; gap: calc(5 * var(--u)); height: calc(28 * var(--u));
+  padding: 0 calc(10 * var(--u)) 0 calc(5 * var(--u)); border: 1px solid #4e5058; border-radius: 999px;
+  color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 500;
+}
+.sc-pill.is-hover { background: rgba(255, 255, 255, .04); }
+.sc-pill[data-chosen] { padding: 0 calc(8 * var(--u)) 0 calc(5 * var(--u)); border-color: transparent; background: #3b3d44; }
+.sc-pill .sc-av { width: calc(18 * var(--u)); height: calc(18 * var(--u)); font-size: calc(9 * var(--u)); }
+.sc-pmark { flex: none; color: #abacb2; font-size: calc(16 * var(--u)); line-height: 1; }
+.sc-pnote { color: #abacb2; font-size: calc(12 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
+.sc-pills-chosen { display: none; }
+.sc-win[data-picked] .sc-pills-chosen { display: flex; }
+.sc-win[data-picked="mia"] [data-sugg="mia"] { display: none; }
+
+/* i campi (Field.css) e il promemoria (ReminderFields.css) */
+.sc-field { display: flex; flex-direction: column; gap: calc(6 * var(--u)); min-width: 0; }
+.sc-flabel { color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
+.sc-fin {
+  display: flex; align-items: center; gap: calc(8 * var(--u)); min-height: calc(36 * var(--u));
+  padding: calc(7 * var(--u)) calc(10 * var(--u)); border: 1px solid #35353b; border-radius: calc(8 * var(--u));
+  background: #17171a; color: #efeff1; font-size: calc(14 * var(--u)); line-height: calc(20 * var(--u));
+  white-space: nowrap; overflow: hidden;
+}
+.sc-fph { color: #80848e; }
+.sc-fin svg { flex: none; width: calc(16 * var(--u)); height: calc(16 * var(--u)); margin-left: auto; color: #efeff1; }
+.sc-fin > img { flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+.sc-when { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
+.sc-whenrow { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: calc(8 * var(--u)); }
+.sc-zplace { display: flex; flex: 1; align-items: baseline; gap: calc(6 * var(--u)); min-width: 0; overflow: hidden; }
+.sc-zcity { font-weight: 600; }
+.sc-zcountry { overflow: hidden; color: #abacb2; text-overflow: ellipsis; }
+.sc-zoff { flex: none; color: #abacb2; font-size: calc(13 * var(--u)); font-variant-numeric: tabular-nums; }
+
+/* nella demo i pulsanti si tengono premuti senza il menu del browser (§5.4) */
+.sc-live button { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.sc-live .sc-feed { overflow-y: auto; overscroll-behavior: contain; }
+
+/* ── L'Activity sotto i 640 px di riquadro: la finestra prende la scena, come Discord sul telefono ─────── */
+@container scene (max-width: 639px) {
+  .sc-win { inset: 0; border: 0; border-radius: 0; box-shadow: none; }
 }
