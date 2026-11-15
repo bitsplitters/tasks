@@ -141,4 +141,4 @@ The webhooks themselves are created with `/config webhook`, by whoever manages t
 
 - [The list in the channel](/docs/the-task-list/) — the check selector, the first row and More.
 - [Working on a list in the Activity](/docs/activity-list/) — the same five buttons, in the panel of a task.
-- [Something not working?](/docs/troubleshooting/#in-the-channel) — quick answers to the most common problems.
+- [FAQ](/docs/troubleshooting/#in-the-channel) — quick answers to the most common problems.

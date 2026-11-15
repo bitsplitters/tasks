@@ -121,4 +121,4 @@ If the list gets locked or sealed before you confirm Clean or Reopen, nothing ch
 - [The Activity](/docs/activity/) — work on a list together, in a window inside Discord.
 - [Writing a list](/docs/writing-a-list/) — mentions, owners, links and reminders, written by hand in Bulk update.
 - [/config app](/docs/configuration/) — control notifications, history and permissions.
-- [Something not working?](/docs/troubleshooting/#in-the-channel) — quick answers to the most common problems.
+- [FAQ](/docs/troubleshooting/#in-the-channel) — quick answers to the most common problems.

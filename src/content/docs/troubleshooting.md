@@ -1,6 +1,6 @@
 ---
-title: Something not working?
-description: Quick answers to the most common problems, each with a link to the page that explains it in full.
+title: FAQ
+description: Frequently asked questions — quick answers to the most common problems, each with a link to the page that explains it in full.
 group: Help & community
 order: 8.5
 ---

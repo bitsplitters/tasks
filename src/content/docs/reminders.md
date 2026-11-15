@@ -93,6 +93,6 @@ Several of these come from the channel's **When** form, where you type the date,
 | *Over what is allowed* | Recurring reminders are turned off on this server: a reminder that was already recurring can keep the number of times it arrives or go lower. You see this if they were turned off while the form was open. An admin can turn them on in `/config app`. |
 | *Incorrect time zone* | The name doesn't match an official zone — copy it from the time zone map. |
 
-A reminder didn't arrive, or something else went wrong? See [Something not working?](/docs/troubleshooting/#reminders)
+A reminder didn't arrive, or something else went wrong? See the [FAQ](/docs/troubleshooting/#reminders).
 
 <div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">Reminder, in the second row under the list: the When form and the summary card.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Reminder, in the panel of a task: date, time, time zone and repetitions together.</span></a></div></div>

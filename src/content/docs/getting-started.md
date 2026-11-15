@@ -100,4 +100,4 @@ Everything in the window: [The Activity](/docs/activity/) and [Working on a list
 - [Reminders](/docs/reminders/) — who gets them, time zones, repeating reminders.
 - [Tips & tricks](/docs/tips/) — small habits that save time, like reusing a list on another server.
 - [/config app](/docs/configuration/) — notifications, the tips, time zone and more.
-- [Something not working?](/docs/troubleshooting/) — quick answers to the most common problems.
+- [FAQ](/docs/troubleshooting/) — quick answers to the most common problems.

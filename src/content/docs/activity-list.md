@@ -113,4 +113,4 @@ If someone changes the same thing just before you save, you choose: **Overwrite*
 
 - [The Activity](/docs/activity/) — how to get in, the lists of the channel, and back to the channel.
 - [Editing a task in the channel](/docs/channel-tasks/) — the same five buttons, under the list in the channel.
-- [Something not working?](/docs/troubleshooting/#in-the-activity) — quick answers to the most common problems.
+- [FAQ](/docs/troubleshooting/#in-the-activity) — quick answers to the most common problems.

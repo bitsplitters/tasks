@@ -69,4 +69,4 @@ The gear at the top right sets **Text size**, **Theme** and **Spaced rows**, mor
 - [Working on a list in the Activity](/docs/activity-list/) — the boxes, the panel of a task, and who is editing what.
 - [The list in the channel](/docs/the-task-list/) — every button under the list, in the channel.
 - [What Premium unlocks](/docs/premium/) — the places on your plan, and what the paid plan lifts.
-- [Something not working?](/docs/troubleshooting/#in-the-activity) — quick answers to the most common problems.
+- [FAQ](/docs/troubleshooting/#in-the-activity) — quick answers to the most common problems.
