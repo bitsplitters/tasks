@@ -12,15 +12,16 @@ import { MIA, PROPOSTO, ZONA, listaDeiVideo, statoIniziale } from '../components
 import { applicaOwner, applicaPromemoria, spunta } from '../components/home/demo/regole.ts';
 import { statoDopo, tra, type Copione } from './render-comune';
 
-const S0 = statoIniziale(listaDeiVideo());
-const S1 = spunta(S0, '2', true);
-const S2 = statoDopo(applicaOwner(S1, '3', [MIA], []));
-// Data e ora già proposte nella modale, adesso più dieci minuti, nel fuso del server.
-const S3 = statoDopo(applicaPromemoria(S2, '3', PROPOSTO, ZONA));
-
 const chan = (s: HTMLElement) => s.querySelector<HTMLElement>('[data-k="chan"]')!;
 
 export function copioneDelCanale(): Copione {
+  // Gli stati qui dentro, non nel modulo: un'azione che le regole rifiutano diventa l'errore nel titolo della pagina
+  // (registrazione.ts), invece di rompere l'import prima del suo catch.
+  const S0 = statoIniziale(listaDeiVideo());
+  const S1 = spunta(S0, '2', true);
+  const S2 = statoDopo(applicaOwner(S1, '3', [MIA], []));
+  // Data e ora già proposte nella modale, adesso più dieci minuti, nel fuso del server.
+  const S3 = statoDopo(applicaPromemoria(S2, '3', PROPOSTO, ZONA));
   return {
     // Il messaggio resta fermo dall'inizio alla fine: crescendo, prima, saliva a ogni riga in più (segnalazione
     // dell'utente del 15/11).

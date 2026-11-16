@@ -13,12 +13,6 @@ import { MIA, PROPOSTO, ZONA, listaDeiVideo, statoIniziale } from '../components
 import { applicaOwnerActivity, applicaPromemoria, spunta } from '../components/home/demo/regole.ts';
 import { easeInOutCubic, easeOut, statoDopo, tra, type Copione } from './render-comune';
 
-const SA0 = statoIniziale(listaDeiVideo());
-const SA1 = spunta(SA0, '2', true);
-const SA2 = statoDopo(applicaOwnerActivity(SA1, '3', [{ ruolo: false, id: MIA }]));
-// Data e ora proposte, adesso più dieci minuti, nel fuso del dispositivo: quello del server.
-const SA3 = statoDopo(applicaPromemoria(SA2, '3', PROPOSTO, ZONA));
-
 const q = (s: HTMLElement, k: string) => s.querySelector<HTMLElement>(`[data-k="${k}"]`)!;
 const win = (s: HTMLElement) => q(s, 'win');
 
@@ -31,6 +25,13 @@ function dopoIlSalvataggio(w: HTMLElement): void {
 }
 
 export function copioneDellActivity(): Copione {
+  // Gli stati qui dentro, non nel modulo: un'azione che le regole rifiutano diventa l'errore nel titolo della pagina
+  // (registrazione.ts), invece di rompere l'import prima del suo catch.
+  const SA0 = statoIniziale(listaDeiVideo());
+  const SA1 = spunta(SA0, '2', true);
+  const SA2 = statoDopo(applicaOwnerActivity(SA1, '3', [{ ruolo: false, id: MIA }]));
+  // Data e ora proposte, adesso più dieci minuti, nel fuso del dispositivo: quello del server.
+  const SA3 = statoDopo(applicaPromemoria(SA2, '3', PROPOSTO, ZONA));
   return {
     fermate: [
       { t: 0, x: 0.62, y: 0.3 },
