@@ -7,6 +7,11 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 2.1.0 — News in the bot
+
+- **`/news`** — the latest news about Team Tasks Manager, in your language, in a message only you can see. The arrows ◀ and ▶ go to older and newer news. See [`/news`](/docs/commands/#news).
+- **A line for news nobody has read** — when there's news nobody in your server has opened yet, the last line of the bot's panels says so until someone opens `/news`: then it goes away for everyone in the server. See [`/news`](/docs/commands/#news).
+
 ## 2.0.0 — The Activity
 
 - **The Activity** — a list opens in a window inside Discord, on desktop and on mobile. Several people work on it at once, and everyone sees each change as it happens. When the last person leaves, the list goes back to its channel, with a summary of the changes. See [The Activity](/docs/activity/).

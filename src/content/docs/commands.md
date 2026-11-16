@@ -64,9 +64,15 @@ This command is your starting point inside Discord. It opens a panel with five b
 
 Shows a card to add Team Tasks Manager to another server: the same presentation as its App Directory page (what it does, how to start), the **Add to Discord** button (Discord's authorization page for the bot, with the same permissions as https://tasks.bitsplitters.app/invite), the guide and the support server. The card is visible to everyone in the channel, so you can run it where the people who will set up the other server can see it. It reads nothing from the server and needs no permission.
 
+## `/news`
+
+The latest news about Team Tasks Manager, in your language: what's new in the bot and how to use it. The news opens in a message only you can see, with its date under the title. When there's older or newer news, the arrows ◀ and ▶ take you to it. It works in servers only, and needs no permission.
+
+When there's news nobody in your server has read yet, the last line of the bot's panels says so, in place of the usual footer: in `/help`, the Guide, **More**, `/config app` and the explanation that `/create-list` shows. As soon as someone in the server opens `/news`, the line goes away for everyone. A server that adds TTM after a piece of news doesn't get the line: the news is in `/news`.
+
 ## Command names in your language
 
-Discord shows each command in the language of your Discord app, and in English for a language TTM isn't translated into. `/config app`, `/config lists`, `/config webhook` (with its `webhook` option), `/beta`, `/help` and `/invite` keep the same name everywhere.
+Discord shows each command in the language of your Discord app, and in English for a language TTM isn't translated into. `/config app`, `/config lists`, `/config webhook` (with its `webhook` option), `/beta`, `/help`, `/invite` and `/news` keep the same name everywhere.
 
 | Language | `/create-list` | its `file` option | `/config webhook` options |
 | :--- | :--- | :--- | :--- |
