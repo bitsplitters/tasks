@@ -34,6 +34,7 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
   <main class="docs-main">
     <button
       class="docs-menu-toggle" id="docs-menu-toggle" aria-label="Open documentation menu"
+      aria-expanded="false" aria-controls="docs-side"
     >&#9776; Documentation</button>
     <div class="docs-shell">
       <aside class="docs-side" id="docs-side">
@@ -72,21 +73,61 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
     </div>
   </main>
   <script>
-    const t = document.getElementById("docs-menu-toggle");
-    const s = document.getElementById("docs-side");
-    const c = document.getElementById("docs-side-close");
+    // Il menu della documentazione sul telefono (spec 2026-11-16-restyle-documentazione-design.md, §3.6 e §6, nel
+    // repo team-tasks-manager).
+    const toggle = document.getElementById('docs-menu-toggle');
+    const side = document.getElementById('docs-side');
+    const close = document.getElementById('docs-side-close');
 
-    // La classe sul body blocca lo scroll della pagina mentre il menu e' aperto: senza, il gesto
-    // che "manca" il pannello scorre il contenuto dietro invece del menu. Va togliuta in OGNI
-    // uscita — croce, tap fuori, Escape, e anche la navigazione verso una voce — altrimenti la
-    // pagina di destinazione resta bloccata e sembra rotta.
-    const apri = () => { s.classList.add("open"); document.body.classList.add("docs-menu-open"); };
-    const chiudi = () => { s.classList.remove("open"); document.body.classList.remove("docs-menu-open"); };
+    // Il resto della pagina, che a menu aperto prende `inert`: il Tab resta nel pannello, uno screen reader non legge
+    // quello che il pannello copre.
+    const fuori = () =>
+      document.querySelectorAll<HTMLElement>('.site-top, #docs-menu-toggle, .docs-shell > article, .site-foot');
 
-    if (t && s) t.addEventListener("click", apri);
-    if (c && s) c.addEventListener("click", chiudi);
-    if (s) s.addEventListener("click", (e) => { if (e.target === s) chiudi(); });
-    if (s) s.addEventListener("click", (e) => { if (e.target.closest("a")) chiudi(); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && s && s.classList.contains("open")) chiudi(); });
+    // La voce della pagina aperta, portata in vista dentro la barra laterale o il pannello. Scorre la barra, mai la
+    // pagina: scrollIntoView muoverebbe anche la finestra.
+    const voceApertaInVista = () => {
+      const voce = side?.querySelector('a.active');
+      if (!side || !voce) return;
+      const barra = side.getBoundingClientRect();
+      const v = voce.getBoundingClientRect();
+      const alto = Math.max(barra.top, 0);
+      const basso = Math.min(barra.bottom, window.innerHeight);
+      if (v.top >= alto && v.bottom <= basso) return;
+      side.scrollTop += v.top - alto - (basso - alto - v.height) / 2;
+    };
+
+    if (toggle && side && close) {
+      const apri = () => {
+        side.classList.add('open');
+        // Su html, che passa il suo overflow alla finestra: su body il blocco non bloccherebbe niente.
+        document.documentElement.classList.add('docs-menu-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        fuori().forEach((el) => { el.inert = true; });
+        voceApertaInVista();
+        // Senza scorrere: il pannello resta sulla voce aperta, la croce è già in vista.
+        close.focus({ preventScroll: true });
+      };
+      // Ogni uscita passa da qui: la croce, un tocco fuori dalle voci, Escape, una voce, la finestra che si allarga.
+      // Altrimenti la pagina resterebbe bloccata. Il fuoco torna al pulsante, tranne quando si va a un'altra pagina o
+      // il pulsante sparisce.
+      const chiudi = (restituisci: boolean) => {
+        if (!side.classList.contains('open')) return;
+        side.classList.remove('open');
+        document.documentElement.classList.remove('docs-menu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        fuori().forEach((el) => { el.inert = false; });
+        if (restituisci) toggle.focus();
+      };
+      toggle.addEventListener('click', apri);
+      close.addEventListener('click', () => chiudi(true));
+      side.addEventListener('click', (e) => {
+        if (e.target === side) chiudi(true);
+        else if (e.target instanceof Element && e.target.closest('a')) chiudi(false);
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') chiudi(true); });
+      window.matchMedia('(max-width: 820px)').addEventListener('change', (e) => { if (!e.matches) chiudi(false); });
+    }
+    voceApertaInVista();
   </script>
 </Base>
