@@ -10,13 +10,9 @@
  */
 
 /* Mona Sans, variabile in peso e larghezza: la larghezza è la scelta che dà carattere ai titoli. */
-.vetrina {
-  --display: 'Mona Sans Variable', var(--sans);
-  font-family: var(--display);
-}
+.vetrina { font-family: var(--display); }
 
-.vetrina h2,
-.vetrina .block h2 {
+.vetrina h2 {
   font-family: var(--display);
   font-size: clamp(1.75rem, 3.6vw, 2.75rem);
   font-weight: 750;

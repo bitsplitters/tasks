@@ -4,6 +4,8 @@ import Base from '../../layouts/Base.astro';
 import { docsCard } from '../../lib/preview-card';
 import { PAGINA_PIANI } from '../../lib/pagina-piani';
 import { GRUPPI_DOCS, POSTI } from '../../lib/gruppi-docs';
+// docs.css dopo Base, che importa global.css: le regole della documentazione vengono dopo quelle comuni.
+import '../../styles/docs.css';
 
 // `entry.id` e non `entry.slug`, `render(entry)` e non `entry.render()`: dal Content Layer le entry
 // sono oggetti serializzabili e non portano piu' metodi. Il NOME del parametro di rotta resta
