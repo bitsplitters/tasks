@@ -17,10 +17,10 @@ import type { Campo, Modale } from './ui/modale.ts';
 import type { Opzione } from './ui/scelta.ts';
 
 /** Il tetto di un campo di testo di Discord (TextInput.MAX_VALUE_LENGTH). */
-const MAX_VALUE_LENGTH = 4000;
+export const MAX_VALUE_LENGTH = 4000;
 
 /** Il tetto del titolo di una lista (TaskList.TITLE_MAX_LENGTH). */
-const TITOLO_MAX = 90;
+export const TITOLO_MAX = 90;
 
 /** I mesi del campo Month, come Month.getDisplayName(FULL_STANDALONE) in inglese. */
 const MESI = [

@@ -70,10 +70,12 @@ function avvia(radice: HTMLElement): void {
 
   /**
    * Il fumetto nella scena del tab aperto: sopra l'elemento accanto, a partire dal suo bordo sinistro, o sotto se
-   * sopra non c'è spazio; senza elemento, in cima al centro. Sempre dentro la scena.
+   * sopra non c'è spazio; senza elemento, in cima al centro. Sempre dentro la scena. Prende il posto del tooltip, anche
+   * di quello in arrivo: sopra lo stesso pulsante starebbero uno sull'altro.
    */
   function fumetto(html: string, accanto?: Element): void {
     nascondiFumetto();
+    tooltip.nascondi();
     const scena = scene[modo];
     const f = scena.querySelector<HTMLElement>('.dm-bubble');
     if (!f) return;

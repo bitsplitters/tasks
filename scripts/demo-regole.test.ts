@@ -12,7 +12,8 @@ import {
 import type { Stato, Task } from '../src/components/home/demo/modello.ts';
 import {
   applicaOwner, applicaOwnerActivity, applicaPromemoria, applicaTag, applicaTagActivity, applicaWebhook, avanzamento,
-  campiDelPromemoria, campiDellaNuovaData, carrello, eliminaTask, eliminaTaskConfermato, imparaIlFuso,
+  campiDelPromemoria, campiDellaNuovaData, carrello, conTuttiRiaperti, eliminaTask, eliminaTaskConfermato,
+  imparaIlFuso,
   invertiSpunta, nelCanale, nellActivity, prosa, prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri,
   riapriConfermato, rifiutoDelCarrello, rinumera,
   salvaTesto, salvaTestoActivity, sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, testoDellaLista, togliOwner,
@@ -532,6 +533,19 @@ test("Reopen rifiuta la lista cambiata col ponte aperto: nell'Activity, bloccata
   assert.deepEqual(riapriConfermato({ ...s0, inActivity: true }), rifiutoDi('tasklist.modal.activity.error'));
   const tutte = { ...s0, inActivity: true, bloccata: true };
   assert.deepEqual(riapriConfermato(tutte, { at: DOMANI, zona: ZONA }), rifiutoDi('tasklist.modal.activity.error'));
+});
+
+test("nell'Activity Reopen non ha i controlli del ponte; il fuso dell'ancora si impara solo se richiesto", () => {
+  const dentro = conSpunte(['3'], { ...statoIniziale(), inActivity: true });
+  const s = conIlTask(3, { promemoria: { at: PROPOSTO, zona: ZONA } }, dentro);
+  const riaperta = conTuttiRiaperti(s);
+  assert.deepEqual(fatti(riaperta), []);
+  assert.equal(riaperta.inActivity, true);
+  assert.deepEqual(riaperta.lista.tasks[3].promemoria, { at: PROPOSTO, zona: ZONA });
+  const ferma = conTuttiRiaperti(s, { at: DOMANI, zona: 'Asia/Kolkata' }, false);
+  assert.deepEqual(ferma.lista.tasks[3].promemoria, { at: DOMANI, zona: 'Asia/Kolkata' });
+  assert.equal('fuso' in ferma, false);
+  assert.equal(fusoDi(conTuttiRiaperti(s, { at: DOMANI, zona: 'Asia/Kolkata' })), 'Asia/Kolkata');
 });
 
 test('New date: il primo promemoria dei riaperti cade sulla data, gli altri lo seguono (ReminderReanchorer)', () => {

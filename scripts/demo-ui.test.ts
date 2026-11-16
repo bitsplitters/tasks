@@ -195,11 +195,19 @@ test('il messaggio effimero: da TTM, il contenuto com\'è, «Only you can see th
 });
 
 test('il dialogo dell\'Activity: il titolo con la ✕, il corpo, i pulsanti coi loro stili', () => {
-  const html = htmlDelDialogo('Exit <the> Activity', '<p>Mia is here.</p>', [
-    { id: 'me', testo: 'Leave on your own', stile: 'grigio' },
-    { id: 'all', testo: 'Bring back', stile: 'blu', spento: true },
-    { id: 'clean', testo: 'Clean', stile: 'rosso' },
-  ], 4);
+  const html = htmlDelDialogo({
+    titolo: 'Exit <the> Activity',
+    corpo: '<p>Mia is here.</p>',
+    piede: [
+      { id: 'me', testo: 'Leave on your own', stile: 'grigio' },
+      { id: 'all', testo: 'Bring back', stile: 'blu', spento: true },
+      { id: 'clean', testo: 'Clean', stile: 'rosso' },
+    ],
+  }, 4);
+  assert.match(html, /^<div class="ui-dlg" role="dialog"/);
+  assert.match(html, /data-k="d-me"><span class="ui-dlgbtesto">Leave on your own<\/span>/);
+  assert.ok(html.includes('Leave on your own</span><span class="ui-dlgpunti" aria-hidden="true">' +
+    '<i></i><i></i><i></i></span></button>'));
   assert.match(html, /role="dialog"/);
   assert.match(html, /aria-modal="true"/);
   assert.match(html, /aria-labelledby="ui-dt-4"/);
@@ -212,4 +220,12 @@ test('il dialogo dell\'Activity: il titolo con la ✕, il corpo, i pulsanti coi 
   assert.match(tag(html, 'd-all'), / disabled/);
   assert.match(tag(html, 'd-clean'), /class="sc-abtn sc-red"/);
   assert.ok(html.indexOf('data-k="d-me"') < html.indexOf('data-k="d-all"'));
+});
+
+test('il dialogo largo di Edit the list; il piede già in HTML, come le frecce della guida', () => {
+  const piede = '<div class="g">‹ ›</div>';
+  const html = htmlDelDialogo({ titolo: 'Guide', corpo: '<p>1</p>', piede, largo: true }, 5);
+  assert.match(html, /^<div class="ui-dlg" data-wide role="dialog"/);
+  assert.ok(html.endsWith('<div class="ui-dlgpiede"><div class="g">‹ ›</div></div></div>'));
+  assert.doesNotMatch(htmlDelDialogo({ titolo: 'x', corpo: '', piede: [] }, 6), /ui-dlgpiede/);
 });

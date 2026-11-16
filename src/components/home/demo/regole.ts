@@ -783,19 +783,28 @@ function riancorati(tasks: Task[], ancora: Ancora): Task[] {
 }
 
 /**
- * Reopen, o il submit di New date (ReopenLogic.riapertura, Riapertura.riaperti). Il ponte resta aperto sotto la lista,
- * che intanto può cambiare: passata nell'Activity, bloccata (Riapri tutti è spento), senza completati, il bot
- * rifiuta. Altrimenti tutti i task tornano da fare. Con l'ancora si spostano i promemoria dei soli task che si
- * riaprono; il fuso della modale diventa quello di chi guarda (imparaIlFuso). Il bot lo impara anche quando poi
- * rifiuta, la demo no: un rifiuto non porta uno stato, per arrivarci serve una lista cambiata col ponte aperto.
+ * Ciò che Reopen fa, nel canale come nell'Activity (Riapertura.riaperti): tutti i task tornano da fare. Con l'ancora
+ * di New date si spostano i promemoria dei soli task che si riaprono; se `impara`, il fuso dell'ancora diventa quello
+ * di chi guarda (imparaIlFuso). Nel canale lo impara sempre; nell'Activity solo se l'ha cambiato a mano, con un fuso
+ * che la pagina non proponeva (ReopenDialog, learn).
+ */
+export function conTuttiRiaperti(stato: Stato, ancora?: Ancora, impara = true): Stato {
+  const { tasks } = stato.lista;
+  const riaperti = (ancora ? riancorati(tasks, ancora) : tasks).map((t) => (t.fatto ? { ...t, fatto: false } : t));
+  return conTasks(ancora && impara ? imparaIlFuso(stato, ancora.zona) : stato, riaperti);
+}
+
+/**
+ * Reopen, o il submit di New date (ReopenLogic.riapertura). Il ponte resta aperto sotto la lista, che intanto può
+ * cambiare: passata nell'Activity, bloccata (Riapri tutti è spento), senza completati, il bot rifiuta. Altrimenti
+ * conTuttiRiaperti. Il bot impara il fuso anche quando poi rifiuta, la demo no: un rifiuto non porta uno stato, per
+ * arrivarci serve una lista cambiata col ponte aperto.
  */
 export function riapriConfermato(stato: Stato, ancora?: Ancora): Esito {
   if (stato.inActivity) return rifiuto('tasklist.modal.activity.error');
   if (stato.bloccata) return rifiuto('tasklist.action.unavailable.error');
-  const { tasks } = stato.lista;
-  if (!tasks.some((t) => t.fatto)) return rifiuto('tasklist.reopen.none.error');
-  const riaperti = (ancora ? riancorati(tasks, ancora) : tasks).map((t) => (t.fatto ? { ...t, fatto: false } : t));
-  return fatto(conTasks(ancora ? imparaIlFuso(stato, ancora.zona) : stato, riaperti));
+  if (!stato.lista.tasks.some((t) => t.fatto)) return rifiuto('tasklist.reopen.none.error');
+  return fatto(conTuttiRiaperti(stato, ancora));
 }
 
 /**

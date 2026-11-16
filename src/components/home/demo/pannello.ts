@@ -10,7 +10,7 @@ import type { Tasto } from '../scene-data.ts';
 import type { Acceso } from './condiviso.ts';
 import { escape, markdown } from './markdown.ts';
 import type { Contesto } from './markdown.ts';
-import { ADESSO, PROPOSTO, WEBHOOK, campiDi, daiCampi, fusoDi, posizione } from './modello.ts';
+import { ADESSO, PROPOSTO, WEBHOOK, fusoDi, posizione } from './modello.ts';
 import type { Stato, Task } from './modello.ts';
 import {
   applicaOwnerActivity, applicaPromemoria, applicaTagActivity, applicaWebhook, eliminaTask, eliminaTaskConfermato,
@@ -18,12 +18,14 @@ import {
   togliTag, togliWebhook,
 } from './regole.ts';
 import type { Esito } from './regole.ts';
+import { dispositivoDi, istanteDi, quandoDa, troppoVicina } from './quando.ts';
+import type { Quando } from './quando.ts';
 import { contestoDellActivity } from './righe.ts';
 import { avviso, testo, testoDellaDomanda, testoDi } from './testi.ts';
 import { chiave, nuovoNumero } from './ui/comune.ts';
-import { montaFusi } from './ui/fusi.ts';
 import { montaPersone, stesseScelte } from './ui/persone.ts';
-import { DISPOSITIVO, stessaZona, sulDispositivo, zona } from './zone.ts';
+import { montaQuando } from './ui/quando.ts';
+import { stessaZona } from './zone.ts';
 
 /** Quanto la lista delle webhook del server ci mette ad arrivare (WebhookAction, list === null). */
 const CARICAMENTO_MS = 300;
@@ -90,29 +92,10 @@ export function testoCambiato(task: Task, scritto: string): boolean {
   return scritto.replace(/\s+/g, ' ').trim() !== prosaDelTask(task);
 }
 
-/** Data e ora come le scrivono i campi, nel fuso in cui sono scelte; toccata se il fuso l'ha cambiato chi guarda. */
-export interface Quando {
-  data: string;
-  ora: string;
-  zona: string;
-  toccata: boolean;
-}
-
-const due = (n: number) => String(n).padStart(2, '0');
-
 /** Il promemoria del task nel suo fuso; senza, adesso più dieci minuti nel fuso di chi guarda (newWhen). */
 export function quandoDi(stato: Stato, pos: string): Quando {
   const r = taskDi(stato, pos).promemoria;
-  const zonaDelModulo = r?.zona ?? fusoDi(stato);
-  const c = campiDi(r?.at ?? PROPOSTO, zonaDelModulo);
-  return { data: `${c.anno}-${due(c.mese)}-${due(c.giorno)}`, ora: c.ora, zona: zonaDelModulo, toccata: false };
-}
-
-/** L'istante dei campi, o null finché uno dei due è vuoto (atOf). */
-export function istanteDi(q: Quando): number | null {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(q.data) || !/^\d{2}:\d{2}$/.test(q.ora)) return null;
-  const [anno, mese, giorno] = q.data.split('-').map(Number);
-  return daiCampi(giorno, mese, anno, q.ora, q.zona);
+  return quandoDa(r?.at ?? PROPOSTO, r?.zona ?? fusoDi(stato));
 }
 
 export interface ModuloDelPromemoria {
@@ -134,8 +117,7 @@ export function moduloDelPromemoria(stato: Stato, pos: string, q: Quando): Modul
   const at = istanteDi(q);
   let problema: string | null = null;
   if (at !== null && at <= ADESSO) problema = avviso(testo('activity.reminder.past'));
-  else if (at !== null && at !== r?.at && at < ADESSO + 300)
-    problema = avviso(testo('tasklist.modal.alert.date.minutes.error').replace(/^- /, ''));
+  else if (at !== null && at !== r?.at && at < ADESSO + 300) problema = troppoVicina();
   const avvisi = [problema, task.owner ? null : avviso(testo('activity.reminder.owner.you'))]
     .filter((a): a is string => a !== null);
   const cambiato = !r || at !== r.at || !stessaZona(q.zona, r.zona);
@@ -143,9 +125,7 @@ export function moduloDelPromemoria(stato: Stato, pos: string, q: Quando): Modul
     at,
     avvisi,
     pronto: cambiato && at !== null && problema === null,
-    dispositivo: at !== null && !stessaZona(q.zona, DISPOSITIVO)
-      ? testo('activity.reminder.device', sulDispositivo(at))
-      : null,
+    dispositivo: dispositivoDi(q),
   };
 }
 
@@ -261,81 +241,22 @@ export function montaAzione(area: HTMLElement, stato: Stato, pos: string, acceso
 function promemoria(contenuto: HTMLElement, avvisi: (t: readonly string[]) => void, stato: Stato, pos: string,
   cambio: () => void): Azione {
   let q = quandoDi(stato, pos);
-  let fusi: { smonta(): void } | null = null;
   let m = moduloDelPromemoria(stato, pos, q);
-
-  const campo = (tipo: 'date' | 'time', k: string, etichetta: string, valore: string) => {
-    const id = `${k}-${nuovoNumero()}`;
-    return `<div class="sc-field"><label class="sc-flabel" for="${id}">${escape(testo(etichetta))}</label>` +
-      `<input class="sc-pin" type="${tipo}" id="${id}" data-k="${k}" value="${escape(valore)}" required></div>`;
-  };
-
-  function aggiorna(): void {
-    m = moduloDelPromemoria(stato, pos, q);
-    avvisi(m.avvisi);
-    const riga = contenuto.querySelector<HTMLElement>('[data-k="p-device"]');
-    if (riga) {
-      riga.hidden = m.dispositivo === null;
-      riga.textContent = m.dispositivo ?? '';
-    }
-    cambio();
-  }
-
-  function modulo(): void {
-    const z = zona(q.zona, ADESSO);
-    const id = `p-zone-${nuovoNumero()}`;
-    const paese = z.paese ? `<span class="sc-zcountry">${escape(z.paese)}</span>` : '';
-    contenuto.innerHTML = '<div class="sc-rform"><div class="sc-when"><div class="sc-whenrow">' +
-      campo('date', 'p-date', 'activity.reminder.date', q.data) +
-      campo('time', 'p-time', 'activity.reminder.time', q.ora) + '</div>' +
-      `<div class="sc-field"><label class="sc-flabel" for="${id}">${escape(testo('activity.reminder.zone'))}</label>` +
-      `<button type="button" class="sc-pin sc-zfield" id="${id}" data-k="p-zone">` +
-      '<img src="/icons/timeZone.png" alt="" draggable="false">' +
-      `<span class="sc-zplace"><span class="sc-zcity">${escape(z.citta)}</span>${paese}</span>` +
-      `<span class="sc-zoff">${escape(z.scarto)}</span></button></div>` +
-      '<div class="sc-fdesc" data-k="p-device" hidden></div></div></div>';
-    aggiorna();
-  }
-
-  function scegliIlFuso(): void {
-    avvisi([]);
-    fusi = montaFusi(contenuto, q.zona, stato.fuso, ADESSO, {
-      scelta: (z) => {
-        q = { ...q, zona: z, toccata: true };
-        tornaAiCampi();
-      },
-      indietro: tornaAiCampi,
-    });
-  }
-
-  function tornaAiCampi(): void {
-    fusi?.smonta();
-    fusi = null;
-    modulo();
-  }
-
-  const alCampo = (e: Event) => {
-    const t = e.target as HTMLInputElement;
-    if (t.dataset.k === 'p-date') q = { ...q, data: t.value };
-    else if (t.dataset.k === 'p-time') q = { ...q, ora: t.value };
-    else return;
-    aggiorna();
-  };
-  const alClic = (e: MouseEvent) => {
-    if (!fusi && (e.target as Element).closest('[data-k="p-zone"]')) scegliIlFuso();
-  };
-  contenuto.addEventListener('input', alCampo);
-  contenuto.addEventListener('click', alClic);
-  modulo();
+  avvisi(m.avvisi);
+  const campi = montaQuando(contenuto, q, 'p', stato.fuso, {
+    cambio: (nuovo) => {
+      q = nuovo;
+      m = moduloDelPromemoria(stato, pos, q);
+      avvisi(m.avvisi);
+      cambio();
+    },
+    fusi: () => avvisi([]),
+  });
   return {
     pronto: () => m.pronto,
     esito: (s) => salvaPromemoria(s, pos, q),
     chiude: false,
-    smonta() {
-      fusi?.smonta();
-      contenuto.removeEventListener('input', alCampo);
-      contenuto.removeEventListener('click', alClic);
-    },
+    smonta: () => campi.smonta(),
   };
 }
 

@@ -19,9 +19,10 @@ import {
 } from '../src/components/home/demo/ui/persone.ts';
 import { chiaveDellaZona, htmlDelleZone } from '../src/components/home/demo/ui/fusi.ts';
 import {
-  eliminazione, inRosso, istanteDi, moduloDelPromemoria, primoParagrafo, quandoDi, salvaPromemoria,
-  scelteDelWebhook, testoCambiato,
+  eliminazione, inRosso, moduloDelPromemoria, primoParagrafo, quandoDi, salvaPromemoria, scelteDelWebhook,
+  testoCambiato,
 } from '../src/components/home/demo/pannello.ts';
+import { istanteDi } from '../src/components/home/demo/quando.ts';
 
 const S0 = statoIniziale();
 const persona = (id: string): Menzione => ({ ruolo: false, id });

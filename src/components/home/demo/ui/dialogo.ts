@@ -13,23 +13,51 @@ export interface Pulsante {
   testo: string;
   stile: 'blu' | 'rosso' | 'grigio';
   spento?: boolean;
+  /** Un pulsante che resta acceso finché non lo si preme di nuovo, come New date (Button, pressed). */
+  premuto?: boolean;
+}
+
+export interface Dialogo {
+  titolo: string;
+  /** Il corpo, già in HTML. */
+  corpo: string;
+  /** I pulsanti in fondo, o il fondo già in HTML (le frecce della guida). */
+  piede: readonly Pulsante[] | string;
+  /** Il dialogo largo di Edit the list (Dialog, wide). */
+  largo?: boolean;
 }
 
 /** Le classi di Button.css: nel Dialog il grigio è quello rialzato. */
 const STILE = { blu: 'sc-blue', rosso: 'sc-red', grigio: 'sc-raised' } as const;
 
-/** Il dialogo in HTML col contratto del §5: `d-x` la ✕, `d-<id>` i pulsanti. Il corpo è già HTML. */
-export function htmlDelDialogo(titolo: string, corpo: string, pulsanti: readonly Pulsante[], n: number): string {
-  const id = `ui-dt-${n}`;
-  const tasti = pulsanti.map((p) => `<button type="button" class="sc-abtn ${STILE[p.stile]}" data-k="d-${p.id}"` +
-    `${p.spento ? ' disabled' : ''}>${escape(p.testo)}</button>`).join('');
-  return `<div class="ui-dlg" role="dialog" aria-modal="true" aria-labelledby="${id}" tabindex="-1">` +
-    `<div class="ui-dlghd"><p class="ui-dlgtit" id="${id}">${escape(titolo)}</p><button type="button" ` +
-    `class="ui-dlgx" data-k="d-x" aria-label="${escape(testo('activity.dialog.close'))}">&times;</button></div>` +
-    `<div class="ui-dlgcorpo">${corpo}</div>${tasti ? `<div class="ui-dlgpiede">${tasti}</div>` : ''}</div>`;
+/** I tre puntini dell'attesa, spenti finché il pulsante non aspetta la risposta (Button, btn-dots). */
+const PUNTINI = '<span class="ui-dlgpunti" aria-hidden="true"><i></i><i></i><i></i></span>';
+
+/** Un pulsante del fondo: la scritta, che durante l'attesa lascia il posto ai puntini e tiene la misura. */
+function htmlDelPulsante(p: Pulsante): string {
+  const premuto = p.premuto === undefined ? '' : ` aria-pressed="${p.premuto}"`;
+  return `<button type="button" class="sc-abtn ${STILE[p.stile]}" data-k="d-${p.id}"${premuto}` +
+    `${p.spento ? ' disabled' : ''}><span class="ui-dlgbtesto">${escape(p.testo)}</span>${PUNTINI}</button>`;
 }
 
-/** Il velo di ogni contenitore, col dialogo aperto: aprirne un altro (la pagina dopo della guida) chiude il primo. */
+/** Il dialogo in HTML col contratto del §5: `d-x` la ✕, `d-<id>` i pulsanti. */
+export function htmlDelDialogo(d: Dialogo, n: number): string {
+  const id = `ui-dt-${n}`;
+  const piede = typeof d.piede === 'string' ? d.piede : d.piede.map(htmlDelPulsante).join('');
+  return `<div class="ui-dlg"${d.largo ? ' data-wide' : ''} role="dialog" aria-modal="true" ` +
+    `aria-labelledby="${id}" tabindex="-1">` +
+    `<div class="ui-dlghd"><p class="ui-dlgtit" id="${id}">${escape(d.titolo)}</p><button type="button" ` +
+    `class="ui-dlgx" data-k="d-x" aria-label="${escape(testo('activity.dialog.close'))}">&times;</button></div>` +
+    `<div class="ui-dlgcorpo">${d.corpo}</div>${piede ? `<div class="ui-dlgpiede">${piede}</div>` : ''}</div>`;
+}
+
+/** Il pulsante che aspetta la risposta del bot: i puntini al posto della scritta, il clic ignorato (Button). */
+export function inAttesa(tasto: HTMLElement, attesa: boolean): void {
+  if (attesa) tasto.setAttribute('aria-busy', 'true');
+  else tasto.removeAttribute('aria-busy');
+}
+
+/** Il velo di ogni contenitore, col dialogo aperto: aprirne un altro chiude il primo. */
 const APERTI = new WeakMap<HTMLElement, () => void>();
 
 /**
@@ -37,10 +65,10 @@ const APERTI = new WeakMap<HTMLElement, () => void>();
  * focus torna ad `apritore`. Un pulsante acceso chiama `clic` col suo id senza chiudere il dialogo: lo chiude chi lo
  * ha aperto, con la funzione che riceve. Esc, la ✕ e un clic sul velo chiudono e chiamano `chiusura`.
  */
-export function apriDialogo(dove: HTMLElement, titolo: string, corpo: string, pulsanti: readonly Pulsante[],
-  apritore: HTMLElement, alla: { clic(id: string): void; chiusura?(): void }): () => void {
+export function apriDialogo(dove: HTMLElement, d: Dialogo, apritore: HTMLElement,
+  alla: { clic(id: string): void; chiusura?(): void }): () => void {
   APERTI.get(dove)?.();
-  dove.innerHTML = htmlDelDialogo(titolo, corpo, pulsanti, nuovoNumero());
+  dove.innerHTML = htmlDelDialogo(d, nuovoNumero());
   dove.hidden = false;
   const box = dove.querySelector<HTMLElement>('.ui-dlg');
   if (!box) throw new Error('apriDialogo: il dialogo non si è disegnato');
@@ -72,7 +100,7 @@ export function apriDialogo(dove: HTMLElement, titolo: string, corpo: string, pu
   }, { signal });
   box.addEventListener('click', (e) => {
     const tasto = (e.target as Element).closest<HTMLButtonElement>('button[data-k^="d-"]');
-    const k = tasto && !tasto.disabled ? tasto.dataset.k : undefined;
+    const k = tasto && !tasto.disabled && tasto.getAttribute('aria-busy') !== 'true' ? tasto.dataset.k : undefined;
     if (k === 'd-x') chiudi(true);
     else if (k) alla.clic(k.slice(2));
   }, { signal });

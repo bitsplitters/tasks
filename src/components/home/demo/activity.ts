@@ -3,8 +3,8 @@
  * team-tasks-manager): ciò che succede a ogni clic nella pagina. La casella spunta il task con la cascata dei gruppi;
  * il testo di un task apre il suo pannello, dove i pulsanti passano da grigio a blu a rosso e l'area mostra l'azione
  * del pulsante acceso (demo/pannello.ts). Save e Delete la mandano al bot, che risponde dopo un attimo: il pannello
- * torna ai pulsanti grigi. Exit riporta la lista nel canale. La prima riga arriva col compito 12: fino ad allora i suoi
- * pulsanti, come gli altri, mostrano il loro tooltip.
+ * torna ai pulsanti grigi. La prima riga apre i suoi dialoghi (demo/primariga.ts): con Save acceso, Edit, Clean e
+ * Reopen all aspettano che il task si salvi o che il pannello si chiuda.
  */
 import type { Tasto } from '../scene-data.ts';
 import {
@@ -14,7 +14,8 @@ import {
 import { dentro, dopoIlClic, type Acceso, type Condiviso } from './condiviso.ts';
 import { markdown } from './markdown.ts';
 import { montaAzione, type Azione } from './pannello.ts';
-import { invertiSpunta, nelCanale } from './regole.ts';
+import { TASTI_DELLA_PRIMA_RIGA, montaPrimaRiga } from './primariga.ts';
+import { invertiSpunta } from './regole.ts';
 import { contestoDellActivity } from './righe.ts';
 import { rispostaDellEsito } from './testi.ts';
 
@@ -36,6 +37,11 @@ export function montaActivity(scena: HTMLElement, condiviso: Condiviso): Activit
   let azione: Azione | null = null;
   /** Il salvataggio in viaggio: l'azione che l'ha mandato e la risposta, che chi lascia il tab fa arrivare subito. */
   let attesa: { azione: Azione; timer: number; risposta: () => void } | null = null;
+  /** La prima riga coi suoi dialoghi: prima di aprirne uno chiude il pannello, come un clic fuori (useClosing). */
+  const primaRiga = montaPrimaRiga(scena, condiviso, {
+    chiudiIlPannello: () => chiudiPannello(false),
+    taskInModifica: () => win.dataset.panel ?? null,
+  });
 
   const posDi = (b: HTMLElement) => b.closest<HTMLElement>('[data-task]')?.dataset.task ?? '';
 
@@ -44,18 +50,24 @@ export function montaActivity(scena: HTMLElement, condiviso: Condiviso): Activit
     pagina.scrollTo({ top: scorrimentoPerIlPannello(win), behavior: menoMovimento.matches ? 'auto' : 'smooth' });
   }
 
-  /** Save o Delete in fondo, accesi se l'azione si può mandare; quella in viaggio tiene i suoi puntini. */
+  /**
+   * Save o Delete in fondo, accesi se l'azione si può mandare; quella in viaggio tiene i suoi puntini. Con Save acceso
+   * Edit, Clean e Reopen all aspettano (useTaskLock).
+   */
   function piede(): void {
     if (!azione || attesa?.azione === azione) return;
-    if (acceso?.colore === 'red') eliminaAttivo(win, azione.pronto());
+    const rosso = acceso?.colore === 'red';
+    if (rosso) eliminaAttivo(win, azione.pronto());
     else salva(win, azione.pronto() ? 'on' : 'off');
+    primaRiga.blocca(!rosso && azione.pronto());
   }
 
-  /** L'azione tolta dall'area, col suo pulsante. */
+  /** L'azione tolta dall'area, col suo pulsante: la prima riga torna libera. */
   function via(): void {
     azione?.smonta();
     azione = null;
     acceso = null;
+    primaRiga.blocca(false);
   }
 
   /** Il pannello aperto da capo sul task pos, o chiuso (null). */
@@ -73,8 +85,8 @@ export function montaActivity(scena: HTMLElement, condiviso: Condiviso): Activit
   }
 
   /**
-   * Il tab lasciato o Start over: il pannello chiuso. Un salvataggio in viaggio arriva subito, prima che la lista
-   * cambi sotto: il bot l'aveva già ricevuto.
+   * Il tab lasciato o Start over: il pannello e il dialogo chiusi. Un salvataggio in viaggio arriva subito, prima che
+   * la lista cambi sotto: il bot l'aveva già ricevuto. Lo stesso per Clean e Reopen all (primaRiga.chiudi).
    */
   function chiudi(): void {
     if (attesa) {
@@ -82,6 +94,7 @@ export function montaActivity(scena: HTMLElement, condiviso: Condiviso): Activit
       attesa.risposta();
     }
     chiudiPannello(false);
+    primaRiga.chiudi();
   }
 
   /** Un pulsante del pannello premuto: il colore dopo e, acceso, la sua azione nell'area (TaskPanel, press). */
@@ -153,10 +166,8 @@ export function montaActivity(scena: HTMLElement, condiviso: Condiviso): Activit
       manda();
     } else if (k === 'p-close' || k === 'p-x') {
       chiudiPannello(true);
-    } else if (k === 'a-exit') {
-      chiudi();
-      condiviso.cambia(nelCanale(condiviso.stato()));
-      condiviso.vaiA('channel');
+    } else if (TASTI_DELLA_PRIMA_RIGA.has(k)) {
+      primaRiga.premi(b);
     } else if (b.dataset.tt) {
       // Fuori dal pannello il clic lo chiude: prima del tooltip, che così si mette dove il pulsante resta quando la
       // pagina, più corta, risale.
@@ -165,12 +176,14 @@ export function montaActivity(scena: HTMLElement, condiviso: Condiviso): Activit
     }
   });
 
-  // Un clic fuori dal pannello lo chiude, ma non sul fumetto, sul dialogo, sulle righe del suo task né sul testo di un
-  // altro, che apre il suo (TaskPanel, useClosing).
+  // Un clic fuori dal pannello lo chiude, ma non sul fumetto, sul dialogo, sulle righe del suo task, sul testo di un
+  // altro, che apre il suo (TaskPanel, useClosing), né su un pulsante della prima riga che aspetta: il fumetto dice
+  // perché, il pannello resta.
   document.addEventListener('click', (e) => {
     const pos = win.dataset.panel;
     if (pos === undefined) return;
-    const restaAperto = `.sc-panel, .sc-atext, .dm-bubble, .sc-dlg, .sc-arow[data-task="${pos}"]`;
+    const restaAperto = '.sc-panel, .sc-atext, .dm-bubble, .sc-dlg, .sc-afirst .sc-abtn[data-locked], ' +
+      `.sc-arow[data-task="${pos}"]`;
     if (!dentro(e, restaAperto)) chiudiPannello(false);
   });
   document.addEventListener('keydown', (e) => {

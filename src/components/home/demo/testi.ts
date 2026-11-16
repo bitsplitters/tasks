@@ -427,4 +427,6 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'activity.clean.none': '{0} No task is completed: there is nothing to clean.',
   'activity.clean.all':
     '{0} All the tasks are completed: cleaning would leave the list empty. To delete a list, use the channel.',
+  'activity.lock.mine':
+    '{0} You are changing task {1}: Edit, Clean and Reopen all wait until you save or close its panel.',
 });
