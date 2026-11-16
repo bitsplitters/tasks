@@ -8,9 +8,12 @@
  * suo istante; lì il tocco (un cerchio che si allarga e sparisce) dura TOCCO secondi e l'elemento sotto prende il
  * passaggio del mouse (.is-hover, che scene.css disegna come :hover). Le posizioni si misurano una volta sola,
  * all'avvio, sulla scena com'è all'istante di ogni fermata. Dopo un azzeramento il DOM è nuovo: non si tengono
- * riferimenti agli elementi, li si cerca a ogni fotogramma.
+ * riferimenti agli elementi, li si cerca a ogni fotogramma. Anche un evento può rifare il DOM, quando disegnaLista
+ * riscrive le righe: dopo gli eventi il fotogramma aspetta le immagini nuove.
  */
 import { chatInBasso } from '../components/home/scene-dom';
+import type { Stato } from '../components/home/demo/modello.ts';
+import type { Esito } from '../components/home/demo/regole.ts';
 
 export interface Evento {
   t: number;
@@ -52,6 +55,12 @@ export const easeOut = (p: number) => 1 - (1 - p) ** 3;
 /** Dove sta t fra a e b, da 0 a 1. */
 export const tra = (t: number, a: number, b: number) => Math.min(1, Math.max(0, (t - a) / (b - a)));
 
+/** Lo stato dopo un'azione che il copione dà per riuscita: un rifiuto o una domanda vogliono un copione da rifare. */
+export function statoDopo(esito: Esito): Stato {
+  if (esito.tipo !== 'fatto') throw new Error(`il copione aspettava un'azione riuscita, non: ${esito.tipo}`);
+  return esito.stato;
+}
+
 /** Prepara render(t) per la scena: la fotografa com'è, misura le fermate e la rimette com'era. */
 export async function motore(scena: HTMLElement, copione: Copione): Promise<(t: number) => Promise<void>> {
   const iniziale = scena.innerHTML;
@@ -59,18 +68,21 @@ export async function motore(scena: HTMLElement, copione: Copione): Promise<(t: 
   let applicati = 0;
   let ultimo = -Infinity;
 
+  const immagini = () => Promise.all([...scena.querySelectorAll('img')].map((i) => i.decode().catch(() => undefined)));
   const azzera = async () => {
     scena.innerHTML = iniziale;
     applicati = 0;
     ultimo = -Infinity;
-    await Promise.all([...scena.querySelectorAll('img')].map((i) => i.decode().catch(() => undefined)));
+    await immagini();
   };
 
   // Lo stato all'istante t. Indietro nel tempo si riparte dalla scena iniziale.
   const stato = async (t: number) => {
     if (t < ultimo) await azzera();
     ultimo = t;
+    const prima = applicati;
     while (applicati < eventi.length && eventi[applicati].t <= t) eventi[applicati++].fai(scena);
+    if (applicati > prima) await immagini();
     copione.continui?.(scena, t);
     if (!copione.chatFerma) chatInBasso(scena);
   };

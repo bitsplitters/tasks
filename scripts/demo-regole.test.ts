@@ -12,8 +12,9 @@ import {
 import type { Stato, Task } from '../src/components/home/demo/modello.ts';
 import {
   applicaOwner, applicaOwnerActivity, applicaPromemoria, applicaTag, applicaTagActivity, applicaWebhook, avanzamento,
-  campiDelPromemoria, campiDellaNuovaData, carrello, eliminaTask, eliminaTaskConfermato, imparaIlFuso, prosa,
-  prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri, riapriConfermato, rifiutoDelCarrello, rinumera,
+  campiDelPromemoria, campiDellaNuovaData, carrello, eliminaTask, eliminaTaskConfermato, imparaIlFuso,
+  invertiSpunta, nelCanale, nellActivity, prosa, prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri,
+  riapriConfermato, rifiutoDelCarrello, rinumera,
   salvaTesto, salvaTestoActivity, sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, testoDellaLista, togliOwner,
   togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook, tokenTolti, validaNuovaData, validaPromemoria,
 } from '../src/components/home/demo/regole.ts';
@@ -56,6 +57,15 @@ test('un gruppo coi subtask si completa quando li ha tutti: cambia solo il grupp
   assert.deepEqual(fatti(tutti), ['1', '1.1', '1.2']);
   assert.deepEqual(fatti(spunta(tutti, '1.1', false)), ['1.2']);
   assert.throws(() => spunta(s, '9', true), /9/);
+});
+
+test("selettore a riposo e casella dell'Activity invertono la spunta (SelectActivitiesUtil.switchCheckbox)", () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(fatti(invertiSpunta(s0, '1')), []);
+  assert.deepEqual(fatti(invertiSpunta(s0, '2')), ['1', '2', '2.1']);
+  assert.deepEqual(fatti(invertiSpunta(invertiSpunta(s0, '2'), '2.1')), ['1']);
+  assert.deepEqual(fatti(invertiSpunta(s0, '2.1')), ['1', '2', '2.1']);
+  assert.throws(() => invertiSpunta(s0, '9'), /9/);
 });
 
 test('la barra va di 5 in 5 per difetto: mai 0 con un task fatto, mai 100 a lista non finita (BarraDellaLista)', () => {
@@ -559,6 +569,16 @@ test("la lista libera ha tutto acceso; bloccata, solo More; nell'Activity, solo 
   assert.deepEqual([...pulsantiAccesi(s0)].sort(), tutti.sort());
   assert.deepEqual([...pulsantiAccesi({ ...s0, bloccata: true })], ['more']);
   assert.deepEqual([...pulsantiAccesi({ ...s0, inActivity: true })], ['join']);
+});
+
+test("i tab della demo: la lista entra nell'Activity sbloccata, il canale la riporta indietro (piano, §1.2.11)", () => {
+  const s0 = statoIniziale();
+  assert.deepEqual(nellActivity(s0), { ...s0, inActivity: true });
+  assert.deepEqual(nellActivity({ ...s0, bloccata: true }), { ...s0, inActivity: true });
+  assert.deepEqual(nelCanale(nellActivity(s0)), s0);
+  assert.deepEqual(nelCanale(s0), s0);
+  const conOwner = statoDi(applicaOwner(s0, '2', [MIA, LEO], []));
+  assert.deepEqual(nelCanale(nellActivity(conOwner)), conOwner);
 });
 
 test('il testo della lista è quello della modale di Modifica in blocco (ModalUITaskConverter.taskToText)', () => {

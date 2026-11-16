@@ -2,19 +2,22 @@
  * Il copione del video dell'Activity (spec 2026-11-15-home-video-e-demo-design.md, §4.3): dal pulsante del canale si
  * apre la finestra, il canale si scurisce e tiene il solo «Join the Activity»; nella pagina si spunta il task 2, poi
  * il testo del task 3 apre il pannello, Owner sceglie Mia, Save; Reminder propone data, ora e fuso, Save; Close.
- * I pulsanti tornano grigi dopo il salvataggio, come nella pagina vera.
+ * I pulsanti tornano grigi dopo il salvataggio, come nella pagina vera. Gli stati della lista li danno le regole della
+ * demo (demo/regole.ts), dalla lista dei video, senza owner né promemoria.
  */
-import { FATTI_INIZIALI, MIA, spunta } from '../components/home/scene-data';
 import {
-  apriPannello, disegnaLista, inActivity, salva, sceltaNelPannello, scorrimentoPerIlPannello, tastoDelPannello,
-  unita, vistaDelPannello, type StatoLista,
+  apriPannello, disegnaLista, salva, sceltaNelPannello, scorrimentoPerIlPannello, tastoDelPannello, unita,
+  vistaDelPannello,
 } from '../components/home/scene-dom';
-import { easeInOutCubic, easeOut, tra, type Copione } from './render-comune';
+import { MIA, PROPOSTO, ZONA, listaDeiVideo, statoIniziale } from '../components/home/demo/modello.ts';
+import { applicaOwnerActivity, applicaPromemoria, spunta } from '../components/home/demo/regole.ts';
+import { easeInOutCubic, easeOut, statoDopo, tra, type Copione } from './render-comune';
 
-const SA0: StatoLista = { fatti: new Set(FATTI_INIZIALI), owner: {}, tag: {}, promemoria: false };
-const SA1: StatoLista = { ...SA0, fatti: spunta(SA0.fatti, '2', true) };
-const SA2: StatoLista = { ...SA1, owner: { '3': MIA.id } };
-const SA3: StatoLista = { ...SA2, promemoria: true };
+const SA0 = statoIniziale(listaDeiVideo());
+const SA1 = spunta(SA0, '2', true);
+const SA2 = statoDopo(applicaOwnerActivity(SA1, '3', [{ ruolo: false, id: MIA }]));
+// Data e ora proposte, adesso più dieci minuti, nel fuso del dispositivo: quello del server.
+const SA3 = statoDopo(applicaPromemoria(SA2, '3', PROPOSTO, ZONA));
 
 const q = (s: HTMLElement, k: string) => s.querySelector<HTMLElement>(`[data-k="${k}"]`)!;
 const win = (s: HTMLElement) => q(s, 'win');
@@ -44,11 +47,11 @@ export function copioneDellActivity(): Copione {
     eventi: [
       { t: 1.7, fai: (s) => win(s).toggleAttribute('data-open', true) },
       // Il canale passa all'Activity quando la finestra è aperta: fino ad allora il ritaglio parte dal pulsante.
-      { t: 2.15, fai: (s) => inActivity(q(s, 'chan'), true) },
+      { t: 2.15, fai: (s) => disegnaLista(q(s, 'chan'), { ...SA0, inActivity: true }) },
       { t: 4.0, fai: (s) => disegnaLista(win(s), SA1) },
       { t: 5.8, fai: (s) => apriPannello(win(s), '3') },
       { t: 6.7, fai: (s) => { tastoDelPannello(win(s), 'owner', 'blue'); vistaDelPannello(win(s), 'owner'); } },
-      { t: 7.6, fai: (s) => { sceltaNelPannello(win(s), [MIA.id]); salva(win(s), 'on'); } },
+      { t: 7.6, fai: (s) => { sceltaNelPannello(win(s), [MIA]); salva(win(s), 'on'); } },
       { t: 8.5, fai: (s) => salva(win(s), 'pending') },
       { t: 8.9, fai: (s) => { disegnaLista(win(s), SA2); dopoIlSalvataggio(win(s)); } },
       // Data e ora proposte (adesso + 10 minuti) e il fuso del dispositivo: Save è già acceso.

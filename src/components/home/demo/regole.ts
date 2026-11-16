@@ -95,6 +95,14 @@ export function spunta(stato: Stato, pos: string, valore: boolean): Stato {
 }
 
 /**
+ * Il task scelto nel selettore a riposo, o la sua casella nell'Activity: la casella si inverte
+ * (SelectActivitiesUtil.switchCheckbox), poi la cascata di spunta.
+ */
+export function invertiSpunta(stato: Stato, pos: string): Stato {
+  return spunta(stato, pos, !stato.lista.tasks[indice(stato, pos)].fatto);
+}
+
+/**
  * Lo stato della barra sotto la lista, come BarraDellaLista: le caselle spuntate sul totale, di 5 in 5 per difetto.
  * Un task spuntato non dà mai 0, una lista non finita non dà mai 100.
  */
@@ -817,6 +825,19 @@ export function pulsantiAccesi(stato: Stato): ReadonlySet<string> {
   if (stato.inActivity) return new Set(['join']);
   if (stato.bloccata) return new Set(['more']);
   return new Set([...PULSANTI, 'sel']);
+}
+
+/**
+ * La lista che entra nell'Activity, da 🚀, da Join the Activity o dal tab della demo. I tab sono la navigazione della
+ * demo e funzionano sempre: con la lista bloccata la sbloccano prima, come Unlock list.
+ */
+export function nellActivity(stato: Stato): Stato {
+  return { ...stato, bloccata: false, inActivity: true };
+}
+
+/** La lista che torna nel canale, dal tab della demo: il messaggio ha di nuovo i suoi pulsanti. */
+export function nelCanale(stato: Stato): Stato {
+  return { ...stato, inActivity: false };
 }
 
 /**

@@ -1,35 +1,44 @@
 ---
 /*
- * Il canale della home (spec 2026-11-15-home-video-e-demo-design.md, §4.2, §5.2 e §5.6): il messaggio della lista
- * com'è nel bot (EmbedDellaLista), col selettore, la prima riga con l'Activity per prima, la seconda coi pulsanti del
- * task, il menu delle persone sotto i pulsanti (owner e tag) e la modale del promemoria. Lo usano la demo e la pagina della
- * registrazione, anche dentro ActivityScene, sotto la finestra.
+ * Il canale della home (spec 2026-11-15-home-video-e-demo-design.md, §4.2, §5.2 e §5.6; spec
+ * 2026-11-15-demo-fedele-design.md): il messaggio della lista com'è nel bot (EmbedDellaLista), col selettore, la prima
+ * riga con l'Activity per prima, la seconda coi pulsanti del task, il menu delle persone sotto i pulsanti (owner e tag)
+ * e la modale del promemoria dei video. Lo usano la demo e la pagina della registrazione, anche dentro ActivityScene,
+ * sotto la finestra.
  *
- * Nasce nello stato di partenza; lo cambiano le funzioni di scene-dom.ts con gli attributi data-*. Gli elementi che
- * si cercano hanno data-k; le righe e le opzioni del selettore hanno data-task. Nel testo di ogni riga data-own è il
- * posto dell'owner, data-tags quello dei tag: li riempie disegnaLista. I testi sono quelli del bot, con la chiave del
- * bundle accanto.
+ * Nasce dalla lista che riceve: le righe e le opzioni del selettore vengono da demo/righe.ts, come quelle che
+ * disegnaLista (scene-dom.ts) riscrive nella pagina; gli altri stati li cambiano le funzioni di scene-dom.ts con gli
+ * attributi data-*. Gli elementi che si cercano hanno data-k. Il posto del messaggio effimero (eph) e quello del menu
+ * dei webhook (wb) nascono vuoti. I testi sono quelli del bot, con la chiave del bundle accanto.
  */
-import {
-  FATTI_INIZIALI, FRASE_SPUNTA, MIA, PERSONE, PRIMA_RIGA, PROMEMORIA, TASKS, TASTI, TITOLO, avanzamento,
-} from './scene-data';
+import { FRASE_SPUNTA, PRIMA_RIGA, TASTI } from './scene-data';
+import { NOME_DEL_CANALE, PERSONE, PROPOSTO, ZONA, campiDi, statoIniziale } from './demo/modello.ts';
+import type { Lista } from './demo/modello.ts';
+import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
+import { nomiDi, opzioniDelSelettore, righeDelCanale } from './demo/righe.ts';
+import { testo } from './demo/testi.ts';
 
 interface Props {
+  /** La lista da disegnare: quella della demo o quella dei video (demo/modello.ts). */
+  lista: Lista;
   /** La lista è nell'Activity: al posto dei pulsanti, «Join the Activity». */
   inActivity?: boolean;
-  /** Il task 3 ha già Mia come owner. */
-  owner?: boolean;
-  /** Il task 3 ha già il promemoria. */
-  promemoria?: boolean;
 }
-const { inActivity = false, owner = false, promemoria = false } = Astro.props;
-const fatti = new Set(FATTI_INIZIALI);
+const { lista, inActivity = false } = Astro.props;
+const stato = { ...statoIniziale(lista), inActivity };
+const accesi = pulsantiAccesi(stato);
+const spento = (nome: string) => String(!accesi.has(nome));
+const pct = avanzamento(lista);
 const icona = (n: string) => `/icons/${n}.png`;
 const si = (v: boolean) => (v ? '' : undefined);
 const CHEV = 'M5.3 9.3a1 1 0 0 1 1.4 0l5.3 5.3 5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6a1 1 0 0 1-1.4 0l-6-6a1 1 0 0 1 0-1.4Z';
+// La modale dei video: i campi già proposti, adesso più dieci minuti nel fuso del server (WhenModalFields).
+const proposto = campiDi(PROPOSTO, ZONA);
+const mese = new Intl.DateTimeFormat('en-US', { month: 'long', timeZone: 'UTC' })
+  .format(new Date(Date.UTC(2000, proposto.mese - 1, 1)));
 ---
-<div class="sc-chan" data-k="chan" data-inact={si(inActivity)} data-reminder={si(promemoria)}>
-  <div class="sc-chhead" aria-hidden="true"><span class="sc-hash">#</span>scrims</div>
+<div class="sc-chan" data-k="chan" data-inact={si(inActivity)}>
+  <div class="sc-chhead" aria-hidden="true"><span class="sc-hash">#</span>{NOME_DEL_CANALE}</div>
   <div class="sc-feed" data-k="feed">
     <div class="sc-msg">
       <img class="sc-avatar" src="/icons/ttm-avatar.png" alt="" />
@@ -37,53 +46,40 @@ const CHEV = 'M5.3 9.3a1 1 0 0 1 1.4 0l5.3 5.3 5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6a1 
         <span class="sc-name">Team Tasks Manager</span><span class="sc-app">APP</span><span class="sc-time">Today at 18:04</span>
       </p>
       <div class="sc-embed">
-        <p class="sc-title">{TITOLO}</p>
-        <div class="sc-rows">
-          {TASKS.map((t) => (
-            <Fragment>
-              {t.id === '3' && (
-                <div class="sc-row sc-row-rem" data-task="3">
-                  <span class="sc-num"><code>3</code></span>
-                  <img class="sc-emoji" src={icona('alert')} alt="" />
-                  <span class="sc-text"><span class="sc-ts">{PROMEMORIA.canale}</span></span>
-                </div>
-              )}
-              <div class:list={['sc-row', { 'sc-sub': t.padre }]} data-task={t.id} data-done={si(fatti.has(t.id))}>
-                <span class:list={['sc-num', { 'sc-num3': t.id === '3' }]}><code>{t.id}</code></span>
-                <span class="sc-cb"><img class="sc-off" src={icona('checkbox_empty')} alt="" /><img class="sc-on" src={icona('checkbox_marked')} alt="" /></span>
-                <span class="sc-text"><span data-own>{owner && t.id === '3' && <Fragment><span class="sc-mention">@{MIA.nome}</span>{': '}</Fragment>}</span>{t.testo}<span data-tags></span></span>
-              </div>
-            </Fragment>
-          ))}
-        </div>
+        <p class="sc-title">{lista.titolo}</p>
+        <div class="sc-rows" set:html={righeDelCanale(lista, nomiDi(stato))}></div>
         {/* tasklist.activity.line, al posto della riga dei consigli */}
         <p class="sc-actline"><img src={icona('activity_blue')} alt="" /> This list is being worked on in the Activity.</p>
-        <div class="sc-bar" data-bar style={`--pct: ${avanzamento(fatti)}%`}><div class="sc-bar-fill"></div></div>
+        <div class="sc-bar" data-bar data-empty={si(pct === 0)} style={`--pct: ${pct}%`}>
+          <div class="sc-bar-fill"></div>
+        </div>
       </div>
       <div class="sc-comps">
         <div class="sc-selwrap">
-          <button type="button" class="sc-sel" data-k="sel" aria-expanded="false">
+          <button
+            type="button" class="sc-sel" data-k="sel" aria-haspopup="listbox" aria-expanded="false"
+            aria-disabled={spento('sel')}
+          >
             <span data-k="sel-text">{FRASE_SPUNTA}</span>
             <svg class="sc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d={CHEV} fill="currentColor" /></svg>
           </button>
           {/* Le opzioni: l'emoji della casella e «<posizione> <testo>», senza descrizione (TaskActivityConverter). */}
-          <div class="sc-menu" data-k="menu">
-            {TASKS.map((t) => (
-              <button type="button" class="sc-opt" data-k={`opt-${t.id}`} data-task={t.id} data-done={si(fatti.has(t.id))}>
-                <span class="sc-cb"><img class="sc-off" src={icona('checkbox_empty')} alt="" /><img class="sc-on" src={icona('checkbox_marked')} alt="" /></span>
-                <span class="sc-optlab">{t.id} {t.testo}</span>
-              </button>
-            ))}
-          </div>
+          <div class="sc-menu" data-k="menu" role="listbox" set:html={opzioniDelSelettore(lista)}></div>
         </div>
         <div class="sc-btns">
           {PRIMA_RIGA.map((p) => (
-            <button type="button" class="sc-btn sc-blue" data-k={`b-${p.k}`} data-tt={`ch-${p.k}`} aria-label={p.nome}><img src={icona(p.icona)} alt="" /></button>
+            <button
+              type="button" class="sc-btn sc-blue" data-k={`b-${p.k}`} data-tt={`ch-${p.k}`} aria-label={p.nome}
+              aria-disabled={spento(p.k)}
+            ><img src={icona(p.icona)} alt="" /></button>
           ))}
         </div>
         <div class="sc-btns">
           {TASTI.map((t) => (
-            <button type="button" class="sc-btn" data-k={`b-${t.k}`} data-tasto={t.k} data-tt={`ch-${t.k}`} aria-label={t.nome} aria-pressed="false"><img src={icona(t.icona)} alt="" /></button>
+            <button
+              type="button" class="sc-btn" data-k={`b-${t.k}`} data-tasto={t.k} data-tt={`ch-${t.k}`}
+              aria-label={t.nome} aria-pressed="false" aria-disabled={spento(t.k)}
+            ><img src={icona(t.icona)} alt="" /></button>
           ))}
         </div>
         {/* Il menu di Owner, Tag o Webhook acceso (tasklist.slct.owner, .tag, .webhook): la frase la scrive
@@ -98,33 +94,52 @@ const CHEV = 'M5.3 9.3a1 1 0 0 1 1.4 0l5.3 5.3 5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6a1 
           </button>
           <div class="sc-subopts">
             {PERSONE.map((p) => (
-              <button type="button" class="sc-subopt" data-k={`sub-${p.id}`} data-persona={p.id} aria-pressed="false">
+              <button
+                type="button" class="sc-subopt" data-k={`sub-${p.nome.toLowerCase()}`} data-persona={p.id}
+                aria-pressed="false"
+              >
                 <span class="sc-av" style={`--av: ${p.colore}`}>{p.nome[0]}</span>{p.nome}
                 <svg class="sc-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 16.2 5.3 12l-1.4 1.4 5.6 5.6 11-11-1.4-1.4z" fill="currentColor" /></svg>
               </button>
             ))}
           </div>
         </div>
+        {/* Il menu dei webhook già creati (tasklist.slct.webhook): lo monta la demo. */}
+        <div class="sc-wm" data-k="wb" hidden></div>
       </div>
       <div class="sc-join">
-        <button type="button" class="sc-btn sc-blue sc-joinbtn" data-k="b-join"><img src={icona('activity')} alt="" />Join the Activity</button>
+        <button type="button" class="sc-btn sc-blue sc-joinbtn" data-k="b-join" aria-disabled={spento('join')}>
+          <img src={icona('activity')} alt="" />Join the Activity
+        </button>
       </div>
     </div>
+    {/* Il messaggio effimero sotto la lista, che vede solo chi agisce: lo scrive la demo. */}
+    <div class="sc-eph" data-k="eph" hidden></div>
   </div>
-  <div class="sc-input" aria-hidden="true">Message #scrims</div>
+  <div class="sc-input" aria-hidden="true">Message #{NOME_DEL_CANALE}</div>
   {/* La modale vera (tasklist.modal.alert.*, tasklist.modal.when.*): i campi già proposti, adesso + 10 minuti. */}
   <div class="sc-modalwrap" data-k="modalwrap" aria-hidden="true">
     <div class="sc-modal" data-k="modal">
-      <div class="sc-mhd"><p class="sc-mtitle">Set reminder for task 3</p><span class="sc-mx">&times;</span></div>
-      <div class="sc-mfield"><span class="sc-mlab">Day</span><span class="sc-minput">{PROMEMORIA.giorno}</span></div>
-      <div class="sc-mfield">
-        <span class="sc-mlab">Month</span>
-        <span class="sc-minput">{PROMEMORIA.mese}<svg class="sc-chev" viewBox="0 0 24 24"><path d={CHEV} fill="currentColor" /></svg></span>
+      <div class="sc-mhd">
+        <p class="sc-mtitle">{testo('tasklist.modal.alert.title', '3')}</p><span class="sc-mx">&times;</span>
       </div>
-      <div class="sc-mfield"><span class="sc-mlab">Year (yyyy)</span><span class="sc-minput">{PROMEMORIA.anno}</span></div>
-      <div class="sc-mfield"><span class="sc-mlab">Time (HH:mm)</span><span class="sc-minput">{PROMEMORIA.ora}</span></div>
       <div class="sc-mfield">
-        <span class="sc-mlab">Time zone at: timezones.bitsplitters.app</span><span class="sc-minput">{PROMEMORIA.fuso}</span>
+        <span class="sc-mlab">{testo('tasklist.modal.when.day')}</span><span class="sc-minput">{proposto.giorno}</span>
+      </div>
+      <div class="sc-mfield">
+        <span class="sc-mlab">{testo('tasklist.modal.when.month')}</span>
+        <span class="sc-minput">
+          {mese}<svg class="sc-chev" viewBox="0 0 24 24"><path d={CHEV} fill="currentColor" /></svg>
+        </span>
+      </div>
+      <div class="sc-mfield">
+        <span class="sc-mlab">{testo('tasklist.modal.when.year')}</span><span class="sc-minput">{proposto.anno}</span>
+      </div>
+      <div class="sc-mfield">
+        <span class="sc-mlab">{testo('tasklist.modal.when.time')}</span><span class="sc-minput">{proposto.ora}</span>
+      </div>
+      <div class="sc-mfield">
+        <span class="sc-mlab">{testo('tasklist.modal.alert.timezone')}</span><span class="sc-minput">{ZONA}</span>
       </div>
       <div class="sc-mfoot"><span class="sc-mbtn">Cancel</span><span class="sc-mbtn sc-mbtn-blue" data-k="m-submit">Submit</span></div>
     </div>

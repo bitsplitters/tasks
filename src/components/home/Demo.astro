@@ -1,15 +1,16 @@
 ---
 /*
  * Le due modalità, da provare (spec 2026-11-15-home-video-e-demo-design.md, §5 e §8.6): le scene dei video, mosse da
- * chi guarda, in due tab. Nasce sul canale, nello stato di partenza: il task 3 con l'owner e il promemoria, come alla
- * fine dei video, i task 2 e 2.1 da fare. demo.ts aggiunge gli eventi e tooltip.ts i tooltip; senza JavaScript resta
- * il canale fermo.
+ * chi guarda, in due tab. Nasce sul canale, con la lista della demo (demo/modello.ts): il task 3 con l'owner e il
+ * promemoria, come alla fine dei video, i task 2 e 2.1 da fare. demo.ts aggiunge gli eventi e tooltip.ts i tooltip;
+ * senza JavaScript resta il canale fermo.
  *
  * La frase sotto il titolo cambia coi telefoni, dove il passaggio del mouse non c'è: (hover: none) in home.css.
  */
 import './scene.css';
 import ChannelScene from './ChannelScene.astro';
 import ActivityScene from './ActivityScene.astro';
+import { listaDellaDemo } from './demo/modello.ts';
 ---
 <section class="h-sec wrap" id="two-ways" aria-labelledby="h-demo-title">
   <h2 id="h-demo-title">Two ways to work. Try them both.</h2>
@@ -29,9 +30,9 @@ import ActivityScene from './ActivityScene.astro';
       <p class="dm-say"><strong>On the fly.</strong> The list lives in the conversation: everyone sees it, and a tick takes two clicks.</p>
       <div class="sc-box dm-box">
         <div class="scene sc-live sc-auto" data-scene="channel">
-          <ChannelScene owner promemoria />
-          {/* Il fumetto: cosa farebbe Discord col pulsante acceso. Sempre nel DOM, vuoto quando non serve, perché
-              gli screen reader annunciano il testo che arriva in una regione role="status" già presente. */}
+          <ChannelScene lista={listaDellaDemo()} />
+          {/* Il fumetto: i rifiuti e gli esiti brevi del bot. Sempre nel DOM, vuoto quando non serve, perché gli
+              screen reader annunciano il testo che arriva in una regione role="status" già presente. */}
           <p class="dm-bubble" data-k="bubble" role="status"></p>
         </div>
       </div>
@@ -40,7 +41,8 @@ import ActivityScene from './ActivityScene.astro';
       <p class="dm-say"><strong>Together, with room to work.</strong> A full window inside Discord, on desktop and mobile, where the team shapes the list live, for as long as the session lasts.</p>
       <div class="sc-box dm-box">
         <div class="scene sc-live" data-scene="activity">
-          <ActivityScene owner promemoria />
+          <ActivityScene lista={listaDellaDemo()} />
+          <p class="dm-bubble" data-k="bubble" role="status"></p>
         </div>
       </div>
     </div>

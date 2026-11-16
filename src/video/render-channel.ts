@@ -2,18 +2,21 @@
  * Il copione del video del canale (spec 2026-11-15-home-video-e-demo-design.md, §4.2): spunta il task 2 col suo
  * subtask, dà Mia come owner al task 3 col menu sotto i pulsanti, gli mette il promemoria con la modale. Ogni
  * pulsante torna grigio dopo l'azione, come il bot col default (OptionMode.DISABLED). Gli istanti sono in secondi;
- * un evento cade poco dopo il tocco del cursore che lo provoca.
+ * un evento cade poco dopo il tocco del cursore che lo provoca. Gli stati della lista li danno le regole della demo
+ * (demo/regole.ts), dalla lista dei video, senza owner né promemoria.
  */
-import { FATTI_INIZIALI, MIA, spunta } from '../components/home/scene-data';
 import {
-  apriSelettore, disegnaLista, menuSottoAperto, modale, sceltaNelMenuSotto, tastoDelCanale, type StatoLista,
+  apriSelettore, disegnaLista, menuSottoAperto, modale, sceltaNelMenuSotto, tastoDelCanale,
 } from '../components/home/scene-dom';
-import { tra, type Copione } from './render-comune';
+import { MIA, PROPOSTO, ZONA, listaDeiVideo, statoIniziale } from '../components/home/demo/modello.ts';
+import { applicaOwner, applicaPromemoria, spunta } from '../components/home/demo/regole.ts';
+import { statoDopo, tra, type Copione } from './render-comune';
 
-const S0: StatoLista = { fatti: new Set(FATTI_INIZIALI), owner: {}, tag: {}, promemoria: false };
-const S1: StatoLista = { ...S0, fatti: spunta(S0.fatti, '2', true) };
-const S2: StatoLista = { ...S1, owner: { '3': MIA.id } };
-const S3: StatoLista = { ...S2, promemoria: true };
+const S0 = statoIniziale(listaDeiVideo());
+const S1 = spunta(S0, '2', true);
+const S2 = statoDopo(applicaOwner(S1, '3', [MIA], []));
+// Data e ora già proposte nella modale, adesso più dieci minuti, nel fuso del server.
+const S3 = statoDopo(applicaPromemoria(S2, '3', PROPOSTO, ZONA));
 
 const chan = (s: HTMLElement) => s.querySelector<HTMLElement>('[data-k="chan"]')!;
 
@@ -43,7 +46,7 @@ export function copioneDelCanale(): Copione {
       { t: 2.6, fai: (s) => disegnaLista(chan(s), S1) },
       { t: 4.05, fai: (s) => tastoDelCanale(chan(s), 'owner', 'blue') },
       { t: 4.95, fai: (s) => menuSottoAperto(chan(s), true) },
-      { t: 5.65, fai: (s) => sceltaNelMenuSotto(chan(s), [MIA.id]) },
+      { t: 5.65, fai: (s) => sceltaNelMenuSotto(chan(s), [MIA]) },
       // Il clic fuori chiude il menu: la scelta resta, il selettore dice «Edit owner».
       { t: 6.25, fai: (s) => menuSottoAperto(chan(s), false) },
       { t: 7.05, fai: (s) => apriSelettore(chan(s), true) },

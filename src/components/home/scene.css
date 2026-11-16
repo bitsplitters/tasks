@@ -10,10 +10,11 @@
  * riquadro: nei video (sc-rec) un Discord di 460 px in 390, nella demo il telefono alla sua misura, col canale alto
  * quanto il messaggio (sc-auto).
  *
- * Gli stati stanno negli attributi, scritti da scene-dom.ts: data-done sulle righe e sulle opzioni; data-reminder
- * sulla lista (il canale .sc-chan, la finestra .sc-win); data-mode sui pulsanti; data-on sulle persone del menu;
- * data-menu, data-inact, data-modal, data-subopen, data-subpick sul canale; data-open, data-panel, data-view,
- * data-save, data-picked, data-delete sulla finestra. L'owner e i tag sono menzioni scritte nel testo delle righe.
+ * Le righe della lista e le opzioni del selettore le scrive demo/righe.ts da una lista: l'owner, i tag, il webhook e
+ * il promemoria ci sono già, come nel bot. Gli stati stanno negli attributi, scritti da scene-dom.ts: data-done sulle
+ * righe; data-mode e aria-disabled sui pulsanti; data-on sulle persone del menu; data-menu, data-inact, data-modal,
+ * data-subopen, data-subpick sul canale; data-open, data-panel, data-view, data-save, data-picked, data-delete sulla
+ * finestra.
  */
 
 /* Registrata, --u resta una lunghezza calcolata sulla scena: i figli ereditano i px, non la formula. */
@@ -101,12 +102,15 @@
 .sc-row.sc-sub { grid-template-columns: 3em 1.375em minmax(0, 1fr); }
 /* Fatto: tutta la riga è subtext (-#), numero compreso, come nel bot con DimDoneMode acceso, il default. */
 .sc-row[data-done] { font-size: calc(13 * var(--u)); color: #abacb2; }
+/* Il numero com'è nel bot, con gli spazi che pareggiano le larghezze («2 », «2 .1 »): restano tutti. */
 .sc-num code {
-  font-size: .85em; padding: 0 .2em; color: inherit;
+  font-size: .85em; padding: 0 .2em; color: inherit; white-space: pre;
   background: #2b2c3a; border: 1px solid #3e3f4e; border-radius: calc(4 * var(--u));
 }
 .sc-text { padding-left: .25em; overflow-wrap: anywhere; }
 .sc-emoji { width: 1.375em; height: 1.375em; object-fit: contain; }
+/* Un'emoji scritta nel testo (markdown.ts) sta sulla riga, come in Discord. */
+.sc-text .sc-emoji, .sc-atext .sc-emoji { display: inline-block; vertical-align: -.35em; }
 .sc-cb { position: relative; display: inline-block; flex: none; width: 1.375em; height: 1.375em; }
 .sc-cb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .sc-cb .sc-on, [data-done] .sc-cb .sc-off { display: none; }
@@ -116,11 +120,6 @@
   padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u));
   font-weight: 500; color: #a9bbff; background: #303359;
 }
-/* Il promemoria sopra il task 3, col numero; la riga della casella prende lo spaziatore (RigheDellaLista). */
-/* .sc-arow.sc-row-rem: .sc-arow (più sotto, display: grid) a parità di peso vincerebbe. */
-.sc-row-rem, .sc-arow.sc-row-rem { display: none; }
-[data-reminder] .sc-row-rem { display: grid; }
-[data-reminder] .sc-num3 { visibility: hidden; }
 .sc-ts { padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u)); color: #efeff1; background: #36363c; }
 /* Nell'Activity: una riga vuota, poi la riga in subtext che prende il posto dei consigli. */
 .sc-actline { display: none; margin-top: 1.375em; font-size: calc(13 * var(--u)); color: #abacb2; }
@@ -145,7 +144,8 @@
   background: #17171a; border: 1px solid #35353b; border-radius: calc(8 * var(--u));
   font-size: calc(16 * var(--u)); color: #949ba4;
 }
-.sc-sel:is(:hover, .is-hover), .sc-subsel:not([aria-disabled="true"]):is(:hover, .is-hover) { border-color: #4e5058; }
+.sc-sel:not([aria-disabled="true"]):is(:hover, .is-hover),
+.sc-subsel:not([aria-disabled="true"]):is(:hover, .is-hover) { border-color: #4e5058; }
 .sc-subsel { overflow: hidden; text-align: left; }
 .sc-subsel[aria-disabled="true"] { cursor: default; }
 .sc-sel > span, .sc-subph { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -176,11 +176,13 @@
   background: #29292d; color: #fff;
 }
 .sc-btn img { width: calc(20 * var(--u)); height: calc(20 * var(--u)); object-fit: contain; }
-.sc-btn:is(:hover, .is-hover) { background: #36363c; }
+.sc-btn:not([aria-disabled="true"]):is(:hover, .is-hover) { background: #36363c; }
 .sc-btn:is(.sc-blue, [data-mode="blue"]) { background: #5865f2; }
-.sc-btn:is(.sc-blue, [data-mode="blue"]):is(:hover, .is-hover) { background: #4752c4; }
+.sc-btn:not([aria-disabled="true"]):is(.sc-blue, [data-mode="blue"]):is(:hover, .is-hover) { background: #4752c4; }
 .sc-btn[data-mode="red"] { background: #da373c; }
-.sc-btn[data-mode="red"]:is(:hover, .is-hover) { background: #a12829; }
+.sc-btn:not([aria-disabled="true"])[data-mode="red"]:is(:hover, .is-hover) { background: #a12829; }
+/* Spenti dal bot (la lista bloccata, o nell'Activity): restano al loro posto, a metà, senza il passaggio del mouse. */
+.sc-btn[aria-disabled="true"], .sc-sel[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
 /* Mentre la lista è nell'Activity: il solo «Join the Activity», con l'emoji e la scritta (TaskListBtnActivityEnter). */
 .sc-join { display: none; margin-top: calc(8 * var(--u)); }
 [data-inact] .sc-join { display: block; }
@@ -352,7 +354,6 @@
   display: block; width: 100%; padding-left: .2em; border-radius: calc(4 * var(--u)); overflow-wrap: anywhere;
 }
 .sc-atext:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
-.sc-arow .sc-atext-fermo { padding-left: .2em; }
 
 .sc-afirst { display: flex; flex-wrap: wrap; gap: calc(10 * var(--u)); }
 /* L'avviso di Exit (activity.exit.hint), nel riquadro del colore della lista, senza la barra (.exit-note). */

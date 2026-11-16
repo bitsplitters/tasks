@@ -237,6 +237,8 @@ a.h-premium:hover { background: var(--accent); color: var(--ink); }
   box-shadow: 0 8px 16px rgba(0, 0, 0, .4); pointer-events: none;
 }
 .dm-bubble:empty { opacity: 0; }
+/* Le emoji del testo del bot (markdown.ts) stanno sulla riga, come in Discord. */
+.dm-bubble .sc-emoji { display: inline-block; vertical-align: -.35em; }
 
 /* ── La chiamata finale ───────────────────────────────────────────────────────────────────────────────── */
 .h-final { text-align: center; }

@@ -1,23 +1,16 @@
 /*
- * Le funzioni che cambiano lo stato delle scene della home (ChannelScene, ActivityScene): scrivono gli attributi
- * data-* che scene.css disegna. Le usano la demo (demo.ts) e i copioni dei video (src/video/render-*.ts).
+ * Le funzioni che cambiano lo stato delle scene della home (ChannelScene, ActivityScene). disegnaLista riscrive la
+ * lista da uno Stato della demo: le righe, le opzioni del selettore, la barra, i pulsanti spenti. Le altre scrivono
+ * gli attributi data-* che scene.css disegna. Le usano la demo (demo.ts, demo/canale.ts, demo/activity.ts) e i
+ * copioni dei video (src/video/render-*.ts).
  *
  * Non tengono stato: ogni chiamata dice com'è un pezzo della scena, da capo. Così un copione può ridisegnare
  * qualunque istante e la demo non deve ricordare cosa c'era prima.
  */
-import {
-  FRASE_SPUNTA, FRASI, MENU_SOTTO, avanzamento, fraseDelPannello, nomeDi, type Colore, type Tasto,
-} from './scene-data';
-
-/** La lista com'è: cosa è fatto, l'owner e i tag di ogni task, se il task 3 ha il promemoria. */
-export interface StatoLista {
-  fatti: ReadonlySet<string>;
-  /** Per task, l'id della persona owner (PERSONE): una sola, nella demo. */
-  owner: Readonly<Record<string, string>>;
-  /** Per task, gli id delle persone taggate, nell'ordine in cui sono state scelte. */
-  tag: Readonly<Record<string, readonly string[]>>;
-  promemoria: boolean;
-}
+import { FRASE_SPUNTA, FRASI, MENU_SOTTO, fraseDelPannello, type Colore, type Tasto } from './scene-data';
+import type { Stato } from './demo/modello.ts';
+import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
+import { nomiDi, opzioniDelSelettore, righeDelCanale, righeDellActivity } from './demo/righe.ts';
 
 export type Salvataggio = 'off' | 'on' | 'pending';
 /** Cosa mostra l'area del pannello: il selettore delle persone (owner, tag) o i campi del promemoria. */
@@ -41,42 +34,56 @@ function accendi(radice: HTMLElement, attr: 'tasto' | 'ptasto', tasto: Tasto | n
   });
 }
 
-/** «@Mia», come Discord disegna una menzione. */
-function menzione(id: string): HTMLElement {
-  const m = document.createElement('span');
-  m.className = 'sc-mention';
-  m.textContent = `@${nomeDi(id)}`;
-  return m;
+/** L'HTML scritto per ultimo in ogni contenitore: lo stesso non si riscrive. */
+const SCRITTO = new WeakMap<HTMLElement, string>();
+
+/**
+ * Il contenuto di un contenitore, riscritto se è cambiato. Se il focus era dentro torna sull'elemento nuovo con lo
+ * stesso data-k: chi usa la tastiera non perde il posto a ogni spunta.
+ */
+function riscrivi(contenitore: HTMLElement, html: string): void {
+  if (SCRITTO.get(contenitore) === html) return;
+  const attivo = document.activeElement;
+  const chiave = attivo instanceof HTMLElement && contenitore.contains(attivo) ? attivo.dataset.k : undefined;
+  contenitore.innerHTML = html;
+  SCRITTO.set(contenitore, html);
+  if (chiave) k(contenitore, chiave)?.focus({ preventScroll: true });
 }
 
 /**
- * La lista nel canale (.sc-chan) o nella pagina dell'Activity (.sc-win): le righe e le opzioni fatte, le caselle,
- * l'owner davanti al testo e i tag in fondo (come li scrive il bot: «@Mia: …», «… @Leo @Sam»), il promemoria del
- * task 3, la barra. Nell'Activity rimette anche il pannello sotto il suo task, perché una riga in più o in meno (il
- * promemoria, un tag che manda a capo) lo sposta.
+ * La lista dello stato nel canale (.sc-chan) o nella pagina dell'Activity (.sc-win): il titolo, le righe (righe.ts),
+ * la barra. Nel canale anche le opzioni del selettore e i pulsanti spenti dove il bot li spegne (pulsantiAccesi); con
+ * la lista nell'Activity resta «Join the Activity» al posto dei pulsanti, coi menu chiusi. Nella pagina rimette il
+ * pannello sotto il suo task, perché una riga in più o in meno lo sposta.
  */
-export function disegnaLista(lista: HTMLElement, s: StatoLista): void {
-  const idDi = (el: HTMLElement) => el.closest<HTMLElement>('[data-task]')?.dataset.task ?? '';
-  lista.querySelectorAll<HTMLElement>('[data-task]').forEach((el) => {
-    attributo(el, 'data-done', s.fatti.has(el.dataset.task ?? '') ? '' : null);
-  });
-  lista.querySelectorAll<HTMLElement>('.sc-acb').forEach((b) => {
-    b.setAttribute('aria-pressed', String(s.fatti.has(idDi(b))));
-  });
-  lista.querySelectorAll<HTMLElement>('[data-own]').forEach((el) => {
-    const o = s.owner[idDi(el)];
-    el.replaceChildren(...(o ? [menzione(o), ': '] : []));
-  });
-  lista.querySelectorAll<HTMLElement>('[data-tags]').forEach((el) => {
-    el.replaceChildren(...(s.tag[idDi(el)] ?? []).flatMap((t) => [' ', menzione(t)]));
-  });
-  attributo(lista, 'data-reminder', s.promemoria ? '' : null);
-  const pct = avanzamento(s.fatti);
-  lista.querySelectorAll<HTMLElement>('[data-bar]').forEach((b) => {
+export function disegnaLista(radice: HTMLElement, stato: Stato): void {
+  const nellaPagina = radice.matches('.sc-win');
+  const nomi = nomiDi(stato);
+  const titolo = radice.querySelector<HTMLElement>('.sc-title');
+  if (titolo) titolo.textContent = stato.lista.titolo;
+  const righe = radice.querySelector<HTMLElement>(nellaPagina ? '.sc-arows' : '.sc-rows');
+  if (righe) riscrivi(righe, (nellaPagina ? righeDellActivity : righeDelCanale)(stato.lista, nomi));
+  const pct = avanzamento(stato.lista);
+  radice.querySelectorAll<HTMLElement>('[data-bar]').forEach((b) => {
     b.style.setProperty('--pct', `${pct}%`);
     attributo(b, 'data-empty', pct === 0 ? '' : null);
   });
-  if (lista.matches('.sc-win')) posizionaPannello(lista);
+  if (nellaPagina) {
+    posizionaPannello(radice);
+    return;
+  }
+  const menu = k(radice, 'menu');
+  if (menu) riscrivi(menu, opzioniDelSelettore(stato.lista));
+  const accesi = pulsantiAccesi(stato);
+  radice.querySelectorAll<HTMLElement>('[data-k="sel"], [data-k^="b-"]').forEach((b) => {
+    const nome = b.dataset.k === 'sel' ? 'sel' : (b.dataset.k ?? '').slice(2);
+    b.setAttribute('aria-disabled', String(!accesi.has(nome)));
+  });
+  attributo(radice, 'data-inact', stato.inActivity ? '' : null);
+  if (stato.inActivity) {
+    apriSelettore(radice, false);
+    menuSottoAperto(radice, false);
+  }
 }
 
 /** Il menu del selettore aperto o chiuso. */
@@ -87,8 +94,7 @@ export function apriSelettore(chan: HTMLElement, aperto: boolean): void {
 
 /**
  * Il pulsante acceso della seconda riga, o nessuno (null): la frase del selettore e, con Owner, Tag o Webhook in blu,
- * il menu sotto i pulsanti con la sua frase, chiuso e senza scelte. Quello del webhook non si apre: nella demo non
- * ci sono webhook da scegliere.
+ * il menu sotto i pulsanti con la sua frase, chiuso e senza scelte. Quello del webhook resta chiuso.
  */
 export function tastoDelCanale(chan: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
   accendi(chan, 'tasto', tasto, colore);
@@ -128,12 +134,6 @@ export function sceltaNelMenuSotto(chan: HTMLElement, ids: readonly string[]): v
 /** La modale del promemoria aperta o chiusa. */
 export function modale(chan: HTMLElement, aperta: boolean): void {
   attributo(chan, 'data-modal', aperta ? '' : null);
-}
-
-/** La lista è nell'Activity: nel canale al posto dei pulsanti resta «Join the Activity». */
-export function inActivity(chan: HTMLElement, dentro: boolean): void {
-  attributo(chan, 'data-inact', dentro ? '' : null);
-  if (dentro) apriSelettore(chan, false);
 }
 
 /** Il pannello aperto sul task id, da capo (pulsanti grigi, area vuota, Save spento), o chiuso (null). */
