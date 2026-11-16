@@ -102,6 +102,7 @@ A task can show the emoji of a list button, as the lessons of the [Tutorial](/do
 | `:reminder:` | <img class="inline-ic" src="/icons/alert_blue.png" alt="" /> **Reminder** |
 | `:content:` | <img class="inline-ic" src="/icons/task_blue.png" alt="" /> **Content** |
 | `:more:` | <img class="inline-ic" src="/icons/other_blue.png" alt="" /> **More** |
+| `:activity:` | <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> **Activity** |
 
 Leave a name where it is and the emoji stays. Write one yourself, in lowercase, and the list shows the button's emoji: handy when a task says which button to press. Any other word between colons stays as you wrote it.
 

@@ -7,6 +7,10 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 2.0.1 — Activity mode in the Tutorial
+
+- **A lesson on Activity mode** — the Tutorial's practice list has seven lessons: before the last one, tick a task in Activity mode, smoother and free from the limits of text channels. See [Getting started](/docs/getting-started/#2-create-your-first-list).
+
 ## 2.0.0 — The Activity
 
 - **The Activity** — a list opens in a window inside Discord, on desktop and on mobile. Several people work on it at once, and everyone sees each change as it happens. When the last person leaves, the list goes back to its channel, with a summary of the changes. See [The Activity](/docs/activity/).
