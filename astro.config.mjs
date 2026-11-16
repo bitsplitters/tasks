@@ -116,5 +116,12 @@ export default defineConfig({
         ],
       ],
     }),
+
+    // I blocchi di codice prendono i colori del sito. Col tema di default Shiki scrive nello stile in linea il fondo
+    // e il testo di github-dark, che vincono su qualunque regola dei fogli. Col tema `css-variables` scrive invece
+    // due variabili, `--astro-code-background` e `--astro-code-foreground`, che docs.css definisce. I blocchi del
+    // sito sono tutti senza lingua: a uno con una lingua mancherebbero i colori dei token (`--astro-code-token-*`),
+    // quindi il suo testo resterebbe tutto nel colore del blocco.
+    shikiConfig: { theme: 'css-variables' },
   },
 });

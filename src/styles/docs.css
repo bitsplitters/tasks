@@ -106,7 +106,10 @@
   font-family: var(--mono); font-size: .88em; color: var(--accent-bright); overflow-wrap: break-word;
   background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: .1em .4em;
 }
+/* Shiki scrive il fondo e il testo del blocco nello stile in linea, come variabili (tema `css-variables` in
+   astro.config.mjs): qui prendono i colori della pagina di confronto. */
 .prose pre {
+  --astro-code-background: var(--surface); --astro-code-foreground: #C7CEDB;
   overflow-x: auto; padding: 1rem 1.2rem;
   background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
 }
