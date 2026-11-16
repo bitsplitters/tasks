@@ -95,7 +95,10 @@ a.btn[target="_blank"]::after, a.btn-ghost[target="_blank"]::after { content: no
 .foot-left { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .foot-badge img { display: block; }
 .callout { border: 1px solid var(--line-2); border-left: 3px solid var(--accent); background: var(--surface); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
-.callout .callout-t { font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .4rem; }
+/* Il titolo dei riquadri in Mona Sans, come nelle pagine della vetrina: niente maiuscole spaziate in mono. */
+.callout .callout-t {
+  font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: .4rem;
+}
 
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 

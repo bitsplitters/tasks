@@ -1,133 +1,48 @@
-/* La documentazione e le pagine legali: lo importano docs/[...slug].astro, docs/index.astro e
-   layouts/Legal.astro, dopo global.css. Le regole vengono da global.css così come erano: l'aspetto nuovo arriva
-   col restyle (spec 2026-11-16-restyle-documentazione-design.md, nel repo team-tasks-manager). */
+/* La documentazione e le pagine legali: lo importano docs/[...slug].astro, docs/index.astro e layouts/Legal.astro,
+   dopo global.css. È la strada B della spec 2026-11-16-restyle-documentazione-design.md (repo team-tasks-manager):
+   Mona Sans e la scala dei titoli della vetrina, ridotta per pagine con un titolo ogni pochi paragrafi; etichette
+   senza maiuscole spaziate in mono; tabelle con le righe divise; barra laterale ferma; indice in due colonne. I
+   colori sono i token di global.css: il blu e il grigio di Discord restano all'interfaccia di Discord. */
 
 /* Il carattere della vetrina su tutto il contenuto: il menu in alto e il piè di pagina restano in mono. */
 .docs-main { font-family: var(--display); }
 
-.docs-shell { display: grid; grid-template-columns: 250px 1fr; gap: clamp(1.5rem, 4vw, 3rem); max-width: var(--wrap); margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 2.5rem) 4rem; width: 100%; }
-@media (max-width: 820px) { .docs-shell { grid-template-columns: 1fr; } }
-.docs-side { position: sticky; top: 84px; align-self: start; height: max-content; }
-.docs-side .grp { font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); margin: 1.3rem 0 .5rem; }
-.docs-side a { display: block; padding: .35rem .6rem; border-radius: 7px; color: var(--muted); text-decoration: none; font-size: .92rem; border-left: 2px solid transparent; }
-.docs-side a:hover { color: var(--text); background: var(--surface); }
-.docs-side a.active { color: var(--accent); border-left-color: var(--accent); background: var(--surface); }
-.prose { min-width: 0; max-width: 74ch; }
-.prose h1 { font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -.02em; margin: 0 0 .5rem; }
-.prose .subtitle { color: var(--muted); font-size: 1.15rem; margin: 0 0 2rem; }
-/* Il sottotitolo perde il suo margine basso quando lo segue il cambio di lingua delle pagine legali. */
-.prose .subtitle:has(+ .lang-switch) { margin-bottom: .5rem; }
-.prose .lang-switch { margin: 0 0 2rem; font-size: .95rem; }
-.prose h2 { font-size: 1.5rem; margin: 2.2rem 0 .8rem; letter-spacing: -.01em; border-top: 1px solid var(--line); padding-top: 1.6rem; }
-.prose h3 { font-size: 1.15rem; margin: 1.6rem 0 .5rem; color: var(--text); }
-.prose p, .prose li { color: #C7CEDB; line-height: 1.7; }
-.prose strong { color: var(--text); }
-.prose a { color: var(--accent); text-underline-offset: 3px; }
-.prose img { max-width: 100%; border-radius: 8px; }
-.prose .inline-ic { width: 22px; height: 22px; vertical-align: -5px; margin: 0 2px; }
-.prose code { font-family: var(--mono); font-size: .88em; background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: .1em .4em; color: var(--accent-bright); }
-.prose pre { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; overflow-x: auto; }
-.prose pre code { background: none; border: none; padding: 0; color: #C7CEDB; }
-.prose table { border-collapse: collapse; width: 100%; margin: 1.2rem 0; font-size: .95rem; display: block; overflow-x: auto; }
-.prose th, .prose td { border: 1px solid var(--line); padding: .6rem .8rem; text-align: left; }
-.prose th { background: var(--surface); font-family: var(--mono); font-size: .85rem; }
-.prose blockquote { border-left: 3px solid var(--accent); margin: 1.2rem 0; padding: .3rem 0 .3rem 1.2rem; color: var(--muted); }
-
-/* Il posto: canale o Activity (spec della documentazione divisa fra canale e Activity, §5, nel repo
-   team-tasks-manager). Un segno solo, ripetuto in quattro punti: la pillola sopra il titolo delle pagine d'uso, i
-   due gruppi della barra laterale, i titoli dell'indice e il riquadro «How to do it». Il colore è quello dei
-   pulsanti di Discord: grigio per il canale, il blu del pulsante Activity per l'Activity. */
-.place-ic { display: inline-block; width: 1.35em; height: 1.35em; padding: .22em; border-radius: 5px !important; background: #4E5058; object-fit: contain; vertical-align: -.3em; margin-right: .45em; flex: none; }
-.is-activity .place-ic, .place-ic.is-activity { background: #5865F2; }
-.prose .place-pill { display: inline-flex; align-items: center; margin: 0 0 .9rem; padding: .25rem .75rem .25rem .3rem; border: 1px solid #4E5058; border-radius: 999px; font-family: var(--mono); font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text); }
-.prose .place-pill.is-activity { border-color: #5865F2; }
-.prose .place-pill .place-ic { margin-right: .55em; }
-.docs-side .grp-place { display: flex; align-items: center; color: var(--text); }
-.prose h2.h-place { display: flex; align-items: center; }
-.prose .grp-intro { color: var(--muted); margin-top: -.3rem; }
-.howto { margin: 2.2rem 0 1rem; }
-.howto .howto-t { font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .6rem; }
-.howto-grid { display: grid; gap: .75rem; }
-@media (min-width: 560px) { .howto-grid { grid-template-columns: 1fr 1fr; } }
-.prose .howto-go { display: flex; flex-direction: column; gap: .35rem; padding: .9rem 1rem; border: 1px solid var(--line-2); border-radius: 10px; background: var(--surface); color: #C7CEDB; text-decoration: none; transition: border-color .2s ease; }
-.prose a.howto-go:hover { border-color: #4E5058; }
-.prose a.howto-go.is-activity:hover { border-color: #5865F2; }
-.prose .howto-go.is-none { opacity: .75; }
-.howto-go .howto-k { display: flex; align-items: center; font-family: var(--mono); font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text); }
-.howto-go .howto-d { line-height: 1.55; }
-.prose a.howto-go .howto-d { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(233,164,76,.4); }
-
-/* Discord button-state colors (used in docs tables) */
-.prose .c-grey { color: #949BA4; font-weight: 700; }
-.prose .c-blue { color: #5865F2; font-weight: 700; }
-.prose .c-red  { color: #ED4245; font-weight: 700; }
-/* Center cells that contain only a button icon (the "Button" column) */
-.prose td:has(> img.inline-ic:only-child) { text-align: center; }
-/* Icons must show in full: no rounded corners, no crop */
-.prose .inline-ic { border-radius: 0 !important; object-fit: contain; }
-/* A Discord button drawn in a docs table: the state is the background colour, as in the bot
-   (ButtonStyle SECONDARY / PRIMARY / SUCCESS / DANGER), around the button's own white icon */
-.prose .dchip { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 32px; border-radius: 8px; vertical-align: middle; }
-.prose .dchip img { width: 20px; height: 20px; object-fit: contain; border-radius: 0; }
-.prose .dchip.is-grey  { background: #4E5058; }
-.prose .dchip.is-blue  { background: #5865F2; }
-.prose .dchip.is-green { background: #248046; }
-.prose .dchip.is-red   { background: #ED4245; }
-/* A Discord screenshot: at its natural size on desktop (the capture is 1x, enlarging it blurs it),
-   full width on a phone, where the <picture> serves the high-density mobile capture instead. */
-.prose .screen { display: block; margin: 1.2rem 0; }
-.prose .screen img { display: block; width: 100%; max-width: 424px; height: auto; border-radius: 8px; }
-@media (max-width: 640px) {
-  .prose .screen img { max-width: 100%; }
+/* ── La griglia e la barra laterale ──────────────────────────────────────────────────────────────────── */
+.docs-shell {
+  display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem);
+  width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 2.75rem clamp(1.25rem, 5vw, 2.5rem) 5rem;
 }
-
-/* Docs mobile navigation: hamburger + full overlay, styled to match the site */
-.docs-menu-toggle { display: none; }
-.docs-side-close { display: none; }
 @media (max-width: 820px) {
-  .docs-menu-toggle {
-    display: inline-flex; align-items: center; gap: .5em;
-    position: sticky; top: 54px; z-index: 30;
-    margin-bottom: 1.5rem; padding: .65em 1.1em;
-    background: var(--surface); color: var(--text);
-    border: 1px solid var(--line-2); border-radius: 8px;
-    font-family: var(--mono); font-size: .9rem; cursor: pointer;
-  }
-  .docs-menu-toggle:hover { border-color: var(--accent); color: var(--accent); }
-  .docs-side {
-    position: fixed; inset: 0; top: 0; z-index: 100;
-    display: block; margin: 0;
-    /* Altezza esplicita in dvh, non ereditata da inset:0. Con inset:0 il pannello e' alto quanto
-       il viewport LARGO, che su mobile comprende l'area coperta dalla barra del browser: le ultime
-       voci del menu finivano sotto quella barra e sembrava che il menu non scorresse. 'dvh' segue
-       la barra che si ritrae; il 100vh davanti serve ai browser che non conoscono dvh. */
-    height: 100vh; height: 100dvh;
-    padding: 4.5rem clamp(1.25rem, 6vw, 2rem) calc(2rem + env(safe-area-inset-bottom));
-    background: color-mix(in srgb, var(--ink) 97%, transparent);
-    backdrop-filter: blur(8px);
-    /* 'contain' spezza la catena dello scroll: arrivato in fondo al menu il gesto NON passa alla
-       pagina dietro. Era l'altra metà del difetto — si scorreva il contenuto invece del menu. */
-    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
-    transform: translateX(-100%); transition: transform .25s ease;
-  }
-  /* Blocco dello scroll di fondo mentre il menu e' aperto: senza, il gesto che "manca" il pannello
-     muove la pagina sotto e al ritorno ti ritrovi altrove. */
-  body.docs-menu-open { overflow: hidden; }
-  .docs-side.open { transform: translateX(0); }
-  .docs-side-close {
-    display: block; position: absolute; top: 1.1rem; right: 1.2rem;
-    background: none; border: none; color: var(--muted);
-    font-size: 2rem; line-height: 1; cursor: pointer;
-  }
-  .docs-side .grp { font-size: .8rem; margin-top: 1.6rem; }
-  .docs-side a { font-size: 1.05rem; padding: .6rem; }
+  .docs-shell { grid-template-columns: minmax(0, 1fr); padding-top: 2rem; }
 }
-/* Legal pages (terms, privacy, gdpr) */
-.legal-page { max-width: 820px; margin: 0 auto; padding: 3rem clamp(1.25rem, 5vw, 2.5rem) 4rem; width: 100%; }
+/* Ferma sotto il menu e, se è più alta della finestra, scorre per conto suo: con le 23 voci e la ricerca supera i
+   1200 px. `contain` non passa lo scorrimento alla pagina quando la barra arriva in fondo. Il 100vh davanti serve ai
+   browser che non conoscono dvh. */
+.docs-side {
+  position: sticky; top: 80px; align-self: start;
+  max-height: calc(100vh - 80px); max-height: calc(100dvh - 80px);
+  overflow-y: auto; overscroll-behavior: contain;
+  padding: 0 .5rem 2rem 0;
+  scrollbar-width: thin; scrollbar-color: var(--line-2) transparent;
+}
+.docs-side .grp {
+  margin: 1.6rem 0 .35rem; padding-left: .7rem;
+  font-size: .84rem; font-weight: 700; color: var(--text);
+}
+.docs-side .grp-place { display: flex; align-items: center; padding-left: .4rem; }
+.docs-side a {
+  display: block; padding: .36rem .7rem; border-radius: 8px;
+  font-size: .94rem; line-height: 1.4; color: var(--muted); text-decoration: none;
+}
+.docs-side a:hover { color: var(--text); background: var(--surface); }
+/* La barra scorre: un anello del fuoco fuori dalla voce verrebbe tagliato ai suoi bordi. */
+.docs-side a:focus-visible { outline-offset: -2px; }
+/* La pagina aperta: ambra su un fondo ambra tenue, come la colonna accesa del confronto della home. */
+.docs-side a.active { color: var(--accent); background: rgba(233, 164, 76, .09); font-weight: 600; }
 
-/* Ricerca (Pagefind) nella sidebar della documentazione.
-   Il widget porta un CSS suo e si tematizza con le proprie variabili: si impostano quelle invece di
-   sovrascrivere le sue classi, che sono dettagli interni e cambiano fra versioni. */
+/* La ricerca (Pagefind). Il widget porta un CSS suo e si tematizza con le proprie variabili: si impostano quelle
+   invece di sovrascrivere le sue classi, che sono dettagli interni e cambiano fra versioni. I risultati non hanno un
+   tetto loro: scorre la barra intera, perché due aree che scorrono una dentro l'altra si usano male. */
 .docs-search {
   --pagefind-ui-scale: .8;
   --pagefind-ui-primary: var(--accent);
@@ -137,11 +52,234 @@
   --pagefind-ui-tag: var(--surface-2);
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 8px;
-  --pagefind-ui-font: var(--sans);
+  --pagefind-ui-font: var(--display);
+  /* Il posto del campo, che Pagefind disegna quando la pagina è pronta: senza, le voci della barra e l'elenco
+     dell'indice scenderebbero di colpo. */
+  min-height: calc(64px * var(--pagefind-ui-scale));
   margin-bottom: .5rem;
 }
-/* I risultati possono essere piu' lunghi della colonna: la sidebar e' sticky, quindi senza un tetto
-   la lista scorrerebbe fuori dallo schermo senza modo di raggiungerne la fine. */
-.docs-search .pagefind-ui__results-area { max-height: 60vh; overflow-y: auto; }
 .docs-search .pagefind-ui__result-title a { color: var(--text); }
 .docs-search .pagefind-ui__result-excerpt { color: var(--muted); font-size: .85rem; }
+/* A campo vuoto Pagefind tiene a destra il posto del pulsante Clear, che compare solo quando si scrive. Tolto quel
+   posto, «Search in English» sta intera nella barra larga 240 px. Non c'è una variabile: si usa la sua classe. */
+.docs-search .pagefind-ui__search-input:placeholder-shown { padding-right: calc(16px * var(--pagefind-ui-scale)); }
+
+/* ── L'articolo ──────────────────────────────────────────────────────────────────────────────────────── */
+/* Il testo entro 36rem, una settantina di caratteri per riga; tabelle, blocchi di codice e riquadri «How to do it»
+   fino alla larghezza dell'articolo, al massimo 50rem. */
+.prose { min-width: 0; max-width: 50rem; font-size: 1.0625rem; }
+.prose > :is(p, ul, ol, h1, h2, h3, .callout) { max-width: 36rem; }
+.prose h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.25rem, 4.6vw, 3.25rem); font-weight: 800; font-stretch: 112%;
+  line-height: 1.04; letter-spacing: -.03em; text-wrap: balance;
+}
+.prose .subtitle {
+  margin: 0 0 2.75rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.25rem); line-height: 1.5; color: var(--muted); text-wrap: pretty;
+}
+/* Il sottotitolo perde il suo margine basso quando lo segue il cambio di lingua delle pagine legali. */
+.prose .subtitle:has(+ .lang-switch) { margin-bottom: .5rem; }
+.prose .lang-switch { margin: 0 0 2.75rem; font-size: .95rem; }
+/* Niente riga sopra gli H2: separa lo spazio. */
+.prose h2 {
+  margin: 3.25rem 0 1rem;
+  font-size: clamp(1.5rem, 2.6vw, 1.875rem); font-weight: 750; font-stretch: 108%;
+  line-height: 1.15; letter-spacing: -.02em; text-wrap: balance;
+}
+.prose h3 {
+  margin: 2.2rem 0 .6rem;
+  font-size: 1.2rem; font-weight: 700; font-stretch: 105%; line-height: 1.3; color: var(--text);
+}
+.prose p, .prose li { color: #C7CEDB; line-height: 1.7; text-wrap: pretty; }
+.prose li + li { margin-top: .35rem; }
+.prose strong { color: var(--text); font-weight: 650; }
+.prose a { color: var(--accent); text-decoration-color: rgba(233, 164, 76, .45); text-underline-offset: 3px; }
+.prose a:hover { color: var(--accent-bright); text-decoration-color: currentColor; }
+.prose img { max-width: 100%; border-radius: 8px; }
+/* Un indirizzo lungo nel codice in linea va a capo invece di uscire dallo schermo del telefono. break-word, non
+   anywhere: non cambia la larghezza minima delle colonne, quindi le tabelle larghe scorrono ancora di lato. */
+.prose code {
+  font-family: var(--mono); font-size: .88em; color: var(--accent-bright); overflow-wrap: break-word;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: .1em .4em;
+}
+.prose pre {
+  overflow-x: auto; padding: 1rem 1.2rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+}
+.prose pre code { background: none; border: none; padding: 0; color: #C7CEDB; }
+.prose blockquote {
+  margin: 1.2rem 0; padding: .3rem 0 .3rem 1.2rem;
+  border-left: 3px solid var(--accent); color: var(--muted);
+}
+
+/* Le tabelle con le righe divise, come il confronto della home: un bordo solo attorno, una linea fra le righe e
+   nessuna fra le colonne. Larghe quanto il contenuto, fino all'articolo: se non ci stanno scorrono di lato dentro di
+   sé (`display: block`). Le intestazioni vengono dal markdown, sempre in un <thead>. */
+.prose table {
+  display: block; overflow-x: auto; width: max-content; max-width: 100%; margin: 1.75rem 0;
+  border: 1px solid var(--line-2); border-radius: 12px; border-collapse: separate; border-spacing: 0;
+  font-size: .97rem; line-height: 1.55;
+}
+.prose th, .prose td {
+  padding: .8rem 1rem; border: 0; border-top: 1px solid var(--line); text-align: left; vertical-align: top;
+}
+.prose td { color: #C7CEDB; }
+.prose thead th { border-top: 0; background: var(--surface); font-size: .92rem; font-weight: 700; color: var(--text); }
+
+/* I riquadri: la regola di base sta in global.css, qui solo lo spazio attorno. */
+.prose .callout { margin: 1.75rem 0; }
+
+/* Il posto: canale o Activity (spec della documentazione divisa fra canale e Activity, §5, nel repo
+   team-tasks-manager). Un segno solo, ripetuto in quattro punti: la pillola sopra il titolo delle pagine d'uso, i
+   due gruppi della barra laterale, i titoli dell'indice e il riquadro «How to do it». Il colore è quello dei
+   pulsanti di Discord: grigio per il canale, il blu del pulsante Activity per l'Activity. */
+.place-ic {
+  display: inline-block; flex: none; width: 1.35em; height: 1.35em; padding: .22em; margin-right: .45em;
+  border-radius: 5px !important; background: #4E5058; object-fit: contain; vertical-align: -.3em;
+}
+.is-activity .place-ic, .place-ic.is-activity { background: #5865F2; }
+.prose .place-pill {
+  display: inline-flex; align-items: center; margin: 0 0 1.1rem; padding: .3rem .85rem .3rem .3rem;
+  border: 1px solid #4E5058; border-radius: 999px; font-size: .9rem; font-weight: 650; color: var(--text);
+}
+.prose .place-pill.is-activity { border-color: #5865F2; }
+.prose .place-pill .place-ic { margin-right: .55em; }
+.prose h2.h-place { display: flex; align-items: center; }
+.prose .grp-intro { max-width: 40rem; margin: -.4rem 0 0; color: var(--muted); }
+
+/* «How to do it»: il titolo come un H2, nel colore del testo; i due riquadri coi posti. */
+.howto { margin: 3.25rem 0 1rem; }
+.howto .howto-t {
+  margin-bottom: 1rem;
+  font-size: clamp(1.5rem, 2.6vw, 1.875rem); font-weight: 750; font-stretch: 108%;
+  line-height: 1.15; letter-spacing: -.02em; color: var(--text);
+}
+.howto-grid { display: grid; gap: .75rem; }
+@media (min-width: 560px) {
+  .howto-grid { grid-template-columns: 1fr 1fr; }
+}
+.prose .howto-go {
+  display: flex; flex-direction: column; gap: .4rem; padding: 1rem 1.1rem;
+  border: 1px solid var(--line-2); border-radius: 12px; background: var(--surface);
+  color: #C7CEDB; text-decoration: none; transition: border-color .2s ease;
+}
+.prose a.howto-go:hover { border-color: #4E5058; }
+.prose a.howto-go.is-activity:hover { border-color: #5865F2; }
+.prose .howto-go.is-none { opacity: .75; }
+.howto-go .howto-k { display: flex; align-items: center; font-size: 1rem; font-weight: 700; color: var(--text); }
+.howto-go .howto-d { line-height: 1.55; }
+.prose a.howto-go .howto-d {
+  color: var(--accent); text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: rgba(233, 164, 76, .4);
+}
+
+/* I colori degli stati dei pulsanti di Discord, nelle tabelle. */
+.prose .c-grey { color: #949BA4; font-weight: 700; }
+.prose .c-blue { color: #5865F2; font-weight: 700; }
+.prose .c-red  { color: #ED4245; font-weight: 700; }
+/* Le icone dei pulsanti nel testo, intere: niente angoli tondi, niente ritagli. Al centro le celle che contengono
+   solo l'icona (la colonna «Button»). */
+.prose .inline-ic {
+  width: 22px; height: 22px; margin: 0 2px; vertical-align: -5px; border-radius: 0 !important; object-fit: contain;
+}
+.prose td:has(> img.inline-ic:only-child) { text-align: center; }
+/* Un pulsante di Discord disegnato in una tabella: lo stato è il colore del fondo, come nel bot (ButtonStyle
+   SECONDARY, PRIMARY, SUCCESS, DANGER), attorno all'icona bianca del pulsante. */
+.prose .dchip {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 32px; border-radius: 8px; vertical-align: middle;
+}
+.prose .dchip img { width: 20px; height: 20px; object-fit: contain; border-radius: 0; }
+.prose .dchip.is-grey  { background: #4E5058; }
+.prose .dchip.is-blue  { background: #5865F2; }
+.prose .dchip.is-green { background: #248046; }
+.prose .dchip.is-red   { background: #ED4245; }
+/* Una schermata di Discord: alla sua misura sul computer (la cattura è 1x, ingrandirla la sfoca), larga quanto lo
+   schermo sul telefono, dove il <picture> serve la cattura ad alta densità. */
+.prose .screen { display: block; margin: 1.2rem 0; }
+.prose .screen img { display: block; width: 100%; max-width: 424px; height: auto; border-radius: 8px; }
+@media (max-width: 640px) {
+  .prose .screen img { max-width: 100%; }
+}
+
+/* ── L'indice ────────────────────────────────────────────────────────────────────────────────────────── */
+/* La ricerca sotto il sottotitolo, poi una sezione per gruppo. Le pagine sono un elenco: tutta la voce è il link, col
+   titolo sopra e la descrizione sotto. Due colonne quando l'articolo è largo almeno 640 px: la query guarda
+   l'articolo, non la finestra, perché la barra laterale c'è sopra gli 820 px e sotto no. */
+.prose.d-index { max-width: none; container: d-index / inline-size; }
+.prose.d-index > :is(h1, .subtitle) { max-width: 40rem; }
+.d-search { max-width: 32rem; margin: -1.25rem 0 1rem; }
+/* Dentro l'articolo i risultati della ricerca non prendono l'interlinea e lo spazio fra le voci del testo. */
+.prose .d-search :is(p, li) { line-height: 1.5; }
+.prose .d-search li + li { margin-top: 0; }
+.d-grp { margin-top: 3rem; }
+.prose .d-grp > h2 { margin-top: 0; }
+.d-list { display: grid; gap: .1rem 2rem; margin: .9rem 0 0; padding: 0; list-style: none; }
+@container d-index (min-width: 640px) {
+  .d-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.prose .d-list li { margin: 0; }
+.prose .d-list a {
+  display: block; margin: 0 -.9rem; padding: .7rem .9rem; border-radius: 12px; text-decoration: none;
+}
+.prose .d-list a:hover { background: var(--surface); }
+.d-t {
+  display: block; font-size: 1.05rem; font-weight: 700; font-stretch: 105%; line-height: 1.35; color: var(--text);
+}
+.prose .d-list a:hover .d-t { color: var(--accent); }
+.d-d {
+  display: block; margin-top: .2rem; font-size: .95rem; line-height: 1.5; color: var(--muted); text-wrap: pretty;
+}
+
+/* ── Le pagine legali ────────────────────────────────────────────────────────────────────────────────── */
+/* La colonna è il testo (36rem) più i margini di lato: così il testo sta al centro. */
+.legal-page { width: 100%; max-width: 41rem; margin: 0 auto; padding: 3rem clamp(1.25rem, 5vw, 2.5rem) 4rem; }
+
+/* ── Il telefono e il tablet ─────────────────────────────────────────────────────────────────────────── */
+.docs-menu-toggle { display: none; }
+.docs-side-close { display: none; }
+@media (max-width: 820px) {
+  /* La barra «Documentation» resta in alto mentre si legge, al posto del menu del sito: i due insieme terrebbero
+     fermi 101 px su 760. Nell'indice, che non ha la barra, il menu del sito resta fermo come altrove. */
+  body:has(.docs-menu-toggle) .site-top { position: relative; }
+  .docs-menu-toggle {
+    position: sticky; top: 0; z-index: 40;
+    display: flex; align-items: center; gap: .6rem; width: 100%; margin: 0;
+    padding: .75rem clamp(1.25rem, 5vw, 2.5rem);
+    border: 0; border-bottom: 1px solid var(--line); border-radius: 0;
+    background: color-mix(in srgb, var(--ink) 88%, transparent); backdrop-filter: blur(10px);
+    font-family: var(--display); font-size: .98rem; font-weight: 650; color: var(--text); cursor: pointer;
+  }
+  .docs-menu-toggle:hover { color: var(--accent); }
+  /* L'anello del fuoco dentro la barra: è larga quanto lo schermo, fuori il bordo lo taglierebbe. */
+  .docs-menu-toggle:focus-visible { outline-offset: -3px; border-radius: 0; }
+  .d-search { margin-top: -1.5rem; }
+  .docs-side {
+    position: fixed; inset: 0; z-index: 100;
+    display: block; max-height: none; margin: 0;
+    /* Altezza esplicita in dvh, non ereditata da inset: 0. Con inset: 0 il pannello è alto quanto il viewport
+       LARGO, che su mobile comprende l'area coperta dalla barra del browser: le ultime voci del menu finivano sotto
+       quella barra e sembrava che il menu non scorresse. 'dvh' segue la barra che si ritrae; il 100vh davanti serve
+       ai browser che non conoscono dvh. */
+    height: 100vh; height: 100dvh;
+    padding: 4.5rem clamp(1.25rem, 6vw, 2rem) calc(2rem + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--ink) 97%, transparent);
+    backdrop-filter: blur(8px);
+    /* `contain` spezza la catena dello scorrimento: arrivato in fondo al menu il gesto NON passa alla pagina
+       dietro. Era l'altra metà del difetto: si scorreva il contenuto invece del menu. */
+    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+    transform: translateX(-100%); transition: transform .25s ease;
+  }
+  /* Blocco dello scorrimento di fondo mentre il menu è aperto: senza, il gesto che «manca» il pannello muove la
+     pagina sotto e al ritorno ci si ritrova altrove. */
+  body.docs-menu-open { overflow: hidden; }
+  .docs-side.open { transform: translateX(0); }
+  .docs-side-close {
+    display: block; position: absolute; top: 1.1rem; right: 1.2rem;
+    background: none; border: none; color: var(--muted);
+    font-size: 2rem; line-height: 1; cursor: pointer;
+  }
+  .docs-side .grp { margin-top: 1.7rem; padding-left: .6rem; font-size: .9rem; }
+  .docs-side a { padding: .6rem; font-size: 1.05rem; }
+}
