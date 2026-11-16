@@ -1,27 +1,21 @@
 /*
- * Le funzioni che cambiano lo stato delle scene della home (ChannelScene, ActivityScene): scrivono gli attributi
- * data-* che scene.css disegna. Le usano la demo (demo.ts) e i copioni dei video (src/video/render-*.ts).
+ * Le funzioni che cambiano lo stato delle scene della home (ChannelScene, ActivityScene). disegnaLista riscrive la
+ * lista da uno Stato della demo: le righe, le opzioni del selettore, la barra, i pulsanti spenti. Le altre scrivono
+ * gli attributi data-* che scene.css disegna. Le usano la demo (demo.ts, demo/canale.ts, demo/activity.ts) e i
+ * copioni dei video (src/video/render-*.ts).
  *
  * Non tengono stato: ogni chiamata dice com'è un pezzo della scena, da capo. Così un copione può ridisegnare
  * qualunque istante e la demo non deve ricordare cosa c'era prima.
  */
-import {
-  FRASE_SPUNTA, FRASI, MENU_SOTTO, avanzamento, fraseDelPannello, nomeDi, type Colore, type Tasto,
-} from './scene-data';
-
-/** La lista com'è: cosa è fatto, l'owner e i tag di ogni task, se il task 3 ha il promemoria. */
-export interface StatoLista {
-  fatti: ReadonlySet<string>;
-  /** Per task, l'id della persona owner (PERSONE): una sola, nella demo. */
-  owner: Readonly<Record<string, string>>;
-  /** Per task, gli id delle persone taggate, nell'ordine in cui sono state scelte. */
-  tag: Readonly<Record<string, readonly string[]>>;
-  promemoria: boolean;
-}
+import { FRASE_SPUNTA, FRASI, fraseDelPannello, type Colore, type Tasto } from './scene-data.ts';
+import type { Stato } from './demo/modello.ts';
+import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
+import { nomiDi, opzioniDelSelettore, righeDelCanale, righeDellActivity } from './demo/righe.ts';
 
 export type Salvataggio = 'off' | 'on' | 'pending';
-/** Cosa mostra l'area del pannello: il selettore delle persone (owner, tag) o i campi del promemoria. */
-export type Vista = 'owner' | 'tag' | 'reminder';
+
+/** I tre pulsanti della prima riga che aspettano mentre un task è in modifica (FirstRow, locked). */
+const BLOCCABILI = ['a-edit', 'a-clean', 'a-reopen'];
 
 const k = (radice: ParentNode, chiave: string) => radice.querySelector<HTMLElement>(`[data-k="${chiave}"]`);
 const attributo = (el: HTMLElement, nome: string, valore: string | null) =>
@@ -41,42 +35,53 @@ function accendi(radice: HTMLElement, attr: 'tasto' | 'ptasto', tasto: Tasto | n
   });
 }
 
-/** «@Mia», come Discord disegna una menzione. */
-function menzione(id: string): HTMLElement {
-  const m = document.createElement('span');
-  m.className = 'sc-mention';
-  m.textContent = `@${nomeDi(id)}`;
-  return m;
+/** L'HTML scritto per ultimo in ogni contenitore: lo stesso non si riscrive. */
+const SCRITTO = new WeakMap<HTMLElement, string>();
+
+/**
+ * Il contenuto di un contenitore, riscritto se è cambiato. Se il focus era dentro torna sull'elemento nuovo con lo
+ * stesso data-k: chi usa la tastiera non perde il posto a ogni spunta.
+ */
+function riscrivi(contenitore: HTMLElement, html: string): void {
+  if (SCRITTO.get(contenitore) === html) return;
+  const attivo = document.activeElement;
+  const chiave = attivo instanceof HTMLElement && contenitore.contains(attivo) ? attivo.dataset.k : undefined;
+  contenitore.innerHTML = html;
+  SCRITTO.set(contenitore, html);
+  if (chiave) k(contenitore, chiave)?.focus({ preventScroll: true });
 }
 
 /**
- * La lista nel canale (.sc-chan) o nella pagina dell'Activity (.sc-win): le righe e le opzioni fatte, le caselle,
- * l'owner davanti al testo e i tag in fondo (come li scrive il bot: «@Mia: …», «… @Leo @Sam»), il promemoria del
- * task 3, la barra. Nell'Activity rimette anche il pannello sotto il suo task, perché una riga in più o in meno (il
- * promemoria, un tag che manda a capo) lo sposta.
+ * La lista dello stato nel canale (.sc-chan) o nella pagina dell'Activity (.sc-win): il titolo, le righe (righe.ts),
+ * la barra. Nel canale anche le opzioni del selettore e i pulsanti spenti dove il bot li spegne (pulsantiAccesi); con
+ * la lista nell'Activity resta «Join the Activity» al posto dei pulsanti, col selettore chiuso. Nella pagina rimette
+ * il pannello sotto il suo task, perché una riga in più o in meno lo sposta.
  */
-export function disegnaLista(lista: HTMLElement, s: StatoLista): void {
-  const idDi = (el: HTMLElement) => el.closest<HTMLElement>('[data-task]')?.dataset.task ?? '';
-  lista.querySelectorAll<HTMLElement>('[data-task]').forEach((el) => {
-    attributo(el, 'data-done', s.fatti.has(el.dataset.task ?? '') ? '' : null);
-  });
-  lista.querySelectorAll<HTMLElement>('.sc-acb').forEach((b) => {
-    b.setAttribute('aria-pressed', String(s.fatti.has(idDi(b))));
-  });
-  lista.querySelectorAll<HTMLElement>('[data-own]').forEach((el) => {
-    const o = s.owner[idDi(el)];
-    el.replaceChildren(...(o ? [menzione(o), ': '] : []));
-  });
-  lista.querySelectorAll<HTMLElement>('[data-tags]').forEach((el) => {
-    el.replaceChildren(...(s.tag[idDi(el)] ?? []).flatMap((t) => [' ', menzione(t)]));
-  });
-  attributo(lista, 'data-reminder', s.promemoria ? '' : null);
-  const pct = avanzamento(s.fatti);
-  lista.querySelectorAll<HTMLElement>('[data-bar]').forEach((b) => {
+export function disegnaLista(radice: HTMLElement, stato: Stato): void {
+  const nellaPagina = radice.matches('.sc-win');
+  const nomi = nomiDi(stato);
+  const titolo = radice.querySelector<HTMLElement>('.sc-title');
+  if (titolo) titolo.textContent = stato.lista.titolo;
+  const righe = radice.querySelector<HTMLElement>(nellaPagina ? '.sc-arows' : '.sc-rows');
+  if (righe) riscrivi(righe, (nellaPagina ? righeDellActivity : righeDelCanale)(stato.lista, nomi));
+  const pct = avanzamento(stato.lista);
+  radice.querySelectorAll<HTMLElement>('[data-bar]').forEach((b) => {
     b.style.setProperty('--pct', `${pct}%`);
     attributo(b, 'data-empty', pct === 0 ? '' : null);
   });
-  if (lista.matches('.sc-win')) posizionaPannello(lista);
+  if (nellaPagina) {
+    posizionaPannello(radice);
+    return;
+  }
+  const menu = k(radice, 'menu');
+  if (menu) riscrivi(menu, opzioniDelSelettore(stato.lista));
+  const accesi = pulsantiAccesi(stato);
+  radice.querySelectorAll<HTMLElement>('[data-k="sel"], [data-k^="b-"]').forEach((b) => {
+    const nome = b.dataset.k === 'sel' ? 'sel' : (b.dataset.k ?? '').slice(2);
+    b.setAttribute('aria-disabled', String(!accesi.has(nome)));
+  });
+  attributo(radice, 'data-inact', stato.inActivity ? '' : null);
+  if (stato.inActivity) apriSelettore(radice, false);
 }
 
 /** Il menu del selettore aperto o chiuso. */
@@ -85,55 +90,11 @@ export function apriSelettore(chan: HTMLElement, aperto: boolean): void {
   k(chan, 'sel')?.setAttribute('aria-expanded', String(aperto));
 }
 
-/**
- * Il pulsante acceso della seconda riga, o nessuno (null): la frase del selettore e, con Owner, Tag o Webhook in blu,
- * il menu sotto i pulsanti con la sua frase, chiuso e senza scelte. Quello del webhook non si apre: nella demo non
- * ci sono webhook da scegliere.
- */
-export function tastoDelCanale(chan: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
+/** Il pulsante acceso della seconda riga, o nessuno (null), con la frase del selettore dei task. */
+export function accendiNelCanale(chan: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
   accendi(chan, 'tasto', tasto, colore);
   const sel = k(chan, 'sel-text');
   if (sel) sel.textContent = tasto && colore ? FRASI[tasto][colore] : FRASE_SPUNTA;
-  const frase = tasto && colore === 'blue' ? MENU_SOTTO[tasto] : undefined;
-  const sotto = k(chan, 'sub');
-  if (sotto) sotto.hidden = frase === undefined;
-  const testo = k(chan, 'sub-text');
-  if (testo) testo.textContent = frase ?? '';
-  k(chan, 'sub-sel')?.setAttribute('aria-disabled', String(tasto === 'webhook'));
-  menuSottoAperto(chan, false);
-  sceltaNelMenuSotto(chan, []);
-}
-
-/** Il menu delle persone sotto i pulsanti aperto o chiuso. */
-export function menuSottoAperto(chan: HTMLElement, aperto: boolean): void {
-  attributo(chan, 'data-subopen', aperto ? '' : null);
-  k(chan, 'sub-sel')?.setAttribute('aria-expanded', String(aperto));
-}
-
-/** Le persone scelte nel menu sotto i pulsanti: le loro pillole nel selettore e la spunta nel menu. */
-export function sceltaNelMenuSotto(chan: HTMLElement, ids: readonly string[]): void {
-  attributo(chan, 'data-subpick', ids.length > 0 ? ids.join(' ') : null);
-  chan.querySelectorAll<HTMLElement>('.sc-subchosen').forEach((c) => {
-    const i = ids.indexOf(c.dataset.persona ?? '');
-    c.hidden = i < 0;
-    c.style.order = String(i);
-  });
-  chan.querySelectorAll<HTMLElement>('.sc-subopt').forEach((o) => {
-    const scelta = ids.includes(o.dataset.persona ?? '');
-    attributo(o, 'data-on', scelta ? '' : null);
-    o.setAttribute('aria-pressed', String(scelta));
-  });
-}
-
-/** La modale del promemoria aperta o chiusa. */
-export function modale(chan: HTMLElement, aperta: boolean): void {
-  attributo(chan, 'data-modal', aperta ? '' : null);
-}
-
-/** La lista è nell'Activity: nel canale al posto dei pulsanti resta «Join the Activity». */
-export function inActivity(chan: HTMLElement, dentro: boolean): void {
-  attributo(chan, 'data-inact', dentro ? '' : null);
-  if (dentro) apriSelettore(chan, false);
 }
 
 /** Il pannello aperto sul task id, da capo (pulsanti grigi, area vuota, Save spento), o chiuso (null). */
@@ -144,12 +105,14 @@ export function apriPannello(win: HTMLElement, id: string | null): void {
   posizionaPannello(win);
 }
 
-/** I pulsanti del pannello grigi, l'area vuota, Save e Delete spenti: com'è all'apertura e dopo un salvataggio. */
+/**
+ * I pulsanti del pannello grigi, l'area vuota, Save e Delete spenti: com'è all'apertura e dopo un salvataggio. L'area
+ * (p-form) torna al contenuto vuoto, alto come per ogni azione: l'azione di prima sparisce col suo DOM.
+ */
 export function azzeraIlPannello(win: HTMLElement): void {
   tastoDelPannello(win, null, null);
-  vistaDelPannello(win, null);
-  sceltaNelPannello(win, []);
-  avvisoNelPannello(win, null);
+  const area = k(win, 'p-form');
+  if (area) area.innerHTML = '<div class="sc-pcontent"></div>';
   salva(win, 'off');
   eliminaAttivo(win, false);
 }
@@ -190,54 +153,23 @@ export function tastoDelPannello(win: HTMLElement, tasto: Tasto | null, colore: 
   attributo(win, 'data-delete', colore === 'red' ? '' : null);
 }
 
-/** Cosa mostra l'area del pannello: il selettore delle persone, i campi del promemoria (solo nel video) o niente. */
-export function vistaDelPannello(win: HTMLElement, vista: Vista | null): void {
-  attributo(win, 'data-view', vista);
-}
-
-/**
- * Le persone scelte nel selettore del pannello: le loro pillole salgono fra le scelte nell'ordine della scelta;
- * spariscono da quelle di chi è nell'Activity.
- */
-export function sceltaNelPannello(win: HTMLElement, ids: readonly string[]): void {
-  attributo(win, 'data-picked', ids.length > 0 ? ids.join(' ') : null);
-  win.querySelectorAll<HTMLElement>('[data-pick]').forEach((p) => {
-    const i = ids.indexOf(p.dataset.pick ?? '');
-    p.hidden = i < 0;
-    p.style.order = String(i);
-  });
-  win.querySelectorAll<HTMLElement>('[data-sugg]').forEach((p) => {
-    p.hidden = ids.includes(p.dataset.sugg ?? '');
-  });
-}
-
-/** Il testo nell'elemento, con le parti fra «**» in grassetto, come il bot scrive il numero del task. */
-export function scriviConGrassetto(el: HTMLElement, testo: string): void {
-  el.replaceChildren(...testo.split('**').map((p, i) => {
-    if (i % 2 === 0) return p;
-    const b = document.createElement('strong');
-    b.textContent = p;
-    return b;
-  }));
-}
-
-/**
- * Nell'area del pannello: l'avviso del bot nel riquadro bianco, con l'emoji del consiglio (NoticeBox), o la domanda
- * della modale del canale sopra Delete (Question), o niente.
- */
-export function avvisoNelPannello(win: HTMLElement, tipo: 'notice' | 'question' | null, testo = ''): void {
-  for (const t of ['notice', 'question'] as const) {
-    const box = k(win, `p-${t}`);
-    if (box) box.hidden = tipo !== t;
-    const scritta = k(win, `p-${t}-text`);
-    if (scritta) scriviConGrassetto(scritta, tipo === t ? testo : '');
+/** Edit, Clean e Reopen all bloccati e sbiaditi, mentre nel pannello Save è acceso (useTaskLock), o di nuovo liberi. */
+export function bloccaLaPrimaRiga(radice: HTMLElement, bloccata: boolean): void {
+  for (const chiave of BLOCCABILI) {
+    const b = k(radice, chiave);
+    if (!b) continue;
+    b.toggleAttribute('data-locked', bloccata);
+    attributo(b, 'aria-disabled', bloccata ? 'true' : null);
   }
 }
 
-/** Save spento, acceso o in attesa (i tre puntini). */
+/** Save spento, acceso o in attesa: i tre puntini al posto della scritta, anche su Delete (Button, aria-busy). */
 export function salva(win: HTMLElement, stato: Salvataggio): void {
   win.dataset.save = stato;
   k(win, 'p-save')?.setAttribute('aria-disabled', String(stato !== 'on'));
+  for (const b of [k(win, 'p-save'), k(win, 'p-delete')]) {
+    if (b) attributo(b, 'aria-busy', stato === 'pending' ? 'true' : null);
+  }
 }
 
 /** Delete, in rosso al posto di Save: acceso solo se c'è qualcosa da togliere. */

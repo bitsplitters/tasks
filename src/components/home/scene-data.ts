@@ -1,101 +1,14 @@
 /*
- * I dati delle scene della home (spec docs/superpowers/specs/2026-11-15-home-video-e-demo-design.md, nel repo
- * team-tasks-manager): la lista, le persone, i pulsanti coi nomi del bot, le frasi del selettore e del pannello, i
- * tooltip, i fumetti della demo e i tempi dei video. Li usano i componenti delle scene, la demo, i tooltip, i video e
- * la pagina della registrazione.
+ * I testi delle scene della home (spec docs/superpowers/specs/2026-11-15-home-video-e-demo-design.md, nel repo
+ * team-tasks-manager): i pulsanti coi nomi del bot, le frasi del selettore e del pannello, i tooltip, i testi di
+ * Discord e i tempi dei video. Li usano i componenti delle scene, la demo coi suoi pezzi (demo/ui), i tooltip, i video
+ * e la pagina della registrazione. La lista, il
+ * server della demo e le regole del bot stanno in demo/ (spec 2026-11-15-demo-fedele-design.md): modello.ts,
+ * regole.ts, testi.ts.
  *
- * I testi dell'interfaccia sono quelli del bundle inglese del bot (slash-resource.properties), con la chiave
- * accanto; quelli dei tooltip e dei fumetti sono del §8 della spec.
+ * Le frasi dell'interfaccia sono quelle del bundle inglese del bot (slash-resource.properties), con la chiave
+ * accanto; quelle dei tooltip sono del §8 della spec; quelle di Discord, del suo client in inglese.
  */
-
-export const TITOLO = 'Roster & scrims — week 12';
-
-export interface Task {
-  id: string;
-  testo: string;
-  padre?: string;
-}
-
-/** La lista dei video e della demo (§4.1): quella della scena di prima, con un subtask. */
-export const TASKS: readonly Task[] = [
-  { id: '1', testo: "Confirm the five-man roster for Saturday's scrim block" },
-  { id: '2', testo: 'Lock the scrim block vs. Nova Collective' },
-  { id: '2.1', testo: 'Clip the three teamfights for the review', padre: '2' },
-  { id: '3', testo: 'VOD review: mid rotations, game 3' },
-  { id: '4', testo: 'Publish the match-day graphic' },
-];
-
-/** Fatto all'inizio, nei video e nella demo. */
-export const FATTI_INIZIALI: readonly string[] = ['1'];
-
-export interface Persona {
-  id: string;
-  nome: string;
-  colore: string;
-}
-
-export const MIA: Persona = { id: 'mia', nome: 'Mia', colore: '#eb459e' };
-export const LEO: Persona = { id: 'leo', nome: 'Leo', colore: '#23a55a' };
-/** Chi guarda: nell'Activity è «Sam (you)» (activity.picker.you). */
-export const SAM: Persona = { id: 'sam', nome: 'Sam', colore: '#f0b232' };
-
-/** Le persone del menu dell'owner e dei tag nel canale, in quest'ordine. */
-export const PERSONE: readonly Persona[] = [MIA, LEO, SAM];
-/** Chi è nell'Activity: le pillole del selettore prima di scrivere (activity.picker.here). */
-export const PARTECIPANTI: readonly Persona[] = [SAM, MIA];
-export const nomeDi = (id: string) => PERSONE.find((p) => p.id === id)?.nome ?? id;
-
-/**
- * Il promemoria del task 3, all'ora che propongono la modale del bot e l'Activity: adesso più 10 minuti, cioè le
- * 18:14 della scena (il messaggio è delle 18:04) del giorno della registrazione. Si registra un altro giorno? Si
- * cambiano queste righe.
- */
-export const PROMEMORIA = {
-  giorno: '15',
-  mese: 'November',
-  anno: '2026',
-  ora: '18:14',
-  fuso: 'Europe/Rome',
-  /** `<t:N>` come lo mostra Discord in inglese (en-US). */
-  canale: 'November 15, 2026 6:14 PM',
-  /** La pagina dell'Activity in inglese usa en-GB (activity/src/text/time.ts). */
-  activity: '15 November 2026 18:14',
-  /** I campi nativi di Chrome in en-US. */
-  campoData: '11/15/2026',
-  campoOra: '06:14 PM',
-  citta: 'Rome',
-  paese: 'Italy',
-  scarto: 'UTC+1',
-} as const;
-
-/**
- * La spunta con la cascata dei gruppi, nei due sensi, come il bot: il gruppo trascina i subtask, l'ultimo subtask
- * spuntato spunta il gruppo, un subtask despuntato lo riapre.
- */
-export function spunta(fatti: ReadonlySet<string>, id: string, valore: boolean): Set<string> {
-  const nuovi = new Set(fatti);
-  const imposta = (x: string) => (valore ? nuovi.add(x) : nuovi.delete(x));
-  imposta(id);
-  TASKS.filter((t) => t.padre === id).forEach((t) => imposta(t.id));
-  const padre = TASKS.find((t) => t.id === id)?.padre;
-  if (padre) {
-    const fratelli = TASKS.filter((t) => t.padre === padre);
-    if (fratelli.every((f) => nuovi.has(f.id))) nuovi.add(padre);
-    else nuovi.delete(padre);
-  }
-  return nuovi;
-}
-
-/**
- * La barra come la disegna il bot (scripts/bar/README.md): per difetto al 5%, 5 con una casella, 95 finché ne manca
- * una.
- */
-export function avanzamento(fatti: ReadonlySet<string>): number {
-  const n = TASKS.filter((t) => fatti.has(t.id)).length;
-  if (n === 0) return 0;
-  if (n === TASKS.length) return 100;
-  return Math.min(95, Math.max(5, Math.floor((n / TASKS.length) * 20) * 5));
-}
 
 export type Tasto = 'content' | 'owner' | 'tag' | 'reminder' | 'webhook';
 export type Colore = 'blue' | 'red';
@@ -126,13 +39,6 @@ export const FRASI: Record<Tasto, Record<Colore, string>> = {
 
 /** Il pannello a riposo (activity.panel.choose). */
 export const fraseDelPannello = (id: string) => `Choose what to change in task ${id}`;
-
-/** Il menu sotto i pulsanti, quando Owner, Tag o Webhook sono blu (tasklist.slct.owner, .tag, .webhook). */
-export const MENU_SOTTO: Partial<Record<Tasto, string>> = {
-  owner: 'Choose one or more people, or a role, then the task',
-  tag: 'Choose the tag, then the task',
-  webhook: 'Choose the webhook to associate',
-};
 
 export interface Pulsante {
   k: string;
@@ -195,49 +101,6 @@ export const TOOLTIP: Record<string, Tooltip> = Object.fromEntries([
   ...Object.entries(IN_CIMA_ACTIVITY).map(([k, v]) => [`ac-${k}`, { ...v }]),
 ]);
 
-/** Owner e Tag la demo li applica davvero; gli altri tre pulsanti hanno il fumetto. */
-export type TastoConFumetto = Exclude<Tasto, 'owner' | 'tag'>;
-
-/** I fumetti della demo del canale, quando si sceglie un task con un pulsante acceso (§8). */
-export const FUMETTI: Record<TastoConFumetto, Record<Colore, (n: string) => string>> = {
-  content: {
-    blue: (n) => `In Discord, this opens the form to edit task\u00a0${n}.`,
-    red: (n) => `In Discord, this deletes task\u00a0${n}.`,
-  },
-  reminder: {
-    blue: (n) => `In Discord, this opens the reminder form for task\u00a0${n}.`,
-    red: (n) => `In Discord, this removes the reminder of task\u00a0${n}.`,
-  },
-  webhook: {
-    blue: (n) => `In Discord, this lets you link a webhook to task\u00a0${n}.`,
-    red: (n) => `In Discord, this unlinks the webhook from task\u00a0${n}.`,
-  },
-};
-
-/**
- * Le risposte del bot quando owner e tag non si possono cambiare: nella demo del canale nel fumetto, nell'Activity
- * nell'avviso del pannello.
- */
-export const RIFIUTI = {
-  /** tasklist.slct.owner.noselection.error */
-  ownerNessuno: 'Select one or more people, or a role, as the task owner.',
-  /** tasklist.slct.owner.sameselection.error */
-  ownerUguale: 'What you chose is already the owner of the task.',
-  /** tasklist.slct.owner.delete.notpresent.error */
-  ownerAssente: 'The selected task has no owner.',
-  /** tasklist.slct.tag.noselection.error */
-  tagNessuno: 'Select a role or user to add to the task.',
-  /** tasklist.slct.tag.delete.notpresent.error */
-  tagAssenti: 'There are no tags in the selected task.',
-} as const;
-
-/**
- * Il primo paragrafo di tasklist.modal.owner.remove.question: senza owner il promemoria non arriverebbe a nessuno:
- * va via con lui. Nell'Activity è la domanda sopra Delete; nel canale, dove la modale non c'è, il fumetto dopo.
- */
-export const fraseOwnerEPromemoria = (n: string) =>
-  `Task\u00a0**${n}** has a reminder: without an owner it would reach no one, so the reminder is removed too.`;
-
 export type Modo = 'channel' | 'activity';
 
 /** Quanto durano i video (§4.2 e §4.3), in secondi. */
@@ -245,3 +108,26 @@ export const DURATA: Record<Modo, number> = { channel: 14, activity: 15.4 };
 
 /** Da quando si accendono i tre passi sotto i video: «Tick a task», «Set an owner», «Add a reminder». */
 export const PASSI: Record<Modo, readonly number[]> = { channel: [0.6, 3.3, 8.7], activity: [3.4, 6.1, 9.4] };
+
+/** La freccia dei menu di Discord: il selettore dei task, i menu della demo (demo/ui). */
+export const CHEV =
+  'M5.3 9.3a1 1 0 0 1 1.4 0l5.3 5.3 5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6a1 1 0 0 1-1.4 0l-6-6a1 1 0 0 1 0-1.4Z';
+
+/**
+ * I testi di Discord, non del bot (piano 2026-11-15-demo-fedele, §1.2.12 e §1.2.14): la modale coi suoi controlli, i
+ * menu, il messaggio effimero. Quelli del bot stanno in demo/testi.ts.
+ */
+export const DISCORD = {
+  annulla: 'Cancel',
+  invia: 'Submit',
+  chiudi: 'Close',
+  obbligatorio: 'This field is required.',
+  almeno: (n: number) => `Must be at least ${n} characters long.`,
+  togli: (nome: string) => `Remove ${nome}`,
+  nessuno: 'No results found',
+  soloTu: 'Only you can see this',
+  dismiss: 'Dismiss message',
+} as const;
+
+/** L'avviso della sola lettura (spec §1 e §8.3): in cima a Modifica in blocco, al pannello More, a Edit the list. */
+export const AVVISO_ILLUSTRATIVO = "For illustration only: this demo doesn't fully replicate how TTM works.";

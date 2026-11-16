@@ -6,6 +6,8 @@ place: activity
 order: 1
 ---
 
+Try Activity mode: smoother and free from the limits of text channels, ideal for longer or collaborative work sessions.
+
 The **Activity** opens a list in a window inside Discord, on desktop and on mobile. Several people work on it at once and see every change live. When the last one leaves, the list goes back to its channel with a summary of what changed. It speaks your Discord language if TTM does, English otherwise.
 
 This page is about getting in and out. How you work on the list once inside: [Working on a list in the Activity](/docs/activity-list/).

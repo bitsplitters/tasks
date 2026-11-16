@@ -4,9 +4,12 @@
  * spenta. Gli otto punti di oggi («Without TTM» / «With TTM») sono diventati queste righe; «Getting started» è nuova,
  * ed è vera: per TTM basta l'account Discord.
  *
- * Sotto i 720 px ogni riga diventa un blocco. I role restano sulla tabella perché, cambiando display, alcuni browser
- * ne perdono la semantica; il nome della colonna ripetuto in ogni cella è solo per gli occhi (aria-hidden), perché gli
- * screen reader lo hanno già dall'intestazione.
+ * Sotto i 720 px si vede una colonna alla volta (home.css): sopra la tabella un interruttore a pillola, acceso su TTM,
+ * mostra l'altra app quando si tocca la sua metà. È la variante «C», scelta dall'utente il 16/11 fra le tre del
+ * confronto sul telefono. Prima ogni cella era un blocco col nome della colonna ripetuto: un muro alto il doppio
+ * (segnalazione dell'utente del 15/11). L'interruttore è un gruppo radio senza JavaScript, come lo switch della pagina
+ * dei piani; il suo nome è la didascalia della tabella. I role restano sulla tabella perché, cambiando display, alcuni
+ * browser ne perdono la semantica; aria-colindex dice agli screen reader quale colonna resta quando l'altra è nascosta.
  *
  * Il segno (✓, –) sta fuori dal testo, così le righe che vanno a capo si allineano al testo e non al segno; le parole
  * col trattino («re-explaining») non si spezzano. Un testo in più frasi (un array) va a capo dopo ognuna: la seconda,
@@ -46,21 +49,26 @@ const parti = (testo: string) => testo.split(/(\S+-\S+)/);
 ---
 <section class="h-sec wrap h-compare" aria-labelledby="h-compare-title">
   <h2 id="h-compare-title">Coordination shouldn't cost you your focus.</h2>
-  <table class="h-table" role="table">
-    <caption class="sr-only">Team Tasks Manager compared with a separate task app</caption>
+  <fieldset class="h-switch" aria-labelledby="h-compare-caption">
+    <input type="radio" name="h-mostra" id="h-mostra-ttm" value="ttm" checked />
+    <label for="h-mostra-ttm">{COLONNE.ttm}</label>
+    <input type="radio" name="h-mostra" id="h-mostra-altra" value="altra" />
+    <label for="h-mostra-altra">{COLONNE.altra}</label>
+  </fieldset>
+  <table class="h-table" role="table" aria-colcount="3">
+    <caption class="sr-only" id="h-compare-caption">Team Tasks Manager compared with a separate task app</caption>
     <thead role="rowgroup">
       <tr role="row">
-        <td role="cell"></td>
-        <th scope="col" role="columnheader" class="h-col-acc">{COLONNE.ttm}</th>
-        <th scope="col" role="columnheader" class="h-col-dim">{COLONNE.altra}</th>
+        <td role="cell" aria-colindex="1"></td>
+        <th scope="col" role="columnheader" aria-colindex="2" class="h-col-acc">{COLONNE.ttm}</th>
+        <th scope="col" role="columnheader" aria-colindex="3" class="h-col-dim">{COLONNE.altra}</th>
       </tr>
     </thead>
     <tbody role="rowgroup">
       {RIGHE.map((r) => (
         <tr role="row">
-          <th scope="row" role="rowheader">{r.voce}</th>
-          <td role="cell" class="h-acc">
-            <span class="h-cell-col" aria-hidden="true">{COLONNE.ttm}</span>
+          <th scope="row" role="rowheader" aria-colindex="1">{r.voce}</th>
+          <td role="cell" aria-colindex="2" class="h-acc">
             <span class="h-line">
               <span class="h-mark" aria-hidden="true">&#10003;</span>
               <span>{frasi(r.ttm).map((f) => (
@@ -68,8 +76,7 @@ const parti = (testo: string) => testo.split(/(\S+-\S+)/);
               ))}</span>
             </span>
           </td>
-          <td role="cell" class="h-dim">
-            <span class="h-cell-col" aria-hidden="true">{COLONNE.altra}</span>
+          <td role="cell" aria-colindex="3" class="h-dim">
             <span class="h-line">
               <span class="h-mark" aria-hidden="true">&ndash;</span>
               <span>{frasi(r.altra).map((f) => (

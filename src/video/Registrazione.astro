@@ -11,6 +11,7 @@
 import '../components/home/scene.css';
 import ChannelScene from '../components/home/ChannelScene.astro';
 import ActivityScene from '../components/home/ActivityScene.astro';
+import { listaDeiVideo } from '../components/home/demo/modello.ts';
 
 const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
 ---
@@ -26,19 +27,22 @@ const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
       .rec-box { width: 720px; }
       /* La barra degli strumenti di astro dev finirebbe nei fotogrammi. */
       astro-dev-toolbar { display: none !important; }
+      /* I video mostrano chi usa il mouse: dopo un clic vero il browser non disegna il focus che la modale rende al
+         selettore (rendiIlFocus); qui i clic sono eventi del copione, che lo farebbero disegnare. */
+      .sc-rec button:focus-visible { outline: none; }
     </style>
   </head>
   <body>
     <div class="sc-box rec-box" data-modo="channel">
-      <div class="scene sc-rec">
-        <ChannelScene />
+      <div class="scene sc-rec sc-rec-chan">
+        <ChannelScene lista={listaDeiVideo()} />
         <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
         <span class="sc-tap" aria-hidden="true"></span>
       </div>
     </div>
     <div class="sc-box rec-box" data-modo="activity" hidden>
       <div class="scene sc-rec">
-        <ActivityScene aperta={false} />
+        <ActivityScene lista={listaDeiVideo()} aperta={false} />
         <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
         <span class="sc-tap" aria-hidden="true"></span>
       </div>

@@ -51,7 +51,7 @@ Submit the form, and the list appears in the channel. Here is the same list afte
   <img src="/screens/list-desktop.png" width="424" height="371" loading="lazy" alt="The Saturday tournament list in Discord: six numbered tasks with checkboxes. The first is ticked and greyed out; Prepare the brackets has two subtasks and an owner; Stream the final has an owner and a reminder date. Below the list are the drop-down menu, showing the list's title, and two rows of buttons." />
 </picture>
 
-Rather learn by doing? Next to **Create your list** there's a **Tutorial** button: it turns the explanation into a practice list of six lessons, in your language, and sends you the Guide, the same one you'll find in **More** → **Guide**, in a message only you can see. Do the lessons in order: each one asks you to do something to itself, and names the button with its icon. Tick it, give it an owner and a reminder, change its text, delete it. The practice list is a normal list: like any new list, it needs a free place on your plan (see [How the three places work](/docs/premium/#how-the-three-places-work)), and you can delete it from **More** → **Delete list** when you're done.
+Rather learn by doing? Next to **Create your list** there's a **Tutorial** button: it turns the explanation into a practice list of seven lessons, in your language, and sends you the Guide, the same one you'll find in **More** → **Guide**, in a message only you can see. Do the lessons in order: each one asks you to do something to itself, and names the button with its icon. Tick it, give it an owner and a reminder, change its text, delete it, tick it in Activity mode. The practice list is a normal list: like any new list, it needs a free place on your plan (see [How the three places work](/docs/premium/#how-the-three-places-work)), and you can delete it from **More** → **Delete list** when you're done.
 
 Now pick where to work on it. The list is the same in both places, and it is [in one place at a time](/docs/core-concepts/#one-list-two-places).
 
@@ -73,7 +73,7 @@ Every button under the list: [The list in the channel](/docs/the-task-list/) and
 
 ## <img class="place-ic is-activity" src="/icons/activity.png" alt="" />4. In the Activity
 
-Press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button under the list. The list opens in a window inside Discord, and the others in the channel can join you there.
+Try Activity mode: smoother and free from the limits of text channels, ideal for longer or collaborative work sessions. Press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button under the list. The list opens in a window inside Discord, and the others in the channel can join you there.
 
 ### Tick a task
 

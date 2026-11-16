@@ -7,13 +7,13 @@
  * componenti), scritte come multipli di --u, un px di Discord. Largo, la scena è un Discord di 847 × 565 mostrato
  * alla larghezza del riquadro: a 720 px, nei video, è il fattore 0,85 (alla misura vera il pannello dell'Activity e
  * la modale non ci starebbero); nella demo, che arriva al massimo a 847 px, è la misura vera. Sotto i 640 px di
- * riquadro: nei video (sc-rec) un Discord di 460 px in 390, nella demo il telefono alla sua misura, con la chat che
- * scorre.
+ * riquadro: nei video (sc-rec) un Discord di 460 px in 390, nella demo il telefono alla sua misura, col canale alto
+ * quanto il messaggio (sc-auto).
  *
- * Gli stati stanno negli attributi, scritti da scene-dom.ts: data-done sulle righe e sulle opzioni; data-reminder
- * sulla lista (il canale .sc-chan, la finestra .sc-win); data-mode sui pulsanti; data-on sulle persone del menu;
- * data-menu, data-inact, data-modal, data-subopen, data-subpick sul canale; data-open, data-panel, data-view,
- * data-save, data-picked, data-delete sulla finestra. L'owner e i tag sono menzioni scritte nel testo delle righe.
+ * Le righe della lista e le opzioni del selettore le scrive demo/righe.ts da una lista: l'owner, i tag, il webhook e
+ * il promemoria ci sono già, come nel bot. Gli stati stanno negli attributi, scritti da scene-dom.ts: data-done sulle
+ * righe; data-mode e aria-disabled sui pulsanti; data-menu, data-inact sul canale; data-open, data-panel, data-save,
+ * data-delete sulla finestra. I pezzi della demo (demo/ui, demo/pannello.ts) disegnano i loro.
  */
 
 /* Registrata, --u resta una lunghezza calcolata sulla scena: i figli ereditano i px, non la formula. */
@@ -45,6 +45,10 @@
 /* Nei video ogni fotogramma lo calcola render(t): niente transizioni, niente cornice. */
 .sc-rec { border: 0; border-radius: 0; box-shadow: none; }
 .sc-rec, .sc-rec * { transition: none !important; animation: none !important; }
+/* Il video del canale inquadra il messaggio, fermo in alto, perché nel suo stato più alto (il menu di Owner aperto,
+   con Mia scelta) arrivi fin sopra il campo del messaggio: largo è il Discord vero, di 847 px; sotto i 640 px uno di
+   440 al posto di 460. render-comune.ts (chatFerma) si ferma se un giorno non ci sta più. */
+.sc-rec-chan { --u: calc(100cqi / 847); }
 
 /* ── Il canale ────────────────────────────────────────────────────────────────────────────────────────── */
 .sc-chan { position: absolute; inset: 0; display: flex; flex-direction: column; background: #1a1a1e; }
@@ -54,18 +58,25 @@
   font-size: calc(16 * var(--u)); font-weight: 600; color: #f2f3f5;
 }
 .sc-hash { font-size: calc(24 * var(--u)); font-weight: 400; line-height: 1; color: #80848e; }
-/* La chat è ancorata in basso, come in Discord. margin-top: auto tiene il messaggio sul fondo e, se non ci sta, lo
-   lascia scorrere: con justify-content: flex-end la parte che esce in alto non si potrebbe raggiungere. */
+/* Il messaggio sta in alto, sotto l'intestazione del canale, fermo: quando compare una riga (il menu delle persone,
+   il promemoria) cresce verso il basso. Ancorato in basso, come in Discord, saliva a ogni riga in più: il pulsante
+   appena premuto scappava da sotto il cursore (segnalazione dell'utente del 15/11, sul video). Solo se non ci sta la
+   chat scorre; chatInBasso (scene-dom.ts) tiene in vista i pulsanti. */
 .sc-feed { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
 .sc-msg {
-  position: relative; margin-top: auto;
+  position: relative;
   padding: calc(16 * var(--u)) calc(16 * var(--u)) calc(8 * var(--u)) calc(72 * var(--u));
 }
 .sc-avatar {
   position: absolute; left: calc(16 * var(--u)); top: calc(18 * var(--u));
   width: calc(40 * var(--u)); height: calc(40 * var(--u)); border-radius: 50%;
 }
-.sc-mhead { display: flex; align-items: baseline; gap: calc(4 * var(--u)); min-height: calc(22 * var(--u)); line-height: calc(22 * var(--u)); }
+/* Stretta, sul telefono, l'ora va a capo intera: non si spezzano né il nome né l'ora. */
+.sc-mhead {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 calc(4 * var(--u));
+  min-height: calc(22 * var(--u)); line-height: calc(22 * var(--u));
+}
+.sc-mhead > span { white-space: nowrap; }
 .sc-name { font-size: calc(16 * var(--u)); font-weight: 500; color: #f2f3f5; }
 .sc-app {
   align-self: center; padding: 0 calc(4 * var(--u)); border-radius: calc(3 * var(--u));
@@ -90,12 +101,18 @@
 .sc-row.sc-sub { grid-template-columns: 3em 1.375em minmax(0, 1fr); }
 /* Fatto: tutta la riga è subtext (-#), numero compreso, come nel bot con DimDoneMode acceso, il default. */
 .sc-row[data-done] { font-size: calc(13 * var(--u)); color: #abacb2; }
+/* Il numero com'è nel bot, con gli spazi che pareggiano le larghezze («2 », «2 .1 »): restano tutti. */
 .sc-num code {
-  font-size: .85em; padding: 0 .2em; color: inherit;
+  font-size: .85em; padding: 0 .2em; color: inherit; white-space: pre;
   background: #2b2c3a; border: 1px solid #3e3f4e; border-radius: calc(4 * var(--u));
 }
 .sc-text { padding-left: .25em; overflow-wrap: anywhere; }
 .sc-emoji { width: 1.375em; height: 1.375em; object-fit: contain; }
+/* Un'emoji scritta nel testo (markdown.ts) sta sulla riga, come in Discord: nei task, nel testo di una modale, di un
+   messaggio effimero o di un dialogo dell'Activity. */
+.sc-text .sc-emoji, .sc-atext .sc-emoji, .ui-mtesto .sc-emoji, .ui-effcorpo .sc-emoji, .ui-dlgtesto .sc-emoji {
+  display: inline-block; vertical-align: -.35em;
+}
 .sc-cb { position: relative; display: inline-block; flex: none; width: 1.375em; height: 1.375em; }
 .sc-cb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .sc-cb .sc-on, [data-done] .sc-cb .sc-off { display: none; }
@@ -105,12 +122,11 @@
   padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u));
   font-weight: 500; color: #a9bbff; background: #303359;
 }
-/* Il promemoria sopra il task 3, col numero; la riga della casella prende lo spaziatore (RigheDellaLista). */
-/* .sc-arow.sc-row-rem: .sc-arow (più sotto, display: grid) a parità di peso vincerebbe. */
-.sc-row-rem, .sc-arow.sc-row-rem { display: none; }
-[data-reminder] .sc-row-rem { display: grid; }
-[data-reminder] .sc-num3 { visibility: hidden; }
 .sc-ts { padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u)); color: #efeff1; background: #36363c; }
+/* La riga -# e la voce di un elenco nei testi del bot (markdown.ts): due blocchi, come in Discord. Il subtext è quello
+   delle righe dei task fatti. */
+.sc-subtext { display: block; font-size: calc(13 * var(--u)); line-height: 1.25; color: #abacb2; }
+.sc-li { display: list-item; margin-left: calc(20 * var(--u)); list-style: disc outside; }
 /* Nell'Activity: una riga vuota, poi la riga in subtext che prende il posto dei consigli. */
 .sc-actline { display: none; margin-top: 1.375em; font-size: calc(13 * var(--u)); color: #abacb2; }
 .sc-actline img { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -.35em; }
@@ -127,76 +143,72 @@
 /* sotto la lista: il selettore e le due righe */
 .sc-comps { display: flex; flex-direction: column; gap: calc(8 * var(--u)); margin-top: calc(8 * var(--u)); }
 [data-inact] .sc-comps { display: none; }
-.sc-selwrap, .sc-submenu { position: relative; max-width: calc(400 * var(--u)); }
-.sc-sel, .sc-subsel {
+.sc-selwrap, .sc-submenu, .sc-wm { position: relative; max-width: calc(400 * var(--u)); }
+/* I campi dei menu come nelle schermate dell'utente del 15/11 (owner-menu.png, owner-ruolo.png): alti 40, il bordo
+   #303035, il segnaposto #abacb2, la freccia di 18 chiara (grigia in quello di menzioni). */
+.sc-sel, .ui-scelta {
   width: 100%; height: calc(40 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u));
   padding: 0 calc(8 * var(--u)) 0 calc(12 * var(--u));
-  background: #17171a; border: 1px solid #35353b; border-radius: calc(8 * var(--u));
-  font-size: calc(16 * var(--u)); color: #949ba4;
+  background: #17171a; border: 1px solid #303035; border-radius: calc(8 * var(--u));
+  font-size: calc(16 * var(--u)); color: #abacb2;
 }
-.sc-sel:is(:hover, .is-hover), .sc-subsel:not([aria-disabled="true"]):is(:hover, .is-hover) { border-color: #4e5058; }
-.sc-subsel { overflow: hidden; text-align: left; }
-.sc-subsel[aria-disabled="true"] { cursor: default; }
-.sc-sel > span, .sc-subph { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sc-chev { flex: none; width: calc(24 * var(--u)); height: calc(24 * var(--u)); margin-left: auto; color: #b5bac1; }
-/* Aperto, il menu sale sopra il selettore e ne prende il bordo: in fondo alla chat non c'è spazio sotto. */
-[data-menu] .sc-sel, [data-subopen] .sc-subsel { border-radius: 0 0 calc(8 * var(--u)) calc(8 * var(--u)); }
-[data-menu] .sc-sel .sc-chev, [data-subopen] .sc-subsel .sc-chev { transform: rotate(180deg); }
-.sc-menu, .sc-subopts {
-  display: none; position: absolute; left: 0; right: 0; bottom: calc(100% - 1px); z-index: 4;
-  padding: calc(4 * var(--u)) 0; background: #17171a; border: 1px solid #35353b;
-  border-radius: calc(8 * var(--u)) calc(8 * var(--u)) 0 0; box-shadow: 0 calc(-4 * var(--u)) calc(16 * var(--u)) rgba(0, 0, 0, .35);
+.sc-sel:not([aria-disabled="true"]):is(:hover, .is-hover),
+.ui-scelta:not([aria-disabled="true"]):hover, .ui-mzcampo:is(:hover, .is-hover) { border-color: #4e5058; }
+.sc-sel > span, .ui-sctesto { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sc-chev { flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); margin-left: auto; color: #efeff1; }
+/* Aperto, il menu galleggia sopra il campo, a 9 px: in fondo alla chat non c'è spazio sotto. Il campo prende il
+   bordo blu con l'anello; la regola sta dopo quella del mouse, che altrimenti la coprirebbe. */
+[data-menu] .sc-sel:not([aria-disabled="true"]),
+.ui-scelta:not([aria-disabled="true"]):is([aria-expanded="true"], :focus-visible),
+[data-aperto] > .ui-mzcampo, .ui-mzcampo:focus-within { border-color: #5865f2; box-shadow: 0 0 0 1px #5865f2; }
+[data-menu] .sc-sel .sc-chev, .ui-scelta[aria-expanded="true"] .sc-chev { transform: rotate(180deg); }
+.sc-menu, .ui-scmenu, .ui-mzmenu {
+  display: none; position: absolute; left: 0; right: 0; bottom: calc(100% + 9 * var(--u)); z-index: 4;
+  background: #28282d; border: 1px solid #35353b; border-radius: calc(8 * var(--u));
+  box-shadow: 0 calc(4 * var(--u)) calc(16 * var(--u)) rgba(0, 0, 0, .35);
 }
-[data-menu] .sc-menu, [data-subopen] .sc-subopts { display: block; }
-.sc-opt, .sc-subopt {
+[data-menu] .sc-menu { display: block; }
+.sc-opt {
   display: flex; align-items: center; gap: calc(8 * var(--u)); width: 100%; min-height: calc(40 * var(--u));
   padding: calc(8 * var(--u)) calc(12 * var(--u)); font-size: calc(16 * var(--u)); color: #dbdee1;
 }
-.sc-opt:is(:hover, .is-hover), .sc-subopt:is(:hover, .is-hover) { background: #26262b; }
+.sc-opt:is(:hover, .is-hover) { background: #333338; }
 .sc-opt .sc-cb { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
 .sc-optlab { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sc-btns { display: flex; flex-wrap: wrap; gap: calc(8 * var(--u)); }
+/* Una riga di Discord porta al massimo cinque pulsanti e non va mai a capo: sul telefono si stringono. A capo, la
+   demo metteva le due righe su quattro (segnalazione dell'utente del 15/11). */
+.sc-btns { display: grid; grid-template-columns: repeat(5, minmax(0, calc(58 * var(--u)))); gap: calc(8 * var(--u)); }
+.sc-btns .sc-btn { width: 100%; min-width: 0; }
 .sc-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: calc(6 * var(--u)); flex: none;
   width: calc(58 * var(--u)); height: calc(30 * var(--u)); border-radius: calc(8 * var(--u));
   background: #29292d; color: #fff;
 }
 .sc-btn img { width: calc(20 * var(--u)); height: calc(20 * var(--u)); object-fit: contain; }
-.sc-btn:is(:hover, .is-hover) { background: #36363c; }
+.sc-btn:not([aria-disabled="true"]):is(:hover, .is-hover) { background: #36363c; }
 .sc-btn:is(.sc-blue, [data-mode="blue"]) { background: #5865f2; }
-.sc-btn:is(.sc-blue, [data-mode="blue"]):is(:hover, .is-hover) { background: #4752c4; }
+.sc-btn:not([aria-disabled="true"]):is(.sc-blue, [data-mode="blue"]):is(:hover, .is-hover) { background: #4752c4; }
 .sc-btn[data-mode="red"] { background: #da373c; }
-.sc-btn[data-mode="red"]:is(:hover, .is-hover) { background: #a12829; }
+.sc-btn:not([aria-disabled="true"])[data-mode="red"]:is(:hover, .is-hover) { background: #a12829; }
+/* Spenti dal bot (la lista bloccata, o nell'Activity): restano al loro posto, a metà, senza il passaggio del mouse. */
+.sc-btn[aria-disabled="true"], .sc-sel[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
 /* Mentre la lista è nell'Activity: il solo «Join the Activity», con l'emoji e la scritta (TaskListBtnActivityEnter). */
 .sc-join { display: none; margin-top: calc(8 * var(--u)); }
 [data-inact] .sc-join { display: block; }
 .sc-joinbtn { width: auto; padding: 0 calc(16 * var(--u)); font-size: calc(14 * var(--u)); font-weight: 500; }
 
-/* il menu delle persone, sotto i pulsanti: le scelte nel selettore, la spunta nel menu */
-.sc-subchosen {
-  display: inline-flex; flex: none; align-items: center; gap: calc(6 * var(--u)); height: calc(26 * var(--u));
-  padding: 0 calc(8 * var(--u)) 0 calc(4 * var(--u)); border-radius: calc(4 * var(--u));
-  background: #2b2b31; color: #dbdee1; font-size: calc(14 * var(--u));
-}
-.sc-subchosen[hidden] { display: none; }
-[data-subpick] .sc-subph { display: none; }
-.sc-subopt { text-align: left; }
-.sc-check { flex: none; width: calc(20 * var(--u)); height: calc(20 * var(--u)); margin-left: auto; color: #5865f2; visibility: hidden; }
-.sc-subopt[data-on] { background: rgba(88, 101, 242, .16); }
-.sc-subopt[data-on] .sc-check { visibility: visible; }
+/* l'avatar di una persona: l'iniziale sul suo colore */
 .sc-av {
   display: inline-flex; flex: none; align-items: center; justify-content: center;
   width: calc(24 * var(--u)); height: calc(24 * var(--u)); border-radius: 50%; background: var(--av); color: #fff;
   font-size: calc(12 * var(--u)); font-weight: 600; line-height: 1; text-shadow: 0 1px 1px rgba(0, 0, 0, .35);
 }
-.sc-subchosen .sc-av { width: calc(18 * var(--u)); height: calc(18 * var(--u)); font-size: calc(9 * var(--u)); }
 
-/* la modale del promemoria: si apre in 0,15 s (--in da 0 a 1, lo scrive render-channel.ts) */
+/* la modale del bot: nel video del canale si apre in 0,15 s (--in da 0 a 1, lo scrive render-channel.ts) */
 .sc-modalwrap {
   display: none; position: absolute; inset: 0; z-index: 6; align-items: center; justify-content: center;
   background: rgba(0, 0, 0, .7); opacity: var(--in, 1);
 }
-[data-modal] .sc-modalwrap { display: flex; }
 .sc-modal {
   width: calc(440 * var(--u)); max-width: calc(100% - 32 * var(--u)); padding: calc(16 * var(--u));
   background: #242429; border: 1px solid #35353b; border-radius: calc(12 * var(--u));
@@ -221,12 +233,185 @@
 .sc-mbtn-blue { background: #5865f2; color: #fff; }
 .sc-mbtn-blue.is-hover { background: #4752c4; }
 
+/* ── I pezzi della demo (demo/ui): la modale, i menu, il messaggio effimero ────────────────────────────── */
+/* La modale (ui/modale.ts): se è più alta del canale scorre il velo, così i menu ne escono senza tagli. */
+.sc-modalwrap[data-aperta] {
+  display: flex; overflow-y: auto; overscroll-behavior: contain; padding: calc(16 * var(--u)) 0;
+}
+.ui-modale { margin: auto; outline: none; }
+.ui-modale .sc-mx {
+  display: flex; flex: none; align-items: center; justify-content: center; margin-left: calc(8 * var(--u));
+}
+.ui-modale .sc-mx svg { width: 1em; height: 1em; }
+.ui-modale .sc-mx:hover { color: #efeff1; }
+.ui-mreq { margin-left: calc(4 * var(--u)); color: #fa777c; }
+.ui-minput {
+  width: 100%; margin: 0; font: inherit; font-size: calc(16 * var(--u)); line-height: calc(20 * var(--u));
+  color: #dbdee1; outline: none;
+}
+textarea.ui-minput {
+  display: block; height: calc(104 * var(--u)); padding: calc(10 * var(--u)) calc(12 * var(--u)); resize: none;
+}
+.ui-minput::placeholder { color: #80848e; }
+.ui-minput:focus { border-color: #5865f2; }
+.ui-minput[aria-invalid="true"] { border-color: #f23f43; }
+.ui-merr { margin-top: calc(6 * var(--u)); font-size: calc(14 * var(--u)); color: #fa777c; }
+.ui-mtesto {
+  margin-bottom: calc(12 * var(--u)); font-size: calc(16 * var(--u)); color: #dbdee1; overflow-wrap: anywhere;
+}
+.sc-mbtn:disabled { opacity: .5; cursor: not-allowed; }
+.sc-mbtn-blue:not(:disabled):hover { background: #4752c4; }
+/* L'avviso della sola lettura (spec §8.3) nell'ambra del sito: a parlare è la demo, non Discord né il bot. */
+.ui-avviso {
+  margin-bottom: calc(16 * var(--u)); padding: calc(10 * var(--u)) calc(12 * var(--u));
+  border: 1px solid rgba(233, 164, 76, .45); border-radius: calc(8 * var(--u)); background: rgba(233, 164, 76, .12);
+  color: #f5c982; font-size: calc(14 * var(--u)); line-height: 1.375;
+}
+
+/* Il menu a scelta singola (ui/scelta.ts): niente caselle, la scelta in grassetto; nella modale si apre sotto. */
+.ui-mscelta { position: relative; }
+.ui-scelta { cursor: pointer; outline: none; }
+.ui-scelta[data-scelto] { color: #dbdee1; }
+.ui-scelta[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.ui-scmenu, .ui-mzmenu {
+  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #666770 transparent;
+}
+.ui-scmenu { max-height: calc(202 * var(--u)); }
+.ui-modale .ui-scmenu { top: calc(100% + 9 * var(--u)); bottom: auto; }
+[data-aperto] > .ui-scmenu, [data-aperto] > .ui-mzmenu { display: block; }
+.ui-scvoce {
+  display: flex; align-items: center; min-height: calc(40 * var(--u)); padding: calc(10 * var(--u)) calc(12 * var(--u));
+  font-size: calc(16 * var(--u)); line-height: calc(20 * var(--u)); color: #abacb2; cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.ui-scvoce[aria-selected="true"], .ui-mzvoce[aria-selected="true"] .ui-mznome { font-weight: 600; color: #efeff1; }
+.ui-scvoce[data-attiva], .ui-mzvoce:is([data-attiva], .is-hover) { background: #333338; }
+
+/* Il menu di menzioni (ui/menzioni.ts), misurato sulle schermate dell'utente: vuoto il campo è alto 40; chiuso con le
+   etichette 45, 4 sopra e 9 sotto; aperto 76, le etichette in alto e sotto la ricerca col cursore. La freccia resta
+   al centro. */
+.ui-mzcampo {
+  position: relative; display: flex; flex-wrap: wrap; align-items: center;
+  gap: calc(4 * var(--u)) calc(6 * var(--u)); min-height: calc(40 * var(--u));
+  padding: calc(4 * var(--u)) calc(34 * var(--u)) calc(4 * var(--u)) calc(6 * var(--u));
+  background: #17171a; border: 1px solid #303035; border-radius: calc(8 * var(--u)); cursor: text;
+}
+.ui-mzcampo .sc-chev {
+  position: absolute; top: 50%; right: calc(8 * var(--u)); transform: translateY(-50%); color: #abacb2;
+}
+[data-aperto] > .ui-mzcampo .sc-chev { transform: translateY(-50%) rotate(180deg); }
+.ui-mzcerca {
+  flex: 1 1 calc(48 * var(--u)); min-width: calc(48 * var(--u)); height: calc(30 * var(--u)); margin: 0;
+  padding: 0 calc(6 * var(--u)); border: 0; background: none; outline: none;
+  font: inherit; font-size: calc(16 * var(--u)); color: #dbdee1; text-overflow: ellipsis;
+}
+/* Il segnaposto lungo (tasklist.slct.owner) finisce coi puntini, come in Discord, invece di tagliarsi a metà parola. */
+.ui-mzcerca::placeholder { color: #abacb2; opacity: 1; }
+/* Chiuso con le etichette la ricerca non si vede, ma tiene il focus: chi scrive la riapre. */
+.ui-mzcampo[data-pieno] { padding-bottom: calc(9 * var(--u)); }
+.ui-mzcampo[data-pieno] .ui-mzcerca {
+  position: absolute; left: 0; bottom: 0; width: 1px; min-width: 0; height: 1px; padding: 0; opacity: 0;
+}
+[data-aperto] > .ui-mzcampo[data-pieno] { padding-bottom: 0; }
+[data-aperto] > .ui-mzcampo[data-pieno] .ui-mzcerca {
+  position: static; flex-basis: 100%; width: auto; height: calc(36 * var(--u)); opacity: 1;
+}
+.ui-mztag {
+  display: inline-flex; flex: none; align-items: center; gap: calc(8 * var(--u)); max-width: 100%;
+  height: calc(30 * var(--u)); padding: 0 calc(6 * var(--u)) 0 calc(8 * var(--u)); border: 1px solid #252529;
+  border-radius: calc(4 * var(--u)); background: #202024; color: #fbfbfb;
+  font-size: calc(14 * var(--u)); font-weight: 600; cursor: default;
+}
+.ui-mztag .sc-av { width: calc(16 * var(--u)); height: calc(16 * var(--u)); font-size: calc(9 * var(--u)); }
+.ui-mztag .ui-scudo { flex: none; width: calc(14 * var(--u)); height: calc(14 * var(--u)); color: #99aab5; }
+.ui-mztn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ui-mztx { display: flex; flex: none; margin-left: calc(-2 * var(--u)); color: #abacb2; }
+.ui-mztx:hover { color: #efeff1; }
+.ui-croce { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
+.ui-mzmenu { max-height: calc(222 * var(--u)); }
+.ui-mzvoce {
+  display: flex; align-items: center; gap: calc(8 * var(--u)); height: calc(44 * var(--u));
+  padding: 0 calc(12 * var(--u)); font-size: calc(16 * var(--u)); color: #abacb2; cursor: pointer;
+}
+.ui-mzvoce .sc-av { position: relative; }
+/* Il pallino: verde in linea; fuori linea il cerchio grigio col centro scuro. L'anello ha il colore del menu. */
+.ui-stato {
+  position: absolute; right: calc(-2 * var(--u)); bottom: calc(-2 * var(--u));
+  width: calc(10 * var(--u)); height: calc(10 * var(--u)); border: calc(2.5 * var(--u)) solid #80848e;
+  border-radius: 50%; background: #28282d; box-shadow: 0 0 0 calc(2 * var(--u)) #28282d;
+}
+.ui-stato[data-on] { border: 0; background: #23a55a; }
+.ui-mzfig {
+  display: flex; flex: none; align-items: center; justify-content: center;
+  width: calc(24 * var(--u)); height: calc(24 * var(--u)); color: #99aab5;
+}
+.ui-mzfig .ui-scudo { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
+.ui-mztesto { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ui-mzsotto { color: #96979e; }
+.ui-omino {
+  display: inline-block; width: calc(15 * var(--u)); height: calc(16 * var(--u)); vertical-align: calc(-2 * var(--u));
+}
+.ui-cb {
+  display: flex; flex: none; align-items: center; justify-content: center; margin-left: auto;
+  width: calc(20 * var(--u)); height: calc(20 * var(--u)); border: 1px solid #6e6e75;
+  border-radius: calc(4 * var(--u)); background: #252529; color: #fff;
+}
+.ui-spunta { width: 100%; height: 100%; visibility: hidden; }
+[aria-selected="true"] > .ui-cb { border-color: #5865f2; background: #5865f2; }
+[aria-selected="true"] > .ui-cb .ui-spunta { visibility: visible; }
+.ui-mzvuoto { padding: calc(12 * var(--u)); font-size: calc(14 * var(--u)); color: #abacb2; }
+
+/* Il messaggio effimero (ui/effimero.ts): un messaggio del bot, col piede di Discord e Dismiss message. */
+.ui-effcorpo { font-size: calc(16 * var(--u)); color: #dbdee1; overflow-wrap: anywhere; }
+.ui-effpiede {
+  display: flex; flex-wrap: wrap; align-items: center; gap: calc(4 * var(--u)); margin-top: calc(4 * var(--u));
+  font-size: calc(12 * var(--u)); line-height: calc(16 * var(--u)); color: #949ba4;
+}
+.ui-occhio { flex: none; width: calc(16 * var(--u)); height: calc(16 * var(--u)); }
+.ui-effvia { color: #4d96ee; }
+.ui-effvia:hover { text-decoration: underline; }
+/* I messaggi effimeri della prima riga (demo/messaggi.ts). Il ponte di Riapri tutti è un embed del bot con la riga dei
+   pulsanti sotto; l'embed di un avviso ha la barra gialla (TTMEmbed.avviso). Il testo di un embed è più piccolo di
+   quello di un messaggio, come in Discord. */
+.ui-emb[data-barra="gialla"] { border-left-color: #ff0; }
+.ui-emb .ui-td { font-size: calc(14 * var(--u)); line-height: calc(18 * var(--u)); }
+.ui-tasti { display: flex; flex-wrap: wrap; gap: calc(8 * var(--u)); margin-top: calc(8 * var(--u)); }
+.sc-btn.ui-scritta { width: auto; padding: 0 calc(16 * var(--u)); font-size: calc(14 * var(--u)); font-weight: 500; }
+.sc-btn.ui-verde { background: #248046; }
+.sc-btn.ui-verde:not([aria-disabled="true"]):is(:hover, .is-hover) { background: #1a6334; }
+.sc-btn.ui-rosso { background: #da373c; }
+.sc-btn.ui-rosso:not([aria-disabled="true"]):is(:hover, .is-hover) { background: #a12829; }
+/* Il pannello More (OtherUI.panel): un contenitore di Components V2 con la barra verde del bot. Ogni voce ha il nome
+   in grassetto e la descrizione a sinistra, il pulsante a destra; una linea fra due voci, uno spazio prima della
+   chiusura. I due spazi fra l'emoji e l'esito di Unlock list restano, come in Discord. */
+.ui-cont {
+  max-width: calc(520 * var(--u)); margin-top: calc(2 * var(--u)); padding: calc(16 * var(--u));
+  border: 1px solid #2c2c31; border-left: calc(4 * var(--u)) solid #1ec786; border-radius: calc(8 * var(--u));
+  background: #242429;
+}
+.ui-voce { display: flex; align-items: flex-start; gap: calc(16 * var(--u)); }
+.ui-voce > .ui-td { flex: 1; min-width: 0; }
+.ui-linea { height: 1px; margin: calc(8 * var(--u)) 0; background: #3a3a40; }
+.ui-spazio { height: calc(8 * var(--u)); }
+.ui-esito { white-space: pre-wrap; }
+/* Le modali e i dialoghi si aprono come in Discord e nella pagina, se chi guarda non ha chiesto meno movimento. */
+@media (prefers-reduced-motion: no-preference) {
+  .sc-live .ui-modale, .sc-live .ui-dlg { animation: ui-pop .15s ease-out; }
+}
+@keyframes ui-pop { from { opacity: 0; transform: scale(.96); } }
+
 /* ── Sotto i 640 px di riquadro ───────────────────────────────────────────────────────────────────────── */
 @container scene (max-width: 639px) {
-  /* La demo: il telefono alla sua misura, alta quanto basta per lavorarci, con la chat che scorre. */
+  /* La demo: il telefono alla sua misura, alta quanto basta per lavorarci. */
   .scene { --u: 1px; aspect-ratio: auto; height: min(600px, 80svh); }
+  /* Il canale della demo (sc-auto) è alto quanto il suo messaggio, che si vede tutto, dall'avatar alla seconda riga
+     di pulsanti: in 600 px non ci stava, la chat scorreva in fondo e restava la colonna vuota dell'avatar, con la
+     lista spostata a destra (segnalazione dell'utente del 15/11). Una riga in più allunga il riquadro in basso. */
+  .sc-auto { height: auto; }
+  .sc-auto > .sc-chan { position: relative; }
   /* I video: un Discord di 460 px mostrato in 390 (3:4), il fattore 0,85 del largo. */
   .sc-rec { --u: calc(100cqi / 460); aspect-ratio: 3 / 4; height: auto; }
+  .sc-rec-chan { --u: calc(100cqi / 440); }
   /* Sul telefono la modale prende lo schermo. */
   .sc-modalwrap { align-items: stretch; }
   .sc-modal {
@@ -234,6 +419,9 @@
     padding: calc(12 * var(--u)) calc(16 * var(--u));
   }
   .sc-mfield { margin-bottom: calc(10 * var(--u)); }
+  /* La modale della demo prende il canale intero e scorre col velo: i menu non si tagliano. */
+  .sc-modalwrap[data-aperta] { padding: 0; align-items: flex-start; }
+  .ui-modale { margin: 0; min-height: 100%; overflow: visible; }
 }
 
 /* ── Solo nei video: il cursore e il tocco (li muove render-comune.ts) ─────────────────────────────── */
@@ -253,10 +441,12 @@
   position: absolute; inset: 0; z-index: 7; background: rgba(0, 0, 0, .7); opacity: 0; pointer-events: none;
 }
 .sc-shade:has(+ .sc-win[data-open]) { opacity: 1; }
+/* Il tema scuro, come html { color-scheme: var(--scheme) } di base.css: i campi nativi di data e ora, le barre della
+   pagina e dei dialoghi. */
 .sc-win {
   position: absolute; z-index: 8;
   top: calc(56 * var(--u)); right: calc(24 * var(--u)); bottom: calc(16 * var(--u)); left: calc(24 * var(--u));
-  display: flex; flex-direction: column; overflow: hidden; color: #efeff1;
+  display: flex; flex-direction: column; overflow: hidden; color: #efeff1; color-scheme: dark;
   background: #1a1a1e; border: 1px solid #35353b; border-radius: calc(12 * var(--u));
   box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0, 0, 0, .45);
 }
@@ -307,6 +497,72 @@
 .sc-abtn:is(.sc-red, [data-mode="red"]):is(:hover, .is-hover) { background: #a12829; }
 .sc-abtn.sc-raised { background: #4e5058; }
 .sc-abtn.sc-raised:is(:hover, .is-hover) { background: #3f4147; }
+.sc-abtn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* il dialogo (ui/dialogo.ts), com'è Dialog.css: il velo sotto la barra della finestra, la ✕, i pulsanti in fondo */
+.sc-dlg {
+  position: absolute; z-index: 9; top: calc(40 * var(--u)); right: 0; bottom: 0; left: 0;
+  display: flex; align-items: center; justify-content: center; padding: calc(16 * var(--u));
+  background: rgba(0, 0, 0, .7);
+}
+.ui-dlg {
+  display: flex; flex-direction: column; width: 100%; max-width: calc(440 * var(--u)); max-height: 100%;
+  border: 1px solid #3b3b42; border-radius: calc(12 * var(--u)); background: #242429; outline: none;
+  box-shadow: 0 calc(12 * var(--u)) calc(32 * var(--u)) rgba(0, 0, 0, .5);
+}
+.ui-dlghd {
+  display: flex; align-items: flex-start; gap: calc(8 * var(--u));
+  padding: calc(16 * var(--u)) calc(12 * var(--u)) calc(8 * var(--u)) calc(16 * var(--u));
+}
+.ui-dlgtit {
+  flex: 1; font-size: calc(20 * var(--u)); font-weight: 600; line-height: calc(24 * var(--u)); color: #fbfbfb;
+}
+.ui-dlgx {
+  flex: none; width: calc(28 * var(--u)); height: calc(28 * var(--u)); border-radius: calc(6 * var(--u));
+  color: #abacb2; font-size: calc(24 * var(--u)); line-height: calc(28 * var(--u)); text-align: center;
+}
+.ui-dlgx:is(:hover, .is-hover) { background: #3f4147; color: #efeff1; }
+.ui-dlgcorpo {
+  display: flex; flex-direction: column; gap: calc(12 * var(--u)); min-height: 0;
+  padding: calc(4 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u)); overflow-y: auto; overflow-wrap: anywhere;
+  line-height: 1.375;
+}
+.ui-dlgpiede {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: calc(8 * var(--u));
+  padding: calc(12 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u)); border-top: 1px solid #3b3b42;
+}
+/* Il dialogo largo di Edit the list (Dialog.css, data-wide). */
+.ui-dlg[data-wide] { max-width: calc(560 * var(--u)); }
+/* I testi del bot nel dialogo (dialogs.css, .dialog-text): un blocco per testo; i link come nella pagina (md-link). */
+.ui-dlgtesto {
+  display: flex; flex-direction: column; gap: calc(8 * var(--u)); color: #efeff1; line-height: 1.375;
+  overflow-wrap: anywhere;
+}
+.ui-dlgtesto a { color: #00a8fc; text-decoration: none; }
+.ui-dlgtesto a:hover { text-decoration: underline; }
+/* La guida (GuideDialog): le pagine una sull'altra, alta quanto la più lunga, così le frecce restano ferme. */
+.ui-guida { display: grid; grid-template-columns: minmax(0, 1fr); }
+.ui-foglio { grid-area: 1 / 1; }
+.ui-foglio:not([data-current]) { visibility: hidden; }
+.ui-legenda { display: grid; gap: calc(6 * var(--u)); margin: 1.375em 0 0; padding: 0; list-style: none; }
+.ui-legenda li { display: flex; align-items: flex-start; gap: calc(10 * var(--u)); }
+.ui-legicona { flex: none; width: 1.375em; height: 1.375em; object-fit: contain; }
+.ui-guidanav {
+  display: flex; flex: 1; align-items: center; justify-content: space-between; gap: calc(12 * var(--u));
+}
+.ui-guidapag { color: #abacb2; font-size: calc(13 * var(--u)); font-variant-numeric: tabular-nums; }
+/* In attesa della risposta i tre puntini al posto della scritta (Button.css, data-pending). */
+.ui-dlgpunti {
+  position: absolute; inset: 0; display: none; align-items: center; justify-content: center; gap: calc(4 * var(--u));
+}
+.ui-dlgpunti i { width: calc(6 * var(--u)); height: calc(6 * var(--u)); border-radius: 50%; background: currentColor; }
+.sc-abtn[aria-busy="true"] { cursor: progress; }
+.sc-abtn[aria-busy="true"] .ui-dlgpunti { display: flex; }
+.sc-abtn[aria-busy="true"] .ui-dlgbtesto { visibility: hidden; }
+/* Exit: «Bring back to the channel for everyone» a sinistra, «Leave on your own» a destra (dialogs.css). */
+.ui-dlgpiede [data-k="d-all"] { margin-right: auto; }
+/* L'avviso della sola lettura in cima al dialogo: lo spazio sotto lo dà già la colonna del corpo. */
+.ui-dlgcorpo .ui-avviso { margin-bottom: 0; }
 .sc-gear { color: #fff; }
 
 /* l'embed della pagina: quello del canale, largo quanto la colonna */
@@ -332,9 +588,12 @@
   display: block; width: 100%; padding-left: .2em; border-radius: calc(4 * var(--u)); overflow-wrap: anywhere;
 }
 .sc-atext:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
-.sc-arow .sc-atext-fermo { padding-left: .2em; }
 
 .sc-afirst { display: flex; flex-wrap: wrap; gap: calc(10 * var(--u)); }
+/* Con Save acceso nel pannello Edit, Clean e Reopen all aspettano (Button.css, data-locked): sembrano spenti, ma un
+   tocco dice perché. Il colore resta anche sotto il mouse. */
+.sc-afirst .sc-abtn[data-locked] { opacity: .5; cursor: not-allowed; }
+.sc-afirst .sc-abtn.sc-blue[data-locked]:is(:hover, .is-hover) { background: #5865f2; }
 /* L'avviso di Exit (activity.exit.hint), nel riquadro del colore della lista, senza la barra (.exit-note). */
 .sc-exitnote {
   max-width: calc(520 * var(--u)); padding: calc(8 * var(--u)) calc(16 * var(--u));
@@ -369,12 +628,15 @@
 .sc-pbtns .sc-abtn { flex: 1 1 0; min-width: 0; max-width: calc(58 * var(--u)); padding: 0; }
 .sc-pbtns .sc-abtn:not([data-mode]) { background: #4e5058; }
 .sc-pbtns .sc-abtn:not([data-mode]):is(:hover, .is-hover) { background: #3f4147; }
-/* L'area ha la stessa altezza per ogni azione, anche vuota (parts.tsx, Area). */
-.sc-parea { display: flex; flex-direction: column; gap: calc(8 * var(--u)); height: calc(264 * var(--u)); overflow: hidden; }
-.sc-pview { display: none; flex-direction: column; gap: calc(8 * var(--u)); }
-.sc-win:is([data-view="owner"], [data-view="tag"]) .sc-pview-people, .sc-win[data-view="reminder"] .sc-pview-reminder {
-  display: flex;
+/* L'area (parts.tsx, Area): gli avvisi che accompagnano un modulo stanno sopra; il contenuto sotto ha la stessa
+   altezza per ogni azione, anche vuota; quando è più alto scorre dentro. */
+.sc-parea { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
+.sc-pcontent {
+  display: flex; flex-direction: column; gap: calc(8 * var(--u)); height: calc(264 * var(--u));
+  overflow-y: auto; overscroll-behavior: contain;
 }
+/* Un involucro che non conta: i suoi figli stanno nella colonna di chi lo contiene. */
+.sc-pparte { display: contents; }
 /* L'avviso del bot nel riquadro bianco (Notice.css, il tema chiaro di Discord dentro il fumetto) e la domanda. */
 .sc-pnotice {
   padding: calc(10 * var(--u)) calc(12 * var(--u)); border-radius: calc(8 * var(--u));
@@ -382,53 +644,137 @@
 }
 .sc-pquestion { color: #efeff1; line-height: 1.375; overflow-wrap: anywhere; }
 .sc-pnotice img, .sc-pquestion img { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -.35em; }
-.sc-pnotice[hidden], .sc-pquestion[hidden] { display: none; }
 .sc-pfoot { display: flex; justify-content: space-between; gap: calc(12 * var(--u)); padding-top: calc(2 * var(--u)); }
-/* Save è spento finché non c'è una modifica; in attesa i tre puntini al posto della scritta. Rosso, Delete. */
+/* Save è spento finché non c'è una modifica; in attesa i tre puntini al posto della scritta, anche su Delete. */
 .sc-win:not([data-save="on"], [data-save="pending"]) .sc-psave { opacity: .5; cursor: not-allowed; }
 .sc-dots { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; gap: calc(4 * var(--u)); }
 .sc-dots i { width: calc(6 * var(--u)); height: calc(6 * var(--u)); border-radius: 50%; background: currentColor; }
+/* I puntini si accendono a turno (Button.css, btn-dot); nei video li ferma .sc-rec. */
+.sc-dots i, .sc-ploading i, .ui-dlgpunti i { animation: sc-dot 1.4s ease-in-out infinite; }
+.sc-dots i:nth-child(2), .sc-ploading i:nth-child(2), .ui-dlgpunti i:nth-child(2) { animation-delay: .16s; }
+.sc-dots i:nth-child(3), .sc-ploading i:nth-child(3), .ui-dlgpunti i:nth-child(3) { animation-delay: .32s; }
+@keyframes sc-dot { 0%, 80%, 100% { opacity: .3; transform: scale(.8); } 40% { opacity: 1; transform: scale(1); } }
+/* Col movimento ridotto i puntini stanno fermi e pieni: nella pagina l'animazione dura un attimo e torna alla base. */
+@media (prefers-reduced-motion: reduce) {
+  .sc-dots i, .sc-ploading i, .ui-dlgpunti i { animation: none; }
+}
 .sc-win[data-save="pending"] .sc-dots { display: flex; }
 .sc-win[data-save="pending"] .sc-savetext { visibility: hidden; }
 .sc-pdelete, .sc-win[data-delete] .sc-psave { display: none; }
 .sc-win[data-delete] .sc-pdelete { display: inline-flex; }
-.sc-pdelete[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.sc-win:not([data-save="pending"]) .sc-pdelete[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.sc-win[data-save="pending"] :is(.sc-psave, .sc-pdelete) { cursor: progress; }
 
 /* il selettore delle persone (PeoplePicker.css) */
+.sc-picker { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
 .sc-pills { display: flex; flex-wrap: wrap; gap: calc(6 * var(--u)); margin: 0; padding: 0; list-style: none; }
 .sc-pill {
-  display: inline-flex; align-items: center; gap: calc(5 * var(--u)); height: calc(28 * var(--u));
-  padding: 0 calc(10 * var(--u)) 0 calc(5 * var(--u)); border: 1px solid #4e5058; border-radius: 999px;
-  color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 500;
+  position: relative; display: inline-flex; align-items: center; gap: calc(5 * var(--u)); max-width: 100%;
+  height: calc(28 * var(--u)); padding: 0 calc(10 * var(--u)) 0 calc(5 * var(--u)); border: 1px solid #4e5058;
+  border-radius: 999px; color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 500;
 }
+/* Il tocco prende un po' più del disegno, come la casella (PeoplePicker.css). */
+.sc-pill::before { content: ''; position: absolute; inset: calc(-3 * var(--u)) calc(-2 * var(--u)); }
 .sc-pill:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
 .sc-pill[data-chosen] { padding: 0 calc(8 * var(--u)) 0 calc(5 * var(--u)); border-color: transparent; background: #3b3d44; }
 .sc-pill[data-chosen]:is(:hover, .is-hover) { background: #4e5058; }
+.sc-pill[data-role] { padding-left: calc(10 * var(--u)); }
+.sc-pill[data-role] .sc-pname { color: var(--role, #efeff1); }
+.sc-pname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sc-pills > [hidden] { display: none; }
 .sc-pill .sc-av { width: calc(18 * var(--u)); height: calc(18 * var(--u)); font-size: calc(9 * var(--u)); }
 .sc-pmark { flex: none; color: #abacb2; font-size: calc(16 * var(--u)); line-height: 1; }
+.sc-pill:not([data-chosen]) .sc-pmark { margin-left: calc(2 * var(--u)); }
 .sc-pnote { color: #abacb2; font-size: calc(12 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
-.sc-pills-chosen { display: none; }
-.sc-win[data-picked] .sc-pills-chosen { display: flex; }
 
 /* i campi (Field.css) e il promemoria (ReminderFields.css) */
 .sc-field { display: flex; flex-direction: column; gap: calc(6 * var(--u)); min-width: 0; }
 .sc-flabel { color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
-.sc-fin {
-  display: flex; align-items: center; gap: calc(8 * var(--u)); min-height: calc(36 * var(--u));
-  padding: calc(7 * var(--u)) calc(10 * var(--u)); border: 1px solid #35353b; border-radius: calc(8 * var(--u));
-  background: #17171a; color: #efeff1; font-size: calc(14 * var(--u)); line-height: calc(20 * var(--u));
-  white-space: nowrap; overflow: hidden;
-}
-.sc-fph { color: #80848e; }
-.sc-fin svg { flex: none; width: calc(16 * var(--u)); height: calc(16 * var(--u)); margin-left: auto; color: #efeff1; }
-.sc-fin > img { flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
 .sc-when { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
 .sc-whenrow { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: calc(8 * var(--u)); }
-.sc-zplace { display: flex; flex: 1; align-items: baseline; gap: calc(6 * var(--u)); min-width: 0; overflow: hidden; }
+.sc-zplace {
+  display: flex; flex: 1; align-items: baseline; gap: calc(6 * var(--u)); min-width: 0; overflow: hidden;
+  white-space: nowrap;
+}
 .sc-zcity { font-weight: 600; }
 .sc-zcountry { overflow: hidden; color: #abacb2; text-overflow: ellipsis; }
 .sc-zoff { flex: none; color: #abacb2; font-size: calc(13 * var(--u)); font-variant-numeric: tabular-nums; }
+
+/* i campi veri del pannello della demo (Field.css, .input): il testo, le ricerche, data e ora, il fuso */
+.sc-pin {
+  width: 100%; min-height: calc(36 * var(--u)); margin: 0; padding: calc(7 * var(--u)) calc(10 * var(--u));
+  border: 1px solid #35353b; border-radius: calc(8 * var(--u)); background: #17171a; color: #efeff1;
+  font: inherit; font-size: calc(14 * var(--u)); line-height: calc(20 * var(--u));
+}
+.sc-pin:focus { border-color: #5865f2; outline: none; }
+.sc-pin:disabled { opacity: .5; cursor: not-allowed; }
+.sc-pin[readonly] { color: #abacb2; }
+.sc-pin::placeholder { color: #80848e; }
+textarea.sc-pin { display: block; min-height: calc(80 * var(--u)); resize: vertical; }
+.sc-pin.sc-ptextarea { flex: 1; min-height: calc(96 * var(--u)); resize: none; }
+/* Il testo della lista in Edit the list (dialogs.css, .edit-text). */
+.sc-pin.ui-edittesto {
+  min-height: calc(220 * var(--u)); font-size: calc(13 * var(--u)); line-height: calc(19 * var(--u));
+}
+.sc-plabel { color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
+.sc-fdesc { color: #abacb2; font-size: calc(13 * var(--u)); line-height: calc(16 * var(--u)); }
+.sc-zfield { display: flex; align-items: center; gap: calc(8 * var(--u)); text-align: left; cursor: pointer; }
+.sc-zfield:is(:hover, .is-hover) { border-color: #80848e; }
+.sc-zfield > img { flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+
+/* le webhook del server mentre arrivano e la loro scelta (WebhookAction, TaskPanel.css) */
+.sc-ploading {
+  display: flex; justify-content: center; gap: calc(4 * var(--u)); padding: calc(24 * var(--u)) 0; color: #abacb2;
+}
+.sc-ploading i { width: calc(6 * var(--u)); height: calc(6 * var(--u)); border-radius: 50%; background: currentColor; }
+.sc-choices { display: flex; flex-direction: column; gap: calc(2 * var(--u)); }
+.sc-choice {
+  display: flex; align-items: center; gap: calc(10 * var(--u)); min-height: calc(40 * var(--u));
+  padding: calc(6 * var(--u)) calc(8 * var(--u)); border-radius: calc(6 * var(--u)); cursor: pointer;
+}
+.sc-choice:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
+.sc-choice:has(input:checked) { background: rgba(88, 101, 242, .16); }
+.sc-choice input {
+  flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); margin: 0; accent-color: #5865f2;
+}
+.sc-choice-name {
+  flex: 1; min-width: 0; overflow: hidden; color: #efeff1; font-weight: 600; text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sc-choice-meta { flex: none; color: #abacb2; font-size: calc(13 * var(--u)); }
+.sc-choice[data-missing] .sc-choice-name { color: #abacb2; text-decoration: line-through; }
+
+/* la vista dei fusi al posto dei campi (ReminderFields.css, ZoneView; ZonePicker.css) */
+.sc-zview { display: flex; flex-direction: column; min-height: 0; }
+.sc-zones { display: flex; flex-direction: column; gap: calc(8 * var(--u)); min-height: 0; }
+.sc-zhead { display: flex; align-items: center; gap: calc(6 * var(--u)); }
+.sc-zback {
+  display: inline-flex; align-items: center; justify-content: center; width: calc(30 * var(--u));
+  height: calc(30 * var(--u)); border-radius: calc(8 * var(--u)); background: #4e5058;
+}
+.sc-zback:is(:hover, .is-hover) { background: #3f4147; }
+.sc-zback img { width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+.sc-ztitle { color: #fbfbfb; font-weight: 600; }
+.sc-zlist {
+  display: flex; flex-direction: column; gap: calc(2 * var(--u)); margin: 0; padding: 0; list-style: none;
+}
+.sc-zrow {
+  display: flex; align-items: center; gap: calc(12 * var(--u)); width: 100%; min-height: calc(40 * var(--u));
+  padding: calc(6 * var(--u)) calc(8 * var(--u)); border-radius: calc(6 * var(--u)); text-align: left;
+}
+.sc-zrow:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
+.sc-zrow[aria-current] { background: rgba(88, 101, 242, .16); }
+.sc-zrplace {
+  display: flex; flex: 1; flex-wrap: wrap; align-items: baseline; column-gap: calc(6 * var(--u)); min-width: 0;
+}
+.sc-zrcity { color: #efeff1; font-weight: 600; }
+.sc-zrcountry { color: #abacb2; }
+.sc-zrreasons { flex-basis: 100%; color: #80848e; font-size: calc(12 * var(--u)); line-height: calc(16 * var(--u)); }
+.sc-zrtime {
+  display: flex; flex: none; flex-direction: column; align-items: flex-end; font-variant-numeric: tabular-nums;
+}
+.sc-zrnow { color: #efeff1; }
+.sc-zroffset { color: #abacb2; font-size: calc(12 * var(--u)); line-height: calc(16 * var(--u)); }
 
 /* nella demo i pulsanti si tengono premuti senza il menu del browser (§5.4) */
 .sc-live button { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
@@ -437,4 +783,8 @@
 /* ── L'Activity sotto i 640 px di riquadro: la finestra prende la scena, come Discord sul telefono ─────── */
 @container scene (max-width: 639px) {
   .sc-win { inset: 0; border: 0; border-radius: 0; box-shadow: none; }
+  /* La prima riga resta una riga, come su un telefono di 390 px: lì la colonna ha 358 px e i cinque pulsanti ne
+     vogliono 330. Qui i margini del sito e la barra della pagina ne tolgono una settantina, quindi i pulsanti si
+     stringono come quelli del pannello. */
+  .sc-afirst .sc-abtn { flex: 1 1 0; min-width: 0; max-width: calc(58 * var(--u)); padding: 0; }
 }

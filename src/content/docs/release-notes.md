@@ -13,6 +13,10 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 - **Every release in `/news`** — from 1.0.0 onwards, each with the day it came out: go back with **Previous**. See [`/news`](/docs/commands/#news).
 - **A line for news nobody has read** — when there's news nobody in your server has opened yet, the last line of the bot's panels says so until someone opens `/news`: then it goes away for everyone in the server. See [`/news`](/docs/commands/#news).
 
+## 2.0.1 — Activity mode in the Tutorial
+
+- **A lesson on Activity mode** — the Tutorial's practice list has seven lessons: before the last one, tick a task in Activity mode, smoother and free from the limits of text channels. See [Getting started](/docs/getting-started/#2-create-your-first-list).
+
 ## 2.0.0 — The Activity
 
 - **The Activity** — a list opens in a window inside Discord, on desktop and on mobile. Several people work on it at once, and everyone sees each change as it happens. When the last person leaves, the list goes back to its channel, with a summary of the changes. See [The Activity](/docs/activity/).
