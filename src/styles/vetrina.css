@@ -1,22 +1,19 @@
 /*
- * Le pagine in stile vetrina: la home (index.astro) e la pagina dei piani (premium.astro). Spec
- * docs/superpowers/specs/2026-11-14-pagina-premium-design.md, §2.1, nel repo team-tasks-manager.
+ * Le pagine in stile vetrina: la home (index.astro), la pagina dei piani (premium.astro) e quella della beta
+ * (beta.astro). Spec docs/superpowers/specs/2026-11-14-pagina-premium-design.md, §2.1, nel repo team-tasks-manager.
  *
- * Qui sta quello che le due pagine hanno in comune: il carattere, i titoli delle sezioni, il loro margine,
- * l'introduzione, i link in ambra, il titolo dei riquadri e la tabella del confronto. Le regole proprie di
- * ciascuna pagina stanno in home.css e in premium.css, che si importano dopo questo foglio: a parità di
- * specificità vincono loro, come quando stava tutto in home.css. Le sezioni usano `padding-block`, mai lo
- * shorthand `padding`: azzererebbe il margine laterale di `.wrap`.
+ * Qui sta quello che le tre pagine hanno in comune: il carattere, i titoli delle sezioni, il loro margine,
+ * l'introduzione, i link in ambra e la tabella del confronto. Il nome del carattere (`--display`) e il titolo dei
+ * riquadri stanno in global.css: li usano anche la documentazione e le pagine legali. Le regole proprie di ciascuna
+ * pagina stanno in home.css, premium.css e beta.css, che si importano dopo questo foglio: a parità di specificità
+ * vincono loro, come quando stava tutto in home.css. Le sezioni usano `padding-block`, mai lo shorthand `padding`:
+ * azzererebbe il margine laterale di `.wrap`.
  */
 
 /* Mona Sans, variabile in peso e larghezza: la larghezza è la scelta che dà carattere ai titoli. */
-.vetrina {
-  --display: 'Mona Sans Variable', var(--sans);
-  font-family: var(--display);
-}
+.vetrina { font-family: var(--display); }
 
-.vetrina h2,
-.vetrina .block h2 {
+.vetrina h2 {
   font-family: var(--display);
   font-size: clamp(1.75rem, 3.6vw, 2.75rem);
   font-weight: 750;
@@ -31,9 +28,6 @@
 .h-intro { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--muted); max-width: 60ch; margin: 0; }
 .h-link { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
 .h-link:hover { color: var(--accent-bright); }
-
-/* Niente maiuscole spaziate in mono: il titolo dei riquadri in Mona Sans. */
-.vetrina .callout .callout-t { font-family: var(--display); font-size: 1rem; font-weight: 700; text-transform: none; letter-spacing: 0; }
 
 /* ── Il confronto ─────────────────────────────────────────────────────────────────────────────────────── */
 /* Due colonne: quella accesa (h-col-acc, h-acc) ha la superficie ambra e il bordo chiuso in alto e in basso,

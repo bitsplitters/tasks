@@ -11,6 +11,9 @@
   --good: #5BC48B;
   --mono: ui-monospace, "Cascadia Code", "SF Mono", "Menlo", "Consolas", monospace;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Mona Sans, variabile in peso e larghezza: il carattere della vetrina, della documentazione e delle pagine
+     legali. Lo carica VetrinaFont.astro nelle pagine che lo usano. */
+  --display: 'Mona Sans Variable', var(--sans);
   --wrap: 1120px;
 }
 * { box-sizing: border-box; }
@@ -19,7 +22,10 @@ body {
   margin: 0; background: var(--ink); color: var(--text);
   font-family: var(--sans); font-size: 16px; line-height: 1.65;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-  min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden;
+  min-height: 100vh; display: flex; flex-direction: column;
+  /* clip taglia come hidden ma non fa di body un contenitore di scorrimento: con hidden nessun elemento sticky del
+     sito restava fermo. hidden resta davanti per i browser che non conoscono clip (Safari prima della 16). */
+  overflow-x: hidden; overflow-x: clip;
 }
 a { color: inherit; }
 /* Testo destinato ai soli screen reader: resta nel documento (quindi viene letto) ma non occupa
@@ -79,195 +85,24 @@ a.btn[target="_blank"]::after, a.btn-ghost[target="_blank"]::after { content: no
 }
 .btn { font-family: var(--mono); font-size: .85rem; font-weight: 600; color: var(--ink) !important; background: var(--accent); padding: .5em 1em; border-radius: 8px; text-decoration: none; transition: background .18s ease, transform .18s ease; }
 .btn:hover { background: var(--accent-bright); transform: translateY(-1px); }
-.hero { padding: clamp(3.5rem, 11vh, 7rem) 0 clamp(2rem, 6vh, 4rem); }
-.eyebrow { font-family: var(--mono); font-size: .78rem; text-transform: uppercase; letter-spacing: .22em; color: var(--accent); margin: 0 0 1.1rem; }
-.hero h1 { font-size: clamp(2.4rem, 6.5vw, 4.4rem); line-height: 1.03; letter-spacing: -.025em; margin: 0; text-wrap: balance; font-weight: 750; }
-.hero .tagline { font-size: clamp(1.25rem, 3vw, 1.9rem); font-weight: 650; letter-spacing: -.01em; color: var(--accent); margin: .9rem 0 0; }
-.hero .lede { font-size: clamp(1.1rem, 2.3vw, 1.4rem); color: var(--muted); max-width: 46ch; margin: 1.4rem 0 2rem; line-height: 1.5; }
-.hero .lede strong { color: var(--text); font-weight: 600; }
 .cta-row { display: flex; flex-wrap: wrap; gap: .9rem; }
 .btn-ghost { font-family: var(--mono); font-size: .9rem; color: var(--text); text-decoration: none; padding: .55em 1.1em; border: 1px solid var(--line-2); border-radius: 8px; display: inline-flex; align-items: center; gap: .5em; transition: border-color .18s ease, color .18s ease; }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-section.block { padding: clamp(2.5rem, 7vh, 5rem) 0; }
-.section-eyebrow { font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .2em; color: var(--muted); margin: 0 0 .8rem; }
-.block h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); letter-spacing: -.02em; margin: 0 0 1rem; text-wrap: balance; font-weight: 700; }
-.block p.big { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--muted); max-width: 60ch; line-height: 1.6; }
-.block p.big strong { color: var(--text); font-weight: 600; }
-.split-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 2rem); margin-top: 2rem; }
-@media (max-width: 720px) { .split-cols { grid-template-columns: 1fr; } }
-.panel { border: 1px solid var(--line); border-radius: 14px; padding: clamp(1.4rem, 3vw, 2rem); background: linear-gradient(180deg, var(--surface-2), var(--surface)); }
-.panel.pain { border-color: #3a2630; }
-.panel.gain { border-color: rgba(233,164,76,.3); }
-.panel h3 { margin: 0 0 1rem; font-size: 1.15rem; font-family: var(--mono); letter-spacing: .01em; }
-.panel.pain h3 { color: #E08AA0; }
-.panel.gain h3 { color: var(--accent); }
-.panel ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .8rem; }
-.panel li { display: flex; gap: .6rem; color: var(--muted); line-height: 1.5; }
-.panel li b { color: var(--text); font-weight: 600; }
-.panel .tick { color: var(--accent); flex: none; }
-.panel.pain .tick { color: #E08AA0; }
-.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(1rem, 2vw, 1.4rem); margin-top: 2rem; }
-.card { border: 1px solid var(--line); border-radius: 14px; padding: 1.6rem; background: var(--surface); transition: border-color .2s ease, transform .2s ease; }
-.card:hover { border-color: var(--line-2); transform: translateY(-2px); }
-.card .ic { width: 34px; height: 34px; margin-bottom: .7rem; object-fit: contain; }
-.card h3 { margin: 0 0 .5rem; font-size: 1.15rem; }
-.card p { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.55; }
 .site-foot { margin-top: auto; border-top: 1px solid var(--line); }
 .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-block: 1.5rem; font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 .foot-inner a { color: var(--muted); text-decoration: none; }
 .foot-inner a:hover { color: var(--accent); }
 .foot-left { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .foot-badge img { display: block; }
-.docs-shell { display: grid; grid-template-columns: 250px 1fr; gap: clamp(1.5rem, 4vw, 3rem); max-width: var(--wrap); margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 2.5rem) 4rem; width: 100%; }
-@media (max-width: 820px) { .docs-shell { grid-template-columns: 1fr; } }
-.docs-side { position: sticky; top: 84px; align-self: start; height: max-content; }
-.docs-side .grp { font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); margin: 1.3rem 0 .5rem; }
-.docs-side a { display: block; padding: .35rem .6rem; border-radius: 7px; color: var(--muted); text-decoration: none; font-size: .92rem; border-left: 2px solid transparent; }
-.docs-side a:hover { color: var(--text); background: var(--surface); }
-.docs-side a.active { color: var(--accent); border-left-color: var(--accent); background: var(--surface); }
-.prose { min-width: 0; max-width: 74ch; }
-.prose h1 { font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -.02em; margin: 0 0 .5rem; }
-.prose .subtitle { color: var(--muted); font-size: 1.15rem; margin: 0 0 2rem; }
-/* Il sottotitolo perde il suo margine basso quando lo segue il cambio di lingua delle pagine legali. */
-.prose .subtitle:has(+ .lang-switch) { margin-bottom: .5rem; }
-.prose .lang-switch { margin: 0 0 2rem; font-size: .95rem; }
-.prose h2 { font-size: 1.5rem; margin: 2.2rem 0 .8rem; letter-spacing: -.01em; border-top: 1px solid var(--line); padding-top: 1.6rem; }
-.prose h3 { font-size: 1.15rem; margin: 1.6rem 0 .5rem; color: var(--text); }
-.prose p, .prose li { color: #C7CEDB; line-height: 1.7; }
-.prose strong { color: var(--text); }
-.prose a { color: var(--accent); text-underline-offset: 3px; }
-.prose img { max-width: 100%; border-radius: 8px; }
-.prose .inline-ic { width: 22px; height: 22px; vertical-align: -5px; margin: 0 2px; }
-.prose code { font-family: var(--mono); font-size: .88em; background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: .1em .4em; color: var(--accent-bright); }
-.prose pre { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; overflow-x: auto; }
-.prose pre code { background: none; border: none; padding: 0; color: #C7CEDB; }
-.prose table { border-collapse: collapse; width: 100%; margin: 1.2rem 0; font-size: .95rem; display: block; overflow-x: auto; }
-.prose th, .prose td { border: 1px solid var(--line); padding: .6rem .8rem; text-align: left; }
-.prose th { background: var(--surface); font-family: var(--mono); font-size: .85rem; }
-.prose blockquote { border-left: 3px solid var(--accent); margin: 1.2rem 0; padding: .3rem 0 .3rem 1.2rem; color: var(--muted); }
 .callout { border: 1px solid var(--line-2); border-left: 3px solid var(--accent); background: var(--surface); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
-.callout .callout-t { font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .4rem; }
+/* Il titolo dei riquadri in Mona Sans, come nelle pagine della vetrina: niente maiuscole spaziate in mono. */
+.callout .callout-t {
+  font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: .4rem;
+}
 
-/* Il posto: canale o Activity (spec della documentazione divisa fra canale e Activity, §5, nel repo
-   team-tasks-manager). Un segno solo, ripetuto in quattro punti: la pillola sopra il titolo delle pagine d'uso, i
-   due gruppi della barra laterale, i titoli dell'indice e il riquadro «How to do it». Il colore è quello dei
-   pulsanti di Discord: grigio per il canale, il blu del pulsante Activity per l'Activity. */
-.place-ic { display: inline-block; width: 1.35em; height: 1.35em; padding: .22em; border-radius: 5px !important; background: #4E5058; object-fit: contain; vertical-align: -.3em; margin-right: .45em; flex: none; }
-.is-activity .place-ic, .place-ic.is-activity { background: #5865F2; }
-.prose .place-pill { display: inline-flex; align-items: center; margin: 0 0 .9rem; padding: .25rem .75rem .25rem .3rem; border: 1px solid #4E5058; border-radius: 999px; font-family: var(--mono); font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text); }
-.prose .place-pill.is-activity { border-color: #5865F2; }
-.prose .place-pill .place-ic { margin-right: .55em; }
-.docs-side .grp-place { display: flex; align-items: center; color: var(--text); }
-.prose h2.h-place { display: flex; align-items: center; }
-.prose .grp-intro { color: var(--muted); margin-top: -.3rem; }
-.howto { margin: 2.2rem 0 1rem; }
-.howto .howto-t { font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .6rem; }
-.howto-grid { display: grid; gap: .75rem; }
-@media (min-width: 560px) { .howto-grid { grid-template-columns: 1fr 1fr; } }
-.prose .howto-go { display: flex; flex-direction: column; gap: .35rem; padding: .9rem 1rem; border: 1px solid var(--line-2); border-radius: 10px; background: var(--surface); color: #C7CEDB; text-decoration: none; transition: border-color .2s ease; }
-.prose a.howto-go:hover { border-color: #4E5058; }
-.prose a.howto-go.is-activity:hover { border-color: #5865F2; }
-.prose .howto-go.is-none { opacity: .75; }
-.howto-go .howto-k { display: flex; align-items: center; font-family: var(--mono); font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text); }
-.howto-go .howto-d { line-height: 1.55; }
-.prose a.howto-go .howto-d { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(233,164,76,.4); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
-  @keyframes rise { to { opacity: 1; transform: none; } }
-}
-/* Discord button-state colors (used in docs tables) */
-.prose .c-grey { color: #949BA4; font-weight: 700; }
-.prose .c-blue { color: #5865F2; font-weight: 700; }
-.prose .c-red  { color: #ED4245; font-weight: 700; }
-/* Center cells that contain only a button icon (the "Button" column) */
-.prose td:has(> img.inline-ic:only-child) { text-align: center; }
-/* Icons must show in full: no rounded corners, no crop */
-.prose .inline-ic { border-radius: 0 !important; object-fit: contain; }
-/* A Discord button drawn in a docs table: the state is the background colour, as in the bot
-   (ButtonStyle SECONDARY / PRIMARY / SUCCESS / DANGER), around the button's own white icon */
-.prose .dchip { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 32px; border-radius: 8px; vertical-align: middle; }
-.prose .dchip img { width: 20px; height: 20px; object-fit: contain; border-radius: 0; }
-.prose .dchip.is-grey  { background: #4E5058; }
-.prose .dchip.is-blue  { background: #5865F2; }
-.prose .dchip.is-green { background: #248046; }
-.prose .dchip.is-red   { background: #ED4245; }
-/* A Discord screenshot: at its natural size on desktop (the capture is 1x, enlarging it blurs it),
-   full width on a phone, where the <picture> serves the high-density mobile capture instead. */
-.prose .screen { display: block; margin: 1.2rem 0; }
-.prose .screen img { display: block; width: 100%; max-width: 424px; height: auto; border-radius: 8px; }
-@media (max-width: 640px) {
-  .prose .screen img { max-width: 100%; }
-}
-/* "What you get": icon and title on the same line */
-.card .card-head { display: flex; align-items: center; gap: .7rem; margin-bottom: .6rem; }
-.card .card-head .ic { margin-bottom: 0; flex: none; }
-.card .card-head h3 { margin: 0; }
-/* Prevent horizontal overflow / rubber-band scroll on mobile */
-html { overflow-x: hidden; }
-/* Docs mobile navigation: hamburger + full overlay, styled to match the site */
-.docs-menu-toggle { display: none; }
-.docs-side-close { display: none; }
-@media (max-width: 820px) {
-  .docs-menu-toggle {
-    display: inline-flex; align-items: center; gap: .5em;
-    position: sticky; top: 54px; z-index: 30;
-    margin-bottom: 1.5rem; padding: .65em 1.1em;
-    background: var(--surface); color: var(--text);
-    border: 1px solid var(--line-2); border-radius: 8px;
-    font-family: var(--mono); font-size: .9rem; cursor: pointer;
-  }
-  .docs-menu-toggle:hover { border-color: var(--accent); color: var(--accent); }
-  .docs-side {
-    position: fixed; inset: 0; top: 0; z-index: 100;
-    display: block; margin: 0;
-    /* Altezza esplicita in dvh, non ereditata da inset:0. Con inset:0 il pannello e' alto quanto
-       il viewport LARGO, che su mobile comprende l'area coperta dalla barra del browser: le ultime
-       voci del menu finivano sotto quella barra e sembrava che il menu non scorresse. 'dvh' segue
-       la barra che si ritrae; il 100vh davanti serve ai browser che non conoscono dvh. */
-    height: 100vh; height: 100dvh;
-    padding: 4.5rem clamp(1.25rem, 6vw, 2rem) calc(2rem + env(safe-area-inset-bottom));
-    background: color-mix(in srgb, var(--ink) 97%, transparent);
-    backdrop-filter: blur(8px);
-    /* 'contain' spezza la catena dello scroll: arrivato in fondo al menu il gesto NON passa alla
-       pagina dietro. Era l'altra metà del difetto — si scorreva il contenuto invece del menu. */
-    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
-    transform: translateX(-100%); transition: transform .25s ease;
-  }
-  /* Blocco dello scroll di fondo mentre il menu e' aperto: senza, il gesto che "manca" il pannello
-     muove la pagina sotto e al ritorno ti ritrovi altrove. */
-  body.docs-menu-open { overflow: hidden; }
-  .docs-side.open { transform: translateX(0); }
-  .docs-side-close {
-    display: block; position: absolute; top: 1.1rem; right: 1.2rem;
-    background: none; border: none; color: var(--muted);
-    font-size: 2rem; line-height: 1; cursor: pointer;
-  }
-  .docs-side .grp { font-size: .8rem; margin-top: 1.6rem; }
-  .docs-side a { font-size: 1.05rem; padding: .6rem; }
-}
-/* Legal pages (terms, privacy, gdpr) */
-.legal-page { max-width: 820px; margin: 0 auto; padding: 3rem clamp(1.25rem, 5vw, 2.5rem) 4rem; width: 100%; }
+/* Niente scorrimento di lato sul telefono. Il menu in alto resta fermo: le ancore (i link a un titolo, i risultati
+   della ricerca, scrollIntoView) arrivano 5rem sotto il bordo, fuori dal menu. */
+html { overflow-x: hidden; scroll-padding-top: 5rem; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 1rem; }
-
-/* Ricerca (Pagefind) nella sidebar della documentazione.
-   Il widget porta un CSS suo e si tematizza con le proprie variabili: si impostano quelle invece di
-   sovrascrivere le sue classi, che sono dettagli interni e cambiano fra versioni. */
-.docs-search {
-  --pagefind-ui-scale: .8;
-  --pagefind-ui-primary: var(--accent);
-  --pagefind-ui-text: var(--text);
-  --pagefind-ui-background: var(--surface);
-  --pagefind-ui-border: var(--line-2);
-  --pagefind-ui-tag: var(--surface-2);
-  --pagefind-ui-border-width: 1px;
-  --pagefind-ui-border-radius: 8px;
-  --pagefind-ui-font: var(--sans);
-  margin-bottom: .5rem;
-}
-/* I risultati possono essere piu' lunghi della colonna: la sidebar e' sticky, quindi senza un tetto
-   la lista scorrerebbe fuori dallo schermo senza modo di raggiungerne la fine. */
-.docs-search .pagefind-ui__results-area { max-height: 60vh; overflow-y: auto; }
-.docs-search .pagefind-ui__result-title a { color: var(--text); }
-.docs-search .pagefind-ui__result-excerpt { color: var(--muted); font-size: .85rem; }
