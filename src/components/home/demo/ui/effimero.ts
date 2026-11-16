@@ -17,13 +17,18 @@ export function htmlDellEffimero(html: string): string {
     `<button type="button" class="ui-effvia" data-k="eph-dismiss">${DISCORD.dismiss}</button></p></div>`;
 }
 
-/** Mostra il messaggio in `dove` (il posto `eph` sotto la lista), al posto di quello che c'era. */
-export function mostraEffimero(dove: HTMLElement, html: string, alla: { dismiss?(): void } = {}): void {
+/**
+ * Mostra il messaggio in `dove` (il posto `eph` sotto la lista), al posto di quello che c'era. Dismiss lo toglie, poi
+ * dice ad `alla.dismiss` se il focus era nel messaggio: se n'è andato col pulsante, va rimesso da qualche parte.
+ */
+export function mostraEffimero(dove: HTMLElement, html: string,
+  alla: { dismiss?(conIlFocus: boolean): void } = {}): void {
   dove.innerHTML = htmlDellEffimero(html);
   dove.hidden = false;
   dove.querySelector('[data-k="eph-dismiss"]')?.addEventListener('click', () => {
+    const conIlFocus = dove.contains(document.activeElement);
     togliEffimero(dove);
-    alla.dismiss?.();
+    alla.dismiss?.(conIlFocus);
   });
 }
 

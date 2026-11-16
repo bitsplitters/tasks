@@ -816,4 +816,8 @@ textarea.sc-pin { display: block; min-height: calc(80 * var(--u)); resize: verti
 /* ── L'Activity sotto i 640 px di riquadro: la finestra prende la scena, come Discord sul telefono ─────── */
 @container scene (max-width: 639px) {
   .sc-win { inset: 0; border: 0; border-radius: 0; box-shadow: none; }
+  /* La prima riga resta una riga, come su un telefono di 390 px: lì la colonna ha 358 px e i cinque pulsanti ne
+     vogliono 330. Qui i margini del sito e la barra della pagina ne tolgono una settantina, quindi i pulsanti si
+     stringono come quelli del pannello. */
+  .sc-afirst .sc-abtn { flex: 1 1 0; min-width: 0; max-width: calc(58 * var(--u)); padding: 0; }
 }

@@ -76,6 +76,8 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
   let chiudiModale: (() => void) | null = null;
   /** La chat era in fondo all'ultimo scorrimento: un messaggio che cresce la tiene lì (gli osservatori in fondo). */
   let inFondo = true;
+  /** Chi ha fatto comparire l'effimero da fuori: Dismiss gli rende il focus, come una modale che si chiude. */
+  let apritoreDellEffimero: HTMLElement | null = null;
 
   /** La risposta del bot nel fumetto, accanto al selettore dei task o all'elemento dato. */
   function rispondi(md: string | null, accanto: Element = sel): void {
@@ -89,7 +91,12 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
    * (`nearest`), solo se il messaggio non è già in vista.
    */
   function mostra(html: string): void {
-    mostraEffimero(eph, html);
+    // Un effimero che ne sostituisce un altro da un suo pulsante tiene l'apritore di prima.
+    const attivo = document.activeElement;
+    if (!eph.contains(attivo)) {
+      apritoreDellEffimero = attivo instanceof HTMLElement && scena.contains(attivo) ? attivo : null;
+    }
+    mostraEffimero(eph, html, { dismiss: dopoIlDismiss });
     if (feed.scrollHeight > feed.clientHeight) {
       const inizio = feed.scrollTop + eph.getBoundingClientRect().top - feed.getBoundingClientRect().top;
       feed.scrollTop = eph.offsetHeight <= feed.clientHeight ? feed.scrollHeight : inizio;
@@ -286,6 +293,15 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
    */
   function focusNelMessaggio(): void {
     eph.querySelector<HTMLElement>('button:not([aria-disabled="true"])')?.focus({ preventScroll: true });
+  }
+
+  /**
+   * Dismiss message col focus sopra (da tastiera, o col clic dove il pulsante lo prende): il focus torna a chi ha fatto
+   * comparire il messaggio, o al selettore dei task se quello non c'è più, invece di cadere sulla pagina.
+   */
+  function dopoIlDismiss(conIlFocus: boolean): void {
+    if (!conIlFocus) return;
+    (apritoreDellEffimero?.isConnected ? apritoreDellEffimero : sel).focus();
   }
 
   /**
