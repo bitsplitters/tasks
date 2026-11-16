@@ -40,9 +40,9 @@ When enabled, **every action on your lists is recorded in a dedicated thread**, 
 
 When enabled, TTM adds plain text alongside embeds, so your **mobile push notifications** are readable at a glance. Embeds alone often show up empty on a lock screen. On by default. Turning it off never stops a reminder: it arrives with just its card — or, for a role, just the mention.
 
-## List appearance
+## Tips and list appearance
 
-One dropdown with three options: **Tips**, **Completed tasks dimmed** and **Space around groups**. Tick the ones you want on: you can tick all three, some, or none. A list picks up the change the next time it's updated.
+One dropdown with three options: **Tips**, **Completed tasks dimmed** and **Space around groups**. They decide what people see when they create and use lists: tips for beginners and how tasks look. Tick the ones you want on: you can tick all three, some, or none. A list already in a channel picks up the change the next time it's updated, for example when someone ticks a task.
 
 **Tips** counts in both places. **Completed tasks dimmed** and **Space around groups** change the list in the channel. In the Activity each person sets their own look with the gear: see [Your settings](/docs/activity/#your-settings).
 

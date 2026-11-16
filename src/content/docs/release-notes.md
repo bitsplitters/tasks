@@ -9,7 +9,8 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 2.1.0 — News in the bot
 
-- **`/news`** — the latest news about Team Tasks Manager, in your language, in a message only you can see. The **Previous** and **Next** buttons go to older and newer news. See [`/news`](/docs/commands/#news).
+- **`/news`** — the latest news about Team Tasks Manager, in your language, in a message only you can see. Under each piece of news, **Discord server** opens our support server and **Release notes** opens that release on this page. The **Previous** and **Next** buttons go to older and newer news. See [`/news`](/docs/commands/#news).
+- **Every release in `/news`** — from 1.0.0 onwards, each with the day it came out: go back with **Previous**. See [`/news`](/docs/commands/#news).
 - **A line for news nobody has read** — when there's news nobody in your server has opened yet, the last line of the bot's panels says so until someone opens `/news`: then it goes away for everyone in the server. See [`/news`](/docs/commands/#news).
 
 ## 2.0.0 — The Activity
@@ -38,7 +39,7 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 ## 1.3.0 — Space around groups
 
 - **Space around groups** — a new option of `/config app`: switch it off and your lists lose the blank lines above and below the tasks that have subtasks, for a more compact list. On by default: see [Space around groups](/docs/configuration/#space-around-groups).
-- **List appearance is one dropdown** — **Tips**, **Completed tasks dimmed** and **Space around groups** are now options of the same dropdown in `/config app`: tick the ones you want on. See [List appearance](/docs/configuration/#list-appearance).
+- **List appearance is one dropdown** — **Tips**, **Completed tasks dimmed** and **Space around groups** are now options of the same dropdown in `/config app`: tick the ones you want on. See [Tips and list appearance](/docs/configuration/#tips-and-list-appearance).
 - **The Guide says how to tick a task** — its first page and the page of the task buttons now say it in bold: to tick or untick a task, every button in the second row must be off. See [The check selector](/docs/the-task-list/#the-check-selector).
 - **A locked list says who is editing it** — while someone edits the list, its last line says who, and how to unlock it if it stays locked: **More → Unlock list**. It takes the place of the Tips line and shows even with Tips hidden. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 

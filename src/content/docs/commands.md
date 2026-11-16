@@ -66,7 +66,7 @@ Shows a card to add Team Tasks Manager to another server: the same presentation 
 
 ## `/news`
 
-The latest news about Team Tasks Manager, in your language: what's new in the bot and how to use it. The news opens in a message only you can see, with its date under the title. When there's older or newer news, the **Previous** and **Next** buttons take you to it. It works in servers only, and needs no permission.
+The latest news about Team Tasks Manager, in your language: what's new in the bot and how to use it. The news opens in a message only you can see, with its date under the title. Under the text, **Discord server** opens our support server and **Release notes** opens that release on the [Release notes](/docs/release-notes/) page. When there's older or newer news, the **Previous** and **Next** buttons take you to it. Going back, you find every release since the first one, 1.0.0, each with the day it came out. It works in servers only, and needs no permission.
 
 When there's news nobody in your server has read yet, the last line of the bot's panels says so, in place of the usual footer: in `/help`, the Guide, **More**, `/config app` and the explanation that `/create-list` shows. As soon as someone in the server opens `/news`, the line goes away for everyone. A server that adds TTM after a piece of news doesn't get the line: the news is in `/news`.
 
