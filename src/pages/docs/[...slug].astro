@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import VetrinaFont from '../../components/VetrinaFont.astro';
+import DocsSearch from '../../components/DocsSearch.astro';
 import { docsCard } from '../../lib/preview-card';
 import { PAGINA_PIANI } from '../../lib/pagina-piani';
 import { GRUPPI_DOCS, POSTI } from '../../lib/gruppi-docs';
@@ -26,59 +28,49 @@ const current = entry.id;
 const posto = entry.data.place ? POSTI[entry.data.place] : null;
 ---
 <Base title={entry.data.title + " — Team Tasks Manager docs"} previewTitle={entry.data.title} description={entry.data.description} embed={docsCard(entry.data.title, entry.data.description, Astro.url.pathname)}>
-  <button class="docs-menu-toggle" id="docs-menu-toggle" aria-label="Open documentation menu">&#9776; Documentation</button>
-  <div class="docs-shell">
-    <aside class="docs-side" id="docs-side">
-      <button class="docs-side-close" id="docs-side-close" aria-label="Close menu">&times;</button>
-      {/* La ricerca esiste solo nella build: gli asset (/pagefind/*) li produce `pagefind --site dist`
-          dopo `astro build`, quindi in `astro dev` non ci sono. Renderizzarla comunque significherebbe
-          mostrare in sviluppo un campo che non cerca niente e due 404 in console. */}
-      {import.meta.env.PROD && <div class="docs-search" id="docs-search"></div>}
-      {grouped.map((g) => (
-        <div>
-          <div class={g.place ? `grp grp-place is-${g.place}` : 'grp'}>
-            {g.place && <img class="place-ic" src={POSTI[g.place].icon} alt="" />}{g.name}
+  <VetrinaFont slot="head" />
+  {/* Il <main> dà a chi usa uno screen reader un punto di arrivo per il contenuto, come nelle pagine della vetrina.
+      Porta il carattere: il menu in alto e il piè di pagina restano in mono. */}
+  <main class="docs-main">
+    <button
+      class="docs-menu-toggle" id="docs-menu-toggle" aria-label="Open documentation menu"
+    >&#9776; Documentation</button>
+    <div class="docs-shell">
+      <aside class="docs-side" id="docs-side">
+        <button class="docs-side-close" id="docs-side-close" aria-label="Close menu">&times;</button>
+        <DocsSearch />
+        {grouped.map((g) => (
+          <div>
+            <div class={g.place ? `grp grp-place is-${g.place}` : 'grp'}>
+              {g.place && <img class="place-ic" src={POSTI[g.place].icon} alt="" />}{g.name}
+            </div>
+            {g.items.map((it) => (
+              <a href={`/docs/${it.id}/`} class={it.id === current ? 'active' : ''}>{it.data.title}</a>
+            ))}
+            {/* La pagina dei piani sta fuori dalla collezione docs: in fondo al gruppo Plans, mai `active`. */}
+            {g.name === 'Plans' && <a href={PAGINA_PIANI.path}>{PAGINA_PIANI.title}</a>}
           </div>
-          {g.items.map((it) => (
-            <a href={`/docs/${it.id}/`} class={it.id === current ? 'active' : ''}>{it.data.title}</a>
-          ))}
-          {/* La pagina dei piani sta fuori dalla collezione docs: in fondo al gruppo Plans, mai `active`. */}
-          {g.name === 'Plans' && <a href={PAGINA_PIANI.path}>{PAGINA_PIANI.title}</a>}
-        </div>
-      ))}
-    </aside>
-    {/* data-pagefind-body delimita CIO' CHE VA INDICIZZATO. Senza, Pagefind indicizza tutta la
-        pagina, sidebar compresa: ogni voce del menu comparirebbe in ogni pagina e una ricerca per
-        «webhook» restituirebbe tutte le pagine del sito. Effetto collaterale voluto: appena un
-        attributo del genere esiste, Pagefind indicizza SOLO le pagine che lo hanno, quindi la
-        ricerca copre la documentazione e non le pagine legali. */}
-    <article class="prose" data-pagefind-body>
-      {/* La pillola del posto sta sopra il titolo: si legge prima di tutto il resto, e dice di quale dei due posti
-          parlano i pulsanti della pagina. */}
-      {posto && (
-        <p class={`place-pill is-${entry.data.place}`}><img class="place-ic" src={posto.icon} alt="" />{posto.label}</p>
-      )}
-      <h1>{entry.data.title}</h1>
-      {entry.data.description && <p class="subtitle">{entry.data.description}</p>}
-      <Content />
-    </article>
-  </div>
-  {import.meta.env.PROD && (
-    <>
-      <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
-      <script is:inline src="/pagefind/pagefind-ui.js"></script>
-      <script is:inline>
-        window.addEventListener("DOMContentLoaded", () => {
-          new PagefindUI({
-            element: "#docs-search",
-            showImages: false,
-            showSubResults: true,
-            translations: { placeholder: "Search in English" }
-          });
-        });
-      </script>
-    </>
-  )}
+        ))}
+      </aside>
+      {/* data-pagefind-body delimita CIO' CHE VA INDICIZZATO. Senza, Pagefind indicizza tutta la
+          pagina, sidebar compresa: ogni voce del menu comparirebbe in ogni pagina e una ricerca per
+          «webhook» restituirebbe tutte le pagine del sito. Effetto collaterale voluto: appena un
+          attributo del genere esiste, Pagefind indicizza SOLO le pagine che lo hanno, quindi la
+          ricerca copre la documentazione e non le pagine legali. */}
+      <article class="prose" data-pagefind-body>
+        {/* La pillola del posto sta sopra il titolo: si legge prima di tutto il resto. Dice di quale dei due posti
+            parlano i pulsanti della pagina. */}
+        {posto && (
+          <p class={`place-pill is-${entry.data.place}`}>
+            <img class="place-ic" src={posto.icon} alt="" />{posto.label}
+          </p>
+        )}
+        <h1>{entry.data.title}</h1>
+        {entry.data.description && <p class="subtitle">{entry.data.description}</p>}
+        <Content />
+      </article>
+    </div>
+  </main>
   <script>
     const t = document.getElementById("docs-menu-toggle");
     const s = document.getElementById("docs-side");

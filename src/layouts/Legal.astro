@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import VetrinaFont from '../components/VetrinaFont.astro';
 // docs.css dopo Base, che importa global.css: le regole della documentazione vengono dopo quelle comuni.
 import '../styles/docs.css';
 const { frontmatter } = Astro.props;
@@ -10,12 +11,17 @@ const altro = lang === 'it'
   : { href: frontmatter.alt, testo: 'Leggi questa pagina in italiano', lang: 'it' };
 ---
 <Base title={frontmatter.title + " — bitsplitters"} description={frontmatter.description} lang={lang}>
-  <div class="legal-page">
-    <article class="prose">
-      <h1>{frontmatter.title}</h1>
-      <p class="subtitle">{frontmatter.updated}</p>
-      {altro.href && <p class="lang-switch"><a href={altro.href} lang={altro.lang} hreflang={altro.lang}>{altro.testo}</a></p>}
-      <slot />
-    </article>
-  </div>
+  <VetrinaFont slot="head" />
+  <main class="docs-main">
+    <div class="legal-page">
+      <article class="prose">
+        <h1>{frontmatter.title}</h1>
+        <p class="subtitle">{frontmatter.updated}</p>
+        {altro.href && (
+          <p class="lang-switch"><a href={altro.href} lang={altro.lang} hreflang={altro.lang}>{altro.testo}</a></p>
+        )}
+        <slot />
+      </article>
+    </div>
+  </main>
 </Base>

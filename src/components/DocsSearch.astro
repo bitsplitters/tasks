@@ -1,0 +1,33 @@
+---
+// La ricerca della documentazione (Pagefind): il riquadro, il suo script e il suo foglio. La usano la barra laterale
+// delle pagine e l'indice; in una pagina ce n'è una sola, per via dell'id.
+//
+// Esiste solo nella build: gli asset (/pagefind/*) li produce `pagefind --site dist` dopo `astro build`, quindi in
+// `astro dev` non ci sono. Renderizzarla comunque significherebbe mostrare in sviluppo un campo che non cerca niente
+// e due 404 in console.
+//
+// L'ordine conta. Lo script di Pagefind è `defer`: non ferma la lettura della pagina e gira prima di DOMContentLoaded,
+// quando nasce il riquadro. Il foglio viene per ultimo: uno script inline dopo un foglio ancora in arrivo
+// aspetterebbe il foglio, fermando la pagina prima dell'articolo.
+interface Props {
+  class?: string;
+}
+const { class: classe } = Astro.props;
+---
+{import.meta.env.PROD && (
+  <>
+    <div class:list={['docs-search', classe]} id="docs-search"></div>
+    <script is:inline>
+      window.addEventListener('DOMContentLoaded', () => {
+        new PagefindUI({
+          element: '#docs-search',
+          showImages: false,
+          showSubResults: true,
+          translations: { placeholder: 'Search in English' },
+        });
+      });
+    </script>
+    <script is:inline src="/pagefind/pagefind-ui.js" defer></script>
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  </>
+)}
