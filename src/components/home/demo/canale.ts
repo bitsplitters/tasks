@@ -1,38 +1,47 @@
 /*
  * Il tab del canale della demo (piano docs/superpowers/plans/2026-11-15-demo-fedele.md, §6, nel repo
  * team-tasks-manager): ciò che succede a ogni clic. Il selettore a riposo spunta il task scelto con la cascata dei
- * gruppi; l'Activity, il primo pulsante, porta la lista nell'altro tab. La seconda riga passa da grigio a blu a rosso
- * e il task scelto col pulsante acceso fa ciò che fa il bot (compito 9): Owner e Tag blu aprono il menu di menzioni
- * sotto i pulsanti, Webhook blu il menu dei webhook; Contenuto e Promemoria blu aprono la loro modale, che blocca la
- * lista finché non si manda; le domande del bot hanno la loro modale. Le risposte del bot vanno nel fumetto; dopo ogni
- * azione i pulsanti tornano grigi. Gli altri pulsanti della prima riga mostrano il loro tooltip fino al compito 10.
+ * gruppi. La seconda riga passa da grigio a blu a rosso e il task scelto col pulsante acceso fa ciò che fa il bot
+ * (compito 9): Owner e Tag blu aprono il menu di menzioni sotto i pulsanti, Webhook blu il menu dei webhook;
+ * Contenuto e Promemoria blu aprono la loro modale, che blocca la lista finché non si manda; le domande del bot hanno
+ * la loro modale. La prima riga (compito 10): il 🚀 porta la lista nell'altro tab; Pulisci chiede nella sua modale;
+ * Riapri tutti e More rispondono con un messaggio effimero sotto la lista, coi suoi pulsanti; Modifica in blocco apre
+ * la sua modale in sola lettura. Le risposte brevi del bot vanno nel fumetto; dopo ogni azione sulla lista i pulsanti
+ * tornano grigi.
  */
 import type { Tasto } from '../scene-data.ts';
 import { accendiNelCanale, apriSelettore, chatInBasso } from '../scene-dom.ts';
 import {
-  campiDalPromemoria, divisa, modaleDelPromemoria, modaleDelTesto, modaleDellaDomanda, opzioniDeiWebhook, vociDelMenu,
+  campiDalPromemoria, divisa, modaleDelPromemoria, modaleDelTesto, modaleDellaDomanda, modaleDellaNuovaData,
+  modaleDiModificaInBlocco, opzioniDeiWebhook, vociDelMenu,
 } from './componenti.ts';
 import { dentro, dopoIlClic, type Acceso, type Condiviso } from './condiviso.ts';
 import { markdown } from './markdown.ts';
+import { esitoDelPonte, htmlDellAnnullamento, htmlDelPannello, htmlDelPonte } from './messaggi.ts';
 import type { Stato } from './modello.ts';
 import {
-  applicaOwner, applicaPromemoria, applicaTag, applicaWebhook, campiDelPromemoria, eliminaTask, eliminaTaskConfermato,
-  invertiSpunta, nellActivity, pulisciConfermato, rifiutoDelCarrello, salvaTesto, togliOwner, togliOwnerConfermato,
-  togliPromemoria, togliTag, togliWebhook, validaPromemoria,
+  applicaOwner, applicaPromemoria, applicaTag, applicaWebhook, campiDellaNuovaData, campiDelPromemoria, eliminaTask,
+  eliminaTaskConfermato, invertiSpunta, nellActivity, pulisci, pulisciConfermato, riapri, riapriConfermato,
+  rifiutoDelCarrello, salvaTesto, togliOwner, togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook,
+  validaNuovaData, validaPromemoria,
 } from './regole.ts';
 import type { Domanda, Esito } from './regole.ts';
 import { contestoDelCanale } from './righe.ts';
 import { avviso, rispostaDellEsito, testo, testoDegliErrori, testoDelPromemoria, testoDi } from './testi.ts';
+import { mostraEffimero, togliEffimero } from './ui/effimero.ts';
 import { montaMenzioni, type Menzioni } from './ui/menzioni.ts';
 import { apriModale, type Modale } from './ui/modale.ts';
 import { montaScelta, type Scelta } from './ui/scelta.ts';
 
-/** Il tab del canale montato: chiudi lo riporta com'è all'arrivo, senza modale, coi menu chiusi e i pulsanti grigi. */
+/**
+ * Il tab del canale montato: chiudi lo riporta com'è all'arrivo, senza modale né messaggio effimero, coi menu chiusi e
+ * i pulsanti grigi.
+ */
 export interface Canale {
   chiudi(): void;
 }
 
-/** Le domande che il bot fa in una modale: quella di Riapri tutti è un messaggio coi pulsanti (compito 10). */
+/** Le domande che il bot fa in una modale: quella di Riapri tutti è un messaggio coi pulsanti. */
 type DomandaInModale = Exclude<Domanda, { tipo: 'riapri' }>;
 
 /** Lo stato dopo il Submit di una domanda. */
@@ -54,6 +63,7 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
   const sub = el('sub')!;
   const wb = el('wb')!;
   const feed = el('feed')!;
+  const eph = el('eph')!;
   const stato = () => condiviso.stato();
   let acceso: Acceso | null = null;
   /** Il menu di menzioni di Owner o Tag blu, con l'ultima scelta che il bot ha preso: quella che riceve il task. */
@@ -64,10 +74,29 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
   let webhook: string | null = null;
   /** La modale aperta, da chiudere senza avvisi quando si cambia tab. */
   let chiudiModale: (() => void) | null = null;
+  /** La chat era in fondo all'ultimo scorrimento: un messaggio che cresce la tiene lì (gli osservatori in fondo). */
+  let inFondo = true;
 
   /** La risposta del bot nel fumetto, accanto al selettore dei task o all'elemento dato. */
   function rispondi(md: string | null, accanto: Element = sel): void {
     if (md) condiviso.fumetto(markdown(md, contestoDelCanale(stato())), accanto);
+  }
+
+  /**
+   * La risposta del bot in un messaggio effimero sotto la lista, al posto di quello di prima. Se ci sta, la chat va in
+   * fondo, come in Discord; se è più alto del canale, si ferma al suo inizio, perché lì c'è ciò che conta: l'avviso
+   * della demo nel pannello More. Sul telefono il canale cresce col messaggio: con la stessa regola scorre la pagina
+   * (`nearest`), solo se il messaggio non è già in vista.
+   */
+  function mostra(html: string): void {
+    mostraEffimero(eph, html);
+    if (feed.scrollHeight > feed.clientHeight) {
+      const inizio = feed.scrollTop + eph.getBoundingClientRect().top - feed.getBoundingClientRect().top;
+      feed.scrollTop = eph.offsetHeight <= feed.clientHeight ? feed.scrollHeight : inizio;
+    } else {
+      eph.scrollIntoView({ block: 'nearest' });
+    }
+    inFondo = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 2;
   }
 
   /** I menu sotto i pulsanti tolti, con le loro scelte. */
@@ -128,9 +157,12 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
     }
   }
 
-  /** Una modale del bot sopra il canale, aperta dal selettore dei task: Submit manda i valori, chiuderla niente. */
-  function apri(modale: Modale, invio: (valori: Record<string, string>) => void): void {
-    chiudiModale = apriModale(chan, modale, sel, {
+  /**
+   * Una modale del bot sopra il canale: Submit manda i valori, chiuderla niente. Il focus torna a chi l'ha aperta, il
+   * selettore dei task se non si dice.
+   */
+  function apri(modale: Modale, invio: (valori: Record<string, string>) => void, apritore: HTMLElement = sel): void {
+    chiudiModale = apriModale(chan, modale, apritore, {
       invio: (valori) => {
         chiudiModale = null;
         invio(valori);
@@ -145,11 +177,11 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
    * La domanda del bot nella sua modale. Submit fa l'azione; chiuderla non manda niente al bot, che quindi non
    * ridisegna la lista: il pulsante resta acceso.
    */
-  function chiedi(domanda: DomandaInModale): void {
+  function chiedi(domanda: DomandaInModale, apritore: HTMLElement = sel): void {
     apri(modaleDellaDomanda(domanda, stato()), () => {
       condiviso.cambia(confermata(domanda, stato()));
       spegni();
-    });
+    }, apritore);
   }
 
   /** L'esito di una regola: lo stato nuovo, i pulsanti grigi, la risposta del bot; una domanda apre la sua modale. */
@@ -228,10 +260,74 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
     }
   }
 
+  /**
+   * Pulisci (TaskListBtnClean): la domanda nella sua modale, o il rifiuto nel fumetto. Un rifiuto della prima riga non
+   * ridisegna la lista: il pulsante acceso resta com'è, a differenza di un rifiuto dal task scelto (spec §6.5).
+   */
+  function pulisciLaLista(pulsante: HTMLElement): void {
+    const esito = pulisci(stato());
+    if (esito.tipo === 'domanda' && esito.domanda.tipo !== 'riapri') chiedi(esito.domanda, pulsante);
+    else rispondi(rispostaDellEsito(esito), pulsante);
+  }
+
+  /** Riapri tutti (ReopenLogic.ponte): il ponte sotto la lista, o il rifiuto nel fumetto, come per Pulisci. */
+  function riapriTutti(pulsante: HTMLElement): void {
+    const esito = riapri(stato());
+    if (esito.tipo === 'domanda' && esito.domanda.tipo === 'riapri') {
+      mostra(htmlDelPonte(esito.domanda, stato()));
+    } else {
+      rispondi(rispostaDellEsito(esito), pulsante);
+    }
+  }
+
+  /**
+   * Il focus dopo un pulsante che il messaggio ridisegnato ha tolto: sul primo acceso che resta, o Dismiss message.
+   * Senza scorrere: la chat l'ha già messa a posto mostra.
+   */
+  function focusNelMessaggio(): void {
+    eph.querySelector<HTMLElement>('button:not([aria-disabled="true"])')?.focus({ preventScroll: true });
+  }
+
+  /**
+   * Reopen, o il Submit di New date: il ponte si chiude con l'esito (ReopenLogic.riapertura). Riaperta, la lista si
+   * ridisegna coi pulsanti grigi; se intanto è cambiata, il rifiuto sta nel ponte.
+   */
+  function chiudiIlPonte(esito: Esito): void {
+    if (esito.tipo === 'fatto') {
+      condiviso.cambia(esito.stato);
+      spegni();
+    }
+    mostra(esitoDelPonte(esito, stato()));
+    focusNelMessaggio();
+  }
+
+  /**
+   * New date (TaskListBtnReopenNewDate): la modale coi campi proposti, col ponte che resta aperto. Gli errori vanno nel
+   * fumetto accanto a New date, che si può ripremere (il bot li dice in un effimero a parte, TaskListMdlReopenWhen);
+   * altrimenti la riapertura con la data scelta.
+   */
+  function nuovaData(pulsante: HTMLElement): void {
+    apri(modaleDellaNuovaData(campiDellaNuovaData(stato())), (valori) => {
+      const scritti = campiDalPromemoria(valori);
+      const valido = validaNuovaData(scritti);
+      if ('errori' in valido) rispondi(testoDegliErrori(valido.errori), pulsante);
+      else chiudiIlPonte(riapriConfermato(stato(), { at: valido.at, zona: scritti.zona }));
+    }, pulsante);
+  }
+
+  /** Unlock list (TaskListBtnListUnlock): la lista sbloccata coi pulsanti grigi, il pannello di nuovo con l'esito. */
+  function sblocca(): void {
+    condiviso.cambia({ ...stato(), bloccata: false });
+    spegni();
+    mostra(htmlDelPannello(stato(), true));
+    focusNelMessaggio();
+  }
+
   function chiudi(): void {
     apriSelettore(chan, false);
     chiudiModale?.();
     chiudiModale = null;
+    togliEffimero(eph);
     spegni();
   }
 
@@ -258,6 +354,24 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
       condiviso.vaiA('activity');
     } else if (k === 'b-join') {
       condiviso.vaiA('activity');
+    } else if (k === 'b-bulk') {
+      // In sola lettura: Submit è spento, quindi niente da mandare.
+      apri(modaleDiModificaInBlocco(stato()), () => undefined, b);
+    } else if (k === 'b-clean') {
+      pulisciLaLista(b);
+    } else if (k === 'b-reopen') {
+      riapriTutti(b);
+    } else if (k === 'b-more') {
+      mostra(htmlDelPannello(stato()));
+    } else if (k === 'e-reopen') {
+      chiudiIlPonte(riapriConfermato(stato()));
+    } else if (k === 'e-newdate') {
+      nuovaData(b);
+    } else if (k === 'e-cancel') {
+      mostra(htmlDellAnnullamento(stato()));
+      focusNelMessaggio();
+    } else if (k === 'e-unlock') {
+      sblocca();
     } else if (b.dataset.tt) {
       condiviso.tooltip(b);
     }
@@ -275,7 +389,6 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
 
   // La chat in fondo, come Discord: quando la scena cambia misura o torna visibile col suo tab; quando il messaggio
   // cresce (il menu sotto i pulsanti, un'etichetta in più) mentre in fondo c'era già.
-  let inFondo = true;
   feed.addEventListener('scroll', () => {
     inFondo = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 2;
   }, { passive: true });

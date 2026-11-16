@@ -6,13 +6,17 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  campiDalPromemoria, divisa, modaleDelPromemoria, modaleDelTesto, modaleDellaDomanda, opzioniDeiWebhook, vociDelMenu,
+  campiDalPromemoria, divisa, modaleDelPromemoria, modaleDelTesto, modaleDellaDomanda, modaleDellaNuovaData,
+  modaleDiModificaInBlocco, opzioniDeiWebhook, vociDelMenu,
 } from '../src/components/home/demo/componenti.ts';
 import { COACHES, LEO, MIA, SAM, idRuoloTtm, statoIniziale } from '../src/components/home/demo/modello.ts';
 import type { Stato } from '../src/components/home/demo/modello.ts';
-import { applicaOwner, applicaTag, campiDelPromemoria } from '../src/components/home/demo/regole.ts';
+import {
+  applicaOwner, applicaTag, campiDellaNuovaData, campiDelPromemoria, testoDellaLista,
+} from '../src/components/home/demo/regole.ts';
 import type { Campi, Esito } from '../src/components/home/demo/regole.ts';
 import type { Campo } from '../src/components/home/demo/ui/modale.ts';
+import { AVVISO_ILLUSTRATIVO } from '../src/components/home/scene-data.ts';
 
 /** Lo stato di un esito «fatto»: un altro esito fa fallire il test. */
 function statoDi(esito: Esito): Stato {
@@ -118,4 +122,30 @@ test('modaleDellaDomanda: il titolo della domanda e il suo testo, senza campi da
   const pulisci = modaleDellaDomanda({ tipo: 'pulisci', completati: 1, avvertenza: 'plain' }, s0);
   assert.equal(pulisci.titolo, 'Clean the list');
   assert.match(testoFisso(pulisci.campi[0]), /<strong>Roster &amp; scrims — week 12<\/strong>/);
+});
+
+test('modaleDiModificaInBlocco: in sola lettura, il titolo e la lista nel formato del bot; niente blocco', () => {
+  const s0 = statoIniziale();
+  const m = modaleDiModificaInBlocco(s0);
+  assert.equal(m.titolo, 'Edit your activities list');
+  assert.equal(m.solaLettura, AVVISO_ILLUSTRATIVO);
+  assert.deepEqual(m.campi, [
+    {
+      tipo: 'testo', id: 'title', etichetta: 'List title', valore: 'Roster & scrims — week 12', obbligatorio: true,
+      min: 1, max: 90,
+    },
+    {
+      tipo: 'testo', id: 'list', etichetta: 'List of activities', valore: testoDellaLista(s0.lista),
+      obbligatorio: true, min: 1, max: 4000, paragrafo: true,
+    },
+  ]);
+});
+
+test('modaleDellaNuovaData: i campi del promemoria, le 18:14 proposte, col titolo della riapertura', () => {
+  const s0 = statoIniziale();
+  const campi = campiDellaNuovaData(s0);
+  const m = modaleDellaNuovaData(campi);
+  assert.equal(m.titolo, 'New date for the reminders');
+  assert.deepEqual(m.campi, modaleDelPromemoria('3', campi).campi);
+  assert.equal(campi.ora, '18:14');
 });

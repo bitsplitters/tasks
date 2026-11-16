@@ -1,12 +1,14 @@
 /*
- * I componenti del bot nel canale della demo (piano docs/superpowers/plans/2026-11-15-demo-fedele.md, compito 9, nel
- * repo team-tasks-manager): le voci del menu di menzioni di Owner e Tag, le opzioni del menu dei webhook, le modali del
- * contenuto, del promemoria e delle domande, come le costruisce il bot. Non tocca il DOM: canale.ts li monta coi pezzi
- * di ui/.
+ * I componenti del bot nel canale della demo (piano docs/superpowers/plans/2026-11-15-demo-fedele.md, compiti 9 e 10,
+ * nel repo team-tasks-manager): le voci del menu di menzioni di Owner e Tag, le opzioni del menu dei webhook, le
+ * modali del contenuto, del promemoria, delle domande, di Modifica in blocco e di New date, come le costruisce il bot.
+ * Non tocca il DOM: canale.ts li monta coi pezzi di ui/.
  */
+import { AVVISO_ILLUSTRATIVO } from '../scene-data.ts';
 import { markdown } from './markdown.ts';
 import { NELL_ACTIVITY, PERSONE, WEBHOOK, posizione } from './modello.ts';
 import type { Stato } from './modello.ts';
+import { testoDellaLista } from './regole.ts';
 import type { Campi, Domanda } from './regole.ts';
 import { contestoDelCanale } from './righe.ts';
 import { testo, testoDellaDomanda } from './testi.ts';
@@ -16,6 +18,9 @@ import type { Opzione } from './ui/scelta.ts';
 
 /** Il tetto di un campo di testo di Discord (TextInput.MAX_VALUE_LENGTH). */
 const MAX_VALUE_LENGTH = 4000;
+
+/** Il tetto del titolo di una lista (TaskList.TITLE_MAX_LENGTH). */
+const TITOLO_MAX = 90;
 
 /** I mesi del campo Month, come Month.getDisplayName(FULL_STANDALONE) in inglese. */
 const MESI = [
@@ -74,40 +79,75 @@ export function modaleDelTesto(stato: Stato, pos: string): Modale {
 }
 
 /**
- * La modale del promemoria (TaskListMdlWhen, coi campi di WhenModalFields.build): Day, Month, Year, Time e il fuso,
- * coi valori di `campi` (campiDelPromemoria). Il mese è una scelta, obbligatoria come ogni select di JDA in una
- * modale.
+ * I campi di una modale «Quando» (WhenModalFields.build): Day, Month, Year, Time e il fuso, coi valori di `campi`. Il
+ * mese è una scelta, obbligatoria come ogni select di JDA in una modale.
  */
+function campiDelQuando(campi: Campi): Campo[] {
+  return [
+    {
+      tipo: 'testo', id: 'day', etichetta: testo('tasklist.modal.when.day'), valore: campi.giorno,
+      obbligatorio: true, min: 1, max: 2,
+    },
+    {
+      tipo: 'scelta', id: 'month', etichetta: testo('tasklist.modal.when.month'),
+      opzioni: MESI.map((m, i) => ({ valore: String(i + 1), testo: m })), scelto: campi.mese, obbligatorio: true,
+    },
+    {
+      tipo: 'testo', id: 'year', etichetta: testo('tasklist.modal.when.year'), valore: campi.anno,
+      obbligatorio: true, min: 4, max: 4,
+    },
+    {
+      tipo: 'testo', id: 'time', etichetta: testo('tasklist.modal.when.time'), valore: campi.ora,
+      obbligatorio: true, min: 5, max: 5,
+    },
+    {
+      tipo: 'testo', id: 'zone', etichetta: testo('tasklist.modal.alert.timezone'), valore: campi.zona,
+      segnaposto: testo('tasklist.modal.alert.timezone.placeholder'), obbligatorio: true, min: 1,
+      max: MAX_VALUE_LENGTH,
+    },
+  ];
+}
+
+/** La modale del promemoria (TaskListMdlWhen), coi valori di campiDelPromemoria. */
 export function modaleDelPromemoria(pos: string, campi: Campi): Modale {
+  return { titolo: testo('tasklist.modal.alert.title', pos), campi: campiDelQuando(campi) };
+}
+
+/**
+ * La modale di New date nel ponte di Riapri tutti (TaskListMdlReopenWhen.createModal): gli stessi campi, coi valori di
+ * campiDellaNuovaData. Non blocca la lista: Riapri tutti non la blocca nemmeno nel bot (spec §6.4).
+ */
+export function modaleDellaNuovaData(campi: Campi): Modale {
+  return { titolo: testo('tasklist.modal.reopen'), campi: campiDelQuando(campi) };
+}
+
+/**
+ * La modale di Modifica in blocco (TaskListMdlEdit.modale) in sola lettura (spec §8.1): l'avviso della demo in cima,
+ * «List title» col titolo, «List of activities» col testo della lista nel formato del bot (testoDellaLista). I campi
+ * non si scrivono e Submit è spento. Manca la riga del blocco (AvvisoDelBlocco): in sola lettura la lista non si
+ * blocca.
+ */
+export function modaleDiModificaInBlocco(stato: Stato): Modale {
   return {
-    titolo: testo('tasklist.modal.alert.title', pos),
+    titolo: testo('tasklist.modal.edit.title'),
+    solaLettura: AVVISO_ILLUSTRATIVO,
     campi: [
       {
-        tipo: 'testo', id: 'day', etichetta: testo('tasklist.modal.when.day'), valore: campi.giorno,
-        obbligatorio: true, min: 1, max: 2,
+        tipo: 'testo', id: 'title', etichetta: testo('tasklist.modal.edit.txt.title.label'),
+        valore: stato.lista.titolo, obbligatorio: true, min: 1, max: TITOLO_MAX,
       },
       {
-        tipo: 'scelta', id: 'month', etichetta: testo('tasklist.modal.when.month'),
-        opzioni: MESI.map((m, i) => ({ valore: String(i + 1), testo: m })), scelto: campi.mese, obbligatorio: true,
-      },
-      {
-        tipo: 'testo', id: 'year', etichetta: testo('tasklist.modal.when.year'), valore: campi.anno,
-        obbligatorio: true, min: 4, max: 4,
-      },
-      {
-        tipo: 'testo', id: 'time', etichetta: testo('tasklist.modal.when.time'), valore: campi.ora,
-        obbligatorio: true, min: 5, max: 5,
-      },
-      {
-        tipo: 'testo', id: 'zone', etichetta: testo('tasklist.modal.alert.timezone'), valore: campi.zona,
-        segnaposto: testo('tasklist.modal.alert.timezone.placeholder'), obbligatorio: true, min: 1,
-        max: MAX_VALUE_LENGTH,
+        tipo: 'testo', id: 'list', etichetta: testo('tasklist.modal.edit.txt.list.label'),
+        valore: testoDellaLista(stato.lista), obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,
       },
     ],
   };
 }
 
-/** I valori della modale del promemoria come li legge TaskListMdlWhen, per id: uno che manca arriva vuoto. */
+/**
+ * I valori di una modale «Quando» come li leggono TaskListMdlWhen e TaskListMdlReopenWhen, per id: uno che manca arriva
+ * vuoto.
+ */
 export function campiDalPromemoria(valori: Readonly<Record<string, string>>): Campi {
   return {
     giorno: valori.day ?? '', mese: valori.month ?? '', anno: valori.year ?? '', ora: valori.time ?? '',

@@ -109,8 +109,11 @@
 }
 .sc-text { padding-left: .25em; overflow-wrap: anywhere; }
 .sc-emoji { width: 1.375em; height: 1.375em; object-fit: contain; }
-/* Un'emoji scritta nel testo (markdown.ts) sta sulla riga, come in Discord: nei task e nel testo di una modale. */
-.sc-text .sc-emoji, .sc-atext .sc-emoji, .ui-mtesto .sc-emoji { display: inline-block; vertical-align: -.35em; }
+/* Un'emoji scritta nel testo (markdown.ts) sta sulla riga, come in Discord: nei task, nel testo di una modale o di un
+   messaggio effimero. */
+.sc-text .sc-emoji, .sc-atext .sc-emoji, .ui-mtesto .sc-emoji, .ui-effcorpo .sc-emoji {
+  display: inline-block; vertical-align: -.35em;
+}
 .sc-cb { position: relative; display: inline-block; flex: none; width: 1.375em; height: 1.375em; }
 .sc-cb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .sc-cb .sc-on, [data-done] .sc-cb .sc-off { display: none; }
@@ -384,6 +387,30 @@ textarea.ui-minput {
 .ui-occhio { flex: none; width: calc(16 * var(--u)); height: calc(16 * var(--u)); }
 .ui-effvia { color: #4d96ee; }
 .ui-effvia:hover { text-decoration: underline; }
+/* I messaggi effimeri della prima riga (demo/messaggi.ts). Il ponte di Riapri tutti è un embed del bot con la riga dei
+   pulsanti sotto; l'embed di un avviso ha la barra gialla (TTMEmbed.avviso). Il testo di un embed è più piccolo di
+   quello di un messaggio, come in Discord. */
+.ui-emb[data-barra="gialla"] { border-left-color: #ff0; }
+.ui-emb .ui-td { font-size: calc(14 * var(--u)); line-height: calc(18 * var(--u)); }
+.ui-tasti { display: flex; flex-wrap: wrap; gap: calc(8 * var(--u)); margin-top: calc(8 * var(--u)); }
+.sc-btn.ui-scritta { width: auto; padding: 0 calc(16 * var(--u)); font-size: calc(14 * var(--u)); font-weight: 500; }
+.sc-btn.ui-verde { background: #248046; }
+.sc-btn.ui-verde:not([aria-disabled="true"]):is(:hover, .is-hover) { background: #1a6334; }
+.sc-btn.ui-rosso { background: #da373c; }
+.sc-btn.ui-rosso:not([aria-disabled="true"]):is(:hover, .is-hover) { background: #a12829; }
+/* Il pannello More (OtherUI.panel): un contenitore di Components V2 con la barra verde del bot. Ogni voce ha il nome
+   in grassetto e la descrizione a sinistra, il pulsante a destra; una linea fra due voci, uno spazio prima della
+   chiusura. I due spazi fra l'emoji e l'esito di Unlock list restano, come in Discord. */
+.ui-cont {
+  max-width: calc(520 * var(--u)); margin-top: calc(2 * var(--u)); padding: calc(16 * var(--u));
+  border: 1px solid #2c2c31; border-left: calc(4 * var(--u)) solid #1ec786; border-radius: calc(8 * var(--u));
+  background: #242429;
+}
+.ui-voce { display: flex; align-items: flex-start; gap: calc(16 * var(--u)); }
+.ui-voce > .ui-td { flex: 1; min-width: 0; }
+.ui-linea { height: 1px; margin: calc(8 * var(--u)) 0; background: #3a3a40; }
+.ui-spazio { height: calc(8 * var(--u)); }
+.ui-esito { white-space: pre-wrap; }
 /* Le modali e i dialoghi si aprono come in Discord e nella pagina, se chi guarda non ha chiesto meno movimento. */
 @media (prefers-reduced-motion: no-preference) {
   .sc-live .ui-modale, .sc-live .ui-dlg { animation: ui-pop .15s ease-out; }
