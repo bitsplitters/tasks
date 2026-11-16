@@ -229,7 +229,6 @@ a.h-premium:hover { background: var(--accent); color: var(--ink); }
 }
 
 /* ── La demo ──────────────────────────────────────────────────────────────────────────────────────────── */
-#two-ways { scroll-margin-top: 5rem; }
 .h-touch { display: none; }
 @media (hover: none) {
   .h-hover { display: none; }

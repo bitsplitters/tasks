@@ -19,7 +19,10 @@ body {
   margin: 0; background: var(--ink); color: var(--text);
   font-family: var(--sans); font-size: 16px; line-height: 1.65;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-  min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden;
+  min-height: 100vh; display: flex; flex-direction: column;
+  /* clip taglia come hidden ma non fa di body un contenitore di scorrimento: con hidden nessun elemento sticky del
+     sito restava fermo. hidden resta davanti per i browser che non conoscono clip (Safari prima della 16). */
+  overflow-x: hidden; overflow-x: clip;
 }
 a { color: inherit; }
 /* Testo destinato ai soli screen reader: resta nel documento (quindi viene letto) ma non occupa
@@ -204,8 +207,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .card .card-head { display: flex; align-items: center; gap: .7rem; margin-bottom: .6rem; }
 .card .card-head .ic { margin-bottom: 0; flex: none; }
 .card .card-head h3 { margin: 0; }
-/* Prevent horizontal overflow / rubber-band scroll on mobile */
-html { overflow-x: hidden; }
+/* Niente scorrimento di lato sul telefono. Il menu in alto resta fermo: le ancore (i link a un titolo, i risultati
+   della ricerca, scrollIntoView) arrivano 5rem sotto il bordo, fuori dal menu. */
+html { overflow-x: hidden; scroll-padding-top: 5rem; }
 /* Docs mobile navigation: hamburger + full overlay, styled to match the site */
 .docs-menu-toggle { display: none; }
 .docs-side-close { display: none; }

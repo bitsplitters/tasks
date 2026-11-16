@@ -45,7 +45,6 @@
 .b-after { margin: 1.25rem 0 0; font-size: 1rem; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
 
 /* ── La promessa ──────────────────────────────────────────────────────────────────────────────────────── */
-#promise { scroll-margin-top: 5rem; }
 .b-promise { list-style: none; margin: 2.25rem 0 0; padding: 0; display: grid; gap: 1.75rem 2.25rem; }
 @media (min-width: 760px) { .b-promise { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .b-promise li { display: grid; grid-template-columns: 1.6em minmax(0, 1fr); align-content: start; }
