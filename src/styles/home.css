@@ -182,34 +182,50 @@ a.h-premium { text-decoration: none; transition: background-color .18s ease, col
 a.h-premium:hover { background: var(--accent); color: var(--ink); }
 
 /* ── Il confronto (Compare.astro) ─────────────────────────────────────────────────────────────────────── */
-/* I segni della legenda servono solo sul telefono: sul largo le colonne si leggono già. */
-.h-legend { display: none; }
-/* Sotto i 720 px una scheda sola, accesa in ambra: in cima la legenda, poi per ogni voce la riga di TTM e, sotto, quella
-   dell'altra app, spenta. A 390 px è alta 1069 px, contro i 1577 delle celle a blocchi col nome della colonna ripetuto
-   (segnalazione dell'utente del 15/11, variante «B»). La pagina dei piani tiene i blocchi di vetrina.css. */
+/* L'interruttore serve solo sul telefono: sul largo le due colonne si leggono già. */
+.h-switch { display: none; }
+/* Sotto i 720 px una colonna alla volta (variante «C», scelta dall'utente il 16/11 fra le tre del confronto sul
+   telefono): l'interruttore a pillola, acceso su TTM, mostra l'altra app quando si tocca la sua metà. Le celle restano
+   i blocchi di vetrina.css, senza il nome della colonna ripetuto (segnalazione dell'utente del 15/11). Come lo switch
+   della pagina dei piani è un gruppo radio senza JavaScript: la colonna scelta la mostra :has(). Dove :has() manca si
+   vedono le due colonne, una sotto l'altra. */
 @media (max-width: 719px) {
-  .h-compare .h-table {
-    padding: .2rem 1rem; border: 1px solid rgba(233, 164, 76, .4); border-radius: 12px;
-    background: rgba(233, 164, 76, .05);
+  .h-compare { container: confronto / inline-size; }
+  .h-switch {
+    position: relative; display: flex; width: fit-content; max-width: 100%; min-inline-size: 0;
+    margin: 2rem 0 0; padding: 3px; border: 1px solid var(--line-2); border-radius: 999px;
   }
-  /* L'intestazione torna visibile e fa da legenda. La cella vuota resta per gli screen reader, che contano le colonne. */
-  .h-compare .h-table thead {
-    display: block; position: static; width: auto; height: auto; overflow: visible; clip-path: none;
+  /* I radio restano nel documento e nella tastiera, fuori dalla vista: si vedono le label. */
+  .h-switch input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+  /* Lo spessore non cambia con la scelta, così le due metà non si allargano né si stringono. Dove la riga non basta
+     (sotto i 360 px) il testo va a capo dentro la sua metà, centrato. */
+  .h-switch label {
+    display: flex; align-items: center; justify-content: center; padding: .4rem .9rem; border-radius: 999px;
+    font-size: .85rem; font-weight: 650; line-height: 1.5; text-align: center; text-wrap: balance;
+    color: var(--muted); cursor: pointer;
   }
-  .h-compare .h-table thead tr { display: flex; flex-direction: column; gap: .15rem; padding: .75rem 0; }
-  .h-compare .h-table thead td {
-    position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%);
-  }
-  .h-compare .h-table thead th {
-    width: auto; padding: 0; border: 0; border-radius: 0; background: none; font-size: .88rem;
-  }
-  .h-compare .h-legend { display: inline-block; width: 1.3em; font-weight: 700; }
-  .h-compare .h-col-dim .h-legend { color: var(--line-2); }
-  .h-compare .h-table tbody tr { margin: 0; padding: .7rem 0; border-top: 1px solid var(--line); }
-  .h-compare .h-table tbody th { padding: 0 0 .25rem; font-size: 1rem; }
-  .h-compare .h-table td,
-  .h-compare .h-table tbody tr:last-child .h-acc { padding: 0; border: 0; border-radius: 0; background: none; }
-  .h-compare .h-table td + td { margin-top: .3rem; font-size: .92rem; }
+  .h-switch label:hover { color: var(--text); }
+  /* L'ambra resta a TTM: scelta l'altra app, la sua metà si accende in grigio. */
+  #h-mostra-ttm:checked + label { background: var(--accent); color: var(--ink); }
+  #h-mostra-altra:checked + label { background: var(--line-2); color: var(--text); }
+  /* global.css dà l'anello ai soli a e button: qui il focus sta sul radio, quindi l'anello va sulla sua label. */
+  .h-switch input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .h-compare .h-table { margin-top: 0; }
+  .h-compare .h-table tbody tr { margin: 1rem 0 0; }
+  .h-compare .h-table tbody th { padding: 0 0 .4rem; font-size: 1rem; }
+  /* Con display: none la colonna nascosta esce anche dall'albero dell'accessibilità. */
+  .h-compare:has(#h-mostra-altra:checked) .h-acc,
+  .h-compare:not(:has(#h-mostra-altra:checked)) .h-dim { display: none; }
+  .h-compare:has(#h-mostra-altra:checked) .h-table td + td { margin-top: 0; }
+}
+/* Dove la sezione è più stretta che su un telefono da 390 px la pillola si stringe, per restare su una riga fino ai
+   360 px dei telefoni Android più comuni. Conta lo spazio della sezione, non la finestra: una barra di scorrimento non
+   sposta la soglia. */
+@container confronto (max-width: 345px) {
+  .h-switch label { padding-inline: .75rem; font-size: .8rem; }
+}
+@media (max-width: 719px) and (prefers-reduced-motion: no-preference) {
+  .h-switch label { transition: background-color .18s ease, color .18s ease; }
 }
 
 /* ── La demo ──────────────────────────────────────────────────────────────────────────────────────────── */
