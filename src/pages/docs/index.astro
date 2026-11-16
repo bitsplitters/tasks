@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import VetrinaFont from '../../components/VetrinaFont.astro';
+import DocsSearch from '../../components/DocsSearch.astro';
 import { docsCard } from '../../lib/preview-card';
 import { PAGINA_PIANI } from '../../lib/pagina-piani';
 import { GRUPPI_DOCS, POSTI } from '../../lib/gruppi-docs';
@@ -34,28 +35,38 @@ const grouped = GRUPPI_DOCS
           </div>
         ))}
       </aside>
-      <article class="prose">
+      {/* La ricerca sotto il sottotitolo: l'indice è la pagina da cui parte chi cerca. Sul telefono è l'unica ricerca
+          a vista. Poi una sezione per gruppo, con le pagine in un elenco: role="list" perché senza i pallini Safari
+          non lo leggerebbe più come tale. */}
+      <article class="prose d-index">
         <h1>Documentation</h1>
         <p class="subtitle">{SUBTITLE}</p>
+        <DocsSearch class="d-search" />
         {grouped.map((g) => (
-          <div>
+          <section class="d-grp">
             <h2 class={g.place ? `h-place is-${g.place}` : undefined}>
               {g.place && <img class="place-ic" src={POSTI[g.place].icon} alt="" />}{g.name}
             </h2>
             {g.intro && <p class="grp-intro">{g.intro}</p>}
-            {g.items.map((it) => (
-              <p>
-                <a href={`/docs/${it.id}/`}><strong>{it.data.title}</strong></a>
-                {it.data.description ? ' — ' + it.data.description : ''}
-              </p>
-            ))}
-            {g.name === 'Plans' && (
-              <p>
-                <a href={PAGINA_PIANI.path}><strong>{PAGINA_PIANI.title}</strong></a>
-                {' — ' + PAGINA_PIANI.description}
-              </p>
-            )}
-          </div>
+            <ul class="d-list" role="list">
+              {g.items.map((it) => (
+                <li>
+                  <a href={`/docs/${it.id}/`}>
+                    <span class="d-t">{it.data.title}</span>
+                    {it.data.description && <span class="d-d">{it.data.description}</span>}
+                  </a>
+                </li>
+              ))}
+              {g.name === 'Plans' && (
+                <li>
+                  <a href={PAGINA_PIANI.path}>
+                    <span class="d-t">{PAGINA_PIANI.title}</span>
+                    <span class="d-d">{PAGINA_PIANI.description}</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </section>
         ))}
       </article>
     </div>
