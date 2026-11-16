@@ -6,7 +6,7 @@
  * bot cambia un testo, dice quale voce allineare. I testi di Discord (Cancel, Submit, i messaggi dei campi) e quelli
  * della demo stanno in scene-data.ts.
  */
-import type { Domanda } from './regole.ts';
+import type { Domanda, Esito, Testo } from './regole.ts';
 
 type Argomento = string | number;
 
@@ -155,6 +155,32 @@ export function testoDellaDomanda(domanda: Domanda, titolo: string): string {
 /** L'avviso di una modale del promemoria rifiutata (TaskListMdlWhen): gli errori uno per riga, nell'ordine dato. */
 export function testoDegliErrori(chiavi: string[]): string {
   return avviso(testo('tasklist.modal.alert.errors', chiavi.map((k) => testo(k)).join('\n')));
+}
+
+/** Il testo di una regola (regole.ts), con i suoi argomenti. */
+export function testoDi(t: Testo): string {
+  return testo(t.chiave, ...(t.argomenti ?? []));
+}
+
+/**
+ * Il testo di un promemoria salvato, come ReminderSaver: il calendario e la data per esteso. Senza badge: nella demo il
+ * promemoria è sempre un evento singolo (ReminderDisplay.toBadge).
+ */
+export function testoDelPromemoria(at: number): string {
+  return `📅 <t:${at}:F>`;
+}
+
+/**
+ * Ciò che il bot risponde all'esito di un'azione, che la demo mostra nel fumetto. Il rifiuto e l'avviso sono avvisi
+ * (TTMEmbed.avviso); il messaggio si scrive com'è, senza emoji, al posto della riuscita (ReminderSaver: «No changes» è
+ * un embed semplice). La riuscita è quella data, per le azioni che ne scrivono una (il promemoria salvato). Null per le
+ * altre, che ridisegnano la lista e basta; null anche per una domanda, che apre la sua modale.
+ */
+export function rispostaDellEsito(esito: Esito, riuscita: string | null = null): string | null {
+  if (esito.tipo === 'rifiuto') return avviso(testoDi(esito.testo));
+  if (esito.tipo === 'domanda') return null;
+  if (esito.avviso) return avviso(testoDi(esito.avviso));
+  return esito.messaggio ? testoDi(esito.messaggio) : riuscita;
 }
 
 /**

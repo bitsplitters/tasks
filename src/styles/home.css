@@ -239,6 +239,9 @@ a.h-premium:hover { background: var(--accent); color: var(--ink); }
 .dm-bubble:empty { opacity: 0; }
 /* Le emoji del testo del bot (markdown.ts) stanno sulla riga, come in Discord. */
 .dm-bubble .sc-emoji { display: inline-block; vertical-align: -.35em; }
+/* La riga -# e le voci degli errori del promemoria, in px come il resto del fumetto. */
+.dm-bubble .sc-subtext { font-size: 12px; }
+.dm-bubble .sc-li { margin-left: 18px; }
 
 /* ── La chiamata finale ───────────────────────────────────────────────────────────────────────────────── */
 .h-final { text-align: center; }

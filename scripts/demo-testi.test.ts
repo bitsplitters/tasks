@@ -6,8 +6,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
+import { PROPOSTO, statoIniziale } from '../src/components/home/demo/modello.ts';
 import {
-  TESTI, avviso, elencoDeiTolti, emoji, testo, testoDegliErrori, testoDellaDomanda,
+  TESTI, avviso, elencoDeiTolti, emoji, rispostaDellEsito, testo, testoDegliErrori, testoDelPromemoria,
+  testoDellaDomanda, testoDi,
 } from '../src/components/home/demo/testi.ts';
 
 const ESCAPE: Record<string, string> = { t: '\t', n: '\n', r: '\r', f: '\f' };
@@ -191,4 +193,32 @@ test("gli errori del promemoria, uno per riga nell'avviso della modale", () => {
     '<:tip:0> **Unable to create reminder due to the following errors:**\n\n- **Incorrect time zone**. There is no ' +
     'match between the official time zones and the one you entered. Copy and paste your zone by searching for it on ' +
     '[Time Zone Picker](https://timezones.bitsplitters.app).\nInvalid month: pick one from the list.');
+});
+
+test('testoDi compone il testo di una regola, con i suoi argomenti', () => {
+  assert.equal(testoDi({ chiave: 'tasklist.slct.webhook.none' }),
+    'Choose a webhook first, then select the task to associate it with.');
+  assert.equal(testoDi({ chiave: 'tasklist.modal.alert.title', argomenti: ['2.1'] }), 'Set reminder for task 2.1');
+});
+
+test("rispostaDellEsito: ciò che il bot risponde all'esito di un'azione, nel fumetto della demo", () => {
+  const s0 = statoIniziale();
+  // Il rifiuto e l'avviso sono avvisi del bot (TTMEmbed.avviso): l'emoji tip al posto del {0}.
+  assert.equal(rispostaDellEsito({ tipo: 'rifiuto', testo: { chiave: 'tasklist.slct.owner.mixed.error' } }),
+    '<:tip:0> A task has one owner: several people or one role — not people and roles together, and not more than ' +
+    'one role.');
+  const tolti = {
+    chiave: 'tasklist.modal.task.filtered.warning', argomenti: [elencoDeiTolti(['{{wb=Staff alerts}}'])],
+  };
+  assert.equal(rispostaDellEsito({ tipo: 'fatto', stato: s0, avviso: tolti }),
+    '<:tip:0> I removed `{{wb=Staff alerts}}` from the task text.\n\nThis form only changes the task\'s content: ' +
+    'owners, tags, reminders and webhooks have their own buttons.');
+  // Il messaggio prende il posto della riuscita, senza emoji: «No changes» è un embed semplice (ReminderSaver).
+  const nienteDiNuovo = { chiave: 'tasklist.reminder.unchanged' };
+  assert.equal(rispostaDellEsito({ tipo: 'fatto', stato: s0, messaggio: nienteDiNuovo }, testoDelPromemoria(PROPOSTO)),
+    'No changes: the reminder stays as it was.');
+  // Una riuscita senza parole dice quella data, se c'è; una domanda apre la sua modale.
+  assert.equal(rispostaDellEsito({ tipo: 'fatto', stato: s0 }), null);
+  assert.equal(rispostaDellEsito({ tipo: 'fatto', stato: s0 }, testoDelPromemoria(PROPOSTO)), `📅 <t:${PROPOSTO}:F>`);
+  assert.equal(rispostaDellEsito({ tipo: 'domanda', domanda: { tipo: 'togliOwner', pos: '3' } }), null);
 });

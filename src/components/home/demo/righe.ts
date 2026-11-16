@@ -36,6 +36,11 @@ function contesto(nomi: Nomi, data: (at: number, stile: string) => string): Cont
   };
 }
 
+/** Il contesto del Markdown nel canale per i testi del bot fuori dalle righe: le risposte nel fumetto, le modali. */
+export function contestoDelCanale(stato: Stato): Contesto {
+  return contesto(nomiDi(stato), dataDelCanale);
+}
+
 /** Una riga di un task (Riga.DelTask): il webhook, il promemoria, la casella col testo. */
 type Riga =
   | { tipo: 'webhook'; nome: string }

@@ -92,14 +92,20 @@ export function apriSelettore(chan: HTMLElement, aperto: boolean): void {
   k(chan, 'sel')?.setAttribute('aria-expanded', String(aperto));
 }
 
-/**
- * Il pulsante acceso della seconda riga, o nessuno (null): la frase del selettore e, con Owner, Tag o Webhook in blu,
- * il menu sotto i pulsanti con la sua frase, chiuso e senza scelte. Quello del webhook resta chiuso.
- */
-export function tastoDelCanale(chan: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
+/** Il pulsante acceso della seconda riga, o nessuno (null), con la frase del selettore dei task. */
+export function accendiNelCanale(chan: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
   accendi(chan, 'tasto', tasto, colore);
   const sel = k(chan, 'sel-text');
   if (sel) sel.textContent = tasto && colore ? FRASI[tasto][colore] : FRASE_SPUNTA;
+}
+
+/**
+ * Il pulsante acceso della seconda riga nei video (accendiNelCanale) e, con Owner, Tag o Webhook in blu, il menu
+ * disegnato sotto i pulsanti con la sua frase, chiuso e senza scelte; quello del webhook resta chiuso. La demo monta i
+ * menu veri (demo/ui).
+ */
+export function tastoDelCanale(chan: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
+  accendiNelCanale(chan, tasto, colore);
   const frase = tasto && colore === 'blue' ? MENU_SOTTO[tasto] : undefined;
   const sotto = k(chan, 'sub');
   if (sotto) sotto.hidden = frase === undefined;

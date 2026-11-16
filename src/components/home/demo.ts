@@ -19,8 +19,12 @@ import { statoIniziale } from './demo/modello.ts';
 import type { Stato } from './demo/modello.ts';
 import { nelCanale, nellActivity } from './demo/regole.ts';
 
-/** Quanto resta il fumetto. */
+/**
+ * Quanto resta il fumetto: tre secondi e mezzo, di più per un testo lungo, che va letto (gli errori del promemoria,
+ * l'avviso dei token tolti).
+ */
 const FUMETTO_MS = 3500;
+const MS_PER_CARATTERE = 60;
 /** Il fumetto dai bordi della scena e dall'elemento accanto, in px: è disegnato in px, non in unità di Discord. */
 const BORDO = 12;
 const STACCO = 8;
@@ -56,6 +60,14 @@ function avvia(radice: HTMLElement): void {
     radice.querySelectorAll<HTMLElement>('.dm-bubble').forEach((f) => f.replaceChildren());
   }
 
+  // Ogni gesto nella demo toglie il fumetto di prima, che parlava di un'altra azione. Gira prima di tutti (su window,
+  // in cattura): il gesto può così mostrarne uno nuovo, anche il rifiuto del menu di menzioni che si chiude.
+  for (const tipo of ['pointerdown', 'keydown'] as const) {
+    window.addEventListener(tipo, (e) => {
+      if (e.target instanceof Node && radice.contains(e.target)) nascondiFumetto();
+    }, true);
+  }
+
   /**
    * Il fumetto nella scena del tab aperto: sopra l'elemento accanto, a partire dal suo bordo sinistro, o sotto se
    * sopra non c'è spazio; senza elemento, in cima al centro. Sempre dentro la scena.
@@ -81,7 +93,8 @@ function avvia(radice: HTMLElement): void {
     }
     f.style.left = `${Math.max(BORDO, Math.min(left, scena.clientWidth - w - BORDO))}px`;
     f.style.top = `${Math.max(BORDO, Math.min(top, scena.clientHeight - h - BORDO))}px`;
-    timerFumetto = window.setTimeout(nascondiFumetto, FUMETTO_MS);
+    const lettura = (f.textContent ?? '').length * MS_PER_CARATTERE;
+    timerFumetto = window.setTimeout(nascondiFumetto, Math.max(FUMETTO_MS, lettura));
   }
 
   /** La lista nei due tab, il canale sotto la finestra compreso; Start over se non è più quella di partenza. */

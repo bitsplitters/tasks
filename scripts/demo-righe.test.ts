@@ -11,7 +11,7 @@ import {
 } from '../src/components/home/demo/modello.ts';
 import type { Lista, Task } from '../src/components/home/demo/modello.ts';
 import {
-  etichettaDelTask, nomiDi, opzioniDelSelettore, righeDelCanale, righeDellActivity, testoPulito,
+  contestoDelCanale, etichettaDelTask, nomiDi, opzioniDelSelettore, righeDelCanale, righeDellActivity, testoPulito,
 } from '../src/components/home/demo/righe.ts';
 
 const S0 = statoIniziale();
@@ -212,4 +212,17 @@ test('righeDellActivity: il webhook col suo nome prima del promemoria, tutte spe
   assert.equal(r[0].testo, 'Scrim results');
   assert.deepEqual(r.map((x) => x.fatta), [true, true, true]);
   assert.equal(r[2].premuta, 'true');
+});
+
+test('contestoDelCanale: i nomi dello stato coi TTM<n>, il canale della demo, le date come nel canale', () => {
+  const ttm1 = { id: idRuoloTtm(1), nome: 'TTM1', membri: [MIA, LEO], diTtm: true };
+  const c = contestoDelCanale({ ...S0, ruoli: [...S0.ruoli, ttm1] });
+  assert.equal(c.persona(MIA), 'Mia');
+  assert.equal(c.persona('1'), undefined);
+  assert.equal(c.ruolo(COACHES), 'Coaches');
+  assert.equal(c.ruolo(idRuoloTtm(1)), 'TTM1');
+  assert.equal(c.canale(CANALE), 'scrims');
+  assert.equal(c.canale('1'), undefined);
+  assert.equal(c.data(PROPOSTO, 'F'), 'Sunday, November 15, 2026 6:14 PM');
+  assert.equal(c.data(PROPOSTO, 't'), '6:14 PM');
 });

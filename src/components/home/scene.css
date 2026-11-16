@@ -59,10 +59,10 @@
   font-size: calc(16 * var(--u)); font-weight: 600; color: #f2f3f5;
 }
 .sc-hash { font-size: calc(24 * var(--u)); font-weight: 400; line-height: 1; color: #80848e; }
-/* Il messaggio sta in alto, sotto l'intestazione del canale, e resta fermo: quando compare una riga (il menu delle
-   persone, il promemoria) cresce verso il basso. Ancorato in basso, come in Discord, saliva a ogni riga in più, e il
-   pulsante appena premuto scappava da sotto il cursore (segnalazione dell'utente del 15/11, sul video). Solo se non
-   ci sta la chat scorre, e chatInBasso (scene-dom.ts) tiene in vista i pulsanti. */
+/* Il messaggio sta in alto, sotto l'intestazione del canale, fermo: quando compare una riga (il menu delle persone,
+   il promemoria) cresce verso il basso. Ancorato in basso, come in Discord, saliva a ogni riga in più: il pulsante
+   appena premuto scappava da sotto il cursore (segnalazione dell'utente del 15/11, sul video). Solo se non ci sta la
+   chat scorre; chatInBasso (scene-dom.ts) tiene in vista i pulsanti. */
 .sc-feed { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
 .sc-msg {
   position: relative;
@@ -109,8 +109,8 @@
 }
 .sc-text { padding-left: .25em; overflow-wrap: anywhere; }
 .sc-emoji { width: 1.375em; height: 1.375em; object-fit: contain; }
-/* Un'emoji scritta nel testo (markdown.ts) sta sulla riga, come in Discord. */
-.sc-text .sc-emoji, .sc-atext .sc-emoji { display: inline-block; vertical-align: -.35em; }
+/* Un'emoji scritta nel testo (markdown.ts) sta sulla riga, come in Discord: nei task e nel testo di una modale. */
+.sc-text .sc-emoji, .sc-atext .sc-emoji, .ui-mtesto .sc-emoji { display: inline-block; vertical-align: -.35em; }
 .sc-cb { position: relative; display: inline-block; flex: none; width: 1.375em; height: 1.375em; }
 .sc-cb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .sc-cb .sc-on, [data-done] .sc-cb .sc-off { display: none; }
@@ -121,6 +121,10 @@
   font-weight: 500; color: #a9bbff; background: #303359;
 }
 .sc-ts { padding: 0 calc(2 * var(--u)); border-radius: calc(3 * var(--u)); color: #efeff1; background: #36363c; }
+/* La riga -# e la voce di un elenco nei testi del bot (markdown.ts): due blocchi, come in Discord. Il subtext è quello
+   delle righe dei task fatti. */
+.sc-subtext { display: block; font-size: calc(13 * var(--u)); line-height: 1.25; color: #abacb2; }
+.sc-li { display: list-item; margin-left: calc(20 * var(--u)); list-style: disc outside; }
 /* Nell'Activity: una riga vuota, poi la riga in subtext che prende il posto dei consigli. */
 .sc-actline { display: none; margin-top: 1.375em; font-size: calc(13 * var(--u)); color: #abacb2; }
 .sc-actline img { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -.35em; }
