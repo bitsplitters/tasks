@@ -218,7 +218,7 @@ const A_CAPO = /[ \t\n\v\f\r]*(?:\r\n|[\n\v\f\r\u0085\u2028\u2029])[ \t\n\v\f\r]
 const BORDI = /^[\u0000-\u0020]+|[\u0000-\u0020]+$/g;
 
 /** StringUtil.removeExtraSpaces: i bordi tolti, ogni fila di spazi ridotta a uno. */
-function senzaSpaziInPiu(testo: string): string {
+export function senzaSpaziInPiu(testo: string): string {
   return testo.replace(BORDI, '').replace(SPAZI, ' ');
 }
 
@@ -384,6 +384,12 @@ function senzaDoppioni(scelte: readonly Menzione[]): Menzione[] {
 /** La menzione come la scrive il testo del task (TagContentEditor.mentionOf). */
 function menzione(m: Menzione): string {
   return m.ruolo ? `<@&${m.id}>` : `<@${m.id}>`;
+}
+
+/** Il testo della casella con l'owner in testa, `<@id>: testo`, come OwnerNelTesto.conOwner. */
+export function conOwner(task: Task): string {
+  if (!task.owner) return task.testo;
+  return `${menzione({ ruolo: task.owner.tipo === 'ruolo', id: task.owner.id })}: ${task.testo}`;
 }
 
 /** Il task senza owner: il promemoria se ne va con lui, perché non arriverebbe a nessuno (Flusso.OWNER_TOGLI). */
@@ -824,7 +830,7 @@ export function testoDellaLista(lista: Lista): string {
     const parti = [t.pos.sub ? ' -' : '-', t.fatto ? '[X]' : '[]'];
     if (t.webhook !== undefined) parti.push(`{{wb=${t.webhook}}}`);
     if (t.promemoria) parti.push(`<t:${t.promemoria.at}> [0m,0m,0]`);
-    parti.push(t.owner ? `${menzione({ ruolo: t.owner.tipo === 'ruolo', id: t.owner.id })}: ${t.testo}` : t.testo);
+    parti.push(conOwner(t));
     return parti.join(' ');
   }).join('\n');
 }

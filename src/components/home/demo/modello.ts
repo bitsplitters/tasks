@@ -85,6 +85,7 @@ export const SAM = '1181730456203947583';
 export const COACHES = '1181730456203947590';
 /** Il canale #scrims. */
 export const CANALE = '1181730456203947000';
+export const NOME_DEL_CANALE = 'scrims';
 
 /** L'id del ruolo `TTM<n>`: TTM1 è 1181730456203947601. */
 export function idRuoloTtm(n: number): string {
