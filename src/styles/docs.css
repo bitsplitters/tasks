@@ -63,6 +63,9 @@
 /* A campo vuoto Pagefind tiene a destra il posto del pulsante Clear, che compare solo quando si scrive. Tolto quel
    posto, «Search in English» sta intera nella barra larga 240 px. Non c'è una variabile: si usa la sua classe. */
 .docs-search .pagefind-ui__search-input:placeholder-shown { padding-right: calc(16px * var(--pagefind-ui-scale)); }
+/* La scritta del campo vuoto nel grigio delle note. Pagefind la fa col colore del testo al 20% di opacità: sul fondo
+   del campo il contrasto è 1,8:1, col grigio 5,8:1. `input` nel selettore supera la regola di Pagefind. */
+.docs-search input.pagefind-ui__search-input::placeholder { color: var(--muted); opacity: 1; }
 
 /* ── L'articolo ──────────────────────────────────────────────────────────────────────────────────────── */
 /* Il testo entro 36rem, una settantina di caratteri per riga; tabelle, blocchi di codice e riquadri «How to do it»
