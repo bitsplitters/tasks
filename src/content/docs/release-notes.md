@@ -9,7 +9,7 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 2.1.0 — News in the bot
 
-- **`/news`** — the latest news about Team Tasks Manager, in your language, in a message only you can see. The arrows ◀ and ▶ go to older and newer news. See [`/news`](/docs/commands/#news).
+- **`/news`** — the latest news about Team Tasks Manager, in your language, in a message only you can see. The **Previous** and **Next** buttons go to older and newer news. See [`/news`](/docs/commands/#news).
 - **A line for news nobody has read** — when there's news nobody in your server has opened yet, the last line of the bot's panels says so until someone opens `/news`: then it goes away for everyone in the server. See [`/news`](/docs/commands/#news).
 
 ## 2.0.0 — The Activity
