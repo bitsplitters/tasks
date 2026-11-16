@@ -129,5 +129,10 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
       window.matchMedia('(max-width: 820px)').addEventListener('change', (e) => { if (!e.matches) chiudi(false); });
     }
     voceApertaInVista();
+    // Mona Sans arriva dopo questo script: col carattere di riserva una voce lunga sta su una riga invece di due, la
+    // barra è più corta e lo scorrimento si ferma prima. A caratteri pronti si rifà il conto, se nessuno ha mosso la
+    // barra nel frattempo.
+    const scorsaA = side?.scrollTop;
+    document.fonts.ready.then(() => { if (side?.scrollTop === scorsaA) voceApertaInVista(); });
   </script>
 </Base>
