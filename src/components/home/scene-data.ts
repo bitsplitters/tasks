@@ -1,12 +1,13 @@
 /*
  * I testi delle scene della home (spec docs/superpowers/specs/2026-11-15-home-video-e-demo-design.md, nel repo
- * team-tasks-manager): i pulsanti coi nomi del bot, le frasi del selettore e del pannello, i tooltip e i tempi dei
- * video. Li usano i componenti delle scene, la demo, i tooltip, i video e la pagina della registrazione. La lista, il
+ * team-tasks-manager): i pulsanti coi nomi del bot, le frasi del selettore e del pannello, i tooltip, i testi di
+ * Discord e i tempi dei video. Li usano i componenti delle scene, la demo coi suoi pezzi (demo/ui), i tooltip, i video
+ * e la pagina della registrazione. La lista, il
  * server della demo e le regole del bot stanno in demo/ (spec 2026-11-15-demo-fedele-design.md): modello.ts,
  * regole.ts, testi.ts.
  *
  * Le frasi dell'interfaccia sono quelle del bundle inglese del bot (slash-resource.properties), con la chiave
- * accanto; quelle dei tooltip sono del §8 della spec.
+ * accanto; quelle dei tooltip sono del §8 della spec; quelle di Discord, del suo client in inglese.
  */
 
 export type Tasto = 'content' | 'owner' | 'tag' | 'reminder' | 'webhook';
@@ -114,3 +115,26 @@ export const DURATA: Record<Modo, number> = { channel: 14, activity: 15.4 };
 
 /** Da quando si accendono i tre passi sotto i video: «Tick a task», «Set an owner», «Add a reminder». */
 export const PASSI: Record<Modo, readonly number[]> = { channel: [0.6, 3.3, 8.7], activity: [3.4, 6.1, 9.4] };
+
+/** La freccia dei menu di Discord: il selettore dei task, i menu della demo (demo/ui). */
+export const CHEV =
+  'M5.3 9.3a1 1 0 0 1 1.4 0l5.3 5.3 5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6a1 1 0 0 1-1.4 0l-6-6a1 1 0 0 1 0-1.4Z';
+
+/**
+ * I testi di Discord, non del bot (piano 2026-11-15-demo-fedele, §1.2.12 e §1.2.14): la modale coi suoi controlli, i
+ * menu, il messaggio effimero. Quelli del bot stanno in demo/testi.ts.
+ */
+export const DISCORD = {
+  annulla: 'Cancel',
+  invia: 'Submit',
+  chiudi: 'Close',
+  obbligatorio: 'This field is required.',
+  almeno: (n: number) => `Must be at least ${n} characters long.`,
+  togli: (nome: string) => `Remove ${nome}`,
+  nessuno: 'No results found',
+  soloTu: 'Only you can see this',
+  dismiss: 'Dismiss message',
+} as const;
+
+/** L'avviso della sola lettura (spec §1 e §8.3): in cima a Modifica in blocco, al pannello More, a Edit the list. */
+export const AVVISO_ILLUSTRATIVO = "For illustration only: this demo doesn't fully replicate how TTM works.";

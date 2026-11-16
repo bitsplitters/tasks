@@ -236,11 +236,14 @@ const DEL_CANALE = new Intl.DateTimeFormat('en-US', {
 
 /**
  * Una data come la scrive un client Discord in inglese americano, a Roma: `<t:N>` «November 15, 2026 6:14 PM»,
- * `<t:N:F>` «Sunday, November 15, 2026 6:14 PM». Gli altri stili, che la demo non usa, come `<t:N>`.
+ * `<t:N:F>` «Sunday, November 15, 2026 6:14 PM», `<t:N:t>` «6:14 PM» (l'ora accanto al nome nel messaggio). Gli altri
+ * stili, che la demo non usa, come `<t:N>`.
  */
 export function dataDelCanale(at: number, stile = ''): string {
   const p = parti(DEL_CANALE, at);
-  const data = `${p.month} ${p.day}, ${p.year} ${p.hour}:${p.minute} ${p.dayPeriod}`;
+  const ora = `${p.hour}:${p.minute} ${p.dayPeriod}`;
+  if (stile === 't') return ora;
+  const data = `${p.month} ${p.day}, ${p.year} ${ora}`;
   return stile === 'F' ? `${p.weekday}, ${data}` : data;
 }
 

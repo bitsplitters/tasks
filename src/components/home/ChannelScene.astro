@@ -11,8 +11,10 @@
  * attributi data-*. Gli elementi che si cercano hanno data-k. Il posto del messaggio effimero (eph) e quello del menu
  * dei webhook (wb) nascono vuoti. I testi sono quelli del bot, con la chiave del bundle accanto.
  */
-import { FRASE_SPUNTA, PRIMA_RIGA, TASTI } from './scene-data';
-import { NOME_DEL_CANALE, PERSONE, PROPOSTO, ZONA, campiDi, statoIniziale } from './demo/modello.ts';
+import { CHEV, FRASE_SPUNTA, PRIMA_RIGA, TASTI } from './scene-data';
+import {
+  ADESSO, NOME_DEL_CANALE, PERSONE, PROPOSTO, ZONA, campiDi, dataDelCanale, statoIniziale,
+} from './demo/modello.ts';
 import type { Lista } from './demo/modello.ts';
 import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
 import { nomiDi, opzioniDelSelettore, righeDelCanale } from './demo/righe.ts';
@@ -31,7 +33,6 @@ const spento = (nome: string) => String(!accesi.has(nome));
 const pct = avanzamento(lista);
 const icona = (n: string) => `/icons/${n}.png`;
 const si = (v: boolean) => (v ? '' : undefined);
-const CHEV = 'M5.3 9.3a1 1 0 0 1 1.4 0l5.3 5.3 5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6a1 1 0 0 1-1.4 0l-6-6a1 1 0 0 1 0-1.4Z';
 // La modale dei video: i campi già proposti, adesso più dieci minuti nel fuso del server (WhenModalFields).
 const proposto = campiDi(PROPOSTO, ZONA);
 const mese = new Intl.DateTimeFormat('en-US', { month: 'long', timeZone: 'UTC' })
@@ -43,7 +44,8 @@ const mese = new Intl.DateTimeFormat('en-US', { month: 'long', timeZone: 'UTC' }
     <div class="sc-msg">
       <img class="sc-avatar" src="/icons/ttm-avatar.png" alt="" />
       <p class="sc-mhead" data-k="msghead">
-        <span class="sc-name">Team Tasks Manager</span><span class="sc-app">APP</span><span class="sc-time">Today at 18:04</span>
+        <span class="sc-name">Team Tasks Manager</span><span class="sc-app">APP</span>
+        <span class="sc-time">{dataDelCanale(ADESSO, 't')}</span>
       </p>
       <div class="sc-embed">
         <p class="sc-title">{lista.titolo}</p>

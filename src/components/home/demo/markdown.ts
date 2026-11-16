@@ -12,7 +12,7 @@ export interface Contesto {
   persona(id: string): string | undefined;
   ruolo(id: string): string | undefined;
   canale(id: string): string | undefined;
-  /** La data di `<t:N>` (stile '') o di `<t:N:F>` (stile 'F'); gli altri stili come ''. */
+  /** La data di `<t:N>` (stile ''), di `<t:N:F>` (stile 'F') o l'ora di `<t:N:t>` (stile 't'); gli altri come ''. */
   data(at: number, stile: string): string;
 }
 

@@ -96,6 +96,8 @@ test("l'ora dai campi, come ZonedDateTime.of: un'ora che manca va avanti del sal
 test('le date nel canale come le scrive Discord in inglese americano, a Roma', () => {
   assert.equal(dataDelCanale(PROPOSTO), 'November 15, 2026 6:14 PM');
   assert.equal(dataDelCanale(PROPOSTO, 'F'), 'Sunday, November 15, 2026 6:14 PM');
+  // L'ora sola (`<t:N:t>`), come accanto al nome nel messaggio.
+  assert.equal(dataDelCanale(ADESSO, 't'), '6:04 PM');
   assert.equal(dataDelCanale(daiCampi(1, 12, 2026, '09:05', ZONA)), 'December 1, 2026 9:05 AM');
   assert.equal(dataDelCanale(daiCampi(1, 12, 2026, '00:05', ZONA)), 'December 1, 2026 12:05 AM');
 });
