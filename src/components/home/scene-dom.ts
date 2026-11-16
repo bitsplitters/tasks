@@ -13,7 +13,10 @@ import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
 import { nomiDi, opzioniDelSelettore, righeDelCanale, righeDellActivity } from './demo/righe.ts';
 
 export type Salvataggio = 'off' | 'on' | 'pending';
-/** Cosa mostra l'area del pannello: il selettore delle persone (owner, tag) o i campi del promemoria. */
+/**
+ * Cosa mostra l'area del pannello nei video: il selettore delle persone (owner, tag) o i campi del promemoria,
+ * disegnati fermi. La demo monta le azioni vere (demo/pannello.ts).
+ */
 export type Vista = 'owner' | 'tag' | 'reminder';
 
 const k = (radice: ParentNode, chiave: string) => radice.querySelector<HTMLElement>(`[data-k="${chiave}"]`);
@@ -150,12 +153,16 @@ export function apriPannello(win: HTMLElement, id: string | null): void {
   posizionaPannello(win);
 }
 
-/** I pulsanti del pannello grigi, l'area vuota, Save e Delete spenti: com'è all'apertura e dopo un salvataggio. */
+/**
+ * I pulsanti del pannello grigi, l'area vuota, Save e Delete spenti: com'è all'apertura e dopo un salvataggio. Nella
+ * demo l'area (p-form) torna al contenuto vuoto, alto come per ogni azione: l'azione di prima sparisce col suo DOM.
+ */
 export function azzeraIlPannello(win: HTMLElement): void {
   tastoDelPannello(win, null, null);
   vistaDelPannello(win, null);
   sceltaNelPannello(win, []);
-  avvisoNelPannello(win, null);
+  const area = k(win, 'p-form');
+  if (area) area.innerHTML = '<div class="sc-pcontent"></div>';
   salva(win, 'off');
   eliminaAttivo(win, false);
 }
@@ -217,33 +224,13 @@ export function sceltaNelPannello(win: HTMLElement, ids: readonly string[]): voi
   });
 }
 
-/** Il testo nell'elemento, con le parti fra «**» in grassetto, come il bot scrive il numero del task. */
-export function scriviConGrassetto(el: HTMLElement, testo: string): void {
-  el.replaceChildren(...testo.split('**').map((p, i) => {
-    if (i % 2 === 0) return p;
-    const b = document.createElement('strong');
-    b.textContent = p;
-    return b;
-  }));
-}
-
-/**
- * Nell'area del pannello: l'avviso del bot nel riquadro bianco, con l'emoji del consiglio (NoticeBox), o la domanda
- * della modale del canale sopra Delete (Question), o niente.
- */
-export function avvisoNelPannello(win: HTMLElement, tipo: 'notice' | 'question' | null, testo = ''): void {
-  for (const t of ['notice', 'question'] as const) {
-    const box = k(win, `p-${t}`);
-    if (box) box.hidden = tipo !== t;
-    const scritta = k(win, `p-${t}-text`);
-    if (scritta) scriviConGrassetto(scritta, tipo === t ? testo : '');
-  }
-}
-
-/** Save spento, acceso o in attesa (i tre puntini). */
+/** Save spento, acceso o in attesa: i tre puntini al posto della scritta, anche su Delete (Button, aria-busy). */
 export function salva(win: HTMLElement, stato: Salvataggio): void {
   win.dataset.save = stato;
   k(win, 'p-save')?.setAttribute('aria-disabled', String(stato !== 'on'));
+  for (const b of [k(win, 'p-save'), k(win, 'p-delete')]) {
+    if (b) attributo(b, 'aria-busy', stato === 'pending' ? 'true' : null);
+  }
 }
 
 /** Delete, in rosso al posto di Save: acceso solo se c'è qualcosa da togliere. */

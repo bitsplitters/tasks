@@ -41,6 +41,11 @@ export function contestoDelCanale(stato: Stato): Contesto {
   return contesto(nomiDi(stato), dataDelCanale);
 }
 
+/** Il contesto del Markdown nell'Activity per i testi fuori dalle righe: gli avvisi e le domande del pannello. */
+export function contestoDellActivity(stato: Stato): Contesto {
+  return contesto(nomiDi(stato), dataDellActivity);
+}
+
 /** Una riga di un task (Riga.DelTask): il webhook, il promemoria, la casella col testo. */
 type Riga =
   | { tipo: 'webhook'; nome: string }

@@ -437,6 +437,15 @@ test('il fuso scritto al posto di quello proposto diventa quello di chi agisce (
   assert.equal(fusoDi(statoDi(applicaPromemoria(s0, '3', PROPOSTO, 'Asia/Kolkata'))), 'Asia/Kolkata');
 });
 
+test('nell\'Activity il fuso s\'impara solo se chi guarda l\'ha toccato (ReminderAction, learn)', () => {
+  const kolkata = imparaIlFuso(statoIniziale(), 'Asia/Kolkata');
+  const dopo = statoDi(applicaPromemoria(kolkata, '3', PROPOSTO + 3600, ZONA, false));
+  assert.equal(fusoDi(dopo), 'Asia/Kolkata');
+  assert.deepEqual(dopo.lista.tasks[3].promemoria, { at: PROPOSTO + 3600, zona: ZONA });
+  assert.equal(fusoDi(statoDi(applicaPromemoria(kolkata, '3', PROPOSTO + 3600, ZONA, true))), ZONA);
+  assert.equal('fuso' in statoDi(applicaPromemoria(statoIniziale(), '2', PROPOSTO, 'Asia/Tokyo', false)), false);
+});
+
 test('il pulsante rosso del promemoria lascia owner, tag e webhook, anche su un task completato (AlertLogic)', () => {
   const s0 = statoIniziale();
   assert.deepEqual(togliPromemoria(s0, '2'), rifiutoDi('tasklist.slct.alert.noreminder.error'));

@@ -678,10 +678,11 @@ export function imparaIlFuso(stato: Stato, zona: string): Stato {
  * fuso scritto al posto di quello proposto diventa quello di chi agisce (UserTimezoneService.learn), anche quando il
  * promemoria poi resta com'era: lo stesso minuto del promemoria che c'è non si scrive, il bot risponde «No changes».
  * Un task senza owner prende come owner chi salva (RegoleDelPromemoria.conPromemoria). `at` viene da validaPromemoria:
- * la data passata, che il bot ricontrolla al salvataggio, qui non arriva.
+ * la data passata, che il bot ricontrolla al salvataggio, qui non arriva. Nell'Activity il fuso s'impara solo se chi
+ * guarda l'ha toccato (ReminderAction, `learn`): chi chiama lo dice con `impara`.
  */
-export function applicaPromemoria(stato: Stato, pos: string, at: number, zona: string): Esito {
-  const dopo = imparaIlFuso(stato, zona);
+export function applicaPromemoria(stato: Stato, pos: string, at: number, zona: string, impara = true): Esito {
+  const dopo = impara ? imparaIlFuso(stato, zona) : stato;
   const i = indice(dopo, pos);
   const task = dopo.lista.tasks[i];
   if (task.fatto) return rifiuto(PROMEMORIA_SU_COMPLETATO);

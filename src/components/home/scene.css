@@ -590,6 +590,8 @@ textarea.ui-minput {
   flex-direction: column; gap: calc(10 * var(--u)); width: min(calc(480 * var(--u)), calc(100% - 32 * var(--u)));
   padding: calc(12 * var(--u)); background: #2b2b31; border: 1px solid #3b3b42; border-radius: calc(12 * var(--u));
   box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0, 0, 0, .45);
+  /* I campi nativi di data e ora col tema scuro, come color-scheme: var(--scheme) di Field.css. */
+  color-scheme: dark;
 }
 .sc-win[data-panel] .sc-panel { display: flex; }
 .sc-live .sc-panel { animation: sc-panel-in .12s ease-out; }
@@ -607,8 +609,16 @@ textarea.ui-minput {
 .sc-pbtns .sc-abtn { flex: 1 1 0; min-width: 0; max-width: calc(58 * var(--u)); padding: 0; }
 .sc-pbtns .sc-abtn:not([data-mode]) { background: #4e5058; }
 .sc-pbtns .sc-abtn:not([data-mode]):is(:hover, .is-hover) { background: #3f4147; }
-/* L'area ha la stessa altezza per ogni azione, anche vuota (parts.tsx, Area). */
-.sc-parea { display: flex; flex-direction: column; gap: calc(8 * var(--u)); height: calc(264 * var(--u)); overflow: hidden; }
+/* L'area (parts.tsx, Area): gli avvisi che accompagnano un modulo stanno sopra; il contenuto sotto ha la stessa
+   altezza per ogni azione, anche vuota; quando è più alto scorre dentro. */
+.sc-parea { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
+.sc-pcontent {
+  display: flex; flex-direction: column; gap: calc(8 * var(--u)); height: calc(264 * var(--u));
+  overflow-y: auto; overscroll-behavior: contain;
+}
+/* Un involucro che non conta: i suoi figli stanno nella colonna di chi lo contiene. */
+.sc-pparte { display: contents; }
+/* Le viste ferme dei video (ActivityScene con video): le accende vistaDelPannello. */
 .sc-pview { display: none; flex-direction: column; gap: calc(8 * var(--u)); }
 .sc-win:is([data-view="owner"], [data-view="tag"]) .sc-pview-people, .sc-win[data-view="reminder"] .sc-pview-reminder {
   display: flex;
@@ -620,31 +630,47 @@ textarea.ui-minput {
 }
 .sc-pquestion { color: #efeff1; line-height: 1.375; overflow-wrap: anywhere; }
 .sc-pnotice img, .sc-pquestion img { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -.35em; }
-.sc-pnotice[hidden], .sc-pquestion[hidden] { display: none; }
 .sc-pfoot { display: flex; justify-content: space-between; gap: calc(12 * var(--u)); padding-top: calc(2 * var(--u)); }
-/* Save è spento finché non c'è una modifica; in attesa i tre puntini al posto della scritta. Rosso, Delete. */
+/* Save è spento finché non c'è una modifica; in attesa i tre puntini al posto della scritta, anche su Delete. */
 .sc-win:not([data-save="on"], [data-save="pending"]) .sc-psave { opacity: .5; cursor: not-allowed; }
 .sc-dots { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; gap: calc(4 * var(--u)); }
 .sc-dots i { width: calc(6 * var(--u)); height: calc(6 * var(--u)); border-radius: 50%; background: currentColor; }
+/* I puntini si accendono a turno (Button.css, btn-dot); nei video li ferma .sc-rec. */
+.sc-dots i, .sc-ploading i { animation: sc-dot 1.4s ease-in-out infinite; }
+.sc-dots i:nth-child(2), .sc-ploading i:nth-child(2) { animation-delay: .16s; }
+.sc-dots i:nth-child(3), .sc-ploading i:nth-child(3) { animation-delay: .32s; }
+@keyframes sc-dot { 0%, 80%, 100% { opacity: .3; transform: scale(.8); } 40% { opacity: 1; transform: scale(1); } }
+/* Col movimento ridotto i puntini stanno fermi e pieni: nella pagina l'animazione dura un attimo e torna alla base. */
+@media (prefers-reduced-motion: reduce) {
+  .sc-dots i, .sc-ploading i { animation: none; }
+}
 .sc-win[data-save="pending"] .sc-dots { display: flex; }
 .sc-win[data-save="pending"] .sc-savetext { visibility: hidden; }
 .sc-pdelete, .sc-win[data-delete] .sc-psave { display: none; }
 .sc-win[data-delete] .sc-pdelete { display: inline-flex; }
-.sc-pdelete[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.sc-win:not([data-save="pending"]) .sc-pdelete[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.sc-win[data-save="pending"] :is(.sc-psave, .sc-pdelete) { cursor: progress; }
 
 /* il selettore delle persone (PeoplePicker.css) */
+.sc-picker { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
 .sc-pills { display: flex; flex-wrap: wrap; gap: calc(6 * var(--u)); margin: 0; padding: 0; list-style: none; }
 .sc-pill {
-  display: inline-flex; align-items: center; gap: calc(5 * var(--u)); height: calc(28 * var(--u));
-  padding: 0 calc(10 * var(--u)) 0 calc(5 * var(--u)); border: 1px solid #4e5058; border-radius: 999px;
-  color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 500;
+  position: relative; display: inline-flex; align-items: center; gap: calc(5 * var(--u)); max-width: 100%;
+  height: calc(28 * var(--u)); padding: 0 calc(10 * var(--u)) 0 calc(5 * var(--u)); border: 1px solid #4e5058;
+  border-radius: 999px; color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 500;
 }
+/* Il tocco prende un po' più del disegno, come la casella (PeoplePicker.css). */
+.sc-pill::before { content: ''; position: absolute; inset: calc(-3 * var(--u)) calc(-2 * var(--u)); }
 .sc-pill:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
 .sc-pill[data-chosen] { padding: 0 calc(8 * var(--u)) 0 calc(5 * var(--u)); border-color: transparent; background: #3b3d44; }
 .sc-pill[data-chosen]:is(:hover, .is-hover) { background: #4e5058; }
+.sc-pill[data-role] { padding-left: calc(10 * var(--u)); }
+.sc-pill[data-role] .sc-pname { color: var(--role, #efeff1); }
+.sc-pname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sc-pills > [hidden] { display: none; }
 .sc-pill .sc-av { width: calc(18 * var(--u)); height: calc(18 * var(--u)); font-size: calc(9 * var(--u)); }
 .sc-pmark { flex: none; color: #abacb2; font-size: calc(16 * var(--u)); line-height: 1; }
+.sc-pill:not([data-chosen]) .sc-pmark { margin-left: calc(2 * var(--u)); }
 .sc-pnote { color: #abacb2; font-size: calc(12 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
 .sc-pills-chosen { display: none; }
 .sc-win[data-picked] .sc-pills-chosen { display: flex; }
@@ -663,10 +689,85 @@ textarea.ui-minput {
 .sc-fin > img { flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
 .sc-when { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
 .sc-whenrow { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: calc(8 * var(--u)); }
-.sc-zplace { display: flex; flex: 1; align-items: baseline; gap: calc(6 * var(--u)); min-width: 0; overflow: hidden; }
+.sc-zplace {
+  display: flex; flex: 1; align-items: baseline; gap: calc(6 * var(--u)); min-width: 0; overflow: hidden;
+  white-space: nowrap;
+}
 .sc-zcity { font-weight: 600; }
 .sc-zcountry { overflow: hidden; color: #abacb2; text-overflow: ellipsis; }
 .sc-zoff { flex: none; color: #abacb2; font-size: calc(13 * var(--u)); font-variant-numeric: tabular-nums; }
+
+/* i campi veri del pannello della demo (Field.css, .input): il testo, le ricerche, data e ora, il fuso */
+.sc-pin {
+  width: 100%; min-height: calc(36 * var(--u)); margin: 0; padding: calc(7 * var(--u)) calc(10 * var(--u));
+  border: 1px solid #35353b; border-radius: calc(8 * var(--u)); background: #17171a; color: #efeff1;
+  font: inherit; font-size: calc(14 * var(--u)); line-height: calc(20 * var(--u));
+}
+.sc-pin:focus { border-color: #5865f2; outline: none; }
+.sc-pin:disabled { opacity: .5; cursor: not-allowed; }
+.sc-pin::placeholder { color: #80848e; }
+textarea.sc-pin { display: block; min-height: calc(80 * var(--u)); resize: vertical; }
+.sc-pin.sc-ptextarea { flex: 1; min-height: calc(96 * var(--u)); resize: none; }
+.sc-plabel { color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
+.sc-fdesc { color: #abacb2; font-size: calc(13 * var(--u)); line-height: calc(16 * var(--u)); }
+.sc-rform { display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+.sc-zfield { display: flex; align-items: center; gap: calc(8 * var(--u)); text-align: left; cursor: pointer; }
+.sc-zfield:is(:hover, .is-hover) { border-color: #80848e; }
+.sc-zfield > img { flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+
+/* le webhook del server mentre arrivano e la loro scelta (WebhookAction, TaskPanel.css) */
+.sc-ploading {
+  display: flex; justify-content: center; gap: calc(4 * var(--u)); padding: calc(24 * var(--u)) 0; color: #abacb2;
+}
+.sc-ploading i { width: calc(6 * var(--u)); height: calc(6 * var(--u)); border-radius: 50%; background: currentColor; }
+.sc-choices { display: flex; flex-direction: column; gap: calc(2 * var(--u)); }
+.sc-choice {
+  display: flex; align-items: center; gap: calc(10 * var(--u)); min-height: calc(40 * var(--u));
+  padding: calc(6 * var(--u)) calc(8 * var(--u)); border-radius: calc(6 * var(--u)); cursor: pointer;
+}
+.sc-choice:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
+.sc-choice:has(input:checked) { background: rgba(88, 101, 242, .16); }
+.sc-choice input {
+  flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); margin: 0; accent-color: #5865f2;
+}
+.sc-choice-name {
+  flex: 1; min-width: 0; overflow: hidden; color: #efeff1; font-weight: 600; text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sc-choice-meta { flex: none; color: #abacb2; font-size: calc(13 * var(--u)); }
+.sc-choice[data-missing] .sc-choice-name { color: #abacb2; text-decoration: line-through; }
+
+/* la vista dei fusi al posto dei campi (ReminderFields.css, ZoneView; ZonePicker.css) */
+.sc-zview { display: flex; flex-direction: column; min-height: 0; }
+.sc-zones { display: flex; flex-direction: column; gap: calc(8 * var(--u)); min-height: 0; }
+.sc-zhead { display: flex; align-items: center; gap: calc(6 * var(--u)); }
+.sc-zback {
+  display: inline-flex; align-items: center; justify-content: center; width: calc(30 * var(--u));
+  height: calc(30 * var(--u)); border-radius: calc(8 * var(--u)); background: #4e5058;
+}
+.sc-zback:is(:hover, .is-hover) { background: #3f4147; }
+.sc-zback img { width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+.sc-ztitle { color: #fbfbfb; font-weight: 600; }
+.sc-zlist {
+  display: flex; flex-direction: column; gap: calc(2 * var(--u)); margin: 0; padding: 0; list-style: none;
+}
+.sc-zrow {
+  display: flex; align-items: center; gap: calc(12 * var(--u)); width: 100%; min-height: calc(40 * var(--u));
+  padding: calc(6 * var(--u)) calc(8 * var(--u)); border-radius: calc(6 * var(--u)); text-align: left;
+}
+.sc-zrow:is(:hover, .is-hover) { background: rgba(255, 255, 255, .04); }
+.sc-zrow[aria-current] { background: rgba(88, 101, 242, .16); }
+.sc-zrplace {
+  display: flex; flex: 1; flex-wrap: wrap; align-items: baseline; column-gap: calc(6 * var(--u)); min-width: 0;
+}
+.sc-zrcity { color: #efeff1; font-weight: 600; }
+.sc-zrcountry { color: #abacb2; }
+.sc-zrreasons { flex-basis: 100%; color: #80848e; font-size: calc(12 * var(--u)); line-height: calc(16 * var(--u)); }
+.sc-zrtime {
+  display: flex; flex: none; flex-direction: column; align-items: flex-end; font-variant-numeric: tabular-nums;
+}
+.sc-zrnow { color: #efeff1; }
+.sc-zroffset { color: #abacb2; font-size: calc(12 * var(--u)); line-height: calc(16 * var(--u)); }
 
 /* nella demo i pulsanti si tengono premuti senza il menu del browser (§5.4) */
 .sc-live button { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }

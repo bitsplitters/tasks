@@ -3,12 +3,13 @@
  * L'Activity della home (spec 2026-11-15-home-video-e-demo-design.md, §4.3, §4.5, §5.3 e §5.6; spec
  * 2026-11-15-demo-fedele-design.md): il canale sotto, scurito, con la lista nell'Activity; la finestra di Discord;
  * dentro, la pagina com'è nel codice (activity/src/app/App.tsx): «Lists», chi è dentro e la rotella, l'embed con la
- * barra, la prima riga, l'avviso di Exit e il pannello del task col selettore delle persone e i campi del promemoria.
+ * barra, la prima riga, l'avviso di Exit e il pannello del task.
  *
  * Nasce dalla lista che riceve, come ChannelScene: le righe vengono da demo/righe.ts. aperta = false è l'inizio del
  * video: la finestra chiusa, il canale com'è prima del clic sull'Activity. Gli stati cambiano con scene-dom.ts
- * (data-open, data-panel, data-view, data-save, data-picked, data-delete sulla finestra). Il posto del dialogo della
- * pagina (dlg) nasce vuoto.
+ * (data-open, data-panel, data-view, data-save, data-picked, data-delete sulla finestra). L'area del pannello, nella
+ * demo, nasce vuota e la riempie demo/pannello.ts; nei video (video) ha il selettore delle persone e i campi del
+ * promemoria disegnati fermi. Il posto del dialogo della pagina (dlg) nasce vuoto.
  */
 import ChannelScene from './ChannelScene.astro';
 import { IN_CIMA_ACTIVITY, PRIMA_RIGA_ACTIVITY, TASTI, fraseDelPannello } from './scene-data';
@@ -22,8 +23,10 @@ interface Props {
   lista: Lista;
   /** La finestra è già aperta, la lista nell'Activity: com'è nella demo. */
   aperta?: boolean;
+  /** I video: l'area del pannello coi disegni fermi che i copioni accendono, al posto di quella che la demo riempie. */
+  video?: boolean;
 }
-const { lista, aperta = true } = Astro.props;
+const { lista, aperta = true, video = false } = Astro.props;
 const pct = avanzamento(lista);
 const icona = (n: string) => `/icons/${n}.png`;
 const si = (v: boolean) => (v ? '' : undefined);
@@ -112,76 +115,88 @@ const ORA = 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2a8 8 0 1 1 0 16 8 8 0 0
             ><img src={icona(t.icona)} alt="" /></button>
           ))}
         </div>
-        <div class="sc-parea">
-          {/* L'avviso del bot (NoticeBox, con l'emoji del consiglio) e la domanda sopra Delete (Question): li scrive
-              avvisoNelPannello. */}
-          <p class="sc-pnotice" data-k="p-notice" hidden><img src={icona('tip')} alt="" /> <span data-k="p-notice-text"></span></p>
-          <p class="sc-pquestion" data-k="p-question" hidden><img src={icona('owner_blue')} alt="" /> <span data-k="p-question-text"></span></p>
-          {/* Owner e Tag in blu (PeopleAction.tsx, PeoplePicker.tsx): le scelte con la ×, il campo, chi è
-              nell'Activity con il + (activity.picker.*). */}
-          <div class="sc-pview sc-pview-people">
-            <ul class="sc-pills sc-pills-chosen">
-              {PERSONE.map((p) => (
-                <li data-pick={p.id} hidden>
-                  <button
-                    type="button" class="sc-pill" data-chosen data-k={`pc-${p.nome.toLowerCase()}`}
-                    aria-label={`Remove ${nome(p)}`}
-                  >
-                    <span class="sc-av" style={`--av: ${p.colore}`}>{p.nome[0]}</span>{nome(p)}<span class="sc-pmark" aria-hidden="true">&times;</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <span class="sc-fin" aria-hidden="true"><span class="sc-fph">Search people and roles</span></span>
-            <p class="sc-pnote">Now in the Activity</p>
-            <ul class="sc-pills">
-              {qui.map((p) => (
-                <li data-sugg={p.id}>
-                  <button
-                    type="button" class="sc-pill" data-k={`pk-${p.nome.toLowerCase()}`} aria-label={`Add ${nome(p)}`}
-                  >
-                    <span class="sc-pmark" aria-hidden="true">+</span><span class="sc-av" style={`--av: ${p.colore}`}>{p.nome[0]}</span>{nome(p)}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* Reminder in blu (ReminderFields.tsx): data e ora proposte, il fuso del dispositivo. */}
-          <div class="sc-pview sc-pview-reminder" aria-hidden="true">
-            <div class="sc-when">
-              <div class="sc-whenrow">
-                <div class="sc-field">
-                  <span class="sc-flabel">Date</span>
-                  <span class="sc-fin">
-                    {campoData}<svg viewBox="0 0 24 24"><path d={CAL} fill="currentColor" /></svg>
-                  </span>
-                </div>
-                <div class="sc-field">
-                  <span class="sc-flabel">Time</span>
-                  <span class="sc-fin">
-                    {campoOra}<svg viewBox="0 0 24 24"><path d={ORA} fill="currentColor" fill-rule="evenodd" /></svg>
-                  </span>
-                </div>
+        {/* L'area (parts.tsx, Area). Nella demo nasce vuota: la riempie demo/pannello.ts, con gli avvisi sopra e il
+            contenuto sotto. Nei video ha i disegni fermi che i copioni accendono (scene-dom.ts, vistaDelPannello). */}
+        {video ? (
+          <div class="sc-parea">
+            <div class="sc-pcontent">
+              {/* Owner e Tag in blu (PeopleAction.tsx, PeoplePicker.tsx): le scelte con la ×, il campo, chi è
+                  nell'Activity con il + (activity.picker.*). */}
+              <div class="sc-pview sc-pview-people">
+                <ul class="sc-pills sc-pills-chosen">
+                  {PERSONE.map((p) => (
+                    <li data-pick={p.id} hidden>
+                      <button
+                        type="button" class="sc-pill" data-chosen data-k={`pc-${p.nome.toLowerCase()}`}
+                        aria-label={`Remove ${nome(p)}`}
+                      >
+                        <span class="sc-av" style={`--av: ${p.colore}`}>{p.nome[0]}</span>{nome(p)}<span
+                          class="sc-pmark" aria-hidden="true"
+                        >&times;</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <span class="sc-fin" aria-hidden="true"><span class="sc-fph">Search people and roles</span></span>
+                <p class="sc-pnote">Now in the Activity</p>
+                <ul class="sc-pills">
+                  {qui.map((p) => (
+                    <li data-sugg={p.id}>
+                      <button
+                        type="button" class="sc-pill" data-k={`pk-${p.nome.toLowerCase()}`}
+                        aria-label={`Add ${nome(p)}`}
+                      >
+                        <span class="sc-pmark" aria-hidden="true">+</span><span
+                          class="sc-av" style={`--av: ${p.colore}`}
+                        >{p.nome[0]}</span>{nome(p)}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div class="sc-field">
-                <span class="sc-flabel">Time zone</span>
-                <span class="sc-fin">
-                  <img src={icona('timeZone')} alt="" />
-                  <span class="sc-zplace">
-                    <span class="sc-zcity">Rome</span><span class="sc-zcountry">Italy</span>
-                  </span>
-                  <span class="sc-zoff">{scartoUtc}</span>
-                </span>
+              {/* Reminder in blu (ReminderFields.tsx): data e ora proposte, il fuso del dispositivo. */}
+              <div class="sc-pview sc-pview-reminder" aria-hidden="true">
+                <div class="sc-when">
+                  <div class="sc-whenrow">
+                    <div class="sc-field">
+                      <span class="sc-flabel">Date</span>
+                      <span class="sc-fin">
+                        {campoData}<svg viewBox="0 0 24 24"><path d={CAL} fill="currentColor" /></svg>
+                      </span>
+                    </div>
+                    <div class="sc-field">
+                      <span class="sc-flabel">Time</span>
+                      <span class="sc-fin">
+                        {campoOra}
+                        <svg viewBox="0 0 24 24"><path d={ORA} fill="currentColor" fill-rule="evenodd" /></svg>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="sc-field">
+                    <span class="sc-flabel">Time zone</span>
+                    <span class="sc-fin">
+                      <img src={icona('timeZone')} alt="" />
+                      <span class="sc-zplace">
+                        <span class="sc-zcity">Rome</span><span class="sc-zcountry">Italy</span>
+                      </span>
+                      <span class="sc-zoff">{scartoUtc}</span>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div class="sc-parea" data-k="p-form"><div class="sc-pcontent"></div></div>
+        )}
         <div class="sc-pfoot">
           <button type="button" class="sc-abtn sc-raised" data-k="p-close">Close</button>
           <button type="button" class="sc-abtn sc-blue sc-psave" data-k="p-save" aria-disabled="true">
             <span class="sc-savetext">Save</span><span class="sc-dots" aria-hidden="true"><i></i><i></i><i></i></span>
           </button>
-          <button type="button" class="sc-abtn sc-red sc-pdelete" data-k="p-delete" aria-disabled="true">Delete</button>
+          <button type="button" class="sc-abtn sc-red sc-pdelete" data-k="p-delete" aria-disabled="true">
+            <span class="sc-savetext">Delete</span><span class="sc-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
         </div>
       </section>
     </div>

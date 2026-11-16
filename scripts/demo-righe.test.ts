@@ -11,7 +11,8 @@ import {
 } from '../src/components/home/demo/modello.ts';
 import type { Lista, Task } from '../src/components/home/demo/modello.ts';
 import {
-  contestoDelCanale, etichettaDelTask, nomiDi, opzioniDelSelettore, righeDelCanale, righeDellActivity, testoPulito,
+  contestoDelCanale, contestoDellActivity, etichettaDelTask, nomiDi, opzioniDelSelettore, righeDelCanale,
+  righeDellActivity, testoPulito,
 } from '../src/components/home/demo/righe.ts';
 
 const S0 = statoIniziale();
@@ -225,4 +226,12 @@ test('contestoDelCanale: i nomi dello stato coi TTM<n>, il canale della demo, le
   assert.equal(c.canale('1'), undefined);
   assert.equal(c.data(PROPOSTO, 'F'), 'Sunday, November 15, 2026 6:14 PM');
   assert.equal(c.data(PROPOSTO, 't'), '6:14 PM');
+});
+
+test('contestoDellActivity: gli stessi nomi, le date come le scrive la pagina', () => {
+  const c = contestoDellActivity(S0);
+  assert.equal(c.persona(MIA), 'Mia');
+  assert.equal(c.ruolo(COACHES), 'Coaches');
+  assert.equal(c.canale(CANALE), 'scrims');
+  assert.equal(c.data(PROPOSTO, 'F'), '15 November 2026 18:14');
 });
