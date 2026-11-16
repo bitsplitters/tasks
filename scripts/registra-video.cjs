@@ -11,7 +11,7 @@
  *   node scripts/registra-video.cjs channel wide <cartella> 2.6 8.3  solo quei fotogrammi, in PNG
  *
  * Escono in public/video: {channel,activity}-{wide,narrow}.mp4 e, con lo stesso nome, il .webp dell'ultimo
- * fotogramma per l'attributo poster.
+ * fotogramma: l'immagine ferma di HeroVideo.astro (il suo <picture>), che resta anche senza JavaScript.
  *
  * Servono playwright-core (PLAYWRIGHT_CORE=<cartella del pacchetto>, dove non è installato nel progetto), Chrome
  * (CHROME=<chrome.exe>, di default quello installato su Windows) e ffmpeg con libx264 e libwebp (FFMPEG=<ffmpeg.exe>,
