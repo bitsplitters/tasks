@@ -7,17 +7,15 @@
  * Non tengono stato: ogni chiamata dice com'è un pezzo della scena, da capo. Così un copione può ridisegnare
  * qualunque istante e la demo non deve ricordare cosa c'era prima.
  */
-import { FRASE_SPUNTA, FRASI, MENU_SOTTO, fraseDelPannello, type Colore, type Tasto } from './scene-data';
+import { FRASE_SPUNTA, FRASI, fraseDelPannello, type Colore, type Tasto } from './scene-data.ts';
 import type { Stato } from './demo/modello.ts';
 import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
 import { nomiDi, opzioniDelSelettore, righeDelCanale, righeDellActivity } from './demo/righe.ts';
 
 export type Salvataggio = 'off' | 'on' | 'pending';
-/**
- * Cosa mostra l'area del pannello nei video: il selettore delle persone (owner, tag) o i campi del promemoria,
- * disegnati fermi. La demo monta le azioni vere (demo/pannello.ts).
- */
-export type Vista = 'owner' | 'tag' | 'reminder';
+
+/** I tre pulsanti della prima riga che aspettano mentre un task è in modifica (FirstRow, locked). */
+const BLOCCABILI = ['a-edit', 'a-clean', 'a-reopen'];
 
 const k = (radice: ParentNode, chiave: string) => radice.querySelector<HTMLElement>(`[data-k="${chiave}"]`);
 const attributo = (el: HTMLElement, nome: string, valore: string | null) =>
@@ -56,8 +54,8 @@ function riscrivi(contenitore: HTMLElement, html: string): void {
 /**
  * La lista dello stato nel canale (.sc-chan) o nella pagina dell'Activity (.sc-win): il titolo, le righe (righe.ts),
  * la barra. Nel canale anche le opzioni del selettore e i pulsanti spenti dove il bot li spegne (pulsantiAccesi); con
- * la lista nell'Activity resta «Join the Activity» al posto dei pulsanti, coi menu chiusi. Nella pagina rimette il
- * pannello sotto il suo task, perché una riga in più o in meno lo sposta.
+ * la lista nell'Activity resta «Join the Activity» al posto dei pulsanti, col selettore chiuso. Nella pagina rimette
+ * il pannello sotto il suo task, perché una riga in più o in meno lo sposta.
  */
 export function disegnaLista(radice: HTMLElement, stato: Stato): void {
   const nellaPagina = radice.matches('.sc-win');
@@ -83,10 +81,7 @@ export function disegnaLista(radice: HTMLElement, stato: Stato): void {
     b.setAttribute('aria-disabled', String(!accesi.has(nome)));
   });
   attributo(radice, 'data-inact', stato.inActivity ? '' : null);
-  if (stato.inActivity) {
-    apriSelettore(radice, false);
-    menuSottoAperto(radice, false);
-  }
+  if (stato.inActivity) apriSelettore(radice, false);
 }
 
 /** Il menu del selettore aperto o chiuso. */
@@ -102,49 +97,6 @@ export function accendiNelCanale(chan: HTMLElement, tasto: Tasto | null, colore:
   if (sel) sel.textContent = tasto && colore ? FRASI[tasto][colore] : FRASE_SPUNTA;
 }
 
-/**
- * Il pulsante acceso della seconda riga nei video (accendiNelCanale) e, con Owner, Tag o Webhook in blu, il menu
- * disegnato sotto i pulsanti con la sua frase, chiuso e senza scelte; quello del webhook resta chiuso. La demo monta i
- * menu veri (demo/ui).
- */
-export function tastoDelCanale(chan: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
-  accendiNelCanale(chan, tasto, colore);
-  const frase = tasto && colore === 'blue' ? MENU_SOTTO[tasto] : undefined;
-  const sotto = k(chan, 'sub');
-  if (sotto) sotto.hidden = frase === undefined;
-  const testo = k(chan, 'sub-text');
-  if (testo) testo.textContent = frase ?? '';
-  k(chan, 'sub-sel')?.setAttribute('aria-disabled', String(tasto === 'webhook'));
-  menuSottoAperto(chan, false);
-  sceltaNelMenuSotto(chan, []);
-}
-
-/** Il menu delle persone sotto i pulsanti aperto o chiuso. */
-export function menuSottoAperto(chan: HTMLElement, aperto: boolean): void {
-  attributo(chan, 'data-subopen', aperto ? '' : null);
-  k(chan, 'sub-sel')?.setAttribute('aria-expanded', String(aperto));
-}
-
-/** Le persone scelte nel menu sotto i pulsanti: le loro pillole nel selettore e la spunta nel menu. */
-export function sceltaNelMenuSotto(chan: HTMLElement, ids: readonly string[]): void {
-  attributo(chan, 'data-subpick', ids.length > 0 ? ids.join(' ') : null);
-  chan.querySelectorAll<HTMLElement>('.sc-subchosen').forEach((c) => {
-    const i = ids.indexOf(c.dataset.persona ?? '');
-    c.hidden = i < 0;
-    c.style.order = String(i);
-  });
-  chan.querySelectorAll<HTMLElement>('.sc-subopt').forEach((o) => {
-    const scelta = ids.includes(o.dataset.persona ?? '');
-    attributo(o, 'data-on', scelta ? '' : null);
-    o.setAttribute('aria-pressed', String(scelta));
-  });
-}
-
-/** La modale del promemoria aperta o chiusa. */
-export function modale(chan: HTMLElement, aperta: boolean): void {
-  attributo(chan, 'data-modal', aperta ? '' : null);
-}
-
 /** Il pannello aperto sul task id, da capo (pulsanti grigi, area vuota, Save spento), o chiuso (null). */
 export function apriPannello(win: HTMLElement, id: string | null): void {
   attributo(win, 'data-panel', id);
@@ -154,13 +106,11 @@ export function apriPannello(win: HTMLElement, id: string | null): void {
 }
 
 /**
- * I pulsanti del pannello grigi, l'area vuota, Save e Delete spenti: com'è all'apertura e dopo un salvataggio. Nella
- * demo l'area (p-form) torna al contenuto vuoto, alto come per ogni azione: l'azione di prima sparisce col suo DOM.
+ * I pulsanti del pannello grigi, l'area vuota, Save e Delete spenti: com'è all'apertura e dopo un salvataggio. L'area
+ * (p-form) torna al contenuto vuoto, alto come per ogni azione: l'azione di prima sparisce col suo DOM.
  */
 export function azzeraIlPannello(win: HTMLElement): void {
   tastoDelPannello(win, null, null);
-  vistaDelPannello(win, null);
-  sceltaNelPannello(win, []);
   const area = k(win, 'p-form');
   if (area) area.innerHTML = '<div class="sc-pcontent"></div>';
   salva(win, 'off');
@@ -203,25 +153,14 @@ export function tastoDelPannello(win: HTMLElement, tasto: Tasto | null, colore: 
   attributo(win, 'data-delete', colore === 'red' ? '' : null);
 }
 
-/** Cosa mostra l'area del pannello: il selettore delle persone, i campi del promemoria (solo nel video) o niente. */
-export function vistaDelPannello(win: HTMLElement, vista: Vista | null): void {
-  attributo(win, 'data-view', vista);
-}
-
-/**
- * Le persone scelte nel selettore del pannello: le loro pillole salgono fra le scelte nell'ordine della scelta;
- * spariscono da quelle di chi è nell'Activity.
- */
-export function sceltaNelPannello(win: HTMLElement, ids: readonly string[]): void {
-  attributo(win, 'data-picked', ids.length > 0 ? ids.join(' ') : null);
-  win.querySelectorAll<HTMLElement>('[data-pick]').forEach((p) => {
-    const i = ids.indexOf(p.dataset.pick ?? '');
-    p.hidden = i < 0;
-    p.style.order = String(i);
-  });
-  win.querySelectorAll<HTMLElement>('[data-sugg]').forEach((p) => {
-    p.hidden = ids.includes(p.dataset.sugg ?? '');
-  });
+/** Edit, Clean e Reopen all bloccati e sbiaditi, mentre nel pannello Save è acceso (useTaskLock), o di nuovo liberi. */
+export function bloccaLaPrimaRiga(radice: HTMLElement, bloccata: boolean): void {
+  for (const chiave of BLOCCABILI) {
+    const b = k(radice, chiave);
+    if (!b) continue;
+    b.toggleAttribute('data-locked', bloccata);
+    attributo(b, 'aria-disabled', bloccata ? 'true' : null);
+  }
 }
 
 /** Save spento, acceso o in attesa: i tre puntini al posto della scritta, anche su Delete (Button, aria-busy). */

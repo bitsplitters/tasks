@@ -89,7 +89,9 @@ async function registra(browser, modo, misura) {
   if (cartella && (!modo || !misura || istanti.length === 0)) {
     throw new Error('per i fotogrammi: modo misura cartella t…');
   }
-  const browser = await chromium.launch({ executablePath: CHROME });
+  // I campi nativi di data e ora (il promemoria dell'Activity) seguono la lingua del browser, non il locale della
+  // pagina (apri): con --lang sono in inglese come il resto del video, invece che nella lingua di chi registra.
+  const browser = await chromium.launch({ executablePath: CHROME, args: ['--lang=en-US'] });
   try {
     if (cartella) {
       fs.mkdirSync(cartella, { recursive: true });

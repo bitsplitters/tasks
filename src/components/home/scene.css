@@ -12,9 +12,8 @@
  *
  * Le righe della lista e le opzioni del selettore le scrive demo/righe.ts da una lista: l'owner, i tag, il webhook e
  * il promemoria ci sono già, come nel bot. Gli stati stanno negli attributi, scritti da scene-dom.ts: data-done sulle
- * righe; data-mode e aria-disabled sui pulsanti; data-on sulle persone del menu; data-menu, data-inact, data-modal,
- * data-subopen, data-subpick sul canale; data-open, data-panel, data-view, data-save, data-picked, data-delete sulla
- * finestra.
+ * righe; data-mode e aria-disabled sui pulsanti; data-menu, data-inact sul canale; data-open, data-panel, data-save,
+ * data-delete sulla finestra. I pezzi della demo (demo/ui, demo/pannello.ts) disegnano i loro.
  */
 
 /* Registrata, --u resta una lunghezza calcolata sulla scena: i figli ereditano i px, non la formula. */
@@ -46,10 +45,10 @@
 /* Nei video ogni fotogramma lo calcola render(t): niente transizioni, niente cornice. */
 .sc-rec { border: 0; border-radius: 0; box-shadow: none; }
 .sc-rec, .sc-rec * { transition: none !important; animation: none !important; }
-/* Il video del canale inquadra stretto: un Discord di 800 px, non 847, perché il messaggio, fermo in alto, nel suo
-   stato più alto arrivi fin sopra il campo del messaggio (sotto i 640 px, 420 al posto di 460). render-comune.ts
-   (chatFerma) si ferma se un giorno non ci sta più. */
-.sc-rec-chan { --u: calc(100cqi / 800); }
+/* Il video del canale inquadra il messaggio, fermo in alto, perché nel suo stato più alto (il menu di Owner aperto,
+   con Mia scelta) arrivi fin sopra il campo del messaggio: largo è il Discord vero, di 847 px; sotto i 640 px uno di
+   440 al posto di 460. render-comune.ts (chatFerma) si ferma se un giorno non ci sta più. */
+.sc-rec-chan { --u: calc(100cqi / 847); }
 
 /* ── Il canale ────────────────────────────────────────────────────────────────────────────────────────── */
 .sc-chan { position: absolute; inset: 0; display: flex; flex-direction: column; background: #1a1a1e; }
@@ -147,37 +146,33 @@
 .sc-selwrap, .sc-submenu, .sc-wm { position: relative; max-width: calc(400 * var(--u)); }
 /* I campi dei menu come nelle schermate dell'utente del 15/11 (owner-menu.png, owner-ruolo.png): alti 40, il bordo
    #303035, il segnaposto #abacb2, la freccia di 18 chiara (grigia in quello di menzioni). */
-.sc-sel, .sc-subsel, .ui-scelta {
+.sc-sel, .ui-scelta {
   width: 100%; height: calc(40 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u));
   padding: 0 calc(8 * var(--u)) 0 calc(12 * var(--u));
   background: #17171a; border: 1px solid #303035; border-radius: calc(8 * var(--u));
   font-size: calc(16 * var(--u)); color: #abacb2;
 }
 .sc-sel:not([aria-disabled="true"]):is(:hover, .is-hover),
-.sc-subsel:not([aria-disabled="true"]):is(:hover, .is-hover),
-.ui-scelta:not([aria-disabled="true"]):hover, .ui-mzcampo:hover { border-color: #4e5058; }
-.sc-subsel { overflow: hidden; text-align: left; }
-.sc-subsel[aria-disabled="true"] { cursor: default; }
-.sc-sel > span, .sc-subph, .ui-sctesto { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ui-scelta:not([aria-disabled="true"]):hover, .ui-mzcampo:is(:hover, .is-hover) { border-color: #4e5058; }
+.sc-sel > span, .ui-sctesto { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sc-chev { flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); margin-left: auto; color: #efeff1; }
 /* Aperto, il menu galleggia sopra il campo, a 9 px: in fondo alla chat non c'è spazio sotto. Il campo prende il
    bordo blu con l'anello; la regola sta dopo quella del mouse, che altrimenti la coprirebbe. */
-:is([data-menu] .sc-sel, [data-subopen] .sc-subsel):not([aria-disabled="true"]),
+[data-menu] .sc-sel:not([aria-disabled="true"]),
 .ui-scelta:not([aria-disabled="true"]):is([aria-expanded="true"], :focus-visible),
 [data-aperto] > .ui-mzcampo, .ui-mzcampo:focus-within { border-color: #5865f2; box-shadow: 0 0 0 1px #5865f2; }
-[data-menu] .sc-sel .sc-chev, [data-subopen] .sc-subsel .sc-chev,
-.ui-scelta[aria-expanded="true"] .sc-chev { transform: rotate(180deg); }
-.sc-menu, .sc-subopts, .ui-scmenu, .ui-mzmenu {
+[data-menu] .sc-sel .sc-chev, .ui-scelta[aria-expanded="true"] .sc-chev { transform: rotate(180deg); }
+.sc-menu, .ui-scmenu, .ui-mzmenu {
   display: none; position: absolute; left: 0; right: 0; bottom: calc(100% + 9 * var(--u)); z-index: 4;
   background: #28282d; border: 1px solid #35353b; border-radius: calc(8 * var(--u));
   box-shadow: 0 calc(4 * var(--u)) calc(16 * var(--u)) rgba(0, 0, 0, .35);
 }
-[data-menu] .sc-menu, [data-subopen] .sc-subopts { display: block; }
-.sc-opt, .sc-subopt {
+[data-menu] .sc-menu { display: block; }
+.sc-opt {
   display: flex; align-items: center; gap: calc(8 * var(--u)); width: 100%; min-height: calc(40 * var(--u));
   padding: calc(8 * var(--u)) calc(12 * var(--u)); font-size: calc(16 * var(--u)); color: #dbdee1;
 }
-.sc-opt:is(:hover, .is-hover), .sc-subopt:is(:hover, .is-hover) { background: #333338; }
+.sc-opt:is(:hover, .is-hover) { background: #333338; }
 .sc-opt .sc-cb { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
 .sc-optlab { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* Una riga di Discord porta al massimo cinque pulsanti e non va mai a capo: sul telefono si stringono. A capo, la
@@ -202,31 +197,18 @@
 [data-inact] .sc-join { display: block; }
 .sc-joinbtn { width: auto; padding: 0 calc(16 * var(--u)); font-size: calc(14 * var(--u)); font-weight: 500; }
 
-/* il menu delle persone, sotto i pulsanti: le scelte nel selettore, la spunta nel menu */
-.sc-subchosen {
-  display: inline-flex; flex: none; align-items: center; gap: calc(6 * var(--u)); height: calc(26 * var(--u));
-  padding: 0 calc(8 * var(--u)) 0 calc(4 * var(--u)); border-radius: calc(4 * var(--u));
-  background: #2b2b31; color: #dbdee1; font-size: calc(14 * var(--u));
-}
-.sc-subchosen[hidden] { display: none; }
-[data-subpick] .sc-subph { display: none; }
-.sc-subopt { text-align: left; }
-.sc-check { flex: none; width: calc(20 * var(--u)); height: calc(20 * var(--u)); margin-left: auto; color: #5865f2; visibility: hidden; }
-.sc-subopt[data-on] { background: rgba(88, 101, 242, .16); }
-.sc-subopt[data-on] .sc-check { visibility: visible; }
+/* l'avatar di una persona: l'iniziale sul suo colore */
 .sc-av {
   display: inline-flex; flex: none; align-items: center; justify-content: center;
   width: calc(24 * var(--u)); height: calc(24 * var(--u)); border-radius: 50%; background: var(--av); color: #fff;
   font-size: calc(12 * var(--u)); font-weight: 600; line-height: 1; text-shadow: 0 1px 1px rgba(0, 0, 0, .35);
 }
-.sc-subchosen .sc-av { width: calc(18 * var(--u)); height: calc(18 * var(--u)); font-size: calc(9 * var(--u)); }
 
-/* la modale del promemoria: si apre in 0,15 s (--in da 0 a 1, lo scrive render-channel.ts) */
+/* la modale del bot: nel video del canale si apre in 0,15 s (--in da 0 a 1, lo scrive render-channel.ts) */
 .sc-modalwrap {
   display: none; position: absolute; inset: 0; z-index: 6; align-items: center; justify-content: center;
   background: rgba(0, 0, 0, .7); opacity: var(--in, 1);
 }
-[data-modal] .sc-modalwrap { display: flex; }
 .sc-modal {
   width: calc(440 * var(--u)); max-width: calc(100% - 32 * var(--u)); padding: calc(16 * var(--u));
   background: #242429; border: 1px solid #35353b; border-radius: calc(12 * var(--u));
@@ -303,7 +285,7 @@ textarea.ui-minput {
   overflow-wrap: anywhere;
 }
 .ui-scvoce[aria-selected="true"], .ui-mzvoce[aria-selected="true"] .ui-mznome { font-weight: 600; color: #efeff1; }
-.ui-scvoce[data-attiva], .ui-mzvoce[data-attiva] { background: #333338; }
+.ui-scvoce[data-attiva], .ui-mzvoce:is([data-attiva], .is-hover) { background: #333338; }
 
 /* Il menu di menzioni (ui/menzioni.ts), misurato sulle schermate dell'utente: vuoto il campo è alto 40; chiuso con le
    etichette 45, 4 sopra e 9 sotto; aperto 76, le etichette in alto e sotto la ricerca col cursore. La freccia resta
@@ -321,8 +303,9 @@ textarea.ui-minput {
 .ui-mzcerca {
   flex: 1 1 calc(48 * var(--u)); min-width: calc(48 * var(--u)); height: calc(30 * var(--u)); margin: 0;
   padding: 0 calc(6 * var(--u)); border: 0; background: none; outline: none;
-  font: inherit; font-size: calc(16 * var(--u)); color: #dbdee1;
+  font: inherit; font-size: calc(16 * var(--u)); color: #dbdee1; text-overflow: ellipsis;
 }
+/* Il segnaposto lungo (tasklist.slct.owner) finisce coi puntini, come in Discord, invece di tagliarsi a metà parola. */
 .ui-mzcerca::placeholder { color: #abacb2; opacity: 1; }
 /* Chiuso con le etichette la ricerca non si vede, ma tiene il focus: chi scrive la riapre. */
 .ui-mzcampo[data-pieno] { padding-bottom: calc(9 * var(--u)); }
@@ -428,7 +411,7 @@ textarea.ui-minput {
   .sc-auto > .sc-chan { position: relative; }
   /* I video: un Discord di 460 px mostrato in 390 (3:4), il fattore 0,85 del largo. */
   .sc-rec { --u: calc(100cqi / 460); aspect-ratio: 3 / 4; height: auto; }
-  .sc-rec-chan { --u: calc(100cqi / 420); }
+  .sc-rec-chan { --u: calc(100cqi / 440); }
   /* Sul telefono la modale prende lo schermo. */
   .sc-modalwrap { align-items: stretch; }
   .sc-modal {
@@ -654,11 +637,6 @@ textarea.ui-minput {
 }
 /* Un involucro che non conta: i suoi figli stanno nella colonna di chi lo contiene. */
 .sc-pparte { display: contents; }
-/* Le viste ferme dei video (ActivityScene con video): le accende vistaDelPannello. */
-.sc-pview { display: none; flex-direction: column; gap: calc(8 * var(--u)); }
-.sc-win:is([data-view="owner"], [data-view="tag"]) .sc-pview-people, .sc-win[data-view="reminder"] .sc-pview-reminder {
-  display: flex;
-}
 /* L'avviso del bot nel riquadro bianco (Notice.css, il tema chiaro di Discord dentro il fumetto) e la domanda. */
 .sc-pnotice {
   padding: calc(10 * var(--u)) calc(12 * var(--u)); border-radius: calc(8 * var(--u));
@@ -708,21 +686,10 @@ textarea.ui-minput {
 .sc-pmark { flex: none; color: #abacb2; font-size: calc(16 * var(--u)); line-height: 1; }
 .sc-pill:not([data-chosen]) .sc-pmark { margin-left: calc(2 * var(--u)); }
 .sc-pnote { color: #abacb2; font-size: calc(12 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
-.sc-pills-chosen { display: none; }
-.sc-win[data-picked] .sc-pills-chosen { display: flex; }
 
 /* i campi (Field.css) e il promemoria (ReminderFields.css) */
 .sc-field { display: flex; flex-direction: column; gap: calc(6 * var(--u)); min-width: 0; }
 .sc-flabel { color: #efeff1; font-size: calc(13 * var(--u)); font-weight: 600; line-height: calc(16 * var(--u)); }
-.sc-fin {
-  display: flex; align-items: center; gap: calc(8 * var(--u)); min-height: calc(36 * var(--u));
-  padding: calc(7 * var(--u)) calc(10 * var(--u)); border: 1px solid #35353b; border-radius: calc(8 * var(--u));
-  background: #17171a; color: #efeff1; font-size: calc(14 * var(--u)); line-height: calc(20 * var(--u));
-  white-space: nowrap; overflow: hidden;
-}
-.sc-fph { color: #80848e; }
-.sc-fin svg { flex: none; width: calc(16 * var(--u)); height: calc(16 * var(--u)); margin-left: auto; color: #efeff1; }
-.sc-fin > img { flex: none; width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
 .sc-when { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
 .sc-whenrow { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: calc(8 * var(--u)); }
 .sc-zplace {

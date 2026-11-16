@@ -6,6 +6,7 @@
  * senza chiudere il pannello. Le funzioni pure danno i testi e le regole; montaPrimaRiga tiene vivi i dialoghi.
  */
 import { AVVISO_ILLUSTRATIVO } from '../scene-data.ts';
+import { bloccaLaPrimaRiga } from '../scene-dom.ts';
 import { MAX_VALUE_LENGTH, TITOLO_MAX } from './componenti.ts';
 import type { Condiviso } from './condiviso.ts';
 import { escape, markdown } from './markdown.ts';
@@ -153,9 +154,6 @@ export function riapriNellActivity(stato: Stato, q: Quando | null): Stato {
 /** I data-k dei pulsanti della prima riga, che montaPrimaRiga prende in carico. */
 export const TASTI_DELLA_PRIMA_RIGA: ReadonlySet<string> =
   new Set(['a-guide', 'a-edit', 'a-clean', 'a-reopen', 'a-exit']);
-
-/** I tre che aspettano mentre un task è in modifica (FirstRow, locked). */
-const BLOCCABILI = ['a-edit', 'a-clean', 'a-reopen'];
 
 /** Quanto il bot ci mette a rispondere a Clean, Reopen ed Exit: intanto i puntini sul pulsante premuto (useRun). */
 const ATTESA_MS = 400;
@@ -440,15 +438,6 @@ export function montaPrimaRiga(scena: HTMLElement, condiviso: Condiviso,
     }
   }
 
-  function blocca(bloccata: boolean): void {
-    for (const k of BLOCCABILI) {
-      const b = scena.querySelector<HTMLElement>(`[data-k="${k}"]`);
-      b?.toggleAttribute('data-locked', bloccata);
-      if (bloccata) b?.setAttribute('aria-disabled', 'true');
-      else b?.removeAttribute('aria-disabled');
-    }
-  }
-
   function chiudi(): void {
     if (attesa) {
       window.clearTimeout(attesa.timer);
@@ -457,5 +446,5 @@ export function montaPrimaRiga(scena: HTMLElement, condiviso: Condiviso,
     chiudiDialogo();
   }
 
-  return { premi, blocca, chiudi };
+  return { premi, blocca: (bloccata) => bloccaLaPrimaRiga(scena, bloccata), chiudi };
 }

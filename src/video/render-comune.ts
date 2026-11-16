@@ -10,6 +10,9 @@
  * all'avvio, sulla scena com'è all'istante di ogni fermata. Dopo un azzeramento il DOM è nuovo: non si tengono
  * riferimenti agli elementi, li si cerca a ogni fotogramma. Anche un evento può rifare il DOM, quando disegnaLista
  * riscrive le righe: dopo gli eventi il fotogramma aspetta le immagini nuove.
+ *
+ * I menu, la modale e le azioni del pannello sono quelli della demo, montati dal copione come li monta lei e mossi coi
+ * clic del cursore (clic, clicFuori): i video mostrano la demo, non un suo disegno.
  */
 import { chatInBasso } from '../components/home/scene-dom';
 import type { Stato } from '../components/home/demo/modello.ts';
@@ -38,6 +41,11 @@ export interface Copione {
    * rifare. Senza, la chat scorre in fondo come nella demo (chatInBasso).
    */
   chatFerma?: boolean;
+  /**
+   * Prima di ogni azzeramento: il copione smonta i pezzi della demo che ha montato (demo/ui, demo/pannello.ts), coi
+   * loro ascoltatori sul documento, che col DOM di prima resterebbero appesi.
+   */
+  smonta?: () => void;
 }
 
 interface Punto {
@@ -55,10 +63,44 @@ export const easeOut = (p: number) => 1 - (1 - p) ** 3;
 /** Dove sta t fra a e b, da 0 a 1. */
 export const tra = (t: number, a: number, b: number) => Math.min(1, Math.max(0, (t - a) / (b - a)));
 
+/** L'elemento [data-k=k] della scena: se manca, il copione va rifatto. */
+function cerca(scena: ParentNode, k: string): HTMLElement {
+  const el = scena.querySelector<HTMLElement>(`[data-k="${k}"]`);
+  if (!el) throw new Error(`il copione clicca [data-k="${k}"], che non c'è`);
+  return el;
+}
+
+/**
+ * Il clic del mouse su [data-k=k], per i pezzi della demo che il copione monta (demo/ui, demo/pannello.ts): `detail`
+ * a 1 come un clic vero, perché quei pezzi con detail 0 pensano alla tastiera e spostano il focus.
+ */
+export function clic(scena: ParentNode, k: string): void {
+  cerca(scena, k).dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, detail: 1, view: window }));
+}
+
+/**
+ * Il clic su [data-k=k], un punto che non prende il focus, fuori da un menu aperto: il pointerdown, che i menu
+ * ascoltano per chiudersi, poi il focus che lascia il campo, come col mouse.
+ */
+export function clicFuori(scena: ParentNode, k: string): void {
+  cerca(scena, k).dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, cancelable: true, view: window }));
+  if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+}
+
 /** Lo stato dopo un'azione che il copione dà per riuscita: un rifiuto o una domanda vogliono un copione da rifare. */
 export function statoDopo(esito: Esito): Stato {
   if (esito.tipo !== 'fatto') throw new Error(`il copione aspettava un'azione riuscita, non: ${esito.tipo}`);
   return esito.stato;
+}
+
+/**
+ * Lo stato che i pezzi della demo hanno mandato (`cosa`, per l'errore), se è quello che il copione aspetta: altrimenti
+ * il video racconterebbe una cosa e ne mostrerebbe un'altra.
+ */
+export function comeAtteso(esito: Esito, atteso: Stato, cosa: string): Stato {
+  const stato = statoDopo(esito);
+  if (JSON.stringify(stato) !== JSON.stringify(atteso)) throw new Error(`${cosa} ha mandato altro dal copione`);
+  return stato;
 }
 
 /** Prepara render(t) per la scena: la fotografa com'è, misura le fermate e la rimette com'era. */
@@ -70,6 +112,7 @@ export async function motore(scena: HTMLElement, copione: Copione): Promise<(t: 
 
   const immagini = () => Promise.all([...scena.querySelectorAll('img')].map((i) => i.decode().catch(() => undefined)));
   const azzera = async () => {
+    copione.smonta?.();
     scena.innerHTML = iniziale;
     applicati = 0;
     ultimo = -Infinity;

@@ -40,13 +40,6 @@ export const FRASI: Record<Tasto, Record<Colore, string>> = {
 /** Il pannello a riposo (activity.panel.choose). */
 export const fraseDelPannello = (id: string) => `Choose what to change in task ${id}`;
 
-/** Il menu sotto i pulsanti, quando Owner, Tag o Webhook sono blu (tasklist.slct.owner, .tag, .webhook). */
-export const MENU_SOTTO: Partial<Record<Tasto, string>> = {
-  owner: 'Choose one or more people, or a role, then the task',
-  tag: 'Choose the tag, then the task',
-  webhook: 'Choose the webhook to associate',
-};
-
 export interface Pulsante {
   k: string;
   icona: string;
