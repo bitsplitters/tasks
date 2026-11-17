@@ -74,7 +74,11 @@ const MOSSE_DI_MIA: readonly { t: number; dove: (s: HTMLElement) => HTMLElement 
   { t: T.spuntaMia, dove: (s) => q(s, 'a-cb-2') },
 ];
 
-/** Il cerchio di Mia all'istante t: si allarga e sparisce come il tocco, centrato dove lei ha agito. */
+/**
+ * Il cerchio di Mia all'istante t: si allarga e sparisce come il tocco, centrato dove lei ha agito. Il tocco nasce a
+ * 0,4 della sua misura, il cerchio appena fuori da quello che Mia ha toccato: l'avatar è più grande della casella, e
+ * il cerchio rosa dentro l'avatar rosa non si vedeva finché non era quasi sparito.
+ */
 function cerchioDiMia(s: HTMLElement, t: number): void {
   const cerchio = s.querySelector<HTMLElement>('.esp-mia');
   if (!cerchio) return;
@@ -87,10 +91,13 @@ function cerchioDiMia(s: HTMLElement, t: number): void {
   const r = mossa.dove(s).getBoundingClientRect();
   const sc = s.getBoundingClientRect();
   const lato = cerchio.offsetWidth;
+  const dentro = lato - 2 * parseFloat(getComputedStyle(cerchio).borderTopWidth);
+  // Il bordo interno a 2 unità dal bersaglio, da ogni lato.
+  const inizio = Math.max(0.4, (Math.max(r.width, r.height) + 4 * unita(s)) / dentro);
   const x = r.left + r.width / 2 - sc.left;
   const y = r.top + r.height / 2 - sc.top;
   cerchio.style.opacity = String(0.9 * (1 - p));
-  cerchio.style.transform = `translate(${x - lato / 2}px, ${y - lato / 2}px) scale(${0.4 + 1.2 * p})`;
+  cerchio.style.transform = `translate(${x - lato / 2}px, ${y - lato / 2}px) scale(${inizio + 1.2 * p})`;
 }
 
 export function copioneDiEsplora(): Copione {
