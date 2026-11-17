@@ -52,6 +52,8 @@ While the panel is open, the task is locked for the others: see [Who is editing 
 
 **Blue** shows a search over the people and roles of the server, with whoever is in the Activity first. Tap a name to add it, tap it again to remove it, then **Save**.
 
+**To take a task** with no owner, press **Owner** until it turns blue: your name is already chosen, so **Save** makes the task yours. To give it to someone else instead, tap their name: it takes the place of yours. A task that already has an owner shows it, and changes only if you choose someone.
+
 - One person or one role is enough on every plan.
 - Several people become a role that TTM creates: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates). It needs Premium and the *Manage Roles* permission for TTM; without them **Save** stays off, and the panel says why. Discord lets TTM give a role to ten people every ten seconds, so with more than ten a notice says how long it takes.
 
