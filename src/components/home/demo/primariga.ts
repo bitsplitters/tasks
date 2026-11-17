@@ -20,7 +20,7 @@ import { contestoDellActivity } from './righe.ts';
 import { avviso, emoji, rispostaDellEsito, testo } from './testi.ts';
 import { nuovoNumero, riquadroAvviso } from './ui/comune.ts';
 import { apriDialogo, inAttesa } from './ui/dialogo.ts';
-import type { Pulsante } from './ui/dialogo.ts';
+import type { Dialogo, Pulsante } from './ui/dialogo.ts';
 import { montaQuando } from './ui/quando.ts';
 import { stessaZona } from './zone.ts';
 
@@ -80,6 +80,18 @@ export function corpoDellaRiapertura(stato: Stato, spuntati: number, suggeriment
 /** Il dialogo di Exit con altri nella sessione (ExitDialog): quanti sono, poi ciò che si fa solo nel canale. */
 export function corpoDellUscita(stato: Stato): string {
   return blocchi(stato, [testo('activity.exit.question', ALTRI), testo('activity.exit.channel.only')]);
+}
+
+/** Il dialogo di Exit con altri nella sessione (ExitDialog): il titolo, il corpo, i due pulsanti. */
+export function dialogoDellUscita(stato: Stato): Dialogo {
+  return {
+    titolo: testo('activity.exit.title'),
+    corpo: corpoDellUscita(stato),
+    piede: [
+      { id: 'all', testo: testo('activity.exit.all'), stile: 'grigio' },
+      { id: 'me', testo: testo('activity.exit.me'), stile: 'blu' },
+    ],
+  };
 }
 
 /**
@@ -405,14 +417,7 @@ export function montaPrimaRiga(scena: HTMLElement, condiviso: Condiviso,
       };
       attesa = { timer: window.setTimeout(() => risposta(false), ATTESA_MS), risposta };
     };
-    chiudiIlDialogo = apriDialogo(dove, {
-      titolo: testo('activity.exit.title'),
-      corpo: corpoDellUscita(condiviso.stato()),
-      piede: [
-        { id: 'all', testo: testo('activity.exit.all'), stile: 'grigio' },
-        { id: 'me', testo: testo('activity.exit.me'), stile: 'blu' },
-      ],
-    }, apritore, {
+    chiudiIlDialogo = apriDialogo(dove, dialogoDellUscita(condiviso.stato()), apritore, {
       clic: (id) => {
         if (id === 'all' || id === 'me') esci(id === 'all');
       },
