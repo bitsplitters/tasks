@@ -11,6 +11,7 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 - **Take a task yourself** — click **Owner** until it turns blue, then pick a task without choosing anyone: it's yours, and the channel shows who took it. A task that already has an owner stays as it is: to replace them, choose yourself in the menu first. With **Keep status after selection**, take one task after another without clicking **Owner** again. See [Owner](/docs/channel-tasks/#owner).
 - **Take a task in the Activity** — on a task with no owner, **Owner** opens with your name already chosen: **Save** makes it yours. See [Owner](/docs/activity-list/#owner).
+- **Whoever gets a task hears about it** — give a task to someone else, or to a role, and the notification in the channel mentions them, so Discord notifies them. When you take a task yourself, nobody is mentioned. See [Owner](/docs/channel-tasks/#owner).
 
 ## 2.1.0 — News in the bot
 
