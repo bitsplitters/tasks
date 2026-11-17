@@ -110,10 +110,20 @@
 .p-after .h-link { display: inline-block; margin-left: .35rem; }
 
 /* Qui le voci sono più lunghe di quelle della home e i valori più corti: la prima colonna si allarga, così
-   le voci non vanno a capo. Solo da 720 px: sotto, le celle sono blocchi e la larghezza resta automatica. */
+   le voci non vanno a capo. Solo da 720 px: sotto, ogni riga è la griglia della regola che segue. */
 @media (min-width: 720px) {
   .p-compare .h-table tbody th { width: 32%; }
   .p-compare .h-table .h-col-acc, .p-compare .h-table .h-acc { width: 34%; }
+}
+/* Sotto i 720 px vetrina.css fa di ogni riga un blocco, con le celle una sopra l'altra. Qui i valori sono corti:
+   la voce sta sopra, Free e Premium affiancati sotto, nell'ordine delle colonne da desktop. Le due celle di una voce
+   sono alte uguali. Un valore su due righe va a capo pareggiato, senza una parola sola sull'ultima riga: con
+   `pretty`, su due righe sole, Chrome ce la lascia. */
+@media (max-width: 719px) {
+  .p-compare .h-table tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem; }
+  .p-compare .h-table tbody th { grid-column: 1 / -1; padding-bottom: .1rem; }
+  .p-compare .h-table td + td { margin-top: 0; }
+  .p-compare .h-table td { text-wrap: balance; }
 }
 
 /* La spunta a sinistra, su due righe; titolo e testo a destra. */

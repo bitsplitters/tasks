@@ -66,6 +66,12 @@
 /* La scritta del campo vuoto nel grigio delle note. Pagefind la fa col colore del testo al 20% di opacità: sul fondo
    del campo il contrasto è 1,8:1, col grigio 5,8:1. `input` nel selettore supera la regola di Pagefind. */
 .docs-search input.pagefind-ui__search-input::placeholder { color: var(--muted); opacity: 1; }
+/* Le parole trovate nei risultati. Pagefind azzera lo stile di <mark> (`all: revert`) e torna il giallo del browser:
+   qui testo d'ambra su una tinta d'ambra, come la voce aperta nella barra. Due classi nel selettore superano la
+   regola di Pagefind, il cui foglio viene dopo. */
+.docs-search .pagefind-ui--reset mark {
+  color: var(--accent-bright); background: rgba(233, 164, 76, .16); border-radius: 3px;
+}
 
 /* ── L'articolo ──────────────────────────────────────────────────────────────────────────────────────── */
 /* Il testo entro 36rem, una settantina di caratteri per riga; tabelle, blocchi di codice e riquadri «How to do it»
@@ -106,7 +112,10 @@
   font-family: var(--mono); font-size: .88em; color: var(--accent-bright); overflow-wrap: break-word;
   background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: .1em .4em;
 }
+/* Shiki scrive il fondo e il testo del blocco nello stile in linea, come variabili (tema `css-variables` in
+   astro.config.mjs): qui prendono i colori della pagina di confronto. */
 .prose pre {
+  --astro-code-background: var(--surface); --astro-code-foreground: #C7CEDB;
   overflow-x: auto; padding: 1rem 1.2rem;
   background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
 }

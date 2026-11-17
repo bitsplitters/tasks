@@ -1,0 +1,144 @@
+---
+/*
+ * La pagina da cui si registra il video di Esplora sull'Activity (spec 2026-11-17-video-activity-esplora-design.md,
+ * §3 e §8, nel repo team-tasks-manager). Esiste solo con `astro dev` (l'integrazione registrazione-video in
+ * astro.config.mjs): la build non la conosce.
+ *
+ *   /registrazione-esplora[?t=12.5]
+ *
+ * 1920 × 1080, con la cornice del primo video e i suoi valori (team-tasks-manager/docs/brand/video_app_directory.html,
+ * che resta com'è; il logo è lo stesso file di public/og/ttm-logo.png): l'apertura, le didascalie a sinistra, il
+ * marchio in basso, la chiusura. A destra la scena dell'Activity della home, di 1050 × 700 (un --u di 1,24 px), col
+ * cursore, il tocco e il cerchio di Mia (.esp-mia, lo muove render-esplora.ts). registrazione-esplora.ts prepara
+ * render(t) e DURATA per scripts/registra-video.cjs; con ?t ferma la pagina su quell'istante.
+ */
+import '../components/home/scene.css';
+import ActivityScene from '../components/home/ActivityScene.astro';
+import { listaDeiVideo } from '../components/home/demo/modello.ts';
+
+const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
+const LOGO = '/og/ttm-logo.png';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Registrazione del video di Esplora</title>
+    <style is:global>
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0A0E16; }
+      body { font-family: "Segoe UI", system-ui, sans-serif; color: #E7EBF3; -webkit-font-smoothing: antialiased; }
+      .esp-frame {
+        position: absolute; inset: 0; overflow: hidden;
+        background: radial-gradient(900px 700px at 78% 50%, rgba(80, 96, 240, .20), transparent 70%),
+          radial-gradient(800px 500px at 0% 0%, rgba(233, 164, 76, .10), transparent 70%),
+          linear-gradient(160deg, #0A0E16 0%, #10152a 60%, #161d34 100%);
+      }
+      .esp-card {
+        position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
+        justify-content: center; text-align: center; opacity: 0;
+      }
+      .esp-logo { width: 230px; height: 230px; border-radius: 52px; box-shadow: 0 24px 70px rgba(0, 0, 0, .55); }
+      .esp-kicker { margin-top: 46px; color: #E9A44C; font-weight: 700; letter-spacing: .16em; font-size: 30px; }
+      .esp-title { margin-top: 18px; font-weight: 800; font-size: 84px; line-height: 1.08; letter-spacing: -.01em; }
+      .esp-accent { color: #F2B76B; }
+      .esp-cta { margin-top: 40px; font-size: 40px; font-weight: 600; color: #E7EBF3; }
+      .esp-meta { margin-top: 26px; font-size: 30px; color: #8A94A7; }
+      .esp-site { margin-top: 14px; font-size: 34px; color: #C7CEDB; letter-spacing: .02em; }
+      #stage { opacity: 0; }
+      .esp-caps { position: absolute; left: 110px; top: 0; bottom: 0; width: 640px; }
+      .esp-cap { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); opacity: 0; }
+      .esp-step { color: #E9A44C; font-weight: 700; letter-spacing: .16em; font-size: 26px; }
+      /* 58 px invece dei 66 del primo video: «Date, time, time zone.» a 66 px è larga 704 px, la colonna 640. */
+      .esp-cap h2 { margin: 20px 0 0; font-weight: 800; font-size: 58px; line-height: 1.1; letter-spacing: -.01em; }
+      /* pretty: senza, la didascalia 04 lascia «save.» da solo sulla terza riga. */
+      .esp-cap p { margin: 26px 0 0; font-size: 30px; line-height: 1.45; color: #AEB7C7; text-wrap: pretty; }
+      .esp-cap p b { color: #E7EBF3; font-weight: 600; }
+      .esp-brandmark {
+        position: absolute; left: 110px; bottom: 70px; display: flex; align-items: center; gap: 18px;
+        color: #8A94A7; font-size: 26px;
+      }
+      .esp-brandmark img { width: 52px; height: 52px; border-radius: 12px; }
+      /* La scena a 40 px dalle didascalie, centrata in altezza: il bordo, gli angoli e l'ombra della finestra del
+         primo video come si vedono lì, ingranditi 1,5 volte (1 px, 10 px, 0 30px 80px), che la scena dei video
+         (sc-rec) non ha. Il bordo è un'ombra, per non cambiare la misura. */
+      .esp-scena {
+        position: absolute; left: 790px; top: 190px; width: 1050px; border-radius: 15px; overflow: hidden;
+        box-shadow: 0 0 0 1.5px #1e1f22, 0 45px 120px rgba(0, 0, 0, .6);
+      }
+      .esp-box { width: 100%; }
+      /* Il cerchio di Mia: il tocco del cursore (sc-tap) nel suo colore, un po' più spesso. */
+      .esp-mia {
+        position: absolute; left: 0; top: 0; z-index: 19; width: calc(36 * var(--u)); height: calc(36 * var(--u));
+        border-radius: 50%; border: calc(3 * var(--u)) solid #eb459e; opacity: 0; pointer-events: none;
+      }
+      /* La barra degli strumenti di astro dev finirebbe nei fotogrammi. */
+      astro-dev-toolbar { display: none !important; }
+      /* I clic sono eventi del copione: il focus che la demo rende a chi ha aperto un pezzo non si disegna, come
+         dopo un clic vero col mouse. */
+      .sc-rec button:focus-visible { outline: none; }
+    </style>
+  </head>
+  <body>
+    <div class="esp-frame">
+      <div class="esp-card" id="intro">
+        <img class="esp-logo" src={LOGO} alt="" />
+        <div class="esp-kicker">TEAM TASKS MANAGER</div>
+        <div class="esp-title">Work on it together,<br /><span class="esp-accent">right inside Discord.</span></div>
+      </div>
+
+      <div id="stage">
+        <div class="esp-caps">
+          <div class="esp-cap" id="cap1">
+            <div class="esp-step">01 · OPEN</div>
+            <h2>Open the list<br /><span class="esp-accent">in the Activity.</span></h2>
+            <p>One click from the channel: the list opens in a <b>window right inside Discord</b>.</p>
+          </div>
+          <div class="esp-cap" id="cap2">
+            <div class="esp-step">02 · TOGETHER</div>
+            <h2>Work on it<br /><span class="esp-accent">together, live.</span></h2>
+            <p>Teammates join from the channel, and you see <b>their ticks</b> the moment they make them.</p>
+          </div>
+          <div class="esp-cap" id="cap3">
+            <div class="esp-step">03 · ASSIGN</div>
+            <h2>Tap a task.<br /><span class="esp-accent">Pick the owner.</span></h2>
+            <p>Every action for a task in one panel. <b>Whoever is in the Activity</b> comes first.</p>
+          </div>
+          <div class="esp-cap" id="cap4">
+            <div class="esp-step">04 · REMIND</div>
+            <h2>Date, time, time zone.<br /><span class="esp-accent">All in one place.</span></h2>
+            <p>The reminder starts <b>ten minutes from now</b>, in your time zone. Change what you need and save.</p>
+          </div>
+          <div class="esp-cap" id="cap5">
+            <div class="esp-step">05 · BACK</div>
+            <h2>Done?<br /><span class="esp-accent">Back to the channel.</span></h2>
+            <p><b>Exit</b> brings the list back to the channel for everyone, with every change in it.</p>
+          </div>
+        </div>
+        <div class="esp-brandmark"><img src={LOGO} alt="" />Team Tasks Manager</div>
+        <div class="esp-scena" id="scena">
+          <div class="sc-box esp-box">
+            <div class="scene sc-rec">
+              <ActivityScene lista={listaDeiVideo()} aperta={false} />
+              <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
+              <span class="sc-tap" aria-hidden="true"></span>
+              <span class="esp-mia" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="esp-card" id="outro">
+        <img class="esp-logo" src={LOGO} alt="" />
+        <div class="esp-title" style="margin-top: 44px">Team Tasks Manager</div>
+        <div class="esp-cta">Open any list in the Activity</div>
+        <div class="esp-meta">Available in 7 languages</div>
+        <div class="esp-site">tasks.bitsplitters.app</div>
+      </div>
+    </div>
+    <script>
+      import './registrazione-esplora';
+    </script>
+  </body>
+</html>

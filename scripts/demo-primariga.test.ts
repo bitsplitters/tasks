@@ -12,8 +12,8 @@ import { escape } from '../src/components/home/demo/markdown.ts';
 import { imparaIlFuso, testoDellaLista } from '../src/components/home/demo/regole.ts';
 import {
   PAGINE, bloccoDellaPrimaRiga, corpoDellUscita, corpoDellaModifica, corpoDellaPulizia, corpoDellaRiapertura,
-  htmlDelPiedeDellaGuida, htmlDellaGuida, nuovaDataProposta, primaDelDialogo, problemaDellaNuovaData,
-  riaperturaPronta, riapriNellActivity,
+  dialogoDellUscita, htmlDelPiedeDellaGuida, htmlDellaGuida, nuovaDataProposta, primaDelDialogo,
+  problemaDellaNuovaData, riaperturaPronta, riapriNellActivity,
 } from '../src/components/home/demo/primariga.ts';
 import { rispostaDellEsito } from '../src/components/home/demo/testi.ts';
 
@@ -76,6 +76,17 @@ test("il dialogo di Exit: chi altro c'è nella sessione e ciò che si fa solo ne
   const html = corpoDellUscita(S0);
   assert.match(html, /^<div class="ui-dlgtesto"><div>Someone else is working on the list with you\. You can leave /);
   assert.match(html, /<div><span class="sc-subtext">Only in the channel: Clone, Download, Seal, Delete, Unlock /);
+});
+
+test('il dialogo di Exit intero: il titolo, il corpo, Bring back in grigio e Leave on your own in blu', () => {
+  assert.deepEqual(dialogoDellUscita(S0), {
+    titolo: 'Exit the Activity',
+    corpo: corpoDellUscita(S0),
+    piede: [
+      { id: 'all', testo: 'Bring back to the channel for everyone', stile: 'grigio' },
+      { id: 'me', testo: 'Leave on your own', stile: 'blu' },
+    ],
+  });
 });
 
 test("il dialogo di Edit the list in sola lettura: l'avviso, il titolo, il testo della lista, senza il blocco", () => {
