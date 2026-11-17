@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 15 November 2026"
+updated: "Last updated: 18 November 2026"
 lang: en
 alt: /it/privacy/
 ---
@@ -27,7 +27,7 @@ TTM only stores what is needed to run task lists inside your server:
 - **Webhooks** — the HTTP method, URL, headers and body you define, and their association to tasks.
 - **Activity logs** — records of actions performed on lists (who did what, and when), when history logging is enabled.
 - **The Activity** — when you open a list in the Activity, TTM's window inside Discord: who you are, a key for the window, and a record of the changes until their summary is posted. See [The Activity](#the-activity).
-- **Aggregate usage statistics** — counters per server: how often each feature is used and when it was last used. Also, every day, the totals of lists, tasks, reminders and webhooks, and the server's member count. They never count individual users.
+- **Aggregate usage statistics** — counters per server: how often each feature is used and when it was last used. Also, every day, the totals of lists, tasks, reminders and webhooks, and the server's member count. Finally, for each language of the Discord app, how many interactions, people and servers there were that day: to count each person and each server only once, TTM keeps their IDs in memory for that day only and saves just the totals. None of these statistics records who did what.
 
 ## What we do NOT collect
 
@@ -72,7 +72,7 @@ You can request deletion at any time (see [GDPR](/gdpr/)); we may also delete da
 
 The [Activity](/docs/activity/) opens a list in a window inside Discord. On top of what the bot already handles:
 
-- **Signing in.** When you open it, you let TTM know who you are, through Discord. Discord gives TTM the basic profile of your account — your user ID, name and avatar, the language of your Discord app and a few account details, such as your badges and your Nitro type — never your email. TTM stores only your user ID and uses the language for the texts of the window; it does not store the rest, nor the access Discord grants it.
+- **Signing in.** When you open it, you let TTM know who you are, through Discord. Discord gives TTM the basic profile of your account — your user ID, name and avatar, the language of your Discord app and a few account details, such as your badges and your Nitro type — never your email. TTM stores only your user ID and uses the language for the texts of the window and for the daily totals per language (see [What we collect](#what-we-collect)); it does not store the rest, nor the access Discord grants it.
 - **The key of the window.** TTM gives the window a key that lasts 24 hours, so that it reconnects by itself after a restart of the bot. TTM stores only a fingerprint of the key, with your user ID, the server and channel it is for, when it was created and when it expires. Expired fingerprints are deleted within an hour.
 - **The changes.** While a list is in the Activity, TTM records each change, to write the summary posted when the list goes back to the channel: who made it and when, the number and text of the task and, depending on the change, the owners, tags or people mentioned (as Discord IDs), the date of a reminder or of **Reopen all**, the name of a webhook, the text of the tasks removed by **Clean the list**. These records are deleted when the list goes back to the channel: as soon as the summary is posted, or straight away if it can't be, for example because the channel is gone. What remains is a line with no personal data — which list, the language of its summary, when it opened and closed, and why — which goes with the list.
 - **Who is there.** Who is in the Activity, and who is editing what, is kept only in memory, while the list is there. To show names, TTM keeps in memory for ten minutes those it gets from Discord — of the people in the Activity and, with **Owner** and **Tag**, of the members whose name matches what you type — so as not to ask again. It does not store them.
