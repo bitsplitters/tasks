@@ -11,6 +11,7 @@ import {
   TESTI, avviso, elencoDeiTolti, emoji, rispostaDellEsito, testo, testoDegliErrori, testoDelPromemoria,
   testoDellaDomanda, testoDi,
 } from '../src/components/home/demo/testi.ts';
+import { FRASI, FRASI_NEL_CANALE } from '../src/components/home/scene-data.ts';
 
 const ESCAPE: Record<string, string> = { t: '\t', n: '\n', r: '\r', f: '\f' };
 
@@ -221,4 +222,10 @@ test("rispostaDellEsito: ciò che il bot risponde all'esito di un'azione, nel fu
   assert.equal(rispostaDellEsito({ tipo: 'fatto', stato: s0 }), null);
   assert.equal(rispostaDellEsito({ tipo: 'fatto', stato: s0 }, testoDelPromemoria(PROPOSTO)), `📅 <t:${PROPOSTO}:F>`);
   assert.equal(rispostaDellEsito({ tipo: 'domanda', domanda: { tipo: 'togliOwner', pos: '3' } }), null);
+});
+
+test("Owner blu: nel selettore del canale la frase del claim, nel pannello dell'Activity quella di sempre", () => {
+  assert.equal(FRASI_NEL_CANALE.owner.blue, TESTI['tasklist.slct.activities.hint.owner.take']);
+  assert.equal(FRASI.owner.blue, TESTI['tasklist.slct.activities.hint.owner.edit']);
+  assert.deepEqual({ ...FRASI_NEL_CANALE, owner: FRASI.owner }, FRASI);
 });

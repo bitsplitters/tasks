@@ -189,9 +189,13 @@ export function rispostaDellEsito(esito: Esito, riuscita: string | null = null):
  */
 export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   // Owner
-  'tasklist.slct.owner': 'Choose one or more people, or a role, then the task',
-  'tasklist.slct.owner.noselection.error': 'Select one or more people, or a role, as the task owner.',
+  'tasklist.slct.owner': 'Pick a task in the menu above to take it, or choose who gets it',
   'tasklist.slct.owner.sameselection.error': 'What you chose is already the owner of the task.',
+  'tasklist.slct.owner.claim.yours.error':
+    "This task is already yours. To leave it, press **Owner** until it's red, then pick the task.",
+  'tasklist.slct.owner.claim.taken.error':
+    'This task already has an owner: {0}. Replacing them takes an explicit choice: choose yourself, other people or a ' +
+    'role in the menu under the buttons, then pick the task again.',
   'tasklist.slct.owner.mixed.error':
     '{0} A task has one owner: several people or one role — not people and roles together, and not more than one ' +
     'role.',
@@ -334,6 +338,7 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.slct.activities.hint.content.delete': 'Delete task',
   'tasklist.slct.activities.hint.owner.edit': 'Edit owner',
   'tasklist.slct.activities.hint.owner.delete': 'Remove owner',
+  'tasklist.slct.activities.hint.owner.take': 'Take or assign a task',
   'tasklist.slct.activities.hint.tag.edit': 'Edit tags',
   'tasklist.slct.activities.hint.tag.delete': 'Remove tags',
   'tasklist.slct.activities.hint.reminder.edit': 'Edit reminder',

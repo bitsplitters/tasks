@@ -28,13 +28,22 @@ export const TASTI: readonly { k: Tasto; icona: string; nome: string }[] = [
 /** Il selettore a riposo (tasklist.slct.activities.hint.check). */
 export const FRASE_SPUNTA = 'Tick a task';
 
-/** Il selettore e il pannello con un pulsante acceso (tasklist.slct.activities.hint.*). */
+/** Il pannello dell'Activity con un pulsante acceso (tasklist.slct.activities.hint.*). */
 export const FRASI: Record<Tasto, Record<Colore, string>> = {
   content: { blue: 'Edit task', red: 'Delete task' },
   owner: { blue: 'Edit owner', red: 'Remove owner' },
   tag: { blue: 'Edit tags', red: 'Remove tags' },
   reminder: { blue: 'Edit reminder', red: 'Remove reminder' },
   webhook: { blue: 'Link webhook', red: 'Unlink webhook' },
+};
+
+/**
+ * Il selettore del canale con un pulsante acceso: come il pannello, ma Owner blu dice il claim
+ * (tasklist.slct.activities.hint.owner.take), che nell'Activity non c'è.
+ */
+export const FRASI_NEL_CANALE: Record<Tasto, Record<Colore, string>> = {
+  ...FRASI,
+  owner: { blue: 'Take or assign a task', red: 'Remove owner' },
 };
 
 /** Il pannello a riposo (activity.panel.choose). */

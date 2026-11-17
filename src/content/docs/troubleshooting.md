@@ -35,9 +35,11 @@ The **Tag** and **Owner** menus wait for you to confirm your choice. On mobile, 
 
 With **Reset status after selection** (the default), pick the people first and the task second. See [Tag](/docs/channel-tasks/#tag).
 
+If a task became yours instead of going to the people you picked, the menu was still empty when you picked the task: with the menu empty, **Owner** gives the task to you. Click **Owner** until it's red and pick the task to remove it, then pick the people, confirm, and pick the task again.
+
 ### I want to give a task to several people
 
-Click **Owner** until it turns blue. In the menu under the buttons, labelled *Choose one or more people, or a role, then the task*, pick the people. Confirm your choice, then pick the task. TTM creates a role for those people and makes it the owner. In the Activity, choose them in the panel of the task: see [Owner](/docs/activity-list/#owner).
+Click **Owner** until it turns blue. In the menu under the buttons, labelled *Pick a task in the menu above to take it, or choose who gets it*, pick the people. Confirm your choice, then pick the task. TTM creates a role for those people and makes it the owner. In the Activity, choose them in the panel of the task: see [Owner](/docs/activity-list/#owner).
 
 This is a Premium feature, unlocked during the beta. The bot needs the *Manage Roles* permission: an admin grants it on the bot's role in *Server Settings → Roles*, not on a channel. See [Owner: a person, a role, or several people](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 

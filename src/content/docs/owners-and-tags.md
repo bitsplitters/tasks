@@ -19,6 +19,8 @@ The owner is who a task belongs to: who can tick it, and who gets its reminder. 
 
 You can't mix people and roles, and you can pick one role at most: a task has one owner. For several people, the bot needs the *Manage Roles* permission: see [What it needs](#what-it-needs).
 
+**To take a task yourself**, in the channel: click **Owner** until it turns blue, then pick the task without choosing anyone. It works on a task with no owner. A task that already has one changes only if you choose yourself in the menu: see [Owner](/docs/channel-tasks/#owner).
+
 **Removing the owner removes its reminder too**, because nobody is left to receive it. If the reminder hasn't fired yet, TTM asks you to confirm first.
 
 How the reminder reaches a person or a role: see [How the reminder arrives](/docs/reminders/#how-the-reminder-arrives). Who can tick a task with an owner: see [Who can tick a task](/docs/core-concepts/#who-can-tick-a-task).

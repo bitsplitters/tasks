@@ -38,7 +38,11 @@ While the form is open, the list is locked for the others. Saving unlocks it; th
 
 ## Owner
 
-**Blue** shows a menu under the buttons, labelled *Choose one or more people, or a role, then the task*. Pick the owner, confirm the selection, then pick the task. To give a task to several people:
+**Blue** shows a menu under the buttons, labelled *Pick a task in the menu above to take it, or choose who gets it*.
+
+**To take a task**, click **Owner** until it turns blue, then pick the task in the check selector without choosing anyone: it becomes yours, and the channel shows who took it. A task that is already yours, or that someone else owns, stays as it is, and TTM tells you why. To take a task from someone else, choose yourself in the menu, confirm the selection, then pick the task: replacing an owner takes an explicit choice.
+
+**To give a task to someone**, pick the owner in the menu, confirm the selection, then pick the task. To give a task to several people:
 
 1. Click **Owner** until it turns blue.
 2. Pick the people.
@@ -48,7 +52,7 @@ While the form is open, the list is locked for the others. Saving unlocks it; th
 
 What an owner can be, and the roles TTM creates: [Owners and tags](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
-With **Keep status after selection**, you can also **pick the task first**, with the menu empty. Its owner loads into the menu. For a role TTM created, the menu shows the people it gave the role to. Every change you confirm applies to that task at once. If you empty the menu, the owner is removed, and its reminder too, as in red mode.
+With **Keep status after selection**, **Owner** stays blue after you take a task, and the menu stays empty: pick the next task to take it too. A task someone else owns loads its owner into the menu instead. For a role TTM created, the menu shows the people it gave the role to. Every change you confirm applies to that task at once. If you empty the menu, the owner is removed, and its reminder too, as in red mode. To go back to taking tasks, click **Owner** until it's blue again.
 
 **Red** removes the owner, and its reminder too: nobody is left to receive it. If the reminder hasn't fired yet, TTM asks you to confirm first.
 

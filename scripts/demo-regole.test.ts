@@ -226,17 +226,29 @@ test("il carrello dell'owner: persona, ruolo o gruppo; persone e ruoli insieme, 
   assert.equal(rifiutoDelCarrello([], []), null);
 });
 
-test("nel canale la scelta diventa l'owner; senza scelta, o con quella di adesso, si rifiuta (OwnerLogic)", () => {
+test("nel canale la scelta diventa l'owner; quella di adesso, o persone e ruoli insieme, si rifiutano (OwnerLogic)", () => {
   const s0 = statoIniziale();
   assert.deepEqual(ownerDi(statoDi(applicaOwner(s0, '2', [MIA], [])), '2'), { tipo: 'persona', id: MIA });
   assert.deepEqual(ownerDi(statoDi(applicaOwner(s0, '2', [], [COACHES])), '2'), { tipo: 'ruolo', id: COACHES });
   assert.deepEqual(applicaOwner(s0, '3', [MIA], []), rifiutoDi('tasklist.slct.owner.sameselection.error'));
-  assert.deepEqual(applicaOwner(s0, '2', [], []), rifiutoDi('tasklist.slct.owner.noselection.error'));
   assert.deepEqual(applicaOwner(s0, '2', [MIA], [COACHES]), rifiutoDi('tasklist.slct.owner.mixed.error'));
   // L'owner non guarda lo stato del task; il promemoria del 3 resta col nuovo owner.
   assert.deepEqual(ownerDi(statoDi(applicaOwner(s0, '1', [LEO], [])), '1'), { tipo: 'persona', id: LEO });
   assert.deepEqual(statoDi(applicaOwner(s0, '3', [LEO], [])).lista.tasks[3],
     { ...s0.lista.tasks[3], owner: { tipo: 'persona', id: LEO } });
+  assert.deepEqual(s0, statoIniziale());
+});
+
+test('nel canale, col menu vuoto, il task libero diventa di Sam; uno suo o di altri dà un avviso (claim, RegolaDelClaim)', () => {
+  const s0 = statoIniziale();
+  const preso = statoDi(applicaOwner(s0, '2', [], []));
+  assert.deepEqual(ownerDi(preso, '2'), { tipo: 'persona', id: SAM });
+  assert.deepEqual(applicaOwner(preso, '2', [], []), rifiutoDi('tasklist.slct.owner.claim.yours.error'));
+  const diAltri = (owner: string) =>
+    ({ tipo: 'rifiuto', testo: { chiave: 'tasklist.slct.owner.claim.taken.error', argomenti: [owner] } });
+  assert.deepEqual(applicaOwner(s0, '3', [], []), diAltri(MIA_TAG));
+  const delRuolo = statoDi(applicaOwner(s0, '2', [], [COACHES]));
+  assert.deepEqual(applicaOwner(delRuolo, '2', [], []), diAltri(COACHES_TAG));
   assert.deepEqual(s0, statoIniziale());
 });
 

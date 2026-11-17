@@ -7,6 +7,10 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 2.2.0 — Take a task
+
+- **Take a task yourself** — click **Owner** until it turns blue, then pick a task without choosing anyone: it's yours, and the channel shows who took it. A task that already has an owner stays as it is: to replace them, choose yourself in the menu first. With **Keep status after selection**, take one task after another without clicking **Owner** again. See [Owner](/docs/channel-tasks/#owner).
+
 ## 2.1.0 — News in the bot
 
 - **`/news`** — the latest news about Team Tasks Manager, in your language, in a message only you can see. Under each piece of news, **Discord server** opens our support server and **Release notes** opens that release on this page. The **Previous** and **Next** buttons go to older and newer news. See [`/news`](/docs/commands/#news).

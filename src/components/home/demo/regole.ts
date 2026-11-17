@@ -432,16 +432,17 @@ function conLOwner(stato: Stato, i: number, owner: Owner): Stato {
 
 /**
  * L'owner dalla select del canale alla scelta del task (OwnerLogic.manageOwner, col default OptionMode.DISABLED).
- * Senza scelta si rifiuta, come per persone e ruoli insieme. La persona o il ruolo che il task ha già non cambiano
- * niente: il bot lo dice. Più persone fanno un ruolo `TTM<n>` nuovo anche quando uno con loro c'è già; il solo caso
- * senza ruolo nuovo è l'owner di adesso, un ruolo di TTM con quelle persone (RisoluzioneDellOwner.gruppo). L'owner non
- * guarda lo stato del task; il promemoria resta, per il nuovo owner.
+ * Senza scelta è il claim (spec 2026-11-17): un task libero diventa di Sam, chi prova la demo; uno suo o di altri dà
+ * un avviso, quello di altri con l'owner. Persone e ruoli insieme si rifiutano. La persona o il ruolo che il task ha
+ * già non cambiano niente: il bot lo dice. Più persone fanno un ruolo `TTM<n>` nuovo anche quando uno con loro c'è già;
+ * il solo caso senza ruolo nuovo è l'owner di adesso, un ruolo di TTM con quelle persone (RisoluzioneDellOwner.gruppo).
+ * L'owner non guarda lo stato del task; il promemoria resta, per il nuovo owner.
  */
 export function applicaOwner(stato: Stato, pos: string, persone: string[], ruoli: string[]): Esito {
   const i = indice(stato, pos);
   const task = stato.lista.tasks[i];
   const tipo = carrello(persone, ruoli);
-  if (tipo === 'vuoto') return rifiuto('tasklist.slct.owner.noselection.error');
+  if (tipo === 'vuoto') return claim(stato, i);
   if (tipo === 'misto') return rifiuto(OWNER_MISTO);
   if (tipo === 'gruppo') {
     const attuale = ruoloDiTtm(stato, task.owner);
@@ -452,6 +453,15 @@ export function applicaOwner(stato: Stato, pos: string, persone: string[], ruoli
   const owner: Owner = tipo === 'persona' ? { tipo: 'persona', id: persone[0] } : { tipo: 'ruolo', id: ruoli[0] };
   if (task.owner?.tipo === owner.tipo && task.owner.id === owner.id) return rifiuto(OWNER_UGUALE);
   return fatto(conLOwner(stato, i, owner));
+}
+
+/** Il claim di Sam, col default (RegolaDelClaim): libero diventa suo; suo o di altri, l'avviso. */
+function claim(stato: Stato, i: number): Esito {
+  const owner = stato.lista.tasks[i].owner;
+  if (!owner) return fatto(conLOwner(stato, i, { tipo: 'persona', id: SAM }));
+  if (owner.tipo === 'persona' && owner.id === SAM) return rifiuto('tasklist.slct.owner.claim.yours.error');
+  const argomenti = [menzione({ ruolo: owner.tipo === 'ruolo', id: owner.id })];
+  return { tipo: 'rifiuto', testo: { chiave: 'tasklist.slct.owner.claim.taken.error', argomenti } };
 }
 
 /**

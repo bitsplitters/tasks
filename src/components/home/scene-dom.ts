@@ -7,7 +7,7 @@
  * Non tengono stato: ogni chiamata dice com'è un pezzo della scena, da capo. Così un copione può ridisegnare
  * qualunque istante e la demo non deve ricordare cosa c'era prima.
  */
-import { FRASE_SPUNTA, FRASI, fraseDelPannello, type Colore, type Tasto } from './scene-data.ts';
+import { FRASE_SPUNTA, FRASI, FRASI_NEL_CANALE, fraseDelPannello, type Colore, type Tasto } from './scene-data.ts';
 import type { Stato } from './demo/modello.ts';
 import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
 import { nomiDi, opzioniDelSelettore, righeDelCanale, righeDellActivity } from './demo/righe.ts';
@@ -94,7 +94,7 @@ export function apriSelettore(chan: HTMLElement, aperto: boolean): void {
 export function accendiNelCanale(chan: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
   accendi(chan, 'tasto', tasto, colore);
   const sel = k(chan, 'sel-text');
-  if (sel) sel.textContent = tasto && colore ? FRASI[tasto][colore] : FRASE_SPUNTA;
+  if (sel) sel.textContent = tasto && colore ? FRASI_NEL_CANALE[tasto][colore] : FRASE_SPUNTA;
 }
 
 /** Il pannello aperto sul task id, da capo (pulsanti grigi, area vuota, Save spento), o chiuso (null). */
