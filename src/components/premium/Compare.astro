@@ -2,9 +2,9 @@
 import DiscordLimit from './DiscordLimit.astro';
 /*
  * Il confronto dei limiti (spec della pagina Premium, §3.4 e §6), con la tabella della home (vetrina.css):
- * Premium è la colonna accesa, Free quella spenta. Sotto i 720 px ogni riga diventa un blocco, Free e poi
- * Premium. Il nome della colonna ripetuto in ogni cella è solo per gli occhi (aria-hidden): gli screen reader lo
- * hanno già dall'intestazione.
+ * Premium è la colonna accesa, Free quella spenta. Sotto i 720 px ogni riga diventa un blocco: la voce sopra,
+ * Free e Premium affiancati sotto (premium.css). Il nome della colonna ripetuto in ogni cella è solo per gli occhi
+ * (aria-hidden): gli screen reader lo hanno già dall'intestazione.
  */
 const COLONNE = { free: 'Free', premium: 'Premium' };
 const RIGHE = [
