@@ -50,6 +50,8 @@ While the form is open, the list is locked for the others. Saving unlocks it; th
 4. Pick the task in the check selector.
 5. TTM creates the role (TTM1, TTM2…) and gives it to them.
 
+**Whoever gets the task hears about it.** The notification in the channel mentions the new owner, so Discord notifies them: the person, or everyone in the role. When you take a task yourself, nobody is mentioned, because you already know. With [Notification mode](/docs/configuration/#notification-mode) set to *Disabled*, no notification is posted, as for every other action.
+
 What an owner can be, and the roles TTM creates: [Owners and tags](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
 With **Keep status after selection**, **Owner** stays blue after you take a task, and the menu stays empty: pick the next task to take it too. A task someone else owns loads its owner into the menu instead. For a role TTM created, the menu shows the people it gave the role to. Every change you confirm applies to that task at once. If you empty the menu, the owner is removed, and its reminder too, as in red mode. To go back to taking tasks, click **Owner** until it's blue again.

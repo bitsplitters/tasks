@@ -21,6 +21,8 @@ You can't mix people and roles, and you can pick one role at most: a task has on
 
 **To take a task yourself**, in the channel: click **Owner** until it turns blue, then pick the task without choosing anyone. It works on a task with no owner. A task that already has one changes only if you choose yourself in the menu: see [Owner](/docs/channel-tasks/#owner).
 
+**Whoever gets a task from someone else is mentioned** in the notification in the channel, so Discord notifies them: a person, or everyone in the role. In the Activity, the mention arrives with the summary at the end of the session.
+
 **Removing the owner removes its reminder too**, because nobody is left to receive it. If the reminder hasn't fired yet, TTM asks you to confirm first.
 
 How the reminder reaches a person or a role: see [How the reminder arrives](/docs/reminders/#how-the-reminder-arrives). Who can tick a task with an owner: see [Who can tick a task](/docs/core-concepts/#who-can-tick-a-task).
