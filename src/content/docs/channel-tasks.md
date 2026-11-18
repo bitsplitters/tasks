@@ -26,7 +26,7 @@ The workflow is always the same: **turn a button blue or red, then pick the task
 | <span class="dchip is-grey" role="img" aria-label="Reminder button, grey"><img src="/icons/alertW.png" alt="" /></span> | [**Reminder**](#reminder) | Add or edit a reminder. | Remove the reminder. |
 | <span class="dchip is-grey" role="img" aria-label="Webhook button, grey"><img src="/icons/api.png" alt="" /></span> | [**Webhook**](#webhook) | Link a webhook to the task. | Remove the webhook from the task. |
 
-After you use **Owner**, **Tag** or **Reminder**, the button goes back to grey, or stays on for the next task: your server decides, with **Behavior on selection** in [/config app](/docs/configuration/#behavior-on-selection). The second choice changes what Owner and Tag can do: see [Owner](#owner) and [Tag](#tag).
+After you use **Owner**, **Tag** or **Reminder**, the button goes back to grey, or stays on for the next task: your server decides, with **Keep the state after a selection** in the **Behavior** menu of [/config app](/docs/configuration/#keep-the-state-after-a-selection). Keeping the state changes what Owner and Tag can do: see [Owner](#owner) and [Tag](#tag).
 
 ## Content
 
@@ -54,17 +54,17 @@ While the form is open, the list is locked for the others. Saving unlocks it; th
 
 What an owner can be, and the roles TTM creates: [Owners and tags](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
-With **Keep status after selection**, **Owner** stays blue after you take a task, and the menu stays empty: pick the next task to take it too. A task someone else owns loads its owner into the menu instead. For a role TTM created, the menu shows the people it gave the role to. Every change you confirm applies to that task at once. If you empty the menu, the owner is removed, and its reminder too, as in red mode. To go back to taking tasks, click **Owner** until it's blue again.
+With **Keep the state after a selection** on, **Owner** stays blue after you take a task, and the menu stays empty: pick the next task to take it too. A task someone else owns loads its owner into the menu instead. For a role TTM created, the menu shows the people it gave the role to. Every change you confirm applies to that task at once. If you empty the menu, the owner is removed, and its reminder too, as in red mode. To go back to taking tasks, click **Owner** until it's blue again.
 
 **Red** removes the owner, and its reminder too: nobody is left to receive it. If the reminder hasn't fired yet, TTM asks you to confirm first.
 
 ## Tag
 
-How **Tag** behaves depends on **Behavior on selection** in [/config app](/docs/configuration/#behavior-on-selection). With **Reset status after selection** (the default), tagging always **overwrites**. With **Keep status after selection**, you also get a second mode, **live editing**.
+How **Tag** behaves depends on **Keep the state after a selection**, in the **Behavior** menu of [/config app](/docs/configuration/#keep-the-state-after-a-selection). With it off (the default), tagging always **overwrites**. With it on, you also get a second mode, **live editing**.
 
-<div class="callout"><div class="callout-t">In one line</div>With <strong>Reset status after selection</strong> (the default), tagging always overwrites, and you must pick people first. With <strong>Keep status after selection</strong>, pick people first to <em>overwrite</em> (assign), or pick the task first to <em>edit its tags live</em>.</div>
+<div class="callout"><div class="callout-t">In one line</div>With <strong>Keep the state after a selection</strong> off (the default), tagging always overwrites, and you must pick people first. With it on, pick people first to <em>overwrite</em> (assign), or pick the task first to <em>edit its tags live</em>.</div>
 
-### With Reset status after selection — the default
+### With the state reset — the default
 
 The button resets after every action, and Tag has one behavior: it **always overwrites**. Turn Tag blue, choose up to 25 users or roles in the menu that appears under the buttons, then pick the task.
 
@@ -72,7 +72,7 @@ For example, you choose *Anna* and *@Devs*. The task is now tagged Anna and @Dev
 
 You must pick people **before** the task. If you pick a task with the menu empty, TTM shows an error: select at least one tag first.
 
-### With Keep status after selection — two modes
+### With the state kept — two modes
 
 Now the button stays active after each action. What Tag does depends on one question: **did you pick people before the task?**
 

@@ -7,6 +7,12 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## Next release — New lists announce themselves
+
+- **A new list announces itself** — creating, importing or cloning a list posts a notification under it, with a link to the list. It mentions the owners of the tasks, so Discord notifies them. With history tracking on, the thread starts with the list. See [When a list is created](/docs/configuration/#when-a-list-is-created).
+- **One explanation per list** — with tips on, the first notification of a new list explains why TTM posts notifications and where to set them up, once. See [Tips](/docs/configuration/#tips).
+- **`/config app` in a new order** — **Tips** come first, with a green or grey button. **Behavior** gathers readable push notifications, keeping the state after a selection and the new **Mention owners in new lists**, on by default. Recurring reminders show the Premium emoji. See [/config app](/docs/configuration/).
+
 ## 2.2.0 — Take a task
 
 - **Take a task yourself** — click **Owner** until it turns blue, then pick a task without choosing anyone: it's yours, and the channel shows who took it. A task that already has an owner stays as it is: to replace them, choose yourself in the menu first. With **Keep status after selection**, take one task after another without clicking **Owner** again. See [Owner](/docs/channel-tasks/#owner).
@@ -49,7 +55,7 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 ## 1.3.0 — Space around groups
 
 - **Space around groups** — a new option of `/config app`: switch it off and your lists lose the blank lines above and below the tasks that have subtasks, for a more compact list. On by default: see [Space around groups](/docs/configuration/#space-around-groups).
-- **List appearance is one dropdown** — **Tips**, **Completed tasks dimmed** and **Space around groups** are now options of the same dropdown in `/config app`: tick the ones you want on. See [Tips and list appearance](/docs/configuration/#tips-and-list-appearance).
+- **List appearance is one dropdown** — **Tips**, **Completed tasks dimmed** and **Space around groups** are now options of the same dropdown in `/config app`: tick the ones you want on. See [Tips and list appearance](/docs/configuration/#list-appearance).
 - **The Guide says how to tick a task** — its first page and the page of the task buttons now say it in bold: to tick or untick a task, every button in the second row must be off. See [The check selector](/docs/the-task-list/#the-check-selector).
 - **A locked list says who is editing it** — while someone edits the list, its last line says who, and how to unlock it if it stays locked: **More → Unlock list**. It takes the place of the Tips line and shows even with Tips hidden. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 

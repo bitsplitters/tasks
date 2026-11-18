@@ -31,7 +31,7 @@ When the time comes, TTM reminds the task's owner. The reminder shows the task, 
 - If the owner is a **person**, the reminder is a **direct message**.
 - If the owner is a **role**, it is a **message in the list's channel** that mentions the role, as a reply to the list. Discord notifies everyone who has that role and can see the channel.
 
-Either way, it arrives **within about ten seconds** of the scheduled time, and always in the right minute. TTM spreads the sends out to stay within Discord's limits. With [Push notification](/docs/configuration/#push-notification) off it still arrives, without the plain text that makes phone previews readable.
+Either way, it arrives **within about ten seconds** of the scheduled time, and always in the right minute. TTM spreads the sends out to stay within Discord's limits. With [Readable push notifications](/docs/configuration/#readable-push-notifications) off it still arrives, without the plain text that makes phone previews readable.
 
 A direct message can be refused, and then TTM waits some hours before it tries that person again: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 

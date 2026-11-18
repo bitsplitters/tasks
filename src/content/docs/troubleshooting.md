@@ -33,7 +33,7 @@ TTM locks a list while someone edits it: in **Bulk update**, in the form of a ta
 
 The **Tag** and **Owner** menus wait for you to confirm your choice. On mobile, tap **Save** under the open menu. On desktop there is no Save button: click anywhere outside the menu, and closing it applies your choice. See [Confirming a selection](/docs/channel-tasks/#confirming-a-selection--desktop-vs-mobile).
 
-With **Reset status after selection** (the default), pick the people first and the task second. See [Tag](/docs/channel-tasks/#tag).
+With **Keep the state after a selection** off (the default), pick the people first and the task second. See [Tag](/docs/channel-tasks/#tag).
 
 If a task became yours instead of going to the people you picked, the menu was still empty when you picked the task: with the menu empty, **Owner** gives the task to you. Click **Owner** until it's red and pick the task to remove it, then pick the people, confirm, and pick the task again.
 

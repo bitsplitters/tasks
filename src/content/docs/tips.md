@@ -29,7 +29,7 @@ Running the same list in several channels? **Clone list** <img class="inline-ic"
 
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</p>
 
-Set **Behavior on selection** to **Keep status after selection** in [Configuration](/docs/configuration/#behavior-on-selection). The active button (owner, tag or reminder) stays on after each task, so you can tag five tasks in five clicks instead of fifteen.
+Tick **Keep the state after a selection** in the **Behavior** menu of [Configuration](/docs/configuration/#keep-the-state-after-a-selection). The active button (owner, tag or reminder) stays on after each task, so you can tag five tasks in five clicks instead of fifteen.
 
 ## Keep the channel quiet
 
