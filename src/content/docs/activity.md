@@ -31,6 +31,12 @@ The button follows the rules of the rest of the list, such as the [permissions s
 
 While a list is in the Activity, its message keeps a single button, <span class="dchip is-blue" role="img" aria-label="Join the Activity button, blue"><img src="/icons/activity.png" alt="" /></span> **Join the Activity**, and the last line says <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> *This list is being worked on in the Activity*. Discord's **Join**, on the profile of someone inside, works too. Nothing changes the list from the channel meanwhile.
 
+To bring someone in, press **Invite**, at the top right of the home and of every list, next to who is there. Discord opens its own window, where you pick friends or a channel to send the invite to. It needs Discord's *Create Invite* permission on the channel: without it, TTM tells you so on the button, and how an administrator grants it.
+
+## Your status on Discord
+
+While you're in the Activity, your Discord profile shows Team Tasks Manager with *Planning tasks with the team*, in your language. It says nothing about the list, the server or the channel. Discord asks you first, in the window where you let TTM know who you are. If you say no, the Activity opens all the same, without that line.
+
 ## The home of the channel
 
 You can also start from Discord: the **App Launcher** in a text channel's message bar (Team Tasks Manager, then **Launch**), or the Activities button of a voice call. Threads, forum posts, announcement channels and stages are left out. You land on the home of the channel, with the channel's name as its title:

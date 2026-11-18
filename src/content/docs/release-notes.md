@@ -16,6 +16,8 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 - **Reopen all fires the reopening webhooks** — of the tasks it reopens, in the channel and in the Activity. See [When a webhook fires](/docs/webhooks/#when-a-webhook-fires).
 - **One warning per webhook** — when the same webhook is on several tasks that change together and the call fails, you get one warning. See [When a webhook fails](/docs/webhooks/#when-a-webhook-fails).
 - **Reminders start in your time zone** — until you choose a time zone, the **When** form proposes the one of your Discord language: `America/Sao_Paulo` in Brazilian Portuguese, `Europe/Rome` in Italian. Reminders you write in the text of a list use it too, in the channel and in the Activity. A language spoken across several zones, such as English (US), keeps the server's zone. See [Your time zone](/docs/reminders/#your-time-zone).
+- **Invite from the Activity** — **Invite**, at the top right of the home and of every list, opens Discord's window to invite friends or send the invite to a channel. See [Join the others](/docs/activity/#join-the-others).
+- **Your Discord status shows the Activity** — while you're in it, your profile says *Planning tasks with the team*, in your language, and nothing about the list. Discord asks you first: if you say no, the Activity opens all the same. See [Your status on Discord](/docs/activity/#your-status-on-discord).
 
 ## 2.2.0 — Take a task
 

@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Privacy Policy
 description: What data the Team Tasks Manager Discord bot collects, why, and how it is handled.
-updated: "Last updated: 18 November 2026"
+updated: "Last updated: 19 November 2026"
 lang: en
 alt: /it/privacy/
 ---
@@ -73,6 +73,7 @@ You can request deletion at any time (see [GDPR](/gdpr/)); we may also delete da
 The [Activity](/docs/activity/) opens a list in a window inside Discord. On top of what the bot already handles:
 
 - **Signing in.** When you open it, you let TTM know who you are, through Discord. Discord gives TTM the basic profile of your account — your user ID, name and avatar, the language of your Discord app and a few account details, such as your badges and your Nitro type — never your email. TTM stores only your user ID and uses the language for the texts of the window and for the daily totals per language (see [What we collect](#what-we-collect)); it does not store the rest, nor the access Discord grants it.
+- **Your status on Discord.** In the same window, Discord asks whether TTM may also show on your profile that you are in the Activity. If you agree, TTM sends Discord one line, *Planning tasks with the team* in your language, which your friends and the members of your servers see while you are there. It says nothing about the list, the server or the channel, and TTM stores nothing for it. If you say no, the Activity opens all the same, without the line.
 - **The key of the window.** TTM gives the window a key that lasts 24 hours, so that it reconnects by itself after a restart of the bot. TTM stores only a fingerprint of the key, with your user ID, the server and channel it is for, when it was created and when it expires. Expired fingerprints are deleted within an hour.
 - **The changes.** While a list is in the Activity, TTM records each change, to write the summary posted when the list goes back to the channel: who made it and when, the number and text of the task and, depending on the change, the owners, tags or people mentioned (as Discord IDs), the date of a reminder or of **Reopen all**, the name of a webhook, the text of the tasks removed by **Clean the list**. These records are deleted when the list goes back to the channel: as soon as the summary is posted, or straight away if it can't be, for example because the channel is gone. What remains is a line with no personal data — which list, the language of its summary, when it opened and closed, and why — which goes with the list.
 - **Who is there.** Who is in the Activity, and who is editing what, is kept only in memory, while the list is there. To show names, TTM keeps in memory for ten minutes those it gets from Discord — of the people in the Activity and, with **Owner** and **Tag**, of the members whose name matches what you type — so as not to ask again. It does not store them.

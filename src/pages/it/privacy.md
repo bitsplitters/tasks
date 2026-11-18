@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "Informativa sulla privacy"
 description: "Quali dati raccoglie il bot Discord Team Tasks Manager, perché e come vengono trattati."
-updated: "Ultimo aggiornamento: 18 novembre 2026"
+updated: "Ultimo aggiornamento: 19 novembre 2026"
 lang: it
 alt: /privacy/
 ---
@@ -73,6 +73,7 @@ Puoi richiedere la cancellazione in qualsiasi momento (vedi [GDPR](/it/gdpr/)); 
 L'[Activity](/docs/activity/) apre una lista in una finestra dentro Discord. Oltre a ciò che il bot tratta già:
 
 - **L'accesso.** Quando la apri, fai sapere a TTM chi sei, tramite Discord. Discord gli dà il profilo di base del tuo account — il tuo ID utente, nome e avatar, la lingua della tua app Discord e alcuni dettagli dell'account, come i tuoi badge e il tipo di Nitro — mai la tua email. TTM conserva solo il tuo ID utente e usa la lingua per i testi della finestra e per i totali giornalieri per lingua (vedi [Cosa raccogliamo](#cosa-raccogliamo)); non conserva il resto, né l'accesso che Discord gli concede.
+- **Il tuo stato su Discord.** Nella stessa finestra Discord chiede se TTM può anche mostrare sul tuo profilo che sei nell'Activity. Se acconsenti, TTM manda a Discord una riga, *Pianifica i task con il team* nella tua lingua, che vedono i tuoi amici e i membri dei tuoi server finché ci sei. Non dice niente della lista, del server o del canale. TTM non conserva niente per mostrarla. Se rifiuti, l'Activity si apre lo stesso, senza la riga.
 - **La chiave della finestra.** TTM dà alla finestra una chiave che vale 24 ore, così che si ricolleghi da sola dopo un riavvio del bot. Della chiave TTM conserva solo un'impronta, con il tuo ID utente, il server e il canale per cui vale, quando è stata creata e quando scade. Le impronte scadute vengono eliminate entro un'ora.
 - **Le modifiche.** Mentre una lista è nell'Activity, TTM registra ogni modifica per scrivere il riepilogo che arriva nel canale quando la lista vi torna: chi l'ha fatta e quando, il numero e il testo del task e, secondo la modifica, gli owner, i tag o le persone menzionate (come ID Discord), la data di un promemoria o di **Riapri tutti**, il nome di un webhook, il testo dei task tolti da **Pulisci la lista**. Queste registrazioni vengono eliminate quando la lista torna nel canale: appena il riepilogo è inviato, oppure subito se non si può inviare, per esempio perché il canale non c'è più. Resta una riga senza dati personali — quale lista, la lingua del riepilogo, quando si è aperta, quando si è chiusa e perché — che se ne va con la lista.
 - **Chi c'è.** Chi è nell'Activity e chi sta modificando cosa restano solo in memoria, finché la lista è lì. Per mostrare i nomi, TTM tiene in memoria per dieci minuti quelli che riceve da Discord — delle persone nell'Activity e, con **Owner** e **Tag**, dei membri il cui nome corrisponde a ciò che scrivi — per non chiederli di nuovo. Non li conserva.
