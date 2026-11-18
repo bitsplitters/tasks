@@ -26,7 +26,7 @@ Above the row, **Lists** takes you to the [lists of the channel](/docs/activity/
 
 ## Tick a task
 
-**Tap the box** in front of a task to tick it, and tap it again to reopen it. A group carries its subtasks along, and it is ticked when all of them are, as in the channel. If the task has a [webhook](#webhook), ticking it fires the call there too.
+**Tap the box** in front of a task to tick it, and tap it again to reopen it. A group carries its subtasks along, and it is ticked when all of them are, as in the channel. Every task that changes fires its [webhook](#webhook), the subtasks and the group included, as in the channel.
 
 When a tick is refused, a bubble on the box tells you why: a task with an owner can be ticked only by its owner, and by whoever has *Manage messages* on the channel (see [Who can tick a task](/docs/core-concepts/#who-can-tick-a-task)). On a task someone else is editing, the bubble says who.
 
@@ -97,7 +97,7 @@ The list is locked for the others from the moment it opens until you save or can
 
 **Clean the list** asks you to confirm first. The summary at the end of the session records how many tasks you removed. With no task completed, or with every task completed, it says so and changes nothing.
 
-**Reopen all** asks you to confirm every time. **New date**, in the same window, moves the reminders of the tasks you reopen. Reopening calls no webhook. What both actions change: [List actions](/docs/list-actions/).
+**Reopen all** asks you to confirm every time. **New date**, in the same window, moves the reminders of the tasks you reopen. Reopening fires the reopening webhooks of the tasks you reopen. What both actions change: [List actions](/docs/list-actions/).
 
 ## Who is editing what
 

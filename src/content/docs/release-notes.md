@@ -7,6 +7,12 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## Next release — Webhooks for every task that changes
+
+- **Every task that changes fires its webhook** — tick the last subtask and the group is completed too: now both fire their webhooks. Tick a group and its subtasks fire theirs. The calls go out in the order of the list, and the whole tick counts as one click. See [When a webhook fires](/docs/webhooks/#when-a-webhook-fires).
+- **Reopen all fires the reopening webhooks** — of the tasks it reopens, in the channel and in the Activity. See [When a webhook fires](/docs/webhooks/#when-a-webhook-fires).
+- **One warning per webhook** — when the same webhook is on several tasks that change together and the call fails, you get one warning. See [When a webhook fails](/docs/webhooks/#when-a-webhook-fails).
+
 ## 2.2.0 — Take a task
 
 - **Take a task yourself** — click **Owner** until it turns blue, then pick a task without choosing anyone: it's yours, and the channel shows who took it. A task that already has an owner stays as it is: to replace them, choose yourself in the menu first. With **Keep status after selection**, take one task after another without clicking **Owner** again. See [Owner](/docs/channel-tasks/#owner).

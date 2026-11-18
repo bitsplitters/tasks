@@ -62,15 +62,16 @@ The link is stored **in the task itself**, as the reserved token `{{wb=…}}`, w
 
 ## When a webhook fires
 
-A webhook fires only when someone **ticks or unticks its task**: in the channel with the check selector, the drop-down menu under the list; in the Activity with its box. In detail:
+A webhook fires when its task is **completed or reopened**, by a tick or by **Reopen all**. You tick in the channel with the check selector, the drop-down menu under the list, and in the Activity with the box of the task. In detail:
 
-- **only the task you picked** fires its webhook. The tasks that change with it don't fire theirs: subtasks ticked in cascade, or a group completed by its last subtask;
-- **Reopen all**, **Bulk update** and **Edit the list** change many tasks at once and fire **no** webhook;
+- **every task that changes** fires its webhook: the one you picked and the ones that change with it, subtasks ticked in cascade or a group completed by its last subtask. A subtask that was already ticked doesn't change, so it doesn't fire;
+- the calls go out **one after the other**, in the order of the list, and the whole tick counts as **one click**, however many tasks it changes;
+- **Reopen all** fires the reopening webhooks of the tasks it reopens. **Bulk update** and **Edit the list** change many tasks at once and fire **no** webhook;
 - **the list must be in use**, holding one of the places of your plan. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work). A list created during the beta is the exception: its tasks can still be ticked without a place. Their webhooks stay silent until the list takes one. TTM tells you so privately.
 
 ## When a webhook fails
 
-If the call doesn't reach its destination, TTM writes a warning in the list's channel. It names the webhook and the task, then explains the error in one sentence. It also says what to check: the address, the headers, the method, or the server you are calling.
+If the call doesn't reach its destination, TTM writes a warning in the list's channel. It names the webhook and the task, then explains the error in one sentence. It also says what to check: the address, the headers, the method, or the server you are calling. When the same webhook is on several tasks that change together, you get one warning, not one per task.
 
 If notifications are off on the server, or TTM can't post in that channel, the warning reaches only whoever ticked the task.
 

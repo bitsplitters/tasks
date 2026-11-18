@@ -37,7 +37,7 @@ First, the bot asks you to choose:
 - **New date** — reopen, and move the reminders of the tasks you reopen. The first of those reminders in the calendar moves to the date you pick, at least 5 minutes from now. The others keep the same distance from it. Reminders of tasks still to do stay as they are. This choice appears only when a task you reopen has a reminder.
 - **Cancel** — leave the list as it is.
 
-Reopening calls **no webhook**, and it ignores owners: anyone who can edit the list can reopen it.
+Reopening fires the **reopening webhooks** of the tasks it reopens, and it ignores owners: anyone who can edit the list can reopen it.
 
 ## Clone
 
