@@ -111,7 +111,7 @@ Click **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> unti
 | **Month** | a dropdown, in your language | no `dd/mm` ambiguity to worry about |
 | **Year** | a number | pre-filled |
 | **Time** | `HH:mm`, 24-hour | e.g. `15:30` |
-| **Time zone** | an official zone name | pre-filled with *your* zone (the server's, until you change it) |
+| **Time zone** | an official zone name | pre-filled with *your* zone (until you change it, the one of your Discord language, or the server's) |
 
 Everything arrives pre-filled with **ten minutes from now**. Submit it, and the task shows the scheduled time. While the form is open, the list is locked for the others. Who gets the reminder, and the time zone: see [Reminders](/docs/reminders/#the-rules).
 

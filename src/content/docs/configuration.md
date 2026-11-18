@@ -86,7 +86,7 @@ A reminder that is *already* recurring keeps firing even while the toggle is off
 
 ## Time zone
 
-Sets the time zone your team works in (members can still use their own for reminders: see [Your time zone](/docs/reminders/#your-time-zone)). Click the button, then paste an official zone name — look it up on the **[time zone map](https://timezones.bitsplitters.app)**.
+Sets the time zone your team works in. Members can still use their own for reminders: until they choose one, TTM proposes the zone of their Discord language, and this one only when their language is spoken across several zones, such as English (US). See [Your time zone](/docs/reminders/#your-time-zone). Click the button, then paste an official zone name — look it up on the **[time zone map](https://timezones.bitsplitters.app)**.
 
 ## Sync permissions
 
