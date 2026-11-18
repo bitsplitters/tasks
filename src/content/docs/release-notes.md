@@ -7,6 +7,10 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## Next release — Your language's time zone
+
+- **Reminders start in your time zone** — until you choose a time zone, the **When** form proposes the one of your Discord language: `America/Sao_Paulo` in Brazilian Portuguese, `Europe/Rome` in Italian. Reminders you write in the text of a list use it too, in the channel and in the Activity. A language spoken across several zones, such as English (US), keeps the server's zone. See [Your time zone](/docs/reminders/#your-time-zone).
+
 ## 2.2.0 — Take a task
 
 - **Take a task yourself** — click **Owner** until it turns blue, then pick a task without choosing anyone: it's yours, and the channel shows who took it. A task that already has an owner stays as it is: to replace them, choose yourself in the menu first. With **Keep status after selection**, take one task after another without clicking **Owner** again. See [Owner](/docs/channel-tasks/#owner).
