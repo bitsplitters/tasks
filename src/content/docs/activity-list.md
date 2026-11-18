@@ -22,7 +22,7 @@ These buttons act on the whole list.
 | <span class="dchip is-blue" role="img" aria-label="Reopen all button, blue"><img src="/icons/reopen.png" alt="" /></span> | **Reopen all** | Brings the completed tasks back to to-do; **New date** moves their reminders. |
 | <span class="dchip is-grey" role="img" aria-label="Exit button, grey"><img src="/icons/back.png" alt="" /></span> | **Exit** | Takes the list back to the channel: see [Back to the channel](/docs/activity/#back-to-the-channel). |
 
-Above the row, **Lists** takes you to the [lists of the channel](/docs/activity/#the-lists-of-the-channel), and the gear opens [your settings](/docs/activity/#your-settings). Clone, Download, Seal, Delete and Unlock aren't here: they [stay in the channel](/docs/activity/#what-stays-in-the-channel).
+Above the row, **Home** takes you to the [home of the channel](/docs/activity/#the-home-of-the-channel), and the gear opens [your settings](/docs/activity/#your-settings). Clone, Download, Seal, Delete and Unlock aren't here: they [stay in the channel](/docs/activity/#what-stays-in-the-channel).
 
 ## Tick a task
 
@@ -113,6 +113,6 @@ If someone changes the same thing just before you save, you choose: **Overwrite*
 
 ## Where to go next
 
-- [The Activity](/docs/activity/) — how to get in, the lists of the channel, and back to the channel.
+- [The Activity](/docs/activity/) — how to get in, the home of the channel, and back to the channel.
 - [Editing a task in the channel](/docs/channel-tasks/) — the same five buttons, under the list in the channel.
 - [FAQ](/docs/troubleshooting/#in-the-activity) — quick answers to the most common problems.

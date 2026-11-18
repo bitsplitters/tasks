@@ -31,15 +31,15 @@ The button follows the rules of the rest of the list, such as the [permissions s
 
 While a list is in the Activity, its message keeps a single button, <span class="dchip is-blue" role="img" aria-label="Join the Activity button, blue"><img src="/icons/activity.png" alt="" /></span> **Join the Activity**, and the last line says <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> *This list is being worked on in the Activity*. Discord's **Join**, on the profile of someone inside, works too. Nothing changes the list from the channel meanwhile.
 
-## The lists of the channel
+## The home of the channel
 
-You can also start from Discord: the **App Launcher** in a text channel's message bar (Team Tasks Manager, then **Launch**), or the Activities button of a voice call. Threads, forum posts, announcement channels and stages are left out. You land on the lists of the channel:
+You can also start from Discord: the **App Launcher** in a text channel's message bar (Team Tasks Manager, then **Launch**), or the Activities button of a voice call. Threads, forum posts, announcement channels and stages are left out. You land on the home of the channel, with the channel's name as its title:
 
+- **New list**, under the title — a title and the tasks, written as in [Writing a list](/docs/writing-a-list/), created here and already in the Activity. The summary that follows it back to the channel starts with its creation, and can mention the owners of its tasks: see [When a list is created](/docs/configuration/#when-a-list-is-created). Files are imported with `/create-list`, in the channel.
 - **Now in the Activity** — who is on each list, and who is editing. Tap one to join.
 - **In the channel** — the other lists, newest first. Tap one to read it, then **Bring into the Activity**, which waits while someone edits it in the channel.
-- **New list** — a title and the tasks, written as in [Writing a list](/docs/writing-a-list/), created here and already in the Activity. The summary that follows it back to the channel starts with its creation, and can mention the owners of its tasks: see [When a list is created](/docs/configuration/#when-a-list-is-created). Files are imported with `/create-list`, in the channel.
 
-**Lists**, at the top of every list, takes you back there.
+The <span class="dchip is-grey" role="img" aria-label="Home button, grey"><img src="/icons/home.png" alt="" /></span> **Home** button, at the top left of every list, takes you back there.
 
 ## Back to the channel
 
@@ -48,7 +48,7 @@ You can also start from Discord: the **App Launcher** in a text channel's messag
 - **Leave on your own** — the others go on;
 - **Bring back to the channel for everyone** — the Activity closes for all.
 
-The list also goes back 30 seconds after the last person leaves, closing the window or locking the phone included. **Exit** and **Lists** do it at once.
+The list also goes back 30 seconds after the last person leaves, closing the window or locking the phone included. **Exit** and **Home** do it at once.
 
 Then a **summary** follows, one line per change with who made it: in the channel as your [Notification mode](/docs/configuration/#notification-mode) says, and in full in the thread of the [activity timeline](/docs/configuration/#history-tracking). It uses the language of whoever brought the list into the Activity.
 
@@ -60,7 +60,7 @@ An admin can still **Delete**, **Seal** or **Regenerate** a list in the Activity
 
 ## When the database isn't responding
 
-No list enters the Activity, and the lists page hides **New list**. A list already in it turns read-only until the database is back, and a strip offers to bring it back to the channel.
+No list enters the Activity, and the home hides **New list**. A list already in it turns read-only until the database is back, and a strip offers to bring it back to the channel.
 
 ## Your settings
 
