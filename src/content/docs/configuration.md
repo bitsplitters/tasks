@@ -75,7 +75,7 @@ In the Activity the panel of a task always works the same way: after an action i
 
 ### Mention owners in new lists
 
-When someone creates, imports or clones a list, its first notification mentions the owners of its tasks: people and roles, each once, in the order of the list. The mentions go in the plain text of the notification, so Discord notifies the owners. Whoever created the list isn't mentioned: they already know.
+When someone creates, imports or clones a list, its first notification mentions the owners of its tasks: people and roles, each once, in the order of the list. The mentions go in the plain text of the notification, so Discord notifies the owners. Whoever created the list isn't mentioned: they already know. Neither is @everyone, even when it owns a task: a new list doesn't notify the whole server.
 
 On by default, also on servers that added TTM before this option came. A list created inside an Activity session mentions its owners in the summary, when it goes back to the channel. See [When a list is created](#when-a-list-is-created).
 
