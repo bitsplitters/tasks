@@ -68,7 +68,7 @@ One ping is the default, and on the Free plan it is the only kind. Repeating rem
 
 ## Notifications & history
 
-When a task is ticked or unticked, TTM can post a notification and — if you enable it — record every action in a dedicated **history thread**. Changes made in the Activity arrive as one summary, when the list goes back to the channel. How much noise you want is entirely up to you: see [Configuration](/docs/configuration/).
+When a list is created, or a task is ticked or unticked, TTM can post a notification and — if you enable it — record every action in a dedicated **history thread**. A new list's notification can mention the owners of its tasks, so they hear about it. Changes made in the Activity arrive as one summary, when the list goes back to the channel. How much noise you want is entirely up to you: see [Configuration](/docs/configuration/).
 
 ## Who can use lists and commands
 

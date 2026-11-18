@@ -61,7 +61,7 @@ Giving the role also takes time. Discord lets a bot do it ten times every ten se
 
 - Picking different people, even one more or one less, creates a new role.
 - Picking exactly the same people as the current owner changes nothing.
-- In the channel, with **Keep status after selection**, the same selection on several tasks in a row reuses the role created for the first task.
+- In the channel, with **Keep the state after a selection** on, the same selection on several tasks in a row reuses the role created for the first task.
 
 ### When a role stops being TTM's
 

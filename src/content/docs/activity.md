@@ -37,7 +37,7 @@ You can also start from Discord: the **App Launcher** in a text channel's messag
 
 - **Now in the Activity** — who is on each list, and who is editing. Tap one to join.
 - **In the channel** — the other lists, newest first. Tap one to read it, then **Bring into the Activity**, which waits while someone edits it in the channel.
-- **New list** — a title and the tasks, written as in [Writing a list](/docs/writing-a-list/), created here and already in the Activity. Files are imported with `/create-list`, in the channel.
+- **New list** — a title and the tasks, written as in [Writing a list](/docs/writing-a-list/), created here and already in the Activity. The summary that follows it back to the channel starts with its creation, and can mention the owners of its tasks: see [When a list is created](/docs/configuration/#when-a-list-is-created). Files are imported with `/create-list`, in the channel.
 
 **Lists**, at the top of every list, takes you back there.
 
