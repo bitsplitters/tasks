@@ -4,15 +4,13 @@
  * classi di questa pagina hanno il prefisso `b-`. I colori dei tre tempi (§5): il verde del bot per «adesso»,
  * l'ambra del sito per il Founder e i link, il grigio per il dopo.
  */
-.beta { --bot: #1EC785; }
-
 /* ── L'apertura ───────────────────────────────────────────────────────────────────────────────────────── */
 /* Come l'apertura di /premium/: il titolo fa da protagonista, ogni frase va a capo intera quando ci sta. */
 .b-hero { padding-block: clamp(3rem, 9vh, 6rem) clamp(1.5rem, 4vh, 2.5rem); text-align: center; }
 .b-pill {
   display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 1.25rem; padding: .3rem .85rem;
-  border: 1px solid rgba(30, 199, 133, .5); border-radius: 999px; background: rgba(30, 199, 133, .08);
-  font-size: .9rem; font-weight: 700; line-height: 1.4; color: var(--bot);
+  border: 1px solid color-mix(in srgb, var(--bot) 50%, transparent); border-radius: 999px; background: color-mix(in srgb, var(--bot) 8%, transparent);
+  font-size: .9rem; font-weight: 700; line-height: 1.4; color: var(--bot-text);
 }
 .b-pill-dot { width: .5rem; height: .5rem; border-radius: 50%; background: var(--bot); }
 .b-hero h1 {
@@ -34,11 +32,11 @@
 }
 /* Il quadratino grigio dei pulsanti di Discord, con l'emoji del bot dentro (#4E5058, ButtonStyle SECONDARY). */
 .b-chip {
-  flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 8px; background: #4E5058;
+  flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 8px; background: var(--dc-grey);
 }
 .b-chip img { width: 24px; height: 24px; object-fit: contain; }
 /* Il ↻ non c'è in Mona Sans: il carattere di sistema. */
-.b-glyph { font-family: var(--sans); font-size: 1.5rem; font-weight: 700; line-height: 1; color: #fff; }
+.b-glyph { font-family: var(--sans); font-size: 1.5rem; font-weight: 700; line-height: 1; color: var(--dc-white); }
 .b-tiles h3 { margin: 0 0 .3rem; font-size: 1.1rem; font-weight: 700; font-stretch: 105%; line-height: 1.35; }
 .b-tiles p { margin: 0; font-size: .98rem; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
 /* La riga sotto una sezione. */
@@ -48,7 +46,7 @@
 .b-promise { list-style: none; margin: 2.25rem 0 0; padding: 0; display: grid; gap: 1.75rem 2.25rem; }
 @media (min-width: 760px) { .b-promise { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .b-promise li { display: grid; grid-template-columns: 1.6em minmax(0, 1fr); align-content: start; }
-.b-tick { grid-row: span 2; font-size: 1.1rem; font-weight: 700; line-height: 1.45; color: var(--accent); }
+.b-tick { grid-row: span 2; font-size: 1.1rem; font-weight: 700; line-height: 1.45; color: var(--accent-text); }
 .b-promise h3 { margin: 0 0 .3rem; font-size: 1.1rem; font-weight: 700; font-stretch: 105%; line-height: 1.45; }
 .b-promise p { margin: 0; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
 .b-callout { max-width: 62ch; margin: 2.25rem 0 0; font-size: 1.05rem; color: var(--text); }
@@ -66,7 +64,7 @@
 .b-step { position: relative; padding-left: 2.25rem; }
 .b-dot {
   position: absolute; left: 0; top: .15rem; width: 16px; height: 16px; border-radius: 50%;
-  background: var(--muted); box-shadow: 0 0 0 4px var(--ink);
+  background: var(--muted); box-shadow: 0 0 0 4px var(--bg);
 }
 .b-now .b-dot { background: var(--bot); }
 .b-fd .b-dot { background: var(--accent); }
@@ -91,30 +89,30 @@
   to { transform: scale(2.6); opacity: 0; }
 }
 .b-when { margin: 0 0 .35rem; font-size: .92rem; font-weight: 700; line-height: 1.4; color: var(--muted); }
-.b-now .b-when { color: var(--bot); }
-.b-fd .b-when { color: var(--accent); }
+.b-now .b-when { color: var(--bot-text); }
+.b-fd .b-when { color: var(--accent-text); }
 .b-step h3 { margin: 0 0 .35rem; font-size: 1.25rem; font-weight: 750; font-stretch: 105%; line-height: 1.3; }
 .b-step p { margin: 0; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
 
 /* La tappa del Founder: il riquadro ambra di /premium/ in piccolo, con la fascia dell'evento in testa. Dentro il
    testo è pieno, non attenuato. */
 .b-fd-card {
-  margin-top: .6rem; overflow: hidden; border: 1px solid rgba(233, 164, 76, .55); border-radius: 16px;
-  background: radial-gradient(120% 90% at 0% 0%, rgba(233, 164, 76, .14), transparent 55%), var(--surface);
+  margin-top: .6rem; overflow: hidden; border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent); border-radius: 16px;
+  background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 55%), var(--surface);
 }
 .b-step .b-fd-band {
   display: flex; align-items: center; gap: .5rem; margin: 0; padding: .55rem 1rem;
-  background: var(--accent); color: var(--ink); font-size: .92rem; font-weight: 800; line-height: 1.35;
+  background: var(--accent); color: var(--on-accent); font-size: .92rem; font-weight: 800; line-height: 1.35;
 }
 .b-fd-band svg { flex: none; }
 .b-fd-in { padding: 1.1rem 1.15rem 1.25rem; }
-.b-fd-in h3 { color: var(--accent); }
+.b-fd-in h3 { color: var(--accent-text); }
 .b-step .b-fd-in p { color: var(--text); }
 .b-step .b-fd-status { display: flex; gap: .6rem; margin: .9rem 0 .8rem; font-size: .98rem; }
 /* Il punto grigio: la promozione non è ancora attiva, come in /premium/. */
 .b-fd-dot {
   flex: none; width: .55rem; height: .55rem; margin-top: .5em; border-radius: 50%;
-  background: var(--muted); box-shadow: 0 0 0 3px rgba(138, 148, 167, .25);
+  background: var(--muted); box-shadow: 0 0 0 3px color-mix(in srgb, var(--muted) 25%, transparent);
 }
 
 /* ── Shape e chiusura ─────────────────────────────────────────────────────────────────────────────────── */

@@ -1,14 +1,33 @@
+@import './discord.css';
+
+/* I colori del sito (spec 2026-11-19-tema-chiaro-sito-design.md, §4, nel repo team-tasks-manager). Lo scuro è la
+   base; [data-theme="light"], che Base.astro scrive prima del primo disegno, ridefinisce quelli che cambiano col
+   tema. Un colore nuovo si aggiunge qui, in tutti e due i blocchi, col contrasto misurato in tutti e due; i colori di
+   Discord stanno in discord.css. */
 :root {
-  --ink: #0A0E16;
+  /* Cambiano col tema. */
+  --bg: #0A0E16;
   --surface: #121826;
   --surface-2: #161E2E;
   --line: #1E2636;
   --line-2: #2A3547;
   --text: #E7EBF3;
+  --text-body: #C7CEDB;
+  --text-app: #F2F3F5;
   --muted: #8A94A7;
+  --accent-text: #E9A44C;
+  --accent-text-hover: #F2B76B;
+  --bot-text: #1EC785;
+  --state-grey: #949BA4;
+  --state-blue: #5865F2;
+  --state-green: #23A55A;
+  --state-red: #ED4245;
+  --icon-filter: none;
+  /* Uguali nei due temi: l'ambra e il verde come fondo, il testo sopra l'ambra. */
   --accent: #E9A44C;
-  --accent-bright: #F2B76B;
-  --good: #5BC48B;
+  --accent-hover: #F2B76B;
+  --on-accent: #0A0E16;
+  --bot: #1EC785;
   --mono: ui-monospace, "Cascadia Code", "SF Mono", "Menlo", "Consolas", monospace;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   /* Mona Sans, variabile in peso e larghezza: il carattere della vetrina, della documentazione e delle pagine
@@ -19,7 +38,7 @@
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
-  margin: 0; background: var(--ink); color: var(--text);
+  margin: 0; background: var(--bg); color: var(--text);
   font-family: var(--sans); font-size: 16px; line-height: 1.65;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
   min-height: 100vh; display: flex; flex-direction: column;
@@ -48,16 +67,16 @@ a.btn[target="_blank"]::after, a.btn-ghost[target="_blank"]::after { content: no
   position: sticky; top: 0; z-index: 50;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: .9rem clamp(1.25rem, 5vw, 2.5rem);
-  background: color-mix(in srgb, var(--ink) 82%, transparent);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
   backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
 }
 .site-top .mark { font-family: var(--mono); font-weight: 700; letter-spacing: -.01em; font-size: 1rem; display: inline-flex; align-items: baseline; gap: .12em; }
 .site-top .mark a { text-decoration: none; color: var(--text); transition: color .18s ease; }
 .site-top .mark .brand { display: inline-flex; align-items: baseline; gap: .12em; }
-.site-top .mark .brand:hover { color: var(--accent); }
+.site-top .mark .brand:hover { color: var(--accent-text); }
 .site-top .mark .bar { width: 2px; align-self: stretch; background: var(--accent); margin: .15em .04em; border-radius: 1px; }
 .site-top .mark .sep { color: var(--line-2); margin: 0 .3em; }
-.site-top .mark .prod { color: var(--accent); }
+.site-top .mark .prod { color: var(--accent-text); }
 .site-top .mark .prod:hover { color: var(--text); }
 .site-top nav { display: flex; align-items: center; gap: clamp(.75rem, 2vw, 1.5rem); }
 .site-top nav a { font-family: var(--mono); font-size: .85rem; color: var(--muted); text-decoration: none; transition: color .18s ease; }
@@ -83,24 +102,25 @@ a.btn[target="_blank"]::after, a.btn-ghost[target="_blank"]::after { content: no
   .site-top nav { gap: .5rem; }
   .site-top nav a { font-size: .74rem; }
 }
-.btn { font-family: var(--mono); font-size: .85rem; font-weight: 600; color: var(--ink) !important; background: var(--accent); padding: .5em 1em; border-radius: 8px; text-decoration: none; transition: background .18s ease, transform .18s ease; }
-.btn:hover { background: var(--accent-bright); transform: translateY(-1px); }
+.btn { font-family: var(--mono); font-size: .85rem; font-weight: 600; color: var(--on-accent) !important; background: var(--accent); padding: .5em 1em; border-radius: 8px; text-decoration: none; transition: background .18s ease, transform .18s ease; }
+.btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
 .cta-row { display: flex; flex-wrap: wrap; gap: .9rem; }
 .btn-ghost { font-family: var(--mono); font-size: .9rem; color: var(--text); text-decoration: none; padding: .55em 1.1em; border: 1px solid var(--line-2); border-radius: 8px; display: inline-flex; align-items: center; gap: .5em; transition: border-color .18s ease, color .18s ease; }
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn-ghost:hover { border-color: var(--accent-text); color: var(--accent-text); }
 .site-foot { margin-top: auto; border-top: 1px solid var(--line); }
 .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-block: 1.5rem; font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 .foot-inner a { color: var(--muted); text-decoration: none; }
-.foot-inner a:hover { color: var(--accent); }
+.foot-inner a:hover { color: var(--accent-text); }
 .foot-left { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
-.foot-badge img { display: block; }
-.callout { border: 1px solid var(--line-2); border-left: 3px solid var(--accent); background: var(--surface); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+/* Il badge è tutto bianco: nel tema chiaro lo scurisce lo stesso filtro delle icone (§5.3). */
+.foot-badge img { display: block; filter: var(--icon-filter); }
+.callout { border: 1px solid var(--line-2); border-left: 3px solid var(--accent-text); background: var(--surface); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
 /* Il titolo dei riquadri in Mona Sans, come nelle pagine della vetrina: niente maiuscole spaziate in mono. */
 .callout .callout-t {
-  font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: .4rem;
+  font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--accent-text); margin-bottom: .4rem;
 }
 
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 3px; border-radius: 4px; }
 
 /* Niente scorrimento di lato sul telefono. Il menu in alto resta fermo: le ancore (i link a un titolo, i risultati
    della ricerca, scrollIntoView) arrivano 5rem sotto il bordo, fuori dal menu. */

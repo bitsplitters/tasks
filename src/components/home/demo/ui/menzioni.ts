@@ -37,7 +37,7 @@ export function filtraVoci(voci: readonly Voce[], testo: string): Voce[] {
 }
 
 const avatar = (voce: Voce, stato: string) =>
-  `<span class="sc-av" style="--av:${voce.colore ?? '#5865f2'}">${escape(voce.nome.slice(0, 1))}${stato}</span>`;
+  `<span class="sc-av" style="--av:${voce.colore ?? 'var(--dc-blurple)'}">${escape(voce.nome.slice(0, 1))}${stato}</span>`;
 
 /** Una riga, col contratto del §5: `sub-<nome>` (`sub-mia`, `sub-coaches`, `sub-ttm1`). */
 export function htmlDellaVoce(voce: Voce, scelta: boolean, id: string): string {

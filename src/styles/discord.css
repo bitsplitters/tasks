@@ -1,0 +1,41 @@
+/*
+ * I colori di Discord (spec 2026-11-19-tema-chiaro-sito-design.md, §5.4, nel repo team-tasks-manager). Le
+ * riproduzioni di Discord (la demo della home, le illustrazioni, i suggerimenti, i quadratini dei posti) restano
+ * scure in tutti e due i temi, quindi questi valori non cambiano mai. I nomi sono i ruoli dei colori in Discord.
+ * Lo importano global.css (tutte le pagine) e scene.css, che le pagine dei video caricano senza global.css. Ci
+ * vanno i colori di Discord usati più di una volta; quelli usati una volta sola restano dove sono.
+ */
+:root {
+  --dc-text: #DBDEE1;
+  --dc-text-muted: #ABACB2;
+  --dc-text-strong: #EFEFF1;
+  --dc-text-title: #FBFBFB;
+  --dc-text-header: #F2F3F5;
+  --dc-text-secondary: #B5BAC1;
+  --dc-text-faint: #80848E;
+  --dc-text-time: #949BA4;
+  --dc-text-role: #99AAB5;
+  --dc-text-danger: #FA777C;
+  --dc-white: #FFFFFF;
+  --dc-bg-chat: #1A1A1E;
+  --dc-bg-embed: #242429;
+  --dc-bg-input: #17171A;
+  --dc-bg-menu: #28282D;
+  --dc-bg-button: #29292D;
+  --dc-bg-tag: #252529;
+  --dc-bg-hover: #36363C;
+  --dc-bg-option-hover: #333338;
+  --dc-bg-tooltip: #111214;
+  --dc-border: #35353B;
+  --dc-border-input: #303035;
+  --dc-border-dialog: #3B3B42;
+  --dc-grey: #4E5058;
+  --dc-grey-hover: #3F4147;
+  --dc-blurple: #5865F2;
+  --dc-blurple-hover: #4752C4;
+  --dc-blurple-tint: rgba(88, 101, 242, .16);
+  --dc-hover: rgba(255, 255, 255, .04);
+  --dc-red: #DA373C;
+  --dc-red-hover: #A12829;
+  --dc-embed-bot: #1EC785;
+}

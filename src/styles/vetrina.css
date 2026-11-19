@@ -26,8 +26,8 @@
 
 .h-sec { padding-block: clamp(3rem, 9vh, 6rem); }
 .h-intro { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--muted); max-width: 60ch; margin: 0; }
-.h-link { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
-.h-link:hover { color: var(--accent-bright); }
+.h-link { color: var(--accent-text); font-weight: 600; text-underline-offset: 3px; }
+.h-link:hover { color: var(--accent-text-hover); }
 
 /* ── Il confronto ─────────────────────────────────────────────────────────────────────────────────────── */
 /* Due colonne: quella accesa (h-col-acc, h-acc) ha la superficie ambra e il bordo chiuso in alto e in basso,
@@ -38,11 +38,11 @@
 .h-table thead th, .h-table thead td { border-top: 0; padding-block: .9rem; font-size: 1.05rem; font-weight: 700; }
 .h-table tbody th { width: 22%; font-weight: 650; color: var(--text); }
 .h-table .h-col-acc, .h-table .h-acc {
-  width: 39%; background: rgba(233, 164, 76, .06);
-  border-left: 1px solid rgba(233, 164, 76, .4); border-right: 1px solid rgba(233, 164, 76, .4);
+  width: 39%; background: color-mix(in srgb, var(--accent) 6%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-right: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
 }
-.h-table thead .h-col-acc { color: var(--accent); border-top: 1px solid rgba(233, 164, 76, .4); border-radius: 12px 12px 0 0; }
-.h-table tbody tr:last-child .h-acc { border-bottom: 1px solid rgba(233, 164, 76, .4); border-radius: 0 0 12px 12px; }
+.h-table thead .h-col-acc { color: var(--accent-text); border-top: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-radius: 12px 12px 0 0; }
+.h-table tbody tr:last-child .h-acc { border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-radius: 0 0 12px 12px; }
 .h-table .h-acc { color: var(--text); }
 .h-table thead .h-col-dim { color: var(--muted); font-weight: 600; }
 .h-table .h-dim { color: var(--muted); }
@@ -61,7 +61,7 @@
 @media (min-width: 720px) and (max-width: 899px) {
   .h-line > span:last-child { text-wrap: balance; }
 }
-.h-acc .h-mark { color: var(--accent); }
+.h-acc .h-mark { color: var(--accent-text); }
 .h-dim .h-mark { color: var(--line-2); }
 .h-cell-col { display: none; }
 @media (max-width: 719px) {
@@ -72,11 +72,11 @@
   .h-table tbody th { width: auto; border-top: 0; padding: 0 0 .5rem; font-size: 1.1rem; }
   .h-table td { border: 0; border-radius: 10px; padding: .8rem 1rem; }
   .h-table .h-acc, .h-table tbody tr:last-child .h-acc {
-    width: auto; border: 1px solid rgba(233, 164, 76, .4); border-radius: 10px;
+    width: auto; border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-radius: 10px;
   }
   .h-table .h-dim { background: var(--surface); }
   /* La seconda cella della riga, quale che sia: nella home è la spenta, nella pagina dei piani l'accesa. */
   .h-table td + td { margin-top: .4rem; }
   .h-cell-col { display: block; margin-bottom: .2rem; font-size: .85rem; font-weight: 650; }
-  .h-acc .h-cell-col { color: var(--accent); }
+  .h-acc .h-cell-col { color: var(--accent-text); }
 }

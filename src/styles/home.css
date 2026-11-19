@@ -15,7 +15,7 @@
 .h-hero { position: relative; isolation: isolate; padding-block: clamp(3rem, 9vh, 6rem) clamp(2.5rem, 7vh, 5rem); }
 .h-hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: radial-gradient(38% 48% at 72% 46%, rgba(233, 164, 76, 0.09), transparent 72%);
+  background: radial-gradient(38% 48% at 72% 46%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 72%);
 }
 .h-hero-in {
   max-width: 1240px; margin: 0 auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem);
@@ -23,11 +23,11 @@
 }
 .h-brand {
   display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 1.4rem;
-  font-family: var(--sans); font-size: .95rem; font-weight: 600; color: #f2f3f5;
+  font-family: var(--sans); font-size: .95rem; font-weight: 600; color: var(--text-app);
 }
 .h-brand img { width: 28px; height: 28px; border-radius: 50%; }
 .h-app {
-  background: #5865f2; color: #fff; font-size: .62rem; font-weight: 700;
+  background: var(--dc-blurple); color: var(--dc-white); font-size: .62rem; font-weight: 700;
   padding: .12rem .32rem; border-radius: 3px; letter-spacing: .04em;
 }
 /* In colonna unica il titolo si misura sulla pagina; affiancato ai video, sulla sua colonna (5/12). */
@@ -37,7 +37,7 @@
 }
 .h-tagline {
   font-size: clamp(1.3rem, 2.4vw, 1.75rem); font-weight: 650; font-stretch: 104%;
-  line-height: 1.2; color: var(--accent); margin: .9rem 0 0;
+  line-height: 1.2; color: var(--accent-text); margin: .9rem 0 0;
 }
 .h-lede { font-size: 1.125rem; line-height: 1.6; color: var(--muted); max-width: 42ch; margin: 1.3rem 0 2rem; }
 @media (min-width: 960px) {
@@ -57,10 +57,10 @@
 }
 .hv-tab:hover, .dm-tab:hover { border-color: var(--muted); color: var(--text); }
 .hv-tab[aria-selected="true"], .dm-tab[aria-selected="true"] {
-  border-color: var(--accent); background: var(--accent); color: var(--ink);
+  border-color: var(--accent); background: var(--accent); color: var(--on-accent);
 }
 /* «New in 2.0» sul tab scelto: sul fondo ambra prende il colore del testo. */
-.dm-tab[aria-selected="true"] .h-new { color: var(--ink); border-color: rgba(10, 14, 22, .45); }
+.dm-tab[aria-selected="true"] .h-new { color: var(--on-accent); border-color: color-mix(in srgb, var(--on-accent) 45%, transparent); }
 
 /* ── I video ──────────────────────────────────────────────────────────────────────────────────────────── */
 .hv { margin: 0; min-width: 0; }
@@ -68,7 +68,7 @@
    HeroVideo.astro e hero-video.ts). Il video, quando parte, copre l'immagine ferma. */
 .hv-box {
   position: relative; overflow: hidden; aspect-ratio: 3 / 2;
-  background: #1a1a1e; border: 1px solid var(--line-2); border-radius: 16px;
+  background: var(--dc-bg-chat); border: 1px solid var(--line-2); border-radius: 16px;
   box-shadow: 0 24px 48px -18px rgba(0, 0, 0, .7);
 }
 .hv-still img, .hv-vid { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -88,13 +88,13 @@
   transition: background-color .3s ease, border-color .3s ease, color .3s ease;
 }
 .hv-steps li.is-lit { color: var(--text); }
-.hv-steps li.is-lit::before { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.hv-steps li.is-lit::before { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .hv-ctl {
   flex: none; width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: 50%;
   border: 1px solid var(--line-2); background: var(--surface); color: var(--text); cursor: pointer;
   transition: border-color .18s ease, color .18s ease;
 }
-.hv-ctl:hover { border-color: var(--accent); color: var(--accent); }
+.hv-ctl:hover { border-color: var(--accent-text); color: var(--accent-text); }
 .hv-ctl[hidden] { display: none; }
 .hv-i { width: 1rem; height: 1rem; display: none; }
 .hv-ctl[data-mode="playing"] .hv-i-pause, .hv-ctl[data-mode="paused"] .hv-i-play { display: block; }
@@ -103,7 +103,7 @@
 .h-problem .h-intro { max-width: 62ch; }
 /* La risposta, in chiaro e col filo ambra: è la promessa su cui si regge il resto della pagina. */
 .h-why {
-  max-width: 62ch; margin: 1.6rem 0 0; padding-left: 1.1rem; border-left: 2px solid var(--accent);
+  max-width: 62ch; margin: 1.6rem 0 0; padding-left: 1.1rem; border-left: 2px solid var(--accent-text);
   font-size: 1.075rem; line-height: 1.65; color: var(--text);
 }
 
@@ -131,16 +131,16 @@
 .h-art {
   position: relative; display: grid; place-items: center; align-content: center; gap: 18px;
   height: 180px; overflow: hidden; padding: 0 16px;
-  background: #1a1a1e; border: 1px solid var(--line); border-radius: 14px;
-  font-family: var(--sans); font-stretch: normal; color: #dbdee1;
+  background: var(--dc-bg-chat); border: 1px solid var(--line); border-radius: 14px;
+  font-family: var(--sans); font-stretch: normal; color: var(--dc-text);
 }
 /* Simple to use: il campo del messaggio col comando, sotto un pulsante di Discord una volta e mezza, col cursore. */
 .h-art-cmd {
   display: flex; align-items: center; width: min(100%, 260px); height: 44px; padding: 0 12px;
-  border-radius: 8px; background: #242429;
+  border-radius: 8px; background: var(--dc-bg-embed);
 }
 .h-art-chip { padding: 2px 8px; border-radius: 4px; background: rgba(88, 101, 242, .3); color: #c9cdfb; font-size: 15px; font-weight: 500; }
-.h-art-btn { position: relative; display: grid; place-items: center; width: 87px; height: 45px; border-radius: 12px; background: #5865f2; }
+.h-art-btn { position: relative; display: grid; place-items: center; width: 87px; height: 45px; border-radius: 12px; background: var(--dc-blurple); }
 .h-art-btn img { width: 30px; height: 30px; object-fit: contain; }
 .h-art-btn svg {
   position: absolute; left: 58%; top: 52%; width: 30px; height: 30px;
@@ -150,8 +150,8 @@
 .h-art-lang { display: block; }
 .h-art-t {
   position: absolute; left: 50%; top: 50%; max-width: calc(100% - 40px); padding: 10px 14px;
-  border-left: 4px solid #1ec786; border-radius: 6px; background: #242429; box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
-  font-size: 16px; font-weight: 700; color: #fbfbfb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  border-left: 4px solid var(--dc-embed-bot); border-radius: 6px; background: var(--dc-bg-embed); box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
+  font-size: 16px; font-weight: 700; color: var(--dc-text-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .h-art-en { z-index: 3; transform: translate(-50%, -50%) translateY(26px); }
 .h-art-it { z-index: 2; opacity: .7; transform: translate(-50%, -50%) translateY(-6px) rotate(-4deg); }
@@ -160,10 +160,10 @@
 .h-art-ways { grid-auto-flow: column; gap: 32px; }
 .h-art-tile { display: grid; justify-items: center; gap: 10px; }
 .h-art-ic { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 20px; }
-.h-art-hash { background: #4e5058; color: #fff; font-size: 44px; font-weight: 500; line-height: 1; }
-.h-art-app { background: #5865f2; }
+.h-art-hash { background: var(--dc-grey); color: var(--dc-white); font-size: 44px; font-weight: 500; line-height: 1; }
+.h-art-app { background: var(--dc-blurple); }
 .h-art-app img { width: 40px; height: 40px; object-fit: contain; }
-.h-art-name { font-size: 14px; font-weight: 600; color: #dbdee1; }
+.h-art-name { font-size: 14px; font-weight: 600; color: var(--dc-text); }
 
 /* ── Le sei funzionalità ──────────────────────────────────────────────────────────────────────────────── */
 .h-feats { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.8rem 2rem; }
@@ -175,11 +175,11 @@
 @media (min-width: 960px) { .h-feats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 /* Le etichette: «New in 2.0» sul tab della demo, «Premium» su Webhooks (un link ai piani). */
 .h-new {
-  font-size: .78rem; font-weight: 650; font-stretch: 100%; line-height: 1.4; color: var(--accent);
-  border: 1px solid rgba(233, 164, 76, .5); border-radius: 999px; padding: .1rem .6rem;
+  font-size: .78rem; font-weight: 650; font-stretch: 100%; line-height: 1.4; color: var(--accent-text);
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 999px; padding: .1rem .6rem;
 }
 a.h-premium { text-decoration: none; transition: background-color .18s ease, color .18s ease; }
-a.h-premium:hover { background: var(--accent); color: var(--ink); }
+a.h-premium:hover { background: var(--accent); color: var(--on-accent); }
 
 /* ── Il confronto (Compare.astro) ─────────────────────────────────────────────────────────────────────── */
 /* L'interruttore serve solo sul telefono: sul largo le due colonne si leggono già. */
@@ -206,10 +206,10 @@ a.h-premium:hover { background: var(--accent); color: var(--ink); }
   }
   .h-switch label:hover { color: var(--text); }
   /* L'ambra resta a TTM: scelta l'altra app, la sua metà si accende in grigio. */
-  #h-mostra-ttm:checked + label { background: var(--accent); color: var(--ink); }
+  #h-mostra-ttm:checked + label { background: var(--accent); color: var(--on-accent); }
   #h-mostra-altra:checked + label { background: var(--line-2); color: var(--text); }
   /* global.css dà l'anello ai soli a e button: qui il focus sta sul radio, quindi l'anello va sulla sua label. */
-  .h-switch input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .h-switch input:focus-visible + label { outline: 2px solid var(--accent-text); outline-offset: 2px; }
   .h-compare .h-table { margin-top: 0; }
   .h-compare .h-table tbody tr { margin: 1rem 0 0; }
   .h-compare .h-table tbody th { padding: 0 0 .4rem; font-size: 1rem; }
@@ -247,7 +247,7 @@ a.h-premium:hover { background: var(--accent); color: var(--ink); }
 /* Il fumetto del canale: lo scuro dei tooltip di Discord, accanto al task scelto (lo posiziona demo.ts). */
 .dm-bubble {
   position: absolute; z-index: 10; left: 0; top: 0; max-width: min(300px, calc(100% - 24px)); margin: 0;
-  padding: 8px 12px; border-radius: 8px; background: #111214; color: #f2f3f5;
+  padding: 8px 12px; border-radius: 8px; background: var(--dc-bg-tooltip); color: var(--dc-text-header);
   font-family: var(--sans); font-size: 14px; font-weight: 500; line-height: 1.35;
   box-shadow: 0 8px 16px rgba(0, 0, 0, .4); pointer-events: none;
 }
@@ -268,17 +268,17 @@ a.h-premium:hover { background: var(--accent); color: var(--ink); }
    #111214: 17:1 il bianco, 9,6:1 il grigio, sopra il 7:1 della spec (§9). */
 .tt {
   position: fixed; z-index: 100; left: 0; top: 0; max-width: 260px; padding: 8px 12px; border-radius: 8px;
-  background: #111214; color: #f2f3f5; font-family: var(--sans); font-size: 14px; line-height: 1.35;
+  background: var(--dc-bg-tooltip); color: var(--dc-text-header); font-family: var(--sans); font-size: 14px; line-height: 1.35;
   box-shadow: 0 8px 16px rgba(0, 0, 0, .45); pointer-events: none;
 }
 .tt[hidden] { display: none; }
 .tt-name { display: block; font-weight: 700; }
 .tt-text { display: block; margin-top: 2px; }
-.tt-note { display: block; margin-top: 4px; color: #b5bac1; }
+.tt-note { display: block; margin-top: 4px; color: var(--dc-text-secondary); }
 /* Senza nota (i pulsanti della prima riga), la riga sparisce: display: block vincerebbe su hidden. */
 .tt-note:empty { display: none; }
 .tt::after {
-  content: ""; position: absolute; left: var(--ax, 50%); width: 10px; height: 10px; background: #111214;
+  content: ""; position: absolute; left: var(--ax, 50%); width: 10px; height: 10px; background: var(--dc-bg-tooltip);
   transform: translateX(-50%) rotate(45deg);
 }
 .tt[data-side="top"]::after { bottom: -5px; }
