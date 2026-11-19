@@ -40,13 +40,16 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
       <aside class="docs-side" id="docs-side">
         <button class="docs-side-close" id="docs-side-close" aria-label="Close menu">&times;</button>
         <DocsSearch />
+        {/* L'indice della documentazione: prima voce, sopra i gruppi, così da ogni pagina si torna all'elenco. */}
+        <a href="/docs/" class="side-overview">Overview</a>
         {grouped.map((g) => (
           <div>
             <div class={g.place ? `grp grp-place is-${g.place}` : 'grp'}>
               {g.place && <img class="place-ic" src={POSTI[g.place].icon} alt="" />}{g.name}
             </div>
             {g.items.map((it) => (
-              <a href={`/docs/${it.id}/`} class={it.id === current ? 'active' : ''}>{it.data.title}</a>
+              <a href={`/docs/${it.id}/`} class={it.id === current ? 'active' : ''}
+                aria-current={it.id === current ? 'page' : undefined}>{it.data.title}</a>
             ))}
             {/* La pagina dei piani sta fuori dalla collezione docs: in fondo al gruppo Plans, mai `active`. */}
             {g.name === 'Plans' && <a href={PAGINA_PIANI.path}>{PAGINA_PIANI.title}</a>}
