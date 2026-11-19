@@ -36,7 +36,7 @@ When a tick is refused, a bubble on the box tells you why: a task with an owner 
 
 - <span class="c-grey">Grey</span> — off.
 - <span class="c-blue">Blue</span> — change: the panel shows the fields, and **Save**.
-- <span class="c-red">Red</span> — delete: the panel shows **Delete**. On a task with nothing to delete, the phrase at the top says so, for example *No owner to remove*, and **Delete** stays off.
+- <span class="c-red">Red</span> — delete: the panel shows **Delete**.
 
 A third tap turns the button grey again. Nothing happens until you tap **Save** or **Delete**. After an action the panel stays on the same task, with the buttons grey, ready for the next change. It closes with **Close**, with a tap outside it, or by itself after 30 seconds without activity.
 
