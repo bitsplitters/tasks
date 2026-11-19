@@ -50,11 +50,11 @@ const PREMIUM = [
       <h2 class="p-name" id="p-premium-name">Premium</h2>
       <div class="p-cost">
         <div class="p-annuale">
-          <p class="p-price"><span class="p-amount">€3</span> <span class="p-per">/ month excl. VAT</span></p>
+          <p class="p-price"><span class="p-amount">€3</span> <span class="p-per">/ month <a class="p-vat" href="#vat">+ VAT</a></span></p>
           <p class="p-note">€36 billed once a year · or €5 month to month</p>
         </div>
         <div class="p-mensile">
-          <p class="p-price"><span class="p-amount">€5</span> <span class="p-per">/ month excl. VAT</span></p>
+          <p class="p-price"><span class="p-amount">€5</span> <span class="p-per">/ month <a class="p-vat" href="#vat">+ VAT</a></span></p>
           <p class="p-note">Billed every month · or €3 a month on the annual plan</p>
         </div>
       </div>
@@ -68,6 +68,9 @@ const PREMIUM = [
   </div>
 
   <div class="p-fine">
+    {/* Perché «+ VAT» (spec 2026-11-19-iva-e-note-di-rilascio-design.md, §1-2, nel repo team-tasks-manager): in Discord
+        l'IVA del paese di chi compra si aggiunge al pagamento. I «+ VAT» dei prezzi portano qui. */}
+    <p id="vat"><strong>Prices are before VAT.</strong> VAT depends on the country you buy from: in the EU it goes from 17% to 27%. So the price before VAT is the same for everyone, and the checkout adds your country's rate, in your currency, before you pay. Discord handles payments for apps the same way: <a class="h-link" href="https://support-dev.discord.com/hc/en-us/articles/23810643331735-Premium-Apps-Required-Support-for-Monetizing-Apps" target="_blank" rel="noopener noreferrer">all taxes are paid by the buyer<span class="sr-only"> (opens in a new tab)</span></a>.</p>
     <p>Planned prices, final when the beta ends. The annual plan is the same product: it costs less because you pay for a year up front.</p>
     <p><span aria-hidden="true">*</span> A limit set by Discord, not by us. Premium lets you reach it, never go past it. See <a class="h-link" href="/docs/known-limits/">Known limits</a>.</p>
   </div>

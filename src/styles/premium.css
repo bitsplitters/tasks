@@ -91,6 +91,13 @@
 .p-tagline { margin: 0; font-size: 1rem; line-height: 1.55; text-wrap: pretty; }
 /* Sul fondo ambra il testo pieno, non quello attenuato (§7). */
 .p-card-premium .p-per, .p-card-premium .p-cost .p-note, .p-card-premium .p-tagline { color: var(--text); }
+/* «+ VAT» porta alla spiegazione sotto i piani (spec 2026-11-19-iva-e-note-di-rilascio-design.md, §3, nel repo
+   team-tasks-manager): il colore del testo accanto e la sottolineatura, così non sembra un secondo prezzo. */
+.p-vat {
+  color: inherit; white-space: nowrap; text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+.p-vat:hover { text-decoration-color: currentColor; }
 /* align-content: start: nella riga condivisa l'elenco più corto non allarga gli spazi fra le voci. */
 .p-list { list-style: none; margin: 0; padding: 0; display: grid; align-content: start; gap: .6rem; line-height: 1.45; }
 /* balance: una voce che va a capo si divide in due righe pari, senza una parola sola sotto. */
