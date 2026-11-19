@@ -95,7 +95,7 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
     // Il resto della pagina, che a menu aperto prende `inert`: il Tab resta nel pannello, uno screen reader non legge
     // quello che il pannello copre.
     const fuori = () =>
-      document.querySelectorAll<HTMLElement>('.site-top, #docs-menu-toggle, .docs-shell > article, .site-foot');
+      document.querySelectorAll<HTMLElement>('.site-top, .site-nav, #docs-menu-toggle, .docs-shell > article, .site-foot');
 
     // La voce della pagina aperta, portata in vista dentro la barra laterale o il pannello. Scorre la barra, mai la
     // pagina: scrollIntoView muoverebbe anche la finestra.

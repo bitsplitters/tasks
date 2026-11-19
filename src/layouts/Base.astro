@@ -46,32 +46,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <span class="sep">/</span>
       <a class="prod" href="/">tasks</a>
     </div>
-    {/* Niente «Help» (utente, 2026-11-19): puntava alla risoluzione dei problemi, mentre chi cerca aiuto può voler
-        scrivere allo staff. Il gruppo «Help & community» della documentazione ha l'una e l'altra cosa. Fino a 640 px
-        Docs e Premium sono solo icone, le stesse dei pulsanti del bot (libro e diamante): il nome resta per gli
-        screen reader. */}
-    <nav>
-      <a href="/docs/" class="nav-ic-link">
-        <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 7v14" />
-          <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
-        </svg><span class="nav-txt">Docs</span></a>
-      <a href="/premium/" class="nav-ic-link">
-        <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 3h12l4 6-10 13L2 9Z" />
-          <path d="M11 3 8 9l4 13 4-13-3-6" />
-          <path d="M2 9h20" />
-        </svg><span class="nav-txt">Premium</span></a>
-      <a href="/beta/" class="nav-wide">Beta</a>
-      <a href="/docs/release-notes/" class="nav-wide">Release notes</a>
-    </nav>
-    {/* Gli strumenti della pagina: lo switch del tema, poi il selettore della lingua (spec
-        2026-11-19-tema-chiaro-sito-design.md, §6.3 e §10). Stanno nell'intestazione a ogni larghezza (utente,
-        2026-11-19): lo switch non è più nel menu della documentazione né nel pie' di pagina. */}
+    {/* L'angolo in alto a destra (utente, 2026-11-19): lo switch del tema e, col multilingua, alla sua destra il
+        selettore della lingua (spec 2026-11-19-sito-multilingua-design.md, §6, nel repo team-tasks-manager). Sulla
+        riga del marchio nient'altro, a ogni larghezza: lo switch non sta più nel menu della documentazione né nel
+        pie' di pagina. */}
     <div class="site-tools"><ThemeToggle lang={lang} /></div>
   </header>
+  {/* La navigazione sta nella seconda riga, in parole, uguale sul telefono e sul desktop (utente, 2026-11-19). Niente
+      «Help»: puntava alla risoluzione dei problemi, mentre chi cerca aiuto può voler scrivere allo staff, e il gruppo
+      «Help & community» della documentazione ha l'una e l'altra cosa. Sul desktop la riga resta ferma sotto la prima;
+      sul telefono scorre via, e resta ferma solo la prima (global.css). */}
+  <nav class="site-nav" aria-label="Site">
+    <a href="/docs/">Docs</a>
+    <a href="/premium/">Premium</a>
+    <a href="/beta/">Beta</a>
+    <a href="/docs/release-notes/">Release notes</a>
+  </nav>
   <slot />
   <footer class="site-foot">
     <div class="wrap foot-inner">

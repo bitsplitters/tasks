@@ -19,8 +19,8 @@
    1200 px. `contain` non passa lo scorrimento alla pagina quando la barra arriva in fondo. Il 100vh davanti serve ai
    browser che non conoscono dvh. */
 .docs-side {
-  position: sticky; top: 80px; align-self: start;
-  max-height: calc(100vh - 80px); max-height: calc(100dvh - 80px);
+  position: sticky; top: calc(var(--head-h) + 24px); align-self: start;
+  max-height: calc(100vh - var(--head-h) - 24px); max-height: calc(100dvh - var(--head-h) - 24px);
   overflow-y: auto; overscroll-behavior: contain;
   padding: 0 .5rem 2rem 0;
   scrollbar-width: thin; scrollbar-color: var(--line-2) transparent;
@@ -251,9 +251,14 @@
 .docs-menu-toggle { display: none; }
 .docs-side-top { display: none; }
 @media (max-width: 820px) {
-  /* La barra «Documentation» resta in alto mentre si legge, al posto del menu del sito: i due insieme terrebbero
-     fermi 101 px su 760. Nell'indice, che non ha la barra, il menu del sito resta fermo come altrove. */
+  /* La barra «Documentation» resta in alto mentre si legge, al posto delle due righe del menu del sito: insieme
+     terrebbero fermi 138 px su 760. Nell'indice, che non ha la barra, il menu del sito resta fermo come altrove.
+     La seconda riga static e non relative: col suo `top` da sticky, relative la spostava di 56 px in basso. */
   body:has(.docs-menu-toggle) .site-top { position: relative; }
+  body:has(.docs-menu-toggle) .site-nav { position: static; }
+  /* Qui resta ferma solo la barra «Documentation», non le righe del menu del sito: le ancore come prima del menu a
+     due righe. */
+  html:has(.docs-menu-toggle) { scroll-padding-top: 5rem; }
   .docs-menu-toggle {
     position: sticky; top: 0; z-index: 40;
     display: flex; align-items: center; gap: .6rem; width: 100%; margin: 0;
@@ -294,9 +299,9 @@
   html.docs-menu-open { overflow: hidden; }
   .docs-side.open { visibility: visible; transform: translateX(0); transition: transform .25s ease; }
   /* La prima riga resta in vista anche col pannello scorso: aprendo, il pannello scorre fino alla voce della pagina.
-     Lo switch del tema a sinistra, la croce a destra; la ricerca comincia a 72 px (16 + 40 + 16). È una fascia col
-     fondo della pagina, larga quanto il pannello: le voci che scorrono le passano sotto. Trasparente, come quando c'era
-     solo la croce a destra, le voci scorrevano sotto lo switch e il testo gli si sovrapponeva. */
+     La croce a destra (lo switch del tema, che stava a sinistra, dal 2026-11-19 è solo nell'intestazione); la ricerca
+     comincia a 72 px (16 + 40 + 16). È una fascia col fondo della pagina, larga quanto il pannello: le voci che
+     scorrono le passano sotto, invece di sovrapporsi alla croce. */
   .docs-side-top {
     display: flex; align-items: center; justify-content: flex-end;
     position: sticky; top: 0; z-index: 1;
