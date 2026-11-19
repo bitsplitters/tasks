@@ -22,6 +22,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {/* Il tema, prima del primo disegno (spec 2026-11-19-tema-chiaro-sito-design.md, §3.2, nel repo
+      team-tasks-manager): lo scuro, tranne per chi ha scelto il chiaro con lo switch. Inline e in testa, perche'
+      un modulo arriverebbe dopo il disegno col lampo del tema sbagliato. Il tema del dispositivo non conta. Senza
+      JavaScript data-theme manca e vale lo scuro di :root. */}
+  <script is:inline>
+    try { document.documentElement.dataset.theme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark'; }
+    catch { document.documentElement.dataset.theme = 'dark'; }
+  </script>
   <title>{title}</title>
   <link rel="canonical" href={canonical} />
   <PreviewMeta title={previewTitle ?? title} description={description} card={card} embed={embed} />
