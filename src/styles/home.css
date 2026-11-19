@@ -168,7 +168,9 @@
 /* ── Le sei funzionalità ──────────────────────────────────────────────────────────────────────────────── */
 .h-feats { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.8rem 2rem; }
 .h-feats li { display: flex; gap: 1rem; align-items: flex-start; }
-.h-feats img { width: 32px; height: 32px; flex: none; object-fit: contain; margin-top: .1rem; }
+/* Le icone delle funzioni sono bianche e stanno sul fondo della pagina: nel tema chiaro si scuriscono come quelle
+   della documentazione (--icon-filter in global.css). */
+.h-feats img { width: 32px; height: 32px; flex: none; object-fit: contain; margin-top: .1rem; filter: var(--icon-filter); }
 .h-feats h3 { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; margin: 0 0 .35rem; font-size: 1.1rem; font-weight: 700; }
 .h-feats p { margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.55; max-width: 48ch; }
 @media (min-width: 640px) { .h-feats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
