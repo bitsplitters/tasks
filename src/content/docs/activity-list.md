@@ -14,13 +14,13 @@ Under the list, a line helps whoever is new: *Not sure where to start? Tap a box
 
 These buttons act on the whole list.
 
-| Button | Function | What it does |
-| :---: | :--- | :--- |
-| <span class="dchip is-blue" role="img" aria-label="Guide button, blue"><img src="/icons/doc.png" alt="" /></span> | **Guide** | A short guide to the Activity, in five pages. |
-| <span class="dchip is-blue" role="img" aria-label="Edit the list button, blue"><img src="/icons/edit.png" alt="" /></span> | **Edit the list** | The title and the whole list as text: see [Edit the list](#edit-the-list). |
-| <span class="dchip is-blue" role="img" aria-label="Clean the list button, blue"><img src="/icons/clean.png" alt="" /></span> | **Clean the list** | Removes the completed tasks: see [Clean the list and Reopen all](#clean-the-list-and-reopen-all). |
-| <span class="dchip is-blue" role="img" aria-label="Reopen all button, blue"><img src="/icons/reopen.png" alt="" /></span> | **Reopen all** | Brings the completed tasks back to to-do; **New date** moves their reminders. |
-| <span class="dchip is-grey" role="img" aria-label="Exit button, grey"><img src="/icons/back.png" alt="" /></span> | **Exit** | Takes the list back to the channel: see [Back to the channel](/docs/activity/#back-to-the-channel). |
+| Button | What it does |
+| :--- | :--- |
+| **Guide** <img class="inline-ic" src="/icons/doc.png" alt="" /> | A short guide to the Activity, in five pages. |
+| **Edit the list** <img class="inline-ic" src="/icons/edit.png" alt="" /> | The title and the whole list as text: see [Edit the list](#edit-the-list). |
+| **Clean the list** <img class="inline-ic" src="/icons/clean.png" alt="" /> | Removes the completed tasks: see [Clean the list and Reopen all](#clean-the-list-and-reopen-all). |
+| **Reopen all** <img class="inline-ic" src="/icons/reopen.png" alt="" /> | Brings the completed tasks back to to-do; **New date** moves their reminders. |
+| **Exit** <img class="inline-ic" src="/icons/back.png" alt="" /> | Takes the list back to the channel: see [Back to the channel](/docs/activity/#back-to-the-channel). |
 
 Above the row, **Home** takes you to the [home of the channel](/docs/activity/#the-home-of-the-channel), and the gear opens [your settings](/docs/activity/#your-settings). Clone, Download, Seal, Delete and Unlock aren't here: they [stay in the channel](/docs/activity/#what-stays-in-the-channel).
 

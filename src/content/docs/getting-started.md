@@ -65,7 +65,7 @@ Under the list there is the **check selector**, a drop-down menu that shows the 
 
 ### Set a reminder
 
-In the second row, click the bell <img class="inline-ic" src="/icons/alertW.png" alt="" /> — **Reminder**, the fourth button — once: it turns **blue**. Then pick a task that is **not ticked yet**. A form titled *Set reminder for task …* opens. It is already filled in with ten minutes from now: submit it as it is. Until you change it, the time zone in the last field is the server's: change it if yours is different. The task shows the time, and the reminder arrives once. If your server has turned on recurring reminders, a summary card follows the form: press **Save**.
+In the second row, click **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" />, the fourth button, once: it turns **blue**. Then pick a task that is **not ticked yet**. A form titled *Set reminder for task …* opens. It is already filled in with ten minutes from now: submit it as it is. Until you change it, the time zone in the last field is the server's: change it if yours is different. The task shows the time, and the reminder arrives once. If your server has turned on recurring reminders, a summary card follows the form: press **Save**.
 
 **Closed the form with ✕?** The list stays locked: open **More** under the list and press **Unlock list**.
 
@@ -73,7 +73,7 @@ Every button under the list: [The list in the channel](/docs/the-task-list/) and
 
 ## <img class="place-ic is-activity" src="/icons/activity.png" alt="" />4. In the Activity
 
-Try Activity mode: smoother and free from the limits of text channels, ideal for longer or collaborative work sessions. Press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button under the list. The list opens in a window inside Discord, and the others in the channel can join you there. You can also start from Discord's App Launcher or from a voice call: see [Four ways in](/docs/activity/#four-ways-in).
+Try Activity mode: smoother and free from the limits of text channels, ideal for longer or collaborative work sessions. Press **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, the first button under the list. The list opens in a window inside Discord, and the others in the channel can join you there. You can also start from Discord's App Launcher or from a voice call: see [Four ways in](/docs/activity/#four-ways-in).
 
 ### Tick a task
 
@@ -81,7 +81,7 @@ Tap a task's box. The list updates for everyone in the window, and a group ticks
 
 ### Set a reminder
 
-Tap the text of a task that is not ticked yet: its panel opens. Tap the bell <img class="inline-ic" src="/icons/alertW.png" alt="" />, **Reminder**, once: it turns **blue**, and the date, the time and the time zone appear, set to ten minutes from now in your device's time zone. Tap **Save**.
+Tap the text of a task that is not ticked yet: its panel opens. Tap **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> once: it turns **blue**, and the date, the time and the time zone appear, set to ten minutes from now in your device's time zone. Tap **Save**.
 
 When you are done, press **Exit**: the list goes back to the channel, with a summary of what changed.
 
@@ -90,7 +90,7 @@ Everything in the window: [The Activity](/docs/activity/) and [Working on a list
 ## Good to know before the first reminder
 
 - **The reminder goes to the task's owner**, by direct message if the owner is a person.
-- **If the task has no owner yet, you become its owner**, so the reminder comes to you. From then on only you, and whoever has *Manage messages*, can tick that task. To give it to someone else, set the owner first, with the person button <img class="inline-ic" src="/icons/owner.png" alt="" />, **Owner**.
+- **If the task has no owner yet, you become its owner**, so the reminder comes to you. From then on only you, and whoever has *Manage messages*, can tick that task. To give it to someone else, set the owner first, with **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" />.
 - **Nothing arrived?** Allow direct messages from server members: click the server name, then *Privacy Settings*. After a refused message, TTM waits some hours before it writes to that person again: see [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 
 ## Next steps

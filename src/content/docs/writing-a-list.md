@@ -96,13 +96,13 @@ A link can also point to **another list**: right-click its message → **Copy Me
 
 A task can show the emoji of a list button, as the lessons of the [Tutorial](/docs/getting-started/#2-create-your-first-list) do. In the text, these emoji don't show as a long code but as a short name:
 
-| Name | Button |
-| :--- | :--- |
-| `:owner:` | <img class="inline-ic" src="/icons/owner_blue.png" alt="" /> **Owner** |
-| `:reminder:` | <img class="inline-ic" src="/icons/alert_blue.png" alt="" /> **Reminder** |
-| `:content:` | <img class="inline-ic" src="/icons/task_blue.png" alt="" /> **Content** |
-| `:more:` | <img class="inline-ic" src="/icons/other_blue.png" alt="" /> **More** |
-| `:activity:` | <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> **Activity** |
+| Name | In the text | Button |
+| :--- | :---: | :--- |
+| `:owner:` | <img class="inline-ic" src="/icons/owner_blue.png" alt="" /> | **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> |
+| `:reminder:` | <img class="inline-ic" src="/icons/alert_blue.png" alt="" /> | **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> |
+| `:content:` | <img class="inline-ic" src="/icons/task_blue.png" alt="" /> | **Content** <img class="inline-ic" src="/icons/task.png" alt="" /> |
+| `:more:` | <img class="inline-ic" src="/icons/other_blue.png" alt="" /> | **More** <img class="inline-ic" src="/icons/other.png" alt="" /> |
+| `:activity:` | <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> | **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> |
 
 Leave a name where it is and the emoji stays. Write one yourself, in lowercase, and the list shows the button's emoji: handy when a task says which button to press. Any other word between colons stays as you wrote it.
 

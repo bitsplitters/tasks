@@ -27,7 +27,7 @@ Check these points, in this order:
 
 ### I pressed Cancel and the list stays locked
 
-TTM locks a list while someone edits it: in **Bulk update**, in the form of a task's text and in a reminder form. Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot that the form was closed. The last line of the list says who locked it. Anyone can unlock the list: open **More** under the list and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
+TTM locks a list while someone edits it: in **Bulk update**, in the form of a task's text and in a reminder form. Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot that the form was closed. The last line of the list says who locked it. Anyone can unlock the list: open **More** under the list and press **Unlock list** <img class="inline-ic" src="/icons/unlock.png" alt="" />. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 
 ### My tags or owner didn't save
 
@@ -118,7 +118,7 @@ See [The repetition fields](/docs/reminders/#the-repetition-fields).
 
 During the beta, there is no limit on lists. After the beta, the Free plan lets you work on three lists at a time. When all three places are taken, TTM refuses to create, clone or import a list. The same refusal appears when you work on a list that isn't in use. To free a place, use one of these:
 
-- **Seal list** or **Delete list**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel of a list you no longer need, in the channel. A sealed list stays in the channel as a record.
+- **Seal list** or **Delete list**, in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel of a list you no longer need, in the channel. A sealed list stays in the channel as a record.
 - `/config lists`, which marks the lists **in use** and can seal or delete several at once.
 
 Premium removes this limit. See [What happens to a fourth list](/docs/premium/#what-happens-to-a-fourth-list).

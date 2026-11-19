@@ -19,13 +19,13 @@ Team Tasks Manager works entirely inside Discord, so most of the limits below ar
 
 <div class="callout"><div class="callout-t">Hitting a ceiling?</div>Split the work across several lists. Two focused lists are easier to read than one that's maxed out — and each gets its own reminders, owners and tags.</div>
 
-**Download always gives you a file.** A normal Discord message is capped at 2000 characters. So **Download**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel under the list in the channel, never posts the list as text. It sends a `.txt` file to you alone, in a message only you can see. It's the same file `/create-list` can import back.
+**Download always gives you a file.** A normal Discord message is capped at 2000 characters. So **Download**, in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel under the list in the channel, never posts the list as text. It sends a `.txt` file to you alone, in a message only you can see. It's the same file `/create-list` can import back.
 
 **Deleting the message is not the same as deleting the list.** A list lives in its message, but its data lives in TTM: tasks, owners, tags and above all **reminders**. If you delete the message by hand, the list disappears from the channel. Its reminders keep arriving, and they point to a message that no longer exists.
 
 TTM doesn't notice on its own that a message is gone: [/config lists](/docs/config-lists/) explains why. You have three ways out:
 
-- **Delete list**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel of the list in the channel: the ordinary way, and it takes the reminders with it.
+- **Delete list**, in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel of the list in the channel: the ordinary way, and it takes the reminders with it.
 - **Seal list**, in the same panel, to keep the message as a record. Sealing is final: see [Seal](/docs/config-lists/#seal).
 - **`/config lists`**, when the message is already gone. It can delete the leftovers, or **regenerate** the list if you deleted the message by mistake. It can't seal a list whose message is gone.
 

@@ -186,27 +186,21 @@
   text-decoration-color: rgba(233, 164, 76, .4);
 }
 
-/* I colori degli stati dei pulsanti di Discord, nelle tabelle. */
-.prose .c-grey { color: #949BA4; font-weight: 700; }
-.prose .c-blue { color: #5865F2; font-weight: 700; }
-.prose .c-red  { color: #ED4245; font-weight: 700; }
-/* Le icone dei pulsanti nel testo, intere: niente angoli tondi, niente ritagli. Al centro le celle che contengono
-   solo l'icona (la colonna «Button»). */
+/* I colori degli stati dei pulsanti di Discord, scritti: il colore è nella parola, non in un pulsante disegnato. */
+.prose .c-grey  { color: #949BA4; font-weight: 700; }
+.prose .c-blue  { color: #5865F2; font-weight: 700; }
+.prose .c-green { color: #23A55A; font-weight: 700; }
+.prose .c-red   { color: #ED4245; font-weight: 700; }
+/* L'icona di una funzione: bianca, alta quanto il testo, dopo il nome in grassetto (regola nel README, «Icons»).
+   Intera: niente angoli tondi, niente ritagli. Al centro le celle che contengono solo l'icona (la colonna «In the
+   text» di Scrivere una lista, con l'emoji blu come appare nel testo del task). */
 .prose .inline-ic {
   width: 22px; height: 22px; margin: 0 2px; vertical-align: -5px; border-radius: 0 !important; object-fit: contain;
 }
 .prose td:has(> img.inline-ic:only-child) { text-align: center; }
-/* Un pulsante di Discord disegnato in una tabella: lo stato è il colore del fondo, come nel bot (ButtonStyle
-   SECONDARY, PRIMARY, SUCCESS, DANGER), attorno all'icona bianca del pulsante. */
-.prose .dchip {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 46px; height: 32px; border-radius: 8px; vertical-align: middle;
-}
-.prose .dchip img { width: 20px; height: 20px; object-fit: contain; border-radius: 0; }
-.prose .dchip.is-grey  { background: #4E5058; }
-.prose .dchip.is-blue  { background: #5865F2; }
-.prose .dchip.is-green { background: #248046; }
-.prose .dchip.is-red   { background: #ED4245; }
+/* Nelle tabelle dei pulsanti il nome e la sua icona stanno su una riga: la colonna si allarga quanto serve, invece
+   di lasciare l'icona da sola sulla riga sotto. Sono celle corte: il nome di un pulsante, non una frase. */
+.prose td:has(> img.inline-ic) { white-space: nowrap; }
 /* Una schermata di Discord: alla sua misura sul computer (la cattura è 1x, ingrandirla la sfoca), larga quanto lo
    schermo sul telefono, dove il <picture> serve la cattura ad alta densità. */
 .prose .screen { display: block; margin: 1.2rem 0; }

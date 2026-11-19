@@ -31,13 +31,13 @@ Ticking or unticking a group does the same to its subtasks. Completing all its s
 
 These buttons never touch a single task: they act on the **entire list**. What each action does, in both places: [List actions](/docs/list-actions/).
 
-| Button | Function | What it does |
-| :---: | :--- | :--- |
-| <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span> | **Activity** | Open the list in the Activity, a window inside Discord where you work on it together. See [The Activity](/docs/activity/). |
-| <span class="dchip is-blue" role="img" aria-label="Bulk update button, blue"><img src="/icons/edit.png" alt="" /></span> | **Bulk update** | Edit the title and the whole list in one form: the fastest way to change two or more tasks. See [Bulk update](#bulk-update). |
-| <span class="dchip is-blue" role="img" aria-label="Clean list button, blue"><img src="/icons/clean.png" alt="" /></span> | **Clean list** | Remove every completed task, after a confirmation. |
-| <span class="dchip is-blue" role="img" aria-label="Reopen all button, blue"><img src="/icons/reopen.png" alt="" /></span> | **Reopen all** | Bring every completed task back to to-do. You can also move their reminders to a new date. |
-| <span class="dchip is-blue" role="img" aria-label="More button, blue"><img src="/icons/other.png" alt="" /></span> | **More** | Open a panel with the actions you need less often: the in-Discord guide, and clone, download, seal or delete the list. When the list is locked, you unlock it here. |
+| Button | What it does |
+| :--- | :--- |
+| **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> | Open the list in the Activity, a window inside Discord where you work on it together. See [The Activity](/docs/activity/). |
+| **Bulk update** <img class="inline-ic" src="/icons/edit.png" alt="" /> | Edit the title and the whole list in one form: the fastest way to change two or more tasks. See [Bulk update](#bulk-update). |
+| **Clean list** <img class="inline-ic" src="/icons/clean.png" alt="" /> | Remove every completed task, after a confirmation. |
+| **Reopen all** <img class="inline-ic" src="/icons/reopen.png" alt="" /> | Bring every completed task back to to-do. You can also move their reminders to a new date. |
+| **More** <img class="inline-ic" src="/icons/other.png" alt="" /> | Open a panel with the actions you need less often: the in-Discord guide, and clone, download, seal or delete the list. When the list is locked, you unlock it here. |
 
 ### Bulk update
 
@@ -59,12 +59,12 @@ If someone locks or seals the list before you confirm, nothing changes: see [Whe
 
 Discord allows five buttons per row, so the actions you need less often sit in a panel that only you can see:
 
-- <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list** — only while the list is locked. It shows who is editing, and turns the list's buttons back on for everyone. See [When the list is locked](#when-the-list-is-locked).
-- <img class="inline-ic" src="/icons/doc.png" alt="" /> **Guide** — the quick in-Discord guide, with a link back to this documentation.
-- <img class="inline-ic" src="/icons/clone.png" alt="" /> **Clone list** — clone the list into another channel, even while the list is locked. See [Clone options](#clone-options).
-- <img class="inline-ic" src="/icons/download.png" alt="" /> **Download** — a `.txt` file of the list, sent **only to you**. See [Download](/docs/list-actions/#download).
-- <img class="inline-ic" src="/icons/seal.png" alt="" /> **Seal list** — keeps a finished list in the channel as a record, without buttons or menus. See [Seal](/docs/list-actions/#seal).
-- <img class="inline-ic" src="/icons/delete.png" alt="" /> **Delete list** — deletes the list **permanently**. See [Delete](/docs/list-actions/#delete).
+- **Unlock list** <img class="inline-ic" src="/icons/unlock.png" alt="" /> — only while the list is locked. It shows who is editing, and turns the list's buttons back on for everyone. See [When the list is locked](#when-the-list-is-locked).
+- **Guide** <img class="inline-ic" src="/icons/doc.png" alt="" /> — the quick in-Discord guide, with a link back to this documentation.
+- **Clone list** <img class="inline-ic" src="/icons/clone.png" alt="" /> — clone the list into another channel, even while the list is locked. See [Clone options](#clone-options).
+- **Download** <img class="inline-ic" src="/icons/download.png" alt="" /> — a `.txt` file of the list, sent **only to you**. See [Download](/docs/list-actions/#download).
+- **Seal list** <img class="inline-ic" src="/icons/seal.png" alt="" /> — keeps a finished list in the channel as a record, without buttons or menus. See [Seal](/docs/list-actions/#seal).
+- **Delete list** <img class="inline-ic" src="/icons/delete.png" alt="" /> — deletes the list **permanently**. See [Delete](/docs/list-actions/#delete).
 
 Sealing and deleting can't be undone, and the bot asks you to confirm first. Both need *Manage messages* on the channel: the same permission that lets you delete the list's message by hand. Without it, those two entries aren't there. Guide, Clone list and Download are there for everyone, and so is Unlock list when the list is locked.
 
@@ -99,7 +99,7 @@ The last line of the list says it too: *🔒 @name is editing this list. Stuck? 
 
 Locking the list also turns **Owner**, **Tag** and **Webhook** off if one of them was on: open it again from its button when you need it.
 
-Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot: **Bulk update** and the form of a task's text say so in their last line. Then anyone can unlock the list: open **More** and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> **Unlock list**.
+Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot: **Bulk update** and the form of a task's text say so in their last line. Then anyone can unlock the list: open **More** and press **Unlock list** <img class="inline-ic" src="/icons/unlock.png" alt="" />.
 
 An admin can still seal, delete or regenerate a locked list from [`/config lists`](/docs/config-lists/). If that happens while you are editing, your change isn't saved. The bot tells you, and gives you back the text you wrote.
 

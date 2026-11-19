@@ -14,7 +14,7 @@ This page is about getting in and out. How you work on the list once inside: [Wo
 
 ## Four ways in
 
-- **From a list in a channel** — press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button under the list. That list opens. See [Open a list in the Activity](#open-a-list-in-the-activity).
+- **From a list in a channel** — press **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, the first button under the list. That list opens. See [Open a list in the Activity](#open-a-list-in-the-activity).
 - **From the message bar** — in a text channel, open Discord's **App Launcher**, pick Team Tasks Manager, then **Launch**. See [The home of the channel](#the-home-of-the-channel).
 - **From a voice call** — press the call's Activities button and pick Team Tasks Manager. See [The home of the channel](#the-home-of-the-channel).
 - **From someone already inside** — press **Join the Activity** under the list, Discord's **Join** on their profile, or the invite they send you. See [Join the others](#join-the-others).
@@ -23,7 +23,7 @@ The App Launcher and the voice call open the home of the channel, with all its l
 
 ## Open a list in the Activity
 
-Press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button of the [first row](/docs/the-task-list/#row-1--acts-on-the-whole-list), in a text channel or in the chat of a voice channel. **Clone list**, which sat there before, is now in [More](/docs/the-task-list/#whats-inside-more). An older list gets the button the first time it changes.
+Press **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, the first button of the [first row](/docs/the-task-list/#row-1--acts-on-the-whole-list), in a text channel or in the chat of a voice channel. **Clone list**, which sat there before, is now in [More](/docs/the-task-list/#whats-inside-more). An older list gets the button the first time it changes.
 
 If the window doesn't connect within 30 seconds, TTM warns you and the list stays in the channel.
 
@@ -38,7 +38,7 @@ The button follows the rules of the rest of the list, such as the [permissions s
 
 ## Join the others
 
-While a list is in the Activity, its message keeps a single button, <span class="dchip is-blue" role="img" aria-label="Join the Activity button, blue"><img src="/icons/activity.png" alt="" /></span> **Join the Activity**, and the last line says <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> *This list is being worked on in the Activity*. Discord's **Join**, on the profile of someone inside, works too. Nothing changes the list from the channel meanwhile.
+While a list is in the Activity, its message keeps a single button, **Join the Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, and the last line says <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> *This list is being worked on in the Activity*. Discord's **Join**, on the profile of someone inside, works too. Nothing changes the list from the channel meanwhile.
 
 To bring someone in, press **Invite**, at the top right of the home and of every list, next to who is there. Discord opens its own window, where you pick friends or a channel to send the invite to. It needs Discord's *Create Invite* permission on the channel: without it, TTM tells you so on the button, and how an administrator grants it.
 
@@ -54,7 +54,7 @@ When you start from the **App Launcher** or from a **voice call** (see [Four way
 - **Now in the Activity** — who is on each list, and who is editing. Tap one to join.
 - **In the channel** — the other lists, newest first. Tap one to read it, then **Bring into the Activity**, which waits while someone edits it in the channel.
 
-The <span class="dchip is-grey" role="img" aria-label="Home button, grey"><img src="/icons/home.png" alt="" /></span> **Home** button, at the top left of every list, takes you back there.
+The **Home** <img class="inline-ic" src="/icons/home.png" alt="" /> button, at the top left of every list, takes you back there.
 
 ## Back to the channel
 

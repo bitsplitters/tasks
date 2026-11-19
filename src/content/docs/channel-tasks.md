@@ -18,13 +18,13 @@ Each button in the second row is a **three-state switch**. Click it to cycle thr
 
 The workflow is always the same: **turn a button blue or red, then pick the task** in the [check selector](/docs/the-task-list/#the-check-selector). TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button off, it says *Tick a task*: pick a task there to tick or untick it.
 
-| Button | Function | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
-| :---: | :--- | :--- | :--- |
-| <span class="dchip is-grey" role="img" aria-label="Content button, grey"><img src="/icons/task.png" alt="" /></span> | [**Content**](#content) | Change the task text, in a form. | Delete the task. |
-| <span class="dchip is-grey" role="img" aria-label="Owner button, grey"><img src="/icons/owner.png" alt="" /></span> | [**Owner**](#owner) | Set or change the owner: one person, one role, or several people. | Remove the owner, and its reminder too. |
-| <span class="dchip is-grey" role="img" aria-label="Tag button, grey"><img src="/icons/tag.png" alt="" /></span> | [**Tag**](#tag) | Set the users and roles to notify, several at once. | Remove every tag on the task. |
-| <span class="dchip is-grey" role="img" aria-label="Reminder button, grey"><img src="/icons/alertW.png" alt="" /></span> | [**Reminder**](#reminder) | Add or edit a reminder. | Remove the reminder. |
-| <span class="dchip is-grey" role="img" aria-label="Webhook button, grey"><img src="/icons/api.png" alt="" /></span> | [**Webhook**](#webhook) | Link a webhook to the task. | Remove the webhook from the task. |
+| Button | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
+| :--- | :--- | :--- |
+| [**Content**](#content) <img class="inline-ic" src="/icons/task.png" alt="" /> | Change the task text, in a form. | Delete the task. |
+| [**Owner**](#owner) <img class="inline-ic" src="/icons/owner.png" alt="" /> | Set or change the owner: one person, one role, or several people. | Remove the owner, and its reminder too. |
+| [**Tag**](#tag) <img class="inline-ic" src="/icons/tag.png" alt="" /> | Set the users and roles to notify, several at once. | Remove every tag on the task. |
+| [**Reminder**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Add or edit a reminder. | Remove the reminder. |
+| [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> | Link a webhook to the task. | Remove the webhook from the task. |
 
 After you use **Owner**, **Tag** or **Reminder**, the button goes back to grey, or stays on for the next task: your server decides, with **Keep the state after a selection** in the **Behavior** menu of [/config app](/docs/configuration/#keep-the-state-after-a-selection). Keeping the state changes what Owner and Tag can do: see [Owner](#owner) and [Tag](#tag).
 
@@ -135,7 +135,7 @@ With recurring reminders off, or on the Free plan, the card appears only when yo
 - **Edit** — click **Reminder** to blue, pick the task, and set the new values. You land straight on the summary card if the task already has a *repeating* reminder, or for any reminder with recurring reminders on. The card shows the current date and badge, so you can change only what you need. Otherwise **When** opens, pre-filled with the current date. Submitting the same date and recurrence the reminder already has changes nothing: TTM tells you, and sends no notification.
 - **Remove** — click **Reminder** until it turns **red** (delete mode), then pick the task. The reminder is removed.
 
-<div class="callout"><div class="callout-t">Closing a form is not cancelling</div>Discord never tells a bot that you closed a form with the ✕, so TTM cannot know: the list stays locked. Use <strong>Cancel</strong> on the <a href="#the-summary-card">summary card</a> when it's there. If you closed a form the hard way, open <strong>More</strong> under the list and press <img class="inline-ic" src="/icons/unlock.png" alt="" /> <strong>Unlock list</strong>.</div>
+<div class="callout"><div class="callout-t">Closing a form is not cancelling</div>Discord never tells a bot that you closed a form with the ✕, so TTM cannot know: the list stays locked. Use <strong>Cancel</strong> on the <a href="#the-summary-card">summary card</a> when it's there. If you closed a form the hard way, open <strong>More</strong> under the list and press <strong>Unlock list</strong> <img class="inline-ic" src="/icons/unlock.png" alt="" />.</div>
 
 ## Webhook
 

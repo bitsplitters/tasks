@@ -21,8 +21,19 @@ order: 1                 # position within the group
 Create a new `.md` file in `src/content/docs/` with the header above. It appears in the sidebar automatically, in the right group and order. A **new group** must also be added to `groupsOrder` in both `src/pages/docs/index.astro` and `src/pages/docs/[...slug].astro`: a page whose group isn't listed there doesn't show in the sidebar.
 
 ### Icons
-Button/feature icons live in `public/icons/`. Use them inline in Markdown:
-`<img class="inline-ic" src="/icons/owner.png" alt="" />`
+Button/feature icons live in `public/icons/`: they are the bot's emoji. One rule for every page (decided 2026-11-19):
+
+- **A function is its name in bold, then its white icon**, as tall as the text:
+  `**More** <img class="inline-ic" src="/icons/other.png" alt="" />`. The same order in prose, in lists and in tables:
+  never the icon before the name, never a blue icon, never a drawn Discord button.
+- The icon goes where it helps to find the button: the first time a function appears in a section, and in lists and
+  tables of buttons. Not on every repetition.
+- A button's color is a word: `<span class="c-blue">Blue</span>` (also `c-grey`, `c-green`, `c-red`).
+- One exception: when a page shows what Discord displays (the text of a task, a line of a message), the emoji stays as
+  it is there, blue and in its place (`*_blue.png`), like the «In the text» column of *Writing a list*.
+- Places are not functions: the *In the channel* and *In the Activity* badges (`place-ic`, `place-pill`) keep their
+  own style.
+- A white icon that is missing here comes from `team-tasks-manager/selfhost/emoji/`, where the bot's emoji are.
 
 ## Local preview
 

@@ -54,11 +54,11 @@ This command shows what the beta means for your server: every feature is unlocke
 
 This command is your starting point inside Discord. It opens a panel with five buttons:
 
-- <img class="inline-ic" src="/icons/home_blue.png" alt="" /> **Home** — an overview of the app.
-- <img class="inline-ic" src="/icons/start_blue.png" alt="" /> **Get started** — a quick start, with a link to this documentation.
-- <img class="inline-ic" src="/icons/config_blue.png" alt="" /> **Configuration** — what `/config app`, `/config lists` and `/config webhook` are for.
-- <img class="inline-ic" src="/icons/premium_blue.png" alt="" /> **Premium** — what the paid plan will look like once the beta ends, free limits included.
-- <img class="inline-ic" src="/icons/abouts_blue.png" alt="" /> **About us** — who builds TTM.
+- **Home** <img class="inline-ic" src="/icons/home.png" alt="" /> — an overview of the app.
+- **Get started** <img class="inline-ic" src="/icons/start.png" alt="" /> — a quick start, with a link to this documentation.
+- **Configuration** <img class="inline-ic" src="/icons/config.png" alt="" /> — what `/config app`, `/config lists` and `/config webhook` are for.
+- **Premium** <img class="inline-ic" src="/icons/premium.png" alt="" /> — what the paid plan will look like once the beta ends, free limits included.
+- **About us** <img class="inline-ic" src="/icons/aboutus.png" alt="" /> — who builds TTM.
 
 ## `/invite`
 

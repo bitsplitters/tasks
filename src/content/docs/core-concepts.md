@@ -37,8 +37,8 @@ Groups behave as a unit: ticking a group ticks its subtasks too, and ticking eve
 
 Every task is either **open** or **completed**, shown by its checkbox:
 
-- <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> **Open** — still to do.
-- <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" /> **Completed** — done.
+- **Open** <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> — still to do.
+- **Completed** <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" /> — done.
 
 In the channel you tick or untick a task in the [check selector](/docs/the-task-list/#the-check-selector), the menu under the list. In the Activity you tap its [box](/docs/activity-list/#tick-a-task). Completing or reopening a task is what can trigger notifications and webhooks.
 

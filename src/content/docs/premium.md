@@ -49,7 +49,7 @@ Lists created during the beta are the exception: their tasks can still be ticked
 
 When all three places are taken, TTM refuses to create, clone or import another list. It also refuses to work on a list that isn't in use. The bot tells you how to free a place:
 
-- **Seal list**, in the <img class="inline-ic" src="/icons/other.png" alt="" /> **More** panel of a list you're done with. The list stays in the channel as a record, without buttons.
+- **Seal list**, in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel of a list you're done with. The list stays in the channel as a record, without buttons.
 - **Delete list**, in the same panel. It removes the list permanently.
 - [`/config lists`](/docs/config-lists/), which marks the lists in use and can seal or delete several at once.
 

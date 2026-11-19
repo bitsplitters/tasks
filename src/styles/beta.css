@@ -32,7 +32,7 @@
   display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem;
   border: 1px solid var(--line-2); border-radius: 14px; background: var(--surface);
 }
-/* Il quadratino grigio dei pulsanti di Discord, con l'emoji del bot dentro: lo stesso grigio di .dchip.is-grey. */
+/* Il quadratino grigio dei pulsanti di Discord, con l'emoji del bot dentro (#4E5058, ButtonStyle SECONDARY). */
 .b-chip {
   flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 8px; background: #4E5058;
 }

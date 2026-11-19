@@ -24,11 +24,11 @@ By default, only members with the *Manage Server* permission can use `/config li
 Each row has a single button that cycles every time you press it:
 
 | State | Meaning |
-| :---: | :--- |
-| <span class="dchip is-grey" role="img" aria-label="Grey button"><img src="/icons/noaction.png" alt="" /></span> | no action |
-| <span class="dchip is-blue" role="img" aria-label="Blue button"><img src="/icons/refresh.png" alt="" /></span> | **regenerate** it |
-| <span class="dchip is-green" role="img" aria-label="Green button"><img src="/icons/seal.png" alt="" /></span> | **seal** it |
-| <span class="dchip is-red" role="img" aria-label="Red button"><img src="/icons/delete.png" alt="" /></span> | **delete** it |
+| :--- | :--- |
+| <span class="c-grey">Grey</span> <img class="inline-ic" src="/icons/noaction.png" alt="" /> | no action |
+| <span class="c-blue">Blue</span> <img class="inline-ic" src="/icons/refresh.png" alt="" /> | **regenerate** it |
+| <span class="c-green">Green</span> <img class="inline-ic" src="/icons/seal.png" alt="" /> | **seal** it |
+| <span class="c-red">Red</span> <img class="inline-ic" src="/icons/delete.png" alt="" /> | **delete** it |
 
 Mark as many lists as you need — two to delete, one to seal and three to regenerate, if that's the case — then press **Apply**. Before anything happens, a confirmation window lists them by name, grouped by action: submit it to go ahead, close it to cancel.
 
@@ -63,13 +63,13 @@ The notification in the channel and the line in the timeline follow your server'
 
 A list whose message no longer exists **can't be sealed**: there is no record left to keep. It shows up in the summary among the ones not done, with the reason, and the rest of the block runs anyway. To remove it, mark it red to **delete** it.
 
-It is the same sealing you get from **Seal list** in the <img class="inline-ic" src="/icons/other.png" alt="" /> *More* panel of a list.
+It is the same sealing you get from **Seal list** in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel of a list.
 
 ## Delete
 
 Removes the list permanently: tasks, owners, tags, reminders and the activity history. A receipt is posted in the list's channel, and the last line of the timeline records the deletion before the thread is left alone.
 
-It is the same deletion you get from **Delete list** in the <img class="inline-ic" src="/icons/other.png" alt="" /> *More* panel of a list. Use this command when the list's message is no longer there to click.
+It is the same deletion you get from **Delete list** in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel of a list. Use this command when the list's message is no longer there to click.
 
 <div class="callout"><div class="callout-t">Why doesn't the bot know which lists are dead?</div>Telling a live list from a deleted one means asking Discord about every list, every time the panel opens. TTM doesn't: it shows you what exists and links each channel, so you can look for yourself. Guessing from silence is exactly how data gets destroyed by accident.</div>
 

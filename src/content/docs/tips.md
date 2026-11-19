@@ -53,4 +53,4 @@ Drop `{{owner=alex}}` (or any `{{key=value}}`) into a task's text and reference 
 
 ## Make lists read-only for guests
 
-Sync permissions in [Configuration](/docs/configuration/#sync-permissions) so only your team can edit a list, while everyone else can still read it. The <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span> button follows the same rules.
+Sync permissions in [Configuration](/docs/configuration/#sync-permissions) so only your team can edit a list, while everyone else can still read it. The **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> button follows the same rules.
