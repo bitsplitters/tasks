@@ -7,7 +7,7 @@ order: 10
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
-## Next release — New lists announce themselves
+## 2.3.0 — New lists announce themselves
 
 - **A new list announces itself** — creating, importing or cloning a list posts a notification under it, with a link to the list. It mentions the owners of the tasks, so Discord notifies them. With history tracking on, the thread starts with the list. See [When a list is created](/docs/configuration/#when-a-list-is-created).
 - **One explanation per list** — with tips on, the first notification of a new list explains why TTM posts notifications and where to set them up, once. See [Tips](/docs/configuration/#tips).
