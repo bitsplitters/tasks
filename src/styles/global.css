@@ -105,15 +105,39 @@ a.btn[target="_blank"]::after, a.btn-ghost[target="_blank"]::after { content: no
 .site-top .mark .sep { color: var(--line-2); margin: 0 .3em; }
 .site-top .mark .prod { color: var(--accent-text); }
 .site-top .mark .prod:hover { color: var(--text); }
-.site-top nav { display: flex; align-items: center; gap: clamp(.75rem, 2vw, 1.5rem); }
+/* margin-left: auto keeps the free space between the mark and the links, with the tools group as a third child. */
+.site-top nav { display: flex; align-items: center; gap: clamp(.75rem, 2vw, 1.5rem); margin-left: auto; }
 .site-top nav a { font-family: var(--mono); font-size: .85rem; color: var(--muted); text-decoration: none; transition: color .18s ease; }
 .site-top nav a:hover { color: var(--text); }
+/* The theme switch (ThemeToggle.astro, spec 2026-11-19-tema-chiaro-sito-design.md §6, in the team-tasks-manager
+   repo). Grey like the header links; a 32 px hit area around an 18 px icon. The icon is the theme it switches to. */
+.theme-toggle {
+  display: inline-grid; place-items: center; width: 32px; height: 32px; padding: 0;
+  background: none; border: 0; border-radius: 6px; color: var(--muted); cursor: pointer; transition: color .18s ease;
+}
+.theme-toggle:hover { color: var(--text); }
+.theme-toggle svg { display: block; width: 18px; height: 18px; }
+.theme-toggle .theme-moon, :root[data-theme="light"] .theme-toggle .theme-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .theme-moon { display: block; }
+/* In the header it sits right of Help, after a thin rule. The negative margin lines the icon up with the content
+   edge, like the text of the links. */
+.site-tools { display: flex; align-items: center; padding-left: .75rem; border-left: 1px solid var(--line-2); }
+.site-tools .theme-toggle { margin-right: -7px; }
+/* In the footer only up to 640 px (see the media query below). */
+.foot-theme { display: none; align-items: center; }
+.foot-theme .theme-toggle { margin-left: -7px; }
+/* Without JavaScript the switch could not work: it isn't shown, nor are its containers (§3.3). */
+:root:not([data-theme]) :is(.theme-toggle, .site-tools, .foot-theme) { display: none; }
 /* On a phone the header has room for three links: Beta and Release notes stay in the docs menu, Premium
    and Help stay here. Help because someone reading on a phone is more likely stuck than curious. All five
-   need about 570 px on one line, hence 600 px. */
-@media (max-width: 600px) {
+   need about 570 px on one line; from 641 px the theme switch sits next to them too (54 px more, measured
+   room 84 px at 641), so the limit is 640 px for both. Below it the switch moves to the docs menu and the
+   footer. */
+@media (max-width: 640px) {
   .site-top nav .nav-wide { display: none; }
   .site-top nav a { white-space: nowrap; }
+  .site-tools { display: none; }
+  .foot-theme { display: flex; }
 }
 /* Docs, Premium and Help need 386 px at full size: up to 400 px, tighter gaps and slightly smaller type. */
 @media (max-width: 400px) {

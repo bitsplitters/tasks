@@ -1,0 +1,75 @@
+---
+// Lo switch del tema (spec 2026-11-19-tema-chiaro-sito-design.md, §6, nel repo team-tasks-manager). Solo l'icona,
+// del tema in cui si passa: il sole nello scuro, la luna nel chiaro. La sceglie il CSS da data-theme (global.css),
+// quindi è giusta dal primo disegno. Il nome dice l'azione; le due etichette stanno in data-* e lo script le alterna.
+// Lo stile sta in global.css, coi posti in cui il pulsante compare.
+export interface Props { lang?: 'en' | 'it'; }
+const { lang = 'en' } = Astro.props;
+const [chiaro, scuro] = lang === 'it'
+  ? ['Passa al tema chiaro', 'Passa al tema scuro']
+  : ['Switch to light theme', 'Switch to dark theme'];
+---
+<button type="button" class="theme-toggle" aria-label={chiaro} title={chiaro}
+  data-label-light={chiaro} data-label-dark={scuro}>
+  <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+  </svg>
+  <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+  </svg>
+</button>
+
+<script>
+  // Il comportamento dello switch (§6.2). Astro include questo modulo una volta per pagina anche coi pulsanti in più
+  // posti (intestazione, menu della documentazione, piè di pagina): li lega tutti.
+  const CHIAVE = 'theme';
+  const radice = document.documentElement;
+  const pulsanti = () => document.querySelectorAll<HTMLButtonElement>('.theme-toggle');
+
+  const etichette = () => {
+    const chiaro = radice.dataset.theme === 'light';
+    pulsanti().forEach((b) => {
+      const testo = (chiaro ? b.dataset.labelDark : b.dataset.labelLight) ?? '';
+      b.setAttribute('aria-label', testo);
+      b.title = testo;
+    });
+  };
+
+  const applica = (tema: 'light' | 'dark') => {
+    // Per un fotogramma niente transizioni (html.theme-switching in global.css): il cambio è netto.
+    radice.classList.add('theme-switching');
+    radice.dataset.theme = tema;
+    etichette();
+    void getComputedStyle(radice).color; // gli stili nuovi si calcolano qui, ancora senza transizioni
+    requestAnimationFrame(() => requestAnimationFrame(() => radice.classList.remove('theme-switching')));
+  };
+
+  const salvato = (): 'light' | 'dark' => {
+    try { return localStorage.getItem(CHIAVE) === 'light' ? 'light' : 'dark'; } catch { return 'dark'; }
+  };
+
+  pulsanti().forEach((b) => b.addEventListener('click', () => {
+    const tema = radice.dataset.theme === 'light' ? 'dark' : 'light';
+    applica(tema);
+    // Si salva solo il chiaro: lo scuro è il tema di partenza. Se il browser non lascia salvare, il cambio vale per
+    // la pagina aperta.
+    try {
+      if (tema === 'light') localStorage.setItem(CHIAVE, 'light');
+      else localStorage.removeItem(CHIAVE);
+    } catch { /* niente da salvare */ }
+  }));
+
+  // Le altre schede del sito si allineano (l'evento non arriva alla scheda che ha scritto).
+  window.addEventListener('storage', (e) => {
+    if (e.key === CHIAVE || e.key === null) applica(e.newValue === 'light' ? 'light' : 'dark');
+  });
+  // Una pagina che torna dalla cache di Indietro non rilegge lo script in testa: il tema scelto nel frattempo su
+  // un'altra pagina arriva da qui.
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted && radice.dataset.theme !== salvato()) applica(salvato());
+  });
+  etichette();
+</script>

@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import PreviewMeta from '../components/PreviewMeta.astro';
 import Analytics from '../components/Analytics.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 // `previewTitle`: il titolo della scheda di anteprima, quando quello della pagina porta gia' il nome
 // del sito, che la scheda mostra a parte (og:site_name). `card` ed `embed`: vedi PreviewMeta.
 export interface Props { title: string; description?: string; lang?: 'en' | 'it'; card?: 'large' | 'small'; previewTitle?: string; embed?: Record<string, unknown>; }
@@ -52,6 +53,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <a href="/docs/release-notes/" class="nav-wide">Release notes</a>
       <a href="/docs/troubleshooting/">Help</a>
     </nav>
+    {/* Gli strumenti della pagina: lo switch del tema, poi il selettore della lingua (spec
+        2026-11-19-tema-chiaro-sito-design.md, §6.3 e §10). Fino a 640 px non ci stanno: lo switch passa nel menu
+        della documentazione e nel pie' di pagina. */}
+    <div class="site-tools"><ThemeToggle lang={lang} /></div>
   </header>
   <slot />
   <footer class="site-foot">
@@ -63,6 +68,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         <a class="foot-badge" href="https://fazier.com/launches/tasks.bitsplitters.app"><img src="/badges/fazier.svg" alt="Fazier badge" width="120" height="51" /></a>
       </div>
       <nav class="foot-links">
+        <span class="foot-theme"><ThemeToggle lang={lang} /></span>
         {legali.map(([href, testo]) => <a href={href}>{testo}</a>)}
         {it ? <a href="/terms/" lang="en">English</a> : <a href="/it/terms/" lang="it">Italiano</a>}
         <a href="mailto:info@bitsplitters.app">info@bitsplitters.app</a>
