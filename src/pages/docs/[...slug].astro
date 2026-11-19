@@ -87,6 +87,9 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
     const toggle = document.getElementById('docs-menu-toggle');
     const side = document.getElementById('docs-side');
     const close = document.getElementById('docs-side-close');
+    // La prima riga del pannello: fra lo switch e la croce è spazio vuoto, e un tocco lì chiude come un tocco sul resto
+    // del pannello fuori dalle voci.
+    const riga = side?.querySelector('.docs-side-top');
 
     // Il resto della pagina, che a menu aperto prende `inert`: il Tab resta nel pannello, uno screen reader non legge
     // quello che il pannello copre.
@@ -131,7 +134,7 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
       toggle.addEventListener('click', apri);
       close.addEventListener('click', () => chiudi(true));
       side.addEventListener('click', (e) => {
-        if (e.target === side) chiudi(true);
+        if (e.target === side || e.target === riga) chiudi(true);
         else if (e.target instanceof Element && e.target.closest('a')) chiudi(false);
       });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') chiudi(true); });
