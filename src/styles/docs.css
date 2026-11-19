@@ -249,7 +249,7 @@
 
 /* ── Il telefono e il tablet ─────────────────────────────────────────────────────────────────────────── */
 .docs-menu-toggle { display: none; }
-.docs-side-close { display: none; }
+.docs-side-top { display: none; }
 @media (max-width: 820px) {
   /* La barra «Documentation» resta in alto mentre si legge, al posto del menu del sito: i due insieme terrebbero
      fermi 101 px su 760. Nell'indice, che non ha la barra, il menu del sito resta fermo come altrove. */
@@ -274,7 +274,12 @@
        quella barra e sembrava che il menu non scorresse. 'dvh' segue la barra che si ritrae; il 100vh davanti serve
        ai browser che non conoscono dvh. */
     height: 100vh; height: 100dvh;
-    padding: 1rem clamp(1.25rem, 6vw, 2rem) calc(2rem + env(safe-area-inset-bottom));
+    /* Niente padding in alto: lo dà la prima riga (.docs-side-top), che col suo fondo copre il pannello fino al bordo.
+       Il margine dei lati sta in una variabile perché la riga lo attraversa coi margini negativi. Lo scroll-padding
+       tiene le voci raggiunte col Tab sotto la riga, non dietro. */
+    --side-pad: clamp(1.25rem, 6vw, 2rem);
+    padding: 0 var(--side-pad) calc(2rem + env(safe-area-inset-bottom));
+    scroll-padding-top: 4.5rem;
     background: color-mix(in srgb, var(--bg) 97%, transparent);
     backdrop-filter: blur(8px);
     /* `contain` spezza la catena dello scorrimento: arrivato in fondo al menu il gesto NON passa alla pagina
@@ -288,13 +293,18 @@
      non bloccherebbe niente e farebbe di body un contenitore di scorrimento, che toglie lo sticky. */
   html.docs-menu-open { overflow: hidden; }
   .docs-side.open { visibility: visible; transform: translateX(0); transition: transform .25s ease; }
-  /* La croce resta in vista anche col pannello scorso: aprendo, il pannello scorre fino alla voce della pagina. È la
-     prima riga del contenuto, in alto a destra: la ricerca comincia a 72 px (16 + 40 + 16). Non sta nel padding con
-     margini negativi perché Chrome tiene un elemento sticky dentro il contenuto del pannello, sotto il padding:
-     la croce scendeva a 72 + 16 px e copriva la ricerca. */
+  /* La prima riga resta in vista anche col pannello scorso: aprendo, il pannello scorre fino alla voce della pagina.
+     Lo switch del tema a sinistra, la croce a destra; la ricerca comincia a 72 px (16 + 40 + 16). È una fascia col
+     fondo della pagina, larga quanto il pannello: le voci che scorrono le passano sotto. Trasparente, come quando c'era
+     solo la croce a destra, le voci scorrevano sotto lo switch e il testo gli si sovrapponeva. */
+  .docs-side-top {
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 1;
+    margin: 0 calc(-1 * var(--side-pad)) 1rem; padding: 1rem calc(var(--side-pad) - .5rem) 0;
+    background: var(--bg);
+  }
   .docs-side-close {
-    display: block; position: sticky; top: 0; z-index: 1;
-    width: 2.5rem; height: 2.5rem; margin: 0 -.5rem 1rem auto; padding: 0;
+    display: block; width: 2.5rem; height: 2.5rem; padding: 0;
     background: none; border: none; color: var(--muted);
     font-size: 2rem; line-height: 1; cursor: pointer;
   }

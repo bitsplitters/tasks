@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import VetrinaFont from '../../components/VetrinaFont.astro';
 import DocsSearch from '../../components/DocsSearch.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
 import { docsCard } from '../../lib/preview-card';
 import { PAGINA_PIANI } from '../../lib/pagina-piani';
 import { GRUPPI_DOCS, POSTI } from '../../lib/gruppi-docs';
@@ -38,7 +39,12 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
     >&#9776; Documentation</button>
     <div class="docs-shell">
       <aside class="docs-side" id="docs-side">
-        <button class="docs-side-close" id="docs-side-close" aria-label="Close menu">&times;</button>
+        {/* La prima riga del pannello del telefono: lo switch del tema a sinistra, la croce a destra (spec
+            2026-11-19-tema-chiaro-sito-design.md, §6.3, nel repo team-tasks-manager). Sopra gli 820 px è nascosta. */}
+        <div class="docs-side-top">
+          <ThemeToggle />
+          <button class="docs-side-close" id="docs-side-close" aria-label="Close menu">&times;</button>
+        </div>
         <DocsSearch />
         {/* L'indice della documentazione: prima voce, sopra i gruppi, così da ogni pagina si torna all'elenco. */}
         <a href="/docs/" class="side-overview">Overview</a>
