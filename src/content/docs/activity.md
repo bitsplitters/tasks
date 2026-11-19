@@ -12,6 +12,15 @@ The **Activity** opens a list in a window inside Discord, on desktop and on mobi
 
 This page is about getting in and out. How you work on the list once inside: [Working on a list in the Activity](/docs/activity-list/).
 
+## Four ways in
+
+- **From a list in a channel** — press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button under the list. That list opens. See [Open a list in the Activity](#open-a-list-in-the-activity).
+- **From the message bar** — in a text channel, open Discord's **App Launcher**, pick Team Tasks Manager, then **Launch**. See [The home of the channel](#the-home-of-the-channel).
+- **From a voice call** — press the call's Activities button and pick Team Tasks Manager. See [The home of the channel](#the-home-of-the-channel).
+- **From someone already inside** — press **Join the Activity** under the list, Discord's **Join** on their profile, or the invite they send you. See [Join the others](#join-the-others).
+
+The App Launcher and the voice call open the home of the channel, with all its lists: you pick one there, or create a new one.
+
 ## Open a list in the Activity
 
 Press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button of the [first row](/docs/the-task-list/#row-1--acts-on-the-whole-list), in a text channel or in the chat of a voice channel. **Clone list**, which sat there before, is now in [More](/docs/the-task-list/#whats-inside-more). An older list gets the button the first time it changes.
@@ -39,7 +48,7 @@ While you're in the Activity, your Discord profile shows Team Tasks Manager with
 
 ## The home of the channel
 
-You can also start from Discord: the **App Launcher** in a text channel's message bar (Team Tasks Manager, then **Launch**), or the Activities button of a voice call. Threads, forum posts, announcement channels and stages are left out. You land on the home of the channel, with the channel's name as its title:
+When you start from the **App Launcher** or from a **voice call** (see [Four ways in](#four-ways-in)), TTM opens the home of the channel, with the channel's name as its title. Threads, forum posts, announcement channels and stages are left out. The home has three parts:
 
 - **New list**, under the title — a title and the tasks, written as in [Writing a list](/docs/writing-a-list/), created here and already in the Activity. The summary that follows it back to the channel starts with its creation, and can mention the owners of its tasks: see [When a list is created](/docs/configuration/#when-a-list-is-created). Files are imported with `/create-list`, in the channel.
 - **Now in the Activity** — who is on each list, and who is editing. Tap one to join.

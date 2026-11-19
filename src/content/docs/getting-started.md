@@ -73,7 +73,7 @@ Every button under the list: [The list in the channel](/docs/the-task-list/) and
 
 ## <img class="place-ic is-activity" src="/icons/activity.png" alt="" />4. In the Activity
 
-Try Activity mode: smoother and free from the limits of text channels, ideal for longer or collaborative work sessions. Press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button under the list. The list opens in a window inside Discord, and the others in the channel can join you there.
+Try Activity mode: smoother and free from the limits of text channels, ideal for longer or collaborative work sessions. Press <span class="dchip is-blue" role="img" aria-label="Activity button, blue"><img src="/icons/activity.png" alt="" /></span>, the first button under the list. The list opens in a window inside Discord, and the others in the channel can join you there. You can also start from Discord's App Launcher or from a voice call: see [Four ways in](/docs/activity/#four-ways-in).
 
 ### Tick a task
 
