@@ -3,6 +3,7 @@ import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
 import { fileURLToPath } from 'node:url';
+import rehypeNoteDiRilascio from './src/lib/rehype-note-di-rilascio.mjs';
 
 // I link che portano FUORI dal sito si aprono in una scheda nuova; quelli interni no.
 //
@@ -87,6 +88,8 @@ export default defineConfig({
     processor: unified({
       rehypePlugins: [
         rehypeNoTranslateCode,
+        // Le note di rilascio a riquadri: solo nelle pagine con `releases: true` (src/lib/rehype-note-di-rilascio.mjs).
+        rehypeNoteDiRilascio,
         [
           rehypeExternalLinks,
           {

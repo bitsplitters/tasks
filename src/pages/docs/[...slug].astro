@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import VetrinaFont from '../../components/VetrinaFont.astro';
 import DocsSearch from '../../components/DocsSearch.astro';
 import ThemeToggle from '../../components/ThemeToggle.astro';
+import AperturaNoteDiRilascio from '../../components/AperturaNoteDiRilascio.astro';
 import { docsCard } from '../../lib/preview-card';
 import { PAGINA_PIANI } from '../../lib/pagina-piani';
 import { GRUPPI_DOCS, POSTI } from '../../lib/gruppi-docs';
@@ -79,6 +80,7 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
         {entry.data.description && <p class="subtitle">{entry.data.description}</p>}
         <Content />
       </article>
+      {entry.data.releases && <AperturaNoteDiRilascio />}
     </div>
   </main>
   <script>

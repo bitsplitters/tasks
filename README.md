@@ -20,6 +20,20 @@ order: 1                 # position within the group
 ### Add a page
 Create a new `.md` file in `src/content/docs/` with the header above. It appears in the sidebar automatically, in the right group and order. A **new group** must also be added to `groupsOrder` in both `src/pages/docs/index.astro` and `src/pages/docs/[...slug].astro`: a page whose group isn't listed there doesn't show in the sidebar.
 
+### Release notes
+`src/content/docs/release-notes.md` has `releases: true` in its header: each release becomes a box that opens, with
+its date and a preview (decided 2026-11-19). Keep writing plain Markdown, with three rules:
+
+- **Under each `## X.Y.Z — Title`, a line `Released YYYY-MM-DD`:** the day the release came out, the same one `/news`
+  shows. The page shows it as *19 November 2026*.
+- **Every item starts with its title in bold:** `- **A new list announces itself** — …`. The closed box shows the
+  bold titles of the first three items, then how many more there are: write the items in order of importance.
+- **A `---` line after the last release:** what follows it (the *Coming soon* box) stays outside the boxes.
+
+Never change the title of a published release: `/news` links each release by the anchor made from its title. The
+build stops if a release has no date, has a wrong one, or has an item without a bold title. The newest release is
+open; a link to another one opens it.
+
 ### Icons
 Button/feature icons live in `public/icons/`: they are the bot's emoji. One rule for every page (decided 2026-11-19):
 

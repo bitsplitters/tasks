@@ -315,3 +315,42 @@
 @media (max-width: 820px) and (prefers-reduced-motion: reduce) {
   .docs-side, .docs-side.open { transition: none; }
 }
+
+/* ── Note di rilascio ─────────────────────────────────────────────────────────────────────────────────── */
+/* Ogni release è una sezione col titolo, la data e un riquadro che si apre (spec 2026-11-19-iva-e-note-di-rilascio-design.md,
+   §4.3, nel repo team-tasks-manager; il plugin è src/lib/rehype-note-di-rilascio.mjs). La sezione prende la larghezza
+   del testo, che `.prose > …` non le dà: titolo, data e riquadro stanno nella stessa colonna. */
+.prose .rel { max-width: 36rem; }
+.prose .rel h2 { margin: 2.75rem 0 .3rem; }
+/* Con `.prose`: `.prose p` le darebbe il colore del testo. */
+.prose .rel-date { margin: 0 0 .85rem; font-size: .9rem; color: var(--muted); }
+.rel-box { border: 1px solid var(--line-2); border-radius: 8px; background: var(--surface); transition: border-color .2s ease; }
+.rel-box:has(> summary:hover) { border-color: var(--accent-text); }
+.rel-box > summary {
+  position: relative; display: block; list-style: none; cursor: pointer;
+  padding: .8rem 1.1rem .8rem 2.4rem; border-radius: 7px;
+  font-size: .95rem; line-height: 1.55; color: var(--text-body); text-wrap: pretty;
+}
+.rel-box > summary::-webkit-details-marker { display: none; }
+/* Il triangolo, al posto del marcatore del browser: punta a destra da chiuso, in giù da aperto. Sta al centro della
+   prima riga, anche quando l'anteprima va a capo. */
+.rel-box > summary::before {
+  content: ""; position: absolute; left: 1.1rem; top: calc(.8rem + .775em);
+  width: .42em; height: .42em; border: solid var(--accent-text); border-width: 0 2px 2px 0;
+  transform: translate(-25%, -50%) rotate(-45deg); transition: transform .15s ease;
+}
+.rel-box[open] > summary::before { transform: translate(0, -75%) rotate(45deg); }
+.rel-box > summary:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 3px; }
+.rel-sep { color: var(--muted); }
+.rel-more, .rel-all { color: var(--accent-text); font-weight: 600; white-space: nowrap; }
+/* Da aperto il sommario dice solo quanti sono i cambi: l'elenco intero sta sotto. */
+.rel-all { display: none; }
+.rel-box[open] > summary { border-bottom: 1px solid var(--line-2); border-radius: 7px 7px 0 0; }
+.rel-box[open] .rel-preview, .rel-box[open] .rel-more { display: none; }
+.rel-box[open] .rel-all { display: inline; }
+.rel-body { padding: .15rem 1.1rem .85rem; }
+.rel-body > :is(ul, ol) { padding-left: 1.25rem; }
+.rel-body > h3 { margin-top: 1.6rem; }
+@media (prefers-reduced-motion: reduce) {
+  .rel-box, .rel-box > summary::before { transition: none; }
+}

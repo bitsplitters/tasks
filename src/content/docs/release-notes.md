@@ -3,11 +3,15 @@ title: Release notes
 description: What's new in Team Tasks Manager, newest first.
 group: Reference
 order: 10
+# Ogni release diventa un riquadro che si apre: README, «Release notes».
+releases: true
 ---
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
 ## 2.3.0 — New lists announce themselves
+
+Released 2026-11-19
 
 - **A new list announces itself** — creating, importing or cloning a list posts a notification under it, with a link to the list. It mentions the owners of the tasks, so Discord notifies them. With history tracking on, the thread starts with the list. See [When a list is created](/docs/configuration/#when-a-list-is-created).
 - **One explanation per list** — with tips on, the first notification of a new list explains why TTM posts notifications and where to set them up, once. See [Tips](/docs/configuration/#tips).
@@ -21,11 +25,15 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 2.2.0 — Take a task
 
+Released 2026-11-18
+
 - **Take a task yourself** — click **Owner** until it turns blue, then pick a task without choosing anyone: it's yours, and the channel shows who took it. A task that already has an owner stays as it is: to replace them, choose yourself in the menu first. With **Keep status after selection**, take one task after another without clicking **Owner** again. See [Owner](/docs/channel-tasks/#owner).
 - **Take a task in the Activity** — on a task with no owner, **Owner** opens with your name already chosen: **Save** makes it yours. See [Owner](/docs/activity-list/#owner).
 - **Whoever gets a task hears about it** — give a task to someone else, or to a role, and the notification in the channel mentions them, so Discord notifies them. When you take a task yourself, nobody is mentioned. See [Owner](/docs/channel-tasks/#owner).
 
 ## 2.1.0 — News in the bot
+
+Released 2026-11-17
 
 - **`/news`** — the latest news about Team Tasks Manager, in your language, in a message only you can see. Under each piece of news, **Discord server** opens our support server and **Release notes** opens that release on this page. The **Previous** and **Next** buttons go to older and newer news. See [`/news`](/docs/commands/#news).
 - **Every release in `/news`** — from 1.0.0 onwards, each with the day it came out: go back with **Previous**. See [`/news`](/docs/commands/#news).
@@ -33,9 +41,13 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 2.0.1 — Activity mode in the Tutorial
 
+Released 2026-11-16
+
 - **A lesson on Activity mode** — the Tutorial's practice list has seven lessons: before the last one, tick a task in Activity mode, smoother and free from the limits of text channels. See [Getting started](/docs/getting-started/#2-create-your-first-list).
 
 ## 2.0.0 — The Activity
+
+Released 2026-11-15
 
 - **The Activity** — a list opens in a window inside Discord, on desktop and on mobile. Several people work on it at once, and everyone sees each change as it happens. When the last person leaves, the list goes back to its channel, with a summary of the changes. See [The Activity](/docs/activity/).
 - **A new first button** — **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> takes the list into the Activity, in text channels and in the chat of voice channels. It needs Discord's *Use Activities* permission on the channel. A list already in your channels gets it the next time it changes. See [Open a list in the Activity](/docs/activity/#open-a-list-in-the-activity).
@@ -48,17 +60,23 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 1.5.0 — Recurrence from menus
 
+Released 2026-11-07
+
 - **Choose the recurrence from menus** — **Edit recurrence** opens a form with three menus instead of two fields to type: **How many times, in total**, **Every** and **Unit** (minutes, hours or days). There is no interval to write and no format to get wrong, and for four pings you choose 4. See [The repetition fields](/docs/reminders/#the-repetition-fields).
 - **The badge counts every ping** — on the task line, `↻1d ×4` now means four pings, one a day, the first included. Before, `×` counted the repetitions after the first one. A list written before this version shows the old number until someone changes it. See [Reading a reminder on the task](/docs/reminders/#reading-a-reminder-on-the-task).
 - **Up to 50 times in total** — on Premium a reminder arrives at most 50 times, the first included, and a reminder that already had more keeps them. In **Bulk update** the triplet still counts the repetitions after the first: at most 49. See [Known limits](/docs/known-limits/#reminders).
 
 ## 1.4.0 — Tutorial, lists in voice channels
 
+Released 2026-11-05
+
 - **A tutorial for your first list** — the explanation shown by `/create-list` has a **Tutorial** button next to **Create your list**. It turns the explanation into a practice list of six lessons, in your language, and sends you the Guide, the same one in **More** → **Guide**, in a message only you can see. The practice list is a normal list: delete it from **More** when you're done. The button comes with Tips on, and the welcome card and `/help` point to it. See [Getting started](/docs/getting-started/#2-create-your-first-list).
 - **Button emoji have short names** — in **Bulk update**, in the form of a task's text and in the Download file, the emoji of a list button, like the ones in the Tutorial's lessons, show as `:owner:`, `:reminder:`, `:content:` and `:more:` instead of a long code. Write one of these names in a task and the list shows the emoji. See [Button emoji](/docs/writing-a-list/#button-emoji).
 - **Lists in voice channels** — `/create-list` works in the chat of a voice channel, and **Clone list** offers voice channels too. A list there does everything it does in a text channel except the activity timeline, because Discord doesn't allow threads in voice channels: whoever creates one gets a short message that explains it. In a voice channel TTM needs *Connect* instead of the two timeline permissions. See [Voice channels](/docs/known-limits/#voice-channels).
 
 ## 1.3.0 — Space around groups
+
+Released 2026-11-03
 
 - **Space around groups** — a new option of `/config app`: switch it off and your lists lose the blank lines above and below the tasks that have subtasks, for a more compact list. On by default: see [Space around groups](/docs/configuration/#space-around-groups).
 - **List appearance is one dropdown** — **Tips**, **Completed tasks dimmed** and **Space around groups** are now options of the same dropdown in `/config app`: tick the ones you want on. See [Tips and list appearance](/docs/configuration/#list-appearance).
@@ -67,10 +85,14 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 1.2.1 — Tick a task
 
+Released 2026-11-01
+
 - **The task menu says *Tick a task*** — with every task button grey, the menu above the buttons says what it is for, instead of showing the list title. See [The second row](/docs/channel-tasks/#the-second-row).
 - **The forms that lock the list say how to unlock it** — **Bulk update** and the form of a task's text end with a line: closing them with **Cancel** or the ✕ leaves the list locked, and **More → Unlock list** unlocks it. See [I pressed Cancel and the list stays locked](/docs/troubleshooting/#i-pressed-cancel-and-the-list-stays-locked).
 
 ## 1.2.0 — Tips, progress bar, list completed
+
+Released 2026-11-01
 
 - **The task menu tells you what comes next** — while a task button is blue or red, the menu above the buttons shows the action, such as *Edit task* or *Delete task*: pick the task there. With every button grey it shows the list title again. See [The second row](/docs/channel-tasks/#the-second-row).
 - **Tips under every list** — a small last line points to **Guide**, in **More**, and to this site. The legend setting of `/config app` is now called **Tips**, and switches off both the line and the explanation shown by `/create-list`: see [Tips](/docs/configuration/#tips).
@@ -81,6 +103,8 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 1.1.0 — Invite card, welcome message, tips in the status
 
+Released 2026-10-26
+
 - **`/invite`** — a public card with the logo, what the bot does and how to start (the same presentation as its App Directory page) and three buttons: add it to another server (Discord's authorization page, straight from the bot), the guide, the support server. Same name in every language: see [Commands](/docs/commands/).
 - **A welcome card on the first join** — once in a server's life, in its system channel: what the bot does, three steps to start with `/create-list` and `/config app`, which permissions it asks for and why: see [Core concepts](/docs/core-concepts/#the-permissions-ttm-asks-for). Never a DM. Nothing is sent when the server has no system channel, hides join notifications there, or the bot cannot write in it.
 - **`/help` says who sees the configuration commands** — the Configuration page now says that Discord shows the three `/config` subcommands only to whoever has *Manage Server*, and where an admin can change that.
@@ -90,10 +114,14 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 1.0.1 — Translations reviewed
 
+Released 2026-10-24
+
 - **Spanish, Portuguese, French and German, reviewed in full** — one word for each feature, one tone throughout, and permission names as Discord shows them. Latin American Spanish now says *tú*, not *vos*.
 - **`/config webhook` options with accents** in the languages that use them, such as *acción*, *événement* or *löschen*: see [/config webhook](/docs/webhooks/).
 
 ## 1.0.0 — First public release
+
+Released 2026-10-23
 
 The first release of Team Tasks Manager by **bitsplitters**. What it brings:
 
@@ -129,5 +157,7 @@ The first release of Team Tasks Manager by **bitsplitters**. What it brings:
 - **Webhooks** (Premium) send an HTTP request you define when a task is completed or reopened. They take `{{ }}` tokens, and only public `https` addresses: see [/config webhook](/docs/webhooks/).
 - **Told where it matters** — when TTM can't post in a list's channel, it tells the person who acted, privately. A failed webhook gets a warning too: see [The bot says a permission is missing](/docs/troubleshooting/#the-bot-says-a-permission-is-missing) and [When a webhook fails](/docs/webhooks/#when-a-webhook-fails).
 - **Localized interface** — the bot's texts and some command names appear in your language: see [Command names in your language](/docs/commands/#command-names-in-your-language). This site works with your browser's translation.
+
+---
 
 <div class="callout"><div class="callout-t">Coming soon</div>An owner-only task view and a progress dashboard are on the way. This page will track every step.</div>

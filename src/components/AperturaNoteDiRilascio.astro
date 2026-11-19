@@ -1,0 +1,19 @@
+---
+// Le note di rilascio a riquadri (spec 2026-11-19-iva-e-note-di-rilascio-design.md, §4.3, nel repo team-tasks-manager):
+// un link a una release la trova aperta. I link arrivano da /news, dalla ricerca e dalle altre pagine; il titolo della
+// release sta fuori dal riquadro, quindi il browser lo porta in vista da solo, e qui si apre il riquadro sotto. Un'ancora
+// dentro un riquadro chiuso (un h3 della 1.0.0) apre quello e porta il bersaglio in vista. Senza JavaScript i riquadri
+// si aprono lo stesso a mano.
+---
+<script>
+  const apri = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const bersaglio = id ? document.getElementById(id) : null;
+    const riquadro = bersaglio?.closest('.rel')?.querySelector<HTMLDetailsElement>(':scope > details.rel-box');
+    if (!bersaglio || !riquadro || riquadro.open) return;
+    riquadro.open = true;
+    if (riquadro.contains(bersaglio)) bersaglio.scrollIntoView();
+  };
+  apri();
+  window.addEventListener('hashchange', apri);
+</script>

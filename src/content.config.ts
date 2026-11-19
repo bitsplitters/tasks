@@ -22,6 +22,9 @@ const docs = defineCollection({
     // Il posto di una pagina d'uso: la pillola sotto il titolo (spec della documentazione divisa fra canale e
     // Activity, §5). Le pagine comuni, che valgono nei due posti, non ce l'hanno.
     place: z.enum(['channel', 'activity']).optional(),
+    // Le note di rilascio: ogni `##` diventa un riquadro che si apre, con la data e l'anteprima delle voci (spec
+    // 2026-11-19-iva-e-note-di-rilascio-design.md, §4, nel repo team-tasks-manager; il plugin è src/lib/rehype-note-di-rilascio.mjs).
+    releases: z.boolean().optional(),
   }),
 });
 
