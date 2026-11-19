@@ -23,8 +23,8 @@ const [chiaro, scuro] = lang === 'it'
 </button>
 
 <script>
-  // Il comportamento dello switch (§6.2). Astro include questo modulo una volta per pagina anche coi pulsanti in più
-  // posti (intestazione, menu della documentazione, piè di pagina): li lega tutti.
+  // Il comportamento dello switch (§6.2). Astro include questo modulo una volta per pagina anche con più pulsanti:
+  // li lega tutti. Dal 2026-11-19 ce n'è uno solo, nell'intestazione.
   const CHIAVE = 'theme';
   const radice = document.documentElement;
   const pulsanti = () => document.querySelectorAll<HTMLButtonElement>('.theme-toggle');

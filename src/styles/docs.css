@@ -298,7 +298,7 @@
      fondo della pagina, larga quanto il pannello: le voci che scorrono le passano sotto. Trasparente, come quando c'era
      solo la croce a destra, le voci scorrevano sotto lo switch e il testo gli si sovrapponeva. */
   .docs-side-top {
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: flex-end;
     position: sticky; top: 0; z-index: 1;
     margin: 0 calc(-1 * var(--side-pad)) 1rem; padding: 1rem calc(var(--side-pad) - .5rem) 0;
     background: var(--bg);

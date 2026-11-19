@@ -46,16 +46,30 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <span class="sep">/</span>
       <a class="prod" href="/">tasks</a>
     </div>
+    {/* Niente «Help» (utente, 2026-11-19): puntava alla risoluzione dei problemi, mentre chi cerca aiuto può voler
+        scrivere allo staff. Il gruppo «Help & community» della documentazione ha l'una e l'altra cosa. Fino a 640 px
+        Docs e Premium sono solo icone, le stesse dei pulsanti del bot (libro e diamante): il nome resta per gli
+        screen reader. */}
     <nav>
-      <a href="/docs/">Docs</a>
-      <a href="/premium/">Premium</a>
+      <a href="/docs/" class="nav-ic-link">
+        <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 7v14" />
+          <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+        </svg><span class="nav-txt">Docs</span></a>
+      <a href="/premium/" class="nav-ic-link">
+        <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 3h12l4 6-10 13L2 9Z" />
+          <path d="M11 3 8 9l4 13 4-13-3-6" />
+          <path d="M2 9h20" />
+        </svg><span class="nav-txt">Premium</span></a>
       <a href="/beta/" class="nav-wide">Beta</a>
       <a href="/docs/release-notes/" class="nav-wide">Release notes</a>
-      <a href="/docs/troubleshooting/">Help</a>
     </nav>
     {/* Gli strumenti della pagina: lo switch del tema, poi il selettore della lingua (spec
-        2026-11-19-tema-chiaro-sito-design.md, §6.3 e §10). Fino a 640 px non ci stanno: lo switch passa nel menu
-        della documentazione e nel pie' di pagina. */}
+        2026-11-19-tema-chiaro-sito-design.md, §6.3 e §10). Stanno nell'intestazione a ogni larghezza (utente,
+        2026-11-19): lo switch non è più nel menu della documentazione né nel pie' di pagina. */}
     <div class="site-tools"><ThemeToggle lang={lang} /></div>
   </header>
   <slot />
@@ -68,7 +82,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         <a class="foot-badge" href="https://fazier.com/launches/tasks.bitsplitters.app"><img src="/badges/fazier.svg" alt="Fazier badge" width="120" height="51" /></a>
       </div>
       <nav class="foot-links">
-        <span class="foot-theme"><ThemeToggle lang={lang} /></span>
         {legali.map(([href, testo]) => <a href={href}>{testo}</a>)}
         {it ? <a href="/terms/" lang="en">English</a> : <a href="/it/terms/" lang="it">Italiano</a>}
         <a href="mailto:info@bitsplitters.app">info@bitsplitters.app</a>

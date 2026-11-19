@@ -3,7 +3,6 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import VetrinaFont from '../../components/VetrinaFont.astro';
 import DocsSearch from '../../components/DocsSearch.astro';
-import ThemeToggle from '../../components/ThemeToggle.astro';
 import AperturaNoteDiRilascio from '../../components/AperturaNoteDiRilascio.astro';
 import { docsCard } from '../../lib/preview-card';
 import { PAGINA_PIANI } from '../../lib/pagina-piani';
@@ -40,10 +39,10 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
     >&#9776; Documentation</button>
     <div class="docs-shell">
       <aside class="docs-side" id="docs-side">
-        {/* La prima riga del pannello del telefono: lo switch del tema a sinistra, la croce a destra (spec
-            2026-11-19-tema-chiaro-sito-design.md, §6.3, nel repo team-tasks-manager). Sopra gli 820 px è nascosta. */}
+        {/* La prima riga del pannello del telefono: la croce, a destra. Lo switch del tema stava a sinistra (spec
+            2026-11-19-tema-chiaro-sito-design.md, §6.3, nel repo team-tasks-manager); dal 2026-11-19 sta solo
+            nell'intestazione. Sopra gli 820 px la riga è nascosta. */}
         <div class="docs-side-top">
-          <ThemeToggle />
           <button class="docs-side-close" id="docs-side-close" aria-label="Close menu">&times;</button>
         </div>
         <DocsSearch />
@@ -89,7 +88,7 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
     const toggle = document.getElementById('docs-menu-toggle');
     const side = document.getElementById('docs-side');
     const close = document.getElementById('docs-side-close');
-    // La prima riga del pannello: fra lo switch e la croce è spazio vuoto, e un tocco lì chiude come un tocco sul resto
+    // La prima riga del pannello: a sinistra della croce è spazio vuoto, e un tocco lì chiude come un tocco sul resto
     // del pannello fuori dalle voci.
     const riga = side?.querySelector('.docs-side-top');
 
