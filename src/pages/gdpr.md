@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: "GDPR & Your Data Rights"
 description: How Team Tasks Manager complies with the EU General Data Protection Regulation.
-updated: "Last updated: 15 November 2026"
+updated: "Last updated: 19 November 2026"
 lang: en
 alt: /it/gdpr/
 ---
@@ -33,17 +33,17 @@ Under the GDPR you have the right to:
 - **Objection** — object to processing based on legitimate interest.
 - **Withdraw consent** — where processing is based on consent, withdraw it at any time.
 
-Much of your data is also directly under your control inside Discord: editing or deleting tasks, reminders, webhooks and configuration removes them; **deleting a list** (the *Delete list* button in its *More* panel, or `/config lists`) removes that list with its tasks, reminders and history, and **sealing** it (*Seal list*, same panel) does the same while leaving its message in the channel; and **removing the bot from a server** deletes the lists, tasks, reminders, webhooks and history it holds, and the records of the roles it created for tasks owned by several people (the roles stay in the server). A few server-level records are kept — see [Retention](/privacy/#retention) in the Privacy Policy for the exact list, and for the data stored against your Discord user ID (your personal time zone and your direct-message channel with the bot), which removing the bot does not touch and which we delete on request.
+Much of your data is also directly under your control inside Discord: editing or deleting tasks, reminders, webhooks and configuration removes them; **deleting a list** (the *Delete list* button in its *More* panel, or `/config lists`) removes that list with its tasks, reminders and history, and **sealing** it (*Seal list*, same panel) does the same while leaving its message in the channel; and **removing the bot from a server** deletes the lists, tasks, reminders, webhooks and history it holds, and the records of the roles it created for tasks owned by several people (the roles stay in the server). A few server-level records are kept — see [Retention](/privacy/#retention) in the Privacy Policy for the exact list, and for the data stored against your Discord user ID (your personal time zone, your direct-message channel with the bot and whether you have learned the second row), which removing the bot does not touch and which we delete on request.
 
 ## How to exercise your rights
 
-Email **info@bitsplitters.app** with your request and enough information to identify the relevant server or data (e.g. the Discord server ID, or your Discord user ID for your personal time zone and direct-message channel). We will respond within the time limits set by the GDPR (normally within one month).
+Email **info@bitsplitters.app** with your request and enough information to identify the relevant server or data (e.g. the Discord server ID, or your Discord user ID for your personal time zone, direct-message channel and second row). We will respond within the time limits set by the GDPR (normally within one month).
 
 An email address does not prove who owns a Discord account. Before acting on a request about data stored against a Discord user ID, we may ask you to confirm it **from that account** — for example by opening a support ticket on our [community server](/docs/community/). We ask only what we need to be sure the request is yours.
 
 ## Retention
 
-We keep data only as long as needed to provide the service, as described in the [Privacy Policy](/privacy/). Data deleted from the service survives in our backups for up to 14 days. Removing the bot deletes that server's content data; the residual server-level records and the data stored against your Discord user ID (personal time zone and direct-message channel) are deleted upon a valid erasure request, unless the law requires otherwise.
+We keep data only as long as needed to provide the service, as described in the [Privacy Policy](/privacy/). Data deleted from the service survives in our backups for up to 14 days. Removing the bot deletes that server's content data; the residual server-level records and the data stored against your Discord user ID (personal time zone, direct-message channel and second row) are deleted upon a valid erasure request, unless the law requires otherwise.
 
 ## International transfers
 
