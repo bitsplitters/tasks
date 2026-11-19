@@ -6,6 +6,7 @@
    Discord stanno in discord.css. */
 :root {
   /* Cambiano col tema. */
+  color-scheme: dark;
   --bg: #0A0E16;
   --surface: #121826;
   --surface-2: #161E2E;
