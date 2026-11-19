@@ -50,7 +50,7 @@ While the panel is open, the task is locked for the others: see [Who is editing 
 
 ## Owner
 
-**Blue** shows a search over the people and roles of the server, with whoever is in the Activity first. Tap a name to add it, tap it again to remove it, then **Save**.
+**Blue** shows a search over the people and roles of the server, with whoever is in the Activity first. Tap a name to add it, tap it again to remove it, then **Save**. Remove every name and **Save** removes the owner, as **Red** does.
 
 **To take a task** with no owner, press **Owner** until it turns blue: your name is already chosen, so **Save** makes the task yours. To give it to someone else instead, tap their name: it takes the place of yours. A task that already has an owner shows it, and changes only if you choose someone.
 
@@ -63,7 +63,9 @@ While the panel is open, the task is locked for the others: see [Who is editing 
 
 **Blue** shows the tags the task has now, already chosen. Add and remove people or roles from the search, up to 25, then **Save**: the task gets exactly the set you see. There is no overwrite mode or live editing: you always start from the current tags.
 
-**Red** removes every tag. A task made only of tags keeps them, because without them it would have no text.
+Remove them all and **Save** removes every tag, as **Red** does.
+
+**Red** removes every tag. Either way, a task made only of tags keeps them, because without them it would have no text.
 
 ## Reminder
 
