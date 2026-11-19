@@ -34,6 +34,23 @@ Button/feature icons live in `public/icons/`: they are the bot's emoji. One rule
 - Places are not functions: the *In the channel* and *In the Activity* badges (`place-ic`, `place-pill`) keep their
   own style.
 - A white icon that is missing here comes from `team-tasks-manager/selfhost/emoji/`, where the bot's emoji are.
+- In the light theme the white icons darken by themselves (`--icon-filter`); the blue ones (`*_blue.png`) and the
+  checkboxes don't, because they show what Discord displays.
+
+### Colors
+The site has a dark theme, the default for everyone, and a light one chosen with the switch in the header (decided
+2026-11-19). One rule for every page:
+
+- **A color that changes with the theme is a variable in `src/styles/global.css`,** defined in both blocks: `:root`
+  (dark) and `:root[data-theme="light"]`. Pages don't write colors by hand.
+- **Amber as text, border or focus ring is `--accent-text`;** amber as a background is `--accent`, with `--on-accent`
+  text on it: the brand amber on white is 2.1:1, too low for text. The bot's green works the same way (`--bot-text`,
+  `--bot`).
+- **Discord's colors are the `--dc-*` constants of `src/styles/discord.css`:** Discord reproductions (the demo, the
+  illustrations, the tooltips, the place badges) stay dark in both themes.
+- **A tint is `color-mix(in srgb, var(--x) N%, transparent)`** from a variable, never a hand-written `rgba()`.
+- **A new color comes with its contrast measured in both themes:** at least 4.5:1 for text, 3:1 for large text and
+  for the focus ring.
 
 ## Local preview
 
