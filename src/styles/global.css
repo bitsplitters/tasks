@@ -119,12 +119,14 @@ a.btn[target="_blank"]::after, a.btn-ghost[target="_blank"]::after { content: no
 .theme-toggle svg { display: block; width: 18px; height: 18px; }
 .theme-toggle .theme-moon, :root[data-theme="light"] .theme-toggle .theme-sun { display: none; }
 :root[data-theme="light"] .theme-toggle .theme-moon { display: block; }
-/* In the header it sits right of Help, after a thin rule. The negative margin lines the icon up with the content
-   edge, like the text of the links. */
-.site-tools { display: flex; align-items: center; padding-left: .75rem; border-left: 1px solid var(--line-2); }
+/* In the header it sits right of Help, after a thin rule. The negative side margin lines the icon up with the
+   content edge, like the text of the links; the negative vertical margins keep the 32 px hit area from making the
+   header taller (the mark is 26.4 px: without them it grew from 56.2 to 61.8 px). */
+.site-tools { display: flex; align-items: center; margin-block: -4px; padding-left: .75rem; border-left: 1px solid var(--line-2); }
 .site-tools .theme-toggle { margin-right: -7px; }
-/* In the footer only up to 640 px (see the media query below). */
-.foot-theme { display: none; align-items: center; }
+/* In the footer only up to 640 px (see the media query below). Same vertical margins as in the header: the row of
+   the links stays 21 px tall. */
+.foot-theme { display: none; align-items: center; margin-block: -6px; }
 .foot-theme .theme-toggle { margin-left: -7px; }
 /* Without JavaScript the switch could not work: it isn't shown, nor are its containers (§3.3). */
 :root:not([data-theme]) :is(.theme-toggle, .site-tools, .foot-theme) { display: none; }
