@@ -14,7 +14,7 @@ import { righeDelCanale } from '../../components/home/demo/righe.ts';
 import type { Nomi } from '../../components/home/demo/righe.ts';
 import { contestoDellaSpunta, taskIn } from './controllo.ts';
 import { leggi } from './testo.ts';
-import { risolvi, risolviUrl, variabili } from './webhook.ts';
+import { risolvi, risolviBody, risolviUrl, variabili } from './webhook.ts';
 import type { Esempio, Momento, Scheda, Team, TipoDiNotifica } from './tipi.ts';
 
 /** L'istante di un momento della settimana, scritto nel fuso del team (`2026-12-08T18:00`). */
@@ -211,7 +211,7 @@ function webhook(esempio: Esempio, c: Extract<Scheda, { kind: 'webhook' }>, task
   const w = esempio.webhooks.find((x) => x.name === c.webhook)!;
   const tctx = contestoDellaSpunta(esempio, task, c.by, new Date(quando * 1000).toISOString().replace('.000Z', 'Z'));
   const vars = variabili(task.testo);
-  const body = risolvi(w.body, tctx, vars);
+  const body = risolviBody(w.body, tctx, vars);
   if (w.service === 'discord' && w.postsAs) {
     const content = String((JSON.parse(body) as { content?: string }).content ?? '');
     const canale = esempio.team.channels.find((x) => x.id === w.postsAs!.channel)!.name;

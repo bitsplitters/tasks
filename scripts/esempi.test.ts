@@ -6,7 +6,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { leggi, scrivi } from '../src/lib/esempi/testo.ts';
-import { percentEncode, risolvi, risolviUrl, testoPerIlToken, variabili } from '../src/lib/esempi/webhook.ts';
+import { percentEncode, risolvi, risolviBody, risolviUrl, testoPerIlToken, variabili } from '../src/lib/esempi/webhook.ts';
 import type { ContestoDelWebhook } from '../src/lib/esempi/webhook.ts';
 import { problemi } from '../src/lib/esempi/controllo.ts';
 import { giornoEOra, riproduzione } from '../src/lib/esempi/discord.ts';
@@ -55,7 +55,14 @@ test('i token: la variabile libera vince sul predefinito, una chiave sconosciuta
   const vars = variabili('Ship {{task=Override}} {{ team = Nova Collective }} {{team=Team Nova}}');
   assert.deepEqual([...vars], [['task', 'Override'], ['team', 'Team Nova']]);
   assert.equal(risolvi('{{task}}|{{user}}|{{nope}}|{{state}}', CTX, vars), 'Override|Leo||completed');
-  assert.equal(risolvi('{"t": "{{list}}"}', CTX, new Map([['list', 'a "b"']])), '{"t": "a "b""}');
+});
+
+test('nel body ogni valore ha l\'escape JSON (resolveBody); negli header entra così com\'è (resolve)', () => {
+  const valore = 'a "b" C:\\x\nfine';
+  const body = risolviBody('{"t": "{{list}}"}', CTX, new Map([['list', valore]]));
+  assert.equal(body, '{"t": "a \\"b\\" C:\\\\x\\nfine"}');
+  assert.equal(JSON.parse(body).t, valore);
+  assert.equal(risolvi('Bearer {{list}}', CTX, new Map([['list', '"k"']])), 'Bearer "k"');
 });
 
 test('nell\'URL ogni valore è percent-encoded come URLEncoder, con lo spazio %20', () => {
@@ -108,7 +115,10 @@ test('il controllo trova id estranei, promemoria senza owner, webhook sconosciut
   const sconosciuto = problemi(esempio(TESTO.replace('{{wb=Rules changed}}', '{{wb=Nope}}')));
   assert.ok(sconosciuto.some((x) => /«Nope» non è fra quelli/.test(x)));
   const virgolette = problemi(esempio(TESTO.replace('No more spoilers', 'No more "spoilers"')));
-  assert.ok(virgolette.some((x) => /il body non è JSON/.test(x)));
+  assert.ok(!virgolette.some((x) => /il body non è JSON/.test(x)));
+  const rotto = esempio();
+  rotto.webhooks[0].body = '{"content": {{change}}}';
+  assert.ok(problemi(rotto).some((x) => /webhooks: «Rules changed»: il body non è JSON/.test(x)));
   const e = esempio();
   e.week[1].card = { kind: 'reminder', task: '9' };
   e.week[2].at = '2026-12-01T09:00';
@@ -128,6 +138,12 @@ test('le schede: il promemoria del ruolo nel canale, la notifica con la menzione
   assert.equal(webhook.dove, 'In #staff, posted by the webhook');
   // {{task}} porta l'owner come codice di Discord: nel messaggio postato diventa la menzione del ruolo.
   assert.match(webhook.html, /No more spoilers — <span class="sc-mention">@Moderators<\/span>: Update the rules/);
+});
+
+test('una virgoletta nella variabile libera arriva nel messaggio del webhook (il body resta JSON)', () => {
+  const e = esempio(TESTO.replace('No more spoilers', 'No more "spoilers"'));
+  const webhook = riproduzione(e, e.week[2])!;
+  assert.match(webhook.html, /No more (&quot;|")spoilers(&quot;|") — /);
 });
 
 test('un promemoria a una persona arriva in DM; chi prende un task da sé non si menziona', () => {

@@ -1,9 +1,9 @@
 /*
  * I token dei webhook come li sostituisce il bot (WebhookTokenResolver, VariabiliWebhook in ttm-business; spec
  * 2026-11-20-casi-d-uso-esempi-completi-design.md, §5, nel repo team-tasks-manager): prima le variabili libere del task,
- * poi i token predefiniti; una chiave sconosciuta diventa vuota; nell'URL ogni valore è percent-encoded, nel body e
- * negli header entra così com'è, senza escape JSON (§13 della spec). Le pagine mostrano così ciò che il webhook
- * manderebbe davvero.
+ * poi i token predefiniti; una chiave sconosciuta diventa vuota; nell'URL ogni valore è percent-encoded, nel body ha
+ * l'escape delle stringhe JSON (resolveBody, da ttm-business 4bc111e: §13 della spec), negli header entra così com'è.
+ * Le pagine mostrano così ciò che il webhook manderebbe davvero.
  */
 import { conOwner, senzaSpaziInPiu } from '../../components/home/demo/regole.ts';
 import type { Task } from '../../components/home/demo/modello.ts';
@@ -48,9 +48,18 @@ function risolviCon(modello: string, ctx: ContestoDelWebhook, vars: Map<string, 
     vars.get(chiave) ?? (Object.hasOwn(predefiniti, chiave) ? predefiniti[chiave] : '')));
 }
 
-/** Il body o un header coi token sostituiti: i valori entrano così come sono. */
+/** Un header coi token sostituiti: i valori entrano così come sono. */
 export function risolvi(modello: string, ctx: ContestoDelWebhook, vars: Map<string, string>): string {
   return risolviCon(modello, ctx, vars, (v) => v);
+}
+
+/**
+ * Il body coi token sostituiti: ogni valore con l'escape delle stringhe JSON (virgolette, barre rovesciate, caratteri
+ * di controllo), come JsonStringEncoder.quoteAsString nel bot. Il bot scrive in maiuscolo le cifre esadecimali dei
+ * caratteri di controllo senza un nome breve: il JSON letto è lo stesso.
+ */
+export function risolviBody(modello: string, ctx: ContestoDelWebhook, vars: Map<string, string>): string {
+  return risolviCon(modello, ctx, vars, (v) => JSON.stringify(v).slice(1, -1));
 }
 
 /**

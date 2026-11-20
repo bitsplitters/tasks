@@ -1,14 +1,14 @@
 /*
  * Il controllo al build di un caso d'uso (spec 2026-11-20-casi-d-uso-esempi-completi-design.md, §5 e §9, nel repo
  * team-tasks-manager), al posto di src/lib/lista-pronta.ts: il testo della lista si legge come lo legge il bot, e deve
- * rispettare le regole di «Writing a list»; ogni id è del team; ogni webhook nominato esiste e il suo body, coi token
- * sostituiti, è ancora JSON; ogni scheda della settimana nomina un task che c'è. Lo chiama lo schema della collezione
+ * rispettare le regole di «Writing a list»; ogni id è del team; ogni webhook nominato esiste e il suo body è JSON, come
+ * vuole WebhookValidator per salvarlo; ogni scheda della settimana nomina un task che c'è. Lo chiama lo schema della collezione
  * (content.config.ts): un problema ferma il build e dice dove.
  */
 import { posizione } from '../../components/home/demo/modello.ts';
 import type { Task } from '../../components/home/demo/modello.ts';
 import { leggi } from './testo.ts';
-import { risolvi, risolviUrl, testoPerIlToken, variabili } from './webhook.ts';
+import { risolviUrl, testoPerIlToken, variabili } from './webhook.ts';
 import type { ContestoDelWebhook } from './webhook.ts';
 import type { Esempio, WebhookDellEsempio } from './tipi.ts';
 
@@ -43,7 +43,10 @@ export function contestoDellaSpunta(esempio: Esempio, task: Task, chi: string, q
   };
 }
 
-/** I problemi di un webhook su un task: l'URL, gli header, il body che non è più JSON coi token sostituiti. */
+/**
+ * I problemi di un webhook su un task: l'URL coi token sostituiti, gli header. Il body non si controlla qui: col suo
+ * escape i valori non lo rompono, e il modello si controlla una volta per webhook, in problemi.
+ */
 function problemiDelWebhook(esempio: Esempio, w: WebhookDellEsempio, task: Task): string[] {
   const dove = `webhook «${w.name}» sul task ${posizione(task.pos)}`;
   const chi = task.owner?.tipo === 'persona' ? task.owner.id : esempio.team.people[0].id;
@@ -53,11 +56,6 @@ function problemiDelWebhook(esempio: Esempio, w: WebhookDellEsempio, task: Task)
   if (!/^https:\/\/[^\s/]+\//.test(risolviUrl(w.url, ctx, vars))) problemi.push(`${dove}: l'URL non è https`);
   for (const riga of w.headers.trim().split('\n').filter((r) => r.trim())) {
     if (!/^[\w-]+: \S/.test(riga)) problemi.push(`${dove}: l'header «${riga}» non è «Key: value»`);
-  }
-  try {
-    JSON.parse(risolvi(w.body, ctx, vars));
-  } catch {
-    problemi.push(`${dove}: coi token sostituiti il body non è JSON (una virgoletta nel testo?)`);
   }
   return problemi;
 }
@@ -110,6 +108,11 @@ export function problemi(esempio: Esempio): string[] {
     if (!tasks.some((t) => t.webhook === w.name)) p.push(`webhooks: «${w.name}» non è su nessun task`);
     if (w.service === 'discord' && (!w.postsAs || !canali.has(w.postsAs.channel))) {
       p.push(`webhooks: «${w.name}» di Discord senza il canale dove posta`);
+    }
+    try {
+      JSON.parse(w.body);
+    } catch {
+      p.push(`webhooks: «${w.name}»: il body non è JSON e il bot non lo salva`);
     }
   }
 
