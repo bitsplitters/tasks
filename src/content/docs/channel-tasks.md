@@ -18,6 +18,8 @@ Each button in the second row is a **three-state switch**. Click it to cycle thr
 
 The workflow is always the same: **turn a button blue or red, then pick the task** in the [check selector](/docs/the-task-list/#the-check-selector). TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button off, it says *Tick a task*: pick a task there to tick or untick it.
 
+Until you've picked a task this way once, turning **Content** or **Reminder** blue or red sends you a message only you can see: it says which task to pick in the selector above the buttons and what pressing the button again does, with a button that takes you back to the list. Once you've picked a task with a second-row button on, the message stops, on every server.
+
 | Button | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :--- | :--- | :--- |
 | [**Content**](#content) <img class="inline-ic" src="/icons/task.png" alt="" /> | Change the task text, in a form. | Delete the task. |

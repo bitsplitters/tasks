@@ -9,6 +9,14 @@ releases: true
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 2.4.0 — The second row shows you the way
+
+Released 2026-11-20
+
+- **Red shows only what you can remove** — with **Owner**, **Tag**, **Reminder** or **Webhook** red, the task selector lists only the tasks that have an owner, tags, a reminder or a webhook to remove. If none has, the selector is off and says so, for example *No owner to remove*, and you get a note on what to do instead. See [The second row](/docs/channel-tasks/#the-second-row).
+- **The Activity says it too** — in red mode, the panel of a task with nothing to remove says so at the top, and **Delete** stays off. See [The panel of a task](/docs/activity-list/#the-panel-of-a-task).
+- **Content and Reminder tell you what's next** — press **Content** or **Reminder** and a message only you can see says which task to pick in the selector above the buttons, with a button that takes you back to the list. It stops once you've picked a task that way, on any server. See [The second row](/docs/channel-tasks/#the-second-row).
+
 ## 2.3.0 — New lists announce themselves
 
 Released 2026-11-19
