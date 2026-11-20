@@ -28,6 +28,9 @@ const MS_PER_CARATTERE = 60;
 /** Il fumetto dai bordi della scena e dall'elemento accanto, in px: è disegnato in px, non in unità di Discord. */
 const BORDO = 12;
 const STACCO = 8;
+/** Nell'Activity il fumetto sta più staccato, per la punta (Bubble.tsx della pagina: offset 10, punta da 12 px). */
+const STACCO_ACTIVITY = 10;
+const PUNTA_DAL_BORDO = 12;
 
 /** Gli oggetti con le chiavi in ordine: due stati uguali si scrivono uguali, comunque le regole li abbiano composti. */
 const inOrdine = (_: string, v: unknown) =>
@@ -72,6 +75,9 @@ function avvia(radice: HTMLElement): void {
    * Il fumetto nella scena del tab aperto: sopra l'elemento accanto, a partire dal suo bordo sinistro, o sotto se
    * sopra non c'è spazio; senza elemento, in cima al centro. Sempre dentro la scena. Prende il posto del tooltip, anche
    * di quello in arrivo: sopra lo stesso pulsante starebbero uno sull'altro.
+   * Nell'Activity è quello della pagina (Bubble.tsx): bianco, centrato sull'elemento, con la punta verso di lui
+   * (decisione dell'utente del 2026-11-20). La punta va dove sta il centro dell'elemento, anche quando il fumetto è
+   * spinto dentro la scena; senza elemento non c'è.
    */
   function fumetto(html: string, accanto?: Element): void {
     nascondiFumetto();
@@ -85,16 +91,32 @@ function avvia(radice: HTMLElement): void {
     const y0 = s.top + scena.clientTop;
     const w = f.offsetWidth;
     const h = f.offsetHeight;
+    const nellActivity = modo === 'activity';
+    const stacco = nellActivity ? STACCO_ACTIVITY : STACCO;
     let left = (scena.clientWidth - w) / 2;
     let top = BORDO;
+    let lato: 'top' | 'bottom' | null = null;
+    let centro = 0;
     if (accanto) {
       const r = accanto.getBoundingClientRect();
-      left = r.left - x0;
-      top = r.top - y0 - h - STACCO;
-      if (top < BORDO) top = r.bottom - y0 + STACCO;
+      centro = r.left + r.width / 2 - x0;
+      left = nellActivity ? centro - w / 2 : r.left - x0;
+      top = r.top - y0 - h - stacco;
+      lato = 'top';
+      if (top < BORDO) {
+        top = r.bottom - y0 + stacco;
+        lato = 'bottom';
+      }
     }
-    f.style.left = `${Math.max(BORDO, Math.min(left, scena.clientWidth - w - BORDO))}px`;
+    left = Math.max(BORDO, Math.min(left, scena.clientWidth - w - BORDO));
+    f.style.left = `${left}px`;
     f.style.top = `${Math.max(BORDO, Math.min(top, scena.clientHeight - h - BORDO))}px`;
+    if (nellActivity && lato) {
+      f.dataset.placement = lato;
+      f.style.setProperty('--punta', `${Math.max(PUNTA_DAL_BORDO, Math.min(centro - left, w - PUNTA_DAL_BORDO))}px`);
+    } else {
+      delete f.dataset.placement;
+    }
     const lettura = (f.textContent ?? '').length * MS_PER_CARATTERE;
     timerFumetto = window.setTimeout(nascondiFumetto, Math.max(FUMETTO_MS, lettura));
   }

@@ -17,6 +17,11 @@
  * dell'ultimo fotogramma, l'immagine ferma di HeroVideo.astro (il suo <picture>), che resta anche senza JavaScript.
  * Il video di Esplora non è del sito: va dove gli si dice, a 1920 × 1080 e CRF 16 come il primo video.
  *
+ * Quando rifarli: i video della home a ogni cambio dell'interfaccia del canale o dell'Activity che si vede nei video
+ * (fino al 2026-11-20 lo diceva il tracker). Le date del promemoria vengono da src/components/home/demo/modello.ts
+ * (ADESSO, PROPOSTO, ZONA). Le scene sono quelle di un server coi Tips spenti (tips={false} in src/video/Registrazione.astro
+ * e RegistrazioneEsplora.astro): con la riga dei Tips il messaggio del canale non starebbe nell'inquadratura.
+ *
  * La musica del video di Esplora si monta dopo, sul video muto, come per il primo: è «Positive Fuse» di French
  * Fuse, e l'MP3 nel repository non entra. I numeri sono quelli di MONTAGGIO in src/video/esplora-tempi.ts: il brano
  * fino a 27,633 s, 5 ms prima dell'attacco della battuta 17; poi da 2:07,050 a 2:11,442, l'ultima battuta di accordi,

@@ -259,6 +259,22 @@ a.h-premium:hover { background: var(--accent); color: var(--on-accent); }
 /* La riga -# e le voci degli errori del promemoria, in px come il resto del fumetto. */
 .dm-bubble .sc-subtext { font-size: 12px; }
 .dm-bubble .sc-li { margin-left: 18px; }
+/* Nell'Activity il fumetto è quello della pagina (activity: Bubble.css, Notice.css, i token --bubble-*): bianco, coi
+   colori del tema chiaro di Discord dentro, e la punta verso il pulsante (demo.ts la mette in --punta). */
+.scene[data-scene="activity"] .dm-bubble {
+  max-width: min(320px, calc(100% - 24px)); padding: 10px 12px; background: #ffffff; color: #313338;
+  font-weight: 400; line-height: 1.375; box-shadow: 0 8px 24px rgba(0, 0, 0, .45); overflow-wrap: anywhere;
+}
+.scene[data-scene="activity"] .dm-bubble[data-placement]:not(:empty)::after {
+  content: ''; position: absolute; left: calc(var(--punta, 50%) - 6px); width: 12px; height: 12px;
+  background: #ffffff; transform: rotate(45deg);
+}
+.scene[data-scene="activity"] .dm-bubble[data-placement="top"]::after { bottom: -6px; }
+.scene[data-scene="activity"] .dm-bubble[data-placement="bottom"]::after { top: -6px; }
+.scene[data-scene="activity"] .dm-bubble .sc-subtext { color: #5c5e66; }
+.scene[data-scene="activity"] .dm-bubble .sc-mention { color: #4e5ad0; background: rgba(88, 101, 242, .15); }
+.scene[data-scene="activity"] .dm-bubble .sc-ts { color: #313338; background: #e3e5e8; }
+.scene[data-scene="activity"] .dm-bubble a { color: #006ce7; }
 
 /* ── La chiamata finale ───────────────────────────────────────────────────────────────────────────────── */
 .h-final { text-align: center; }

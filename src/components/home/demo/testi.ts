@@ -251,7 +251,7 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.modal.when.time.error': 'Invalid time: use the 24h format HH:mm (e.g. 15:30).',
   'tasklist.modal.when.year.error': 'Invalid year.',
   'tasklist.modal.when.month.error': 'Invalid month: pick one from the list.',
-  'tasklist.slct.alert.checkedtask.error': 'The reminder to work must be created on a task to be performed.',
+  'tasklist.slct.alert.checkedtask.error': "A completed task can't have a reminder. Untick it first if it's still to do.",
   'tasklist.slct.alert.noreminder.error': 'There is no reminder in the selected task.',
   'tasklist.reminder.unchanged': 'No changes: the reminder stays as it was.',
   // Il webhook

@@ -86,7 +86,7 @@ Several of these come from the channel's **When** form, where you type the date,
 | Message | What to fix |
 | :--- | :--- |
 | *Invalid reminder* | The start must be at least 5 minutes in the future. |
-| *The reminder to work must be created on a task to be performed* | Pick a task that isn't ticked yet: a completed task can't get a reminder. |
+| *A completed task can't have a reminder* | Untick the task first, if it's still to do; or pick a task that isn't ticked. |
 | *The date does not exist* | Check day, month and year together (e.g. 31 February). |
 | *Invalid time* | Use the 24-hour format `HH:mm`, e.g. `15:30`. |
 | *Over the plan* | On the Free plan recurring reminders are Premium: a reminder that was already recurring can keep the number of times it arrives or go lower, not higher. The menu offers only what is allowed, so you see this if the plan changed while the form was open: open the repetitions again. |
