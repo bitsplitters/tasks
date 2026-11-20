@@ -26,6 +26,8 @@ The workflow is always the same: **turn a button blue or red, then pick the task
 | [**Reminder**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Add or edit a reminder. | Remove the reminder. |
 | [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> | Link a webhook to the task. | Remove the webhook from the task. |
 
+With **Owner**, **Tag**, **Reminder** or **Webhook** red, the selector lists only the tasks that have something to remove: an owner, tags, a reminder or a webhook. A task made only of tags isn't listed, since without them it would have no text. If no task has anything to remove, the selector is off and says so, for example *No owner to remove*, and you get a note on how to add one.
+
 After you use **Owner**, **Tag** or **Reminder**, the button goes back to grey, or stays on for the next task: your server decides, with **Keep the state after a selection** in the **Behavior** menu of [/config app](/docs/configuration/#keep-the-state-after-a-selection). Keeping the state changes what Owner and Tag can do: see [Owner](#owner) and [Tag](#tag).
 
 ## Content
