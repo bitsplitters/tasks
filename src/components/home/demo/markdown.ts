@@ -50,7 +50,7 @@ export function markdown(testo: string, contesto: Contesto, inLinea = false): st
     .replace(/<@!?(\d+)>/g, (_, id: string) => menzione(`@${contesto.persona(id) ?? 'unknown-user'}`))
     .replace(/<@&(\d+)>/g, (_, id: string) => menzione(`@${contesto.ruolo(id) ?? 'deleted-role'}`))
     .replace(/<#(\d+)>/g, (_, id: string) => menzione(`#${contesto.canale(id) ?? 'unknown'}`))
-    .replace(/<t:(-?\d{1,17})(?::([tTdDfFR]))?>/g, (_, at: string, stile?: string) =>
+    .replace(/<t:(-?\d{1,17})(?::([tTdDfFRsS]))?>/g, (_, at: string, stile?: string) =>
       metti(`<span class="sc-ts">${escape(contesto.data(Number(at), stile ?? ''))}</span>`))
     .replace(/<a?:(\w+):\d+>/g, (_, nome: string) =>
       EMOJI.has(nome) ? metti(`<img class="sc-emoji" src="/icons/${nome}.png" alt="">`) : `:${nome}:`);

@@ -209,7 +209,7 @@ export function eliminaTaskConfermato(stato: Stato, pos: string): Stato {
  * il promemoria (REMINDER_DATA), l'owner (OWNER_ENTITY) e il webhook (WEBHOOK_ASSOCIATION). Si impostano coi pulsanti.
  * In Java `[\d[dhm]]` è l'unione delle due classi, cioè `[\ddhm]`.
  */
-const DATA = /<t:(\d+)(?::([tTdDfFR]))?>/g;
+const DATA = /<t:(\d+)(?::([tTdDfFRsS]))?>/g;
 const PROMEMORIA = /\[([\ddhm]+?),([\ddhm]+?),(\d{1,50})\]/g;
 const OWNER = /<@(?:!?&?)?(\d{17,20})>:/g;
 const WEBHOOK = /\{\{wb=([^{}]*)\}\}/g;
