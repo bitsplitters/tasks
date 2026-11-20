@@ -114,6 +114,8 @@ A reminder appears as a timestamp followed by a triplet:
 - [] <t:1726497546> [2d3h,1h,3] Ship the release notes
 ```
 
+The number in `<t:…>` is the date in seconds, and you don't need to work it out. In any channel, type `@time` and pick the date from Discord's menu. Then put a `\` in front of what Discord inserted and send the message. It shows the code as text, such as `<t:1763632460:f>`: copy it in front of the triplet. Any of the menu's formats works: TTM keeps the date, not the format you picked.
+
 The triplet is `[distance,interval,repetitions]`. The first value lets you create a reminder **from text**, without an absolute date: it is counted from the moment you save the list. The repetitions are the pings **after** the first one, so the task line shows one more: `[2d3h,1h,3]` is `↻1h ×4`, and the most a plan allows here is 49, 50 pings in total. A single event uses the sentinel interval `0m` and `0` repetitions — `[2d3h,0m,0]`. Distance and interval use only `d`, `h` and `m`. A value in months, such as `[1M,0m,0]`, is refused, and the line is marked with an arrow.
 
 `1d` and `24h` are not the same across a daylight-saving change: see [The repetition fields](/docs/reminders/#the-repetition-fields).
