@@ -100,8 +100,11 @@
 /* Tre colonne, come nel canale e nella pagina dell'Activity: il numero, l'emoji, il testo. */
 .sc-row { display: grid; grid-template-columns: 1.5em 1.375em minmax(0, 1fr); align-items: start; min-height: 1.375em; line-height: 1.375em; }
 .sc-row.sc-sub { grid-template-columns: 3em 1.375em minmax(0, 1fr); }
-/* Fatto: tutta la riga è subtext (-#), numero compreso, come nel bot con DimDoneMode acceso, il default. */
-.sc-row[data-done] { font-size: calc(13 * var(--u)); color: var(--dc-text-muted); }
+/* Fatto: il testo è subtext (-#), più piccolo e spento, come nel bot con DimDoneMode acceso, il default. Il numero e
+   la casella restano grandi come nelle altre righe: in Discord il subtext rimpicciolisce anche loro e li sposta, un
+   disallineamento che il sito non copia (l'utente il 2026-11-21: «sul sito questo disallineamento non farlo risultare»). */
+.sc-row[data-done] { color: var(--dc-text-muted); }
+.sc-row[data-done] .sc-text { font-size: calc(13 * var(--u)); }
 /* Il numero com'è nel bot, con gli spazi che pareggiano le larghezze («2 », «2 .1 »): restano tutti. */
 .sc-num code {
   font-size: .85em; padding: 0 .2em; color: inherit; white-space: pre;

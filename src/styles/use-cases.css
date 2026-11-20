@@ -69,8 +69,6 @@
 .prose .ex-dc :is(*, *::before, *::after) { box-sizing: border-box; }
 .prose .ex-dc p { margin: 0; max-width: none; color: inherit; line-height: inherit; }
 .prose .ex-dc img { max-width: none; border-radius: 0; }
-/* Un'emoji resta in linea col testo, come in Discord: con display: block andrebbe a capo da sola. */
-.prose .ex-dc img:not(.sc-emoji) { display: block; }
 .prose .ex-dc .sc-avatar { border-radius: 50%; }
 .prose .ex-dc strong { color: inherit; font-weight: 700; }
 .prose .ex-dc a { color: #00a8fc; text-decoration: none; }
