@@ -41,10 +41,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 </head>
 <body>
   <header class="site-top">
+    {/* Il marchio è quello del bot (utente, 2026-11-20): la mascotte e il nome che si vedono su Discord, al posto di
+        «bitsplitters / tasks». L'immagine è decorativa, il nome è il testo del link; bitsplitters resta nel pie' di
+        pagina. */}
     <div class="mark">
-      <a class="brand" href="https://bitsplitters.app" aria-label="bitsplitters home">bit<span class="bar"></span>splitters</a>
-      <span class="sep">/</span>
-      <a class="prod" href="/">tasks</a>
+      <a class="brand" href="/"><img src="/icons/ttm-mascotte.svg" alt="" width="28" height="28" />Team Tasks Manager</a>
     </div>
     {/* L'angolo in alto a destra (utente, 2026-11-19): lo switch del tema e, col multilingua, alla sua destra il
         selettore della lingua (spec 2026-11-19-sito-multilingua-design.md, §6, nel repo team-tasks-manager). Sulla
