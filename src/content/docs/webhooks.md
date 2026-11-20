@@ -40,6 +40,8 @@ Webhooks are a [Premium](/docs/premium/) feature, and during the beta they are u
 
 Inside the URL, headers and body you can drop `{{ }}` tokens that TTM replaces at send time.
 
+In the body, a token goes inside a JSON string, between quotes. TTM escapes the value, so a task with quotes or a line break still sends valid JSON. In the URL, each value is percent-encoded: a space becomes `%20`.
+
 **Built-in tokens**
 
 | Token | Value |
