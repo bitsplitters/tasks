@@ -18,9 +18,9 @@ export const PITCH = '## Team Tasks Manager\nCoordinate your team where it alrea
 // Il banner v5, lo stesso di /invite, del benvenuto e del profilo del bot (Presentazione.BANNER nel
 // bot). Il file non si cancella e non si rinomina: i messaggi del bot già mandati lo puntano. Se il
 // disegno cambia si sostituisce il contenuto e nei due riferimenti si aggiunge ?v=<n>, così il proxy
-// di Discord non serve la copia vecchia.
+// di Discord non serve la copia vecchia. v=2 dal 2026-11-20: l'avatar della lista è la mascotte.
 export const BANNER = {
-  path: '/og/ttm-banner.png',
+  path: '/og/ttm-banner.png?v=2',
   width: 1200,
   height: 630,
   alt: 'Team Tasks Manager: "Give your team a boost! Nothing to learn. Just click." Next to it, a task list in a Discord channel, with ticked tasks, a reminder and the task owners.',
@@ -44,7 +44,7 @@ export function previewCard(text: string, links: Link[], picture?: Picture) {
       {
         type: 9,
         components: [{ type: 10, content: text }],
-        accessory: { type: 11, media: { url: abs('/og/ttm-logo.png') }, description: 'Team Tasks Manager logo' },
+        accessory: { type: 11, media: { url: abs('/og/ttm-logo.png?v=2') }, description: 'Team Tasks Manager logo' },
       },
       ...(picture ? [{ type: 12, items: [{ media: { url: picture.url }, description: picture.alt }] }] : []),
       buttons(links),
