@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import VetrinaFont from '../../components/VetrinaFont.astro';
+import ListaPronta from '../../components/use-cases/ListaPronta.astro';
+import { docsCard } from '../../lib/preview-card';
+// docs.css per la prosa, poi le regole dei casi d'uso.
+import '../../styles/docs.css';
+import '../../styles/use-cases.css';
+
+// Un caso d'uso (spec 2026-11-20-casi-d-uso-sito-design.md, §5, nel repo team-tasks-manager): il problema nel
+// titolo, subito la lista pronta, poi il markdown della pagina (What you get, Recommended setup, Small server big
+// server, What TTM doesn't do here, Questions), e in fondo gli altri casi e l'invito.
+export async function getStaticPaths() {
+  const casi = await getCollection('useCases');
+  return casi.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const altri = (await getCollection('useCases'))
+  .filter((c) => c.id !== entry.id)
+  .sort((a, b) => a.data.order - b.data.order);
+const { title, seoTitle, description, listTitle, list } = entry.data;
+---
+<Base title={`${seoTitle} — Team Tasks Manager`} previewTitle={title} description={description} embed={docsCard(title, description, Astro.url.pathname, 'Get the list')}>
+  <VetrinaFont slot="head" />
+  <main class="docs-main">
+    <article class="prose uc wrap">
+      <p class="uc-crumb"><a href="/use-cases/">Use cases</a></p>
+      <h1>{title}</h1>
+      <p class="subtitle">{description}</p>
+      <ListaPronta slug={entry.id} listTitle={listTitle} list={list} />
+      <Content />
+      <section class="uc-more" aria-labelledby="uc-more-t">
+        <h2 id="uc-more-t">Other use cases</h2>
+        <ul class="d-list uc-list" role="list">
+          {altri.map((c) => (
+            <li>
+              <a href={`/use-cases/${c.id}/`}>
+                <span class="d-t">{c.data.name}</span>
+                <span class="d-d">{c.data.description}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section class="uc-final" aria-labelledby="uc-final-t">
+        <h2 id="uc-final-t">Add TTM to your server</h2>
+        <p>Then run <code>/create-list</code> and paste the list.</p>
+        <div class="cta-row">
+          <a class="btn" href="/invite">Add to Discord</a>
+          <a class="btn-ghost" href="/docs/getting-started/">Get started</a>
+        </div>
+      </section>
+    </article>
+  </main>
+</Base>

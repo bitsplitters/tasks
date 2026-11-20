@@ -34,6 +34,17 @@ Never change the title of a published release: `/news` links each release by the
 build stops if a release has no date, has a wrong one, or has an item without a bold title. The newest release is
 open; a link to another one opens it.
 
+### Use cases
+`src/content/use-cases/*.md` are the pages under `/use-cases/` (decided 2026-11-20): one job that Discord teams
+repeat, with a ready-made list. The header carries `title` (the H1), `seoTitle` (the browser title), `name` (the short
+name in the index), `description`, `order`, `listTitle` and `list`; the body is the rest of the page. Each list also
+becomes a file, `/use-cases/<slug>.txt`, in the format of the bot's **Download**: `/create-list` imports it.
+
+The list must work on any server, Free plan included, so **the build stops** if it has more than 20 tasks (subtasks
+included), more than 4000 characters or a title over 90, a line that isn't `- task` or `  - subtask` (two spaces), or
+any code the bot reads: mentions, boxes, reminders, webhooks, button emoji, Discord markdown. The check is
+`src/lib/lista-pronta.ts`. A new list is still tried once in `/create-list` on the test server, pasted and imported.
+
 ### Icons
 Button/feature icons live in `public/icons/`: they are the bot's emoji. One rule for every page (decided 2026-11-19):
 
