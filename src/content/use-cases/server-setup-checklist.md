@@ -44,7 +44,7 @@ list: |
 ## Small server, big server
 
 - **Two admins:** leave the owners out. Anyone who can use the list ticks any task, and the setup fits in an evening.
-- **A team of ten or more:** one owner per group, and the [activity timeline](/docs/configuration/#history-tracking) on, so you can see who ticked what. Several people on one group? Choose them all as owner, and TTM creates a role for them. It's a Premium feature, unlocked for every server during the beta: see [Owners and tags](/docs/owners-and-tags/).
+- **A team of ten or more:** one owner per group, and the [activity timeline](/docs/configuration/#history-tracking) on, so you can see who ticked what. Several people on one group? Choose them all as owner, and TTM creates a role for them. It's a [Premium](/premium/) feature, unlocked for every server during the beta: see [Owners and tags](/docs/owners-and-tags/).
 
 ## What TTM doesn't do here
 
