@@ -46,30 +46,51 @@ export function contestoDellActivity(stato: Stato): Contesto {
   return contesto(nomiDi(stato), dataDellActivity);
 }
 
-/** Una riga di un task (Riga.DelTask): il webhook, il promemoria, la casella col testo. */
+/** Una riga di un task (Riga.DelTask): il webhook, il promemoria col badge della ricorrenza, la casella col testo. */
 type Riga =
   | { tipo: 'webhook'; nome: string }
-  | { tipo: 'promemoria'; at: number }
+  | { tipo: 'promemoria'; at: number; badge: string }
   | { tipo: 'casella'; testo: string };
 
 /**
- * Le righe di un task, come RigheDellaLista.delTask: il webhook, il promemoria, poi la casella col testo che ha
- * l'owner in testa. Il promemoria è sempre un evento singolo, quindi senza badge (ReminderDisplay.toBadge).
+ * Il badge della ricorrenza, come ReminderDisplay.badgeOf: vuoto per l'evento singolo (nessuna ripetizione),
+ * altrimenti `↻intervallo ×volte`, con le volte che contano anche il primo avviso.
  */
+export function badgeDellaRicorrenza(promemoria: Task['promemoria']): string {
+  const r = promemoria?.ricorrenza;
+  return r && r.ripetizioni > 0 ? `↻${r.intervallo} ×${r.ripetizioni + 1}` : '';
+}
+
+/** Le righe di un task, come RigheDellaLista.delTask: il webhook, il promemoria, poi la casella con l'owner in testa. */
 function righeDelTask(task: Task): Riga[] {
   const righe: Riga[] = [];
   if (task.webhook !== undefined) righe.push({ tipo: 'webhook', nome: task.webhook });
-  if (task.promemoria) righe.push({ tipo: 'promemoria', at: task.promemoria.at });
+  if (task.promemoria) {
+    righe.push({ tipo: 'promemoria', at: task.promemoria.at, badge: badgeDellaRicorrenza(task.promemoria) });
+  }
   righe.push({ tipo: 'casella', testo: conOwner(task) });
   return righe;
 }
 
 /**
- * Le righe di tutti i task, disegnate da `riga`, che sa se è la prima del suo task. Niente righe vuote fra i gruppi:
- * GroupSpacingMode è spento per i server che aggiungono il bot dalla 2.0.0.
+ * Se il task ha davanti una riga vuota, con «Spazi tra i gruppi» acceso (RigheDellaLista.staFraIGruppi): è un task
+ * principale e non il primo, e viene dopo un subtask, che chiude il gruppo di prima, o apre lui un gruppo.
  */
-function disegna(lista: Lista, riga: (task: Task, r: Riga, prima: boolean) => string): string {
-  return lista.tasks.map((t) => righeDelTask(t).map((r, i) => riga(t, r, i === 0)).join('')).join('');
+export function staFraIGruppi(tasks: readonly Task[], i: number): boolean {
+  if (i === 0 || tasks[i].pos.sub) return false;
+  return tasks[i - 1].pos.sub > 0 || (i + 1 < tasks.length && tasks[i + 1].pos.sub > 0);
+}
+
+/** La riga vuota fra due gruppi: alta quanto una riga, senza niente dentro. */
+const RIGA_VUOTA = '<div class="sc-row sc-gap" aria-hidden="true"></div>';
+
+/**
+ * Le righe di tutti i task, disegnate da `riga`, che sa se è la prima del suo task. Senza `spazi`, niente righe
+ * vuote fra i gruppi: GroupSpacingMode è spento per i server che aggiungono il bot dalla 2.0.0.
+ */
+function disegna(lista: Lista, riga: (task: Task, r: Riga, prima: boolean) => string, spazi = false): string {
+  return lista.tasks.map((t, i) => (spazi && staFraIGruppi(lista.tasks, i) ? RIGA_VUOTA : '')
+    + righeDelTask(t).map((r, j) => riga(t, r, j === 0)).join('')).join('');
 }
 
 /**
@@ -108,15 +129,23 @@ function rigaDelCanale(task: Task, riga: Riga, prima: boolean, ctx: Contesto): s
   const numero = `<span class="sc-num"><code>${prima ? numeroDelCanale(task.pos) : spaziatore(task.pos)}</code></span>`;
   const testo = (t: string) => `<span class="sc-text">${markdown(t, ctx, true)}</span>`;
   const corpo = riga.tipo === 'webhook' ? icona('wb') + testo(riga.nome)
-    : riga.tipo === 'promemoria' ? icona('alert') + testo(`<t:${riga.at}>`)
+    : riga.tipo === 'promemoria' ? icona('alert') + testo(`<t:${riga.at}>${riga.badge ? ` ${riga.badge}` : ''}`)
     : `<span class="sc-cb">${CASELLA}</span>${testo(riga.testo)}`;
   return `${apertura('sc-row', task, riga)}${numero}${corpo}</div>`;
 }
 
+/** Come disegnare le righe del canale per una lista che non è quella della demo (i casi d'uso del sito). */
+export interface OpzioniDelCanale {
+  /** I nomi dei canali e le date di un altro server; senza, quelli della demo, a Roma. */
+  contesto?: Contesto;
+  /** «Spazi tra i gruppi» acceso: una riga vuota attorno a ogni gruppo con subtask. */
+  spazi?: boolean;
+}
+
 /** Le righe dell'embed nel canale, con le date di un client Discord in inglese americano. */
-export function righeDelCanale(lista: Lista, nomi: Nomi): string {
-  const ctx = contesto(nomi, dataDelCanale);
-  return disegna(lista, (t, r, prima) => rigaDelCanale(t, r, prima, ctx));
+export function righeDelCanale(lista: Lista, nomi: Nomi, opzioni: OpzioniDelCanale = {}): string {
+  const ctx = opzioni.contesto ?? contesto(nomi, dataDelCanale);
+  return disegna(lista, (t, r, prima) => rigaDelCanale(t, r, prima, ctx), opzioni.spazi);
 }
 
 /**

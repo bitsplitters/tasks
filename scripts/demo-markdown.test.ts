@@ -103,3 +103,11 @@ test('il carattere nullo si toglie: non può fingersi un segnaposto', () => {
 test("l'escape copre anche le virgolette degli attributi", () => {
   assert.equal(escape('<a href="x">&</a>'), '&lt;a href=&quot;x&quot;&gt;&amp;&lt;/a&gt;');
 });
+
+test('i link mailto:, tel: e sms: sono link come quelli web; javascript: resta testo («Writing a list»)', () => {
+  assert.equal(markdown('[the sponsor](mailto:partners@example.com)', C, true),
+    '<a href="mailto:partners@example.com" target="_blank" rel="noopener">the sponsor</a>');
+  assert.match(markdown('[call](tel:+12025550100)', C, true), /^<a href="tel:\+12025550100"/);
+  assert.match(markdown('[text](sms:+12025550100)', C, true), /^<a href="sms:/);
+  assert.doesNotMatch(markdown('[x](javascript:alert(1))', C, true), /<a /);
+});

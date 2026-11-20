@@ -2,66 +2,108 @@
 title: Plan your videos with the people who make them
 seoTitle: "Discord Bot for Content Creators: Your Video Pipeline"
 name: Content creators
-description: Script, recording, edit, thumbnail and clips in one list, with the editor and the designer each owning their step.
+description: "A video a week with an editor and a thumbnail artist: a deadline reminder that follows the work when someone is away, the mods' ping before the premiere and the new video announced by a webhook."
+highlights: "Tasks given to someone else, a reminder that follows its new owner, a review owned by two people, a mailto link, a webhook that announces the video, Download and import."
+intro: |
+  Mia makes a video a week for her channel. Leo edits, Sam draws the thumbnails, and the server's mods run the chat during the premiere. This week's video is about a tiny desk she built in a weekend. The list lives in #production, from Monday 7 to Sunday 13 December 2026, with the premiere on Saturday at 6 PM.
 order: 6
-listTitle: This week's video
-list: |
-  - Next video
-    - Write the script
-    - Record
-    - Edit
-    - Make the thumbnail
-    - Schedule the upload
-  - Shorts
-    - Cut three clips from the video
-    - Add captions
-    - Post them across the week
-  - The video after
-    - Pick the topic
-    - Research and outline
-  - Community
-    - Share the video in announcements
-    - Answer the first comments
+team:
+  guild: Mia Makes
+  zone: America/Toronto
+  people:
+    - { id: "11869044175621001", name: Mia, username: mia.makes, color: "#f0b232", about: "Creator. She writes the list." }
+    - { id: "11869044175621002", name: Leo, username: leo.edits, color: "#3ba55c", about: "Editor. Away from Tuesday to Thursday." }
+    - { id: "11869044175621003", name: Sam, username: sam.thumbs, color: "#5865f2", about: "Thumbnails. He edits too." }
+  roles:
+    - { id: "11869044175622001", name: Mods, about: "Four moderators of the server." }
+    - { id: "11869044175622002", name: TTM1, about: "Created by TTM for the final review, owned by Leo and Sam.", members: ["11869044175621002", "11869044175621003"], ttm: true }
+  channels:
+    - { id: "11869044175623001", name: production, about: "The team and the mods. The list lives here." }
+    - { id: "11869044175623002", name: announcements, about: "Where the members hear about new videos." }
+list:
+  title: "Episode 42: the tiny desk"
+  channel: "11869044175623001"
+  at: 2026-12-11T20:00
+  look: |
+    Friday evening: the video is ready. The first cut and the colour pass belong to Sam now, with the cut's reminder. «Final review» belongs to TTM1, the role TTM created for Leo and Sam. The video's link waits in `{{video=…}}`, for the webhook to read on Saturday.
+  text: |
+    - [X] <@11869044175621001>: Write the [script](https://docs.google.com/document/d/1tiny-desk-script/edit)
+    - [X] <@11869044175621001>: Film the build, both cameras
+    - [X] <@11869044175621001>: [Ask the sponsor to approve the ad read](mailto:partners@example.com?subject=Episode%2042%20ad%20read)
+    - [X] <t:1796922000> [0m,0m,0] <@11869044175621003>: First cut, about 12 minutes
+    - [X] <@11869044175621003>: Colour and sound pass
+    - [X] <@11869044175621003>: Thumbnail, three options to choose from
+    - [X] <@&11869044175622002>: Final review
+    - [] <t:1797112800> [0m,0m,0] <@&11869044175622001>: Premiere at 6 PM: pin the link and watch the chat
+    - [] {{wb=New video}} <@11869044175621001>: Publish the video {{video=https://youtu.be/tinydesk42}}
+    - [] <@11869044175621001>: Reply to the first comments
+webhooks:
+  - name: New video
+    service: discord
+    trigger: completion
+    method: POST
+    url: https://discord.com/api/webhooks/<id>/<token>
+    headers: "Content-Type: application/json"
+    body: |
+      {"content": "New video: **I built a tiny desk in a weekend**\n{{video}}", "allowed_mentions": {"parse": []}}
+    postsAs: { name: Mia Makes, channel: "11869044175623002", color: "#f0b232" }
+    setup: |
+      Open the settings of #announcements, then *Integrations → Webhooks → New Webhook*. Name it «Mia Makes», give it the channel's picture and press **Copy Webhook URL**: that's the URL above. Keep it secret, like a password.
+
+      The link comes from the task: `{{video}}` reads the free variable `{{video=…}}`. Mia writes the link with **Content** once YouTube gives it to her, before the premiere. Next week she changes the title in the body with `/config webhook action:modify`, or moves it into the task too, as `{{title=…}}`.
+settings:
+  - setting: Tips
+    choice: Off
+    why: "The team knows the buttons. Without the Tutorial and the help line, the list is shorter."
+  - setting: Readable push notifications
+    choice: On
+    why: "Sam reads the reminders on his phone. The push shows the task, not an empty card."
+  - setting: Completed tasks dimmed
+    choice: On
+    why: "By Friday most of the list is done. The ticked tasks fade, and the premiere stands out."
+week:
+  - at: 2026-12-07T10:00
+    text: "Mia runs `/create-list` in #production and writes the week, the owners included. The first notification mentions Leo, Sam and @Mods, so each of them knows what's theirs. The sponsor link opens a new email, with the subject already written."
+  - at: 2026-12-07T10:30
+    text: "Mia gives «Final review» to Leo and Sam together: she picks both in the menu under **Owner**. TTM creates the role **TTM1** for them and makes it the owner. An owner of several people is a [Premium](/premium/) feature, unlocked for every server during the beta."
+  - at: 2026-12-08T09:00
+    text: "Leo is away until Thursday evening. Mia **gives** his two tasks to Sam: she picks Sam in the menu under **Owner**, confirms, then picks «First cut». She does it again for the colour pass. The notification names Leo and mentions Sam, so Discord notifies him."
+    card: { kind: notice, type: updated, by: "11869044175621001", from: "11869044175621002", task: "4" }
+  - at: 2026-12-10T12:00
+    text: "The deadline of the first cut reaches Sam by direct message. It doesn't go to Leo any more: a reminder follows the owner of its task."
+    card: { kind: reminder, task: "4" }
+  - at: 2026-12-10T16:30
+    text: "Sam finishes the cut and ticks it."
+  - at: 2026-12-11T17:00
+    text: "Leo is back. He and Sam watch the video together, and Leo ticks «Final review»: either of them can, since both have TTM1."
+  - at: 2026-12-12T17:00
+    text: "The premiere's reminder mentions @Mods in #production, as a reply to the list. One hour before: the reminder's date is 5 PM."
+    card: { kind: reminder, task: "8" }
+  - at: 2026-12-12T18:00
+    text: "The premiere starts. Mia ticks «Publish the video», and the webhook posts the link in #announcements."
+    card: { kind: webhook, webhook: New video, task: "9", by: "11869044175621001" }
 ---
 
-## What you get
+## Next time
 
-- **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> gives *Edit* to the editor and *Make the thumbnail* to the designer. Each step has a name on it.
-- **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" /> sends the editor a direct message the day before the upload.
-- **Tag** <img class="inline-ic" src="/icons/tag.png" alt="" /> mentions you on *Schedule the upload*, so you hear about it when it's done.
-- **Reopen all** <img class="inline-ic" src="/icons/reopen.png" alt="" /> starts the same list over for next week's video, and **New date** moves its reminders.
+After this video, Mia presses **Download** <img class="inline-ic" src="/icons/download.png" alt="" /> in **More** <img class="inline-ic" src="/icons/other.png" alt="" />: TTM sends her the list as a `.txt` file, owners, tags, reminders and webhooks included. For each new video she changes the file, the titles, the links and `[X]` back to `[]`, then runs `/create-list` and attaches it. A reminder whose date has passed comes back without firing, so she gives each one its new date with **Reminder**. See [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
 
-## Recommended setup
-
-- **Create the list in your team's private channel**, not in the community's.
-- **Give each step an owner** with **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" />. Only the owner ticks it, so nobody marks the edit done for the editor. See [Who can tick a task](/docs/core-concepts/#who-can-tick-a-task).
-- **Add a reminder to *Edit***, the day before the upload. See [Reminders](/docs/reminders/).
-- **Link your files in the tasks**: the script, the raw footage folder, the thumbnail draft. See [Adding a hyperlink](/docs/writing-a-list/#adding-a-hyperlink).
-- **Two videos at once?** **Clone list** <img class="inline-ic" src="/icons/clone.png" alt="" />, in **More**, copies the list into another channel, without the ticks if you like: see [Clone](/docs/list-actions/#clone).
-
-## Small server, big server
-
-- **You and one editor:** owners on *Edit* and *Make the thumbnail* only. You tick the rest.
-- **A team with writers, editors and a shorts editor:** one list per video, a role as owner where several people share a step, and the [activity timeline](/docs/configuration/#history-tracking) on.
+TTM1 stays while a list uses it. If Mia deletes the old list first, TTM deletes the role, and the import of a file that names it stops and lists the missing role: she keeps the old list until the new one is in.
 
 ## What TTM doesn't do here
 
-TTM doesn't upload, schedule or announce your videos, and it has no analytics. It doesn't store files: they stay in your drive, linked from the tasks. To announce new videos in your server, use a notification bot.
+TTM doesn't upload, schedule or edit videos, and it doesn't read your channel's analytics. It doesn't store files: the cut and the thumbnails live in your cloud drive, and the list links to them. TTM keeps the work of the week, the deadlines and the people.
 
 ## Questions
 
-### Can my editor see only the team's list?
+### What if Mia had removed Leo instead of giving his tasks to Sam?
 
-Yes, if the list is in a channel only the team can read. To keep the buttons for the team in other channels too, see [Sync permissions](/docs/configuration/#sync-permissions).
+The reminder would have gone with him: a reminder without an owner reaches nobody. If it hasn't fired yet, TTM asks first, and you can close the window to keep everything. See [Owner](/docs/channel-tasks/#owner).
 
-### Can I see who finished what?
+### Why did Sam get a mention and Mia didn't?
 
-Yes. Turn on the [activity timeline](/docs/configuration/#history-tracking): a thread next to the list records every tick.
+A notification mentions whoever gets a task from someone else. Sam got Leo's tasks from Mia. Whoever acts is never mentioned: they already know. See [Owners and tags](/docs/owners-and-tags/).
 
-### Does it work on my phone?
+### Can the premiere's reminder come earlier, or twice?
 
-Yes. The list works in the Discord app, in the channel and in the Activity, on desktop and on mobile.
-
-### Can I reuse the list for every video?
-
-Yes. When a video is out, press **Reopen all** and the same steps are to do again, with their owners. Change the topic with **Bulk update** <img class="inline-ic" src="/icons/edit.png" alt="" />: see [Bulk update](/docs/the-task-list/#bulk-update).
+The reminder comes at the date you give it, so one hour before means 5 PM. To ping the mods twice, an hour before and ten minutes before, make it repeat: from 5 PM, every 50 minutes, two times in all. Repeating reminders are a [Premium](/premium/) feature, unlocked for every server during the beta. See [Repeating reminders](/docs/reminders/#repeating-reminders).

@@ -16,10 +16,15 @@ export interface Owner {
   id: string;
 }
 
-/** Sempre un evento singolo: i promemoria ricorrenti sono fuori dalla demo. `at` in secondi epoch. */
+/**
+ * Il promemoria di un task, `at` in secondi epoch. Nella demo è sempre un evento singolo; i casi d'uso del sito
+ * (src/lib/esempi) usano anche la ricorrenza: l'intervallo (`7d`) e le ripetizioni dopo il primo avviso, come la
+ * tripletta `[distanza,intervallo,ripetizioni]` del bot.
+ */
 export interface Promemoria {
   at: number;
   zona: string;
+  ricorrenza?: { intervallo: string; ripetizioni: number };
 }
 
 /**

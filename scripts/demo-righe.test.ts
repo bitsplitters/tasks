@@ -235,3 +235,30 @@ test('contestoDellActivity: gli stessi nomi, le date come le scrive la pagina', 
   assert.equal(c.canale(CANALE), 'scrims');
   assert.equal(c.data(PROPOSTO, 'F'), '15 November 2026 18:14');
 });
+
+/* I casi d'uso del sito (piano 2026-11-20-casi-d-uso-esempi-completi.md, compito 1): la ricorrenza e le righe vuote. */
+
+test('il badge della ricorrenza conta anche il primo avviso; senza ripetizioni non c\'è (ReminderDisplay.badgeOf)', async () => {
+  const { badgeDellaRicorrenza } = await import('../src/components/home/demo/righe.ts');
+  assert.equal(badgeDellaRicorrenza({ at: PROPOSTO, zona: ZONA, ricorrenza: { intervallo: '7d', ripetizioni: 3 } }), '↻7d ×4');
+  assert.equal(badgeDellaRicorrenza({ at: PROPOSTO, zona: ZONA, ricorrenza: { intervallo: '15m', ripetizioni: 0 } }), '');
+  assert.equal(badgeDellaRicorrenza({ at: PROPOSTO, zona: ZONA }), '');
+  assert.equal(badgeDellaRicorrenza(undefined), '');
+});
+
+test('la riga del promemoria ricorrente porta il badge dopo la data', () => {
+  const lista = conIlTask('3', { promemoria: { at: PROPOSTO, zona: ZONA, ricorrenza: { intervallo: '7d', ripetizioni: 3 } } });
+  const riga = righeLette(righeDelCanale(lista, NOMI)).find((r) => r.classe.includes('sc-row-rem'));
+  assert.match(riga?.testo ?? '', /<\/span> ↻7d ×4$/);
+  const singolo = righeLette(righeDelCanale(listaDellaDemo(), NOMI)).find((r) => r.classe.includes('sc-row-rem'));
+  assert.doesNotMatch(singolo?.testo ?? '', /↻/);
+});
+
+test('con gli spazi, una riga vuota davanti a ogni task principale che chiude o apre un gruppo (staFraIGruppi)', () => {
+  const t = (main: number, sub: number): Task => ({ pos: { main, sub }, testo: `t${main}.${sub}`, fatto: false });
+  const lista: Lista = { titolo: 'x', tasks: [t(1, 0), t(2, 0), t(2, 1), t(3, 0), t(4, 0), t(4, 1)] };
+  const righe = righeLette(righeDelCanale(lista, NOMI, { spazi: true }));
+  const prima = righe.flatMap((r, i) => (r.classe.includes('sc-gap') ? [righe[i + 1].task] : []));
+  assert.deepEqual(prima, ['2', '3', '4']);
+  assert.ok(!righeDelCanale(lista, NOMI).includes('sc-gap'));
+});
