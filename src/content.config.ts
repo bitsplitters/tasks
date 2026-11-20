@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { problemi } from './lib/lista-pronta';
+import { problemi } from './lib/esempi/controllo';
 
 // Content Layer (Astro 5+): la collection dichiara da sola DOVE stanno i file, con un loader.
 // Prima era implicito — `type: 'content'` e la cartella omonima sotto src/content/ — e quella forma
@@ -29,10 +29,12 @@ const docs = defineCollection({
   }),
 });
 
-// I casi d'uso (spec 2026-11-20-casi-d-uso-sito-design.md, §6, nel repo team-tasks-manager): una pagina per un
-// lavoro che i team ripetono su Discord, con la sua lista pronta. `title` è l'H1, `seoTitle` il <title>, `name` il
-// nome corto dell'indice e dei rimandi. La lista passa dal controllo di lista-pronta.ts: se il bot la rifiuterebbe,
-// la build si ferma.
+// I casi d'uso (spec 2026-11-20-casi-d-uso-esempi-completi-design.md, §6, nel repo team-tasks-manager): la storia di un
+// team che usa TTM per una settimana. `title` è l'H1, `seoTitle` il <title>, `name` il nome corto dell'indice e dei
+// rimandi, `highlights` la frase delle schede. Il team, la lista come in Bulk update, i webhook, le scelte di
+// /config app e la settimana passano dal controllo di src/lib/esempi/controllo.ts: se il bot rifiuterebbe la lista,
+// o se una scheda nomina un task che non c'è, la build si ferma.
+const id = z.string().regex(/^\d{17,20}$/);
 const useCases = defineCollection({
   loader: glob({ base: './src/content/use-cases', pattern: '**/*.md' }),
   schema: z
@@ -41,12 +43,58 @@ const useCases = defineCollection({
       seoTitle: z.string(),
       name: z.string(),
       description: z.string(),
+      highlights: z.string(),
+      // L'attacco della pagina, in Markdown: il team, cosa deve fare, in quale settimana.
+      intro: z.string(),
       order: z.number(),
-      listTitle: z.string(),
-      list: z.string().transform((s) => s.replace(/\s+$/, '')),
+      team: z.object({
+        guild: z.string(),
+        zone: z.string(),
+        people: z.array(z.object({ id, name: z.string(), username: z.string(), color: z.string(), about: z.string() })),
+        roles: z.array(z.object({
+          id, name: z.string(), about: z.string(), members: z.array(id).optional(), ttm: z.boolean().optional(),
+        })),
+        channels: z.array(z.object({ id, name: z.string(), about: z.string(), voice: z.boolean().optional() })),
+      }),
+      list: z.object({
+        title: z.string(),
+        channel: id,
+        at: z.string(),
+        text: z.string().transform((s) => s.replace(/\s+$/, '')),
+        spaced: z.boolean().optional(),
+        tips: z.boolean().optional(),
+        // La riga sotto la lista, in Markdown: cosa guardare.
+        look: z.string(),
+      }),
+      webhooks: z.array(z.object({
+        name: z.string(),
+        service: z.enum(['discord', 'github', 'make']),
+        trigger: z.enum(['completion', 'both']),
+        method: z.enum(['GET', 'POST', 'PUT', 'DELETE']),
+        url: z.string(),
+        headers: z.string(),
+        body: z.string(),
+        setup: z.string(),
+        postsAs: z.object({ name: z.string(), channel: id, color: z.string() }).optional(),
+      })).default([]),
+      settings: z.array(z.object({
+        setting: z.string(), choice: z.string(), why: z.string(), premium: z.boolean().optional(),
+      })),
+      week: z.array(z.object({
+        at: z.string(),
+        text: z.string(),
+        card: z.discriminatedUnion('kind', [
+          z.object({ kind: z.literal('reminder'), task: z.string() }),
+          z.object({
+            kind: z.literal('notice'), type: z.enum(['claimed', 'assigned', 'updated', 'completed']), by: id,
+            task: z.string(), from: id.optional(),
+          }),
+          z.object({ kind: z.literal('webhook'), webhook: z.string(), task: z.string(), by: id }),
+        ]).optional(),
+      })),
     })
     .superRefine((d, ctx) => {
-      for (const message of problemi(d.listTitle, d.list)) ctx.addIssue({ code: 'custom', message, path: ['list'] });
+      for (const message of problemi(d)) ctx.addIssue({ code: 'custom', message });
     }),
 });
 

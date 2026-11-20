@@ -35,16 +35,37 @@ build stops if a release has no date, has a wrong one, or has an item without a 
 open; a link to another one opens it.
 
 ### Use cases
-`src/content/use-cases/*.md` are the pages under `/use-cases/` (decided 2026-11-20): one job that Discord teams
-repeat, with a ready-made list. The header carries `title` (the H1), `seoTitle` (the browser title), `name` (the short
-name in the index), `description`, `order`, `listTitle` and `list`; the body is the rest of the page. Each list also
-becomes a file, `/use-cases/<slug>.txt`, in the format of the bot's **Download**: `/create-list` imports it. A new
-page also shows up by itself in the index and in the home's *What teams use it for*, in the order of `order`.
+`src/content/use-cases/*.md` are the pages under `/use-cases/`: each one follows a team through one week with TTM,
+from Monday 7 to Sunday 13 December 2026 (spec `2026-11-20-casi-d-uso-esempi-completi-design.md` in
+`team-tasks-manager`). They are examples, not templates: nothing is meant to be pasted as it is.
 
-The list must work on any server, Free plan included, so **the build stops** if it has more than 20 tasks (subtasks
-included), more than 4000 characters or a title over 90, a line that isn't `- task` or `  - subtask` (two spaces), or
-any code the bot reads: mentions, boxes, reminders, webhooks, button emoji, Discord markdown. The check is
-`src/lib/lista-pronta.ts`. A new list is still tried once in `/create-list` on the test server, pasted and imported.
+The header carries `title` (the H1), `seoTitle` (the browser title), `name` (the short name in the index),
+`description`, `highlights` (what the case shows, for the index, the home and *Other use cases*), `intro` and `order`,
+then the data of the story:
+
+- `team`: the server's name, the time zone, and the people, roles and channels, each with an id of 17 to 20 digits. A
+  role with `ttm: true` is one that TTM created for an owner of several people, with its `members`.
+- `list`: the title, the channel, the moment the page shows it (`at`, in the team's zone), the text as **Bulk update**
+  shows it, codes included, `spaced` and `tips` for the settings that change its look, and `look`, which says what to
+  notice.
+- `webhooks`: the fields of `/config webhook`, the trigger (`completion` or `both`), the setup on the service's side
+  and, for Discord, the name and channel the message `postsAs`.
+- `settings`: the choices of `/config app`, with the reason.
+- `week`: the moments of the week. A `card` reproduces one: a `reminder` as it arrives, a `notice` under the list
+  (`claimed`, `assigned`, `updated` with the owner `from` before, `completed`), or what a `webhook` sends when `by`
+  ticks the task.
+
+The body is the rest of the page: *Next time*, *What TTM doesn't do here*, *Questions*. A new page also shows up by
+itself in the index and in the home's *What teams use it for*, in the order of `order`.
+
+The list is drawn at build time by the engine of the home's demo, so it looks as the bot draws it. **The build
+stops** when the bot would refuse the story: more than 20 tasks, 4000 characters or a title over 90; a line it can't
+read; a mention, owner or channel that isn't in the team; a reminder without an owner or with more than 49
+repetitions; a recurring reminder with *Recurring reminders* missing from `settings`; a `{{wb=…}}` naming a webhook
+the page doesn't have, or a body that isn't JSON once its tokens are replaced; a moment outside the week, out of order,
+or with a card on a task that doesn't fit it. The check is `src/lib/esempi/controllo.ts`, the tests are
+`scripts/esempi.test.ts`. Write the ids as placeholders while drafting, then replace them: any 17-digit number works,
+as long as each one is used for one person, role or channel only.
 
 ### Icons
 Button/feature icons live in `public/icons/`: they are the bot's emoji. One rule for every page (decided 2026-11-19):

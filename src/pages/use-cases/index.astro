@@ -3,53 +3,46 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import VetrinaFont from '../../components/VetrinaFont.astro';
 import { docsCard } from '../../lib/preview-card';
-import { righe, quantiTask } from '../../lib/lista-pronta';
 import '../../styles/docs.css';
 import '../../styles/use-cases.css';
 
-// L'indice dei casi d'uso (spec 2026-11-20-casi-d-uso-sito-design.md, §6, nel repo team-tasks-manager). Il <title>
-// porta «templates», la parola con cui si cerca; nel testo le liste sono «ready-made lists», per non confonderle
-// con i template che un giorno gli utenti creeranno nel bot (voce del tracker). Ogni caso mostra le prime righe
-// della sua lista: si vede subito che è testo da incollare.
-const TITLE = 'Discord To-Do List Templates and Use Cases — Team Tasks Manager';
-const H1 = 'Ready-made lists for Discord teams';
+// L'indice dei casi d'uso (spec 2026-11-20-casi-d-uso-esempi-completi-design.md, §7 e §12 punto 2, nel repo
+// team-tasks-manager). Sono esempi, non liste da incollare: il <title> perde «Templates», l'H1 dice che ogni caso è la
+// settimana di un team. Ogni scheda: il nome, la descrizione, cosa usa (`highlights`).
+const TITLE = 'Discord Task Management Use Cases — Team Tasks Manager';
+const H1 = 'How Discord teams run their week with TTM';
 const SUBTITLE =
-  'Six jobs that Discord teams repeat, each with a list you paste into /create-list. Change it as you go: it\'s yours.';
+  'Six teams, one week each. See their list, who owns what, the reminders that reach them and what fires when a task is done.';
 
 const casi = (await getCollection('useCases')).sort((a, b) => a.data.order - b.data.order);
-// Nel sottotitolo della pagina il nome del comando non va a capo sul trattino.
-const [primaDelComando, dopoIlComando] = SUBTITLE.split('/create-list');
-// Le prime righe: i task in cima, senza i loro subtask, fino a quattro.
-const anteprima = (lista: string) => righe(lista).filter((r) => !r.startsWith(' ')).slice(0, 4);
 ---
-<Base title={TITLE} previewTitle={H1} description={SUBTITLE} embed={docsCard(H1, SUBTITLE, '/use-cases/', 'See the lists')}>
+<Base title={TITLE} previewTitle={H1} description={SUBTITLE} embed={docsCard(H1, SUBTITLE, '/use-cases/', 'See the examples')}>
   <VetrinaFont slot="head" />
   <main class="docs-main">
     <article class="prose uc uc-index wrap">
       <h1>{H1}</h1>
-      <p class="subtitle">{primaDelComando}<span class="uc-nobr">/create-list</span>{dopoIlComando}</p>
+      <p class="subtitle">{SUBTITLE}</p>
       <ul class="uc-cases" role="list">
         {casi.map((c) => (
           <li>
             <a href={`/use-cases/${c.id}/`}>
               <span class="uc-case-t">{c.data.name}</span>
               <span class="uc-case-d">{c.data.description}</span>
-              <span class="uc-case-l" translate="no">{anteprima(c.data.list).join('\n')}</span>
-              <span class="uc-case-n">{quantiTask(c.data.list)} tasks</span>
+              <span class="uc-case-h">{c.data.highlights}</span>
             </a>
           </li>
         ))}
       </ul>
-      <h2>Every list works on any server</h2>
+      <h2>Make it your own</h2>
       <p>
-        Each list has 20 tasks at most, subtasks included, and no codes tied to a server. Owners, reminders and webhooks
-        aren't in the text: they need people and roles from your server, and you add them with their buttons once the
-        list is in the channel. To rewrite a list later, use <strong>Bulk update</strong> <img class="inline-ic" src="/icons/edit.png" alt="" />:
+        The teams are made up; everything they do is what TTM does today. Every list stays within the 20 tasks of the
+        Free plan. Each page shows the text behind its list: to start from it,
+        paste it into <code>/create-list</code> and swap the people, roles and channels for your server's. How the codes work:
         see <a href="/docs/writing-a-list/">Writing a list</a>.
       </p>
       <section class="uc-final" aria-labelledby="uc-final-t">
         <h2 id="uc-final-t">Add TTM to your server</h2>
-        <p>Then pick a list, run <code>/create-list</code> and paste it.</p>
+        <p>Then run <code>/create-list</code> and write your team's first list.</p>
         <div class="cta-row">
           <a class="btn" href="/invite">Add to Discord</a>
           <a class="btn-ghost" href="/docs/getting-started/">Get started</a>

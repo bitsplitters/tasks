@@ -1,8 +1,9 @@
 /*
  * I casi d'uso: lo importano use-cases/index.astro e use-cases/[slug].astro, dopo docs.css, di cui usano la prosa
- * (spec 2026-11-20-casi-d-uso-sito-design.md, nel repo team-tasks-manager). Una colonna sola, senza barra laterale.
- * La cosa da ricordare è la finestra di /create-list: è una riproduzione di Discord, quindi usa i --dc-* e resta
- * scura nei due temi (README, «Colors»). Il resto è la prosa della documentazione.
+ * (spec 2026-11-20-casi-d-uso-esempi-completi-design.md, nel repo team-tasks-manager). Una colonna sola, senza barra
+ * laterale. Le riproduzioni di Discord (.ex-dc) usano le classi sc-* di scene.css con --u a un px di Discord: sono
+ * Discord, quindi usano i --dc-* e restano scure nei due temi (README, «Colors»). Il resto è la prosa della
+ * documentazione.
  */
 
 /* ── La colonna ──────────────────────────────────────────────────────────────────────────────────────── */
@@ -15,45 +16,191 @@
 }
 .prose .uc-crumb { margin: 0 0 .9rem; font-size: .95rem; font-weight: 600; }
 
-/* ── La finestra di /create-list ─────────────────────────────────────────────────────────────────────── */
-.uc-form {
-  margin: 1.5rem 0 2.25rem; padding: 1.25rem 1.25rem 1.4rem;
-  background: var(--dc-bg-embed); border: 1px solid var(--dc-border-dialog); border-radius: 12px;
-  color: var(--dc-text); font-family: var(--sans);
+/* ── Il team ─────────────────────────────────────────────────────────────────────────────────────────── */
+/* Tre colonne sul largo (persone, ruoli, canali), una sotto l'altra sul telefono. I nomi come li mostra Discord: il
+   tondo dell'avatar, la menzione del ruolo, il cancelletto del canale. */
+.prose.uc > .ex-team { display: grid; gap: .5rem 2rem; max-width: none; margin: 1.25rem 0 0; }
+@media (min-width: 760px) {
+  .prose.uc > .ex-team { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-.prose .uc-form-t { margin: 0 0 1.1rem; font-size: 1.2rem; font-weight: 700; line-height: 1.3; color: var(--dc-text-title); }
-.uc-field + .uc-field { margin-top: 1.1rem; }
-.uc-field-h { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 2rem; margin-bottom: .4rem; }
-.uc-label { font-size: .95rem; font-weight: 600; color: var(--dc-text-header); }
-/* I campi: il titolo nel carattere di Discord, la lista in mono, perché i due spazi dei subtask si vedano. */
-.prose .uc-input {
-  max-width: none; margin: 0; padding: .65rem .8rem;
-  background: var(--dc-bg-input); border: 1px solid var(--dc-border-input); border-radius: 8px;
-  color: var(--dc-text); font-size: 1rem; line-height: 1.5;
+.prose .ex-team h3 { margin: 0 0 .6rem; font-size: 1rem; color: var(--muted); }
+.prose .ex-team ul { margin: 0 0 1rem; padding: 0; list-style: none; }
+.prose .ex-team li { display: flex; flex-direction: column; gap: .1rem; margin: 0; line-height: 1.45; }
+.prose .ex-team li + li { margin-top: .75rem; }
+.ex-who { display: inline-flex; align-items: center; gap: .45rem; font-weight: 650; color: var(--text); }
+.ex-about { font-size: .95rem; color: var(--muted); }
+.ex-dot {
+  display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%;
+  font-size: .78rem; font-weight: 700; color: #fff;
 }
-.prose pre.uc-area {
-  overflow-x: visible; white-space: pre-wrap; overflow-wrap: anywhere;
-  font-family: var(--mono); font-size: .9rem; line-height: 1.65;
+.ex-role {
+  padding: 0 .25em; border-radius: 4px; font-weight: 600;
+  color: var(--state-blue); background: color-mix(in srgb, var(--state-blue) 14%, transparent);
 }
-/* Copy è un comando del sito, non un pulsante del bot: sobrio, nei colori della finestra. Il fuoco in ambra, che
-   sul fondo scuro della finestra si legge in tutti e due i temi. */
-.uc-copy {
-  flex: none; padding: .4em .85em; cursor: pointer;
-  font: 600 .85rem/1.2 var(--mono); color: var(--dc-text-strong);
-  background: var(--dc-bg-button); border: 1px solid var(--dc-border); border-radius: 6px;
-  transition: background .15s ease;
+.ex-chan { width: 1.5rem; text-align: center; font-weight: 400; color: var(--muted); }
+.prose .ex-note { font-size: .97rem; color: var(--muted); }
+.prose .ex-cap { margin-bottom: .6rem; font-size: .95rem; font-weight: 600; color: var(--muted); }
+
+/* Il segno Premium: un link ai piani, come su Webhooks nella home (.h-new). */
+.prose a.ex-premium {
+  display: inline-block; padding: .05rem .55rem; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  border-radius: 999px; font-size: .75rem; font-weight: 650; font-stretch: 100%; line-height: 1.4; letter-spacing: 0;
+  color: var(--accent-text); text-decoration: none; vertical-align: .15em;
 }
-.uc-copy:hover { background: var(--dc-bg-hover); }
-.uc-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-/* Sul telefono la finestra si stringe ai lati e la lista rimpicciolisce: le righe lunghe vanno a capo meno spesso, e
-   i rientri dei subtask restano leggibili. Copy copia il testo com'è, a capo o no. */
-@media (max-width: 400px) {
-  .uc-form { padding: 1rem .85rem 1.1rem; }
-  .prose .uc-input { padding: .55rem .65rem; }
-  .prose pre.uc-area { font-size: .8rem; }
+.prose a.ex-premium:hover { background: var(--accent); color: var(--on-accent); }
+
+/* ── Le riproduzioni di Discord ──────────────────────────────────────────────────────────────────────── */
+/* Un pezzo di canale, alla misura vera (--u = 1px), in un riquadro. Sotto i 480 px un po' più piccolo, come Discord
+   sul telefono, perché l'embed resti largo abbastanza da leggere le righe. */
+.prose .ex-dc {
+  --u: 1px;
+  max-width: 40rem; margin: 0 0 1.25rem; padding: 0 0 calc(10 * var(--u)); overflow: hidden;
+  font-family: var(--sans); font-stretch: normal; font-weight: 400;
+  font-size: calc(14 * var(--u)); line-height: 1.375; letter-spacing: 0; text-align: left;
+  color: var(--dc-text); background: var(--dc-bg-chat);
+  border: 1px solid #2a3547; border-radius: 12px;
 }
-.prose .uc-file { margin: 1rem 0 1.2rem; }
-.prose .uc-steps li::marker { font-weight: 700; color: var(--text); }
+@media (max-width: 480px) {
+  .prose .ex-dc { --u: .9px; }
+  .prose .ex-dc .sc-msg { padding-left: calc(60 * var(--u)); padding-right: calc(10 * var(--u)); }
+  .prose .ex-dc .sc-avatar { left: calc(10 * var(--u)); }
+}
+/* La prosa del sito non entra nel riquadro: i paragrafi, il codice, i link e le immagini come in Discord. */
+.prose .ex-dc :is(*, *::before, *::after) { box-sizing: border-box; }
+.prose .ex-dc p { margin: 0; max-width: none; color: inherit; line-height: inherit; }
+.prose .ex-dc img { max-width: none; border-radius: 0; }
+/* Un'emoji resta in linea col testo, come in Discord: con display: block andrebbe a capo da sola. */
+.prose .ex-dc img:not(.sc-emoji) { display: block; }
+.prose .ex-dc .sc-avatar { border-radius: 50%; }
+.prose .ex-dc strong { color: inherit; font-weight: 700; }
+.prose .ex-dc a { color: #00a8fc; text-decoration: none; }
+.prose .ex-dc a:hover { text-decoration: underline; }
+.prose .ex-dc a[target="_blank"]::after { content: none; }
+.prose .ex-dc code {
+  font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', monospace;
+  font-size: .85em; color: inherit; padding: 0 .2em; overflow-wrap: normal;
+  background: #2b2c3a; border: 1px solid #3e3f4e; border-radius: calc(4 * var(--u));
+}
+.prose .ex-dc .sc-num code { white-space: pre; }
+/* La richiesta del webhook: un blocco di codice scuro in tutti e due i temi, come il riquadro che lo contiene;
+   le righe senza il fondo del codice in linea. */
+.prose .ex-dc pre {
+  margin: 0; padding: calc(12 * var(--u)); overflow-x: auto; color: #dbdee1;
+  background: #2b2d31; border: 1px solid #1e1f22; border-radius: calc(4 * var(--u));
+}
+.prose .ex-dc pre code { padding: 0; background: none; border: 0; white-space: pre; }
+/* L'avatar di una persona o di un webhook: il tondo col colore e l'iniziale. */
+.ex-avatar {
+  display: grid; place-items: center; font-size: calc(17 * var(--u)); font-weight: 600; color: #fff;
+}
+/* Il testo fuori dall'embed (la push leggibile, la menzione del ruolo, il messaggio del webhook). */
+.ex-content { overflow-wrap: anywhere; }
+.ex-content + .sc-embed { margin-top: calc(4 * var(--u)); }
+.ex-embed { overflow-wrap: anywhere; }
+.ex-embed .sc-emoji, .ex-content .sc-emoji, .ex-tips .sc-emoji, .ex-quote .sc-emoji {
+  display: inline-block; vertical-align: -.35em; width: 1.375em; height: 1.375em;
+}
+/* L'autore della notifica: chi ha agito, con l'avatar piccolo. */
+.prose .ex-dc .ex-author {
+  display: flex; align-items: center; gap: calc(8 * var(--u)); margin: calc(4 * var(--u)) 0 calc(8 * var(--u));
+  font-size: calc(14 * var(--u)); font-weight: 600; color: var(--dc-text-header);
+}
+.ex-av {
+  display: inline-grid; place-items: center; width: calc(24 * var(--u)); height: calc(24 * var(--u)); border-radius: 50%;
+  font-size: calc(12 * var(--u)); font-weight: 700; color: #fff;
+}
+/* La frase citata («> {emoji}  *I took…*»): la barra grigia della citazione di Discord. */
+.ex-quote {
+  display: flex; align-items: center; gap: calc(6 * var(--u)); padding-left: calc(12 * var(--u));
+  border-left: calc(4 * var(--u)) solid #4e5058; border-radius: calc(4 * var(--u)) 0 0 calc(4 * var(--u));
+}
+.ex-gap { margin-top: 1.375em; }
+/* Il posto di :blank: nel promemoria, larga quanto un'emoji. */
+.ex-blank { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -.35em; }
+.sc-subtext .sc-emoji { width: 1.1em; height: 1.1em; vertical-align: -.2em; }
+/* La riga dei Tips sotto la lista: una riga vuota prima, come nel bot. */
+.ex-tips { margin-top: 1.375em; }
+/* Il pulsante del promemoria che porta alla lista: grigio, col titolo e la freccia del link. */
+.ex-btns { display: flex; margin-top: calc(8 * var(--u)); }
+.ex-link {
+  display: inline-flex; align-items: center; gap: calc(8 * var(--u)); min-height: calc(32 * var(--u));
+  padding: 0 calc(12 * var(--u)); border-radius: calc(8 * var(--u));
+  font-size: calc(14 * var(--u)); font-weight: 500; color: var(--dc-white); background: var(--dc-grey);
+}
+.ex-ext { width: calc(16 * var(--u)); height: calc(16 * var(--u)); flex: none; }
+
+/* ── Il testo dietro la lista e la legenda ───────────────────────────────────────────────────────────── */
+/* Il testo va a capo dove serve: gli id sono lunghi, e scorrere di lato una lista è peggio che leggerla a capo. Il
+   rientro dei subtask resta, perché va a capo solo il resto della riga. */
+.prose pre.ex-text { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .86rem; line-height: 1.7; }
+.prose.uc > .ex-legend { max-width: none; }
+.ex-legend { display: grid; gap: .1rem; margin: 1.25rem 0 0; }
+.ex-legend > div {
+  display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); gap: .25rem 1.25rem;
+  padding: .7rem 0; border-top: 1px solid var(--line);
+}
+.ex-legend > div:last-child { border-bottom: 1px solid var(--line); }
+.ex-legend dt { margin: 0; }
+.prose .ex-legend dt code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.ex-legend dd { margin: 0; font-size: .97rem; line-height: 1.6; color: var(--text-body); }
+@media (max-width: 600px) {
+  .ex-legend > div { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ── La configurazione e i webhook ───────────────────────────────────────────────────────────────────── */
+.prose.uc > .ex-table { max-width: none; }
+.prose .ex-table table { margin-top: 1rem; }
+.prose .ex-table th[scope="row"] { width: 13rem; font-weight: 650; color: var(--text); }
+.prose .ex-table td:nth-child(2) { white-space: nowrap; }
+@media (max-width: 600px) {
+  /* Sul telefono ogni riga è un blocco: l'impostazione e la scelta, sotto il perché. Tre colonne non ci stanno. */
+  .prose .ex-table table, .prose .ex-table tbody { display: block; width: auto; }
+  .prose .ex-table thead { display: none; }
+  .prose .ex-table tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; padding: .75rem 1rem; border-top: 1px solid var(--line); }
+  .prose .ex-table tr:first-child { border-top: 0; }
+  .prose .ex-table :is(th, td) { padding: 0; border: 0; white-space: normal; }
+  .prose .ex-table td:nth-child(2) { color: var(--text); font-weight: 600; }
+  .prose .ex-table td:nth-child(3) { grid-column: 1 / -1; margin-top: .35rem; }
+}
+.prose.uc > .ex-wh { max-width: none; margin-top: 2.5rem; }
+.prose .ex-wh > :is(p, h3, h4) { max-width: 42rem; }
+.prose .ex-wh h3 { margin-top: 0; }
+.prose .ex-wh h4 { margin: 1.4rem 0 .4rem; font-size: 1rem; font-weight: 700; color: var(--text); }
+.prose .ex-wh pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .86rem; }
+.ex-form { display: grid; gap: .9rem; margin: 1rem 0 0; padding: 1rem 1.1rem; border: 1px solid var(--line-2); border-radius: 12px; }
+.ex-form > div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: .25rem 1rem; align-items: baseline; }
+.ex-form dt { font-size: .92rem; font-weight: 650; color: var(--muted); }
+.ex-form dd { margin: 0; min-width: 0; }
+.prose .ex-form dd > code { overflow-wrap: anywhere; }
+.prose .ex-form pre { margin: 0; padding: .65rem .8rem; }
+@media (max-width: 600px) {
+  .ex-form > div { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ── La settimana ────────────────────────────────────────────────────────────────────────────────────── */
+/* Una linea del tempo: l'ora a sinistra sul largo, sopra sul telefono; il filo a sinistra unisce i momenti, il primo
+   momento di un giorno ha il pallino pieno. */
+.prose.uc > .ex-week { max-width: none; }
+.ex-week { margin: 1.5rem 0 0; padding: 0; list-style: none; }
+.prose .ex-week > li {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: .2rem;
+  margin: 0; padding: 0 0 1.6rem 1.5rem; border-left: 2px solid var(--line-2);
+}
+.prose .ex-week > li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.prose .ex-week > li::before {
+  content: ''; position: absolute; left: -7px; top: .45rem; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--line-2);
+}
+.prose .ex-week > li[data-day]::before { background: var(--accent); border-color: var(--accent); }
+.prose .ex-when { margin: 0; font-size: .92rem; font-weight: 700; color: var(--text); }
+.prose .ex-week > li:not([data-day]) .ex-when { font-weight: 600; color: var(--muted); }
+.ex-what { min-width: 0; max-width: 42rem; }
+.prose .ex-what > p { margin: 0 0 .6rem; }
+.ex-card { margin: .4rem 0 .4rem; }
+.prose .ex-card figcaption { margin: 0 0 .45rem; font-size: .88rem; font-weight: 600; color: var(--muted); }
+.prose .ex-card .ex-dc { margin: 0; }
+
+/* La prossima volta, cosa TTM non fa, le domande: il corpo Markdown, coi suoi h2. */
 
 /* ── Gli altri casi e l'invito ───────────────────────────────────────────────────────────────────────── */
 .uc-more { margin-top: 4rem; }
@@ -66,8 +213,7 @@
 .uc-final .cta-row { margin-top: 1.4rem; }
 
 /* ── L'indice ────────────────────────────────────────────────────────────────────────────────────────── */
-/* Un caso è tutto un link: il nome, la descrizione, le prime righe della lista come si scrivono, e quanti task. Niente
-   riquadri: le righe della lista, con la linea a sinistra, sono il segno che si tratta di testo da incollare. */
+/* Un caso è tutto un link: il nome, la descrizione, cosa usa. Niente riquadri: sotto il cursore il fondo. */
 .prose.uc-index > :is(h1, .subtitle) { max-width: 44rem; }
 .uc-nobr { white-space: nowrap; }
 /* La griglia prende tutta la colonna dell'indice: due casi per riga, tre dove c'è spazio. */
@@ -88,9 +234,7 @@
 .uc-case-t { font-size: 1.25rem; font-weight: 750; font-stretch: 108%; line-height: 1.25; letter-spacing: -.01em; color: var(--text); }
 .prose .uc-cases a:hover .uc-case-t { color: var(--accent-text); }
 .uc-case-d { font-size: .98rem; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
-.uc-case-l {
-  margin-top: .35rem; padding: .15rem 0 .15rem .9rem; border-left: 2px solid var(--line-2);
-  white-space: pre; overflow: hidden; text-overflow: ellipsis;
-  font-family: var(--mono); font-size: .85rem; line-height: 1.7; color: var(--text-body);
+.uc-case-h {
+  margin-top: .3rem; padding: .1rem 0 .1rem .9rem; border-left: 2px solid var(--line-2);
+  font-size: .92rem; line-height: 1.55; color: var(--text-body); text-wrap: pretty;
 }
-.uc-case-n { margin-top: auto; padding-top: .2rem; font-size: .88rem; font-weight: 600; color: var(--muted); }
