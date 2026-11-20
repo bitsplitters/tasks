@@ -180,13 +180,13 @@ test('le domande di Pulisci e di Riapri tutti, col titolo senza spazi attorno', 
     "their reminders and tags. If your server's configuration allows it, the notification in the list's channel or " +
     'in its own thread will show the removed tasks.\n-# Submit to confirm, close this window to cancel.');
   assert.equal(testoDellaDomanda({ tipo: 'riapri', spuntati: 2, nuovaData: true }, 'Roster'),
-    '<:reopen_blue:0> Reopen the 2 completed tasks of **Roster**?\n\nEvery task goes back to to-do. No webhook is ' +
-    'called.\n\nWith **New date** you also move the reminders of the tasks you reopen: the first one in the calendar ' +
+    '<:reopen_blue:0> Reopen the 2 completed tasks of **Roster**?\n\nEvery task goes back to to-do: those with a ' +
+    'webhook call it.\n\nWith **New date** you also move the reminders of the tasks you reopen: the first one in the calendar ' +
     'lands on the date you pick, the others follow at the same distance from it. The reminders of tasks still to do ' +
     'stay as they are.');
   assert.equal(testoDellaDomanda({ tipo: 'riapri', spuntati: 1, nuovaData: false }, 'Roster'),
-    '<:reopen_blue:0> Reopen the only completed task of **Roster**?\n\nEvery task goes back to to-do. No webhook is ' +
-    'called.');
+    '<:reopen_blue:0> Reopen the only completed task of **Roster**?\n\nEvery task goes back to to-do: those with a ' +
+    'webhook call it.');
 });
 
 test("gli errori del promemoria, uno per riga nell'avviso della modale", () => {

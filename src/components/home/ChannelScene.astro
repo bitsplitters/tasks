@@ -15,19 +15,25 @@ import { CHEV, FRASE_SPUNTA, PRIMA_RIGA, TASTI } from './scene-data';
 import { ADESSO, NOME_DEL_CANALE, dataDelCanale, statoIniziale } from './demo/modello.ts';
 import type { Lista } from './demo/modello.ts';
 import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
-import { nomiDi, opzioniDelSelettore, righeDelCanale } from './demo/righe.ts';
+import { contestoDelCanale, nomiDi, opzioniDelSelettore, righeDelCanale } from './demo/righe.ts';
+import { markdown } from './demo/markdown.ts';
+import { emoji, testo } from './demo/testi.ts';
 
 interface Props {
   /** La lista da disegnare: quella della demo o quella dei video (demo/modello.ts). */
   lista: Lista;
   /** La lista è nell'Activity: al posto dei pulsanti, «Join the Activity». */
   inActivity?: boolean;
+  /** I Tips del server (/config app), accesi di default: i video li spengono, perché non ci starebbero. */
+  tips?: boolean;
 }
-const { lista, inActivity = false } = Astro.props;
+const { lista, inActivity = false, tips: conTips = true } = Astro.props;
 const stato = { ...statoIniziale(lista), inActivity };
 const accesi = pulsantiAccesi(stato);
 const spento = (nome: string) => String(!accesi.has(nome));
 const pct = avanzamento(lista);
+// La riga dei Tips (tasklist.tips.line), coi Tips accesi: nell'Activity la sostituisce la riga dell'Activity.
+const tips = markdown(testo('tasklist.tips.line', emoji('other'), emoji('doc')), contestoDelCanale(stato));
 const icona = (n: string) => `/icons/${n}.png`;
 const si = (v: boolean) => (v ? '' : undefined);
 ---
@@ -43,7 +49,8 @@ const si = (v: boolean) => (v ? '' : undefined);
       <div class="sc-embed">
         <p class="sc-title">{lista.titolo}</p>
         <div class="sc-rows" set:html={righeDelCanale(lista, nomiDi(stato))}></div>
-        {/* tasklist.activity.line, al posto della riga dei consigli */}
+        {conTips && <div class="sc-tips" set:html={tips}></div>}
+        {/* tasklist.activity.line, al posto della riga dei Tips */}
         <p class="sc-actline"><img src={icona('activity_blue')} alt="" /> This list is being worked on in the Activity.</p>
         <div class="sc-bar" data-bar data-empty={si(pct === 0)} style={`--pct: ${pct}%`}>
           <div class="sc-bar-fill"></div>

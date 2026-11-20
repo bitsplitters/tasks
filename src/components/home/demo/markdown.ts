@@ -18,7 +18,7 @@ export interface Contesto {
 
 /** Le emoji del bot con l'immagine in /icons/: le altre si scrivono col nome, `:nome:`. */
 export const EMOJI: ReadonlySet<string> = new Set([
-  'tip', 'owner_blue', 'task_blue', 'clean_blue', 'reopen_blue', 'unlock_blue', 'separator',
+  'tip', 'owner_blue', 'task_blue', 'clean_blue', 'reopen_blue', 'unlock_blue', 'separator', 'other', 'doc',
 ]);
 
 const ENTITA: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' };

@@ -120,7 +120,8 @@ const LOGO = '/og/ttm-logo.png';
         <div class="esp-scena" id="scena">
           <div class="sc-box esp-box">
             <div class="scene sc-rec">
-              <ActivityScene lista={listaDeiVideo()} aperta={false} />
+              {/* Coi Tips spenti, come i video della home (Registrazione.astro). */}
+              <ActivityScene lista={listaDeiVideo()} aperta={false} tips={false} />
               <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
               <span class="sc-tap" aria-hidden="true"></span>
               <span class="esp-mia" aria-hidden="true"></span>

@@ -34,7 +34,7 @@ test('il ponte di Riapri tutti: la domanda nell\'embed verde, poi Reopen e Cance
   const html = htmlDelPonte(domandaDi(s0), s0);
   assert.ok(html.startsWith(`${EMBED}<img class="sc-emoji" src="/icons/reopen_blue.png" alt=""> Reopen the only ` +
     'completed task of <strong>Roster &amp; scrims — week 12</strong>?'), html);
-  assert.match(html, /Every task goes back to to-do\. No webhook is called\.<\/div><\/div><div class="ui-tasti">/);
+  assert.match(html, /Every task goes back to to-do: those with a webhook call it\.<\/div><\/div><div class="ui-tasti">/);
   assert.doesNotMatch(html, /New date/);
   assert.deepEqual(tasti(html), ['reopen', 'cancel']);
   assert.match(html, /<button type="button" class="sc-btn sc-blue ui-scritta" data-k="e-reopen">Reopen<\/button>/);

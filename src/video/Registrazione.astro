@@ -35,14 +35,16 @@ const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
   <body>
     <div class="sc-box rec-box" data-modo="channel">
       <div class="scene sc-rec sc-rec-chan">
-        <ChannelScene lista={listaDeiVideo()} />
+        {/* I video mostrano un server coi Tips spenti: con la riga dei Tips, nel suo stato più alto il messaggio del
+            canale non sta nell'inquadratura (408 px in una chat di 381), e i video registrati restano validi. */}
+        <ChannelScene lista={listaDeiVideo()} tips={false} />
         <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
         <span class="sc-tap" aria-hidden="true"></span>
       </div>
     </div>
     <div class="sc-box rec-box" data-modo="activity" hidden>
       <div class="scene sc-rec">
-        <ActivityScene lista={listaDeiVideo()} aperta={false} />
+        <ActivityScene lista={listaDeiVideo()} aperta={false} tips={false} />
         <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
         <span class="sc-tap" aria-hidden="true"></span>
       </div>

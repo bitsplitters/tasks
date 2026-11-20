@@ -111,7 +111,8 @@
 .sc-emoji { width: 1.375em; height: 1.375em; object-fit: contain; }
 /* Un'emoji scritta nel testo (markdown.ts) sta sulla riga, come in Discord: nei task, nel testo di una modale, di un
    messaggio effimero o di un dialogo dell'Activity. */
-.sc-text .sc-emoji, .sc-atext .sc-emoji, .ui-mtesto .sc-emoji, .ui-effcorpo .sc-emoji, .ui-dlgtesto .sc-emoji {
+.sc-text .sc-emoji, .sc-atext .sc-emoji, .ui-mtesto .sc-emoji, .ui-effcorpo .sc-emoji, .ui-dlgtesto .sc-emoji,
+.sc-tips .sc-emoji {
   display: inline-block; vertical-align: -.35em;
 }
 .sc-cb { position: relative; display: inline-block; flex: none; width: 1.375em; height: 1.375em; }
@@ -128,7 +129,15 @@
    delle righe dei task fatti. */
 .sc-subtext { display: block; font-size: calc(13 * var(--u)); line-height: 1.25; color: var(--dc-text-muted); }
 .sc-li { display: list-item; margin-left: calc(20 * var(--u)); list-style: disc outside; }
-/* Nell'Activity: una riga vuota, poi la riga in subtext che prende il posto dei consigli. */
+/* La riga dei Tips: una riga vuota, poi il subtext, coi link di Discord. Nell'Activity la sostituisce la riga in
+   subtext dell'Activity, qui sotto. */
+.sc-tips { margin-top: 1.375em; overflow-wrap: anywhere; }
+.sc-tips a { color: #00a8fc; text-decoration: none; }
+.sc-tips a:hover { text-decoration: underline; }
+/* Discord non mette la freccia ai link esterni: quella del sito (global.css) qui non va. */
+.scene a[target="_blank"]::after { content: none; }
+.sc-chan[data-inact] .sc-tips { display: none; }
+/* Nell'Activity: una riga vuota, poi la riga in subtext che prende il posto dei Tips. */
 .sc-actline { display: none; margin-top: 1.375em; font-size: calc(13 * var(--u)); color: var(--dc-text-muted); }
 .sc-actline img { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -.35em; }
 [data-inact] .sc-actline { display: block; }

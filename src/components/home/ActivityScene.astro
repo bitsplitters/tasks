@@ -15,22 +15,28 @@ import { IN_CIMA_ACTIVITY, PRIMA_RIGA_ACTIVITY, TASTI, fraseDelPannello } from '
 import { NELL_ACTIVITY, PERSONE, statoIniziale } from './demo/modello.ts';
 import type { Lista } from './demo/modello.ts';
 import { avanzamento } from './demo/regole.ts';
-import { nomiDi, righeDellActivity } from './demo/righe.ts';
+import { contestoDellActivity, nomiDi, righeDellActivity } from './demo/righe.ts';
+import { markdown } from './demo/markdown.ts';
+import { emoji, testo } from './demo/testi.ts';
 
 interface Props {
   /** La lista da disegnare: quella della demo o quella dei video (demo/modello.ts). */
   lista: Lista;
   /** La finestra è già aperta, la lista nell'Activity: com'è nella demo. */
   aperta?: boolean;
+  /** I Tips del server, accesi di default (ChannelScene). */
+  tips?: boolean;
 }
-const { lista, aperta = true } = Astro.props;
+const { lista, aperta = true, tips: conTips = true } = Astro.props;
 const pct = avanzamento(lista);
+// La riga dei Tips della pagina (activity.tips.line), dopo una riga vuota, come il footer di TaskList.tsx.
+const tips = markdown(testo('activity.tips.line', emoji('doc')), contestoDellActivity(statoIniziale(lista)));
 const icona = (n: string) => `/icons/${n}.png`;
 const si = (v: boolean) => (v ? '' : undefined);
 const qui = NELL_ACTIVITY.map((id) => PERSONE.find((p) => p.id === id)!);
 ---
 <div class="sc-under" inert>
-  <ChannelScene lista={lista} inActivity={aperta} />
+  <ChannelScene lista={lista} inActivity={aperta} tips={conTips} />
 </div>
 <div class="sc-shade" data-k="shade" aria-hidden="true"></div>
 <div class="sc-win" data-k="win" data-open={si(aperta)} data-save="off">
@@ -65,6 +71,7 @@ const qui = NELL_ACTIVITY.map((id) => PERSONE.find((p) => p.id === id)!);
       <div class="sc-embed sc-aembed">
         <p class="sc-title">{lista.titolo}</p>
         <div class="sc-arows" set:html={righeDellActivity(lista, nomiDi(statoIniziale(lista)))}></div>
+        {conTips && <div class="sc-tips" set:html={tips}></div>}
         <div class="sc-bar" data-bar data-empty={si(pct === 0)} style={`--pct: ${pct}%`}>
           <div class="sc-bar-fill"></div>
         </div>

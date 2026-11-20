@@ -67,7 +67,7 @@ test('il dialogo di Reopen all: la domanda; il suggerimento di New date finché 
   const html = corpoDellaRiapertura(S0, 2, true);
   assert.match(html, /^<div class="ui-dlgtesto"><div><img class="sc-emoji" src="\/icons\/reopen_blue.png" alt=""> /);
   assert.ok(html.includes(`Reopen the 2 completed tasks of <strong>${TITOLO}</strong>?<br><br>Every task goes back ` +
-    'to to-do. No webhook is called.</div>'));
+    'to to-do: those with a webhook call it.</div>'));
   assert.match(html, /<div><span class="sc-subtext">With <strong>New date<\/strong> you also move the reminders/);
   assert.doesNotMatch(corpoDellaRiapertura(S0, 2, false), /New date/);
 });

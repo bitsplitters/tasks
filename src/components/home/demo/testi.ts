@@ -295,7 +295,7 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
     'the removed tasks.}}\n-# Submit to confirm, close this window to cancel.',
   'tasklist.reopen.bridge.question':
     '{0} {1, plural, one {Reopen the only completed task of **{2}**?} other {Reopen the # completed tasks of ' +
-    '**{2}**?}}\n\nEvery task goes back to to-do. No webhook is called.',
+    '**{2}**?}}\n\nEvery task goes back to to-do: those with a webhook call it.',
   'tasklist.reopen.bridge.date':
     'With **New date** you also move the reminders of the tasks you reopen: the first one in the calendar lands on ' +
     'the date you pick, the others follow at the same distance from it. The reminders of tasks still to do stay as ' +
@@ -319,6 +319,8 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.btn.listunlock.desc.who':
     '{0} is editing the list: its buttons are off. If they closed without saving, turn it back on for everyone here.',
   'tasklist.btn.listunlock.done': 'List unlocked: its buttons work again.',
+  'tasklist.tips.line':
+    '-# Not sure what the buttons do? {0} More → {1} Guide · [Full docs](https://tasks.bitsplitters.app/docs/the-task-list/)',
   'tasklist.btn.other.guide': 'Guide',
   'tasklist.btn.other.guide.desc': 'How every button of the list works, in short.',
   'tasklist.btn.other.clone': 'Clone list',
@@ -346,6 +348,9 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.slct.activities.hint.webhook.edit': 'Link webhook',
   'tasklist.slct.activities.hint.webhook.delete': 'Unlink webhook',
   // L'Activity
+  'activity.tips.line':
+    '-# Not sure where to start? Tap a box to tick a task, tap its text for the rest. {0} Guide · '
+    + '[Docs](https://tasks.bitsplitters.app/docs/activity/)',
   'activity.btn.guide': 'Guide',
   'activity.btn.edit': 'Edit the list',
   'activity.btn.clean': 'Clean the list',
