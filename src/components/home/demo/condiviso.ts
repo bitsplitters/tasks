@@ -5,6 +5,7 @@
  */
 import { prossimoColore, type Colore, type Modo, type Tasto } from '../scene-data.ts';
 import type { Stato } from './modello.ts';
+import type { Umore } from './testi.ts';
 
 /** Lo stato della demo e ciò che i tab fanno insieme. */
 export interface Condiviso {
@@ -12,8 +13,11 @@ export interface Condiviso {
   stato(): Stato;
   /** Lo stato nuovo: ridisegna i due tab; «Start over» compare se la lista non è più quella di partenza. */
   cambia(stato: Stato): void;
-  /** Il fumetto del tab aperto, in HTML (markdown.ts): sopra l'elemento dato (sotto, se sopra non c'è spazio). */
-  fumetto(html: string, accanto?: Element): void;
+  /**
+   * Il fumetto del tab aperto, in HTML (markdown.ts): sopra l'elemento dato (sotto, se sopra non c'è spazio), con la
+   * testa della mascotte nell'umore dato (umoreDelFumetto).
+   */
+  fumetto(html: string, umore: Umore, accanto?: Element): void;
   /** L'altro tab, come se lo avesse scelto chi guarda, col focus sul tab. */
   vaiA(tab: Modo): void;
   /** Il tooltip del pulsante, per il clic su quelli che nella demo non fanno altro. */

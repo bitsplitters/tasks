@@ -104,6 +104,14 @@ export function avviso(messaggio: string): string {
   return `${emoji('tip')} ${corpo}`;
 }
 
+/** La faccia della mascotte nel fumetto della demo (spec 2026-11-21-mascotte-nel-sito-design.md, §2.2). */
+export type Umore = 'sorpreso' | 'contento';
+
+/** Sorpresa per un avviso del bot (avviso(): l'emoji tip in testa), contenta per le altre risposte. */
+export function umoreDelFumetto(md: string): Umore {
+  return md.startsWith(`${emoji('tip')} `) ? 'sorpreso' : 'contento';
+}
+
 /** Oltre questa lunghezza l'elenco dei token tolti si chiude con «…» (TokenTolti.ELENCO_MAX). */
 const ELENCO_MAX = 1500;
 

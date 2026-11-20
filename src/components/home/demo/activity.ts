@@ -17,7 +17,7 @@ import { montaAzione, type Azione } from './pannello.ts';
 import { TASTI_DELLA_PRIMA_RIGA, montaPrimaRiga } from './primariga.ts';
 import { invertiSpunta } from './regole.ts';
 import { contestoDellActivity } from './righe.ts';
-import { rispostaDellEsito } from './testi.ts';
+import { rispostaDellEsito, umoreDelFumetto } from './testi.ts';
 
 /** Quanto il bot ci mette a rispondere a Save o Delete: intanto i tre puntini al posto della scritta (Button). */
 const ATTESA_MS = 400;
@@ -145,7 +145,7 @@ export function montaActivity(scena: HTMLElement, condiviso: Condiviso): Activit
     }
     const md = rispostaDellEsito(esito);
     if (!md || win.dataset.panel !== pos) return;
-    condiviso.fumetto(markdown(md, contestoDellActivity(condiviso.stato())), inFondo());
+    condiviso.fumetto(markdown(md, contestoDellActivity(condiviso.stato())), umoreDelFumetto(md), inFondo());
   }
 
   scena.addEventListener('click', (e) => {

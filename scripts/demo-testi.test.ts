@@ -9,7 +9,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { PROPOSTO, statoIniziale } from '../src/components/home/demo/modello.ts';
 import {
   TESTI, avviso, elencoDeiTolti, emoji, rispostaDellEsito, testo, testoDegliErrori, testoDelPromemoria,
-  testoDellaDomanda, testoDi,
+  testoDellaDomanda, testoDi, umoreDelFumetto,
 } from '../src/components/home/demo/testi.ts';
 import { FRASI, FRASI_NEL_CANALE } from '../src/components/home/scene-data.ts';
 
@@ -228,4 +228,10 @@ test("Owner blu: nel selettore del canale la frase del claim, nel pannello dell'
   assert.equal(FRASI_NEL_CANALE.owner.blue, TESTI['tasklist.slct.activities.hint.owner.take']);
   assert.equal(FRASI.owner.blue, TESTI['tasklist.slct.activities.hint.owner.edit']);
   assert.deepEqual({ ...FRASI_NEL_CANALE, owner: FRASI.owner }, FRASI);
+});
+
+test('umoreDelFumetto: la mascotte è sorpresa per gli avvisi del bot e contenta per le altre risposte', () => {
+  assert.equal(umoreDelFumetto(avviso(testo('tasklist.btn.clean.noselection'))), 'sorpreso');
+  assert.equal(umoreDelFumetto(testoDegliErrori(['tasklist.modal.alert.date.minutes.error'])), 'sorpreso');
+  assert.equal(umoreDelFumetto(testo('tasklist.reopen.cancelled')), 'contento');
 });

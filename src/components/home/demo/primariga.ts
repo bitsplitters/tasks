@@ -17,7 +17,7 @@ import type { Quando } from './quando.ts';
 import { conTuttiRiaperti, nelCanale, pulisci, pulisciConfermato, riapri, testoDellaLista } from './regole.ts';
 import type { Esito } from './regole.ts';
 import { contestoDellActivity } from './righe.ts';
-import { avviso, emoji, rispostaDellEsito, testo } from './testi.ts';
+import { avviso, emoji, rispostaDellEsito, testo, umoreDelFumetto } from './testi.ts';
 import { nuovoNumero, riquadroAvviso } from './ui/comune.ts';
 import { apriDialogo, inAttesa } from './ui/dialogo.ts';
 import type { Dialogo, Pulsante } from './ui/dialogo.ts';
@@ -193,7 +193,7 @@ export function montaPrimaRiga(scena: HTMLElement, condiviso: Condiviso,
 
   const tasto = (id: string) => dove.querySelector<HTMLButtonElement>(`[data-k="d-${id}"]`);
   const fumetto = (md: string, accanto: Element) =>
-    condiviso.fumetto(markdown(md, contestoDellActivity(condiviso.stato())), accanto);
+    condiviso.fumetto(markdown(md, contestoDellActivity(condiviso.stato())), umoreDelFumetto(md), accanto);
 
   /** Il dialogo chiuso da Esc, dalla ✕ o dal velo: non c'è più niente da chiudere. */
   const dimentica = () => {

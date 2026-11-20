@@ -18,6 +18,7 @@ import type { Condiviso } from './demo/condiviso.ts';
 import { statoIniziale } from './demo/modello.ts';
 import type { Stato } from './demo/modello.ts';
 import { nelCanale, nellActivity } from './demo/regole.ts';
+import type { Umore } from './demo/testi.ts';
 
 /**
  * Quanto resta il fumetto: tre secondi e mezzo, di più per un testo lungo, che va letto (gli errori del promemoria,
@@ -41,6 +42,25 @@ const inOrdine = (_: string, v: unknown) =>
 /** Lo stato come conta per Start over: dove sta la lista no, perché la spostano i tab. */
 const impronta = (stato: Stato) => JSON.stringify({ ...stato, inActivity: false }, inOrdine);
 
+/** La testa della mascotte a sinistra del testo (spec 2026-11-21-mascotte-nel-sito-design.md, §2.2): decorativa. */
+function testa(umore: Umore): HTMLImageElement {
+  const img = document.createElement('img');
+  img.className = 'dm-testa';
+  img.src = `/mascotte/testa-${umore}.svg`;
+  img.alt = '';
+  img.width = 34;
+  img.height = 34;
+  return img;
+}
+
+/** Il testo del bot, accanto alla testa. */
+function testoDelFumetto(html: string): HTMLSpanElement {
+  const s = document.createElement('span');
+  s.className = 'dm-testo';
+  s.innerHTML = html;
+  return s;
+}
+
 export function avviaDemo(): void {
   const radice = document.querySelector<HTMLElement>('[data-demo]');
   if (radice) avvia(radice);
@@ -57,6 +77,8 @@ function avvia(radice: HTMLElement): void {
   let stato = statoIniziale();
   let modo: Modo = 'channel';
   let timerFumetto = 0;
+  // Le due teste del fumetto, caricate prima che servano: il primo fumetto non deve comparire senza.
+  for (const u of ['sorpreso', 'contento'] as const) new Image().src = `/mascotte/testa-${u}.svg`;
 
   function nascondiFumetto(): void {
     clearTimeout(timerFumetto);
@@ -79,13 +101,13 @@ function avvia(radice: HTMLElement): void {
    * (decisione dell'utente del 2026-11-20). La punta va dove sta il centro dell'elemento, anche quando il fumetto è
    * spinto dentro la scena; senza elemento non c'è.
    */
-  function fumetto(html: string, accanto?: Element): void {
+  function fumetto(html: string, umore: Umore, accanto?: Element): void {
     nascondiFumetto();
     tooltip.nascondi();
     const scena = scene[modo];
     const f = scena.querySelector<HTMLElement>('.dm-bubble');
     if (!f) return;
-    f.innerHTML = html;
+    f.replaceChildren(testa(umore), testoDelFumetto(html));
     const s = scena.getBoundingClientRect();
     const x0 = s.left + scena.clientLeft;
     const y0 = s.top + scena.clientTop;

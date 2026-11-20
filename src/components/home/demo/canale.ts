@@ -27,7 +27,9 @@ import {
 } from './regole.ts';
 import type { Domanda, Esito } from './regole.ts';
 import { contestoDelCanale } from './righe.ts';
-import { avviso, rispostaDellEsito, testo, testoDegliErrori, testoDelPromemoria, testoDi } from './testi.ts';
+import {
+  avviso, rispostaDellEsito, testo, testoDegliErrori, testoDelPromemoria, testoDi, umoreDelFumetto,
+} from './testi.ts';
 import { mostraEffimero, togliEffimero } from './ui/effimero.ts';
 import { montaMenzioni, type Menzioni } from './ui/menzioni.ts';
 import { apriModale, type Modale } from './ui/modale.ts';
@@ -81,7 +83,7 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
 
   /** La risposta del bot nel fumetto, accanto al selettore dei task o all'elemento dato. */
   function rispondi(md: string | null, accanto: Element = sel): void {
-    if (md) condiviso.fumetto(markdown(md, contestoDelCanale(stato())), accanto);
+    if (md) condiviso.fumetto(markdown(md, contestoDelCanale(stato())), umoreDelFumetto(md), accanto);
   }
 
   /**

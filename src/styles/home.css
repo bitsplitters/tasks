@@ -277,15 +277,22 @@ a.h-premium:hover { background: var(--accent); color: var(--on-accent); }
   box-shadow: 0 8px 16px rgba(0, 0, 0, .4); pointer-events: none;
 }
 .dm-bubble:empty { opacity: 0; }
+/* La testa della mascotte a sinistra del testo del bot (demo.ts; spec 2026-11-21-mascotte-nel-sito-design.md,
+   nel repo team-tasks-manager, §2.2). Il fumetto è più largo di testa e spazio, 42 px: il testo ha la larghezza di
+   prima. */
+.dm-bubble { display: flex; align-items: center; gap: 8px; max-width: min(342px, calc(100% - 24px)); }
+.dm-testa { flex: none; width: 34px; height: 34px; }
+.dm-testo { min-width: 0; }
 /* Le emoji del testo del bot (markdown.ts) stanno sulla riga, come in Discord. */
 .dm-bubble .sc-emoji { display: inline-block; vertical-align: -.35em; }
 /* La riga -# e le voci degli errori del promemoria, in px come il resto del fumetto. */
 .dm-bubble .sc-subtext { font-size: 12px; }
 .dm-bubble .sc-li { margin-left: 18px; }
 /* Nell'Activity il fumetto è quello della pagina (activity: Bubble.css, Notice.css, i token --bubble-*): bianco, coi
-   colori del tema chiaro di Discord dentro, e la punta verso il pulsante (demo.ts la mette in --punta). */
+   colori del tema chiaro di Discord dentro, e la punta verso il pulsante (demo.ts la mette in --punta). Largo 320 px
+   per il testo più i 42 della testa della mascotte. */
 .scene[data-scene="activity"] .dm-bubble {
-  max-width: min(320px, calc(100% - 24px)); padding: 10px 12px; background: #ffffff; color: #313338;
+  max-width: min(362px, calc(100% - 24px)); padding: 10px 12px; background: #ffffff; color: #313338;
   font-weight: 400; line-height: 1.375; box-shadow: 0 8px 24px rgba(0, 0, 0, .45); overflow-wrap: anywhere;
 }
 .scene[data-scene="activity"] .dm-bubble[data-placement]:not(:empty)::after {
