@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import VetrinaFont from '../../components/VetrinaFont.astro';
+import { docsCard } from '../../lib/preview-card';
+import { righe, quantiTask } from '../../lib/lista-pronta';
+import '../../styles/docs.css';
+import '../../styles/use-cases.css';
+
+// L'indice dei casi d'uso (spec 2026-11-20-casi-d-uso-sito-design.md, §6, nel repo team-tasks-manager). Il <title>
+// porta «templates», la parola con cui si cerca; nel testo le liste sono «ready-made lists», per non confonderle
+// con i template che un giorno gli utenti creeranno nel bot (voce del tracker). Ogni caso mostra le prime righe
+// della sua lista: si vede subito che è testo da incollare.
+const TITLE = 'Discord To-Do List Templates and Use Cases — Team Tasks Manager';
+const H1 = 'Ready-made lists for Discord teams';
+const SUBTITLE =
+  'Six jobs that Discord teams repeat, each with a list you paste into /create-list. Change it as you go: it\'s yours.';
+
+const casi = (await getCollection('useCases')).sort((a, b) => a.data.order - b.data.order);
+// Nel sottotitolo della pagina il nome del comando non va a capo sul trattino.
+const [primaDelComando, dopoIlComando] = SUBTITLE.split('/create-list');
+// Le prime righe: i task in cima, senza i loro subtask, fino a quattro.
+const anteprima = (lista: string) => righe(lista).filter((r) => !r.startsWith(' ')).slice(0, 4);
+---
+<Base title={TITLE} previewTitle={H1} description={SUBTITLE} embed={docsCard(H1, SUBTITLE, '/use-cases/', 'See the lists')}>
+  <VetrinaFont slot="head" />
+  <main class="docs-main">
+    <article class="prose uc uc-index wrap">
+      <h1>{H1}</h1>
+      <p class="subtitle">{primaDelComando}<span class="uc-nobr">/create-list</span>{dopoIlComando}</p>
+      <ul class="uc-cases" role="list">
+        {casi.map((c) => (
+          <li>
+            <a href={`/use-cases/${c.id}/`}>
+              <span class="uc-case-t">{c.data.name}</span>
+              <span class="uc-case-d">{c.data.description}</span>
+              <span class="uc-case-l" translate="no">{anteprima(c.data.list).join('\n')}</span>
+              <span class="uc-case-n">{quantiTask(c.data.list)} tasks</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <h2>Every list works on any server</h2>
+      <p>
+        Each list has 20 tasks at most, subtasks included, and no codes tied to a server. Owners, reminders and webhooks
+        aren't in the text: they need people and roles from your server, and you add them with their buttons once the
+        list is in the channel. To rewrite a list later, use <strong>Bulk update</strong> <img class="inline-ic" src="/icons/edit.png" alt="" />:
+        see <a href="/docs/writing-a-list/">Writing a list</a>.
+      </p>
+      <section class="uc-final" aria-labelledby="uc-final-t">
+        <h2 id="uc-final-t">Add TTM to your server</h2>
+        <p>Then pick a list, run <code>/create-list</code> and paste it.</p>
+        <div class="cta-row">
+          <a class="btn" href="/invite">Add to Discord</a>
+          <a class="btn-ghost" href="/docs/getting-started/">Get started</a>
+        </div>
+      </section>
+    </article>
+  </main>
+</Base>

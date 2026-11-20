@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { problemi } from './lib/lista-pronta';
 
 // Content Layer (Astro 5+): la collection dichiara da sola DOVE stanno i file, con un loader.
 // Prima era implicito — `type: 'content'` e la cartella omonima sotto src/content/ — e quella forma
@@ -28,4 +29,25 @@ const docs = defineCollection({
   }),
 });
 
-export const collections = { docs };
+// I casi d'uso (spec 2026-11-20-casi-d-uso-sito-design.md, §6, nel repo team-tasks-manager): una pagina per un
+// lavoro che i team ripetono su Discord, con la sua lista pronta. `title` è l'H1, `seoTitle` il <title>, `name` il
+// nome corto dell'indice e dei rimandi. La lista passa dal controllo di lista-pronta.ts: se il bot la rifiuterebbe,
+// la build si ferma.
+const useCases = defineCollection({
+  loader: glob({ base: './src/content/use-cases', pattern: '**/*.md' }),
+  schema: z
+    .object({
+      title: z.string(),
+      seoTitle: z.string(),
+      name: z.string(),
+      description: z.string(),
+      order: z.number(),
+      listTitle: z.string(),
+      list: z.string().transform((s) => s.replace(/\s+$/, '')),
+    })
+    .superRefine((d, ctx) => {
+      for (const message of problemi(d.listTitle, d.list)) ctx.addIssue({ code: 'custom', message, path: ['list'] });
+    }),
+});
+
+export const collections = { docs, useCases };
