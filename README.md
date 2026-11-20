@@ -38,7 +38,8 @@ open; a link to another one opens it.
 `src/content/use-cases/*.md` are the pages under `/use-cases/` (decided 2026-11-20): one job that Discord teams
 repeat, with a ready-made list. The header carries `title` (the H1), `seoTitle` (the browser title), `name` (the short
 name in the index), `description`, `order`, `listTitle` and `list`; the body is the rest of the page. Each list also
-becomes a file, `/use-cases/<slug>.txt`, in the format of the bot's **Download**: `/create-list` imports it.
+becomes a file, `/use-cases/<slug>.txt`, in the format of the bot's **Download**: `/create-list` imports it. A new
+page also shows up by itself in the index and in the home's *What teams use it for*, in the order of `order`.
 
 The list must work on any server, Free plan included, so **the build stops** if it has more than 20 tasks (subtasks
 included), more than 4000 characters or a title over 90, a line that isn't `- task` or `  - subtask` (two spaces), or
