@@ -34,8 +34,8 @@ const { title, description = DEFAULT_DESCRIPTION, card = 'small', image: largeIm
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const image = card === 'large'
-  ? largeImage ?? { path: '/og/ttm-card.png', width: 1200, height: 630, alt: 'Team Tasks Manager: coordinate your team where it already talks.' }
-  : { path: '/og/ttm-logo.png', width: 512, height: 512, alt: 'Team Tasks Manager logo' };
+  ? largeImage ?? { path: '/og/ttm-card.png?v=2', width: 1200, height: 630, alt: 'Team Tasks Manager: coordinate your team where it already talks.' }
+  : { path: '/og/ttm-logo.png?v=2', width: 512, height: 512, alt: 'Team Tasks Manager logo' };
 
 // Discord ignora un payload oltre i 3.000 byte, contando gli escape per intero, e non lo segnala:
 // la scheda semplicemente non compare. Meglio fermare la build che pubblicarla.
