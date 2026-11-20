@@ -1,0 +1,36 @@
+---
+/*
+ * I casi d'uso nella home (spec 2026-11-20-casi-d-uso-sito-design.md, §11.3, nel repo team-tasks-manager): fra il
+ * perché (Pillars) e le funzionalità (Features), dove chi legge si chiede se TTM fa per lui. Scelta dell'utente del
+ * 2026-11-20. Ogni scheda porta alla sua pagina e mostra il nome del caso e le prime tre righe della lista, come
+ * si scrivono: è il segno che c'è un testo pronto da incollare, e la tiene distinta dalle sei voci di Features che
+ * vengono subito dopo. Sul telefono resta una riga col nome e il numero dei task. I casi vengono dalla collezione
+ * `useCases`: una pagina nuova compare qui da sola.
+ */
+import { getCollection } from 'astro:content';
+import { righe, quantiTask } from '../../lib/lista-pronta';
+
+const casi = (await getCollection('useCases')).sort((a, b) => a.data.order - b.data.order);
+// Le prime tre righe della lista, subtask compresi: il primo gruppo coi suoi passi dice di più dei soli nomi dei
+// gruppi («Before», «Brackets»). Le righe lunghe finiscono coi puntini.
+const anteprima = (lista: string) => righe(lista).slice(0, 3).join('\n');
+---
+<section class="h-sec wrap" id="use-cases" aria-labelledby="h-uc-title">
+  <h2 id="h-uc-title">What teams use it for.</h2>
+  <p class="h-intro">
+    Pick the one that sounds like your server. Each comes with a ready-made list you paste
+    into <span class="h-nobr">/create-list</span>.
+  </p>
+  <ul class="h-ucs" role="list">
+    {casi.map((c) => (
+      <li>
+        <a class="h-uc" href={`/use-cases/${c.id}/`}>
+          <h3>{c.data.name}</h3>
+          <span class="h-uc-l" translate="no" aria-hidden="true">{anteprima(c.data.list)}</span>
+          <span class="h-uc-n">{quantiTask(c.data.list)} tasks</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <p class="h-ucs-more"><a class="h-link" href="/use-cases/">See all ready-made lists</a></p>
+</section>
