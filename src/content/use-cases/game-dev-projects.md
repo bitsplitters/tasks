@@ -30,7 +30,7 @@ list: |
 
 - **Groups and subtasks** <img class="inline-ic" src="/icons/single_task.png" alt="" /> turn each area of the game into a group, with its pieces as steps.
 - **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> gives *Art* to the artist and *Code* to the programmer. Only they tick their tasks.
-- **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" />: tick a task, and TTM calls your other systems, such as a CI or a spreadsheet, anything that takes an HTTP request. It's a Premium feature, unlocked for every server during the beta.
+- **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" />: tick a task, and TTM calls your other systems, such as a CI or a spreadsheet, anything that takes an HTTP request. It's a [Premium](/premium/) feature, unlocked for every server during the beta.
 - **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> opens the list in a window inside Discord, so the team reviews it together during the call.
 
 ## Recommended setup

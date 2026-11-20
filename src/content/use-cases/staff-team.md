@@ -33,7 +33,7 @@ list: |
 - **Put the list in the staff channel**, where only the team can read it.
 - **Give each task to a role, not a person.** Use **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> and pick *Moderators* or *Helpers*: whoever is online does it. A person as owner fits a job that only one member can do. See [Owners and tags](/docs/owners-and-tags/).
 - **Keep the buttons for the staff.** Choose who can use TTM in *Server Settings → Integrations → Team Tasks Manager*, then press **Load permissions** in `/config app`. Members who aren't allowed see the list as read-only: see [Sync permissions](/docs/configuration/#sync-permissions).
-- **One reminder per deadline.** Put one on the staff meeting, an hour before it starts. Reminders can also repeat: it's a Premium feature, switched on in [`/config app`](/docs/configuration/#recurring-reminders).
+- **One reminder per deadline.** Put one on the staff meeting, an hour before it starts. Reminders can also repeat: it's a [Premium](/premium/) feature, switched on in [`/config app`](/docs/configuration/#recurring-reminders).
 - **Start over each week.** Press **Reopen all**, then **New date**, and pick the new date of the first reminder. The others keep the same distance from it: see [Reopen all](/docs/list-actions/#reopen-all).
 
 ## Small server, big server
@@ -57,7 +57,7 @@ Any member of the role, and whoever has *Manage messages* on the channel. Everyo
 
 ### Can the list repeat on its own?
 
-The list doesn't: you start it over with **Reopen all**. Reminders can repeat, with an interval and a number of repetitions. That's a Premium feature, unlocked for every server during the beta: see [Repeating reminders](/docs/reminders/#repeating-reminders).
+The list doesn't: you start it over with **Reopen all**. Reminders can repeat, with an interval and a number of repetitions. That's a [Premium](/premium/) feature, unlocked for every server during the beta: see [Repeating reminders](/docs/reminders/#repeating-reminders).
 
 ### Can a moderator get the reminder by direct message?
 

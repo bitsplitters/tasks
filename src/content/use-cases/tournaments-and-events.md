@@ -44,7 +44,7 @@ list: |
 ## Small server, big server
 
 - **A game night with friends:** keep the four groups' first tasks and drop the rest. One owner, no reminders.
-- **A tournament with a staff of ten:** one owner per group, and a role as owner where several people share a job. Several people as owner is a Premium feature, unlocked during the beta: see [Owners and tags](/docs/owners-and-tags/).
+- **A tournament with a staff of ten:** one owner per group, and a role as owner where several people share a job. Several people as owner is a [Premium](/premium/) feature, unlocked during the beta: see [Owners and tags](/docs/owners-and-tags/).
 
 ## What TTM doesn't do here
 
