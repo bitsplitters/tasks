@@ -64,12 +64,14 @@ const REGOLE = '<span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, 
   'add them with <strong>Owner</strong> or <strong>Tag</strong>, or write their code, like ' +
   '<code>&lt;@123456789012345678&gt;</code>. To write @ without a mention: <code>\\@</code></span>';
 
-test('modaleDelTesto: la legenda dei nomi, il paragrafo col testo e i tag coi nomi, obbligatorio fino a 4000; la riga del blocco sotto', () => {
+test('modaleDelTesto: la legenda coi nomi di tutta la lista, il paragrafo col testo e i tag coi nomi, obbligatorio fino a 4000; la riga del blocco sotto', () => {
   const s0 = statoIniziale();
   const m = modaleDelTesto(s0, '2');
   assert.equal(m.titolo, 'Edit the content of your task');
   assert.equal(m.solaLettura, undefined);
-  assert.equal(testoFisso(m.campi[0]), REGOLE);
+  // Le persone sono quelle di tutta la lista, come in Bulk update (SegnapostoDellaModale.apri con la lista): Mia è
+  // l'owner del task 3, e nel Contenuto del 2 si scrive per nome.
+  assert.equal(testoFisso(m.campi[0]), `<span class="sc-subtext">People: @Mia</span>${REGOLE}`);
   assert.deepEqual(m.campi[1], {
     tipo: 'testo', id: 'task', etichetta: 'Mandatory field', valore: 'Lock the scrim block vs. Nova Collective',
     obbligatorio: true, min: 1, max: 4000, paragrafo: true,

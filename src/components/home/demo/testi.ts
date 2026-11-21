@@ -250,6 +250,9 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.modal.names.unknown.error':
     "I can't find **{0}**. Someone new: add them with **Owner** or **Tag**, or write their code, like " +
     '`<@123456789012345678>`. To write @ without a mention: `\\@`',
+  'activity.content.unknown.error':
+    "I can't find **{0}**. Add people with **Owner** or **Tag**, not in the text. To write @ without a mention: " +
+    '`\\@`',
   'tasklist.slct.task.last.error':
     'It is not possible to delete the last remaining task. To delete the list, use **Delete list** in **More**.',
   // Il promemoria

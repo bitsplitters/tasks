@@ -14,13 +14,14 @@ import {
   applicaOwner, applicaOwnerActivity, applicaPromemoria, applicaTag, applicaTagActivity, applicaWebhook, avanzamento,
   campiDelPromemoria, campiDellaNuovaData, carrello, conTuttiRiaperti, eliminaTask, eliminaTaskConfermato,
   imparaIlFuso,
-  invertiSpunta, nelCanale, nellActivity, prosa, prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri,
+  invertiSpunta, nelCanale, nellActivity, nomeSconosciuto, nomeSconosciutoNelContenuto, prosa, prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri,
   riapriConfermato, rifiutoDelCarrello, rinumera,
   salvaTesto, salvaTestoActivity, sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, testoDellaLista, togliOwner,
   togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook, tokenTolti, validaNuovaData, validaPromemoria,
 } from '../src/components/home/demo/regole.ts';
 import type { Campi, Domanda, Esito } from '../src/components/home/demo/regole.ts';
 import { PRIMA_RIGA, TASTI } from '../src/components/home/scene-data.ts';
+import { TESTI, testoDi } from '../src/components/home/demo/testi.ts';
 
 /** I task come «posizione prima parola»: '2.1 Clip'. */
 const elenco = (s: Stato) => s.lista.tasks.map((t) => `${posizione(t.pos)} ${t.testo.split(' ')[0]}`);
@@ -632,4 +633,16 @@ test('il testo della lista è quello della modale di Modifica in blocco (ModalUI
   assert.equal(riga(conIlTask(3, { webhook: 'Staff alerts' }), 3), `- [] {{wb=Staff alerts}} ${vod}`);
   assert.equal(riga(conTesto(1, `Lock the scrim block ${LEO_TAG}`), 1), `- [] Lock the scrim block ${LEO_TAG}`);
   assert.equal(riga(conSpunte(['2']), 2), ' - [X] Clip the three teamfights for the review');
+});
+
+test('il nome sconosciuto: nel canale il menu o il codice; nel Contenuto dell\'Activity solo i menu, perché lì le menzioni scritte si tolgono (AzioniDellaPagina.contenutoNonLetto)', () => {
+  assert.deepEqual(nomeSconosciuto('@Bea'),
+    { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.names.unknown.error', argomenti: ['@Bea'] } });
+  const nelContenuto = nomeSconosciutoNelContenuto('@Bea');
+  assert.deepEqual(nelContenuto,
+    { tipo: 'rifiuto', testo: { chiave: 'activity.content.unknown.error', argomenti: ['@Bea'] } });
+  assert.ok('activity.content.unknown.error' in TESTI);
+  const scritto = testoDi((nelContenuto as Extract<Esito, { tipo: 'rifiuto' }>).testo);
+  assert.equal(scritto, "I can't find **@Bea**. Add people with **Owner** or **Tag**, not in the text. To write @ " +
+    'without a mention: `\\@`');
 });

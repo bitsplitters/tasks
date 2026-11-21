@@ -15,8 +15,8 @@ import { ADESSO, PROPOSTO, WEBHOOK, fusoDi, posizione } from './modello.ts';
 import type { Stato, Task } from './modello.ts';
 import {
   applicaOwnerActivity, applicaPromemoria, applicaTagActivity, applicaWebhook, eliminaTask, eliminaTaskConfermato,
-  nomeSconosciuto, prosaDelTask, salvaTestoActivity, sceltaDellOwner, tagDelTesto, togliOwner, togliOwnerConfermato,
-  togliPromemoria, togliTag, togliWebhook,
+  nomeSconosciutoNelContenuto, prosaDelTask, salvaTestoActivity, sceltaDellOwner, tagDelTesto, togliOwner,
+  togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook,
 } from './regole.ts';
 import type { Esito } from './regole.ts';
 import { dispositivoDi, istanteDi, quandoDa, troppoVicina } from './quando.ts';
@@ -216,7 +216,8 @@ export function montaAzione(area: HTMLElement, stato: Stato, pos: string, acceso
         pronto: () => scritto && testoCambiato(stato, task, campo.value),
         esito: (s) => {
           const letto = coiCodici(campo.value, rubricaDi(s), prosaDelTask(task));
-          return letto.sconosciuto ? nomeSconosciuto(letto.sconosciuto) : salvaTestoActivity(s, pos, letto.testo);
+          return letto.sconosciuto ? nomeSconosciutoNelContenuto(letto.sconosciuto)
+            : salvaTestoActivity(s, pos, letto.testo);
         },
         chiude: false,
         smonta: () => campo.removeEventListener('input', alTesto),

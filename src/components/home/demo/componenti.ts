@@ -72,7 +72,9 @@ export function modaleDelTesto(stato: Stato, pos: string): Modale {
   return {
     titolo: testo('tasklist.modal.task.title'),
     campi: [
-      testoFisso(stato, legendaDeiNomi(task.testo, rubrica, ADESSO)),
+      // Le persone di tutta la lista, come Bulk update: la modale mostra un task, ma chi scrive può nominare chiunque
+      // la lista citi (SegnapostoDellaModale.apri con la lista).
+      testoFisso(stato, legendaDeiNomi(testoDellaLista(stato.lista), rubrica, ADESSO)),
       {
         tipo: 'testo', id: 'task', etichetta: testo('tasklist.modal.task.label'), valore: coiNomi(task.testo, rubrica),
         obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,
