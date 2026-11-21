@@ -43,7 +43,7 @@ Write `@` and the name:
 - Ask @Ava to check the rules, then tell @Moderators
 ```
 
-- **A person** goes by the name the server shows: their server nickname, otherwise their display name, otherwise their username. Upper and lower case don't matter. By name you write the people the list already mentions. In the **Content** form of a task, the people that task mentions: add the others with **Owner** or **Tag**.
+- **A person** goes by the name the server shows: their server nickname, otherwise their display name, otherwise their username. Upper and lower case don't matter. By name you write the people the list already mentions. In the **Content** form of a task, the people its text mentions: add the others with **Owner** or **Tag**.
 - **Two people with the same name** show with their username in brackets: `@Mario (mario.rossi)` and `@Mario (mario_b)`. Write them the same way. A name that matches more than one person can't be saved: the message lists the forms to write.
 - **A role** is `@` and its name: `@Moderators`. Every role of the server works, even one the list doesn't mention yet.
 - **Someone the list doesn't mention yet** is added with the **Owner** or **Tag** button, which pick from Discord's own menu. In the text, write their code instead: see [Writing someone new](#writing-someone-new).
