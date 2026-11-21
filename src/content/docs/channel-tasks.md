@@ -34,7 +34,7 @@ After you use **Owner**, **Tag** or **Reminder**, the button goes back to grey, 
 
 ## Content
 
-**Blue** opens a form with the task's text. Line breaks become spaces. Owners, reminders and webhooks typed there are removed, and the bot tells you what it removed: they have their own buttons. A text left empty, one with a reminder in months, or one that would make the list too long isn't saved. People, roles and channels show by name, as in **Bulk update**. Mentions, links and emoji: see [Writing a list](/docs/writing-a-list/).
+**Blue** opens a form with the task's text. Line breaks become spaces. Owners, reminders and webhooks typed there are removed, and the bot tells you what it removed: they have their own buttons. A text left empty, one with a reminder in months, or one that would make the list too long isn't saved. People, roles and channels show by name, as in **Bulk update**. Someone the task doesn't mention yet comes from the **Owner** or **Tag** button. Mentions, links and emoji: see [Writing a list](/docs/writing-a-list/).
 
 While the form is open, the list is locked for the others. Saving unlocks it; the ✕ doesn't: see [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 

@@ -253,37 +253,10 @@ export function esempioDiData(adesso: number, zona: string): string {
   return `${domani} 18:00`;
 }
 
-/** Un nome con l'escape del Markdown, come MarkdownSanitizer.escape: un asterisco nel nome resta un asterisco. */
-function senzaMarkdown(nome: string): string {
-  return nome.replace(/[*_~`|>\\]/g, (c) => `\\${c}`);
-}
-
-/** L'ordine di String.CASE_INSENSITIVE_ORDER, carattere per carattere. */
-function senzaMaiuscole(a: string, b: string): number {
-  const x = a.toLowerCase();
-  const y = b.toLowerCase();
-  return x < y ? -1 : x > y ? 1 : 0;
-}
-
 /**
- * La legenda di una modale col testo di una lista (LegendaDeiNomi): in subtext, le persone, i ruoli e i canali che il
- * testo cita, in ordine di nome, poi il fuso delle date, le persone nuove e una `@` che non menziona nessuno. Le
- * liste della demo sono corte: il tetto dei 1.000 caratteri non scatta, e qui non c'è.
+ * La legenda della modale di Bulk update (LegendaDeiNomi): in subtext, il fuso delle date, le persone nuove e una `@`
+ * che non menziona nessuno. Niente elenco dei nomi: quelli che si possono usare si leggono già nel testo.
  */
-export function legendaDeiNomi(conId: string, rubrica: Rubrica, adesso: number): string {
-  const d = dizionario(delTesto(conId, rubrica));
-  const gruppi: Record<Voce['tipo'], string[]> = { persona: [], ruolo: [], canale: [] };
-  const visti = new Set<string>();
-  for (const [codice] of conId.matchAll(/<@&?\d{17,20}>|<#\d{17,20}>/g)) {
-    const v = [...d.at, ...d.hash].find((x) => x.codice === codice);
-    if (!v || visti.has(codice)) continue;
-    visti.add(codice);
-    gruppi[v.tipo].push((v.tipo === 'canale' ? '#' : '@') + senzaMarkdown(v.nome));
-  }
-  const chiavi = { persona: 'people', ruolo: 'roles', canale: 'channels' } as const;
-  const parti = (Object.keys(gruppi) as Voce['tipo'][]).filter((t) => gruppi[t].length > 0).map((t) =>
-    testo(`tasklist.modal.names.legend.${chiavi[t]}`,
-      gruppi[t].sort(senzaMaiuscole).join(', ')));
-  const regole = `-# ${regoleDelFuso(rubrica.zona, rubrica.personale, adesso)}`;
-  return parti.length > 0 ? `-# ${parti.join(' · ')}\n${regole}` : regole;
+export function legendaDeiNomi(rubrica: Rubrica, adesso: number): string {
+  return `-# ${regoleDelFuso(rubrica.zona, rubrica.personale, adesso)}`;
 }

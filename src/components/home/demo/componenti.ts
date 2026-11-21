@@ -59,9 +59,10 @@ function testoFisso(stato: Stato, md: string): Campo {
 }
 
 /**
- * La modale del contenuto (TaskListMdlTask.createTaskModal): la legenda dei nomi (LegendaDeiNomi), il campo a paragrafo
- * obbligatorio col testo del task, che porta i tag (TaskLogic.testoDellaModale), coi nomi al posto dei codici, poi la
- * riga sul blocco (AvvisoDelBlocco). Il tetto è quello di Discord: il
+ * La modale del contenuto (TaskListMdlTask.createTaskModal): il campo a paragrafo obbligatorio col testo del task, che
+ * porta i tag (TaskLogic.testoDellaModale), coi nomi al posto dei codici, poi la riga sul blocco (AvvisoDelBlocco).
+ * Niente legenda (SegnapostoDellaModale.apriSenzaLegenda): la modale cambia solo il testo, e le persone si aggiungono
+ * con Owner e Tag. Il tetto è quello di Discord: il
  * bot lo abbassa quando il resto della lista occupa la form di Modifica in blocco (TaskLogic.tettoDelTesto), cosa che
  * la lista corta della demo non fa sentire prima di 3700 caratteri.
  */
@@ -72,9 +73,6 @@ export function modaleDelTesto(stato: Stato, pos: string): Modale {
   return {
     titolo: testo('tasklist.modal.task.title'),
     campi: [
-      // Le persone di tutta la lista, come Bulk update: la modale mostra un task, ma chi scrive può nominare chiunque
-      // la lista citi (SegnapostoDellaModale.apri con la lista).
-      testoFisso(stato, legendaDeiNomi(testoDellaLista(stato.lista), rubrica, ADESSO)),
       {
         tipo: 'testo', id: 'task', etichetta: testo('tasklist.modal.task.label'), valore: coiNomi(task.testo, rubrica),
         obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,
@@ -129,7 +127,7 @@ export function modaleDellaNuovaData(campi: Campi): Modale {
 
 /**
  * La modale di Modifica in blocco (TaskListMdlEdit.modale) in sola lettura (spec §8.1): l'avviso della demo in cima,
- * «List title» col titolo, la legenda dei nomi, «List of activities» col testo della lista nel formato del bot
+ * «List title» col titolo, la legenda con le regole, «List of activities» col testo della lista nel formato del bot
  * (testoDellaLista), coi nomi al posto dei codici e le date nel fuso di chi guarda. I campi non si scrivono e Submit è
  * spento. Manca la riga del blocco (AvvisoDelBlocco): in sola lettura la lista non si
  * blocca.
@@ -145,7 +143,7 @@ export function modaleDiModificaInBlocco(stato: Stato): Modale {
         tipo: 'testo', id: 'title', etichetta: testo('tasklist.modal.edit.txt.title.label'),
         valore: stato.lista.titolo, obbligatorio: true, min: 1, max: TITOLO_MAX,
       },
-      testoFisso(stato, legendaDeiNomi(conId, rubrica, ADESSO)),
+      testoFisso(stato, legendaDeiNomi(rubrica, ADESSO)),
       {
         tipo: 'testo', id: 'list', etichetta: testo('tasklist.modal.edit.txt.list.label'),
         valore: coiNomi(conId, rubrica), obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,

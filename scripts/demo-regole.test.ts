@@ -635,13 +635,16 @@ test('il testo della lista è quello della modale di Modifica in blocco (ModalUI
   assert.equal(riga(conSpunte(['2']), 2), ' - [X] Clip the three teamfights for the review');
 });
 
-test('il nome sconosciuto: nel canale il menu o il codice; nel Contenuto dell\'Activity solo i menu, perché lì le menzioni scritte si tolgono (AzioniDellaPagina.contenutoNonLetto)', () => {
+test('il nome sconosciuto: in Bulk update il menu o il codice; nel Contenuto, del canale e dell\'Activity, solo i menu, perché lì si cambia solo il testo (ContenutoDellaModale.NOME_SCONOSCIUTO_NEL_CONTENUTO_ERROR)', () => {
   assert.deepEqual(nomeSconosciuto('@Bea'),
     { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.names.unknown.error', argomenti: ['@Bea'] } });
   const nelContenuto = nomeSconosciutoNelContenuto('@Bea');
   assert.deepEqual(nelContenuto,
-    { tipo: 'rifiuto', testo: { chiave: 'activity.content.unknown.error', argomenti: ['@Bea'] } });
-  assert.ok('activity.content.unknown.error' in TESTI);
+    { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.names.unknown.content.error', argomenti: ['@Bea'] } });
+  assert.ok('tasklist.modal.names.unknown.content.error' in TESTI);
+  assert.ok(!('activity.content.unknown.error' in TESTI));
+  for (const chiave of ['people', 'roles', 'channels'])
+    assert.ok(!(`tasklist.modal.names.legend.${chiave}` in TESTI), chiave);
   const scritto = testoDi((nelContenuto as Extract<Esito, { tipo: 'rifiuto' }>).testo);
   assert.equal(scritto, "I can't find **@Bea**. Add people with **Owner** or **Tag**, not in the text. To write @ " +
     'without a mention: `\\@`');

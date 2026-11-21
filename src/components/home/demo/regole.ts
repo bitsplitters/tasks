@@ -84,11 +84,12 @@ export function nomeSconosciuto(nome: string): Esito {
 }
 
 /**
- * Il nome sconosciuto nel Contenuto dell'Activity (AzioniDellaPagina.contenutoNonLetto): lì le menzioni scritte si
- * tolgono, come tag, quindi il bot rimanda solo ai menu di Owner e Tag, non al codice della persona.
+ * Il nome sconosciuto nel Contenuto di un task, nel canale (TaskListMdlTask) e nell'Activity
+ * (AzioniDellaPagina.contenutoNonLetto): lì si cambia solo il testo, quindi il bot rimanda ai menu di Owner e Tag, non
+ * al codice della persona (ContenutoDellaModale.NOME_SCONOSCIUTO_NEL_CONTENUTO_ERROR).
  */
 export function nomeSconosciutoNelContenuto(nome: string): Esito {
-  return { tipo: 'rifiuto', testo: { chiave: 'activity.content.unknown.error', argomenti: [nome] } };
+  return { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.names.unknown.content.error', argomenti: [nome] } };
 }
 
 /* 5a — La spunta, la barra, le posizioni, l'eliminazione. */

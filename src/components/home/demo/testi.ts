@@ -239,9 +239,6 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
     'become main tasks.\n\nSubmit to delete the task, or close the window to leave everything as it is.',
   'tasklist.modal.lock.hint':
     '-# Closing this form with *Cancel* or ✕ leaves the list locked: unlock it from **More → Unlock list**.',
-  'tasklist.modal.names.legend.people': 'People: {0}',
-  'tasklist.modal.names.legend.roles': 'Roles: {0}',
-  'tasklist.modal.names.legend.channels': 'Channels: {0}',
   'tasklist.modal.names.legend.zone.personal': 'Dates in your time zone, **{0}**, like `{1}`; in another one: `{2}`.',
   'tasklist.modal.names.legend.zone.server': "Dates in **{0}**, the server's time zone, like `{1}`; in another one: `{2}`.",
   'tasklist.modal.names.legend.people.new':
@@ -250,7 +247,7 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.modal.names.unknown.error':
     "I can't find **{0}**. Someone new: add them with **Owner** or **Tag**, or write their code, like " +
     '`<@123456789012345678>`. To write @ without a mention: `\\@`',
-  'activity.content.unknown.error':
+  'tasklist.modal.names.unknown.content.error':
     "I can't find **{0}**. Add people with **Owner** or **Tag**, not in the text. To write @ without a mention: " +
     '`\\@`',
   'tasklist.slct.task.last.error':
