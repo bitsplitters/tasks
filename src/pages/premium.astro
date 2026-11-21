@@ -52,12 +52,24 @@ const PUNTI = [
     <Compare />
     <Included />
 
-    <section class="h-sec wrap" aria-labelledby="p-why-title">
-      <h2 id="p-why-title">Why there's a paid plan.</h2>
-      <div class="p-text">
-        <p>Hosting one more server costs us very little. That's why Free is hosted by us and stays free, and why we will never switch the bot off to make you pay.</p>
-        <p>What costs is everything around it: the machines, the database and its backups, and above all our time. New features, fixes, one update after another, and answers in the community. Premium pays for that work, and a single Premium server covers the hosting of many free ones.</p>
-        <p>We're a small independent team. Premium is for the servers that need more, and it keeps TTM growing for everyone.</p>
+    {/* Chi fa TTM (2026-11-21): risponde ai dubbi di chi è indeciso (posso fidarmi di un team piccolo? ci sarà ancora?
+        chi mi risponde?) invece di giustificare il prezzo. Ogni affermazione dev'essere vera: le 15 versioni sono quelle
+        delle note di rilascio dalla 1.0.0 (23/10) alla 2.4.1 (21/11). Chiusura sul Founder finché il programma è aperto;
+        quando chiude, l'ultima frase diventa «Start on Free. If TTM earns its place in your server, Premium is there
+        when you need more.» Un commento Astro e non HTML: non finisce nella pagina pubblicata. */}
+    <section class="h-sec wrap" id="who" aria-labelledby="p-who-title">
+      <h2 id="p-who-title">Made by people you can talk to.</h2>
+      <div class="p-who">
+        <div class="p-text">
+          <p>Team Tasks Manager is made by <a class="h-link" href="https://bitsplitters.app">bitsplitters</a>, a small independent studio. We opened it to every Discord server because we believe teams work best where they already talk.</p>
+          <p>Alex works on TTM full time, writing the code and answering on our <a class="h-link" href="/docs/community/">Discord server</a>. Your idea reaches the person who can build it.</p>
+          <p>TTM gets better every week: 15 releases in under a month, all in the <a class="h-link" href="/docs/release-notes/">release notes</a>. Every update reaches every server, including those on the Free plan.</p>
+          <p>Premium lifts the limits for the servers that need more, and it funds the next update for everyone. If you believe in TTM too, the <a class="h-link" href="#founder">Founder badge</a> is the best way to tell us.</p>
+        </div>
+        <figure class="p-who-card">
+          <img src="/team/alex.jpg" alt="Portrait of Alex" width="256" height="256" loading="lazy" decoding="async" />
+          <figcaption><strong>Alex</strong> <span>Developer and community manager</span></figcaption>
+        </figure>
       </div>
     </section>
 

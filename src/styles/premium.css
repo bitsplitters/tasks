@@ -146,13 +146,32 @@
 .p-grid :is(h3, h4) { margin: 0 0 .3rem; font-size: 1.1rem; font-weight: 700; font-stretch: 105%; line-height: 1.45; }
 .p-grid p { margin: 0; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
 
-/* ── Perché, self-host e domande ─────────────────────────────────────────────────────────────── */
+/* ── Chi fa TTM, self-host e domande ─────────────────────────────────────────────────────────────── */
 /* Righe di 62ch al massimo (§3.6); il riquadro prende la stessa misura dei paragrafi. */
 .p-text { max-width: 62ch; font-size: 1.08rem; line-height: 1.65; color: var(--muted); text-wrap: pretty; }
 .p-text p { margin: 0 0 1rem; }
 /* «self-hosting licence» non si spezza sul trattino: i link di questi paragrafi sono di due parole. */
 .p-text .h-link { white-space: nowrap; }
 .p-text .callout { margin: 1.5rem 0 0; color: var(--text); }
+/* Chi fa TTM: la foto di Alex accanto al testo. Da 760 px la carta sta a destra della colonna del testo, che resta di
+   62ch (la colonna «auto» prende la misura del paragrafo, già limitata dal suo max-width); sotto, una riga compatta
+   (foto piccola, nome e ruolo) va prima del testo, così chi legge sa subito chi parla. */
+.p-who { display: grid; gap: 1.5rem; }
+.p-who-card { order: -1; display: flex; align-items: center; gap: 1rem; margin: 0; }
+.p-who-card img {
+  flex: none; width: 64px; height: 64px; border-radius: 50%; object-fit: cover;
+  border: 1px solid var(--line-2); background: var(--surface);
+}
+.p-who-card figcaption { display: flex; flex-direction: column; gap: .15rem; line-height: 1.35; }
+.p-who-card strong { font-family: var(--display); font-size: 1.08rem; font-weight: 700; color: var(--text); }
+/* Il ruolo va a capo pareggiato nella carta da desktop: con `pretty`, su due righe, Chrome lascia «manager» da solo. */
+.p-who-card span { font-size: .95rem; color: var(--muted); text-wrap: balance; }
+@media (min-width: 760px) {
+  .p-who { grid-template-columns: minmax(0, auto) auto; justify-content: start; align-items: start; gap: 3rem; }
+  .p-who-card { order: 0; flex-direction: column; text-align: center; width: 12rem; padding-top: .35rem; }
+  .p-who-card img { width: 128px; height: 128px; }
+  .p-who-card figcaption { align-items: center; }
+}
 /* Link testuali, non pulsanti: i pulsanti della pagina restano i due «Add to Discord» (§3.9). */
 .p-links { display: flex; flex-wrap: wrap; gap: .6rem 1.75rem; margin: 1.25rem 0 0; font-size: 1.05rem; }
 
