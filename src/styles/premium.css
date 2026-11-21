@@ -62,6 +62,10 @@
   padding: clamp(1.4rem, 3vw, 2rem); border: 1px solid var(--line-2); border-radius: 16px; background: var(--surface);
 }
 .p-card-premium { background: color-mix(in srgb, var(--accent) 6%, transparent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+/* La mascotte sbircia dal bordo alto della carta (Sbircia.astro). In colonna la carta le fa posto sopra di sé, così
+   non copre il fondo della carta Free: la parte visibile è 96 × 206 / 349 px, lo spazio fra le carte 1,25rem. */
+.p-card-premium { position: relative; }
+@media (max-width: 759px) { .p-card-premium { margin-top: calc(96px * 206 / 349 - 1.25rem + 8px); } }
 /* Affiancate, le card condividono le righe (subgrid): elenchi e pulsanti partono alla stessa altezza anche se Free
    non ha la frase del piano né la riga della beta. Dove subgrid manca, ogni card mette le sue righe in colonna. */
 @media (min-width: 760px) {

@@ -1,4 +1,5 @@
 ---
+import Sbircia from '../mascotte/Sbircia.astro';
 import DiscordLimit from './DiscordLimit.astro';
 /*
  * Lo switch fra annuale e mensile e le due card (spec della pagina Premium, §3.3, §4 e §6). Lo switch è un
@@ -47,6 +48,7 @@ const PREMIUM = [
     </article>
 
     <article class="p-card p-card-premium" aria-labelledby="p-premium-name">
+      <Sbircia bersaglio=".p-card-premium" class="mx-premium" />
       <h2 class="p-name" id="p-premium-name">Premium</h2>
       <div class="p-cost">
         <div class="p-annuale">

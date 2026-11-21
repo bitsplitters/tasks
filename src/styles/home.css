@@ -64,6 +64,11 @@
 
 /* ── I video ──────────────────────────────────────────────────────────────────────────────────────────── */
 .hv { margin: 0; min-width: 0; }
+/* Il contenitore dei pannelli: la mascotte che sbircia (Sbircia.astro) si appoggia al suo bordo alto. Sotto i 600 px
+   la finestra le fa posto sotto le tab, che altrimenti toccherebbe: la parte visibile è 96 × 206 / 349 px. Il margine
+   si fonde con quello sotto le tab (1rem: vince il più grande), quindi è tutto lo spazio fra tab e finestra. */
+.hv-stage { position: relative; }
+@media (max-width: 599px) { .hv-stage { margin-top: calc(96px * 206 / 349 + 4px); } }
 /* 3:2 come il video largo; 3:4 sotto i 600 px di finestra, come lo stretto (la soglia delle sorgenti, in
    HeroVideo.astro e hero-video.ts). Il video, quando parte, copre l'immagine ferma. */
 .hv-box {
