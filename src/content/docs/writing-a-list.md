@@ -33,7 +33,7 @@ The text of a single task follows the same rules, with one exception: owners, re
 
 In the text, people, roles and channels are written by name, as Discord shows them: `@Ava`, `@Moderators`, `#general`. When you save, TTM turns each name into a mention, so the list notifies and links as usual. When you open the form again, the names are back.
 
-Above the text, the form lists the people, roles and channels the list mentions, and the time zone of its dates. Every name the server's lists use is under **Show placeholders**, in [`/config lists`](/docs/config-lists/#show-placeholders). In the Activity, a line under the text says how to write them.
+Above the text, the form lists the people, roles and channels the list mentions, and the time zone of its dates. In the Activity, a line under the text says how to write them.
 
 ## Mentioning people and roles
 
@@ -164,7 +164,7 @@ Discord doesn't store names: it stores **IDs**, long numbers that never change, 
 | `#general` | `<#111222333444555666>` |
 | `2026-12-08 18:00` in UTC, before a triplet | `<t:1796752800>`, the date in seconds |
 
-You can still write or paste the codes: TTM saves them as they are. A Download file, or a text written before the names, works as it is. When someone changes their name on Discord, the form shows the new one, and nothing saved breaks, because the list keeps the ID. **Show placeholders**, in [`/config lists`](/docs/config-lists/#show-placeholders), shows each name of the server's lists with its code.
+You can still write or paste the codes: TTM saves them as they are. A Download file, or a text written before the names, works as it is. When someone changes their name on Discord, the form shows the new one, and nothing saved breaks, because the list keeps the ID.
 
 A code stays in the text in a few cases:
 

@@ -45,7 +45,7 @@ The reminder starts from ten minutes from now, in your time zone. For "remind me
 
 ## Write names, not IDs
 
-In the text of a list, write `@` and a name, or `#` and a channel: `@Ava: Post the rules in #general`. When you save, TTM turns them into mentions, and someone who isn't in the list yet is looked up on the server. Not sure how a name is written? **Show placeholders**, in [`/config lists`](/docs/config-lists/#show-placeholders), lists the ones your lists use. See [Writing a list](/docs/writing-a-list/#people-roles-and-channels-by-name).
+In the text of a list, write `@` and a name, or `#` and a channel: `@Ava: Post the rules in #general`. When you save, TTM turns them into mentions, and someone who isn't in the list yet is looked up on the server. See [Writing a list](/docs/writing-a-list/#people-roles-and-channels-by-name).
 
 ## Personalize webhooks with free variables
 
