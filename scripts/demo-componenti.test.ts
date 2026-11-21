@@ -55,23 +55,29 @@ test('opzioniDeiWebhook: i webhook già creati, per nome', () => {
   ]);
 });
 
-test('modaleDelTesto: il paragrafo col testo e i tag, obbligatorio fino a 4000; la riga del blocco sotto', () => {
+/** La seconda riga della legenda dei nomi (2.5.0): il fuso di chi guarda e domani alle 18:00. */
+const REGOLE = '<span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, like <code>2026-11-16 18:00</code>. ' +
+  'Someone new: <code>@</code> and their name. To write @ without a mention: <code>\\@</code></span>';
+
+test('modaleDelTesto: la legenda dei nomi, il paragrafo col testo e i tag coi nomi, obbligatorio fino a 4000; la riga del blocco sotto', () => {
   const s0 = statoIniziale();
   const m = modaleDelTesto(s0, '2');
   assert.equal(m.titolo, 'Edit the content of your task');
   assert.equal(m.solaLettura, undefined);
-  assert.deepEqual(m.campi[0], {
+  assert.equal(testoFisso(m.campi[0]), REGOLE);
+  assert.deepEqual(m.campi[1], {
     tipo: 'testo', id: 'task', etichetta: 'Mandatory field', valore: 'Lock the scrim block vs. Nova Collective',
     obbligatorio: true, min: 1, max: 4000, paragrafo: true,
   });
-  assert.equal(testoFisso(m.campi[1]), '<span class="sc-subtext">Closing this form with <em>Cancel</em> or ✕ leaves ' +
+  assert.equal(testoFisso(m.campi[2]), '<span class="sc-subtext">Closing this form with <em>Cancel</em> or ✕ leaves ' +
     'the list locked: unlock it from <strong>More → Unlock list</strong>.</span>');
-  assert.equal(m.campi.length, 2);
-  // I tag ci sono com'è scritto il testo; l'owner no, ha il suo pulsante.
-  const conTag = statoDi(applicaTag(s0, '2', [MIA], [COACHES]));
-  assert.equal((modaleDelTesto(conTag, '2').campi[0] as { valore: string }).valore,
-    `Lock the scrim block vs. Nova Collective <@&${COACHES}> <@${MIA}>`);
-  assert.equal((modaleDelTesto(s0, '3').campi[0] as { valore: string }).valore, 'VOD review: mid rotations, game 3');
+  assert.equal(m.campi.length, 3);
+  // I tag ci sono com'è scritto il testo, coi nomi; l'owner no, ha il suo pulsante.
+  const conTag = modaleDelTesto(statoDi(applicaTag(s0, '2', [MIA], [COACHES])), '2');
+  assert.equal((conTag.campi[1] as { valore: string }).valore, 'Lock the scrim block vs. Nova Collective @Coaches @Mia');
+  assert.equal(testoFisso(conTag.campi[0]),
+    `<span class="sc-subtext">People: @Mia · Roles: @Coaches</span>${REGOLE}`);
+  assert.equal((modaleDelTesto(s0, '3').campi[1] as { valore: string }).valore, 'VOD review: mid rotations, game 3');
   assert.throws(() => modaleDelTesto(s0, '9'));
 });
 
@@ -124,18 +130,21 @@ test('modaleDellaDomanda: il titolo della domanda e il suo testo, senza campi da
   assert.match(testoFisso(pulisci.campi[0]), /<strong>Roster &amp; scrims — week 12<\/strong>/);
 });
 
-test('modaleDiModificaInBlocco: in sola lettura, il titolo e la lista nel formato del bot; niente blocco', () => {
+test('modaleDiModificaInBlocco: in sola lettura, il titolo, la legenda e la lista coi nomi nel formato del bot; niente blocco', () => {
   const s0 = statoIniziale();
   const m = modaleDiModificaInBlocco(s0);
   assert.equal(m.titolo, 'Edit your activities list');
   assert.equal(m.solaLettura, AVVISO_ILLUSTRATIVO);
+  assert.match(testoDellaLista(s0.lista), new RegExp(`<t:\\d+> \\[0m,0m,0\\] <@${MIA}>: VOD review`));
   assert.deepEqual(m.campi, [
     {
       tipo: 'testo', id: 'title', etichetta: 'List title', valore: 'Roster & scrims — week 12', obbligatorio: true,
       min: 1, max: 90,
     },
+    { tipo: 'testoFisso', html: `<span class="sc-subtext">People: @Mia</span>${REGOLE}` },
     {
-      tipo: 'testo', id: 'list', etichetta: 'List of activities', valore: testoDellaLista(s0.lista),
+      tipo: 'testo', id: 'list', etichetta: 'List of activities',
+      valore: testoDellaLista(s0.lista).replace(/<t:\d+> \[0m,0m,0\] <@\d+>/, '2026-11-15 18:14 [0m,0m,0] @Mia'),
       obbligatorio: true, min: 1, max: 4000, paragrafo: true,
     },
   ]);

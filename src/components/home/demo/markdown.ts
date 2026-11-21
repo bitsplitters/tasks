@@ -3,7 +3,8 @@
  * piano docs/superpowers/plans/2026-11-15-demo-fedele.md, compito 4; tutti e due nel repo team-tasks-manager): un testo
  * del bot, o di chi guarda, diventa HTML sicuro con la parte di Markdown che quei testi usano. Il grassetto, il
  * corsivo, il codice in linea, gli a capo, la riga -#, le voci di un elenco, i link verso http, https, mailto:, tel: e
- * sms: (come in «Writing a list»), le menzioni, le date e le emoji del bot. Tutto il resto si scrive com'è, con l'escape.
+ * sms: (come in «Writing a list»), le menzioni, le date, le emoji del bot e la barra che fa testo il segno che la segue.
+ * Tutto il resto si scrive com'è, con l'escape.
  */
 
 /** I nomi del server della demo e il formato delle date del posto (il canale, l'Activity). */
@@ -46,6 +47,8 @@ export function markdown(testo: string, contesto: Contesto, inLinea = false): st
   const t = testo.replace(/\u0000/g, '').replace(/\r\n?/g, '\n')
     .replace(/``([^`]+?)``|`([^`]+)`/g, (_, doppio?: string, singolo?: string) =>
       metti(`<code>${escape(doppio ?? singolo ?? '')}</code>`))
+    // La barra fa testo il segno che segue, come in Discord: `\@Leo` non menziona (segnaposto leggibili, 2.5.0).
+    .replace(/\\([^0-9A-Za-z\s])/g, (_, segno: string) => metti(escape(segno)))
     .replace(/\[([^\]\n]+)\]\(((?:https?:\/\/|mailto:|tel:|sms:)[^\s)]+)\)/g, (_, nome: string, url: string) =>
       metti(`<a href="${escape(url)}" target="_blank" rel="noopener">${ripristina(inline(nome))}</a>`))
     .replace(/<@!?(\d+)>/g, (_, id: string) => menzione(`@${contesto.persona(id) ?? 'unknown-user'}`))

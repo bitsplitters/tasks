@@ -239,6 +239,11 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
     'become main tasks.\n\nSubmit to delete the task, or close the window to leave everything as it is.',
   'tasklist.modal.lock.hint':
     '-# Closing this form with *Cancel* or ✕ leaves the list locked: unlock it from **More → Unlock list**.',
+  'tasklist.modal.names.legend.people': 'People: {0}',
+  'tasklist.modal.names.legend.roles': 'Roles: {0}',
+  'tasklist.modal.names.legend.channels': 'Channels: {0}',
+  'tasklist.modal.names.legend.rules':
+    'Dates in **{0}**, like `{1}`. Someone new: `@` and their name. To write @ without a mention: `\\@`',
   'tasklist.slct.task.last.error':
     'It is not possible to delete the last remaining task. To delete the list, use **Delete list** in **More**.',
   // Il promemoria
@@ -371,6 +376,7 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'activity.panel.delete': 'Delete',
   'activity.panel.close': 'Close',
   'activity.content.label': 'Text of the task',
+  'activity.content.help': '-# A channel: `#` and its name. To write # or @ without a mention: `\\#` `\\@`',
   'activity.content.last':
     '{0} This is the last task of the list, and a list can\'t be left empty. To delete the whole list, use the ' +
     'channel.',

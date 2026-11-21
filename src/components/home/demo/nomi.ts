@@ -1,0 +1,220 @@
+/*
+ * I nomi delle modali (segnaposto leggibili, 2.5.0; spec 2026-11-21-segnaposto-leggibili-design.md, §2, §3 e §6, nel
+ * repo team-tasks-manager): all'apertura i codici del testo diventano i nomi del server e la data di un promemoria
+ * quella del fuso (NomiNellaModale.perLaModale); al salvataggio i nomi tornano codici (dallaModale). La demo e i casi
+ * d'uso del sito li usano ai bordi delle loro modali, come il bot: dentro, il testo resta con gli id.
+ */
+import { CANALE, NOME_DEL_CANALE, PERSONE, fusoDi } from './modello.ts';
+import type { Stato } from './modello.ts';
+import { testo } from './testi.ts';
+
+/** Le persone, i ruoli e i canali che un testo può nominare, e il fuso delle date. */
+export interface Rubrica {
+  persone: readonly { id: string; nome: string; username: string }[];
+  ruoli: readonly { id: string; nome: string }[];
+  canali: readonly { id: string; nome: string }[];
+  zona: string;
+}
+
+/**
+ * La rubrica della demo: le persone del server, i suoi ruoli, il canale #scrims e il fuso di chi guarda, che fa le veci
+ * del fuso di chi apre la modale (FusoDiChiAgisce.perAncorare).
+ */
+export function rubricaDi(stato: Stato): Rubrica {
+  return {
+    persone: PERSONE.map((p) => ({ id: p.id, nome: p.nome, username: p.username })),
+    ruoli: stato.ruoli.map((r) => ({ id: r.id, nome: r.nome })),
+    canali: [{ id: CANALE, nome: NOME_DEL_CANALE }],
+    zona: fusoDi(stato),
+  };
+}
+
+interface Voce {
+  codice: string;
+  /** Il nome senza il segno. */
+  nome: string;
+  tipo: 'persona' | 'ruolo' | 'canale';
+}
+
+/** Un carattere che sta in un nome: un nome seguito da uno di questi è l'inizio di una parola più lunga. */
+const DEL_NOME = /[\p{L}\p{N}_]/u;
+
+/** I codici del testo e i segni: una menzione, un canale, la data di un promemoria davanti alla tripletta. */
+const CODICI = /<@(&?)(\d{17,20})>|<#(\d{17,20})>|<t:(\d+)>(?= \[[\ddhm]+,[\ddhm]+,\d+\])|[@#]/g;
+
+/**
+ * Il dizionario (Dizionario): le persone della rubrica, tutti i ruoli e i canali. Una persona con lo stesso nome di
+ * un'altra voce dopo la `@` prende lo username; due ruoli o due canali con lo stesso nome restano col codice. Il
+ * confronto ignora le maiuscole.
+ */
+function dizionario(r: Rubrica): { at: Voce[]; hash: Voce[] } {
+  const k = (nome: string) => nome.toLowerCase();
+  const quanti = (nomi: string[]) => nomi.reduce((m, n) => m.set(k(n), (m.get(k(n)) ?? 0) + 1), new Map<string, number>());
+  const dopoLaChiocciola = quanti([...r.persone.map((p) => p.nome), ...r.ruoli.map((x) => x.nome)]);
+  const ruoli = quanti(r.ruoli.map((x) => x.nome));
+  const canali = quanti(r.canali.map((c) => c.nome));
+  return {
+    at: [
+      ...r.persone.map((p): Voce => ({
+        codice: `<@${p.id}>`, tipo: 'persona',
+        nome: dopoLaChiocciola.get(k(p.nome))! > 1 ? `${p.nome} (${p.username})` : p.nome,
+      })),
+      ...r.ruoli.filter((x) => ruoli.get(k(x.nome)) === 1)
+        .map((x): Voce => ({ codice: `<@&${x.id}>`, nome: x.nome, tipo: 'ruolo' })),
+    ],
+    hash: r.canali.filter((c) => canali.get(k(c.nome)) === 1)
+      .map((c): Voce => ({ codice: `<#${c.id}>`, nome: c.nome, tipo: 'canale' })),
+  };
+}
+
+/** Il nome più lungo di `voci` scritto da `da`, come parola intera, senza badare alle maiuscole. */
+function piuLungo(voci: readonly Voce[], scritto: string, da: number): Voce | null {
+  let trovata: Voce | null = null;
+  for (const v of voci) {
+    const fine = da + v.nome.length;
+    if (scritto.slice(da, fine).toLowerCase() !== v.nome.toLowerCase()) continue;
+    if (fine < scritto.length && DEL_NOME.test(scritto[fine])) continue;
+    if (!trovata || v.nome.length > trovata.nome.length) trovata = v;
+  }
+  return trovata;
+}
+
+/** Le persone che il testo cita: come nel bot, all'apertura il dizionario ha solo quelle della lista. */
+function delTesto(conId: string, r: Rubrica): Rubrica {
+  return { ...r, persone: r.persone.filter((p) => conId.includes(`<@${p.id}>`)) };
+}
+
+/**
+ * Il testo coi nomi: `<@id>` è `@Nome`, `<@&id>` `@Ruolo`, `<#id>` `#canale`, la data di un promemoria quella del fuso
+ * della rubrica. Un segno scritto come testo, dove segue un nome, prende la barra: il salvataggio lo lascia testo.
+ */
+export function coiNomi(conId: string, rubrica: Rubrica): string {
+  const d = dizionario(delTesto(conId, rubrica));
+  const nome = (voci: readonly Voce[], codice: string, segno: string) => {
+    const v = voci.find((x) => x.codice === codice);
+    return v ? segno + v.nome : null;
+  };
+  return conId.replace(CODICI, (m: string, amp: string, utente: string, canale: string, at: string, dove: number) => {
+    if (utente) return nome(d.at, amp ? `<@&${utente}>` : `<@${utente}>`, '@') ?? m;
+    if (canale) return nome(d.hash, `<#${canale}>`, '#') ?? m;
+    if (at) return dataNelTesto(Number(at), rubrica.zona);
+    if (dove > 0 && DEL_NOME.test(conId[dove - 1])) return m;
+    return piuLungo(m === '@' ? d.at : d.hash, conId, dove + 1) ? `\\${m}` : m;
+  });
+}
+
+/**
+ * Il testo scritto in una modale coi codici al posto dei nomi. Il dizionario è quello del salvataggio: tutte le persone
+ * della rubrica, come il bot che cerca sul server chi la lista non citava. Un nome che non c'è resta testo. Le barre
+ * davanti a un segno seguito da un nome perdono una barra e il segno resta testo, come in NomiNellaModale: `\@Leo` si
+ * salva `@Leo`, che Discord non menziona, e la modale lo riapre con la barra. Le date no: le modali della demo che si
+ * scrivono, quelle del contenuto, non hanno promemoria.
+ */
+export function coiCodici(scritto: string, rubrica: Rubrica): string {
+  const d = dizionario(rubrica);
+  let fuori = '';
+  let i = 0;
+  while (i < scritto.length) {
+    const c = scritto[i];
+    if (c === '\\') {
+      let segno = i;
+      while (scritto[segno] === '\\') segno++;
+      const s = scritto[segno];
+      if (s === '@' || s === '#') {
+        const togli = piuLungo(s === '@' ? d.at : d.hash, scritto, segno + 1) ? 1 : 0;
+        fuori += scritto.slice(i, segno - togli) + s;
+        i = segno + 1;
+        continue;
+      }
+    }
+    if ((c === '@' || c === '#') && (i === 0 || !DEL_NOME.test(scritto[i - 1]))) {
+      const v = piuLungo(c === '@' ? d.at : d.hash, scritto, i + 1);
+      if (v) {
+        fuori += v.codice;
+        i += 1 + v.nome.length;
+        continue;
+      }
+    }
+    fuori += c;
+    i++;
+  }
+  return fuori;
+}
+
+const OROLOGI = new Map<string, Intl.DateTimeFormat>();
+
+/** Data e ora di un istante nel fuso, coi secondi: `2026-12-08 18:00:30`. */
+function orologio(at: number, zona: string): string {
+  let f = OROLOGI.get(zona);
+  if (!f) {
+    f = new Intl.DateTimeFormat('en-US', {
+      timeZone: zona, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+      second: '2-digit', hourCycle: 'h23',
+    });
+    OROLOGI.set(zona, f);
+  }
+  const p: Record<string, string> = {};
+  for (const x of f.formatToParts(new Date(at * 1000))) p[x.type] = x.value;
+  return `${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute}:${p.second}`;
+}
+
+/**
+ * La data di un promemoria come la scrive la modale (DateNellaModale): `AAAA-MM-GG HH:MM` nel fuso; i secondi solo se
+ * non sono zero; lo scarto nell'ora che si ripete al ritorno dell'ora solare, perché i due istanti non si scrivano
+ * uguali.
+ */
+export function dataNelTesto(at: number, zona: string): string {
+  const ora = orologio(at, zona);
+  let data = ora.endsWith(':00') ? ora.slice(0, -3) : ora;
+  if ([3600, -3600, 1800, -1800].some((delta) => orologio(at + delta, zona) === ora)) {
+    const [g, h] = ora.split(' ');
+    const [anno, mese, giorno] = g.split('-').map(Number);
+    const [hh, mm, ss] = h.split(':').map(Number);
+    const minuti = Math.round((Date.UTC(anno, mese - 1, giorno, hh, mm, ss) / 1000 - at) / 60);
+    const a = Math.abs(minuti);
+    data += ` ${minuti < 0 ? '-' : '+'}${String(Math.floor(a / 60)).padStart(2, '0')}:${String(a % 60).padStart(2, '0')}`;
+  }
+  return data;
+}
+
+/** L'esempio di data della legenda (ContenutoDellaModale.esempioDiData): domani alle 18:00, nel fuso. */
+export function esempioDiData(adesso: number, zona: string): string {
+  const oggi = orologio(adesso, zona).slice(0, 10);
+  const domani = new Date(Date.parse(`${oggi}T00:00:00Z`) + 86_400_000).toISOString().slice(0, 10);
+  return `${domani} 18:00`;
+}
+
+/** Un nome con l'escape del Markdown, come MarkdownSanitizer.escape: un asterisco nel nome resta un asterisco. */
+function senzaMarkdown(nome: string): string {
+  return nome.replace(/[*_~`|>\\]/g, (c) => `\\${c}`);
+}
+
+/** L'ordine di String.CASE_INSENSITIVE_ORDER, carattere per carattere. */
+function senzaMaiuscole(a: string, b: string): number {
+  const x = a.toLowerCase();
+  const y = b.toLowerCase();
+  return x < y ? -1 : x > y ? 1 : 0;
+}
+
+/**
+ * La legenda di una modale col testo di una lista (LegendaDeiNomi): in subtext, le persone, i ruoli e i canali che il
+ * testo cita, in ordine di nome, poi come si scrivono le date, i nomi nuovi e una `@` che non menziona nessuno. Le
+ * liste della demo sono corte: il tetto dei 1.000 caratteri non scatta, e qui non c'è.
+ */
+export function legendaDeiNomi(conId: string, rubrica: Rubrica, adesso: number): string {
+  const d = dizionario(delTesto(conId, rubrica));
+  const gruppi: Record<Voce['tipo'], string[]> = { persona: [], ruolo: [], canale: [] };
+  const visti = new Set<string>();
+  for (const [codice] of conId.matchAll(/<@&?\d{17,20}>|<#\d{17,20}>/g)) {
+    const v = [...d.at, ...d.hash].find((x) => x.codice === codice);
+    if (!v || visti.has(codice)) continue;
+    visti.add(codice);
+    gruppi[v.tipo].push((v.tipo === 'canale' ? '#' : '@') + senzaMarkdown(v.nome));
+  }
+  const chiavi = { persona: 'people', ruolo: 'roles', canale: 'channels' } as const;
+  const parti = (Object.keys(gruppi) as Voce['tipo'][]).filter((t) => gruppi[t].length > 0).map((t) =>
+    testo(`tasklist.modal.names.legend.${chiavi[t]}`,
+      gruppi[t].sort(senzaMaiuscole).join(', ')));
+  const regole = `-# ${testo('tasklist.modal.names.legend.rules', rubrica.zona, esempioDiData(adesso, rubrica.zona))}`;
+  return parti.length > 0 ? `-# ${parti.join(' · ')}\n${regole}` : regole;
+}

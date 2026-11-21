@@ -89,7 +89,7 @@ test('il dialogo di Exit intero: il titolo, il corpo, Bring back in grigio e Lea
   });
 });
 
-test("il dialogo di Edit the list in sola lettura: l'avviso, il titolo, il testo della lista, senza il blocco", () => {
+test("il dialogo di Edit the list in sola lettura: l'avviso, il titolo, il testo della lista coi nomi, la riga d'aiuto, senza il blocco", () => {
   const html = corpoDellaModifica(S0, 7);
   assert.ok(html.startsWith('<div class="ui-avviso" role="note">For illustration only: this demo doesn\'t fully ' +
     'replicate how TTM works.</div>'));
@@ -98,8 +98,14 @@ test("il dialogo di Edit the list in sola lettura: l'avviso, il titolo, il testo
     'maxlength="90" readonly>'));
   assert.ok(html.includes('<label class="sc-flabel" for="d-list-7">List of activities</label>'));
   assert.ok(html.includes('<textarea class="sc-pin ui-edittesto" id="d-list-7" data-k="d-list" rows="12" ' +
-    `maxlength="4000" spellcheck="false" readonly>${escape(testoDellaLista(S0.lista))}</textarea>`));
-  assert.match(html, /&lt;t:1794762840&gt; \[0m,0m,0\] &lt;@1181730456203947581&gt;: VOD review/);
+    'maxlength="4000" spellcheck="false" readonly>'));
+  // Il testo coi nomi (2.5.0): la data del promemoria nel fuso di chi guarda, l'owner col suo nome.
+  assert.match(testoDellaLista(S0.lista), /<t:1794762840> \[0m,0m,0\] <@1181730456203947581>: VOD review/);
+  assert.match(html, /2026-11-15 18:14 \[0m,0m,0\] @Mia: VOD review/);
+  assert.doesNotMatch(html, /&lt;t:|&lt;@/);
+  assert.ok(html.endsWith('</textarea></div><span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, like ' +
+    '<code>2026-11-16 18:00</code>. Someone new: <code>@</code> and their name. To write @ without a mention: ' +
+    '<code>\\@</code></span>'));
   assert.doesNotMatch(html, /locked/);
 });
 

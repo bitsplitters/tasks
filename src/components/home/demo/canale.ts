@@ -18,6 +18,7 @@ import {
 import { dentro, dopoIlClic, type Acceso, type Condiviso } from './condiviso.ts';
 import { markdown } from './markdown.ts';
 import { esitoDelPonte, htmlDellAnnullamento, htmlDelPannello, htmlDelPonte } from './messaggi.ts';
+import { coiCodici, rubricaDi } from './nomi.ts';
 import type { Stato } from './modello.ts';
 import {
   applicaOwner, applicaPromemoria, applicaTag, applicaWebhook, campiDellaNuovaData, campiDelPromemoria, eliminaTask,
@@ -214,7 +215,7 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
     condiviso.cambia({ ...stato(), bloccata: true });
     apri(modale, (valori) => {
       condiviso.cambia({ ...stato(), bloccata: false });
-      esegui(salvaTesto(stato(), pos, valori.task ?? ''));
+      esegui(salvaTesto(stato(), pos, coiCodici(valori.task ?? '', rubricaDi(stato()))));
     });
   }
 

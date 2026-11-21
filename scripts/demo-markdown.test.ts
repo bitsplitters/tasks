@@ -37,6 +37,13 @@ test("il codice in linea si scrive com'è, senza menzioni né grassetto", () => 
   assert.equal(md('`**x**`, `<t:5>`'), '<code>**x**</code>, <code>&lt;t:5&gt;</code>');
 });
 
+test('la barra fa testo il segno che segue, come in Discord: `\\@Leo` è @Leo senza menzione (2.5.0)', () => {
+  assert.equal(md('\\@Leo and \\#7'), '@Leo and #7');
+  assert.equal(md('\\*not italic\\*'), '*not italic*');
+  assert.equal(md('\\<@1181730456203947581>'), '&lt;@1181730456203947581&gt;');
+  assert.equal(md('a\\b \\1 `\\@`'), 'a\\b \\1 <code>\\@</code>');
+});
+
 test("le menzioni di persone, ruoli e canali, anche di chi non c'è più", () => {
   assert.equal(md('Hi <@1181730456203947581> and <@&1181730456203947590>'),
     `Hi ${menzione('@Mia')} and ${menzione('@Coaches')}`);
