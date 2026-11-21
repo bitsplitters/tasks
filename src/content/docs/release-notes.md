@@ -9,6 +9,13 @@ releases: true
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 2.4.1 — Webhooks and dates, fixed
+
+Released 2026-11-21
+
+- **Webhooks with quotes in the text** — a task, a variable or a name with quotes, a backslash or a line break no longer breaks the body of the call: TTM escapes the value, so the service gets valid JSON. See [Tokens](/docs/webhooks/#tokens).
+- **Every `@time` format sets the reminder** — dates in Discord's `s` and `S` styles, the short date with the time, now count as the date of the reminder. `S` is the first format in the `@time` menu: until now TTM didn't see it, so the reminder was counted from when you saved, and the date stayed in the text. See [Reminders in the text](/docs/writing-a-list/#reminders-in-the-text).
+
 ## 2.4.0 — The second row shows you the way
 
 Released 2026-11-20
