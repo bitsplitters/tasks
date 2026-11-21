@@ -75,6 +75,14 @@ function rifiuto(chiave: string): Extract<Esito, { tipo: 'rifiuto' }> {
   return { tipo: 'rifiuto', testo: { chiave } };
 }
 
+/**
+ * Un nome che il dizionario della modale non conosce (NomiNellaModale.TipoErrore.NOME_SCONOSCIUTO): non si salva
+ * niente, e il bot dice come si aggiunge una persona. La demo mostra la sola riga del nome, senza il testo con le frecce.
+ */
+export function nomeSconosciuto(nome: string): Esito {
+  return { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.names.unknown.error', argomenti: [nome] } };
+}
+
 /* 5a — La spunta, la barra, le posizioni, l'eliminazione. */
 
 /**

@@ -14,6 +14,8 @@ export interface Rubrica {
   ruoli: readonly { id: string; nome: string }[];
   canali: readonly { id: string; nome: string }[];
   zona: string;
+  /** Se il fuso è quello che chi guarda ha scritto (FusoScelto.Origine.PERSONALE); altrimenti è quello del server. */
+  personale: boolean;
 }
 
 /**
@@ -26,6 +28,7 @@ export function rubricaDi(stato: Stato): Rubrica {
     ruoli: stato.ruoli.map((r) => ({ id: r.id, nome: r.nome })),
     canali: [{ id: CANALE, nome: NOME_DEL_CANALE }],
     zona: fusoDi(stato),
+    personale: stato.fuso !== undefined,
   };
 }
 
@@ -84,9 +87,41 @@ function delTesto(conId: string, r: Rubrica): Rubrica {
   return { ...r, persone: r.persone.filter((p) => conId.includes(`<@${p.id}>`)) };
 }
 
+/** Le parole dopo la `@` che Discord legge da sé: restano testo, come in NomiNellaModale. */
+const RISERVATI = new Set(['everyone', 'here']);
+
+/** La prima parola dopo il segno, come NomiNellaModale.parola: lettere, cifre, `_` e i punti in mezzo. */
+function parola(testo: string, da: number): string {
+  let fine = da;
+  while (fine < testo.length && fine - da < 32 && (DEL_NOME.test(testo[fine]) || testo[fine] === '.')) fine++;
+  while (fine > da && testo[fine - 1] === '.') fine--;
+  return testo.slice(da, fine);
+}
+
+/**
+ * Il nome scritto dopo una `@` che il dizionario non conosce (NomiNellaModale.nomeScritto): la prima parola, o vuoto se
+ * non c'è o è `everyone` o `here`.
+ */
+function nomeScritto(testo: string, da: number): string {
+  const nome = parola(testo, da);
+  return RISERVATI.has(nome.toLowerCase()) ? '' : nome;
+}
+
+/**
+ * Se un segno scritto come testo vuole la barra (NomiNellaModale.idoneo): dove la lettura troverebbe un nome, cioè
+ * davanti a un nome del dizionario o, per la `@`, a una parola qualsiasi, che sarebbe un nome sconosciuto.
+ */
+function idoneo(d: { at: Voce[]; hash: Voce[] }, segno: string, testo: string, da: number): boolean {
+  return piuLungo(segno === '@' ? d.at : d.hash, testo, da) !== null || (segno === '@' && nomeScritto(testo, da) !== '');
+}
+
+/** Quello che la lettura salta (NomiNellaModale.SALTA): i codici di Discord, i link, il codice fra backtick, i token. */
+const SALTA = /<[^<>\s]+>|https?:\/\/\S+|\]\([^)\n]*\)|`[^`\n]*`|\{\{[^{}\n]*\}\}/y;
+
 /**
  * Il testo coi nomi: `<@id>` è `@Nome`, `<@&id>` `@Ruolo`, `<#id>` `#canale`, la data di un promemoria quella del fuso
- * della rubrica. Un segno scritto come testo, dove segue un nome, prende la barra: il salvataggio lo lascia testo.
+ * della rubrica. Un segno scritto come testo, dove segue un nome o, per la `@`, una parola, prende la barra: il
+ * salvataggio lo lascia testo.
  */
 export function coiNomi(conId: string, rubrica: Rubrica): string {
   const d = dizionario(delTesto(conId, rubrica));
@@ -99,29 +134,42 @@ export function coiNomi(conId: string, rubrica: Rubrica): string {
     if (canale) return nome(d.hash, `<#${canale}>`, '#') ?? m;
     if (at) return dataNelTesto(Number(at), rubrica.zona);
     if (dove > 0 && DEL_NOME.test(conId[dove - 1])) return m;
-    return piuLungo(m === '@' ? d.at : d.hash, conId, dove + 1) ? `\\${m}` : m;
+    return idoneo(d, m, conId, dove + 1) ? `\\${m}` : m;
   });
 }
 
 /**
- * Il testo scritto in una modale coi codici al posto dei nomi. Il dizionario è quello del salvataggio: tutte le persone
- * della rubrica, come il bot che cerca sul server chi la lista non citava. Un nome che non c'è resta testo. Le barre
- * davanti a un segno seguito da un nome perdono una barra e il segno resta testo, come in NomiNellaModale: `\@Leo` si
- * salva `@Leo`, che Discord non menziona, e la modale lo riapre con la barra. Le date no: le modali della demo che si
- * scrivono, quelle del contenuto, non hanno promemoria.
+ * Il testo scritto in una modale coi codici al posto dei nomi, come NomiNellaModale.dallaModale. Il dizionario è quello
+ * dell'apertura: le persone che il testo aperto citava, tutti i ruoli e i canali (scelta dell'utente del 2026-11-21:
+ * le persone nuove si aggiungono con Owner o Tag, o col loro codice). Una `@` seguita da una parola che il dizionario
+ * non conosce è un nome sconosciuto, e il salvataggio si rifiuta; restano testo `@everyone`, `@here`, la `@` da sola e
+ * quella dentro una parola, un `#nome` sconosciuto e quello che la lettura salta. Le barre davanti a un segno seguito
+ * da un nome, o una `@` da una parola, perdono una barra e il segno resta testo: `\@Leo` si salva `@Leo`, che Discord non menziona, e la modale lo riapre con la barra. Le
+ * date no: le modali della demo che si scrivono, quelle del contenuto, non hanno promemoria.
+ *
+ * @param aperto il testo con gli id con cui la modale si è aperta
+ * @return il testo coi codici, e il primo nome sconosciuto, con la `@`, o null
  */
-export function coiCodici(scritto: string, rubrica: Rubrica): string {
-  const d = dizionario(rubrica);
+export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): { testo: string; sconosciuto: string | null } {
+  const d = dizionario(delTesto(aperto, rubrica));
+  let sconosciuto: string | null = null;
   let fuori = '';
   let i = 0;
   while (i < scritto.length) {
     const c = scritto[i];
+    SALTA.lastIndex = i;
+    const saltato = SALTA.exec(scritto);
+    if (saltato) {
+      fuori += saltato[0];
+      i += saltato[0].length;
+      continue;
+    }
     if (c === '\\') {
       let segno = i;
       while (scritto[segno] === '\\') segno++;
       const s = scritto[segno];
       if (s === '@' || s === '#') {
-        const togli = piuLungo(s === '@' ? d.at : d.hash, scritto, segno + 1) ? 1 : 0;
+        const togli = idoneo(d, s, scritto, segno + 1) ? 1 : 0;
         fuori += scritto.slice(i, segno - togli) + s;
         i = segno + 1;
         continue;
@@ -134,11 +182,13 @@ export function coiCodici(scritto: string, rubrica: Rubrica): string {
         i += 1 + v.nome.length;
         continue;
       }
+      const nome = c === '@' ? nomeScritto(scritto, i + 1) : '';
+      if (nome !== '') sconosciuto ??= `@${nome}`;
     }
     fuori += c;
     i++;
   }
-  return fuori;
+  return { testo: fuori, sconosciuto };
 }
 
 const OROLOGI = new Map<string, Intl.DateTimeFormat>();
@@ -177,6 +227,25 @@ export function dataNelTesto(at: number, zona: string): string {
   return data;
 }
 
+/**
+ * Il fuso dell'esempio scritto con un fuso (LegendaDeiNomi.altroFuso): uno che non è quello di chi scrive, perché
+ * l'esempio mostri una data in un altro fuso.
+ */
+export function altroFuso(zona: string): string {
+  return zona === 'America/New_York' ? 'Europe/London' : 'America/New_York';
+}
+
+/**
+ * La riga del fuso e delle persone nuove, come LegendaDeiNomi: il fuso con la sua origine, domani alle 18:00 in quel
+ * fuso e la stessa data in un altro; poi come si aggiunge qualcuno di nuovo. Nella demo il fuso è quello che chi guarda
+ * ha scritto, o quello del server.
+ */
+export function regoleDelFuso(zona: string, personale: boolean, adesso: number): string {
+  const esempio = esempioDiData(adesso, zona);
+  const chiave = personale ? 'tasklist.modal.names.legend.zone.personal' : 'tasklist.modal.names.legend.zone.server';
+  return `${testo(chiave, zona, esempio, `${esempio} ${altroFuso(zona)}`)} ${testo('tasklist.modal.names.legend.people.new')}`;
+}
+
 /** L'esempio di data della legenda (ContenutoDellaModale.esempioDiData): domani alle 18:00, nel fuso. */
 export function esempioDiData(adesso: number, zona: string): string {
   const oggi = orologio(adesso, zona).slice(0, 10);
@@ -198,7 +267,7 @@ function senzaMaiuscole(a: string, b: string): number {
 
 /**
  * La legenda di una modale col testo di una lista (LegendaDeiNomi): in subtext, le persone, i ruoli e i canali che il
- * testo cita, in ordine di nome, poi come si scrivono le date, i nomi nuovi e una `@` che non menziona nessuno. Le
+ * testo cita, in ordine di nome, poi il fuso delle date, le persone nuove e una `@` che non menziona nessuno. Le
  * liste della demo sono corte: il tetto dei 1.000 caratteri non scatta, e qui non c'è.
  */
 export function legendaDeiNomi(conId: string, rubrica: Rubrica, adesso: number): string {
@@ -215,6 +284,6 @@ export function legendaDeiNomi(conId: string, rubrica: Rubrica, adesso: number):
   const parti = (Object.keys(gruppi) as Voce['tipo'][]).filter((t) => gruppi[t].length > 0).map((t) =>
     testo(`tasklist.modal.names.legend.${chiavi[t]}`,
       gruppi[t].sort(senzaMaiuscole).join(', ')));
-  const regole = `-# ${testo('tasklist.modal.names.legend.rules', rubrica.zona, esempioDiData(adesso, rubrica.zona))}`;
+  const regole = `-# ${regoleDelFuso(rubrica.zona, rubrica.personale, adesso)}`;
   return parti.length > 0 ? `-# ${parti.join(' · ')}\n${regole}` : regole;
 }

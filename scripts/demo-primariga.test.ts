@@ -17,6 +17,12 @@ import {
 } from '../src/components/home/demo/primariga.ts';
 import { rispostaDellEsito } from '../src/components/home/demo/testi.ts';
 
+/** La riga del fuso e delle persone nuove (2.5.0), con lo stesso testo della legenda delle modali. */
+const REGOLE = '<span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, the server\'s time zone, like ' +
+  '<code>2026-11-16 18:00</code>; in another one: <code>2026-11-16 18:00 America/New_York</code>. Someone new: ' +
+  'add them with <strong>Owner</strong> or <strong>Tag</strong>, or write their code, like ' +
+  '<code>&lt;@123456789012345678&gt;</code>. To write @ without a mention: <code>\\@</code></span>';
+
 const S0 = statoIniziale();
 const TUTTI = ['1', '2', '2.1', '3', '4'];
 /** La lista della demo coi soli task di `fatti` completati. */
@@ -102,10 +108,9 @@ test("il dialogo di Edit the list in sola lettura: l'avviso, il titolo, il testo
   // Il testo coi nomi (2.5.0): la data del promemoria nel fuso di chi guarda, l'owner col suo nome.
   assert.match(testoDellaLista(S0.lista), /<t:1794762840> \[0m,0m,0\] <@1181730456203947581>: VOD review/);
   assert.match(html, /2026-11-15 18:14 \[0m,0m,0\] @Mia: VOD review/);
-  assert.doesNotMatch(html, /&lt;t:|&lt;@/);
-  assert.ok(html.endsWith('</textarea></div><span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, like ' +
-    '<code>2026-11-16 18:00</code>. Someone new: <code>@</code> and their name. To write @ without a mention: ' +
-    '<code>\\@</code></span>'));
+  // La lista non mostra codici; la riga sotto sì, quello di esempio per chi è nuovo.
+  assert.doesNotMatch(html.slice(0, html.indexOf('</textarea>')), /&lt;t:|&lt;@/);
+  assert.ok(html.endsWith(`</textarea></div>${REGOLE}`));
   assert.doesNotMatch(html, /locked/);
 });
 

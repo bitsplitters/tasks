@@ -10,7 +10,7 @@ import { bloccaLaPrimaRiga } from '../scene-dom.ts';
 import { MAX_VALUE_LENGTH, TITOLO_MAX } from './componenti.ts';
 import type { Condiviso } from './condiviso.ts';
 import { escape, markdown } from './markdown.ts';
-import { coiNomi, esempioDiData, rubricaDi } from './nomi.ts';
+import { coiNomi, regoleDelFuso, rubricaDi } from './nomi.ts';
 import { ADESSO, NELL_ACTIVITY, PROPOSTO, SAM, fusoDi } from './modello.ts';
 import type { Stato } from './modello.ts';
 import { istanteDi, quandoDa, troppoVicina } from './quando.ts';
@@ -110,8 +110,7 @@ export function corpoDellaModifica(stato: Stato, n: number): string {
     campo('d-list', 'tasklist.modal.edit.txt.list.label', `<textarea class="sc-pin ui-edittesto" id="d-list-${n}" ` +
       `data-k="d-list" rows="12" maxlength="${MAX_VALUE_LENGTH}" spellcheck="false" readonly>` +
       `${escape(coiNomi(testoDellaLista(stato.lista), rubricaDi(stato)))}</textarea>`) +
-    markdown(`-# ${testo('tasklist.modal.names.legend.rules', fusoDi(stato), esempioDiData(ADESSO, fusoDi(stato)))}`,
-      contestoDellActivity(stato));
+    markdown(`-# ${regoleDelFuso(fusoDi(stato), stato.fuso !== undefined, ADESSO)}`, contestoDellActivity(stato));
 }
 
 /** La guida (GuideDialog): le pagine una sull'altra, la prima in vista; a pagina 4 la legenda della prima riga. */

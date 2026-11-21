@@ -55,9 +55,14 @@ test('opzioniDeiWebhook: i webhook già creati, per nome', () => {
   ]);
 });
 
-/** La seconda riga della legenda dei nomi (2.5.0): il fuso di chi guarda e domani alle 18:00. */
-const REGOLE = '<span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, like <code>2026-11-16 18:00</code>. ' +
-  'Someone new: <code>@</code> and their name. To write @ without a mention: <code>\\@</code></span>';
+/**
+ * La seconda riga della legenda dei nomi (2.5.0): il fuso del server, perché chi guarda non ne ha scritto uno, domani
+ * alle 18:00 in quel fuso e in un altro; poi come si aggiunge qualcuno di nuovo.
+ */
+const REGOLE = '<span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, the server\'s time zone, like ' +
+  '<code>2026-11-16 18:00</code>; in another one: <code>2026-11-16 18:00 America/New_York</code>. Someone new: ' +
+  'add them with <strong>Owner</strong> or <strong>Tag</strong>, or write their code, like ' +
+  '<code>&lt;@123456789012345678&gt;</code>. To write @ without a mention: <code>\\@</code></span>';
 
 test('modaleDelTesto: la legenda dei nomi, il paragrafo col testo e i tag coi nomi, obbligatorio fino a 4000; la riga del blocco sotto', () => {
   const s0 = statoIniziale();

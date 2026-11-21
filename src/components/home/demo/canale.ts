@@ -19,12 +19,13 @@ import { dentro, dopoIlClic, type Acceso, type Condiviso } from './condiviso.ts'
 import { markdown } from './markdown.ts';
 import { esitoDelPonte, htmlDellAnnullamento, htmlDelPannello, htmlDelPonte } from './messaggi.ts';
 import { coiCodici, rubricaDi } from './nomi.ts';
+import { posizione } from './modello.ts';
 import type { Stato } from './modello.ts';
 import {
   applicaOwner, applicaPromemoria, applicaTag, applicaWebhook, campiDellaNuovaData, campiDelPromemoria, eliminaTask,
   eliminaTaskConfermato, invertiSpunta, nellActivity, pulisci, pulisciConfermato, riapri, riapriConfermato,
-  rifiutoDelCarrello, salvaTesto, togliOwner, togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook,
-  validaNuovaData, validaPromemoria,
+  nomeSconosciuto, rifiutoDelCarrello, salvaTesto, togliOwner, togliOwnerConfermato, togliPromemoria, togliTag,
+  togliWebhook, validaNuovaData, validaPromemoria,
 } from './regole.ts';
 import type { Domanda, Esito } from './regole.ts';
 import { contestoDelCanale } from './righe.ts';
@@ -212,10 +213,13 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
    */
   function modificaIlTesto(pos: string): void {
     const modale = modaleDelTesto(stato(), pos);
+    // Il testo con gli id con cui la modale si apre: le persone che cita sono quelle che si scrivono per nome.
+    const aperto = stato().lista.tasks.find((t) => posizione(t.pos) === pos)?.testo ?? '';
     condiviso.cambia({ ...stato(), bloccata: true });
     apri(modale, (valori) => {
       condiviso.cambia({ ...stato(), bloccata: false });
-      esegui(salvaTesto(stato(), pos, coiCodici(valori.task ?? '', rubricaDi(stato()))));
+      const letto = coiCodici(valori.task ?? '', rubricaDi(stato()), aperto);
+      esegui(letto.sconosciuto ? nomeSconosciuto(letto.sconosciuto) : salvaTesto(stato(), pos, letto.testo));
     });
   }
 

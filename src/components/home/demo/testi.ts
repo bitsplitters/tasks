@@ -242,8 +242,14 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.modal.names.legend.people': 'People: {0}',
   'tasklist.modal.names.legend.roles': 'Roles: {0}',
   'tasklist.modal.names.legend.channels': 'Channels: {0}',
-  'tasklist.modal.names.legend.rules':
-    'Dates in **{0}**, like `{1}`. Someone new: `@` and their name. To write @ without a mention: `\\@`',
+  'tasklist.modal.names.legend.zone.personal': 'Dates in your time zone, **{0}**, like `{1}`; in another one: `{2}`.',
+  'tasklist.modal.names.legend.zone.server': "Dates in **{0}**, the server's time zone, like `{1}`; in another one: `{2}`.",
+  'tasklist.modal.names.legend.people.new':
+    'Someone new: add them with **Owner** or **Tag**, or write their code, like `<@123456789012345678>`. To write @ ' +
+    'without a mention: `\\@`',
+  'tasklist.modal.names.unknown.error':
+    "I can't find **{0}**. Someone new: add them with **Owner** or **Tag**, or write their code, like " +
+    '`<@123456789012345678>`. To write @ without a mention: `\\@`',
   'tasklist.slct.task.last.error':
     'It is not possible to delete the last remaining task. To delete the list, use **Delete list** in **More**.',
   // Il promemoria
