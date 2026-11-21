@@ -9,7 +9,7 @@ import { markdown } from './markdown.ts';
 import { coiNomi, legendaDeiNomi, rubricaDi } from './nomi.ts';
 import { ADESSO, NELL_ACTIVITY, PERSONE, WEBHOOK, posizione } from './modello.ts';
 import type { Stato } from './modello.ts';
-import { testoDellaLista } from './regole.ts';
+import { prosaDelTask, testoDellaLista } from './regole.ts';
 import type { Campi, Domanda } from './regole.ts';
 import { contestoDelCanale } from './righe.ts';
 import { testo, testoDellaDomanda } from './testi.ts';
@@ -59,10 +59,10 @@ function testoFisso(stato: Stato, md: string): Campo {
 }
 
 /**
- * La modale del contenuto (TaskListMdlTask.createTaskModal): il campo a paragrafo obbligatorio col testo del task, che
- * porta i tag (TaskLogic.testoDellaModale), coi nomi al posto dei codici, poi la riga sul blocco (AvvisoDelBlocco).
- * Niente legenda (SegnapostoDellaModale.apriSenzaLegenda): la modale cambia solo il testo, e le persone si aggiungono
- * con Owner e Tag. Il tetto è quello di Discord: il
+ * La modale del contenuto (TaskListMdlTask.createTaskModal): il campo a paragrafo obbligatorio col testo del task senza
+ * i tag (TaskLogic.testoDellaModale), coi nomi al posto dei codici, poi la riga sul blocco (AvvisoDelBlocco). Niente
+ * legenda (SegnapostoDellaModale.apriSenzaLegenda): la modale cambia solo il testo, e tag e owner hanno i loro menu.
+ * Il tetto è quello di Discord: il
  * bot lo abbassa quando il resto della lista occupa la form di Modifica in blocco (TaskLogic.tettoDelTesto), cosa che
  * la lista corta della demo non fa sentire prima di 3700 caratteri.
  */
@@ -74,7 +74,7 @@ export function modaleDelTesto(stato: Stato, pos: string): Modale {
     titolo: testo('tasklist.modal.task.title'),
     campi: [
       {
-        tipo: 'testo', id: 'task', etichetta: testo('tasklist.modal.task.label'), valore: coiNomi(task.testo, rubrica),
+        tipo: 'testo', id: 'task', etichetta: testo('tasklist.modal.task.label'), valore: coiNomi(prosaDelTask(task), rubrica),
         obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,
       },
       testoFisso(stato, testo('tasklist.modal.lock.hint')),

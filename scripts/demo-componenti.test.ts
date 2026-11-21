@@ -64,7 +64,7 @@ const REGOLE = '<span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, 
   'add them with <strong>Owner</strong> or <strong>Tag</strong>, or write their code, like ' +
   '<code>&lt;@123456789012345678&gt;</code>. To write @ without a mention: <code>\\@</code></span>';
 
-test('modaleDelTesto: senza legenda, il paragrafo col testo e i tag coi nomi, obbligatorio fino a 4000; la riga del blocco sotto', () => {
+test('modaleDelTesto: senza legenda né tag, il paragrafo col testo, obbligatorio fino a 4000; la riga del blocco sotto', () => {
   const s0 = statoIniziale();
   const m = modaleDelTesto(s0, '2');
   assert.equal(m.titolo, 'Edit the content of your task');
@@ -78,9 +78,9 @@ test('modaleDelTesto: senza legenda, il paragrafo col testo e i tag coi nomi, ob
   assert.equal(testoFisso(m.campi[1]), '<span class="sc-subtext">Closing this form with <em>Cancel</em> or ✕ leaves ' +
     'the list locked: unlock it from <strong>More → Unlock list</strong>.</span>');
   assert.equal(m.campi.length, 2);
-  // I tag ci sono com'è scritto il testo, coi nomi; l'owner no, ha il suo pulsante.
+  // I tag no, come l'owner: hanno il loro menu, come nel Contenuto dell'Activity (TaskLogic.testoDellaModale).
   const conTag = modaleDelTesto(statoDi(applicaTag(s0, '2', [MIA], [COACHES])), '2');
-  assert.equal((conTag.campi[0] as { valore: string }).valore, 'Lock the scrim block vs. Nova Collective @Coaches @Mia');
+  assert.equal((conTag.campi[0] as { valore: string }).valore, 'Lock the scrim block vs. Nova Collective');
   assert.equal(conTag.campi.length, 2);
   assert.equal((modaleDelTesto(s0, '3').campi[0] as { valore: string }).valore, 'VOD review: mid rotations, game 3');
   assert.throws(() => modaleDelTesto(s0, '9'));

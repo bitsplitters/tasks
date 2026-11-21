@@ -320,19 +320,21 @@ function avvisoDeiTolti(tolti: string[]): Testo | undefined {
 }
 
 /**
- * Il testo nuovo dalla modale del canale (TaskListMdlTask): la prosa di quello scritto, che porta anche i tag. Uguale
- * a quello di prima non cambia niente; vuoto o con un promemoria in mesi non si salva. Owner, promemoria e webhook sono
- * campi del task: restano. I token tolti li dice l'avviso, anche quando il testo non cambia.
+ * Il testo nuovo dalla modale del canale (TaskListMdlTask): la prosa di quello scritto, senza i tag, come nel pannello
+ * dell'Activity. Uguale a quella di prima non cambia niente; vuota o con un promemoria in mesi non si salva. Owner,
+ * promemoria e webhook sono campi del task, e i tag del task tornano in coda: restano. I token tolti, anche i tag
+ * scritti, li dice l'avviso, anche quando il testo non cambia.
  */
 export function salvaTesto(stato: Stato, pos: string, scritto: string): Esito {
   const i = indice(stato, pos);
   const task = stato.lista.tasks[i];
-  const nuovo = prosa(scritto);
-  const avviso = avvisoDeiTolti(tokenTolti(scritto));
-  if (nuovo === prosa(task.testo)) return fatto(stato, avviso);
+  const scritta = prosa(scritto);
+  const nuovo = conITag(scritta, []);
+  const avviso = avvisoDeiTolti([...new Set([...tokenTolti(scritto), ...tokenDeiTag(scritta)])]);
+  if (nuovo === prosaDelTask(task)) return fatto(stato, avviso);
   const no = rifiutoDelTesto(nuovo);
   if (no) return rifiuto(no);
-  return fatto(conTask(stato, i, { ...task, testo: nuovo }), avviso);
+  return fatto(conTask(stato, i, { ...task, testo: conITag(nuovo, tokenDeiTag(task.testo)) }), avviso);
 }
 
 /**

@@ -151,12 +151,19 @@ test('i token tolti: una volta ciascuno, nell\'ordine, anche quelli che si forma
   assert.deepEqual(tokenTolti(`Hi ${LEO_TAG}`), []);
 });
 
-test('la modale del canale salva la prosa, coi tag scritti; owner e promemoria restano (TaskListMdlTask)', () => {
+test('la modale del canale toglie anche i tag scritti; quelli del task restano in coda, owner e promemoria pure (TaskListMdlTask)', () => {
   const s0 = statoIniziale();
   assert.deepEqual(salvaTesto(s0, '2', 'New text'), { tipo: 'fatto', stato: conTesto(1, 'New text') });
   assert.deepEqual(salvaTesto(s0, '2', 'New <t:5> text'),
     { tipo: 'fatto', stato: conTesto(1, 'New text'), avviso: filtrati('`<t:5>`') });
-  assert.deepEqual(salvaTesto(s0, '2', LEO_TAG), { tipo: 'fatto', stato: conTesto(1, LEO_TAG) });
+  // Dalla 2.5.0 i tag non sono nel campo, come nell'Activity: uno scritto si toglie, e l'avviso lo dice.
+  assert.deepEqual(salvaTesto(s0, '2', `New text ${LEO_TAG}`),
+    { tipo: 'fatto', stato: conTesto(1, 'New text'), avviso: filtrati(`\`${LEO_TAG}\``) });
+  assert.deepEqual(salvaTesto(s0, '2', LEO_TAG),
+    { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.task.blank.error' } });
+  const conTag = conTesto(1, `Lock the scrim block vs. Nova Collective ${LEO_TAG}`);
+  assert.deepEqual(salvaTesto(conTag, '2', 'Other'), { tipo: 'fatto', stato: conTesto(1, `Other ${LEO_TAG}`) });
+  assert.deepEqual(salvaTesto(conTag, '2', 'Lock the scrim block vs. Nova Collective'), { tipo: 'fatto', stato: conTag });
   assert.deepEqual(salvaTesto(s0, '3', 'VOD review'), { tipo: 'fatto', stato: conTesto(3, 'VOD review') });
   // Uguale a prima: niente cambia, ma i token tolti si dicono lo stesso.
   assert.deepEqual(salvaTesto(s0, '2', ' Lock the scrim block vs. Nova Collective <t:5>'),
