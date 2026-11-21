@@ -1,0 +1,32 @@
+---
+/*
+ * La mascotte che sbircia dal bordo alto del contenitore (spec 2026-11-21-mascotte-nel-sito-design.md, §2 e §5, nel
+ * repo team-tasks-manager). Il contenitore ha position: relative; misura e distanza dal bordo destro le dà la classe
+ * (mascotte.css). Decorativa: aria-hidden, senza clic.
+ *
+ * Lo SVG è sbircia.svg di docs/brand/mascotte (gen_mascotte.py), copiato in src/assets/mascotte: non si ritocca
+ * qui, si rigenera là e si ricopia.
+ */
+import svg from '../../assets/mascotte/sbircia.svg?raw';
+import '../../styles/mascotte.css';
+
+interface Props {
+  /** Il selettore dell'elemento su cui la mascotte diventa contenta. */
+  bersaglio: string;
+  /** La classe con misura e distanza dal bordo destro (mx-home, mx-premium). */
+  class: string;
+}
+const { bersaglio, class: classe } = Astro.props;
+---
+<div class:list={['mx-sbircia', classe]} data-sbircia data-bersaglio={bersaglio} aria-hidden="true" set:html={svg} />
+{/* Nascosta sotto il bordo prima del primo disegno, se poi salirà: senza JavaScript, o con meno animazioni, resta
+    al suo posto. */}
+<script is:inline>
+  (function (el) {
+    if (el && !matchMedia('(prefers-reduced-motion: reduce)').matches) el.classList.add('mx-attesa');
+  })(document.currentScript && document.currentScript.previousElementSibling);
+</script>
+<script>
+  import { avviaSbirce } from './sbircia.ts';
+  avviaSbirce();
+</script>

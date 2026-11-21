@@ -1,0 +1,27 @@
+/*
+ * La mascotte che sbircia (Sbircia.astro; spec 2026-11-21-mascotte-nel-sito-design.md, nel repo team-tasks-manager).
+ * Il riquadro di sbircia.svg è 349 × 230 e il bordo su cui sbircia cade a 206 dall'alto: sopra il bordo del
+ * contenitore restano --mx-w × 206 / 349 px di mascotte.
+ */
+.mx-sbircia {
+  --mx-w: 140px; --mx-destra: 56px;
+  position: absolute; z-index: 2; top: 0; right: var(--mx-destra); width: var(--mx-w);
+  transform: translateY(calc(var(--mx-w) * -206 / 349)); pointer-events: none;
+}
+.mx-sbircia svg { display: block; width: 100%; height: auto; }
+/* La salita (sbircia.ts toglie mx-attesa): il corpo, ritagliato al bordo, sale da sotto; le mani arrivano alla
+   fine. Dentro lo SVG i px sono unità del disegno: 230 porta il corpo tutto sotto il bordo. */
+.mx-sbircia .mx-corpo { transition: transform 600ms cubic-bezier(.2, .8, .2, 1); }
+.mx-sbircia .mx-mani { transition: opacity 150ms ease-out 450ms; }
+.mx-sbircia.mx-attesa .mx-corpo { transform: translateY(230px); transition: none; }
+.mx-sbircia.mx-attesa .mx-mani { opacity: 0; transition: none; }
+/* Contenta sul bersaglio: gli archi al posto degli ovali. */
+.mx-sbircia[data-umore="contento"] .mx-normali { visibility: hidden; }
+.mx-sbircia[data-umore="contento"] .mx-contenti { visibility: visible; }
+
+/* Home, sulla finestra dei video (spec §2.1). */
+.mx-home { --mx-w: 140px; --mx-destra: 56px; }
+@media (max-width: 599px) { .mx-home { --mx-w: 96px; --mx-destra: 24px; } }
+/* Premium, sulla carta Premium (spec §2.3); 760 px è la soglia delle carte affiancate (premium.css). */
+.mx-premium { --mx-w: 130px; --mx-destra: 48px; }
+@media (max-width: 759px) { .mx-premium { --mx-w: 96px; --mx-destra: 24px; } }
