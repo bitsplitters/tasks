@@ -77,7 +77,7 @@ So `↻1h ×4` means four pings, one an hour, the first included. A single event
 
 TTM never removes a reminder by itself. A reminder whose alerts are all **in the past** stays on its task, as a record. It sends nothing more, and it doesn't count among the reminders waiting. To set it again, choose a new date: until then, Save stays off.
 
-In the text of a list, the same reminder is a timestamp and a triplet: see [Reminders in the text](/docs/writing-a-list/#reminders-in-the-text).
+In the text of a list, the same reminder is a date in your time zone and a triplet, such as `2026-12-08 18:00 [0m,0m,0]`: see [Reminders in the text](/docs/writing-a-list/#reminders-in-the-text).
 
 ## Common errors
 

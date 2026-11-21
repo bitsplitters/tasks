@@ -10,7 +10,7 @@ A list is text, and you can write all of it by hand. The format is the same ever
 - `/create-list`, when you create a list;
 - **Bulk update**, which rewrites the whole list in the channel;
 - **Edit the list** and **New list**, in the Activity;
-- the file that **Download** gives you in the channel, which `/create-list` imports back.
+- the file that **Download** gives you in the channel, which `/create-list` imports back. The file keeps Discord's codes in place of the names: see [The codes behind the names](#the-codes-behind-the-names).
 
 The text of a single task follows the same rules, with one exception: owners, reminders and webhooks have their own buttons, so its form removes them and tells you.
 
@@ -29,54 +29,57 @@ The text of a single task follows the same rules, with one exception: owners, re
 - **The box comes after the dash** when the list already exists: `[]` for a task to do, `[X]` for a completed one. Change it to tick or untick the task. A new line without a box is a task to do.
 - The title can be up to **90 characters**. The list can be up to about **4000 characters** and **50 tasks**, subtasks included. After the beta, the Free plan allows 20 tasks: see [What Premium unlocks](/docs/premium/).
 
-## How Discord references things
+## People, roles and channels by name
 
-Discord doesn't store names, it stores **IDs** — long numbers that never change even if someone renames themselves. A mention is just a tiny code wrapping an ID. Once you know the pattern, you can type or edit them yourself.
+In the text, people, roles and channels are written by name, as Discord shows them: `@Ava`, `@Moderators`, `#general`. When you save, TTM turns each name into a mention, so the list notifies and links as usual. When you open the form again, the names are back.
 
-### Finding an ID
-
-First, turn on Developer Mode (once):
-
-1. Discord → **User Settings** → **Advanced** → enable **Developer Mode**.
-
-Then, anywhere in Discord:
-
-- **Someone else's ID** — right-click their name or avatar → **Copy User ID**.
-- **A role's ID** — Server Settings → Roles → right-click the role → **Copy Role ID** (or right-click a role mention).
-- **A channel's ID** — right-click the channel in the sidebar → **Copy Channel ID**.
-- **Your own ID** — right-click your name → **Copy User ID**.
+Above the text, the form lists the people, roles and channels the list mentions, and the time zone of its dates. Every name the server's lists use is under **Show placeholders**, in [`/config lists`](/docs/config-lists/#show-placeholders). In the Activity, a line under the text says how to write them.
 
 ## Mentioning people and roles
 
-Wrap a user ID like this:
+Write `@` and the name:
 
 ```
-<@USER_ID>
+- Ask @Ava to check the rules, then tell @Moderators
 ```
 
-For example `<@123456789012345678>` renders as **@username**. Roles use an extra `&`: `<@&987654321098765432>` renders as **@role**. These mentions are the task's **tags**: the **Tag** button writes the same codes for you, so in the text you can copy, move or remove them with confidence.
+- **A person** goes by the name the server shows: their server nickname, otherwise their display name, otherwise their username. Upper and lower case don't matter.
+- **Two people with the same name** show with their username in brackets: `@Mario (mario.rossi)` and `@Mario (mario_b)`. Write them the same way. A name that matches more than one person can't be saved: the message lists the forms to write.
+- **A role** is `@` and its name: `@Moderators`.
+- **Someone who isn't in the list yet** works the same way: write `@` and their name, and TTM looks them up on the server when you save. If TTM can't find them, write their username, from their profile: Discord searches by username and server nickname.
+- **A name the server doesn't have** stays text, like `@elonmusk`, and nobody is mentioned. In the owner's place it is an error instead: see [Owners](#owners-the-mention-with-a-colon).
+
+The longest name wins: with Mario and Mario Rossi on the server, `@Mario Rossi` is Mario Rossi. A name counts only as a whole word, so `@Leonardo` isn't `@Leo` followed by "nardo".
+
+Some `@` are never a name: `@everyone` and `@here`, an email address such as `ava@example.com`, and anything inside a link or between backticks.
+
+These mentions are the task's **tags**. The **Tag** button adds them for you, and in the text they show as names: copy, move or remove them as you like.
+
+### Writing @ without a mention
+
+Put a backslash in front: `\@Ava` stays the word @Ava, and nobody is mentioned. `\#general` does the same for a channel. When a task already holds such a word, the form shows it with its backslash, so saving leaves it as it is.
 
 ## Owners: the mention with a colon
 
 A task's owner is a mention too, with one difference: it is followed by a **colon**. The **Owner** button writes it for you, at the start of the task:
 
 ```
-<@USER_ID>: Ship the release notes
+@Ava: Ship the release notes
 ```
 
-A role works the same way: `<@&ROLE_ID>:`. Without the colon, the same mention is just a tag, not an owner. A reminder goes to the task's owner, so TTM doesn't save a reminder on a task without an owner, and the message names the task to fix. Owners and tags, and what each can do: [Owners and tags](/docs/owners-and-tags/).
+A role works the same way: `@Moderators:`. Without the colon, the same mention is just a tag, not an owner. A name TTM can't find in the owner's place can't be saved, because the task would lose its owner without a word: the message says which name, and the line gets an arrow. A reminder goes to the task's owner, so TTM doesn't save a reminder on a task without an owner, and the message names the task to fix. Owners and tags, and what each can do: [Owners and tags](/docs/owners-and-tags/).
 
 ## Linking channels
 
-Channels use `#`:
+Write `#` and the channel's name, as the sidebar shows it:
 
 ```
-<#CHANNEL_ID>
+- Specs in #design, deploy from #releases
 ```
 
-`<#111222333444555666>` renders as a clickable **#channel**. Perfect for sending readers to the right place — "specs in `<#…>`", "deploy from `<#…>`".
+Every channel you can mention works: text, announcement, voice, stage, forum and media channels, and active threads. Categories don't.
 
-<div class="callout"><div class="callout-t">The shortcut: right-click → Copy Link</div>You don't need the ID, or even Developer Mode, for a channel: <strong>right-click the channel in the sidebar → Copy Link</strong> and paste it into the task. TTM recognises the link and <strong>shortens it to a channel tag</strong> for you, so <code>https://discord.com/channels/…/111222333444555666</code> becomes <code>&lt;#111222333444555666&gt;</code> on its own. Links that point to a specific <em>message</em> are left alone — those stay clickable links.</div>
+<div class="callout"><div class="callout-t">A channel link works too</div>Right-click the channel in the sidebar → <strong>Copy Link</strong> and paste it into the task: TTM recognises the link and <strong>shortens it to a channel tag</strong>, which the form then shows as <code>#name</code>. Links that point to a specific <em>message</em> are left alone — those stay clickable links.</div>
 
 ## Adding a hyperlink
 
@@ -108,13 +111,19 @@ Leave a name where it is and the emoji stays. Write one yourself, in lowercase, 
 
 ## Reminders in the text
 
-A reminder appears as a timestamp followed by a triplet:
+A reminder appears as a date followed by a triplet:
 
 ```
-- [] <t:1726497546> [2d3h,1h,3] Ship the release notes
+- [] 2026-12-08 18:00 [2d3h,1h,3] @Ava: Ship the release notes
 ```
 
-The number in `<t:…>` is the date in seconds, and you don't need to work it out. In any channel, type `@time` and pick the date from Discord's menu. Then put a `\` in front of what Discord inserted and send the message. It shows the code as text, such as `<t:1763632460:f>`: copy it in front of the triplet. Any of the menu's formats works: TTM keeps the date, not the format you picked.
+The date is written `YYYY-MM-DD HH:mm`, the same in every language, in **your** time zone: the one you chose for your reminders, otherwise the zone of your Discord language, otherwise the server's (see [Your time zone](/docs/reminders/#your-time-zone)). The form names the zone above the text. Change the date and save, and the reminder moves.
+
+- A date with seconds shows them: `2026-12-08 18:00:30`.
+- When summer time ends, the clocks go through one hour twice. A date in that hour carries its offset, such as `2026-10-25 02:30 +02:00`, so the two 02:30 stay apart. Without an offset, TTM takes the first of the two.
+- When summer time starts, the clocks skip an hour. A date in that hour doesn't exist, and the line gets an arrow.
+
+Only the date right before a triplet is a reminder. A date anywhere else in the text stays as you wrote it.
 
 The triplet is `[distance,interval,repetitions]`. The first value lets you create a reminder **from text**, without an absolute date: it is counted from the moment you save the list. The repetitions are the pings **after** the first one, so the task line shows one more: `[2d3h,1h,3]` is `↻1h ×4`, and the most a plan allows here is 49, 50 pings in total. A single event uses the sentinel interval `0m` and `0` repetitions — `[2d3h,0m,0]`. Distance and interval use only `d`, `h` and `m`. A value in months, such as `[1M,0m,0]`, is refused, and the line is marked with an arrow.
 
@@ -126,9 +135,9 @@ These reminders can't be saved, and the message names the task to fix:
 
 - a reminder on a task with **no owner**. Reminders go to the owner, and a mention without the colon is only a tag: see [Owners: the mention with a colon](#owners-the-mention-with-a-colon);
 - a reminder with **no date** and a distance of zero, such as `[0m,0m,0]` on its own. Its only alert would be the moment you save, already gone;
-- a reminder that **can't be read**: a number too large, such as `[1h,1d,99999999999]`, or a date that doesn't exist.
+- a reminder that **can't be read**: a number too large, such as `[1h,1d,99999999999]`.
 
-A reminder written badly is marked with an arrow, like a line without a dash: two dates or two triplets on one line, a date without its triplet, or a reminder without task text. TTM doesn't guess which one you meant.
+A reminder written badly is marked with an arrow, like a line without a dash: two dates or two triplets on one line, a date without its triplet, a date that doesn't exist, such as `2026-02-30 10:00`, or a reminder without task text. TTM doesn't guess which one you meant.
 
 These checks look only at the lines you change. Rewriting the whole list checks the lines you add or edit, and the text of a single task checks that task. A new list, a clone and an import check every line.
 
@@ -144,6 +153,24 @@ You can move it, copy it onto another task or delete it by hand, exactly like a 
 
 `wb` is the only reserved key. Any other `{{key=value}}` in a task's text is a **free variable**: the webhook can use it as `{{key}}`. See [Tokens](/docs/webhooks/#tokens).
 
+## The codes behind the names
+
+Discord doesn't store names: it stores **IDs**, long numbers that never change, even when someone renames themselves. Behind every name in the text there is a code, and the list keeps the codes: in its message, in its notifications and in the Download file.
+
+| In the text | The code behind it |
+| :--- | :--- |
+| `@Ava` | `<@123456789012345678>` |
+| `@Moderators` | `<@&987654321098765432>` |
+| `#general` | `<#111222333444555666>` |
+| `2026-12-08 18:00` in UTC, before a triplet | `<t:1796752800>`, the date in seconds |
+
+You can still write or paste the codes: TTM saves them as they are. A Download file, or a text written before the names, works as it is. When someone changes their name on Discord, the form shows the new one, and nothing saved breaks, because the list keeps the ID. **Show placeholders**, in [`/config lists`](/docs/config-lists/#show-placeholders), shows each name of the server's lists with its code.
+
+A code stays in the text in a few cases:
+
+- two roles with the same name, or two channels with the same name: the codes tell them apart;
+- a person whose name Discord didn't send in time when the form opened. Leave the code as it is: the mention stays.
+
 ## Quick reference
 
 | You want | You write | It shows |
@@ -151,14 +178,17 @@ You can move it, copy it onto another task or delete it by hand, exactly like a 
 | A task | `- Ship it` | a new task |
 | A subtask | `  - Write the notes` | a subtask of the line above |
 | A completed task | `- [X] Ship it` | a ticked box |
-| Mention a person | `<@USER_ID>` | @username |
-| Mention a role | `<@&ROLE_ID>` | @role |
-| Set the owner | `<@USER_ID>:` | @username: |
-| Link a channel | `<#CHANNEL_ID>` | #channel |
+| Mention a person | `@Name` | @Name |
+| Mention one of two people with the same name | `@Name (username)` | @Name |
+| Mention a role | `@Role` | @Role |
+| Set the owner | `@Name:` | @Name: |
+| Link a channel | `#channel` | #channel |
+| Write @ without a mention | `\@Name` | @Name, as text |
 | Add a link | `[text](https://url)` | text |
 | Link an email address | `[text](mailto:name@example.com)` | text |
 | Link a phone number | `[text](tel:+12025550100)` | text |
 | Show a button's emoji | `:owner:`, `:reminder:`, `:content:`, `:more:` | the button's emoji |
+| A reminder on a date | `2026-12-08 18:00 [0m,0m,0]`, on a task with an owner | the date |
 | A reminder two days after saving | `[2d,0m,0]`, on a task with an owner | the date |
 | Link a webhook | `{{wb=name}}` | nothing |
 
@@ -167,14 +197,14 @@ You can move it, copy it onto another task or delete it by hand, exactly like a 
 A single task can combine all of these:
 
 ```
-- Review the release notes in <#111222333444555666>, ping <@&987654321098765432> when done — questions to [the release owner](mailto:release@example.com)
+- @Ava: Review the release notes in #releases, ping @Moderators when done — questions to [the release owner](mailto:release@example.com)
 ```
 
-<div class="callout"><div class="callout-t">Rewrite with confidence</div>The text shows every task as it is stored, including the codes above. Now that you can read them, you can safely reorder tasks, fix a wrong ID, or swap a channel link — without breaking anything. Just keep the colon after the owner's mention.</div>
+<div class="callout"><div class="callout-t">Rewrite with confidence</div>The text shows every task as it is stored, with names in place of the codes. Reorder tasks, give a task to someone else by writing their name, or swap a channel — without breaking anything. Just keep the colon after the owner's name.</div>
 
 ## When the text can't be saved
 
-If TTM can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, or a reminder without task text. A webhook token (`{{wb=…}}`) without task text gets the arrow too. Otherwise, **one message lists every problem at once**, one per paragraph:
+If TTM can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, a date that doesn't exist, or a reminder without task text. A webhook token (`{{wb=…}}`) without task text gets the arrow too, and so do a name TTM can't find in the owner's place and a name that matches more than one person: the message says what to write. Otherwise, **one message lists every problem at once**, one per paragraph:
 
 - the list is too long;
 - the list has more tasks than a list can hold, or than your plan allows;
@@ -182,5 +212,7 @@ If TTM can't read your text as a list, it shows the text back, with an arrow on 
 - a reminder has no owner, or no date and a distance of zero.
 
 Fix them all and save again. A reminder whose alerts are all in the past doesn't stop the save: it stays on its task. See [Reading a reminder on the task](/docs/reminders/#reading-a-reminder-on-the-task).
+
+Two more cases save nothing, and TTM tells you. If Discord doesn't answer in time while TTM looks up the names you wrote, try again. A form left open for more than six hours can't read its names back: open it again from the list.
 
 <div class="howto"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/the-task-list/#bulk-update"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">Bulk update, in the first row under the list.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#edit-the-list"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Edit the list, at the top of the list.</span></a></div></div>

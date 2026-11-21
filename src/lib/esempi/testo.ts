@@ -8,6 +8,8 @@
  */
 import { rinumera } from '../../components/home/demo/regole.ts';
 import type { Owner, Task } from '../../components/home/demo/modello.ts';
+import { coiNomi as nomiDellaModale } from '../../components/home/demo/nomi.ts';
+import type { Team } from './tipi.ts';
 
 /** I nomi brevi delle emoji dei pulsanti («Writing a list», Button emoji) e l'icona del bot di ciascuno. */
 export const EMOJI_DEI_PULSANTI: Readonly<Record<string, string>> = {
@@ -85,4 +87,18 @@ export function scrivi(tasks: readonly Task[]): string {
     parti.push(owner + t.testo.replace(ICONE, (_, icona: string) => `:${NOME_DELL_ICONA[icona]}:`));
     return parti.join(' ');
   }).join('\n');
+}
+
+/**
+ * Il testo come lo mostra Bulk update dalla 2.5.0 (segnaposto leggibili; NomiNellaModale.perLaModale nella business):
+ * i codici diventano i nomi del team, la data del promemoria quella del suo fuso. Il testo dei casi d'uso resta scritto
+ * con gli id; questa è la forma che la pagina mostra.
+ */
+export function coiNomi(testo: string, team: Team): string {
+  return nomiDellaModale(testo, {
+    persone: team.people.map((p) => ({ id: p.id, nome: p.name, username: p.username })),
+    ruoli: team.roles.map((r) => ({ id: r.id, nome: r.name })),
+    canali: team.channels.map((c) => ({ id: c.id, nome: c.name })),
+    zona: team.zone,
+  });
 }

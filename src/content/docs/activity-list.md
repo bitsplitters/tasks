@@ -44,7 +44,7 @@ While the panel is open, the task is locked for the others: see [Who is editing 
 
 ## Content
 
-**Blue** shows the text of the task, to change it. Owners, tags, reminders and webhooks typed there are removed: they have their own buttons.
+**Blue** shows the text of the task, to change it, with channels by name, such as `#general`. Owners, tags, reminders and webhooks typed there are removed: they have their own buttons.
 
 **Red** deletes the task. Deleting a group with subtasks asks you first, as in the channel. The last task of a list can't be deleted: a list can't be left empty. To delete the whole list, use the channel.
 
@@ -91,7 +91,7 @@ A ticked task can't get a reminder. On a task without an owner, the panel says t
 
 ## Edit the list
 
-**Edit the list** shows the title and every task as text, in the format of [Writing a list](/docs/writing-a-list/): the same text as the channel's **Bulk update**, read by the same rules. Change what you need and save.
+**Edit the list** shows the title and every task as text, in the format of [Writing a list](/docs/writing-a-list/): the same text as the channel's **Bulk update**, read by the same rules: people, roles and channels by name, reminder dates in your time zone. A line under the text names the zone. Change what you need and save.
 
 The list is locked for the others from the moment it opens until you save or cancel: **Cancel**, the ✕ and a tap outside unlock it. It closes by itself after 30 seconds without activity. If the text can't be saved, the problems show under it: see [When the text can't be saved](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

@@ -9,6 +9,17 @@ releases: true
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 2.5.0 — Names instead of codes
+
+Released 2026-11-22
+
+- **People, roles and channels by name** — **Bulk update** and the **Content** form show `@Ava`, `@Moderators` and `#general` instead of Discord's codes, and a line above the text lists the names the list mentions. Write `@` and a name to mention someone, even someone who isn't in the list yet. See [People, roles and channels by name](/docs/writing-a-list/#people-roles-and-channels-by-name).
+- **Reminder dates you can read** — in the text of a list, the date of a reminder is `2026-12-08 18:00`, in your time zone, instead of a code. Change it and save, and the reminder moves. See [Reminders in the text](/docs/writing-a-list/#reminders-in-the-text).
+- **`/create-list` says how** — a line above the text explains how to write owners, mentions, channels and reminder dates. See [Writing a list](/docs/writing-a-list/).
+- **In the Activity too** — **Edit the list** shows the names and the dates in your time zone. Under the text, **Edit the list**, **New list** and the **Content** of a task say how to write them. See [Edit the list](/docs/activity-list/#edit-the-list).
+- **Show placeholders** — a new button in `/config lists` shows every name your lists use, with the code behind it. See [Show placeholders](/docs/config-lists/#show-placeholders).
+- **Codes still work** — a code you write or paste is saved as it is, and the Download file keeps the codes, so files from before import as they are. See [The codes behind the names](/docs/writing-a-list/#the-codes-behind-the-names).
+
 ## 2.4.0 — The second row shows you the way
 
 Released 2026-11-20

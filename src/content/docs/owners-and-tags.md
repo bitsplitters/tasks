@@ -35,7 +35,7 @@ A new choice of tags **replaces** the old one: the task is tagged with exactly t
 
 How you choose them differs a little between the two places. In the channel, a setting of the server decides whether you overwrite the tags or edit them live: see [Tag](/docs/channel-tasks/#tag). In the Activity you always start from the tags the task has now: see [Tag](/docs/activity-list/#tag).
 
-In the text of a list, tags are mentions and the owner is the mention with a colon: see [Writing a list](/docs/writing-a-list/#owners-the-mention-with-a-colon).
+In the text of a list, a tag is `@` and the name, such as `@Ava`, and the owner is the same name followed by a colon, `@Ava:`: see [Writing a list](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 
 ## The roles TTM creates
 

@@ -76,7 +76,7 @@ settings:
     why: "«Call the missing teams» pings every 15 minutes, until someone ticks it."
 week:
   - at: 2026-12-07T19:00
-    text: "Mia runs `/create-list` in #tournament-staff and writes Saturday's tasks, with @Referees as the owner of the jobs any referee can do, written as codes ([Writing a list](/docs/writing-a-list/#owners-the-mention-with-a-colon) shows how). She pastes the link of the bracket from Challonge. The first notification mentions @Referees, so every referee is notified."
+    text: "Mia runs `/create-list` in #tournament-staff and writes Saturday's tasks, with @Referees as the owner of the jobs any referee can do, written as `@Referees:` ([Writing a list](/docs/writing-a-list/#owners-the-mention-with-a-colon) shows how). She pastes the link of the bracket from Challonge. The first notification mentions @Referees, so every referee is notified."
   - at: 2026-12-08T20:30
     text: "Mia gives «Go live» to Leo and Sam together: she picks both in the menu under **Owner**. TTM creates the role **TTM1** for the two of them and makes it the owner. An owner of several people is a [Premium](/premium/) feature, unlocked for every server during the beta."
   - at: 2026-12-09T21:00

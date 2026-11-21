@@ -73,6 +73,12 @@ It is the same deletion you get from **Delete list** in the **More** <img class=
 
 <div class="callout"><div class="callout-t">Why doesn't the bot know which lists are dead?</div>Telling a live list from a deleted one means asking Discord about every list, every time the panel opens. TTM doesn't: it shows you what exists and links each channel, so you can look for yourself. Guessing from silence is exactly how data gets destroyed by accident.</div>
 
+## Show placeholders
+
+In the text of a list, people, roles and channels are written by name: `@Ava`, `@Moderators`, `#general`. **Show placeholders**, in the row of **Cancel** and **Apply**, answers with a message only you can see, with the people, roles and channels the server's lists mention. Each one has the name you write and the code the list keeps, such as `@Ava` → `<@123456789012345678>`. Sealed lists don't count. When the message would be too long, the longest group ends with *and N more*.
+
+Two lines at the bottom recall how to write someone who isn't there, and how to write `@` or `#` without a mention. The whole format: [Writing a list](/docs/writing-a-list/#people-roles-and-channels-by-name).
+
 ## If the database is unreachable
 
 If the database is unreachable, the command refuses to open, and says so. Every row of that panel comes from the database. A deletion that can't remove the data would leave reminders firing for a list that no longer appears anywhere.
