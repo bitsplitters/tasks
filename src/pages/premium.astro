@@ -20,21 +20,22 @@ const TITLE = `${PAGINA_PIANI.title} — Team Tasks Manager`;
 const EMBED = docsCard(PAGINA_PIANI.title, PAGINA_PIANI.description, PAGINA_PIANI.path, 'See the plans');
 
 // Il Founder (spec docs/superpowers/specs/2026-11-15-founder-design.md, §4): un evento a tempo, il prezzo in chiaro.
-// Le cifre scritte (20 € contro 36 €, 1,000 posti, 30 giorni) sono regole vere. Il numero del badge va ai primi 1,000
+// Le cifre scritte (20 € contro 36 €, 1000 posti, 30 giorni) sono regole vere. Il numero del badge va ai primi 1000
 // che comprano, non a chi lo sblocca soltanto (correzione dell'utente del 22/11, spec del Founder, regola 2): da qui
-// «#0001 – #1000» sulla matrice del biglietto.
+// «#0001 – #1000» sulla matrice del biglietto. Mille si scrive senza separatori, in ogni lingua: «1,000» confonde chi
+// usa la virgola per i decimali, e il numero di un badge è un identificativo (utente, 22/11).
 const PUNTI = [
   {
     titolo: 'Once, never again.',
     testo: 'Badges unlock in a limited window before the beta ends. When it closes, it never reopens.',
   },
   {
-    titolo: 'Only 1,000 numbers.',
-    testo: "The first 1,000 Founders who buy get the Founder price and a numbered badge, #1 to #1,000. A reservation alone doesn't hold one.",
+    titolo: 'Only 1000 numbers.',
+    testo: "The first 1000 Founders who buy get the Founder price and a numbered badge, #1 to #1000. A reservation alone doesn't hold one.",
   },
   {
     titolo: 'Yours for good.',
-    testo: "Missed the 1,000? Buy at the standard price within 30 days and keep your Founder badge, without a number. Either way, it stays in the bot and on our Founders wall.",
+    testo: "Missed the 1000? Buy at the standard price within 30 days and keep your Founder badge, without a number. Either way, it stays in the bot and on our Founders wall.",
   },
 ];
 ---
