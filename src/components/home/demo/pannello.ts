@@ -93,7 +93,7 @@ export function eliminazione(stato: Stato, pos: string, tasto: Tasto): Esito {
  * l'owner: un `@nome:` in testa è testo.
  */
 export function testoDelCampo(stato: Stato, task: Task): string {
-  return coiNomi(prosaDelTask(task), rubricaDi(stato), 'contenuto');
+  return coiNomi(prosaDelTask(task), rubricaDi(stato));
 }
 
 /** Il testo scritto è un altro, a meno degli spazi (ContentAction, normalize). */

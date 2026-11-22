@@ -67,7 +67,7 @@ Save, and the next time the form opens the person shows by name. The **Owner** a
 
 ### Writing @ without a mention
 
-Put a backslash in front of a name TTM knows: `\@Ava` stays the word @Ava, and nobody is mentioned. `\#general` does the same for a channel. Any other `@word` stays text by itself, with no backslash, except at the start of a task in the list's text, followed by a colon, where it would be an owner: `\@word:`. When a task holds the word of a name TTM knows, or starts with one of those words, the form shows it with its backslash, so saving leaves it as it is.
+Put a backslash in front of a name TTM knows: `\@Ava` stays the word @Ava, and nobody is mentioned. `\#general` does the same for a channel. Any other `@word` stays text by itself, with no backslash, except at the start of a task in the list's text, followed by a colon, where it would be an owner: `\@word:`. TTM keeps your backslash: the list shows the word without it, and the form shows it again next time, so you can tell the word from the mention. TTM never adds a backslash of its own.
 
 ## Owners: the mention with a colon
 

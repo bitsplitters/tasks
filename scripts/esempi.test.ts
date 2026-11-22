@@ -57,7 +57,7 @@ test('Bulk update coi nomi (2.5.0): persone, ruoli, canali e la data del promemo
 });
 
 // Le persone del dizionario sono quelle che la lista cita, come nel bot: Ava c'è perché il testo la menziona.
-test('i nomi uguali: le persone con lo username, due ruoli col codice; un @Nome letterale della lista prende la barra', () => {
+test("i nomi uguali: le persone con lo username, due ruoli col codice; la barra scritta dall'utente resta com'è", () => {
   const MARIO_A = '1181730456203948111';
   const MARIO_B = '1181730456203948112';
   const STAFF_A = '1181730456203948211';
@@ -77,7 +77,7 @@ test('i nomi uguali: le persone con lo username, due ruoli col codice; un @Nome 
     ],
   };
   const testo = `- [] <@${MARIO_A}>: ask <@${MARIO_B}>, <@1181730456203948113> and <@&${MODS}>, then <@&${STAFF_A}> `
-    + `<@&${STAFF_B}>; write @Ava as a word to <@${AVA}>, mail ava@example.com, ask @everyone`;
+    + `<@&${STAFF_B}>; write \\@Ava as a word to <@${AVA}>, mail ava@example.com, ask @everyone`;
   assert.equal(coiNomi(testo, team),
     `- [] @Mario (mario.rossi): ask @Mario (mario_b), @Moderators (mods.bot) and @Moderators, then <@&${STAFF_A}> `
     + `<@&${STAFF_B}>; write \\@Ava as a word to @Ava, mail ava@example.com, ask @everyone`);

@@ -34,12 +34,15 @@ test("una persona che il testo aperto non citava resta testo, come una che il se
   assert.equal(coiCodici(`ask <@${LEO}>`, R, 'nobody yet').testo, `ask <@${LEO}>`);
 });
 
-test('la barra davanti a un nome si toglie: il segno resta testo, come in NomiNellaModale', () => {
-  assert.equal(coiCodici(String.raw`\@Leo and \#scrims`, R, CON_LEO).testo, '@Leo and #scrims');
-  assert.equal(coiCodici(String.raw`\\@Leo`, R, CON_LEO).testo, String.raw`\@Leo`);
-  // Dove non segue un nome del dizionario la barra non serve, e resta com'è scritta, come nel bot
-  // (NomiNellaModale.idoneo, dal 2026-11-22).
-  assert.equal(coiCodici(String.raw`\#7 and \@leo2`, R, CON_LEO).testo, String.raw`\#7 and \@leo2`);
+test("la barra è dell'utente: il segno resta testo e la barra resta nel testo salvato, come in NomiNellaModale", () => {
+  // Scelta dell'utente del 2026-11-22: «La barra va utilizzata solo quando è l'utente a utilizzarla».
+  for (const scritto of [String.raw`\@Leo and \#scrims`, String.raw`\\@Leo`, String.raw`\#7 and \@leo2`])
+    assert.equal(coiCodici(scritto, R, CON_LEO).testo, scritto, scritto);
+  // All'apertura TTM non ne aggiunge: una parola uguale a un nome salvata senza barra, prima della 2.5.0, si mostra
+  // com'è, e se la riga cambia diventa la menzione.
+  assert.equal(coiNomi(`@Leo as a word, <@${LEO}>`, R), '@Leo as a word, @Leo');
+  assert.equal(coiCodici('@Leo as a word, @Leo', R, `@Leo as a word, <@${LEO}>`).testo,
+    `<@${LEO}> as a word, <@${LEO}>`);
 });
 
 test("in testa, un owner che il dizionario non conosce si rifiuta, anche più lungo di un nome noto", () => {
@@ -51,20 +54,20 @@ test("in testa, un owner che il dizionario non conosce si rifiuta, anche più lu
     { testo: `ask @Bea: now, <@${LEO}> Rossi: later`, owner: null });
   assert.deepEqual(coiCodici('@leo: ask', R, CON_LEO), { testo: `<@${LEO}>: ask`, owner: null });
   assert.deepEqual(coiCodici('@Bea:ask, @Bea', R, CON_LEO), { testo: '@Bea:ask, @Bea', owner: null });
-  // La barra lo lascia testo.
-  assert.deepEqual(coiCodici(String.raw`\@Bea: ask`, R, CON_LEO), { testo: '@Bea: ask', owner: null });
+  // La barra lo lascia testo, e resta.
+  assert.deepEqual(coiCodici(String.raw`\@Bea: ask`, R, CON_LEO), { testo: String.raw`\@Bea: ask`, owner: null });
 });
 
 test("nel contenuto di un task solo `@nome:` in testa è testo: lì l'owner non c'è", () => {
   // Scelta dell'utente del 2026-11-22: «il contenuto deve modificare solo il contenuto, non dovrebbe essere permesso di
-  // aggiungere/modificare l'owner». All'apertura niente barra; un nome noto è la sua persona, come altrove.
+  // aggiungere/modificare l'owner». Un nome noto è la sua persona, come altrove; all'apertura niente barra, qui come
+  // nella lista.
   assert.deepEqual(coiCodici('@Bea: ask', R, CON_LEO, 'contenuto'), { testo: '@Bea: ask', owner: null });
   assert.deepEqual(coiCodici('@Leo Rossi: ask', R, CON_LEO, 'contenuto'),
     { testo: `<@${LEO}> Rossi: ask`, owner: null });
-  assert.equal(coiNomi('@Bea: ask', R, 'contenuto'), '@Bea: ask');
-  assert.equal(coiNomi('@Bea: ask', R), String.raw`\@Bea: ask`);
+  assert.equal(coiNomi('@Bea: ask', R), '@Bea: ask');
   for (const salvato of ['@Bea: as text at the head', `<@${LEO}>: ask`, String.raw`\@Bea: with its bar`])
-    assert.equal(coiCodici(coiNomi(salvato, R, 'contenuto'), R, salvato, 'contenuto').testo, salvato, salvato);
+    assert.equal(coiCodici(coiNomi(salvato, R), R, salvato, 'contenuto').testo, salvato, salvato);
 });
 
 test('la lettura salta codici, link, backtick e token: lì una `@` non è un nome', () => {
@@ -74,11 +77,10 @@ test('la lettura salta codici, link, backtick e token: lì una `@` non è un nom
 
 test("un'andata e ritorno lascia il testo com'era, anche con le barre", () => {
   for (const salvato of [
-    `@Leo as text, <@${LEO}> as a mention, #scrims as text`,
+    String.raw`\@Leo as text, <@${LEO}> as a mention, \#scrims as text`,
     String.raw`\@Leo with its bar and <@${LEO}>`,
     String.raw`\#7, \@leo2 and <#${SCRIMS}>`,
     '@leo2 and @Bea as text, with no bar',
-    '@Bea: as text at the head',
     String.raw`\@Bea: as text at the head, with its bar`,
   ]) {
     assert.equal(coiCodici(coiNomi(salvato, R), R, salvato).testo, salvato, salvato);
