@@ -203,11 +203,36 @@
   background: var(--muted); box-shadow: 0 0 0 3px color-mix(in srgb, var(--muted) 25%, transparent);
 }
 .p-fd-lead { margin: 0; max-width: 46ch; font-size: clamp(1.05rem, 2vw, 1.2rem); line-height: 1.55; color: var(--text); text-wrap: pretty; }
-/* In colonna, sotto gli 860 px, il riquadro del prezzo non si allarga su tutta la riga. */
-.p-fd-price {
-  max-width: 30rem; padding: 1.4rem 1.5rem; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 16px; background: color-mix(in srgb, var(--accent) 8%, transparent);
-}
+/* Il prezzo sta su un biglietto (22/11): sopra la linea tratteggiata il prezzo, sotto la matrice con i numeri dei badge,
+   che vanno ai primi 1.000 che comprano. Le due tacche sono mezzi cerchi tolti da una maschera, metà in ciascun pezzo:
+   si vedono su qualunque sfondo, anche sull'alone della sezione. In colonna, sotto gli 860 px, il biglietto non si
+   allarga su tutta la riga. */
+.p-fd-price { --tk-n: 11px; --tk-line: color-mix(in srgb, var(--accent) 50%, transparent); max-width: 30rem; }
 .p-fd-price p { margin: 0; }
+.p-fd-tk-main, .p-fd .p-fd-tk-stub { border: 1px solid var(--tk-line); }
+.p-fd-tk-main {
+  padding: 1.4rem 1.5rem 1.35rem; border-bottom: 0; border-radius: 16px 16px 0 0;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  -webkit-mask: radial-gradient(circle at 0 100%, #0000 var(--tk-n), #000 calc(var(--tk-n) + .5px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 100%, #0000 var(--tk-n), #000 calc(var(--tk-n) + .5px)) right / 51% 100% no-repeat;
+  mask: radial-gradient(circle at 0 100%, #0000 var(--tk-n), #000 calc(var(--tk-n) + .5px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 100%, #0000 var(--tk-n), #000 calc(var(--tk-n) + .5px)) right / 51% 100% no-repeat;
+}
+.p-fd .p-fd-tk-stub {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .15rem 1rem;
+  padding: .95rem 1.5rem 1.05rem; border-top: 2px dashed var(--tk-line); border-radius: 0 0 16px 16px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  -webkit-mask: radial-gradient(circle at 0 0, #0000 var(--tk-n), #000 calc(var(--tk-n) + .5px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 0, #0000 var(--tk-n), #000 calc(var(--tk-n) + .5px)) right / 51% 100% no-repeat;
+  mask: radial-gradient(circle at 0 0, #0000 var(--tk-n), #000 calc(var(--tk-n) + .5px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 0, #0000 var(--tk-n), #000 calc(var(--tk-n) + .5px)) right / 51% 100% no-repeat;
+}
+.p-fd-tk-lab { font-size: .98rem; font-weight: 700; color: var(--accent-text); }
+/* Il numero col taglio del prezzo: è la cosa scarsa, e sul biglietto deve leggersi come un numero di serie. */
+.p-fd-tk-no {
+  font-size: clamp(1.4rem, 2.8vw, 1.7rem); font-weight: 850; font-stretch: 112%; line-height: 1.2;
+  letter-spacing: -.01em; font-variant-numeric: tabular-nums; color: var(--text); white-space: nowrap;
+}
 .p-fd-price-t { font-size: .98rem; font-weight: 700; color: var(--accent-text); }
 /* .p-fd davanti: «.p-fd-price p» azzera i margini con una specificità più alta. */
 .p-fd .p-fd-amount { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .7rem; margin-top: .5rem; }

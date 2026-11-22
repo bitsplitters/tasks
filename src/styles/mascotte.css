@@ -25,3 +25,66 @@
 /* Premium, sulla carta Premium (spec §2.3); 760 px è la soglia delle carte affiancate (premium.css). */
 .mx-premium { --mx-w: 130px; --mx-destra: 48px; }
 @media (max-width: 759px) { .mx-premium { --mx-w: 96px; --mx-destra: 24px; } }
+
+/*
+ * La mascotte in festa (Festeggia.astro; spec §2.4 e §3.4): sbuca dall'angolo in alto a destra della griglia della
+ * pagina Beta, sopra la carta che sta lì (con tre colonne, due o una, le soglie di beta.css), e festeggia come 🥳.
+ * Il riquadro di festa.svg è 484 × 384 e il bordo da cui sbuca è il suo lato basso: sopra la griglia restano
+ * --mf-w × 384 / 484 px di mascotte. Le misure stanno sulla sezione (mx-festa-zona), perché servono anche al titolo.
+ */
+.mx-festa-zona { --mf-w: 96px; --mf-destra: 12px; }
+@media (min-width: 390px) { .mx-festa-zona { --mf-w: 112px; } }
+@media (min-width: 640px) { .mx-festa-zona { --mf-w: 134px; } }
+@media (min-width: 960px) { .mx-festa-zona { --mf-w: 190px; --mf-destra: 24px; } }
+/* Con una colonna la mascotte resta sulla riga del titolo (utente, 2026-11-22), che va a capo e le arriverebbe
+   sotto: il titolo le lascia il posto a destra, lei più un decimo per i coriandoli a sinistra. Sotto i 390 px è
+   larga 96: di più, a 360, il titolo andrebbe su tre righe. Con due e tre colonne il titolo sta su una riga. */
+@media (max-width: 639px) { .mx-festa-titolo { padding-right: calc(var(--mf-destra) + var(--mf-w) * 1.1); } }
+.mx-festa {
+  --mf-giu: 400px; --mf-salto: 12px;
+  position: absolute; z-index: 2; right: var(--mf-destra); bottom: calc(100% - 1px); width: var(--mf-w);
+  pointer-events: none;
+}
+.mx-festa svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* Sulla mascotte il puntatore rifà la festa: lei sta accanto al titolo, mai sopra un testo o un pulsante. */
+.mx-festa .mx-corpo { pointer-events: auto; }
+/* I coriandoli si vedono solo durante la festa; con meno animazioni restano fermi intorno, come nell'emoji. */
+.mx-festa .mx-cf { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .mx-festa .mx-cf { opacity: 1; } }
+.mx-festa .mx-braccio, .mx-festa .mx-cappello { transform-box: fill-box; }
+.mx-festa .mx-dx { transform-origin: 0 100%; }
+.mx-festa .mx-sx { transform-origin: 100% 100%; }
+.mx-festa .mx-cappello { transform-origin: 50% 100%; }
+/* La salita (festeggia.ts cambia mx-attesa in mx-sale): il corpo, ritagliato al bordo, sale da sotto con un
+   saltello. Dentro lo SVG i px sono unità del disegno: 400 porta il corpo tutto sotto il bordo. */
+.mx-festa.mx-attesa .mx-corpo { transform: translateY(var(--mf-giu)); }
+.mx-festa.mx-sale .mx-corpo { animation: mx-salta 720ms both; }
+/* La festa (mx-in-festa): saltello, braccia che si agitano, cappellino che dondola, coriandoli che scoppiano da
+   dietro la testa e cadono. */
+.mx-festa.mx-in-festa .mx-corpo { animation: mx-saltello 700ms ease-in-out both; }
+.mx-festa.mx-in-festa .mx-dx { animation: mx-agita-dx 900ms ease-in-out both; }
+.mx-festa.mx-in-festa .mx-sx { animation: mx-agita-sx 900ms ease-in-out both; }
+.mx-festa.mx-in-festa .mx-cappello { animation: mx-dondola 900ms ease-in-out both; }
+.mx-festa.mx-in-festa .mx-cf { animation: mx-coriandolo 1500ms var(--ritardo) both; }
+@keyframes mx-salta {
+  0% { transform: translateY(var(--mf-giu)); animation-timing-function: cubic-bezier(.2, .8, .3, 1); }
+  62% { transform: translateY(-20px); animation-timing-function: ease-in; }
+  82% { transform: translateY(3px); animation-timing-function: ease-out; }
+  100% { transform: translateY(0); }
+}
+/* Il saltello è di 12: quanto basta a vederlo senza scoprire il fondo della spunta. */
+@keyframes mx-saltello {
+  0%, 100% { transform: translateY(0); }
+  35% { transform: translateY(calc(var(--mf-salto) * -1)); }
+  62% { transform: translateY(0); }
+  80% { transform: translateY(calc(var(--mf-salto) * -.3)); }
+}
+@keyframes mx-agita-dx { 0%, 100% { transform: rotate(0); } 22% { transform: rotate(-14deg); } 48% { transform: rotate(9deg); } 74% { transform: rotate(-8deg); } }
+@keyframes mx-agita-sx { 0%, 100% { transform: rotate(0); } 22% { transform: rotate(14deg); } 48% { transform: rotate(-9deg); } 74% { transform: rotate(8deg); } }
+@keyframes mx-dondola { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-9deg); } 60% { transform: rotate(6deg); } 82% { transform: rotate(-2deg); } }
+@keyframes mx-coriandolo {
+  0% { transform: translate(var(--ox), var(--oy)) scale(.3) rotate(0deg); opacity: 0; animation-timing-function: cubic-bezier(.15, .85, .35, 1); }
+  10% { opacity: 1; }
+  34% { transform: translate(0px, 0px) scale(1) rotate(calc(var(--giro) * .35)); opacity: 1; animation-timing-function: cubic-bezier(.45, 0, .85, .6); }
+  100% { transform: translate(0px, 96px) scale(.9) rotate(var(--giro)); opacity: 0; }
+}

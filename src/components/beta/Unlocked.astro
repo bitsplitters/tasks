@@ -4,7 +4,13 @@
  * oggi per tutti. Le icone sono quelle della home per le stesse cose (home/Features.astro), nel grigio dei pulsanti di
  * Discord. I promemoria ripetuti non hanno un'icona loro: prendono il ↻ che la lista mostra accanto all'intervallo.
  * Ogni riga è vera coi limiti di oggi (/docs/premium/, /docs/known-limits/). Nessun prezzo.
+ *
+ * La mascotte festeggia dall'angolo in alto a destra della griglia (Festeggia.astro; spec
+ * 2026-11-21-mascotte-nel-sito-design.md, §2.4, nel repo team-tasks-manager): la sezione ne porta le misure, il titolo
+ * le lascia il posto su telefono e la griglia sta in un contenitore (b-tiles-zona) su cui appoggiarla.
  */
+import Festeggia from '../mascotte/Festeggia.astro';
+
 interface Voce {
   icona?: string;
   titolo: string;
@@ -30,20 +36,23 @@ const VOCI: Voce[] = [
   },
 ];
 ---
-<section class="h-sec wrap" aria-labelledby="b-unlocked-title">
-  <h2 id="b-unlocked-title">Unlocked for you, right now.</h2>
-  <ul class="b-tiles" role="list">
-    {VOCI.map((v) => (
-      <li>
-        <span class="b-chip" aria-hidden="true">
-          {v.icona ? <img src={`/icons/${v.icona}.png`} alt="" width="24" height="24" /> : <span class="b-glyph">↻</span>}
-        </span>
-        <div>
-          <h3>{v.titolo}</h3>
-          <p>{v.testo}</p>
-        </div>
-      </li>
-    ))}
-  </ul>
+<section class="h-sec wrap mx-festa-zona" aria-labelledby="b-unlocked-title">
+  <h2 id="b-unlocked-title" class="mx-festa-titolo">Unlocked for you, right now.</h2>
+  <div class="b-tiles-zona">
+    <Festeggia />
+    <ul class="b-tiles" role="list">
+      {VOCI.map((v) => (
+        <li>
+          <span class="b-chip" aria-hidden="true">
+            {v.icona ? <img src={`/icons/${v.icona}.png`} alt="" width="24" height="24" /> : <span class="b-glyph">↻</span>}
+          </span>
+          <div>
+            <h3>{v.titolo}</h3>
+            <p>{v.testo}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
   <p class="b-after">After the beta, these are what <a class="h-link" href="/premium/">Premium</a> adds. What you set up during the beta stays: see <a class="h-link" href="#promise">our promise</a> below.</p>
 </section>

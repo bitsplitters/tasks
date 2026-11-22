@@ -1,0 +1,26 @@
+---
+/*
+ * La mascotte che festeggia come 🥳 dall'angolo in alto a destra del contenitore (spec
+ * 2026-11-21-mascotte-nel-sito-design.md, §2.4 e §3.4, nel repo team-tasks-manager): nella pagina Beta, sopra la
+ * griglia di «Unlocked for you, right now.». Il contenitore ha position: relative; misura e distanza dal bordo destro
+ * le dà mascotte.css. Rifà la festa quando il puntatore entra in una carta (li) del contenitore o sulla mascotte, e al
+ * tocco. Decorativa: aria-hidden, senza focus.
+ *
+ * Lo SVG è festa.svg di docs/brand/mascotte (gen_mascotte.py), copiato in src/assets/mascotte: non si ritocca qui, si
+ * rigenera là e si ricopia.
+ */
+import svg from '../../assets/mascotte/festa.svg?raw';
+import '../../styles/mascotte.css';
+---
+<div class="mx-festa" data-festa aria-hidden="true" set:html={svg} />
+{/* Nascosta sotto il bordo prima del primo disegno, se poi salirà: senza JavaScript, o con meno animazioni, resta
+    al suo posto. */}
+<script is:inline>
+  (function (el) {
+    if (el && !matchMedia('(prefers-reduced-motion: reduce)').matches) el.classList.add('mx-attesa');
+  })(document.currentScript && document.currentScript.previousElementSibling);
+</script>
+<script>
+  import { avviaFeste } from './festeggia.ts';
+  avviaFeste();
+</script>
