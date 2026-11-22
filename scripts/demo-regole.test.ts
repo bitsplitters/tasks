@@ -14,14 +14,14 @@ import {
   applicaOwner, applicaOwnerActivity, applicaPromemoria, applicaTag, applicaTagActivity, applicaWebhook, avanzamento,
   campiDelPromemoria, campiDellaNuovaData, carrello, conTuttiRiaperti, eliminaTask, eliminaTaskConfermato,
   imparaIlFuso,
-  invertiSpunta, nelCanale, nellActivity, prosa, prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri,
+  invertiSpunta, nelCanale, nellActivity, ownerSconosciutoNelContenuto, prosa, prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri,
   riapriConfermato, rifiutoDelCarrello, rinumera,
   salvaTesto, salvaTestoActivity, sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, testoDellaLista, togliOwner,
   togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook, tokenTolti, validaNuovaData, validaPromemoria,
 } from '../src/components/home/demo/regole.ts';
 import type { Campi, Domanda, Esito } from '../src/components/home/demo/regole.ts';
 import { PRIMA_RIGA, TASTI } from '../src/components/home/scene-data.ts';
-import { TESTI } from '../src/components/home/demo/testi.ts';
+import { TESTI, testoDi } from '../src/components/home/demo/testi.ts';
 
 /** I task come «posizione prima parola»: '2.1 Clip'. */
 const elenco = (s: Stato) => s.lista.tasks.map((t) => `${posizione(t.pos)} ${t.testo.split(' ')[0]}`);
@@ -640,6 +640,15 @@ test('il testo della lista è quello della modale di Modifica in blocco (ModalUI
   assert.equal(riga(conIlTask(3, { webhook: 'Staff alerts' }), 3), `- [] {{wb=Staff alerts}} ${vod}`);
   assert.equal(riga(conTesto(1, `Lock the scrim block ${LEO_TAG}`), 1), `- [] Lock the scrim block ${LEO_TAG}`);
   assert.equal(riga(conSpunte(['2']), 2), ' - [X] Clip the three teamfights for the review');
+});
+
+test('l\'owner sconosciuto nel Contenuto, del canale e dell\'Activity, rimanda al menu di Owner: lì l\'owner non si cambia dal testo (ContenutoDellaModale.OWNER_SCONOSCIUTO_NEL_CONTENUTO_ERROR, scelta dell\'utente del 2026-11-22)', () => {
+  const esito = ownerSconosciutoNelContenuto('@Bea');
+  assert.deepEqual(esito,
+    { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.names.owner.unknown.content.error', argomenti: ['@Bea'] } });
+  assert.equal(testoDi((esito as Extract<Esito, { tipo: 'rifiuto' }>).testo),
+    "I can't find the owner **@Bea**: change the owner with **Owner**, not in the text. To write @ without a " +
+    'mention: `\\@`');
 });
 
 test('il nome sconosciuto non ha un messaggio: resta testo (scelta dell\'utente del 2026-11-22); la legenda ha solo le regole', () => {

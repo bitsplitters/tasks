@@ -48,7 +48,7 @@ Write `@` and the name:
 - **A role** is `@` and its name: `@Moderators`. Every role of the server works, even one the list doesn't mention yet.
 - **The Content form of a task** has only its text, channels included: owner and tags have their own buttons, **Owner** and **Tag**. See [Content](/docs/channel-tasks/#content).
 - **Someone the list doesn't mention yet** is added with the **Owner** or **Tag** button, which pick from Discord's own menu. In the text, write their code instead: see [Writing someone new](#writing-someone-new).
-- **A name TTM doesn't know**, such as `@elonmusk`, stays plain text: TTM turns into mentions only the names it knows, and leaves every other `@word` as you wrote it.
+- **A name TTM doesn't know**, such as `@elonmusk`, stays plain text: TTM turns into mentions only the names it knows, and leaves every other `@word` as you wrote it. In the owner's place it is an error instead: see [Owners: the mention with a colon](#owners-the-mention-with-a-colon).
 
 The longest name wins: with Mario and Mario Rossi on the server, `@Mario Rossi` is Mario Rossi. A name counts only as a whole word, so `@Leonardo` isn't `@Leo` followed by "nardo".
 
@@ -67,7 +67,7 @@ Save, and the next time the form opens the person shows by name. The **Owner** a
 
 ### Writing @ without a mention
 
-Put a backslash in front of a name TTM knows: `\@Ava` stays the word @Ava, and nobody is mentioned. `\#general` does the same for a channel. Any other `@word` stays text by itself, with no backslash. When a task holds the word of a name TTM knows, the form shows it with its backslash, so saving leaves it as it is.
+Put a backslash in front of a name TTM knows: `\@Ava` stays the word @Ava, and nobody is mentioned. `\#general` does the same for a channel. Any other `@word` stays text by itself, with no backslash, except at the start of a task followed by a colon, where it would be an owner: `\@word:`. When a task holds the word of a name TTM knows, or starts with one of those words, the form shows it with its backslash, so saving leaves it as it is.
 
 ## Owners: the mention with a colon
 
@@ -77,7 +77,7 @@ A task's owner is a mention too, with one difference: it is followed by a **colo
 @Ava: Ship the release notes
 ```
 
-A role works the same way: `@Moderators:`, and so does a code: `<@123456789012345678>:`. Without the colon, the same mention is just a tag, not an owner. A name TTM doesn't know in the owner's place stays text, as anywhere else, so the task has no owner: pick one with the **Owner** button. A reminder goes to the task's owner, so TTM doesn't save a reminder on a task without an owner, and the message names the task to fix. Owners and tags, and what each can do: [Owners and tags](/docs/owners-and-tags/).
+A role works the same way: `@Moderators:`, and so does a code: `<@123456789012345678>:`. Without the colon, the same mention is just a tag, not an owner. In the owner's place, a name TTM doesn't know is an error: TTM saves nothing, and the message says to pick the owner with the **Owner** button or write their code. The owner's name runs from the `@` to the colon, so `@Ava Rossi:` is an error even when TTM knows Ava. To start a task with `@word:` as plain text, put a backslash in front: `\@word:`. A reminder goes to the task's owner, so TTM doesn't save a reminder on a task without an owner, and the message names the task to fix. Owners and tags, and what each can do: [Owners and tags](/docs/owners-and-tags/).
 
 ## Linking channels
 
@@ -218,7 +218,7 @@ A single task can combine all of these:
 
 ## When the text can't be saved
 
-If TTM can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, a date that doesn't exist, or a reminder without task text. A webhook token (`{{wb=…}}`) without task text gets the arrow too, and so do a name TTM doesn't know, a name that matches more than one person and a date in a time zone TTM doesn't know: the message says what to write. Otherwise, **one message lists every problem at once**, one per paragraph:
+If TTM can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, a date that doesn't exist, or a reminder without task text. A webhook token (`{{wb=…}}`) without task text gets the arrow too, and so do an owner TTM doesn't know, a name that matches more than one person and a date in a time zone TTM doesn't know: the message says what to write. Otherwise, **one message lists every problem at once**, one per paragraph:
 
 - the list is too long;
 - the list has more tasks than a list can hold, or than your plan allows;

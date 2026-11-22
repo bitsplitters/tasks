@@ -88,12 +88,43 @@ function delTesto(conId: string, r: Rubrica): Rubrica {
 }
 
 /**
- * Se un segno scritto come testo vuole la barra (NomiNellaModale.idoneo): dove la lettura troverebbe un nome, cioè
- * davanti a un nome del dizionario. Davanti a un nome che non conosce la barra non serve: resta testo comunque
- * (scelta dell'utente del 2026-11-22).
+ * Trattino, spunta, webhook, data e tripletta: quel che viene prima del contenuto di un task (NomiNellaModale.PREFISSO).
+ * Le date scritte non servono: la demo legge coi nomi i testi salvati, che le hanno come codici, e scrive solo i
+ * Contenuti, che non ne hanno.
  */
-function idoneo(d: { at: Voce[]; hash: Voce[] }, segno: string, testo: string, da: number): boolean {
-  return piuLungo(segno === '@' ? d.at : d.hash, testo, da) !== null;
+const PREFISSO = /[^\S\n]*-?[^\S\n]*(?:\[[xX]?\][^\S\n]*)?(?:(?:\{\{wb=[^{}]*\}\}|<t:\d+(?::[a-zA-Z])?>|\[[0-9dhmM]+,[0-9dhmM]+,\d+\])[^\S\n]*)*/y;
+
+/** Dove comincia il contenuto di ogni riga (NomiNellaModale.testa): lì una `@nome:` è l'owner. */
+function teste(testo: string): Set<number> {
+  const inizi = new Set<number>();
+  let inizio = 0;
+  for (const riga of testo.split('\n')) {
+    PREFISSO.lastIndex = 0;
+    inizi.add(inizio + (PREFISSO.exec(riga)?.[0].length ?? 0));
+    inizio += riga.length + 1;
+  }
+  return inizi;
+}
+
+/** Il nome di un owner scritto (NomiNellaModale.OWNER_SCRITTO): fino ai due punti, seguiti da uno spazio o dalla fine. */
+const OWNER_SCRITTO = /([^\s@#<>\\`{}:][^@#<>\\`{}:\n]{0,31}):(?=\s|$)/y;
+
+/** Il nome dell'owner scritto da `da`, senza il segno, o null (NomiNellaModale.ownerScritto). */
+function ownerScritto(testo: string, da: number): string | null {
+  OWNER_SCRITTO.lastIndex = da;
+  const nome = OWNER_SCRITTO.exec(testo)?.[1];
+  return nome !== undefined && nome === nome.trimEnd() ? nome : null;
+}
+
+/**
+ * Se un segno scritto come testo vuole la barra (NomiNellaModale.idoneo): dove la lettura troverebbe un nome, cioè
+ * davanti a un nome del dizionario o, in testa al contenuto, davanti alla forma dell'owner, che sarebbe un owner
+ * sconosciuto. Altrove, davanti a un nome che non conosce, la barra non serve: resta testo comunque (scelte
+ * dell'utente del 2026-11-22).
+ */
+function idoneo(d: { at: Voce[]; hash: Voce[] }, segno: string, testo: string, da: number, inTesta: boolean): boolean {
+  return piuLungo(segno === '@' ? d.at : d.hash, testo, da) !== null
+    || (segno === '@' && inTesta && ownerScritto(testo, da) !== null);
 }
 
 /** Quello che la lettura salta (NomiNellaModale.SALTA): i codici di Discord, i link, il codice fra backtick, i token. */
@@ -106,6 +137,7 @@ const SALTA = /<[^<>\s]+>|https?:\/\/\S+|\]\([^)\n]*\)|`[^`\n]*`|\{\{[^{}\n]*\}\
  */
 export function coiNomi(conId: string, rubrica: Rubrica): string {
   const d = dizionario(delTesto(conId, rubrica));
+  const inTesta = teste(conId);
   const nome = (voci: readonly Voce[], codice: string, segno: string) => {
     const v = voci.find((x) => x.codice === codice);
     return v ? segno + v.nome : null;
@@ -115,7 +147,10 @@ export function coiNomi(conId: string, rubrica: Rubrica): string {
     if (canale) return nome(d.hash, `<#${canale}>`, '#') ?? m;
     if (at) return dataNelTesto(Number(at), rubrica.zona);
     if (dove > 0 && DEL_NOME.test(conId[dove - 1])) return m;
-    return idoneo(d, m, conId, dove + 1) ? `\\${m}` : m;
+    // La testa si misura da dove cominciano le barre già scritte, come nel bot.
+    let barre = dove;
+    while (barre > 0 && conId[barre - 1] === '\\') barre--;
+    return idoneo(d, m, conId, dove + 1, inTesta.has(barre)) ? `\\${m}` : m;
   });
 }
 
@@ -125,15 +160,20 @@ export function coiNomi(conId: string, rubrica: Rubrica): string {
  * le persone nuove si aggiungono con Owner o Tag, o col loro codice). Una `@` seguita da una parola che il dizionario
  * non conosce resta testo, come `@everyone`, `@here`, la `@` da sola e quella dentro una parola, un `#nome`
  * sconosciuto e quello che la lettura salta (scelta dell'utente del 2026-11-22: «Semplicemente risolviamo quelli che
- * conosciamo, gli altri li lasciamo letterali»). Le barre davanti a un segno seguito da un nome del dizionario perdono
- * una barra e il segno resta testo: `\@Leo` si salva `@Leo`, che Discord non menziona, e la modale lo riapre con la
- * barra. Le date no: le modali della demo che si scrivono, quelle del contenuto, non hanno promemoria.
+ * conosciamo, gli altri li lasciamo letterali»). In testa a una riga, però, `@nome:` è un owner, e se il nome non è
+ * proprio un nome del dizionario il salvataggio si rifiuta (scelta dell'utente del 2026-11-22: «gli owner li gestiamo
+ * noi tramite funzione»): un nome che non c'è come uno più lungo di quello che combacia, `@Leo Rossi:`. Le barre davanti
+ * a un segno seguito da un nome del dizionario, o in testa da un owner, perdono una barra e il segno resta testo:
+ * `\@Leo` si salva `@Leo`, che Discord non menziona, e la modale lo riapre con la barra. Le date no: le modali della
+ * demo che si scrivono, quelle del contenuto, non hanno promemoria.
  *
  * @param aperto il testo con gli id con cui la modale si è aperta
- * @return il testo coi codici
+ * @return il testo coi codici, e il primo owner sconosciuto, con la `@`, o null
  */
-export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): string {
+export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): { testo: string; owner: string | null } {
   const d = dizionario(delTesto(aperto, rubrica));
+  const inTesta = teste(scritto);
+  let owner: string | null = null;
   let fuori = '';
   let i = 0;
   while (i < scritto.length) {
@@ -150,7 +190,7 @@ export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): st
       while (scritto[segno] === '\\') segno++;
       const s = scritto[segno];
       if (s === '@' || s === '#') {
-        const togli = idoneo(d, s, scritto, segno + 1) ? 1 : 0;
+        const togli = idoneo(d, s, scritto, segno + 1, inTesta.has(i)) ? 1 : 0;
         fuori += scritto.slice(i, segno - togli) + s;
         i = segno + 1;
         continue;
@@ -158,6 +198,13 @@ export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): st
     }
     if ((c === '@' || c === '#') && (i === 0 || !DEL_NOME.test(scritto[i - 1]))) {
       const v = piuLungo(c === '@' ? d.at : d.hash, scritto, i + 1);
+      const nomeDellOwner = c === '@' && inTesta.has(i) ? ownerScritto(scritto, i + 1) : null;
+      if (nomeDellOwner !== null && (!v || v.nome.length < nomeDellOwner.length)) {
+        owner ??= `@${nomeDellOwner}`;
+        fuori += c + nomeDellOwner;
+        i += 1 + nomeDellOwner.length;
+        continue;
+      }
       if (v) {
         fuori += v.codice;
         i += 1 + v.nome.length;
@@ -167,7 +214,7 @@ export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): st
     fuori += c;
     i++;
   }
-  return fuori;
+  return { testo: fuori, owner };
 }
 
 const OROLOGI = new Map<string, Intl.DateTimeFormat>();

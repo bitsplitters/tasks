@@ -34,7 +34,7 @@ After you use **Owner**, **Tag** or **Reminder**, the button goes back to grey, 
 
 ## Content
 
-**Blue** opens a form with the task's text, without its tags: they stay on the task, and the **Tag** button changes them. Line breaks become spaces. Owners, tags, reminders and webhooks typed there are removed, and the bot tells you what it removed: they have their own buttons. A person written by name isn't saved: the message sends you to **Owner** or **Tag**. A text left empty, one with a reminder in months, or one that would make the list too long isn't saved either. When you change the text, its tags go back at the end, where **Tag** puts them too. Channels show by name, as in **Bulk update**. Channels, links and emoji: see [Writing a list](/docs/writing-a-list/).
+**Blue** opens a form with the task's text, without its tags: they stay on the task, and the **Tag** button changes them. Line breaks become spaces. Owners, tags, reminders and webhooks typed there are removed, and the bot tells you what it removed: they have their own buttons. A name TTM doesn't know stays text, but at the start, followed by a colon, it is an owner: the text isn't saved, and the message sends you to **Owner**. A text left empty, one with a reminder in months, or one that would make the list too long isn't saved either. When you change the text, its tags go back at the end, where **Tag** puts them too. Channels show by name, as in **Bulk update**. Channels, links and emoji: see [Writing a list](/docs/writing-a-list/).
 
 While the form is open, the list is locked for the others. Saving unlocks it; the ✕ doesn't: see [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 

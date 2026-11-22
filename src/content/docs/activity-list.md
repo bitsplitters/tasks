@@ -44,7 +44,7 @@ While the panel is open, the task is locked for the others: see [Who is editing 
 
 ## Content
 
-**Blue** shows the text of the task, to change it, with channels by name, such as `#general`. Owners, tags, reminders and webhooks typed there are removed: they have their own buttons.
+**Blue** shows the text of the task, to change it, with channels by name, such as `#general`. Owners, tags, reminders and webhooks typed there are removed: they have their own buttons. An owner TTM doesn't know isn't saved: the message sends you to **Owner**.
 
 **Red** deletes the task. Deleting a group with subtasks asks you first, as in the channel. The last task of a list can't be deleted: a list can't be left empty. To delete the whole list, use the channel.
 
