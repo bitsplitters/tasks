@@ -22,8 +22,10 @@
 .b-hero .cta-row { justify-content: center; margin-top: 2rem; }
 
 /* ── I sei riquadri ───────────────────────────────────────────────────────────────────────────────────── */
-/* Una colonna sul telefono, due dai 640 px, tre dai 960, come le funzionalità della home. */
-.b-tiles { list-style: none; margin: 2.25rem 0 0; padding: 0; display: grid; gap: 1rem; }
+/* Una colonna sul telefono, due dai 640 px, tre dai 960, come le funzionalità della home. Il contenitore porta la
+   distanza dal titolo e fa da appoggio alla mascotte in festa (mascotte.css), sul bordo alto della griglia. */
+.b-tiles-zona { position: relative; margin-top: 2.25rem; }
+.b-tiles { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
 @media (min-width: 640px) { .b-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 960px) { .b-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .b-tiles li {
