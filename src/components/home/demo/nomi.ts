@@ -87,32 +87,13 @@ function delTesto(conId: string, r: Rubrica): Rubrica {
   return { ...r, persone: r.persone.filter((p) => conId.includes(`<@${p.id}>`)) };
 }
 
-/** Le parole dopo la `@` che Discord legge da sé: restano testo, come in NomiNellaModale. */
-const RISERVATI = new Set(['everyone', 'here']);
-
-/** La prima parola dopo il segno, come NomiNellaModale.parola: lettere, cifre, `_` e i punti in mezzo. */
-function parola(testo: string, da: number): string {
-  let fine = da;
-  while (fine < testo.length && fine - da < 32 && (DEL_NOME.test(testo[fine]) || testo[fine] === '.')) fine++;
-  while (fine > da && testo[fine - 1] === '.') fine--;
-  return testo.slice(da, fine);
-}
-
-/**
- * Il nome scritto dopo una `@` che il dizionario non conosce (NomiNellaModale.nomeScritto): la prima parola, o vuoto se
- * non c'è o è `everyone` o `here`.
- */
-function nomeScritto(testo: string, da: number): string {
-  const nome = parola(testo, da);
-  return RISERVATI.has(nome.toLowerCase()) ? '' : nome;
-}
-
 /**
  * Se un segno scritto come testo vuole la barra (NomiNellaModale.idoneo): dove la lettura troverebbe un nome, cioè
- * davanti a un nome del dizionario o, per la `@`, a una parola qualsiasi, che sarebbe un nome sconosciuto.
+ * davanti a un nome del dizionario. Davanti a un nome che non conosce la barra non serve: resta testo comunque
+ * (scelta dell'utente del 2026-11-22).
  */
 function idoneo(d: { at: Voce[]; hash: Voce[] }, segno: string, testo: string, da: number): boolean {
-  return piuLungo(segno === '@' ? d.at : d.hash, testo, da) !== null || (segno === '@' && nomeScritto(testo, da) !== '');
+  return piuLungo(segno === '@' ? d.at : d.hash, testo, da) !== null;
 }
 
 /** Quello che la lettura salta (NomiNellaModale.SALTA): i codici di Discord, i link, il codice fra backtick, i token. */
@@ -120,8 +101,8 @@ const SALTA = /<[^<>\s]+>|https?:\/\/\S+|\]\([^)\n]*\)|`[^`\n]*`|\{\{[^{}\n]*\}\
 
 /**
  * Il testo coi nomi: `<@id>` è `@Nome`, `<@&id>` `@Ruolo`, `<#id>` `#canale`, la data di un promemoria quella del fuso
- * della rubrica. Un segno scritto come testo, dove segue un nome o, per la `@`, una parola, prende la barra: il
- * salvataggio lo lascia testo.
+ * della rubrica. Un segno scritto come testo, dove segue un nome del dizionario, prende la barra: il salvataggio lo
+ * lascia testo.
  */
 export function coiNomi(conId: string, rubrica: Rubrica): string {
   const d = dizionario(delTesto(conId, rubrica));
@@ -142,17 +123,17 @@ export function coiNomi(conId: string, rubrica: Rubrica): string {
  * Il testo scritto in una modale coi codici al posto dei nomi, come NomiNellaModale.dallaModale. Il dizionario è quello
  * dell'apertura: le persone che il testo aperto citava, tutti i ruoli e i canali (scelta dell'utente del 2026-11-21:
  * le persone nuove si aggiungono con Owner o Tag, o col loro codice). Una `@` seguita da una parola che il dizionario
- * non conosce è un nome sconosciuto, e il salvataggio si rifiuta; restano testo `@everyone`, `@here`, la `@` da sola e
- * quella dentro una parola, un `#nome` sconosciuto e quello che la lettura salta. Le barre davanti a un segno seguito
- * da un nome, o una `@` da una parola, perdono una barra e il segno resta testo: `\@Leo` si salva `@Leo`, che Discord non menziona, e la modale lo riapre con la barra. Le
- * date no: le modali della demo che si scrivono, quelle del contenuto, non hanno promemoria.
+ * non conosce resta testo, come `@everyone`, `@here`, la `@` da sola e quella dentro una parola, un `#nome`
+ * sconosciuto e quello che la lettura salta (scelta dell'utente del 2026-11-22: «Semplicemente risolviamo quelli che
+ * conosciamo, gli altri li lasciamo letterali»). Le barre davanti a un segno seguito da un nome del dizionario perdono
+ * una barra e il segno resta testo: `\@Leo` si salva `@Leo`, che Discord non menziona, e la modale lo riapre con la
+ * barra. Le date no: le modali della demo che si scrivono, quelle del contenuto, non hanno promemoria.
  *
  * @param aperto il testo con gli id con cui la modale si è aperta
- * @return il testo coi codici, e il primo nome sconosciuto, con la `@`, o null
+ * @return il testo coi codici
  */
-export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): { testo: string; sconosciuto: string | null } {
+export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): string {
   const d = dizionario(delTesto(aperto, rubrica));
-  let sconosciuto: string | null = null;
   let fuori = '';
   let i = 0;
   while (i < scritto.length) {
@@ -182,13 +163,11 @@ export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): { 
         i += 1 + v.nome.length;
         continue;
       }
-      const nome = c === '@' ? nomeScritto(scritto, i + 1) : '';
-      if (nome !== '') sconosciuto ??= `@${nome}`;
     }
     fuori += c;
     i++;
   }
-  return { testo: fuori, sconosciuto };
+  return fuori;
 }
 
 const OROLOGI = new Map<string, Intl.DateTimeFormat>();

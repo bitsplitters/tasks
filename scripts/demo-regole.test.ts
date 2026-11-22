@@ -14,14 +14,14 @@ import {
   applicaOwner, applicaOwnerActivity, applicaPromemoria, applicaTag, applicaTagActivity, applicaWebhook, avanzamento,
   campiDelPromemoria, campiDellaNuovaData, carrello, conTuttiRiaperti, eliminaTask, eliminaTaskConfermato,
   imparaIlFuso,
-  invertiSpunta, nelCanale, nellActivity, nomeSconosciuto, nomeSconosciutoNelContenuto, prosa, prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri,
+  invertiSpunta, nelCanale, nellActivity, prosa, prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri,
   riapriConfermato, rifiutoDelCarrello, rinumera,
   salvaTesto, salvaTestoActivity, sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, testoDellaLista, togliOwner,
   togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook, tokenTolti, validaNuovaData, validaPromemoria,
 } from '../src/components/home/demo/regole.ts';
 import type { Campi, Domanda, Esito } from '../src/components/home/demo/regole.ts';
 import { PRIMA_RIGA, TASTI } from '../src/components/home/scene-data.ts';
-import { TESTI, testoDi } from '../src/components/home/demo/testi.ts';
+import { TESTI } from '../src/components/home/demo/testi.ts';
 
 /** I task come «posizione prima parola»: '2.1 Clip'. */
 const elenco = (s: Stato) => s.lista.tasks.map((t) => `${posizione(t.pos)} ${t.testo.split(' ')[0]}`);
@@ -642,17 +642,10 @@ test('il testo della lista è quello della modale di Modifica in blocco (ModalUI
   assert.equal(riga(conSpunte(['2']), 2), ' - [X] Clip the three teamfights for the review');
 });
 
-test('il nome sconosciuto: in Bulk update il menu o il codice; nel Contenuto, del canale e dell\'Activity, solo i menu, perché lì si cambia solo il testo (ContenutoDellaModale.NOME_SCONOSCIUTO_NEL_CONTENUTO_ERROR)', () => {
-  assert.deepEqual(nomeSconosciuto('@Bea'),
-    { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.names.unknown.error', argomenti: ['@Bea'] } });
-  const nelContenuto = nomeSconosciutoNelContenuto('@Bea');
-  assert.deepEqual(nelContenuto,
-    { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.names.unknown.content.error', argomenti: ['@Bea'] } });
-  assert.ok('tasklist.modal.names.unknown.content.error' in TESTI);
-  assert.ok(!('activity.content.unknown.error' in TESTI));
+test('il nome sconosciuto non ha un messaggio: resta testo (scelta dell\'utente del 2026-11-22); la legenda ha solo le regole', () => {
+  for (const chiave of ['tasklist.modal.names.unknown.error', 'tasklist.modal.names.unknown.content.error',
+    'activity.content.unknown.error'])
+    assert.ok(!(chiave in TESTI), chiave);
   for (const chiave of ['people', 'roles', 'channels'])
     assert.ok(!(`tasklist.modal.names.legend.${chiave}` in TESTI), chiave);
-  const scritto = testoDi((nelContenuto as Extract<Esito, { tipo: 'rifiuto' }>).testo);
-  assert.equal(scritto, "I can't find **@Bea**. Add people with **Owner** or **Tag**, not in the text. To write @ " +
-    'without a mention: `\\@`');
 });

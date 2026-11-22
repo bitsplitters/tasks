@@ -13,10 +13,10 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 Released 2026-11-22
 
-- **People, roles and channels by name** — **Bulk update** shows `@Ava`, `@Moderators` and `#general` instead of Discord's codes, and the **Content** form shows channels by name. Write `@` and a name for every role and channel, and for anyone already in the list. Add someone new with **Owner** or **Tag**, or write their code. See [People, roles and channels by name](/docs/writing-a-list/#people-roles-and-channels-by-name).
+- **People, roles and channels by name** — **Bulk update** shows `@Ava`, `@Moderators` and `#general` instead of Discord's codes, and the **Content** form shows channels by name. Write `@` and a name for every role and channel, and for anyone already in the list. Add someone new with **Owner** or **Tag**, or write their code; a name TTM doesn't know stays text. See [People, roles and channels by name](/docs/writing-a-list/#people-roles-and-channels-by-name).
 - **Content is only the text** — the **Content** form no longer shows the task's tags, as in the Activity: they stay on the task, and **Tag** changes them. A tag typed in the form is removed, and TTM tells you. See [Content](/docs/channel-tasks/#content).
 - **Reminder dates you can read** — in the text of a list, the date of a reminder is `2026-12-08 18:00`, in your time zone, instead of a code. Change it and save, and the reminder moves. To keep a time someone gave you in their zone, write the zone after it: `2026-12-08 18:00 America/New_York`. See [Reminders in the text](/docs/writing-a-list/#reminders-in-the-text).
-- **`/create-list` says how** — a line above the text explains how to write owners, mentions, channels and reminder dates. See [Writing a list](/docs/writing-a-list/).
+- **`/create-list` says how** — a line under the text explains how to write owners, mentions, channels and reminder dates. See [Writing a list](/docs/writing-a-list/).
 - **In the Activity too** — **Edit the list** shows the names and the dates in your time zone. Under the text, **Edit the list**, **New list** and the **Content** of a task say how to write them. See [Edit the list](/docs/activity-list/#edit-the-list).
 - **Codes still work** — a code you write or paste is saved as it is, and the Download file keeps the codes, so files from before import as they are. See [The codes behind the names](/docs/writing-a-list/#the-codes-behind-the-names).
 

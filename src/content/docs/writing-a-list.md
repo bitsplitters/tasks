@@ -33,7 +33,7 @@ The text of a single task follows the same rules, with one exception: owners, re
 
 In the text, people, roles and channels are written by name, as Discord shows them: `@Ava`, `@Moderators`, `#general`. When you save, TTM turns each name into a mention, so the list notifies and links as usual. When you open the form again, the names are back.
 
-Above the text, the form lists the people, roles and channels the list mentions, the time zone of its dates and how to add someone new. In the Activity, a line under the text says how to write them.
+Under the text, a short line says how to write them, in the channel and in the Activity.
 
 ## Mentioning people and roles
 
@@ -48,7 +48,7 @@ Write `@` and the name:
 - **A role** is `@` and its name: `@Moderators`. Every role of the server works, even one the list doesn't mention yet.
 - **The Content form of a task** has only its text, channels included: owner and tags have their own buttons, **Owner** and **Tag**. See [Content](/docs/channel-tasks/#content).
 - **Someone the list doesn't mention yet** is added with the **Owner** or **Tag** button, which pick from Discord's own menu. In the text, write their code instead: see [Writing someone new](#writing-someone-new).
-- **A name TTM doesn't know**, such as `@elonmusk`, can't be saved: the line gets an arrow, and the message says how to add the person. TTM doesn't guess, because a mention turned into plain text would leave the task without its owner or its tag, without a word.
+- **A name TTM doesn't know**, such as `@elonmusk`, stays plain text: TTM turns into mentions only the names it knows, and leaves every other `@word` as you wrote it.
 
 The longest name wins: with Mario and Mario Rossi on the server, `@Mario Rossi` is Mario Rossi. A name counts only as a whole word, so `@Leonardo` isn't `@Leo` followed by "nardo".
 
@@ -67,7 +67,7 @@ Save, and the next time the form opens the person shows by name. The **Owner** a
 
 ### Writing @ without a mention
 
-Put a backslash in front: `\@Ava` stays the word @Ava, and nobody is mentioned. `\#general` does the same for a channel. When a task already holds such a word, the form shows it with its backslash, so saving leaves it as it is.
+Put a backslash in front of a name TTM knows: `\@Ava` stays the word @Ava, and nobody is mentioned. `\#general` does the same for a channel. Any other `@word` stays text by itself, with no backslash. When a task holds the word of a name TTM knows, the form shows it with its backslash, so saving leaves it as it is.
 
 ## Owners: the mention with a colon
 
@@ -77,7 +77,7 @@ A task's owner is a mention too, with one difference: it is followed by a **colo
 @Ava: Ship the release notes
 ```
 
-A role works the same way: `@Moderators:`, and so does a code: `<@123456789012345678>:`. Without the colon, the same mention is just a tag, not an owner. A name TTM doesn't know in the owner's place can't be saved, as anywhere else in the text: the message says which name, and the line gets an arrow. A reminder goes to the task's owner, so TTM doesn't save a reminder on a task without an owner, and the message names the task to fix. Owners and tags, and what each can do: [Owners and tags](/docs/owners-and-tags/).
+A role works the same way: `@Moderators:`, and so does a code: `<@123456789012345678>:`. Without the colon, the same mention is just a tag, not an owner. A name TTM doesn't know in the owner's place stays text, as anywhere else, so the task has no owner: pick one with the **Owner** button. A reminder goes to the task's owner, so TTM doesn't save a reminder on a task without an owner, and the message names the task to fix. Owners and tags, and what each can do: [Owners and tags](/docs/owners-and-tags/).
 
 ## Linking channels
 

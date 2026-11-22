@@ -24,7 +24,7 @@ import type { Stato } from './modello.ts';
 import {
   applicaOwner, applicaPromemoria, applicaTag, applicaWebhook, campiDellaNuovaData, campiDelPromemoria, eliminaTask,
   eliminaTaskConfermato, invertiSpunta, nellActivity, pulisci, pulisciConfermato, riapri, riapriConfermato,
-  nomeSconosciutoNelContenuto, prosaDelTask, rifiutoDelCarrello, salvaTesto, togliOwner, togliOwnerConfermato,
+  prosaDelTask, rifiutoDelCarrello, salvaTesto, togliOwner, togliOwnerConfermato,
   togliPromemoria,
   togliTag, togliWebhook, validaNuovaData, validaPromemoria,
 } from './regole.ts';
@@ -215,15 +215,13 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
   function modificaIlTesto(pos: string): void {
     const modale = modaleDelTesto(stato(), pos);
     // Il testo con gli id con cui la modale si apre: la prosa senza i tag, che hanno il loro menu. Una persona scritta
-    // per nome è sconosciuta, e il messaggio rimanda a Owner e Tag (nomeSconosciutoNelContenuto).
+    // per nome resta testo: le persone si aggiungono con Owner e Tag.
     const task = stato().lista.tasks.find((t) => posizione(t.pos) === pos);
     const aperto = task ? prosaDelTask(task) : '';
     condiviso.cambia({ ...stato(), bloccata: true });
     apri(modale, (valori) => {
       condiviso.cambia({ ...stato(), bloccata: false });
-      const letto = coiCodici(valori.task ?? '', rubricaDi(stato()), aperto);
-      esegui(letto.sconosciuto ? nomeSconosciutoNelContenuto(letto.sconosciuto)
-        : salvaTesto(stato(), pos, letto.testo));
+      esegui(salvaTesto(stato(), pos, coiCodici(valori.task ?? '', rubricaDi(stato()), aperto)));
     });
   }
 
