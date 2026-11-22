@@ -646,6 +646,6 @@ test('il nome sconosciuto non ha un messaggio: resta testo, e nel Contenuto anch
   for (const chiave of ['tasklist.modal.names.unknown.error', 'tasklist.modal.names.unknown.content.error',
     'activity.content.unknown.error', 'tasklist.modal.names.owner.unknown.content.error'])
     assert.ok(!(chiave in TESTI), chiave);
-  for (const chiave of ['people', 'roles', 'channels'])
+  for (const chiave of ['people', 'roles', 'channels', 'zone.personal', 'zone.server'])
     assert.ok(!(`tasklist.modal.names.legend.${chiave}` in TESTI), chiave);
 });

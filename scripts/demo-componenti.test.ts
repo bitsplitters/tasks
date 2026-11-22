@@ -56,13 +56,12 @@ test('opzioniDeiWebhook: i webhook già creati, per nome', () => {
 });
 
 /**
- * La seconda riga della legenda dei nomi (2.5.0): il fuso del server, perché chi guarda non ne ha scritto uno, domani
- * alle 18:00 in quel fuso e in un altro; poi come si aggiunge qualcuno di nuovo.
+ * La legenda dei nomi (2.5.0): una riga, come si aggiunge una persona nuova e il link alla sezione della guida (scelta
+ * dell'utente del 2026-11-22). Niente fuso.
  */
-const REGOLE = '<span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, the server\'s time zone, like ' +
-  '<code>2026-11-16 18:00</code>; in another one: <code>2026-11-16 18:00 America/New_York</code>. Someone new: ' +
-  'add them with <strong>Owner</strong> or <strong>Tag</strong>, or write their code, like ' +
-  '<code>&lt;@123456789012345678&gt;</code>. To write @ without a mention: <code>\\@</code></span>';
+const REGOLE = '<span class="sc-subtext">Someone new: add them with <strong>Owner</strong> or ' +
+  '<strong>Tag</strong>. <a href="https://tasks.bitsplitters.app/docs/writing-a-list/#people-roles-and-channels-by-name" ' +
+  'target="_blank" rel="noopener">How to write the list</a></span>';
 
 test('modaleDelTesto: senza legenda né tag, il paragrafo col testo, obbligatorio fino a 4000; la riga del blocco sotto', () => {
   const s0 = statoIniziale();

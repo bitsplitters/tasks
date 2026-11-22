@@ -14,8 +14,6 @@ export interface Rubrica {
   ruoli: readonly { id: string; nome: string }[];
   canali: readonly { id: string; nome: string }[];
   zona: string;
-  /** Se il fuso è quello che chi guarda ha scritto (FusoScelto.Origine.PERSONALE); altrimenti è quello del server. */
-  personale: boolean;
 }
 
 /**
@@ -28,7 +26,6 @@ export function rubricaDi(stato: Stato): Rubrica {
     ruoli: stato.ruoli.map((r) => ({ id: r.id, nome: r.nome })),
     canali: [{ id: CANALE, nome: NOME_DEL_CANALE }],
     zona: fusoDi(stato),
-    personale: stato.fuso !== undefined,
   };
 }
 
@@ -250,35 +247,11 @@ export function dataNelTesto(at: number, zona: string): string {
 }
 
 /**
- * Il fuso dell'esempio scritto con un fuso (LegendaDeiNomi.altroFuso): uno che non è quello di chi scrive, perché
- * l'esempio mostri una data in un altro fuso.
+ * La legenda della modale di Bulk update e di Modifica nell'Activity (LegendaDeiNomi): in subtext, una riga sola, come
+ * si aggiunge una persona nuova e il link alla sezione della guida (scelta dell'utente del 2026-11-22: «il rimando deve
+ * essere sempre sulla documentazione»). Niente fuso e niente elenco dei nomi: quelli che si possono usare si leggono già
+ * nel testo.
  */
-export function altroFuso(zona: string): string {
-  return zona === 'America/New_York' ? 'Europe/London' : 'America/New_York';
-}
-
-/**
- * La riga del fuso e delle persone nuove, come LegendaDeiNomi: il fuso con la sua origine, domani alle 18:00 in quel
- * fuso e la stessa data in un altro; poi come si aggiunge qualcuno di nuovo. Nella demo il fuso è quello che chi guarda
- * ha scritto, o quello del server.
- */
-export function regoleDelFuso(zona: string, personale: boolean, adesso: number): string {
-  const esempio = esempioDiData(adesso, zona);
-  const chiave = personale ? 'tasklist.modal.names.legend.zone.personal' : 'tasklist.modal.names.legend.zone.server';
-  return `${testo(chiave, zona, esempio, `${esempio} ${altroFuso(zona)}`)} ${testo('tasklist.modal.names.legend.people.new')}`;
-}
-
-/** L'esempio di data della legenda (ContenutoDellaModale.esempioDiData): domani alle 18:00, nel fuso. */
-export function esempioDiData(adesso: number, zona: string): string {
-  const oggi = orologio(adesso, zona).slice(0, 10);
-  const domani = new Date(Date.parse(`${oggi}T00:00:00Z`) + 86_400_000).toISOString().slice(0, 10);
-  return `${domani} 18:00`;
-}
-
-/**
- * La legenda della modale di Bulk update (LegendaDeiNomi): in subtext, il fuso delle date, le persone nuove e una `@`
- * che non menziona nessuno. Niente elenco dei nomi: quelli che si possono usare si leggono già nel testo.
- */
-export function legendaDeiNomi(rubrica: Rubrica, adesso: number): string {
-  return `-# ${regoleDelFuso(rubrica.zona, rubrica.personale, adesso)}`;
+export function legendaDeiNomi(): string {
+  return `-# ${testo('tasklist.modal.names.legend.people.new')}`;
 }

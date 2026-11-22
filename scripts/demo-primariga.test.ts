@@ -17,11 +17,10 @@ import {
 } from '../src/components/home/demo/primariga.ts';
 import { rispostaDellEsito } from '../src/components/home/demo/testi.ts';
 
-/** La riga del fuso e delle persone nuove (2.5.0), con lo stesso testo della legenda delle modali. */
-const REGOLE = '<span class="sc-subtext">Dates in <strong>Europe/Rome</strong>, the server\'s time zone, like ' +
-  '<code>2026-11-16 18:00</code>; in another one: <code>2026-11-16 18:00 America/New_York</code>. Someone new: ' +
-  'add them with <strong>Owner</strong> or <strong>Tag</strong>, or write their code, like ' +
-  '<code>&lt;@123456789012345678&gt;</code>. To write @ without a mention: <code>\\@</code></span>';
+/** La riga della persona nuova (2.5.0), col link alla guida: lo stesso testo della legenda delle modali. */
+const REGOLE = '<span class="sc-subtext">Someone new: add them with <strong>Owner</strong> or ' +
+  '<strong>Tag</strong>. <a href="https://tasks.bitsplitters.app/docs/writing-a-list/#people-roles-and-channels-by-name" ' +
+  'target="_blank" rel="noopener">How to write the list</a></span>';
 
 const S0 = statoIniziale();
 const TUTTI = ['1', '2', '2.1', '3', '4'];

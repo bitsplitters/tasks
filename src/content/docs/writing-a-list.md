@@ -33,7 +33,7 @@ The text of a single task follows the same rules, with one exception: owners, re
 
 In the text, people, roles and channels are written by name, as Discord shows them: `@Ava`, `@Moderators`, `#general`. When you save, TTM turns each name into a mention, so the list notifies and links as usual. When you open the form again, the names are back.
 
-Under the text, a short line says how to write them, in the channel and in the Activity.
+Under the text, a short line says how to add someone new, and links here: in the channel and in the Activity.
 
 ## Mentioning people and roles
 
@@ -127,7 +127,7 @@ A reminder appears as a date followed by a triplet:
 - [] 2026-12-08 18:00 [2d3h,1h,3] @Ava: Ship the release notes
 ```
 
-The date is written `YYYY-MM-DD HH:mm`, the same in every language, in **your** time zone: the one you chose for your reminders, otherwise the zone of your Discord language, otherwise the server's (see [Your time zone](/docs/reminders/#your-time-zone)). The form names the zone above the text, and says which of the three it is. Change the date and save, and the reminder moves.
+The date is written `YYYY-MM-DD HH:mm`, the same in every language, in **your** time zone: the one you chose for your reminders, otherwise the zone of your Discord language, otherwise the server's (see [Your time zone](/docs/reminders/#your-time-zone)). Change the date and save, and the reminder moves.
 
 - **A date in another zone** carries the zone after the time: `2026-12-08 18:00 America/New_York`. It counts for that date only, and wins over every other zone: handy to keep a time someone gave you in their zone. Write the zone by its name, such as `Europe/Rome`, in upper or lower case, or as `UTC` or `GMT` with the offset: `UTC+2`, `GMT-5:30`. Abbreviations such as `CET` or `EST` aren't accepted, because the same abbreviation means different zones in different countries: the line gets an arrow. When the form opens again, the date is back in your zone, at the same moment.
 - A date with seconds shows them: `2026-12-08 18:00:30`.
@@ -218,7 +218,7 @@ A single task can combine all of these:
 
 ## When the text can't be saved
 
-If TTM can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, a date that doesn't exist or in another form, or a reminder without task text. A webhook token (`{{wb=…}}`) without task text gets the arrow too, and so do an owner TTM doesn't know, a name that matches more than one person and a date in a time zone TTM doesn't know: the message says what to write. Otherwise, **one message lists every problem at once**, one per paragraph:
+If TTM can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, a date that doesn't exist or in another form, or a reminder without task text. A webhook token (`{{wb=…}}`) without task text gets the arrow too, and so do an owner TTM doesn't know, a name that matches more than one person and a date in a time zone TTM doesn't know: the message says what to write, and links to the part of this page that explains it. Otherwise, **one message lists every problem at once**, one per paragraph:
 
 - the list is too long;
 - the list has more tasks than a list can hold, or than your plan allows;

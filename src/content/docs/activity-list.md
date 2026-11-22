@@ -91,7 +91,7 @@ A ticked task can't get a reminder. On a task without an owner, the panel says t
 
 ## Edit the list
 
-**Edit the list** shows the title and every task as text, in the format of [Writing a list](/docs/writing-a-list/): the same text as the channel's **Bulk update**, read by the same rules: people, roles and channels by name, reminder dates in your time zone. A line under the text names the zone. Change what you need and save.
+**Edit the list** shows the title and every task as text, in the format of [Writing a list](/docs/writing-a-list/): the same text as the channel's **Bulk update**, read by the same rules: people, roles and channels by name, reminder dates in your time zone. A line under the text says how to add someone new, and links to [Writing a list](/docs/writing-a-list/#people-roles-and-channels-by-name). Change what you need and save.
 
 The list is locked for the others from the moment it opens until you save or cancel: **Cancel**, the ✕ and a tap outside unlock it. It closes by itself after 30 seconds without activity. If the text can't be saved, the problems show under it: see [When the text can't be saved](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

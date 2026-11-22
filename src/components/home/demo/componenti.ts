@@ -7,7 +7,7 @@
 import { AVVISO_ILLUSTRATIVO } from '../scene-data.ts';
 import { markdown } from './markdown.ts';
 import { coiNomi, legendaDeiNomi, rubricaDi } from './nomi.ts';
-import { ADESSO, NELL_ACTIVITY, PERSONE, WEBHOOK, posizione } from './modello.ts';
+import { NELL_ACTIVITY, PERSONE, WEBHOOK, posizione } from './modello.ts';
 import type { Stato } from './modello.ts';
 import { prosaDelTask, testoDellaLista } from './regole.ts';
 import type { Campi, Domanda } from './regole.ts';
@@ -144,7 +144,7 @@ export function modaleDiModificaInBlocco(stato: Stato): Modale {
         tipo: 'testo', id: 'title', etichetta: testo('tasklist.modal.edit.txt.title.label'),
         valore: stato.lista.titolo, obbligatorio: true, min: 1, max: TITOLO_MAX,
       },
-      testoFisso(stato, legendaDeiNomi(rubrica, ADESSO)),
+      testoFisso(stato, legendaDeiNomi()),
       {
         tipo: 'testo', id: 'list', etichetta: testo('tasklist.modal.edit.txt.list.label'),
         valore: coiNomi(conId, rubrica), obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,

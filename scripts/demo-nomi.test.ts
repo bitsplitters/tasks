@@ -15,7 +15,6 @@ const R: Rubrica = {
   ruoli: [],
   canali: [{ id: SCRIMS, nome: 'scrims' }],
   zona: 'UTC',
-  personale: false,
 };
 
 /** Il testo con cui la modale si è aperta: cita Leo, che si scrive per nome. */
