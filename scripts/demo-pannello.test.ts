@@ -217,10 +217,10 @@ test('Delete del promemoria e del webhook: senza, l\'avviso e Delete spento', ()
 
 test('il contenuto cambia quando il testo è un altro, a meno degli spazi', () => {
   const t = S0.lista.tasks[4];
-  assert.ok(!testoCambiato(t, 'Publish the match-day graphic'));
-  assert.ok(!testoCambiato(t, '  Publish the   match-day\ngraphic '));
-  assert.ok(testoCambiato(t, 'Publish the graphic'));
-  assert.ok(testoCambiato(t, ''));
+  assert.ok(!testoCambiato(S0, t, 'Publish the match-day graphic'));
+  assert.ok(!testoCambiato(S0, t, '  Publish the   match-day\ngraphic '));
+  assert.ok(testoCambiato(S0, t, 'Publish the graphic'));
+  assert.ok(testoCambiato(S0, t, ''));
 });
 
 test('il promemoria: quello del task nel suo fuso, o quello proposto nel fuso di chi guarda', () => {

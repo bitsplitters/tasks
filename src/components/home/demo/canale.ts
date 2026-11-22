@@ -18,12 +18,15 @@ import {
 import { dentro, dopoIlClic, type Acceso, type Condiviso } from './condiviso.ts';
 import { markdown } from './markdown.ts';
 import { esitoDelPonte, htmlDellAnnullamento, htmlDelPannello, htmlDelPonte } from './messaggi.ts';
+import { coiCodici, rubricaDi } from './nomi.ts';
+import { posizione } from './modello.ts';
 import type { Stato } from './modello.ts';
 import {
   applicaOwner, applicaPromemoria, applicaTag, applicaWebhook, campiDellaNuovaData, campiDelPromemoria, eliminaTask,
   eliminaTaskConfermato, invertiSpunta, nellActivity, pulisci, pulisciConfermato, riapri, riapriConfermato,
-  rifiutoDelCarrello, salvaTesto, togliOwner, togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook,
-  validaNuovaData, validaPromemoria,
+  prosaDelTask, rifiutoDelCarrello, salvaTesto, togliOwner, togliOwnerConfermato,
+  togliPromemoria,
+  togliTag, togliWebhook, validaNuovaData, validaPromemoria,
 } from './regole.ts';
 import type { Domanda, Esito } from './regole.ts';
 import { contestoDelCanale } from './righe.ts';
@@ -211,10 +214,15 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
    */
   function modificaIlTesto(pos: string): void {
     const modale = modaleDelTesto(stato(), pos);
+    // Il testo con gli id con cui la modale si apre: la prosa senza i tag, che hanno il loro menu. Una persona scritta
+    // per nome resta testo: le persone si aggiungono con Owner e Tag. Anche `@nome:` in testa è testo: il Contenuto non
+    // ha l'owner (scelta dell'utente del 2026-11-22).
+    const task = stato().lista.tasks.find((t) => posizione(t.pos) === pos);
+    const aperto = task ? prosaDelTask(task) : '';
     condiviso.cambia({ ...stato(), bloccata: true });
     apri(modale, (valori) => {
       condiviso.cambia({ ...stato(), bloccata: false });
-      esegui(salvaTesto(stato(), pos, valori.task ?? ''));
+      esegui(salvaTesto(stato(), pos, coiCodici(valori.task ?? '', rubricaDi(stato()), aperto, 'contenuto').testo));
     });
   }
 

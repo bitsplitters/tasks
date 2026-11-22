@@ -5,6 +5,7 @@ import VetrinaFont from '../../components/VetrinaFont.astro';
 import { docsCard } from '../../lib/preview-card';
 import { giornoEOra, htmlDellaLista, riproduzione } from '../../lib/esempi/discord';
 import { legenda } from '../../lib/esempi/legenda';
+import { coiNomi } from '../../lib/esempi/testo';
 import { prosa, prosaInLinea } from '../../lib/esempi/prosa';
 import type { Esempio } from '../../lib/esempi/tipi';
 // docs.css per la prosa; scene.css per i pezzi di Discord (le classi sc-*, con le misure di Discord); poi le regole dei
@@ -14,8 +15,8 @@ import '../../components/home/scene.css';
 import '../../styles/use-cases.css';
 
 // Un caso d'uso (spec 2026-11-20-casi-d-uso-esempi-completi-design.md, §3, nel repo team-tasks-manager): la storia di
-// un team che usa TTM per una settimana. L'attacco; il team; la lista com'è su Discord; il testo di Bulk update con la
-// legenda dei codici che usa; la configurazione e i webhook; la settimana, coi momenti chiave riprodotti; poi il corpo
+// un team che usa TTM per una settimana. L'attacco; il team; la lista com'è su Discord; il testo di Bulk update coi nomi
+// del team (segnaposto leggibili, 2.5.0), con la legenda di ciò che usa; la configurazione e i webhook; la settimana, coi momenti chiave riprodotti; poi il corpo
 // Markdown (la prossima volta, cosa TTM non fa, le domande), gli altri casi e l'invito. Tutto HTML statico: le
 // riproduzioni le scrive al build il motore della demo della home (src/lib/esempi/discord.ts).
 export async function getStaticPaths() {
@@ -104,8 +105,8 @@ const premium = d.webhooks.length > 0 || d.settings.some((s) => s.premium) || te
       <Fragment set:html={look} />
 
       <h2 id="the-text">The text behind it</h2>
-      <p>This is what <strong>Bulk update</strong> <img class="inline-ic" src="/icons/edit.png" alt="" /> shows for the list, codes included. The buttons write these codes for you. You can also type them, or paste a text like this into <code>/create-list</code> with your own server's people, roles and channels.</p>
-      <pre class="ex-text" translate="no"><code>{d.list.text}</code></pre>
+      <p>This is what <strong>Bulk update</strong> <img class="inline-ic" src="/icons/edit.png" alt="" /> shows for the list, with the dates in the team's time zone. The buttons write it for you. You can also type it, or write a text like this in <code>/create-list</code> with your own server's people, roles and channels.</p>
+      <pre class="ex-text" translate="no"><code>{coiNomi(d.list.text, team)}</code></pre>
       <dl class="ex-legend">
         {legenda(d.list.text).map((v) => (
           <div>

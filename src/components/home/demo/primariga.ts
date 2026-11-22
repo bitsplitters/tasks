@@ -10,6 +10,7 @@ import { bloccaLaPrimaRiga } from '../scene-dom.ts';
 import { MAX_VALUE_LENGTH, TITOLO_MAX } from './componenti.ts';
 import type { Condiviso } from './condiviso.ts';
 import { escape, markdown } from './markdown.ts';
+import { coiNomi, legendaDeiNomi, rubricaDi } from './nomi.ts';
 import { ADESSO, NELL_ACTIVITY, PROPOSTO, SAM, fusoDi } from './modello.ts';
 import type { Stato } from './modello.ts';
 import { istanteDi, quandoDa, troppoVicina } from './quando.ts';
@@ -96,7 +97,9 @@ export function dialogoDellUscita(stato: Stato): Dialogo {
 
 /**
  * Il dialogo di Edit the list in sola lettura (EditDialog; spec §8.2 e §8.3): l'avviso in cima, poi il titolo e il
- * testo della lista come li scrive la pagina, che non si scrivono. La riga del blocco non c'è: la lista non si blocca.
+ * testo della lista come li scrive la pagina, coi nomi e le date nel fuso di chi guarda (segnaposto leggibili, 2.5.0),
+ * che non si scrivono; sotto, la riga d'aiuto con la persona nuova e il link alla guida. La riga del blocco non c'è:
+ * la lista non si blocca.
  */
 export function corpoDellaModifica(stato: Stato, n: number): string {
   const campo = (k: string, etichetta: string, controllo: string) =>
@@ -107,7 +110,8 @@ export function corpoDellaModifica(stato: Stato, n: number): string {
       `data-k="d-title" value="${escape(stato.lista.titolo)}" maxlength="${TITOLO_MAX}" readonly>`) +
     campo('d-list', 'tasklist.modal.edit.txt.list.label', `<textarea class="sc-pin ui-edittesto" id="d-list-${n}" ` +
       `data-k="d-list" rows="12" maxlength="${MAX_VALUE_LENGTH}" spellcheck="false" readonly>` +
-      `${escape(testoDellaLista(stato.lista))}</textarea>`);
+      `${escape(coiNomi(testoDellaLista(stato.lista), rubricaDi(stato)))}</textarea>`) +
+    markdown(legendaDeiNomi(), contestoDellActivity(stato));
 }
 
 /** La guida (GuideDialog): le pagine una sull'altra, la prima in vista; a pagina 4 la legenda della prima riga. */

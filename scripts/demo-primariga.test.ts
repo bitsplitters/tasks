@@ -17,6 +17,11 @@ import {
 } from '../src/components/home/demo/primariga.ts';
 import { rispostaDellEsito } from '../src/components/home/demo/testi.ts';
 
+/** La riga della persona nuova (2.5.0), col link alla guida: lo stesso testo della legenda delle modali. */
+const REGOLE = '<span class="sc-subtext">Someone new: add them with <strong>Owner</strong> or ' +
+  '<strong>Tag</strong>. <a href="https://tasks.bitsplitters.app/docs/writing-a-list/#people-roles-and-channels-by-name" ' +
+  'target="_blank" rel="noopener">How to write the list</a></span>';
+
 const S0 = statoIniziale();
 const TUTTI = ['1', '2', '2.1', '3', '4'];
 /** La lista della demo coi soli task di `fatti` completati. */
@@ -89,7 +94,7 @@ test('il dialogo di Exit intero: il titolo, il corpo, Bring back in grigio e Lea
   });
 });
 
-test("il dialogo di Edit the list in sola lettura: l'avviso, il titolo, il testo della lista, senza il blocco", () => {
+test("il dialogo di Edit the list in sola lettura: l'avviso, il titolo, il testo della lista coi nomi, la riga d'aiuto, senza il blocco", () => {
   const html = corpoDellaModifica(S0, 7);
   assert.ok(html.startsWith('<div class="ui-avviso" role="note">For illustration only: this demo doesn\'t fully ' +
     'replicate how TTM works.</div>'));
@@ -98,8 +103,13 @@ test("il dialogo di Edit the list in sola lettura: l'avviso, il titolo, il testo
     'maxlength="90" readonly>'));
   assert.ok(html.includes('<label class="sc-flabel" for="d-list-7">List of activities</label>'));
   assert.ok(html.includes('<textarea class="sc-pin ui-edittesto" id="d-list-7" data-k="d-list" rows="12" ' +
-    `maxlength="4000" spellcheck="false" readonly>${escape(testoDellaLista(S0.lista))}</textarea>`));
-  assert.match(html, /&lt;t:1794762840&gt; \[0m,0m,0\] &lt;@1181730456203947581&gt;: VOD review/);
+    'maxlength="4000" spellcheck="false" readonly>'));
+  // Il testo coi nomi (2.5.0): la data del promemoria nel fuso di chi guarda, l'owner col suo nome.
+  assert.match(testoDellaLista(S0.lista), /<t:1794762840> \[0m,0m,0\] <@1181730456203947581>: VOD review/);
+  assert.match(html, /2026-11-15 18:14 \[0m,0m,0\] @Mia: VOD review/);
+  // La lista non mostra codici; la riga sotto sì, quello di esempio per chi è nuovo.
+  assert.doesNotMatch(html.slice(0, html.indexOf('</textarea>')), /&lt;t:|&lt;@/);
+  assert.ok(html.endsWith(`</textarea></div>${REGOLE}`));
   assert.doesNotMatch(html, /locked/);
 });
 

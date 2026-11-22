@@ -6,9 +6,10 @@
  */
 import { AVVISO_ILLUSTRATIVO } from '../scene-data.ts';
 import { markdown } from './markdown.ts';
+import { coiNomi, legendaDeiNomi, rubricaDi } from './nomi.ts';
 import { NELL_ACTIVITY, PERSONE, WEBHOOK, posizione } from './modello.ts';
 import type { Stato } from './modello.ts';
-import { testoDellaLista } from './regole.ts';
+import { prosaDelTask, testoDellaLista } from './regole.ts';
 import type { Campi, Domanda } from './regole.ts';
 import { contestoDelCanale } from './righe.ts';
 import { testo, testoDellaDomanda } from './testi.ts';
@@ -58,19 +59,23 @@ function testoFisso(stato: Stato, md: string): Campo {
 }
 
 /**
- * La modale del contenuto (TaskListMdlTask.createTaskModal): il campo a paragrafo obbligatorio col testo del task, che
- * porta i tag (TaskLogic.testoDellaModale), poi la riga sul blocco (AvvisoDelBlocco). Il tetto è quello di Discord: il
+ * La modale del contenuto (TaskListMdlTask.createTaskModal): il campo a paragrafo obbligatorio col testo del task senza
+ * i tag (TaskLogic.testoDellaModale), coi nomi al posto dei codici, poi la riga sul blocco (AvvisoDelBlocco). Niente
+ * legenda (SegnapostoDellaModale.apriSenzaLegenda): la modale cambia solo il testo, e tag e owner hanno i loro menu;
+ * un `@nome:` in testa è testo.
+ * Il tetto è quello di Discord: il
  * bot lo abbassa quando il resto della lista occupa la form di Modifica in blocco (TaskLogic.tettoDelTesto), cosa che
  * la lista corta della demo non fa sentire prima di 3700 caratteri.
  */
 export function modaleDelTesto(stato: Stato, pos: string): Modale {
   const task = stato.lista.tasks.find((t) => posizione(t.pos) === pos);
   if (!task) throw new Error(`La demo non ha il task «${pos}»`);
+  const rubrica = rubricaDi(stato);
   return {
     titolo: testo('tasklist.modal.task.title'),
     campi: [
       {
-        tipo: 'testo', id: 'task', etichetta: testo('tasklist.modal.task.label'), valore: task.testo,
+        tipo: 'testo', id: 'task', etichetta: testo('tasklist.modal.task.label'), valore: coiNomi(prosaDelTask(task), rubrica),
         obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,
       },
       testoFisso(stato, testo('tasklist.modal.lock.hint')),
@@ -123,11 +128,14 @@ export function modaleDellaNuovaData(campi: Campi): Modale {
 
 /**
  * La modale di Modifica in blocco (TaskListMdlEdit.modale) in sola lettura (spec §8.1): l'avviso della demo in cima,
- * «List title» col titolo, «List of activities» col testo della lista nel formato del bot (testoDellaLista). I campi
- * non si scrivono e Submit è spento. Manca la riga del blocco (AvvisoDelBlocco): in sola lettura la lista non si
+ * «List title» col titolo, la legenda con le regole, «List of activities» col testo della lista nel formato del bot
+ * (testoDellaLista), coi nomi al posto dei codici e le date nel fuso di chi guarda. I campi non si scrivono e Submit è
+ * spento. Manca la riga del blocco (AvvisoDelBlocco): in sola lettura la lista non si
  * blocca.
  */
 export function modaleDiModificaInBlocco(stato: Stato): Modale {
+  const conId = testoDellaLista(stato.lista);
+  const rubrica = rubricaDi(stato);
   return {
     titolo: testo('tasklist.modal.edit.title'),
     solaLettura: AVVISO_ILLUSTRATIVO,
@@ -136,9 +144,10 @@ export function modaleDiModificaInBlocco(stato: Stato): Modale {
         tipo: 'testo', id: 'title', etichetta: testo('tasklist.modal.edit.txt.title.label'),
         valore: stato.lista.titolo, obbligatorio: true, min: 1, max: TITOLO_MAX,
       },
+      testoFisso(stato, legendaDeiNomi()),
       {
         tipo: 'testo', id: 'list', etichetta: testo('tasklist.modal.edit.txt.list.label'),
-        valore: testoDellaLista(stato.lista), obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,
+        valore: coiNomi(conId, rubrica), obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,
       },
     ],
   };

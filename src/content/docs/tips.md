@@ -43,9 +43,9 @@ On a *repeating* reminder (a Premium feature), choose **days** when you mean "sa
 
 The reminder starts from ten minutes from now, in your time zone. For "remind me shortly", save it as it is, without typing anything: in the channel, submit the **When** form; in the Activity, tap **Save** in the reminder panel. Every reminder is a single event unless your server has turned on recurring reminders, a Premium feature that is off by default.
 
-## Link a channel without hunting for its ID
+## Write names, not IDs
 
-Right-click the channel → **Copy Link**, paste it into the task: TTM turns it into a proper `#channel` tag by itself. No Developer Mode needed — see [Writing a list](/docs/writing-a-list/).
+In the text of a list, write `@` and a name, or `#` and a channel: `@Ava: Post the rules in #general`. When you save, TTM turns them into mentions. By name you write the people the list already mentions, and every role and channel; someone new comes from the **Owner** or **Tag** button. See [Writing a list](/docs/writing-a-list/#people-roles-and-channels-by-name).
 
 ## Personalize webhooks with free variables
 

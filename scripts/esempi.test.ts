@@ -5,7 +5,8 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { leggi, scrivi } from '../src/lib/esempi/testo.ts';
+import { coiNomi, leggi, scrivi } from '../src/lib/esempi/testo.ts';
+import { dataNelTesto } from '../src/components/home/demo/nomi.ts';
 import { percentEncode, risolvi, risolviBody, risolviUrl, testoPerIlToken, variabili } from '../src/lib/esempi/webhook.ts';
 import type { ContestoDelWebhook } from '../src/lib/esempi/webhook.ts';
 import { problemi } from '../src/lib/esempi/controllo.ts';
@@ -44,6 +45,51 @@ test('una riga senza trattino, un subtask in testa, un task senza testo sono err
   assert.match(leggi(' - [] Notes', ZONA).errori[0], /^riga 1: la prima riga non può essere un subtask/);
   assert.match(leggi(`- [] a\n- [] <@${AVA}>: `, ZONA).errori[0], /^riga 2: il task non ha testo/);
   assert.match(leggi('- [] <t:1765206000> [1d,0m,0] <@1181730456203948101>: x', ZONA).errori[0], /distanza/);
+});
+
+test('Bulk update coi nomi (2.5.0): persone, ruoli, canali e la data del promemoria nel fuso del team', () => {
+  assert.equal(coiNomi(TESTO, esempio().team), [
+    '- [X] @Ava: Write the rules in #staff',
+    '- [] {{wb=Rules changed}} 2025-12-08 15:00 [0m,7d,3] @Moderators: Update the rules {{change=No more spoilers}}',
+    ' - [] @Leo: Press :owner: then the task, questions to [Ava](mailto:ava@example.com)',
+    '- [] 2025-12-08 15:00 [0m,0m,0] @Leo: Announce it',
+  ].join('\n'));
+});
+
+// Le persone del dizionario sono quelle che la lista cita, come nel bot: Ava c'è perché il testo la menziona.
+test("i nomi uguali: le persone con lo username, due ruoli col codice; la barra scritta dall'utente resta com'è", () => {
+  const MARIO_A = '1181730456203948111';
+  const MARIO_B = '1181730456203948112';
+  const STAFF_A = '1181730456203948211';
+  const STAFF_B = '1181730456203948212';
+  const team = {
+    ...esempio().team,
+    people: [
+      ...esempio().team.people,
+      { id: MARIO_A, name: 'Mario', username: 'mario.rossi', color: '#000', about: 'x' },
+      { id: MARIO_B, name: 'Mario', username: 'mario_b', color: '#000', about: 'x' },
+      { id: '1181730456203948113', name: 'Moderators', username: 'mods.bot', color: '#000', about: 'x' },
+    ],
+    roles: [
+      ...esempio().team.roles,
+      { id: STAFF_A, name: 'Staff', about: 'x' },
+      { id: STAFF_B, name: 'staff', about: 'x' },
+    ],
+  };
+  const testo = `- [] <@${MARIO_A}>: ask <@${MARIO_B}>, <@1181730456203948113> and <@&${MODS}>, then <@&${STAFF_A}> `
+    + `<@&${STAFF_B}>; write \\@Ava as a word to <@${AVA}>, mail ava@example.com, ask @everyone`;
+  assert.equal(coiNomi(testo, team),
+    `- [] @Mario (mario.rossi): ask @Mario (mario_b), @Moderators (mods.bot) and @Moderators, then <@&${STAFF_A}> `
+    + `<@&${STAFF_B}>; write \\@Ava as a word to @Ava, mail ava@example.com, ask @everyone`);
+});
+
+test('la data del promemoria: i secondi solo se ci sono, lo scarto nell\'ora che si ripete', () => {
+  assert.equal(dataNelTesto(1796752800, ZONA), '2026-12-08 18:00');
+  assert.equal(dataNelTesto(1796752830, ZONA), '2026-12-08 18:00:30');
+  // 25 ottobre 2026: a Londra l'1:30 viene due volte, prima con +01:00 e poi con +00:00.
+  assert.equal(dataNelTesto(1792888200, ZONA), '2026-10-25 01:30 +01:00');
+  assert.equal(dataNelTesto(1792888200 + 3600, ZONA), '2026-10-25 01:30 +00:00');
+  assert.equal(dataNelTesto(1792888200, 'UTC'), '2026-10-25 00:30');
 });
 
 const CTX: ContestoDelWebhook = {

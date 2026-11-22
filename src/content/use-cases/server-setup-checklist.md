@@ -66,7 +66,7 @@ settings:
     why: "In *Server Settings → Integrations*, only @Admins can use TTM. After the sync, a moderator added later sees the list read-only until Ava gives them the role."
 week:
   - at: 2026-12-07T10:00
-    text: "Ava runs `/create-list` in #setup and writes the list, with the owners she already knows written as codes ([Writing a list](/docs/writing-a-list/#owners-the-mention-with-a-colon) shows how). The first notification under it mentions @Admins and Leo, so Discord notifies Leo. Ava isn't mentioned: she made the list."
+    text: "Ava runs `/create-list` in #setup and writes the list, with the owners followed by a colon. @Admins goes by name, like every role; Leo, whom a new list doesn't mention yet, goes by his code ([Writing someone new](/docs/writing-a-list/#writing-someone-new) shows how). The first notification under it mentions @Admins and Leo, so Discord notifies Leo. Ava isn't mentioned: she made the list."
   - at: 2026-12-07T10:20
     text: "Leo **takes** «Set up AutoMod»: he presses **Owner** until it turns blue, then picks the task without choosing anyone. The task becomes his, and the channel says who took it."
     card: { kind: notice, type: claimed, by: "11819044175621002", task: "3" }

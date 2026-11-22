@@ -9,13 +9,14 @@
 import type { Tasto } from '../scene-data.ts';
 import type { Acceso } from './condiviso.ts';
 import { escape, markdown } from './markdown.ts';
+import { coiCodici, coiNomi, rubricaDi } from './nomi.ts';
 import type { Contesto } from './markdown.ts';
 import { ADESSO, PROPOSTO, WEBHOOK, fusoDi, posizione } from './modello.ts';
 import type { Stato, Task } from './modello.ts';
 import {
   applicaOwnerActivity, applicaPromemoria, applicaTagActivity, applicaWebhook, eliminaTask, eliminaTaskConfermato,
-  prosaDelTask, salvaTestoActivity, sceltaDellOwner, tagDelTesto, togliOwner, togliOwnerConfermato, togliPromemoria,
-  togliTag, togliWebhook,
+  prosaDelTask, salvaTestoActivity, sceltaDellOwner, tagDelTesto, togliOwner,
+  togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook,
 } from './regole.ts';
 import type { Esito } from './regole.ts';
 import { dispositivoDi, istanteDi, quandoDa, troppoVicina } from './quando.ts';
@@ -87,9 +88,18 @@ export function eliminazione(stato: Stato, pos: string, tasto: Tasto): Esito {
 
 /* In blu: Save. */
 
+/**
+ * Il testo del task come lo mostra il campo: la prosa coi nomi (PannelloDelTask, segnaposto leggibili). Il campo non ha
+ * l'owner: un `@nome:` in testa è testo.
+ */
+export function testoDelCampo(stato: Stato, task: Task): string {
+  return coiNomi(prosaDelTask(task), rubricaDi(stato));
+}
+
 /** Il testo scritto è un altro, a meno degli spazi (ContentAction, normalize). */
-export function testoCambiato(task: Task, scritto: string): boolean {
-  return scritto.replace(/\s+/g, ' ').trim() !== prosaDelTask(task);
+export function testoCambiato(stato: Stato, task: Task, scritto: string): boolean {
+  const normale = (t: string) => t.replace(/\s+/g, ' ').trim();
+  return normale(scritto) !== normale(testoDelCampo(stato, task));
 }
 
 /** Il promemoria del task nel suo fuso; senza, adesso più dieci minuti nel fuso di chi guarda (newWhen). */
@@ -195,9 +205,10 @@ export function montaAzione(area: HTMLElement, stato: Stato, pos: string, acceso
     case 'content': {
       const id = `p-text-${nuovoNumero()}`;
       contenuto.innerHTML = `<label class="sc-plabel" for="${id}">${escape(testo('activity.content.label'))}</label>` +
-        `<textarea class="sc-pin sc-ptextarea" id="${id}" data-k="p-text" rows="5"></textarea>`;
+        `<textarea class="sc-pin sc-ptextarea" id="${id}" data-k="p-text" rows="5"></textarea>` +
+        markdown(testo('activity.content.help'), contesto);
       const campo = contenuto.querySelector<HTMLTextAreaElement>('textarea')!;
-      campo.value = prosaDelTask(task);
+      campo.value = testoDelCampo(stato, task);
       let scritto = false;
       const alTesto = () => {
         scritto = true;
@@ -205,8 +216,10 @@ export function montaAzione(area: HTMLElement, stato: Stato, pos: string, acceso
       };
       campo.addEventListener('input', alTesto);
       return {
-        pronto: () => scritto && testoCambiato(task, campo.value),
-        esito: (s) => salvaTestoActivity(s, pos, campo.value),
+        pronto: () => scritto && testoCambiato(stato, task, campo.value),
+        esito: (s) => {
+          return salvaTestoActivity(s, pos, coiCodici(campo.value, rubricaDi(s), prosaDelTask(task), 'contenuto').testo);
+        },
         chiude: false,
         smonta: () => campo.removeEventListener('input', alTesto),
       };

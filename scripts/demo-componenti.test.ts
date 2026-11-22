@@ -55,11 +55,21 @@ test('opzioniDeiWebhook: i webhook già creati, per nome', () => {
   ]);
 });
 
-test('modaleDelTesto: il paragrafo col testo e i tag, obbligatorio fino a 4000; la riga del blocco sotto', () => {
+/**
+ * La legenda dei nomi (2.5.0): una riga, come si aggiunge una persona nuova e il link alla sezione della guida (scelta
+ * dell'utente del 2026-11-22). Niente fuso.
+ */
+const REGOLE = '<span class="sc-subtext">Someone new: add them with <strong>Owner</strong> or ' +
+  '<strong>Tag</strong>. <a href="https://tasks.bitsplitters.app/docs/writing-a-list/#people-roles-and-channels-by-name" ' +
+  'target="_blank" rel="noopener">How to write the list</a></span>';
+
+test('modaleDelTesto: senza legenda né tag, il paragrafo col testo, obbligatorio fino a 4000; la riga del blocco sotto', () => {
   const s0 = statoIniziale();
   const m = modaleDelTesto(s0, '2');
   assert.equal(m.titolo, 'Edit the content of your task');
   assert.equal(m.solaLettura, undefined);
+  // Il Contenuto cambia solo il testo del task (SegnapostoDellaModale.apriSenzaLegenda): le persone si aggiungono con
+  // Owner e Tag, e la modale non ha legenda.
   assert.deepEqual(m.campi[0], {
     tipo: 'testo', id: 'task', etichetta: 'Mandatory field', valore: 'Lock the scrim block vs. Nova Collective',
     obbligatorio: true, min: 1, max: 4000, paragrafo: true,
@@ -67,10 +77,10 @@ test('modaleDelTesto: il paragrafo col testo e i tag, obbligatorio fino a 4000; 
   assert.equal(testoFisso(m.campi[1]), '<span class="sc-subtext">Closing this form with <em>Cancel</em> or ✕ leaves ' +
     'the list locked: unlock it from <strong>More → Unlock list</strong>.</span>');
   assert.equal(m.campi.length, 2);
-  // I tag ci sono com'è scritto il testo; l'owner no, ha il suo pulsante.
-  const conTag = statoDi(applicaTag(s0, '2', [MIA], [COACHES]));
-  assert.equal((modaleDelTesto(conTag, '2').campi[0] as { valore: string }).valore,
-    `Lock the scrim block vs. Nova Collective <@&${COACHES}> <@${MIA}>`);
+  // I tag no, come l'owner: hanno il loro menu, come nel Contenuto dell'Activity (TaskLogic.testoDellaModale).
+  const conTag = modaleDelTesto(statoDi(applicaTag(s0, '2', [MIA], [COACHES])), '2');
+  assert.equal((conTag.campi[0] as { valore: string }).valore, 'Lock the scrim block vs. Nova Collective');
+  assert.equal(conTag.campi.length, 2);
   assert.equal((modaleDelTesto(s0, '3').campi[0] as { valore: string }).valore, 'VOD review: mid rotations, game 3');
   assert.throws(() => modaleDelTesto(s0, '9'));
 });
@@ -124,18 +134,22 @@ test('modaleDellaDomanda: il titolo della domanda e il suo testo, senza campi da
   assert.match(testoFisso(pulisci.campi[0]), /<strong>Roster &amp; scrims — week 12<\/strong>/);
 });
 
-test('modaleDiModificaInBlocco: in sola lettura, il titolo e la lista nel formato del bot; niente blocco', () => {
+test('modaleDiModificaInBlocco: in sola lettura, il titolo, la legenda con le sole regole e la lista coi nomi nel formato del bot; niente blocco', () => {
   const s0 = statoIniziale();
   const m = modaleDiModificaInBlocco(s0);
   assert.equal(m.titolo, 'Edit your activities list');
   assert.equal(m.solaLettura, AVVISO_ILLUSTRATIVO);
+  assert.match(testoDellaLista(s0.lista), new RegExp(`<t:\\d+> \\[0m,0m,0\\] <@${MIA}>: VOD review`));
   assert.deepEqual(m.campi, [
     {
       tipo: 'testo', id: 'title', etichetta: 'List title', valore: 'Roster & scrims — week 12', obbligatorio: true,
       min: 1, max: 90,
     },
+    // Niente elenco dei nomi: si leggono già nel testo (LegendaDeiNomi).
+    { tipo: 'testoFisso', html: REGOLE },
     {
-      tipo: 'testo', id: 'list', etichetta: 'List of activities', valore: testoDellaLista(s0.lista),
+      tipo: 'testo', id: 'list', etichetta: 'List of activities',
+      valore: testoDellaLista(s0.lista).replace(/<t:\d+> \[0m,0m,0\] <@\d+>/, '2026-11-15 18:14 [0m,0m,0] @Mia'),
       obbligatorio: true, min: 1, max: 4000, paragrafo: true,
     },
   ]);

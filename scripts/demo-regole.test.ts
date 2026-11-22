@@ -21,6 +21,7 @@ import {
 } from '../src/components/home/demo/regole.ts';
 import type { Campi, Domanda, Esito } from '../src/components/home/demo/regole.ts';
 import { PRIMA_RIGA, TASTI } from '../src/components/home/scene-data.ts';
+import { TESTI } from '../src/components/home/demo/testi.ts';
 
 /** I task come «posizione prima parola»: '2.1 Clip'. */
 const elenco = (s: Stato) => s.lista.tasks.map((t) => `${posizione(t.pos)} ${t.testo.split(' ')[0]}`);
@@ -150,12 +151,19 @@ test('i token tolti: una volta ciascuno, nell\'ordine, anche quelli che si forma
   assert.deepEqual(tokenTolti(`Hi ${LEO_TAG}`), []);
 });
 
-test('la modale del canale salva la prosa, coi tag scritti; owner e promemoria restano (TaskListMdlTask)', () => {
+test('la modale del canale toglie anche i tag scritti; quelli del task restano in coda, owner e promemoria pure (TaskListMdlTask)', () => {
   const s0 = statoIniziale();
   assert.deepEqual(salvaTesto(s0, '2', 'New text'), { tipo: 'fatto', stato: conTesto(1, 'New text') });
   assert.deepEqual(salvaTesto(s0, '2', 'New <t:5> text'),
     { tipo: 'fatto', stato: conTesto(1, 'New text'), avviso: filtrati('`<t:5>`') });
-  assert.deepEqual(salvaTesto(s0, '2', LEO_TAG), { tipo: 'fatto', stato: conTesto(1, LEO_TAG) });
+  // Dalla 2.5.0 i tag non sono nel campo, come nell'Activity: uno scritto si toglie, e l'avviso lo dice.
+  assert.deepEqual(salvaTesto(s0, '2', `New text ${LEO_TAG}`),
+    { tipo: 'fatto', stato: conTesto(1, 'New text'), avviso: filtrati(`\`${LEO_TAG}\``) });
+  assert.deepEqual(salvaTesto(s0, '2', LEO_TAG),
+    { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.task.blank.error' } });
+  const conTag = conTesto(1, `Lock the scrim block vs. Nova Collective ${LEO_TAG}`);
+  assert.deepEqual(salvaTesto(conTag, '2', 'Other'), { tipo: 'fatto', stato: conTesto(1, `Other ${LEO_TAG}`) });
+  assert.deepEqual(salvaTesto(conTag, '2', 'Lock the scrim block vs. Nova Collective'), { tipo: 'fatto', stato: conTag });
   assert.deepEqual(salvaTesto(s0, '3', 'VOD review'), { tipo: 'fatto', stato: conTesto(3, 'VOD review') });
   // Uguale a prima: niente cambia, ma i token tolti si dicono lo stesso.
   assert.deepEqual(salvaTesto(s0, '2', ' Lock the scrim block vs. Nova Collective <t:5>'),
@@ -632,4 +640,12 @@ test('il testo della lista è quello della modale di Modifica in blocco (ModalUI
   assert.equal(riga(conIlTask(3, { webhook: 'Staff alerts' }), 3), `- [] {{wb=Staff alerts}} ${vod}`);
   assert.equal(riga(conTesto(1, `Lock the scrim block ${LEO_TAG}`), 1), `- [] Lock the scrim block ${LEO_TAG}`);
   assert.equal(riga(conSpunte(['2']), 2), ' - [X] Clip the three teamfights for the review');
+});
+
+test('il nome sconosciuto non ha un messaggio: resta testo, e nel Contenuto anche l\'owner (scelte dell\'utente del 2026-11-22); la legenda ha solo le regole', () => {
+  for (const chiave of ['tasklist.modal.names.unknown.error', 'tasklist.modal.names.unknown.content.error',
+    'activity.content.unknown.error', 'tasklist.modal.names.owner.unknown.content.error'])
+    assert.ok(!(chiave in TESTI), chiave);
+  for (const chiave of ['people', 'roles', 'channels', 'zone.personal', 'zone.server'])
+    assert.ok(!(`tasklist.modal.names.legend.${chiave}` in TESTI), chiave);
 });
