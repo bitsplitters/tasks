@@ -148,7 +148,7 @@ These reminders can't be saved, and the message names the task to fix:
 - a reminder with **no date** and a distance of zero, such as `[0m,0m,0]` on its own. Its only alert would be the moment you save, already gone;
 - a reminder that **can't be read**: a number too large, such as `[1h,1d,99999999999]`.
 
-A reminder written badly is marked with an arrow, like a line without a dash: two dates or two triplets on one line, a date without its triplet, a date that doesn't exist, such as `2026-02-30 10:00`, or a reminder without task text. TTM doesn't guess which one you meant.
+A reminder written badly is marked with an arrow, like a line without a dash: two dates or two triplets on one line, a date without its triplet, a date that doesn't exist, such as `2026-02-30 10:00`, a date in another form, such as `30/11/2026 18:00`, or a reminder without task text. TTM doesn't guess which one you meant.
 
 These checks look only at the lines you change. Rewriting the whole list checks the lines you add or edit, and the text of a single task checks that task. A new list, a clone and an import check every line.
 
@@ -218,7 +218,7 @@ A single task can combine all of these:
 
 ## When the text can't be saved
 
-If TTM can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, a date that doesn't exist, or a reminder without task text. A webhook token (`{{wb=…}}`) without task text gets the arrow too, and so do an owner TTM doesn't know, a name that matches more than one person and a date in a time zone TTM doesn't know: the message says what to write. Otherwise, **one message lists every problem at once**, one per paragraph:
+If TTM can't read your text as a list, it shows the text back, with an arrow on each wrong line. The arrow marks a line without a dash, a first line that is a subtask, or a line with a reminder in months (`M`). It also marks a reminder written badly: two dates or two triplets, a date without its triplet, a date that doesn't exist or in another form, or a reminder without task text. A webhook token (`{{wb=…}}`) without task text gets the arrow too, and so do an owner TTM doesn't know, a name that matches more than one person and a date in a time zone TTM doesn't know: the message says what to write. Otherwise, **one message lists every problem at once**, one per paragraph:
 
 - the list is too long;
 - the list has more tasks than a list can hold, or than your plan allows;
