@@ -11,7 +11,7 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 ## 2.5.0 — Names instead of codes
 
-Released 2026-11-22
+Released 2026-11-23
 
 - **People, roles and channels by name** — **Bulk update** shows `@Ava`, `@Moderators` and `#general` instead of Discord's codes, and the **Content** form shows channels by name. Write `@` and a name for every role and channel, and for anyone already in the list. Add someone new with **Owner** or **Tag**, or write their code. A name TTM doesn't know stays text, except as an owner: then TTM tells you, and saves nothing. See [People, roles and channels by name](/docs/writing-a-list/#people-roles-and-channels-by-name).
 - **Content is only the text** — the **Content** form no longer shows the task's tags, as in the Activity: they stay on the task, and **Tag** changes them. A tag typed in the form is removed, and TTM tells you. See [Content](/docs/channel-tasks/#content).
