@@ -75,16 +75,6 @@ function rifiuto(chiave: string): Extract<Esito, { tipo: 'rifiuto' }> {
   return { tipo: 'rifiuto', testo: { chiave } };
 }
 
-/**
- * Un owner scritto a mano che il dizionario non conosce, nel Contenuto di un task, nel canale (TaskListMdlTask) e
- * nell'Activity (AzioniDellaPagina.contenutoNonLetto): non si salva niente, e il bot rimanda al menu di Owner, perché lì
- * l'owner non si cambia dal testo (ContenutoDellaModale.OWNER_SCONOSCIUTO_NEL_CONTENUTO_ERROR; scelta dell'utente del
- * 2026-11-22). La demo mostra la sola riga dell'owner, senza il testo con le frecce.
- */
-export function ownerSconosciutoNelContenuto(nome: string): Esito {
-  return { tipo: 'rifiuto', testo: { chiave: 'tasklist.modal.names.owner.unknown.content.error', argomenti: [nome] } };
-}
-
 /* 5a — La spunta, la barra, le posizioni, l'eliminazione. */
 
 /**

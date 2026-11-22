@@ -67,7 +67,7 @@ Save, and the next time the form opens the person shows by name. The **Owner** a
 
 ### Writing @ without a mention
 
-Put a backslash in front of a name TTM knows: `\@Ava` stays the word @Ava, and nobody is mentioned. `\#general` does the same for a channel. Any other `@word` stays text by itself, with no backslash, except at the start of a task followed by a colon, where it would be an owner: `\@word:`. When a task holds the word of a name TTM knows, or starts with one of those words, the form shows it with its backslash, so saving leaves it as it is.
+Put a backslash in front of a name TTM knows: `\@Ava` stays the word @Ava, and nobody is mentioned. `\#general` does the same for a channel. Any other `@word` stays text by itself, with no backslash, except at the start of a task in the list's text, followed by a colon, where it would be an owner: `\@word:`. When a task holds the word of a name TTM knows, or starts with one of those words, the form shows it with its backslash, so saving leaves it as it is.
 
 ## Owners: the mention with a colon
 
@@ -77,7 +77,7 @@ A task's owner is a mention too, with one difference: it is followed by a **colo
 @Ava: Ship the release notes
 ```
 
-A role works the same way: `@Moderators:`, and so does a code: `<@123456789012345678>:`. Without the colon, the same mention is just a tag, not an owner. In the owner's place, a name TTM doesn't know is an error: TTM saves nothing, and the message says to pick the owner with the **Owner** button or write their code. The owner's name runs from the `@` to the colon, so `@Ava Rossi:` is an error even when TTM knows Ava. To start a task with `@word:` as plain text, put a backslash in front: `\@word:`. A reminder goes to the task's owner, so TTM doesn't save a reminder on a task without an owner, and the message names the task to fix. Owners and tags, and what each can do: [Owners and tags](/docs/owners-and-tags/).
+A role works the same way: `@Moderators:`, and so does a code: `<@123456789012345678>:`. Without the colon, the same mention is just a tag, not an owner. In the owner's place, a name TTM doesn't know is an error: TTM saves nothing, and the message says to pick the owner with the **Owner** button or write their code. The owner's name runs from the `@` to the colon, so `@Ava Rossi:` is an error even when TTM knows Ava. To start a task with `@word:` as plain text, put a backslash in front: `\@word:`. The Content form of a single task has no owner, so there `@word:` stays plain text with no backslash. A reminder goes to the task's owner, so TTM doesn't save a reminder on a task without an owner, and the message names the task to fix. Owners and tags, and what each can do: [Owners and tags](/docs/owners-and-tags/).
 
 ## Linking channels
 

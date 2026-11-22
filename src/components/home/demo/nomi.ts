@@ -94,9 +94,20 @@ function delTesto(conId: string, r: Rubrica): Rubrica {
  */
 const PREFISSO = /[^\S\n]*-?[^\S\n]*(?:\[[xX]?\][^\S\n]*)?(?:(?:\{\{wb=[^{}]*\}\}|<t:\d+(?::[a-zA-Z])?>|\[[0-9dhmM]+,[0-9dhmM]+,\d+\])[^\S\n]*)*/y;
 
-/** Dove comincia il contenuto di ogni riga (NomiNellaModale.testa): lì una `@nome:` è l'owner. */
-function teste(testo: string): Set<number> {
+/**
+ * Che cosa ha il campo (NomiNellaModale.Campo): le righe di una lista, con l'owner in testa a ogni task, o il contenuto
+ * di un task solo, che non ha l'owner (scelta dell'utente del 2026-11-22: «il contenuto deve modificare solo il
+ * contenuto»).
+ */
+export type Campo = 'lista' | 'contenuto';
+
+/**
+ * Dove comincia il contenuto di ogni riga (NomiNellaModale.testa): lì una `@nome:` è l'owner. Nel contenuto di un task
+ * solo l'owner non c'è, e la testa nemmeno.
+ */
+function teste(testo: string, campo: Campo): Set<number> {
   const inizi = new Set<number>();
+  if (campo === 'contenuto') return inizi;
   let inizio = 0;
   for (const riga of testo.split('\n')) {
     PREFISSO.lastIndex = 0;
@@ -133,11 +144,11 @@ const SALTA = /<[^<>\s]+>|https?:\/\/\S+|\]\([^)\n]*\)|`[^`\n]*`|\{\{[^{}\n]*\}\
 /**
  * Il testo coi nomi: `<@id>` è `@Nome`, `<@&id>` `@Ruolo`, `<#id>` `#canale`, la data di un promemoria quella del fuso
  * della rubrica. Un segno scritto come testo, dove segue un nome del dizionario, prende la barra: il salvataggio lo
- * lascia testo.
+ * lascia testo. Nel contenuto di un task solo, `@nome:` in testa non è un owner, e non la prende.
  */
-export function coiNomi(conId: string, rubrica: Rubrica): string {
+export function coiNomi(conId: string, rubrica: Rubrica, campo: Campo = 'lista'): string {
   const d = dizionario(delTesto(conId, rubrica));
-  const inTesta = teste(conId);
+  const inTesta = teste(conId, campo);
   const nome = (voci: readonly Voce[], codice: string, segno: string) => {
     const v = voci.find((x) => x.codice === codice);
     return v ? segno + v.nome : null;
@@ -162,17 +173,20 @@ export function coiNomi(conId: string, rubrica: Rubrica): string {
  * sconosciuto e quello che la lettura salta (scelta dell'utente del 2026-11-22: «Semplicemente risolviamo quelli che
  * conosciamo, gli altri li lasciamo letterali»). In testa a una riga, però, `@nome:` è un owner, e se il nome non è
  * proprio un nome del dizionario il salvataggio si rifiuta (scelta dell'utente del 2026-11-22: «gli owner li gestiamo
- * noi tramite funzione»): un nome che non c'è come uno più lungo di quello che combacia, `@Leo Rossi:`. Le barre davanti
+ * noi tramite funzione»): un nome che non c'è come uno più lungo di quello che combacia, `@Leo Rossi:`. Non nel
+ * contenuto di un task solo, che non ha l'owner: lì `@nome:` in testa è testo come altrove. Le barre davanti
  * a un segno seguito da un nome del dizionario, o in testa da un owner, perdono una barra e il segno resta testo:
  * `\@Leo` si salva `@Leo`, che Discord non menziona, e la modale lo riapre con la barra. Le date no: le modali della
  * demo che si scrivono, quelle del contenuto, non hanno promemoria.
  *
  * @param aperto il testo con gli id con cui la modale si è aperta
+ * @param campo che cosa ha il campo: le modali della demo che si scrivono sono quelle del contenuto
  * @return il testo coi codici, e il primo owner sconosciuto, con la `@`, o null
  */
-export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string): { testo: string; owner: string | null } {
+export function coiCodici(scritto: string, rubrica: Rubrica, aperto: string, campo: Campo = 'lista'):
+    { testo: string; owner: string | null } {
   const d = dizionario(delTesto(aperto, rubrica));
-  const inTesta = teste(scritto);
+  const inTesta = teste(scritto, campo);
   let owner: string | null = null;
   let fuori = '';
   let i = 0;

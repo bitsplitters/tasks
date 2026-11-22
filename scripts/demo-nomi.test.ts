@@ -55,6 +55,18 @@ test("in testa, un owner che il dizionario non conosce si rifiuta, anche più lu
   assert.deepEqual(coiCodici(String.raw`\@Bea: ask`, R, CON_LEO), { testo: '@Bea: ask', owner: null });
 });
 
+test("nel contenuto di un task solo `@nome:` in testa è testo: lì l'owner non c'è", () => {
+  // Scelta dell'utente del 2026-11-22: «il contenuto deve modificare solo il contenuto, non dovrebbe essere permesso di
+  // aggiungere/modificare l'owner». All'apertura niente barra; un nome noto è la sua persona, come altrove.
+  assert.deepEqual(coiCodici('@Bea: ask', R, CON_LEO, 'contenuto'), { testo: '@Bea: ask', owner: null });
+  assert.deepEqual(coiCodici('@Leo Rossi: ask', R, CON_LEO, 'contenuto'),
+    { testo: `<@${LEO}> Rossi: ask`, owner: null });
+  assert.equal(coiNomi('@Bea: ask', R, 'contenuto'), '@Bea: ask');
+  assert.equal(coiNomi('@Bea: ask', R), String.raw`\@Bea: ask`);
+  for (const salvato of ['@Bea: as text at the head', `<@${LEO}>: ask`, String.raw`\@Bea: with its bar`])
+    assert.equal(coiCodici(coiNomi(salvato, R, 'contenuto'), R, salvato, 'contenuto').testo, salvato, salvato);
+});
+
 test('la lettura salta codici, link, backtick e token: lì una `@` non è un nome', () => {
   const scritto = 'see `@leo2`, https://example.com/@leo2, [it](https://x.y/@leo2), {{@leo2}} and <@&333333333333333333>';
   assert.equal(coiCodici(scritto, R, CON_LEO).testo, scritto);

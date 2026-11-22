@@ -61,7 +61,8 @@ function testoFisso(stato: Stato, md: string): Campo {
 /**
  * La modale del contenuto (TaskListMdlTask.createTaskModal): il campo a paragrafo obbligatorio col testo del task senza
  * i tag (TaskLogic.testoDellaModale), coi nomi al posto dei codici, poi la riga sul blocco (AvvisoDelBlocco). Niente
- * legenda (SegnapostoDellaModale.apriSenzaLegenda): la modale cambia solo il testo, e tag e owner hanno i loro menu.
+ * legenda (SegnapostoDellaModale.apriSenzaLegenda): la modale cambia solo il testo, e tag e owner hanno i loro menu;
+ * un `@nome:` in testa è testo, senza barra.
  * Il tetto è quello di Discord: il
  * bot lo abbassa quando il resto della lista occupa la form di Modifica in blocco (TaskLogic.tettoDelTesto), cosa che
  * la lista corta della demo non fa sentire prima di 3700 caratteri.
@@ -74,7 +75,7 @@ export function modaleDelTesto(stato: Stato, pos: string): Modale {
     titolo: testo('tasklist.modal.task.title'),
     campi: [
       {
-        tipo: 'testo', id: 'task', etichetta: testo('tasklist.modal.task.label'), valore: coiNomi(prosaDelTask(task), rubrica),
+        tipo: 'testo', id: 'task', etichetta: testo('tasklist.modal.task.label'), valore: coiNomi(prosaDelTask(task), rubrica, 'contenuto'),
         obbligatorio: true, min: 1, max: MAX_VALUE_LENGTH, paragrafo: true,
       },
       testoFisso(stato, testo('tasklist.modal.lock.hint')),

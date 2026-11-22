@@ -15,7 +15,7 @@ import { ADESSO, PROPOSTO, WEBHOOK, fusoDi, posizione } from './modello.ts';
 import type { Stato, Task } from './modello.ts';
 import {
   applicaOwnerActivity, applicaPromemoria, applicaTagActivity, applicaWebhook, eliminaTask, eliminaTaskConfermato,
-  ownerSconosciutoNelContenuto, prosaDelTask, salvaTestoActivity, sceltaDellOwner, tagDelTesto, togliOwner,
+  prosaDelTask, salvaTestoActivity, sceltaDellOwner, tagDelTesto, togliOwner,
   togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook,
 } from './regole.ts';
 import type { Esito } from './regole.ts';
@@ -88,9 +88,12 @@ export function eliminazione(stato: Stato, pos: string, tasto: Tasto): Esito {
 
 /* In blu: Save. */
 
-/** Il testo del task come lo mostra il campo: la prosa coi nomi (PannelloDelTask, segnaposto leggibili). */
+/**
+ * Il testo del task come lo mostra il campo: la prosa coi nomi (PannelloDelTask, segnaposto leggibili). Il campo non ha
+ * l'owner: un `@nome:` in testa è testo.
+ */
 export function testoDelCampo(stato: Stato, task: Task): string {
-  return coiNomi(prosaDelTask(task), rubricaDi(stato));
+  return coiNomi(prosaDelTask(task), rubricaDi(stato), 'contenuto');
 }
 
 /** Il testo scritto è un altro, a meno degli spazi (ContentAction, normalize). */
@@ -215,8 +218,7 @@ export function montaAzione(area: HTMLElement, stato: Stato, pos: string, acceso
       return {
         pronto: () => scritto && testoCambiato(stato, task, campo.value),
         esito: (s) => {
-          const letto = coiCodici(campo.value, rubricaDi(s), prosaDelTask(task));
-          return letto.owner ? ownerSconosciutoNelContenuto(letto.owner) : salvaTestoActivity(s, pos, letto.testo);
+          return salvaTestoActivity(s, pos, coiCodici(campo.value, rubricaDi(s), prosaDelTask(task), 'contenuto').testo);
         },
         chiude: false,
         smonta: () => campo.removeEventListener('input', alTesto),
