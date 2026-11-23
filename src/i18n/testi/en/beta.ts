@@ -46,13 +46,13 @@ export const testi = {
   'tempi.ora.d': 'Every feature, on every server. Add TTM, build your lists, set your reminders.',
   'tempi.fd.quando': 'Before the beta ends',
   'tempi.fd.evento': 'Limited-time event',
-  'tempi.fd.t': 'The Founder window',
-  'tempi.fd.d':
-    'For a limited time, any server can unlock the Founder badge. It opens the Founder price on Premium and a numbered badge, while spots last. Once, never again.',
+  'tempi.fd.t': 'The Founder badge',
+  'tempi.fd.d': 'Your first and last chance at the exclusive Founder badge.',
   'tempi.fd.link': 'How Founder works',
   'tempi.dopo': 'After the beta',
   'tempi.dopo.t': 'Free and Premium',
-  'tempi.dopo.d': 'The Free plan stays, forever. Premium lifts the limits for the servers that need more.',
+  'tempi.dopo.d':
+    'The Free plan stays, forever. Premium gives growing teams more room and connects your lists to your tools with webhooks.',
 
   'voce.titolo': 'Shape what comes next.',
   'voce.intro':

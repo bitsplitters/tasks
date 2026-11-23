@@ -10,15 +10,18 @@ import { t, traduttore } from '../../i18n/t.ts';
  * contiene sia i radio sia le card. Dove :has() manca si vedono tutti e due i prezzi, uno sotto l'altro.
  *
  * I nomi delle card sono h2: la sezione non ha un titolo visibile, e un h3 subito dopo l'h1 salterebbe un livello.
- * La card Free elenca solo quello che il piano dà: il «No new ones» dei webhook sta nel confronto.
+ * La card Free elenca solo quello che il piano dà: senza webhook, la voce non c'è (il dettaglio nella pagina docs
+ * Premium). La fascia della beta sta in testa alla card Premium, prima del prezzo: chi legge il prezzo sa già che
+ * durante la beta Premium è attivo per tutti (richiesta dell'utente del 2026-11-23).
  * Il pulsante porta a /invite/, che esiste solo in inglese: è il passaggio verso Discord.
  */
 interface Props { lingua: Lingua; }
 const { lingua } = Astro.props;
 const tt = traduttore(lingua, 'premium');
-const FREE = [1, 2, 3, 4, 5].map((n) => tt(`free.${n}`));
-// Il segno di Discord sulle voci col limite fissato da Discord: 50 task, 25 persone, 25 webhook.
-const PREMIUM = [1, 2, 3, 4, 5, 6].map((n) => ({ testo: tt(`premium.${n}`), discord: [2, 5, 6].includes(n) }));
+const FREE = [1, 2, 3, 4].map((n) => tt(`free.${n}`));
+// Il segno di Discord sulle voci col limite fissato da Discord: 50 task, 25 webhook. La voce 5, i task di più
+// persone, ha le due stellette: la nota spiega il ruolo creato da TTM (e cita il suo limite di Discord, 25 persone).
+const PREMIUM = [1, 2, 3, 4, 5, 6].map((n) => ({ testo: tt(`premium.${n}`), discord: [2, 6].includes(n), ruoli: n === 5 }));
 const aggiungi = t(lingua, 'comune.cta.aggiungi');
 ---
 <section class="p-plans wrap">
@@ -46,6 +49,7 @@ const aggiungi = t(lingua, 'comune.cta.aggiungi');
     <article class="p-card p-card-premium" aria-labelledby="p-premium-name">
       <Sbircia bersaglio=".p-card-premium" class="mx-premium" />
       <h2 class="p-name" id="p-premium-name">{tt('premium.nome')}</h2>
+      <p class="p-included">{tt('premium.incluso')}</p>
       <div class="p-cost">
         <div class="p-annuale">
           <p class="p-price"><span class="p-amount">{tt('premium.annuale.importo')}</span> <span class="p-per">{tt('premium.al.mese')} <a class="p-vat" href="#vat">{tt('iva')}</a></span></p>
@@ -58,10 +62,13 @@ const aggiungi = t(lingua, 'comune.cta.aggiungi');
       </div>
       <p class="p-tagline">{tt('premium.tagline')}</p>
       <ul class="p-list" role="list">
-        {PREMIUM.map((v) => <li><span>{v.testo}{v.discord && <DiscordLimit lingua={lingua} />}</span></li>)}
+        {PREMIUM.map((v) => (
+          <li><span>{v.testo}{v.discord && <DiscordLimit lingua={lingua} />}{v.ruoli && (
+            <><span aria-hidden="true">&nbsp;**</span><span class="sr-only">{tt('ruoli.nota')}</span></>
+          )}</span></li>
+        ))}
       </ul>
       <a class="btn" href="/invite/">{aggiungi}</a>
-      <p class="p-included">{tt('premium.incluso')}</p>
     </article>
   </div>
 
@@ -69,7 +76,8 @@ const aggiungi = t(lingua, 'comune.cta.aggiungi');
     {/* Perché «+ VAT» (spec 2026-11-19-iva-e-note-di-rilascio-design.md, §1-2, nel repo team-tasks-manager): in Discord
         l'IVA del paese di chi compra si aggiunge al pagamento. I «+ VAT» dei prezzi portano qui. */}
     <p id="vat" set:html={tt('fine.iva')} />
-    <p>{tt('fine.prezzi')}</p>
+    <p>{tt('fine.prezzi')} <a class="h-link" href={percorso(lingua, '/docs/premium/')}>{tt('fine.limiti')}</a></p>
     <p><span aria-hidden="true">*</span> <Fragment set:html={tt('fine.discord', { limiti: percorso(lingua, '/docs/known-limits/') })} /></p>
+    <p><span aria-hidden="true">**</span> {tt('fine.ruoli')}</p>
   </div>
 </section>

@@ -1,7 +1,7 @@
 ---
 title: Cosa sblocca Premium
-description: "Il piano a pagamento toglie i limiti del Free: ecco esattamente quali e cosa cambia giorno per giorno."
-fonte: f821c0f97773
+description: "Cosa aggiunge il piano a pagamento al Free e cosa cambia ogni limite, giorno per giorno."
+fonte: a30e7ff6132c
 ---
 
 TTM è **completamente sbloccato durante la beta**, quindi per ora niente di questa pagina si applica. Descrive il piano Free e cosa toglierà Premium quando la beta finirà. Cosa succede al tuo server quando la beta finisce è in [Come funziona la beta](/docs/beta/).

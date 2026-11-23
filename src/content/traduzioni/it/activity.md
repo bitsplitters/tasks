@@ -1,7 +1,7 @@
 ---
 title: L'Activity
 description: Apri una lista in una finestra dentro Discord, dove il tuo team ci lavora insieme e vede ogni modifica mentre accade.
-fonte: adfb2c2600dd
+fonte: 1c1f0c545771
 ---
 
 Prova la modalità Activity: più fluida e libera dai limiti dei canali testuali, ideale per sessioni di lavoro più lunghe o collaborative.
@@ -83,5 +83,5 @@ L'ingranaggio in alto a destra ha due gruppi. Sotto **Per te, ovunque**, **Fuso 
 
 - [Lavorare su una lista nell'Activity](/docs/activity-list/) — le caselle, il pannello di un task e chi sta modificando che cosa.
 - [La lista nel canale](/docs/the-task-list/) — ogni pulsante sotto la lista, nel canale.
-- [Cosa sblocca Premium](/docs/premium/) — i posti del tuo piano e che cosa toglie di mezzo il piano a pagamento.
+- [Cosa sblocca Premium](/docs/premium/) — i posti del tuo piano e che cosa aggiunge il piano a pagamento.
 - [FAQ](/docs/troubleshooting/#in-the-activity) — risposte rapide ai problemi più comuni.

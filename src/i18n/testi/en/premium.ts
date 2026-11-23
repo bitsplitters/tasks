@@ -8,10 +8,11 @@
 export const testi = {
   'pagina.titolo': 'Plans and pricing',
   'pagina.descrizione':
-    'Free covers a small team. Premium lifts the limits, with one price for the whole server. During the open beta, every Premium feature is unlocked for every server.',
+    'Free covers a small team. Premium gives growing teams more room and connects your lists to your tools with webhooks. One price for the whole server. During the open beta, every Premium feature is unlocked for every server.',
   'anteprima.vedi': 'See the plans',
   'iva': '+ VAT',
   'limite.discord': ' (Discord limit)',
+  'ruoli.nota': ' (see the note on roles)',
 
   'beta.label': 'Open beta',
   'beta.testo':
@@ -19,7 +20,7 @@ export const testi = {
   'hero.titolo1': 'Start on Free.',
   'hero.titolo2': 'Grow into Premium.',
   'hero.intro':
-    'Free covers a small team, and stays free. Premium lifts the limits for the servers that need more, with one price for the whole server and no cost per member.',
+    'Free covers a small team, and stays free. Premium gives growing teams more room and connects your lists to your tools with webhooks. One price for the whole server, no cost per member.',
 
   'piani.periodo': 'Billing period',
   'piani.mensile': 'Monthly',
@@ -32,7 +33,6 @@ export const testi = {
   'free.2': '20 tasks per list',
   'free.3': '10 reminders waiting at a time',
   'free.4': 'Single reminders',
-  'free.5': 'One person or one role per owner',
   'premium.nome': 'Premium',
   'premium.annuale.importo': '€3',
   'premium.mensile.importo': '€5',
@@ -44,41 +44,22 @@ export const testi = {
   'premium.2': '50 tasks per list',
   'premium.3': 'Unlimited reminders',
   'premium.4': 'Repeating reminders, up to 50 times',
-  'premium.5': 'Up to 25 people per owner',
+  'premium.5': 'Tasks for several people, with a role created for them',
   'premium.6': 'Up to 25 webhooks',
-  'premium.incluso': 'Included for every server during the beta.',
+  'premium.incluso': 'Active on every server now, for the whole beta',
   'fine.iva':
     '<strong>Prices are before VAT.</strong> VAT depends on the country you buy from: in the EU it goes from 17% to 27%. So the price before VAT is the same for everyone, and the checkout adds your country\'s rate, in your currency, before you pay. Discord handles payments for apps the same way: <a class="h-link" href="https://support-dev.discord.com/hc/en-us/articles/23810643331735-Premium-Apps-Required-Support-for-Monetizing-Apps" target="_blank" rel="noopener noreferrer">all taxes are paid by the buyer<span class="sr-only"> (opens in a new tab)</span></a>.',
   'fine.prezzi':
-    'Planned prices, final when the beta ends. The annual plan is the same product: it costs less because you pay for a year up front.',
+    'Planned prices and limits, final when the beta ends. The annual plan is the same product: it costs less because you pay for a year up front.',
+  'fine.limiti': 'What each limit changes, in practice',
   'fine.discord':
     'A limit set by Discord, not by us. Premium lets you reach it, never go past it. See <a class="h-link" href="{limiti}">Known limits</a>.',
+  'fine.ruoli':
+    'Give a task to up to 25 people (a Discord limit): TTM creates a role for them, so reminders and notifications reach all of them. When no list uses it any more, TTM deletes it.',
 
-  'confronto.titolo': 'Free and Premium, side by side.',
-  'confronto.didascalia': 'The limits of the Free and Premium plans',
-  'confronto.1.voce': 'Lists in use per server',
-  'confronto.1.free': '3',
-  'confronto.1.premium': 'Unlimited',
-  'confronto.2.voce': 'Tasks per list',
-  'confronto.2.free': '20',
-  'confronto.2.premium': '50',
-  'confronto.3.voce': 'Reminders waiting at a time',
-  'confronto.3.free': '10',
-  'confronto.3.premium': 'Unlimited',
-  'confronto.4.voce': 'Repetitions per reminder',
-  'confronto.4.free': 'Single reminders only',
-  'confronto.4.premium': 'Up to 50',
-  'confronto.5.voce': 'People per owner',
-  'confronto.5.free': '1, a person or a role',
-  'confronto.5.premium': 'Up to 25',
-  'confronto.6.voce': 'Webhooks',
-  'confronto.6.free': 'No new ones',
-  'confronto.6.premium': 'Up to 25',
-  'confronto.dopo':
-    'Planned limits, which may be tuned before the beta ends. <a class="h-link" href="{premium}">What each limit changes, in practice</a>',
 
   'inclusi.titolo': 'Included in both.',
-  'inclusi.intro': 'Every plan gets the whole bot. The limits are the only difference.',
+  'inclusi.intro': 'Every plan gets the whole bot.',
   'inclusi.1.t': 'The Activity',
   'inclusi.1.d': 'Open a list in a window inside Discord and work on it together, live.',
   'inclusi.2.t': 'Owners and tags',
@@ -101,7 +82,7 @@ export const testi = {
   'chi.3':
     'TTM gets better every week: 15 releases in under a month, all in the <a class="h-link" href="{note}">release notes</a>. Every update reaches every server, including those on the Free plan.',
   'chi.4':
-    'Premium lifts the limits for the servers that need more, and it funds the next update for everyone. If you believe in TTM too, the <a class="h-link" href="#founder">Founder badge</a> is the best way to tell us.',
+    'Premium gives growing teams more room, connects your lists to your tools with webhooks, and funds the next update for everyone. If you believe in TTM too, the <a class="h-link" href="#founder">Founder badge</a> is the best way to tell us.',
   'chi.alt': 'Portrait of Alex',
   'chi.ruolo': 'Developer and community manager',
 

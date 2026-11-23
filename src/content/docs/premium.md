@@ -1,6 +1,6 @@
 ---
 title: What Premium unlocks
-description: "The paid plan lifts the Free limits: here is exactly which ones, and what that changes day to day."
+description: "What the paid plan adds to Free, and what each limit changes day to day."
 group: Plans
 order: 0.6
 ---

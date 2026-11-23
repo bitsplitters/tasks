@@ -85,5 +85,5 @@ The gear at the top right has two groups. Under **For you, everywhere**, **Time 
 
 - [Working on a list in the Activity](/docs/activity-list/) — the boxes, the panel of a task, and who is editing what.
 - [The list in the channel](/docs/the-task-list/) — every button under the list, in the channel.
-- [What Premium unlocks](/docs/premium/) — the places on your plan, and what the paid plan lifts.
+- [What Premium unlocks](/docs/premium/) — the places on your plan, and what the paid plan adds.
 - [FAQ](/docs/troubleshooting/#in-the-activity) — quick answers to the most common problems.

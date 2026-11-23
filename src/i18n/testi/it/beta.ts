@@ -1,5 +1,5 @@
 // I testi della pagina della beta in italiano: le stesse chiavi di src/i18n/testi/en/beta.ts.
-export const fonte = 'd0612d9b344f';
+export const fonte = '7ac870632eeb';
 
 export const testi = {
   'titolo': 'Beta aperta',
@@ -44,13 +44,13 @@ export const testi = {
   'tempi.ora.d': 'Ogni funzione, su ogni server. Aggiungi TTM, crea le tue liste, imposta i tuoi promemoria.',
   'tempi.fd.quando': 'Prima della fine della beta',
   'tempi.fd.evento': 'Evento a tempo',
-  'tempi.fd.t': 'La finestra Founder',
-  'tempi.fd.d':
-    'Per un tempo limitato ogni server può sbloccare il badge Founder. Apre il prezzo Founder su Premium e un badge numerato, finché ci sono posti. Una volta, mai più.',
+  'tempi.fd.t': 'Il badge Founder',
+  'tempi.fd.d': 'La prima e l\'ultima occasione per avere il badge Founder esclusivo.',
   'tempi.fd.link': 'Come funziona il Founder',
   'tempi.dopo': 'Dopo la beta',
   'tempi.dopo.t': 'Free e Premium',
-  'tempi.dopo.d': 'Il piano Free resta, per sempre. Premium toglie i limiti ai server che hanno bisogno di più.',
+  'tempi.dopo.d':
+    'Il piano Free resta, per sempre. Premium dà più spazio ai team che crescono e collega le liste ai tuoi strumenti con i webhook.',
 
   'voce.titolo': 'Decidi cosa viene dopo.',
   'voce.intro':

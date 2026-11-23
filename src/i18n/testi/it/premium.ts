@@ -1,13 +1,14 @@
 // I testi della pagina dei piani in italiano: le stesse chiavi di src/i18n/testi/en/premium.ts.
-export const fonte = 'a65f1eac35cd';
+export const fonte = '354dc7f5e587';
 
 export const testi = {
   'pagina.titolo': 'Piani e prezzi',
   'pagina.descrizione':
-    'Il Free basta a un team piccolo. Premium toglie i limiti, con un prezzo unico per tutto il server. Durante la beta aperta ogni funzione Premium è sbloccata per ogni server.',
+    'Il Free basta a un team piccolo. Premium dà più spazio ai team che crescono e collega le liste ai tuoi strumenti con i webhook. Un prezzo unico per tutto il server. Durante la beta aperta ogni funzione Premium è sbloccata per ogni server.',
   'anteprima.vedi': 'Vedi i piani',
   'iva': '+ IVA',
   'limite.discord': ' (limite di Discord)',
+  'ruoli.nota': ' (vedi la nota sui ruoli)',
 
   'beta.label': 'Beta aperta',
   'beta.testo':
@@ -15,7 +16,7 @@ export const testi = {
   'hero.titolo1': 'Parti dal Free.',
   'hero.titolo2': 'Cresci con Premium.',
   'hero.intro':
-    'Il Free basta a un team piccolo e resta senza costi. Premium toglie i limiti ai server che hanno bisogno di più, con un prezzo unico per tutto il server e nessun costo per membro.',
+    'Il Free basta a un team piccolo e resta senza costi. Premium dà più spazio ai team che crescono e collega le liste ai tuoi strumenti con i webhook. Un prezzo unico per tutto il server, nessun costo per membro.',
 
   'piani.periodo': 'Periodo di fatturazione',
   'piani.mensile': 'Mensile',
@@ -28,7 +29,6 @@ export const testi = {
   'free.2': '20 task per lista',
   'free.3': '10 promemoria in attesa alla volta',
   'free.4': 'Promemoria singoli',
-  'free.5': 'Una persona o un ruolo per proprietario',
   'premium.nome': 'Premium',
   'premium.annuale.importo': '3 €',
   'premium.mensile.importo': '5 €',
@@ -40,41 +40,22 @@ export const testi = {
   'premium.2': '50 task per lista',
   'premium.3': 'Promemoria illimitati',
   'premium.4': 'Promemoria ricorrenti, fino a 50 volte',
-  'premium.5': 'Fino a 25 persone per proprietario',
+  'premium.5': 'Task di più persone, con un ruolo creato in automatico',
   'premium.6': 'Fino a 25 webhook',
-  'premium.incluso': 'Incluso per ogni server durante la beta.',
+  'premium.incluso': 'Attivo ora su ogni server, per tutta la beta',
   'fine.iva':
     '<strong>I prezzi sono IVA esclusa.</strong> L\'IVA dipende dal paese da cui compri: nell\'UE va dal 17% al 27%. Così il prezzo senza IVA è lo stesso per tutti: al pagamento si aggiunge l\'aliquota del tuo paese, nella tua valuta, prima che tu paghi. Discord gestisce allo stesso modo i pagamenti delle app: <a class="h-link" href="https://support-dev.discord.com/hc/en-us/articles/23810643331735-Premium-Apps-Required-Support-for-Monetizing-Apps" target="_blank" rel="noopener noreferrer">tutte le tasse sono a carico di chi compra<span class="sr-only"> (si apre in una nuova scheda)</span></a>.',
   'fine.prezzi':
-    'Prezzi previsti, definitivi alla fine della beta. Il piano annuale è lo stesso prodotto: costa meno perché paghi un anno in anticipo.',
+    'Prezzi e limiti previsti, definitivi alla fine della beta. Il piano annuale è lo stesso prodotto: costa meno perché paghi un anno in anticipo.',
+  'fine.limiti': 'Cosa cambia in pratica ogni limite',
   'fine.discord':
     'Un limite fissato da Discord, non da noi. Premium ti fa arrivare fin lì, mai oltre. Vedi <a class="h-link" href="{limiti}">Limiti noti</a>.',
+  'fine.ruoli':
+    'Dai un task a più persone, fino a 25 (limite di Discord): TTM crea un ruolo per loro, così promemoria e notifiche arrivano a tutte. Quando nessuna lista lo usa più, TTM lo elimina.',
 
-  'confronto.titolo': 'Free e Premium, fianco a fianco.',
-  'confronto.didascalia': 'I limiti dei piani Free e Premium',
-  'confronto.1.voce': 'Liste in uso per server',
-  'confronto.1.free': '3',
-  'confronto.1.premium': 'Illimitate',
-  'confronto.2.voce': 'Task per lista',
-  'confronto.2.free': '20',
-  'confronto.2.premium': '50',
-  'confronto.3.voce': 'Promemoria in attesa alla volta',
-  'confronto.3.free': '10',
-  'confronto.3.premium': 'Illimitati',
-  'confronto.4.voce': 'Ripetizioni per promemoria',
-  'confronto.4.free': 'Solo promemoria singoli',
-  'confronto.4.premium': 'Fino a 50',
-  'confronto.5.voce': 'Persone per proprietario',
-  'confronto.5.free': '1, una persona o un ruolo',
-  'confronto.5.premium': 'Fino a 25',
-  'confronto.6.voce': 'Webhook',
-  'confronto.6.free': 'Nessuno nuovo',
-  'confronto.6.premium': 'Fino a 25',
-  'confronto.dopo':
-    'Limiti previsti, che potremmo ritoccare prima della fine della beta. <a class="h-link" href="{premium}">Cosa cambia in pratica ogni limite</a>',
 
   'inclusi.titolo': 'Incluso in tutti e due.',
-  'inclusi.intro': 'Ogni piano ha tutto il bot. I limiti sono l\'unica differenza.',
+  'inclusi.intro': 'Ogni piano ha tutto il bot.',
   'inclusi.1.t': 'L\'Activity',
   'inclusi.1.d': 'Apri una lista in una finestra dentro Discord e lavoraci insieme, dal vivo.',
   'inclusi.2.t': 'Proprietari e tag',
@@ -97,7 +78,7 @@ export const testi = {
   'chi.3':
     'TTM migliora ogni settimana: 15 versioni in meno di un mese, tutte nelle <a class="h-link" href="{note}">note di rilascio</a>. Ogni aggiornamento arriva a ogni server, anche a quelli sul piano Free.',
   'chi.4':
-    'Premium toglie i limiti ai server che hanno bisogno di più e finanzia il prossimo aggiornamento per tutti. Se anche tu credi in TTM, il <a class="h-link" href="#founder">badge Founder</a> è il modo migliore per dircelo.',
+    'Premium dà più spazio ai team che crescono, collega le liste ai tuoi strumenti con i webhook e finanzia il prossimo aggiornamento per tutti. Se anche tu credi in TTM, il <a class="h-link" href="#founder">badge Founder</a> è il modo migliore per dircelo.',
   'chi.alt': 'Ritratto di Alex',
   'chi.ruolo': 'Sviluppatore e community manager',
 

@@ -7,7 +7,6 @@ import VetrinaFont from '../components/VetrinaFont.astro';
 import '../styles/vetrina.css';
 import '../styles/premium.css';
 import Plans from '../components/premium/Plans.astro';
-import Compare from '../components/premium/Compare.astro';
 import Included from '../components/premium/Included.astro';
 import FounderStato from '../components/FounderStato.astro';
 import type { Lingua } from '../i18n/lingue.ts';
@@ -49,7 +48,6 @@ const PUNTI = [1, 2, 3].map((n) => ({ titolo: tt(`fd.${n}.t`), testo: tt(`fd.${n
     </section>
 
     <Plans lingua={lingua} />
-    <Compare lingua={lingua} />
     <Included lingua={lingua} />
 
     {/* Chi fa TTM (2026-11-21): risponde ai dubbi di chi è indeciso (posso fidarmi di un team piccolo? ci sarà ancora?

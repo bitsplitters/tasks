@@ -66,17 +66,17 @@
    non copre il fondo della carta Free: la parte visibile è 96 × 206 / 349 px, lo spazio fra le carte 1,25rem. */
 .p-card-premium { position: relative; }
 @media (max-width: 759px) { .p-card-premium { margin-top: calc(96px * 206 / 349 - 1.25rem + 8px); } }
-/* Affiancate, le card condividono le righe (subgrid): elenchi e pulsanti partono alla stessa altezza anche se Free
-   non ha la frase del piano né la riga della beta. Dove subgrid manca, ogni card mette le sue righe in colonna. */
+/* Affiancate, le card condividono le righe (subgrid): prezzi, elenchi e pulsanti partono alla stessa altezza anche se
+   Free non ha la fascia della beta né la frase del piano. Dove subgrid manca, ogni card mette le sue righe in colonna. */
 @media (min-width: 760px) {
   .p-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
   .p-card { display: grid; grid-row: span 6; grid-template-rows: subgrid; gap: 1rem; }
   .p-name { grid-row: 1; }
-  .p-cost { grid-row: 2; }
-  .p-tagline { grid-row: 3; }
-  .p-list { grid-row: 4; }
-  .p-card .btn { grid-row: 5; }
-  .p-included { grid-row: 6; }
+  .p-included { grid-row: 2; }
+  .p-cost { grid-row: 3; }
+  .p-tagline { grid-row: 4; }
+  .p-list { grid-row: 5; }
+  .p-card .btn { grid-row: 6; }
 }
 /* .vetrina h2 vale anche qui: il nome della card lo batte con una classe in più. */
 .vetrina .p-name {
@@ -110,32 +110,19 @@
 .p-list li::before { content: "\2713"; content: "\2713" / ""; flex: none; font-weight: 700; color: var(--muted); }
 .p-card-premium .p-list li::before { color: var(--accent-text); }
 .p-card .btn { display: block; text-align: center; padding-block: .75em; font-size: .9rem; }
-.p-included { margin: 0; text-align: center; font-size: .92rem; font-weight: 600; color: var(--accent-text); text-wrap: balance; }
+/* La fascia della beta, in testa alla card: piena d'ambra come il pulsante, perché si legga prima del prezzo. */
+.p-included {
+  margin: 0; padding: .6rem .9rem; border-radius: 10px; background: var(--accent); color: var(--on-accent);
+  text-align: center; font-size: .95rem; font-weight: 800; line-height: 1.35; text-wrap: balance;
+}
 .p-fine { max-width: 60rem; margin: 1.5rem auto 0; text-align: center; font-size: .9rem; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
 .p-fine p { margin: .35rem 0 0; }
+/* inline-block: il link va a capo intero, non a metà. */
+.p-fine .h-link { display: inline-block; }
 
-/* ── Confronto e incluso ──────────────────────────────────────────────────────────────────────────────── */
-/* La riga sotto una sezione: la nota del confronto col suo link, la frase sugli aggiornamenti. */
+/* ── Incluso ──────────────────────────────────────────────────────────────────────────────────────────── */
+/* La riga sotto una sezione: la frase sugli aggiornamenti. */
 .p-after { margin: 1.25rem 0 0; font-size: .95rem; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
-/* inline-block: il link va a capo intero, non a metà; si spezza solo se è più largo della riga. */
-.p-after .h-link { display: inline-block; margin-left: .35rem; }
-
-/* Qui le voci sono più lunghe di quelle della home e i valori più corti: la prima colonna si allarga, così
-   le voci non vanno a capo. Solo da 720 px: sotto, ogni riga è la griglia della regola che segue. */
-@media (min-width: 720px) {
-  .p-compare .h-table tbody th { width: 32%; }
-  .p-compare .h-table .h-col-acc, .p-compare .h-table .h-acc { width: 34%; }
-}
-/* Sotto i 720 px vetrina.css fa di ogni riga un blocco, con le celle una sopra l'altra. Qui i valori sono corti:
-   la voce sta sopra, Free e Premium affiancati sotto, nell'ordine delle colonne da desktop. Le due celle di una voce
-   sono alte uguali. Un valore su due righe va a capo pareggiato, senza una parola sola sull'ultima riga: con
-   `pretty`, su due righe sole, Chrome ce la lascia. */
-@media (max-width: 719px) {
-  .p-compare .h-table tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem; }
-  .p-compare .h-table tbody th { grid-column: 1 / -1; padding-bottom: .1rem; }
-  .p-compare .h-table td + td { margin-top: 0; }
-  .p-compare .h-table td { text-wrap: balance; }
-}
 
 /* La spunta a sinistra, su due righe; titolo e testo a destra. */
 .p-grid { list-style: none; margin: 2.25rem 0 0; padding: 0; display: grid; gap: 1.75rem 2.25rem; }
