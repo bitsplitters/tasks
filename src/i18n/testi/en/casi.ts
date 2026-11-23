@@ -4,8 +4,6 @@
  * (src/lib/esempi/discord.ts). Le storie stanno nei file Markdown, in src/content/use-cases/ e, tradotte, in
  * src/content/traduzioni-casi/<prefisso>/. I testi del bot nelle riproduzioni stanno in discord.ts, col bundle.
  */
-export const fonte = '';
-
 export const testi = {
   'indice.title': 'Discord Task Management Use Cases — Team Tasks Manager',
   'indice.h1': 'How Discord teams run their week with TTM',

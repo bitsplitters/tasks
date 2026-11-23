@@ -7,6 +7,7 @@ import rehypeLinkEsterni from './src/lib/rehype-link-esterni.mjs';
 import rehypeLinkDellaLingua from './src/lib/rehype-link-della-lingua.mjs';
 import rehypeAncoreInglesi from './src/lib/rehype-ancore-inglesi.mjs';
 import { LINGUE_PUBBLICATE } from './src/i18n/lingue.ts';
+import { raccogli, riga } from './src/lib/traduzioni.mjs';
 
 // I link che portano FUORI dal sito si aprono in una scheda nuova; quelli interni no.
 //
@@ -54,6 +55,36 @@ const registrazioneVideo = {
   },
 };
 
+// Le copie allineate (spec 2026-11-19-sito-multilingua-design.md, §7, nel repo team-tasks-manager): prima della build
+// il controllo di src/lib/traduzioni.mjs. Per una lingua pubblicata un problema ferma la build: il sito non esce con
+// una traduzione mancante o indietro. Per una lingua spenta che ha già delle traduzioni il rapporto si stampa e basta;
+// una lingua mai cominciata tace. In `astro dev` si stampa sempre e basta. Il dettaglio, coi diff dell'inglese:
+// `npm run traduzioni`.
+const controlloTraduzioni = {
+  name: 'controllo-traduzioni',
+  hooks: {
+    'astro:build:start': async ({ logger }) => {
+      const radice = fileURLToPath(new URL('.', import.meta.url));
+      const errori = [];
+      for (const l of await raccogli(radice)) {
+        if (!l.problemi.length || (!l.pubblicata && !l.tradotti)) continue;
+        const righe = l.problemi.map(riga).join('\n');
+        if (l.pubblicata) errori.push(righe);
+        else logger.warn(`${l.lingua} (non pubblicata): ${l.problemi.length} problemi\n${righe}`);
+      }
+      if (errori.length) {
+        throw new Error(`Traduzioni da allineare (npm run traduzioni per i dettagli):\n${errori.join('\n')}`);
+      }
+    },
+    'astro:server:start': async ({ logger }) => {
+      const radice = fileURLToPath(new URL('.', import.meta.url));
+      for (const l of await raccogli(radice)) {
+        if (l.problemi.length && (l.pubblicata || l.tradotti)) logger.warn(`${l.lingua}: ${l.problemi.length} problemi\n${l.problemi.map(riga).join('\n')}`);
+      }
+    },
+  },
+};
+
 export default defineConfig({
   site: 'https://tasks.bitsplitters.app',
 
@@ -79,6 +110,7 @@ export default defineConfig({
       },
     }),
     registrazioneVideo,
+    controlloTraduzioni,
   ],
 
   // Il processore Markdown va dichiarato esplicitamente. Dalla 7 il default di Astro e' Satteri, e

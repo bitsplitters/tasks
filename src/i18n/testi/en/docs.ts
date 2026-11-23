@@ -3,8 +3,6 @@
  * indice, menu laterale, gruppi, pillole del posto. Le pagine sono Markdown, in src/content/docs/ e, tradotte, in
  * src/content/traduzioni/<prefisso>/. Le chiavi dei gruppi sono quelle di src/lib/gruppi-docs.ts.
  */
-export const fonte = '';
-
 export const testi = {
   titolo: 'Documentation',
   title: 'Documentation — Team Tasks Manager',

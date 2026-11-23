@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
-    "test": "node --test \"scripts/*.test.ts\""
+    "test": "node --test \"scripts/*.test.ts\"",
+    "traduzioni": "node scripts/traduzioni.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.1",

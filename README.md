@@ -99,6 +99,38 @@ The site has a dark theme, the default for everyone, and a light one chosen with
 - **A new color comes with its contrast measured in both themes:** at least 4.5:1 for text, 3:1 for large text and
   for the focus ring.
 
+## Languages
+
+The site is in English and in the languages switched on in `src/i18n/lingue.ts` (`pubblicata: true`); today English
+and Italian. A language that is off has no pages, no entry in the language menu and no hreflang.
+
+Where the translations live, next to their English file with the same name:
+
+| English | Translation |
+|---|---|
+| `src/content/docs/<page>.md` | `src/content/traduzioni/<prefix>/<page>.md` |
+| `src/content/use-cases/<case>.md` | `src/content/traduzioni-casi/<prefix>/<case>.md` |
+| `src/pages/<legal>.md` | `src/pages/<prefix>/<legal>.md` |
+| `src/i18n/testi/en/<zone>.ts` | `src/i18n/testi/<prefix>/<zone>.ts` |
+
+Every translation records the English version it was translated from: `fonte`, the first 12 hex characters of the
+SHA-256 of the English file with LF line endings. It sits in the frontmatter of a Markdown file and in
+`export const fonte = '…'` in a text module.
+
+- **Whoever changes an English text updates its translations in the same commit**, then signs them:
+  `npm run traduzioni -- --firma <files…>` writes the new `fonte`. Sign a translation only after updating it.
+- **The build checks it** (`controllo-traduzioni` in `astro.config.mjs`): for a published language, a missing
+  translation, a `fonte` that is not today's English, different keys or placeholders in a text module, or headings that
+  differ in number, level or order stop the build. The headings must match because the anchors of a translated page are
+  the English ones: `/it/docs/reminders/#how-it-works`.
+- **`npm run traduzioni`** lists what is missing or behind and, for each translation behind, the diff of the English
+  since the version it was translated from.
+- **A new page** is the English file plus one translation per published language.
+- **Names of buttons, panels and commands come from the bot's bundle in that language**
+  (`slash-resource_<lang>.properties` in `team-tasks-manager`): the page must say what the user sees on Discord.
+- **A use case translation is a whole example** in its language (the list, the webhooks, the cards): the ids, times and
+  cards stay those of the English one, and the build stops if they differ.
+
 ## Local preview
 
 ```bash
