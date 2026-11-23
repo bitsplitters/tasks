@@ -89,6 +89,11 @@ const controlloTraduzioni = {
 export default defineConfig({
   site: 'https://tasks.bitsplitters.app',
 
+  // Una pagina alla volta, come già fa Astro di suo: la lingua della demo è uno stato globale
+  // (src/components/home/demo/lingua.ts) e con due pagine insieme una inglese potrebbe uscire con i testi italiani.
+  // Scritto qui perché non cambi senza che qualcuno lo veda.
+  build: { concurrency: 1 },
+
   // Le pagine che hanno cambiato indirizzo: il vecchio è già pubblicato, e chi l'ha salvato o linkato arriva alla
   // pagina nuova. «Personalize your lists» è confluita in «Writing a list» (spec della documentazione divisa fra
   // canale e Activity, §6, nel repo team-tasks-manager).

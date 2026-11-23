@@ -5,13 +5,13 @@ name: Tornei ed eventi
 description: "Una coppa del sabato con otto squadre: gli arbitri come proprietari, un promemoria che continua a chiamare le squadre mancanti, il ping ai commentatori prima della diretta e il vincitore annunciato da un webhook."
 highlights: "Proprietari in un gruppo, il ruolo TTM dei commentatori, un promemoria ogni 15 minuti, spunte in diretta nell'Activity, il vincitore in una variabile libera, Clona lista per la settimana dopo."
 intro: |
-  Mia organizza la **Saturday Cup #12** sul suo server di gaming: otto squadre, quattro arbitri, due commentatori in diretta. Le squadre giocano da vari paesi. Lo staff ha una lista in #staff-torneo per la settimana da lunedì 7 a domenica 13 dicembre 2026, e sabato la spunta in diretta, tutti insieme.
+  Mia organizza la **Saturday Cup #12** sul suo server di gaming: otto squadre, quattro arbitri, due commentatori in diretta. Le squadre giocano da vari paesi. Lo staff ha una lista in #staff-torneo per la settimana da lunedì 7 a domenica 13 dicembre 2026: sabato la spunta in diretta, tutti insieme.
 order: 3
 team:
   guild: Fragline
   zone: Europe/London
   people:
-    - { id: "11839044175621001", name: Mia, username: mia.fragline, color: "#f0b232", about: "Organizzatrice. Ha Gestire i messaggi nel canale dello staff." }
+    - { id: "11839044175621001", name: Mia, username: mia.fragline, color: "#f0b232", about: "Organizzatrice. Ha Gestisci messaggi nel canale dello staff." }
     - { id: "11839044175621002", name: Leo, username: leo.casts, color: "#3ba55c", about: "Commentatore." }
     - { id: "11839044175621003", name: Sam, username: sam.casts, color: "#5865f2", about: "Commentatore." }
     - { id: "11839044175621004", name: Noa, username: noa.ref, color: "#e74c3c", about: "Arbitra." }
@@ -59,7 +59,7 @@ webhooks:
     setup: |
       Apri le impostazioni di #annunci, poi *Integrazioni → Webhook → Nuovo webhook*. Chiamalo «Fragline Cups» e premi **Copia URL del webhook**: è l'URL qui sopra. Tienilo segreto, come una password.
 
-      Due token scrivono il messaggio. `{{winner}}` viene dalla variabile libera nel task, `{{winner=…}}`, che Mia scrive quando la finale è finita. `{{list}}` è il titolo della lista: la lista della settimana prossima si chiama Saturday Cup #13, e lo stesso webhook nomina la nuova coppa.
+      Due token scrivono il messaggio. `{{winner}}` viene dalla variabile libera nel task, `{{winner=…}}`, che Mia scrive quando la finale è finita. `{{list}}` è il titolo della lista: la lista della settimana prossima si chiama Saturday Cup #13 e lo stesso webhook nomina la nuova coppa.
 settings:
   - setting: Fuso orario
     choice: Europe/London
@@ -80,11 +80,11 @@ week:
   - at: 2026-12-08T20:30
     text: "Mia assegna «Andare in diretta» a Leo e Sam insieme: sceglie entrambi nel menu sotto **Proprietario**. TTM crea il ruolo **TTM1** per i due e lo rende proprietario. Un proprietario di più persone è una funzione [Premium](/premium/), sbloccata per tutti i server durante la Beta."
   - at: 2026-12-09T21:00
-    text: "Mia aggiunge i promemoria con **Promemoria**: il check-in alle 13 per @Arbitri, «Chiamare le squadre mancanti» alle 13:30 ogni 15 minuti, 3 volte in tutto, e la diretta alle 14:30 per TTM1."
+    text: "Mia aggiunge i promemoria con **Promemoria**: il check-in alle 13 per @Arbitri, «Chiamare le squadre mancanti» alle 13:30 ogni 15 minuti (3 volte in tutto) e la diretta alle 14:30 per TTM1."
   - at: 2026-12-12T13:00
     text: "Il promemoria del check-in menziona @Arbitri in #staff-torneo. Kai apre il check-in e spunta il task."
   - at: 2026-12-12T13:30
-    text: "«Chiamare le squadre mancanti» avvisa @Arbitri. Mancano due squadre, e Noa scrive ai loro capitani. Alle 13:45 il ping torna."
+    text: "«Chiamare le squadre mancanti» avvisa @Arbitri. Mancano due squadre: Noa scrive ai loro capitani. Alle 13:45 il ping torna."
   - at: 2026-12-12T13:52
     text: "L'ultima squadra fa il check-in e Noa spunta «Chiamare le squadre mancanti». Spuntare un task ferma il suo promemoria: il ping delle 14:00 non arriva mai."
   - at: 2026-12-12T14:30
@@ -93,7 +93,7 @@ week:
   - at: 2026-12-12T14:40
     text: "Mia apre la lista con **Activity** <img class=\"inline-ic\" src=\"/icons/activity.png\" alt=\"\" />, il primo pulsante sotto di essa. Gli arbitri entrano con **Entra nell'Activity** e ognuno spunta la sua partita quando finisce. Zoe è in ritardo: dal pannello di «Partita C», Mia le assegna la partita."
   - at: 2026-12-12T15:35
-    text: "Noa finisce la Partita A e tocca la casella dell'intero «Turno 1». Un fumetto dice di no: spuntare il gruppo spunterebbe anche le partite di Kai e Zoe. Mia potrebbe, con *Gestire i messaggi* sul canale. Aspetta invece: quando Kai spunta la Partita D, l'ultima, il gruppo si spunta da solo."
+    text: "Noa finisce la Partita A e tocca la casella dell'intero «Turno 1». Un fumetto dice di no: spuntare il gruppo spunterebbe anche le partite di Kai e Zoe. Mia potrebbe, con *Gestisci messaggi* sul canale. Aspetta invece: quando Kai spunta la Partita D, l'ultima, il gruppo si spunta da solo."
   - at: 2026-12-12T18:45
     text: "Il Team Nova vince la finale. Mia scrive `{{winner=Team Nova}}` in «Pubblicare i risultati» con **Contenuto**, poi spunta il task. Il webhook posta il vincitore in #annunci."
     card: { kind: webhook, webhook: Risultati, task: "8", by: "11839044175621001" }
@@ -104,7 +104,7 @@ fonte: 081a51356eb8
 
 ## La prossima volta
 
-Domenica, Mia apre **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> e preme **Clona lista**: stesso canale, senza le spunte e senza i promemoria. Con **Aggiornamento in blocco** cambia il titolo in Saturday Cup #13, il link del tabellone e le partite, e toglie `{{winner=Team Nova}}`. Poi dà le date del prossimo sabato con **Promemoria**. Il clone menziona @Arbitri e TTM1 nella sua prima notifica. Vedi [Clona lista](/docs/list-actions/#clone).
+Domenica, Mia apre **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> e preme **Clona lista**: stesso canale, senza le spunte e senza i promemoria. Con **Aggiornamento in blocco** cambia il titolo in Saturday Cup #13, il link del tabellone e le partite, poi toglie `{{winner=Team Nova}}`. Poi dà le date del prossimo sabato con **Promemoria**. Il clone menziona @Arbitri e TTM1 nella sua prima notifica. Vedi [Clona lista](/docs/list-actions/#clone).
 
 La coppa della settimana scorsa resta come resoconto. Per liberarne il posto, Mia può **Sigilla lista**, sempre in **Altro**: il messaggio resta, senza pulsanti.
 
@@ -116,7 +116,7 @@ TTM non gestisce i tabelloni, non tiene i punteggi e non fa il check-in delle sq
 
 ### Perché Noa non ha potuto spuntare il Turno 1?
 
-Un gruppo si porta dietro i suoi subtask. Spuntarlo avrebbe spuntato le partite di Kai e Zoe, e possono farlo solo i loro proprietari, oppure chi ha *Gestire i messaggi* sul canale. Vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task).
+Un gruppo si porta dietro i suoi subtask. Spuntarlo avrebbe spuntato le partite di Kai e Zoe: possono farlo solo i loro proprietari, oppure chi ha *Gestisci messaggi* sul canale. Vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task).
 
 ### E se nessuno spunta «Chiamare le squadre mancanti»?
 
@@ -124,4 +124,4 @@ Avvisa tre volte in tutto, alle 13:30, alle 13:45 e alle 14:00, poi si ferma. Lo
 
 ### I commentatori ricevono il promemoria della diretta in messaggio diretto?
 
-No. TTM1 è un ruolo, e un promemoria per un ruolo è un messaggio nel canale della lista che lo menziona, così Discord avvisa tutti quelli del ruolo. Assegna il task a un solo commentatore per mandarlo in messaggio diretto. Vedi [Come arriva il promemoria](/docs/reminders/#how-the-reminder-arrives).
+No. TTM1 è un ruolo e un promemoria per un ruolo è un messaggio nel canale della lista che lo menziona, così Discord avvisa tutti quelli del ruolo. Assegna il task a un solo commentatore per mandarlo in messaggio diretto. Vedi [Come arriva il promemoria](/docs/reminders/#how-the-reminder-arrives).

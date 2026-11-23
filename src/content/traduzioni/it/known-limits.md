@@ -14,7 +14,7 @@ Team Tasks Manager lavora interamente dentro Discord, quindi la maggior parte de
 | Caratteri per lista | **4000** | L'intera lista si modifica dentro un unico campo di Discord e Discord limita quel campo a 4000 caratteri. Il conteggio comprende *tutto ciò che si vede*: testo dei task, caselle, l'eventuale orario di un promemoria e un'interruzione di riga per ogni riga, non solo quello che scrivi. TTM tiene un piccolo margine di sicurezza sotto il limite massimo. |
 | Elementi per lista | **50** (task + subtask) | Discord permette 5 righe di componenti per messaggio e fino a 25 opzioni per menu a tendina. TTM riserva righe ai pulsanti delle azioni e questo lascia spazio a 50 elementi selezionabili in tutto, subtask compresi. Il tuo piano può fermarti prima: vedi [Cosa sblocca Premium](/docs/premium/). |
 | Titolo della lista | **90** caratteri | Le finestre di creazione, modifica e clonazione non ti lasciano scrivere di più. Il titolo dà anche il nome al menu della lista e al suo thread della cronologia, che Discord tiene corti. |
-| File importato | `.txt`, fino a **64 KB** | `/crea-lista` importa solo il file prodotto da **Download**. Che cos'altro controlla: vedi [`/create-list`](/docs/commands/#create-list). |
+| File importato | `.txt`, fino a **64 KB** | `/crea-lista` importa solo il file prodotto da **Download**. Che cos'altro controlla: vedi [`/crea-lista`](/docs/commands/#create-list). |
 
 <div class="callout"><div class="callout-t">Hai toccato un tetto?</div>Dividi il lavoro su più liste. Due liste mirate si leggono meglio di una al limite e ognuna ha i suoi promemoria, proprietari e tag.</div>
 
@@ -28,7 +28,7 @@ TTM non si accorge da solo che un messaggio non c'è più: [/config lists](/docs
 - **Sigilla lista**, nello stesso pannello, per tenere il messaggio come resoconto. Sigillare è definitivo: vedi [Sigilla](/docs/config-lists/#seal).
 - **`/config lists`**, quando il messaggio non c'è più. Può eliminare gli avanzi oppure **rigenerare** la lista se hai eliminato il messaggio per errore. Non può sigillare una lista il cui messaggio non c'è più.
 
-**Elimina lista** e **Sigilla lista** richiedono *Gestire i messaggi* sul canale.
+**Elimina lista** e **Sigilla lista** richiedono *Gestisci messaggi* sul canale.
 
 ## Promemoria
 
@@ -96,7 +96,7 @@ Le liste funzionano anche nella chat di un canale vocale, con una differenza: l�
 
 Quando la cronologia è accesa in [`/config app`](/docs/configuration/#history-tracking), chi crea una lista in un canale vocale riceve un breve messaggio su questo, visibile solo a lui; la lista di prova del Tutorial lo salta. Se ti serve la cronologia, crea la lista in un canale di testo, oppure copiala lì con **Clona lista**.
 
-In un canale vocale TTM non ha bisogno di *Creare thread pubblici* e *Gestire i webhook*, che servono solo alla cronologia. Gli serve invece *Connettersi*: senza, TTM non può scrivere nella chat del canale vocale. Vedi [I permessi che chiede TTM](/docs/core-concepts/#the-permissions-ttm-asks-for).
+In un canale vocale TTM non ha bisogno di *Creare thread pubblici* e *Gestisci webhook*, che servono solo alla cronologia. Gli serve invece *Connettersi*: senza, TTM non può scrivere nella chat del canale vocale. Vedi [I permessi che chiede TTM](/docs/core-concepts/#the-permissions-ttm-asks-for).
 
 ## Notifiche
 

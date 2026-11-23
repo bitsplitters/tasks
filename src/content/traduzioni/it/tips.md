@@ -12,7 +12,7 @@ La maggior parte funziona ovunque sia la lista. Quelli che esistono in un solo p
 
 Apri **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> e scegli **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: la lista arriva come file `.txt` che solo tu puoi vedere. Poi esegui `/crea-lista` su qualsiasi server e allega quel file all'opzione `file`. Task, stati di completamento, proprietari, tag, promemoria e webhook tornano com'erano. Funziona bene per le checklist che ripeti, come rilasci, onboarding o eventi.
 
-Se qualcosa nel file non va bene per il nuovo server, TTM non crea niente ed elenca tutti i problemi in una volta. Che cosa controlla: vedi [`/create-list`](/docs/commands/#create-list).
+Se qualcosa nel file non va bene per il nuovo server, TTM non crea niente ed elenca tutti i problemi in una volta. Che cosa controlla: vedi [`/crea-lista`](/docs/commands/#create-list).
 
 ## Nascondi i suggerimenti
 

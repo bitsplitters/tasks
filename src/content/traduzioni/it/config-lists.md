@@ -16,7 +16,7 @@ Una lista che occupa uno dei posti del tuo piano è segnata **in uso** accanto a
 
 Una lista su cui qualcuno sta lavorando nell'[Activity](/docs/activity/) è segnata **nell'Activity**. Puoi comunque rigenerarla, sigillarla o eliminarla e la conferma ti avvisa prima: vedi [Che cosa resta nel canale](/docs/activity/#what-stays-in-the-channel).
 
-Di base solo i membri con il permesso *Gestire il server* possono usare `/config lists`, come il resto di `/config`. Vedi [Chi può aprire /config](/docs/config/#who-can-open-config).
+Di base solo i membri con il permesso *Gestisci server* possono usare `/config lists`, come il resto di `/config`. Vedi [Chi può aprire /config](/docs/config/#who-can-open-config).
 
 ## Un pulsante, quattro stati
 
@@ -33,7 +33,7 @@ Segna tutte le liste che ti servono (due da eliminare, una da sigillare e tre da
 
 Il blocco viene poi eseguito **in ordine**: prima le eliminazioni, poi le sigillature, poi le rigenerazioni. Quindi un solo blocco può liberare un posto e usarlo: una lista che elimini o sigilli cede il suo posto a una lista che rigeneri.
 
-Alla fine ricevi un riepilogo, per nome: le liste eliminate, sigillate e rigenerate e quelle che non si sono potute gestire. Ognuna di queste ha il suo motivo, per esempio una lista che non esiste più, oppure una rigenerazione senza posto libero nel tuo piano. Il pannello poi si ridisegna con le liste com'è adesso.
+Alla fine ricevi un riepilogo, per nome: le liste eliminate, quelle sigillate, quelle rigenerate e quelle che non si sono potute gestire. Ognuna di queste ha il suo motivo, per esempio una lista che non esiste più, oppure una rigenerazione senza posto libero nel tuo piano. Il pannello poi si ridisegna con le liste come sono adesso.
 
 **Annulla** chiude il pannello e non fa niente. Le tue scelte sopravvivono al cambio di pagina: l'intestazione ti dice quante ne hai segnate su altre pagine e la conferma le include. Le scelte della pagina che hai davanti vivono nel pannello stesso, quindi non scadono mai mentre ci pensi. Quelle delle altre pagine vengono ricordate per un'ora dopo l'ultima volta che tocchi il pannello.
 

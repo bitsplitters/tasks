@@ -8,7 +8,7 @@ I webhook permettono a un task di parlare con il mondo esterno. Associane uno a 
 
 I webhook sono una funzione **Premium**, sbloccata per ogni server durante la beta. Dopo la beta, nel piano Free i webhook che hai già restano e puoi ancora modificarli o eliminarli, ma non puoi crearne di nuovi: vedi [Cosa sblocca Premium](/docs/premium/).
 
-Di default solo i membri con il permesso *Gestire il server* possono usare `/config webhook`, come il resto di `/config`. Vedi [Chi può aprire /config](/docs/config/#who-can-open-config).
+Di default solo i membri con il permesso *Gestisci server* possono usare `/config webhook`, come il resto di `/config`. Vedi [Chi può aprire /config](/docs/config/#who-can-open-config).
 
 ## Creare un webhook
 
@@ -33,7 +33,7 @@ Scegliendo **crea** (o **modifica**) si apre una form con quattro campi:
 
 Un webhook è in realtà una **coppia di azioni**, una per il completamento e una per la riapertura, sotto un unico nome. È questo che sceglie l'evento.
 
-<div class="callout"><div class="callout-t">L'evento è facoltativo di proposito</div>Omettilo e un solo comando copre entrambe le direzioni. <strong>Crea</strong> imposta completamento e riapertura con la stessa configurazione: i token <code>{{state}}</code> e <code>{{when}}</code> distinguono i due eventi. <strong>Visualizza</strong> stampa entrambe, ed <strong>elimina</strong> rimuove del tutto il webhook, con tutte le sue azioni. <strong>Modifica</strong> precompila dall'azione di completamento e sovrascrive entrambe.</div>
+<div class="callout"><div class="callout-t">L'evento è facoltativo di proposito</div>Omettilo e un solo comando copre entrambe le direzioni. <strong>Crea</strong> imposta completamento e riapertura con la stessa configurazione: i token <code>{{state}}</code> e <code>{{when}}</code> distinguono i due eventi. <strong>Visualizza</strong> stampa entrambe; <strong>elimina</strong> rimuove del tutto il webhook, con tutte le sue azioni. <strong>Modifica</strong> precompila dall'azione di completamento e sovrascrive entrambe.</div>
 
 I webhook sono una funzione [Premium](/docs/premium/) e durante la beta sono sbloccati per tutti. Nel piano Free non puoi crearne di nuovi, ma restano quelli creati durante la beta: vedi [Cosa conserva una lista della beta](/docs/beta/#what-a-beta-list-keeps). Ogni server può tenere fino a **25** webhook. Hai raggiunto il tetto? Elimina uno che non usi più: TTM li elenca tutti nell'errore.
 

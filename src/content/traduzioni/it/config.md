@@ -1,6 +1,6 @@
 ---
 title: /config
-description: "Il comando per chi gestisce TTM su un server: tre pannelli per impostazioni, liste e webhook, e chi può aprirli."
+description: "Il comando per chi gestisce TTM su un server: tre pannelli (impostazioni, liste e webhook) e chi può aprirli."
 fonte: e94642721dad
 ---
 
@@ -16,7 +16,7 @@ I task in sé non si gestiscono mai da qui: tutto ciò che riguarda una singola 
 
 ## Chi può aprire /config
 
-Per impostazione predefinita solo i membri con il permesso *Gestire il server* vedono `/config`. Questo vale per `/config app`, `/config lists` e `/config webhook` allo stesso modo.
+Per impostazione predefinita solo i membri con il permesso *Gestisci server* vedono `/config`. Questo vale per `/config app`, `/config lists` e `/config webhook` allo stesso modo.
 
 Un amministratore può aprirlo ad altri ruoli o membri, oppure chiuderlo in alcuni canali. Si fa in *Impostazioni del server → Integrazioni → Team Tasks Manager*, sul comando `/config`. Discord imposta queste regole per l'intero comando, non per ogni sottocomando: chi può aprire `/config` può usare tutti i suoi pannelli.
 

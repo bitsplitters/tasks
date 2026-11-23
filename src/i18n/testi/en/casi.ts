@@ -28,7 +28,7 @@ export const testi = {
   'team.fuso':
     "The times on this page are in the team's time zone, <code>{zona}</code>. Discord shows every date in the time zone of whoever reads it.",
   'lista.titolo': 'The list on Discord',
-  'lista.dove': 'In #{canale}, on {quando}.',
+  'lista.dove': 'In #{canale}, on {giorno}, {ora}.',
   'testo.titolo': 'The text behind it',
   'testo.spiega':
     "This is what <strong>Bulk update</strong> {icona} shows for the list, with the dates in the team's time zone. The buttons write it for you. You can also type it, or write a text like this in <code>/create-list</code> with your own server's people, roles and channels.",

@@ -21,7 +21,7 @@ Sopra i pulsanti c'è il **menu di spunta**: il menu a tendina che mostra il tit
 1. **Segnare i task come fatti o aperti**: spunta un task per completarlo, toglici la spunta per riaprirlo. La sua casella mostra <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> oppure <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />.
 2. **Scegliere il task su cui agisce un pulsante attivo** (vedi [la seconda riga](/docs/channel-tasks/#the-second-row)).
 
-Spuntare o togliere la spunta a un gruppo fa lo stesso ai suoi subtask. Completare tutti i suoi subtask completa il gruppo. Un task con un proprietario può essere spuntato solo dal suo proprietario e da chi ha *Gestire i messaggi* sul canale: vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task). Un rifiuto arriva solo a chi ha scelto il task.
+Spuntare o togliere la spunta a un gruppo fa lo stesso ai suoi subtask. Completare tutti i suoi subtask completa il gruppo. Un task con un proprietario può essere spuntato solo dal suo proprietario e da chi ha *Gestisci messaggi* sul canale: vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task). Un rifiuto arriva solo a chi ha scelto il task.
 
 <div class="callout"><div class="callout-t">Tieni spenti i pulsanti dei task</div>Per spuntare o togliere la spunta ai task, <strong>ogni pulsante della seconda riga deve essere spento</strong>. Se un pulsante dei task è attivo (blu o rosso), scegliere un task applica quell'azione invece di spuntarlo.</div>
 
@@ -64,7 +64,7 @@ Discord permette cinque pulsanti per riga, quindi le azioni che ti servono meno 
 - **Sigilla lista** <img class="inline-ic" src="/icons/seal.png" alt="" />: conserva nel canale una lista finita come resoconto, senza pulsanti né menu. Vedi [Sigilla](/docs/list-actions/#seal).
 - **Elimina lista** <img class="inline-ic" src="/icons/delete.png" alt="" />: elimina la lista **in modo definitivo**. Vedi [Elimina](/docs/list-actions/#delete).
 
-Sigillare ed eliminare non si possono annullare e il bot ti chiede prima di confermare. Entrambe richiedono *Gestire i messaggi* sul canale: lo stesso permesso che ti permette di eliminare a mano il messaggio della lista. Senza, queste due voci non ci sono. Guida, Clona lista e Download ci sono per tutti e così Sblocca lista quando la lista è bloccata.
+Sigillare ed eliminare non si possono annullare e il bot ti chiede prima di confermare. Entrambe richiedono *Gestisci messaggi* sul canale: lo stesso permesso che ti permette di eliminare a mano il messaggio della lista. Senza, queste due voci non ci sono. Guida, Clona lista e Download ci sono per tutti e così Sblocca lista quando la lista è bloccata.
 
 Mentre la lista è bloccata, Sigilla lista ed Elimina lista non ci sono. Chi la sta modificando salverebbe su una lista che non esiste più.
 

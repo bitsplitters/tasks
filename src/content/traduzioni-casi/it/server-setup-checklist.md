@@ -5,7 +5,7 @@ name: Checklist di configurazione del server
 description: "Due persone aprono un server community in una settimana: una sola lista per ruoli, regole, sicurezza e benvenuto, un promemoria prima dell'apertura e un annuncio che si pubblica da solo."
 highlights: "Proprietari che prendi o assegni, tag dei canali, un promemoria in messaggio diretto, un webhook che pubblica l'annuncio di apertura, l'Activity la sera dell'apertura."
 intro: |
-  Ava sta aprendo **Pixel Harbor**, un server community per pixel artist, sabato sera. Leo, un amico che modera un altro server, la aiuta. Hanno una settimana, da lunedì 7 a domenica 13 dicembre 2026, e una lista in un canale privato che vedono solo loro due.
+  Ava sta aprendo **Pixel Harbor**, un server community per pixel artist, sabato sera. Leo, un amico che modera un altro server, la aiuta. Hanno una settimana (da lunedì 7 a domenica 13 dicembre 2026) e una lista in un canale privato che vedono solo loro due.
 order: 1
 team:
   guild: Pixel Harbor
@@ -26,7 +26,7 @@ list:
   at: 2026-12-11T12:00
   tips: true
   look: |
-    I task spuntati sono più piccoli e grigi, quindi risalta quello che resta. Ogni task ha un proprietario: Leo per i lavori che ha preso o che gli sono stati assegnati, Ava per i suoi, @Admin per quelli che può fare uno qualsiasi dei due. «Annunciare l'apertura» ha il suo promemoria, e «Aprire le porte» mostra il suo webhook, che vede solo TTM.
+    I task spuntati sono più piccoli e grigi, quindi risalta quello che resta. Ogni task ha un proprietario: Leo per i lavori che ha preso o che gli sono stati assegnati, Ava per i suoi, @Admin per quelli che può fare uno qualsiasi dei due. «Annunciare l'apertura» ha il suo promemoria; «Aprire le porte» mostra il suo webhook, che vede solo TTM.
   text: |
     - [X] <@11819044175621001>: Attivare Community in Impostazioni del server, con la [guida di Discord](https://support.discord.com/hc/en-us/articles/360047132851)
     - [X] <@&11819044175622001>: Scrivere le regole in <#11819044175623002>
@@ -78,7 +78,7 @@ week:
   - at: 2026-12-09T21:00
     text: "Ava spunta il gruppo «Creare i ruoli». I suoi due subtask vengono spuntati con lui."
   - at: 2026-12-10T22:10
-    text: "Ava mette un promemoria su «Annunciare l'apertura», per venerdì alle 18:00. Il task non aveva un proprietario, e un promemoria va al proprietario: salvarlo rende Ava la proprietaria."
+    text: "Ava mette un promemoria su «Annunciare l'apertura», per venerdì alle 18:00. Il task non aveva un proprietario e un promemoria va al proprietario: salvarlo rende Ava la proprietaria."
   - at: 2026-12-11T18:00
     text: "Il promemoria raggiunge Ava in messaggio diretto. Il pulsante sotto apre la lista."
     card: { kind: reminder, task: "9" }
@@ -88,7 +88,7 @@ week:
     text: "Ava spunta «Aprire le porte». Il webhook pubblica l'annuncio in #annunci, con il nome e l'icona del webhook."
     card: { kind: webhook, webhook: Post di apertura, task: "10", by: "11819044175621001" }
   - at: 2026-12-12T18:40
-    text: "Ava e Leo escono dall'Activity. La lista torna in #setup con un riepilogo di ciò che hanno cambiato, e il thread della lista registra ogni modifica con chi l'ha fatta. Ava disattiva i **Suggerimenti** in `/config app`."
+    text: "Ava e Leo escono dall'Activity. La lista torna in #setup con un riepilogo di ciò che hanno cambiato; il thread della lista registra ogni modifica con chi l'ha fatta. Ava disattiva i **Suggerimenti** in `/config app`."
 fonte: cf9989f82635
 ---
 
@@ -96,11 +96,11 @@ fonte: cf9989f82635
 
 Ava tiene la lista per il prossimo server che aprirà: in **Altro** <img class="inline-ic" src="/icons/other.png" alt="" />, **Download** <img class="inline-ic" src="/icons/download.png" alt="" /> le dà la lista come file `.txt`, scritta come il testo qui sopra. Sul nuovo server lancia `/crea-lista` e allega il file.
 
-I ruoli e i canali di Pixel Harbor lì non esistono. TTM controlla ogni menzione prima di creare qualsiasi cosa e elenca tutte quelle che il nuovo server non ha: Ava le sostituisce nel file con quelle nuove e importa di nuovo. Il file conserva anche le spunte, e un promemoria con la data passata torna senza scattare. Quindi cambia `[X]` in `[]` e dà al promemoria una nuova data con **Promemoria**. Vedi [Riusare una lista ovunque](/docs/tips/#reuse-a-list-anywhere).
+I ruoli e i canali di Pixel Harbor lì non esistono. TTM controlla ogni menzione prima di creare qualsiasi cosa ed elenca tutte quelle che il nuovo server non ha: Ava le sostituisce nel file con quelle nuove e importa di nuovo. Il file conserva anche le spunte e un promemoria con la data passata torna senza scattare. Quindi cambia `[X]` in `[]` e dà al promemoria una nuova data con **Promemoria**. Vedi [Riusare una lista ovunque](/docs/tips/#reuse-a-list-anywhere).
 
 ## Cosa TTM non fa qui
 
-TTM tiene traccia del lavoro, e la configurazione la fai tu. Non crea i tuoi canali, non cambia i permessi e non configura AutoMod: stanno in *Impostazioni del server*. Non copia nemmeno un server. Per un server con gli stessi canali e ruoli, Discord ha i suoi template del server, in *Impostazioni del server*.
+TTM tiene traccia del lavoro; la configurazione la fai tu. Non crea i tuoi canali, non cambia i permessi e non configura AutoMod: stanno in *Impostazioni del server*. Non copia nemmeno un server. Per un server con gli stessi canali e ruoli, Discord ha i suoi template del server, in *Impostazioni del server*.
 
 ## Domande
 

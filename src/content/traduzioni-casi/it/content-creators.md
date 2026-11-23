@@ -77,7 +77,7 @@ week:
   - at: 2026-12-11T17:00
     text: "Leo è tornato. Lui e Sam guardano il video insieme e Leo spunta «Revisione finale»: può farlo uno qualsiasi dei due, perché hanno entrambi TTM1."
   - at: 2026-12-12T17:00
-    text: "Il promemoria della première menziona @Moderatori in #produzione, come risposta alla lista. Un'ora prima: la data del promemoria è le 17."
+    text: "Il promemoria della première menziona @Moderatori in #produzione, come risposta alla lista. Un'ora prima: il promemoria è alle 17."
     card: { kind: reminder, task: "8" }
   - at: 2026-12-12T18:00
     text: "La première inizia. Mia spunta «Pubblicare il video» e il webhook posta il link in #annunci."
@@ -89,17 +89,17 @@ fonte: 2c58269841f3
 
 Dopo questo video, Mia preme **Download** <img class="inline-ic" src="/icons/download.png" alt="" /> in **Altro** <img class="inline-ic" src="/icons/other.png" alt="" />: TTM le manda la lista come file `.txt`, con proprietari, tag, promemoria e webhook. Per ogni nuovo video cambia il file, i titoli, i link e rimette `[X]` a `[]`, poi lancia `/crea-lista` e lo allega. Un promemoria con la data passata torna senza scattare, quindi a ognuno dà la nuova data con **Promemoria**. Vedi [Riusare una lista ovunque](/docs/tips/#reuse-a-list-anywhere).
 
-TTM1 resta finché una lista lo usa. Se Mia elimina prima la vecchia lista, TTM elimina il ruolo, e l'importazione di un file che lo nomina si ferma ed elenca il ruolo mancante: lei tiene la vecchia lista finché la nuova non è dentro.
+TTM1 resta finché una lista lo usa. Se Mia elimina prima la vecchia lista, TTM elimina il ruolo e l'importazione di un file che lo nomina si ferma ed elenca il ruolo mancante: lei tiene la vecchia lista finché la nuova non è dentro.
 
 ## Cosa TTM non fa qui
 
-TTM non carica, non programma e non monta video, e non legge le statistiche del tuo canale. Non conserva file: il montaggio e le miniature vivono nel tuo cloud e la lista rimanda a loro. TTM tiene il lavoro della settimana, le scadenze e le persone.
+TTM non carica, non programma, non monta video e non legge le statistiche del tuo canale. Non conserva file: il montaggio e le miniature vivono nel tuo cloud e la lista rimanda a loro. TTM tiene il lavoro della settimana, le scadenze e le persone.
 
 ## Domande
 
 ### E se Mia avesse tolto Leo invece di assegnare i suoi task a Sam?
 
-Il promemoria se ne sarebbe andato con lui: un promemoria senza proprietario non raggiunge nessuno. Se non è ancora scattato, TTM chiede prima, e puoi chiudere la finestra per tenere tutto. Vedi [Proprietario](/docs/channel-tasks/#owner).
+Il promemoria se ne sarebbe andato con lui: un promemoria senza proprietario non raggiunge nessuno. Se non è ancora scattato, TTM chiede prima: puoi chiudere la finestra per tenere tutto. Vedi [Proprietario](/docs/channel-tasks/#owner).
 
 ### Perché Sam ha ricevuto una menzione e Mia no?
 

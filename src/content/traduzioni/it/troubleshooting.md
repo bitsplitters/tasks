@@ -88,11 +88,11 @@ Dopo un ricaricamento, **Esci** ti porta ancora fuori dalla lista, ma per un bug
 
 ### Il mio promemoria non è arrivato
 
-- **Il promemoria va al proprietario del task.** Sei tu solo se il task non aveva un proprietario quando l'hai impostato. Una persona riceve un messaggio privato, un ruolo riceve una menzione nel canale della lista. Vedi [Le regole](/docs/reminders/#the-rules).
-- **Il proprietario deve consentire i messaggi privati dai membri del server:** clicca il nome del server, poi *Impostazioni privacy*. Dopo un messaggio rifiutato, TTM aspetta qualche ora prima di scrivere di nuovo a quella persona. Vedi [Promemoria con messaggio privato](/docs/known-limits/#reminders-by-direct-message).
+- **Il promemoria va al proprietario del task.** Sei tu solo se il task non aveva un proprietario quando l'hai impostato. Una persona riceve un messaggio diretto, un ruolo riceve una menzione nel canale della lista. Vedi [Le regole](/docs/reminders/#the-rules).
+- **Il proprietario deve consentire i messaggi diretti dai membri del server:** clicca il nome del server, poi *Impostazioni privacy*. Dopo un messaggio rifiutato, TTM aspetta qualche ora prima di scrivere di nuovo a quella persona. Vedi [Promemoria con messaggio diretto](/docs/known-limits/#reminders-by-direct-message).
 - **Il proprietario è un ruolo che non può essere menzionato.** Il promemoria compare nel canale, ma nessuno riceve una notifica. Vedi [Promemoria a un ruolo](/docs/known-limits/#reminders-to-a-role).
 - **Il ruolo proprietario è stato eliminato.** Il promemoria non viene inviato a nessuno. Scegli un altro proprietario per il task. Vedi [Promemoria a un ruolo](/docs/known-limits/#reminders-to-a-role).
-- **TTM non può scrivere nel canale della lista.** Se il proprietario è un ruolo che TTM ha creato per più persone, ognuna riceve il promemoria con un messaggio privato, con il motivo. Per qualsiasi altro ruolo il promemoria non viene consegnato finché un admin non concede il permesso. Vedi [I permessi che chiede TTM](/docs/core-concepts/#the-permissions-ttm-asks-for).
+- **TTM non può scrivere nel canale della lista.** Se il proprietario è un ruolo che TTM ha creato per più persone, ognuna riceve il promemoria con un messaggio diretto, con il motivo. Per qualsiasi altro ruolo il promemoria non viene consegnato finché un admin non concede il permesso. Vedi [I permessi che chiede TTM](/docs/core-concepts/#the-permissions-ttm-asks-for).
 - **Il proprietario è stato tolto, o la lista è stata sigillata.** In questi casi il promemoria sparisce. Prima di togliere un proprietario il cui promemoria non è ancora scattato, TTM ti chiede di confermare. Vedi [Proprietari e tag](/docs/owners-and-tags/) e [Sigillare](/docs/config-lists/#seal).
 - **Il task è spuntato.** Completare un task ferma il suo promemoria e un task spuntato non ne può ricevere uno nuovo.
 

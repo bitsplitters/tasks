@@ -46,7 +46,7 @@ Nel canale spunti o despunti un task nel [menu di spunta](/docs/the-task-list/#t
 **Solo il proprietario può spuntare o despuntare un task che ha un proprietario.** Possono farlo:
 
 - il proprietario, o i membri del ruolo proprietario;
-- chi ha *Gestire i messaggi* sul canale.
+- chi ha *Gestisci messaggi* sul canale.
 
 Chiunque altro riceve un rifiuto che vede solo lui e non cambia nulla. La regola vale anche per i subtask: non puoi spuntare o despuntare un gruppo se questo cambia un subtask che appartiene a qualcun altro. Chiunque possa usare la lista può spuntare un task senza proprietario.
 
@@ -61,7 +61,7 @@ Le regole di entrambi: [Proprietari e tag](/docs/owners-and-tags/).
 
 ## Promemoria
 
-Un **promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" /> collega a un task una pianificazione: una data, un'ora e un fuso orario. Quando scade, TTM ricorda il **proprietario** del task, così nessuno deve controllare di continuo. Una persona riceve un messaggio privato e un ruolo riceve una menzione nel canale della lista.
+Un **promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" /> collega a un task una pianificazione: una data, un'ora e un fuso orario. Quando scade, TTM ricorda il **proprietario** del task, così nessuno deve controllare di continuo. Una persona riceve un messaggio diretto e un ruolo riceve una menzione nel canale della lista.
 
 Di default il promemoria suona una volta sola e nel piano Free è l'unico tipo. I promemoria ricorrenti aggiungono un intervallo e un numero di ripetizioni. Sono una funzione Premium che un server attiva in [Configurazione](/docs/configuration/#recurring-reminders). Tutti i dettagli in [Promemoria](/docs/reminders/).
 
@@ -73,12 +73,12 @@ Quando una lista viene creata, o un task viene spuntato o despuntato, TTM può p
 
 Di default i comandi dell'app seguono le regole di visibilità di Discord (Impostazioni del server → Integrazioni). Pulsanti e liste restano invece usabili da chiunque, a meno che tu non **sincronizzi i permessi**: da quel momento la lista diventa di sola lettura per chi non è autorizzato, nel canale e nell'Activity. Anche questo sta in [Configurazione](/docs/configuration/#sync-permissions).
 
-`/config` ha una regola tutta sua: di default lo vedono solo i membri con *Gestire il server*. Un amministratore può cambiarlo in *Impostazioni del server → Integrazioni*. Vedi [Chi può aprire /config](/docs/config/#who-can-open-config).
+`/config` ha una regola tutta sua: di default lo vedono solo i membri con *Gestisci server*. Un amministratore può cambiarlo in *Impostazioni del server → Integrazioni*. Vedi [Chi può aprire /config](/docs/config/#who-can-open-config).
 
 Alcune azioni hanno una regola propria:
 
 - solo il proprietario può spuntare o despuntare un task che ha un proprietario: vedi [Chi può spuntare un task](#who-can-tick-a-task);
-- sigillare o eliminare una lista dal suo pannello *Altro*, nel canale, richiede *Gestire i messaggi* sul canale. Da `/config lists` valgono i permessi di `/config`;
+- sigillare o eliminare una lista dal suo pannello *Altro*, nel canale, richiede *Gestisci messaggi* sul canale. Da `/config lists` valgono i permessi di `/config`;
 - aprire una lista nell'Activity richiede il permesso di Discord *Usare le attività* sul canale: vedi [Quando la lista non si apre](/docs/activity/#when-the-list-doesnt-open).
 
 ## I permessi che chiede TTM
@@ -90,16 +90,16 @@ Quando inviti il bot, Discord mostra i permessi che chiede. Ecco a che cosa serv
 | Visualizzare il canale | Vedere il canale dove vive la lista |
 | Inviare messaggi | Pubblicare e aggiornare la lista |
 | Incorporare link | Mostrare la lista come embed |
-| Gestire i messaggi | Cancellare le vecchie notifiche del bot, così il canale resta leggibile |
+| Gestisci messaggi | Cancellare le vecchie notifiche del bot, così il canale resta leggibile |
 | Creare thread pubblici | Creare il thread della cronologia facoltativo, nei canali di testo |
-| Gestire i webhook | Scrivere nel thread della cronologia, nei canali di testo |
+| Gestisci webhook | Scrivere nel thread della cronologia, nei canali di testo |
 | Connettersi | Pubblicare la lista nella chat di un canale vocale |
 | Allegare file | Fornire il download della lista |
 | Leggere la cronologia dei messaggi | Tenere la lista sincronizzata |
 | Menzionare tutti | Avvisare le persone che tagghi su un task e il ruolo proprietario di un task quando scade il suo promemoria |
-| Gestire i ruoli | Creare il ruolo che rende proprietarie di un task più persone (Premium) |
+| Gestisci ruoli | Creare il ruolo che rende proprietarie di un task più persone (Premium) |
 | Usare emoji esterne | Mostrare le icone del bot su pulsanti e liste |
 
-**In un canale vocale** una lista vive nella chat del canale, che non ha una cronologia: lì a TTM non servono *Creare thread pubblici* e *Gestire i webhook*. Gli serve *Connettersi*, il permesso di entrare nel canale vocale, perché senza non può pubblicare nella chat. TTM lo chiede quando lo inviti e Discord lo dà a tutti di default; se il tuo server lo toglie su un canale vocale, concedilo a TTM lì, altrimenti `/crea-lista` ti dirà che manca. Vedi [Canali vocali](/docs/known-limits/#voice-channels).
+**In un canale vocale** una lista vive nella chat del canale, che non ha una cronologia: lì a TTM non servono *Creare thread pubblici* e *Gestisci webhook*. Gli serve *Connettersi*, il permesso di entrare nel canale vocale, perché senza non può pubblicare nella chat. TTM lo chiede quando lo inviti e Discord lo dà a tutti di default; se il tuo server lo toglie su un canale vocale, concedilo a TTM lì, altrimenti `/crea-lista` ti dirà che manca. Vedi [Canali vocali](/docs/known-limits/#voice-channels).
 
-<div class="callout"><div class="callout-t">Da sapere</div>Puoi concederli anche dopo da <em>Impostazioni del server → Ruoli → Team Tasks Manager</em>, oppure per singolo canale dalle impostazioni dei permessi del canale. <em>Gestire i ruoli</em> fa eccezione: vale solo sul ruolo del bot, non per canale.</div>
+<div class="callout"><div class="callout-t">Da sapere</div>Puoi concederli anche dopo da <em>Impostazioni del server → Ruoli → Team Tasks Manager</em>, oppure per singolo canale dalle impostazioni dei permessi del canale. <em>Gestisci ruoli</em> fa eccezione: vale solo sul ruolo del bot, non per canale.</div>

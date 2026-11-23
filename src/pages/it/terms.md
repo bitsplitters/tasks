@@ -10,11 +10,11 @@ I presenti Termini di servizio («Termini») regolano l'uso che fai del bot Disc
 
 ## 1. Il servizio
 
-TTM è un'applicazione Discord che permette ai team di creare e gestire liste di task condivise direttamente in Discord, con funzioni come promemoria, owner dei task, tag, configurazione e webhook.
+TTM è un'applicazione Discord che permette ai team di creare e gestire liste di task condivise direttamente in Discord, con funzioni come promemoria, proprietari dei task, tag, configurazione e webhook.
 
 ## 2. Requisiti
 
-Per usare TTM devi rispettare i [Termini di servizio di Discord](https://discord.com/terms) e le Linee guida della community, e avere l'età minima richiesta da Discord. L'amministratore che aggiunge il bot a un server è responsabile del suo uso all'interno di quel server.
+Per usare TTM devi rispettare i [Termini di servizio di Discord](https://discord.com/terms) e le Linee guida della community; devi anche avere l'età minima richiesta da Discord. L'amministratore che aggiunge il bot a un server è responsabile del suo uso all'interno di quel server.
 
 ## 3. Uso accettabile
 
@@ -51,7 +51,7 @@ Puoi smettere di usare il bot in qualsiasi momento rimuovendolo dal tuo server. 
 
 ## 9. Modifiche ai presenti Termini
 
-Possiamo aggiornare questi Termini di tanto in tanto, e la data di «Ultimo aggiornamento» in questa pagina indica la versione più recente. Annunciamo le modifiche sostanziali sul nostro [server Discord](/docs/community/) almeno **15 giorni** prima che entrino in vigore. Se non sei d'accordo, puoi smettere di usare il bot rimuovendolo dal tuo server. L'uso continuato del bot dopo quella data vale come accettazione.
+Possiamo aggiornare questi Termini di tanto in tanto: la data di «Ultimo aggiornamento» in questa pagina indica la versione più recente. Annunciamo le modifiche sostanziali sul nostro [server Discord](/docs/community/) almeno **15 giorni** prima che entrino in vigore. Se non sei d'accordo, puoi smettere di usare il bot rimuovendolo dal tuo server. L'uso continuato del bot dopo quella data vale come accettazione.
 
 I piani a pagamento, quando saranno disponibili, avranno condizioni proprie, che ti mostreremo prima dell'acquisto.
 
@@ -59,11 +59,11 @@ I piani a pagamento, quando saranno disponibili, avranno condizioni proprie, che
 
 I presenti Termini sono regolati dalla legge italiana, senza tener conto delle norme sui conflitti di leggi. Qualsiasi controversia sarà sottoposta ai tribunali italiani competenti, salvo che le norme imperative a tutela dei consumatori dispongano diversamente.
 
-## 11. Segnalare contenuti, e il nostro punto di contatto
+## 11. Segnalare contenuti e il nostro punto di contatto
 
-Se trovi contenuti illegali memorizzati tramite TTM, o contenuti che violano questi Termini, scrivi a **info@bitsplitters.app**. Indicaci dove si trovano (il server e la lista), perché ritieni che siano illegali, e il tuo nome e la tua email. Puoi omettere nome ed email se segnali materiale pedopornografico.
+Se trovi contenuti illegali memorizzati tramite TTM, o contenuti che violano questi Termini, scrivi a **info@bitsplitters.app**. Indicaci dove si trovano (il server e la lista), perché ritieni che siano illegali, il tuo nome e la tua email. Puoi omettere nome ed email se segnali materiale pedopornografico.
 
-Esaminiamo ogni segnalazione senza indebito ritardo, e ti comunichiamo cosa abbiamo deciso. Se serve eliminiamo il contenuto, o fermiamo il bot su quel server. Comunichiamo agli amministratori del server cosa abbiamo fatto e perché, salvo che la legge lo vieti. Se non sei d'accordo con una decisione, rispondi alla nostra email e la riesamineremo.
+Esaminiamo ogni segnalazione senza indebito ritardo e ti comunichiamo cosa abbiamo deciso. Se serve eliminiamo il contenuto, o fermiamo il bot su quel server. Comunichiamo agli amministratori del server cosa abbiamo fatto e perché, salvo che la legge lo vieti. Se non sei d'accordo con una decisione, rispondi alla nostra email e la riesamineremo.
 
 Le liste di TTM stanno in messaggi Discord, quindi puoi segnalarle anche a Discord.
 

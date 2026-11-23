@@ -3,7 +3,7 @@ import { render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import VetrinaFont from '../components/VetrinaFont.astro';
 import { docsCard } from '../lib/preview-card';
-import { giornoEOra, htmlDellaLista, pushAccesa, riproduzione } from '../lib/esempi/discord';
+import { giornoEOra, giornoEOraSeparati, htmlDellaLista, pushAccesa, riproduzione } from '../lib/esempi/discord';
 import { legenda } from '../lib/esempi/legenda';
 import { coiNomi } from '../lib/esempi/testo';
 import { settimanaDiversa } from '../lib/esempi/ossatura';
@@ -118,7 +118,7 @@ const premium = d.webhooks.length > 0 || d.settings.some((s) => s.premium) || te
       <p class="ex-note" set:html={tt('team.fuso', { zona: team.zone })} />
 
       <h2 id="the-list">{tt('lista.titolo')}</h2>
-      <p class="ex-cap">{tt('lista.dove', { canale: canaleDellaLista, quando: giornoEOra(d.list.at, team.zone, lingua) })}</p>
+      <p class="ex-cap">{tt('lista.dove', { canale: canaleDellaLista, ...giornoEOraSeparati(d.list.at, team.zone, lingua) })}</p>
       <div class="ex-dc">
         <Fragment set:html={htmlDellaLista(esempio, lingua)} />
       </div>

@@ -1,6 +1,6 @@
 ---
 title: Come funziona la beta
-description: Durante la beta ogni funzione è sbloccata, e anche dopo non perdi mai quello che hai costruito.
+description: Durante la beta ogni funzione è sbloccata e anche dopo non perdi mai quello che hai costruito.
 fonte: ced27fcc6e00
 ---
 
@@ -15,11 +15,11 @@ Quando TTM esce dalla beta diventa **freemium**: un piano Free e un piano a paga
 - **Oltre i limiti gratuiti non puoi aggiungere altro** finché non fai spazio o passi a Premium. Quello che c'è già resta.
 - **Quello che hai costruito durante la beta resta**, anche oltre i limiti: i suoi promemoria continuano ad arrivare e i suoi task si possono ancora spuntare. Ogni altra modifica a una lista richiede un posto libero: vedi [Cosa mantiene una lista della beta](#what-a-beta-list-keeps).
 
-<div class="callout"><div class="callout-t">Non spegneremo mai il bot per farti pagare.</div>Un gestore di task che smette di funzionare è inutile, e lo sappiamo.</div>
+<div class="callout"><div class="callout-t">Non spegneremo mai il bot per farti pagare.</div>Un gestore di task che smette di funzionare è inutile e lo sappiamo.</div>
 
 ## Cosa mantiene una lista della beta
 
-Nel piano Free un server ha [tre posti per le liste](/docs/premium/#how-the-three-places-work), e una lista che ne occupa uno è **in uso**. Quando la beta finisce nessuna lista occupa ancora un posto. Una lista creata durante la beta:
+Nel piano Free un server ha [tre posti per le liste](/docs/premium/#how-the-three-places-work): una lista che ne occupa uno è **in uso**. Quando la beta finisce nessuna lista occupa ancora un posto. Una lista creata durante la beta:
 
 - **resta nel canale così com'è.** I suoi promemoria continuano ad arrivare e lì puoi ancora scaricarla.
 - **ti lascia spuntare e togliere la spunta ai suoi task**, senza occupare un posto. I suoi webhook restano in silenzio finché la lista non occupa un posto.

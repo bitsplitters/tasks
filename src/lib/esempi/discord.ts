@@ -43,10 +43,19 @@ export function dataDelTeam(at: number, stile: string, zona: string, lingua: Lin
   return dataDiDiscord(at, stile, zona, lingua);
 }
 
+/**
+ * Il giorno e l'ora di un momento, separati: la frase sotto la lista li lega con le parole della sua lingua
+ * («on Tuesday, 6:00 PM», «martedì alle 18:00»).
+ */
+export function giornoEOraSeparati(at: string, zona: string, lingua: Lingua = 'en'): { giorno: string; ora: string } {
+  const t = istante(at, zona);
+  return { giorno: parti(t, zona, lingua).weekday, ora: oraDiDiscord(t, zona, lingua) };
+}
+
 /** Il giorno e l'ora di un momento, per la linea del tempo: «Tuesday, 6:00 PM», «martedì, 18:00». */
 export function giornoEOra(at: string, zona: string, lingua: Lingua = 'en'): string {
-  const t = istante(at, zona);
-  return `${parti(t, zona, lingua).weekday}, ${oraDiDiscord(t, zona, lingua)}`;
+  const { giorno, ora } = giornoEOraSeparati(at, zona, lingua);
+  return `${giorno}, ${ora}`;
 }
 
 export function nomiDelTeam(team: Team): Nomi {

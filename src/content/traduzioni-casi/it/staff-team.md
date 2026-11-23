@@ -5,20 +5,20 @@ name: Staff e moderatori
 description: "La settimana di un team di moderazione in una sola lista: di proprietà di un ruolo, un promemoria di riunione che si ripete, due nuovi helper che condividono un task e un annuncio quando cambiano le regole."
 highlights: "Un ruolo come proprietario, il rifiuto per chi non lo è, un ruolo che TTM crea per due persone, un promemoria ricorrente, un webhook con una variabile libera, il thread della cronologia."
 intro: |
-  Ava guida i moderatori di **Lumen Lounge**, un server di circa 4000 membri. I lavori dello staff si ripetono ogni settimana, e due nuovi helper, Kai e Zoe, iniziano lunedì. Questa è la prima settimana del team con TTM, da lunedì 7 a domenica 13 dicembre 2026.
+  Ava guida i moderatori di **Lumen Lounge**, un server di circa 4000 membri. I lavori dello staff si ripetono ogni settimana e due nuovi helper, Kai e Zoe, iniziano lunedì. Questa è la prima settimana del team con TTM, da lunedì 7 a domenica 13 dicembre 2026.
 order: 2
 team:
   guild: Lumen Lounge
   zone: America/New_York
   people:
-    - { id: "11829044175621001", name: Ava, username: ava.lumen, color: "#eb459e", about: "Responsabile dei moderatori, e moderatrice lei stessa." }
+    - { id: "11829044175621001", name: Ava, username: ava.lumen, color: "#eb459e", about: "Responsabile dei moderatori e moderatrice lei stessa." }
     - { id: "11829044175621002", name: Leo, username: leo.lumen, color: "#3ba55c", about: "Moderatore." }
     - { id: "11829044175621003", name: Noa, username: noa.lumen, color: "#e67e22", about: "Helper." }
     - { id: "11829044175621004", name: Kai, username: kai.lumen, color: "#1abc9c", about: "Nuovo helper, da lunedì." }
     - { id: "11829044175621005", name: Zoe, username: zoe.lumen, color: "#9b59b6", about: "Nuova helper, da lunedì." }
   roles:
     - { id: "11829044175622001", name: Moderatori, about: "Ava, Leo e altri tre." }
-    - { id: "11829044175622002", name: Helper, about: "Noa, e da lunedì Kai e Zoe." }
+    - { id: "11829044175622002", name: Helper, about: "Noa e da lunedì Kai e Zoe." }
     - { id: "11829044175622003", name: Admin, about: "I proprietari del server." }
     - { id: "11829044175622004", name: TTM1, about: "Creato da TTM per un task di proprietà di due persone.", members: ["11829044175621004", "11829044175621005"], ttm: true }
   channels:
@@ -57,7 +57,7 @@ webhooks:
     setup: |
       Apri le impostazioni di #annunci, poi *Integrazioni → Webhook → Nuovo webhook*. Chiamalo «Lumen Staff» e premi **Copia URL del webhook**: è l'URL qui sopra. Tienilo segreto, come una password.
 
-      Il body non dice cosa è cambiato: lo dice `{{change}}`, dalla variabile libera scritta nel task, `{{change=…}}`. La prossima volta che le regole cambiano, il moderatore scrive la nuova modifica nel task con **Contenuto**, e lo stesso webhook la comunica. `allowed_mentions` con un `parse` vuoto impedisce al messaggio di avvisare qualcuno.
+      Il body non dice cosa è cambiato: lo dice `{{change}}`, dalla variabile libera scritta nel task, `{{change=…}}`. La prossima volta che le regole cambiano, il moderatore scrive la nuova modifica nel task con **Contenuto** e lo stesso webhook la comunica. `allowed_mentions` con un `parse` vuoto impedisce al messaggio di avvisare qualcuno.
 settings:
   - setting: Modalità notifica
     choice: Elimina tutte le notifiche tranne l'ultima
@@ -104,7 +104,7 @@ fonte: 00ff5b6fd601
 
 ## La prossima volta
 
-Ogni lunedì, Ava preme **Riapri tutti** <img class="inline-ic" src="/icons/reopen.png" alt="" /> e sceglie **Riapri**: i task ricominciano con i loro proprietari. Nessuno spunta la riunione dello staff, perché spuntare un task ferma il suo promemoria: resta nella lista tutto il mese, e il suo promemoria torna ogni lunedì da solo. Una lista con promemoria singoli userebbe invece **Nuova data**, che li sposta subito alla nuova settimana. Vedi [Riapri tutti](/docs/list-actions/#reopen-all).
+Ogni lunedì, Ava preme **Riapri tutti** <img class="inline-ic" src="/icons/reopen.png" alt="" /> e sceglie **Riapri**: i task ricominciano con i loro proprietari. Nessuno spunta la riunione dello staff, perché spuntare un task ferma il suo promemoria: resta nella lista tutto il mese e il suo promemoria torna ogni lunedì da solo. Una lista con promemoria singoli userebbe invece **Nuova data**, che li sposta subito alla nuova settimana. Vedi [Riapri tutti](/docs/list-actions/#reopen-all).
 
 ## Cosa TTM non fa qui
 
@@ -114,12 +114,12 @@ TTM non modera. Non ha ban, avvisi, registri dei casi o ticket: li gestiscono un
 
 ### Chi può spuntare un task di proprietà di un ruolo?
 
-Qualsiasi membro del ruolo, e chi ha *Gestire i messaggi* sul canale. Tutti gli altri ricevono un rifiuto che vedono solo loro: vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task).
+Qualsiasi membro del ruolo e chi ha *Gestisci messaggi* sul canale. Tutti gli altri ricevono un rifiuto che vedono solo loro: vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task).
 
 ### Un moderatore può ricevere il promemoria in messaggio diretto?
 
-Sì: rendi proprietario quel moderatore invece del ruolo. Un promemoria raggiunge una persona in messaggio diretto, e un ruolo con una menzione nel canale. Vedi [Come arriva il promemoria](/docs/reminders/#how-the-reminder-arrives).
+Sì: rendi proprietario quel moderatore invece del ruolo. Un promemoria raggiunge una persona in messaggio diretto, un ruolo con una menzione nel canale. Vedi [Come arriva il promemoria](/docs/reminders/#how-the-reminder-arrives).
 
 ### Cosa succede a TTM1 se nessuno lo rinomina?
 
-TTM elimina un ruolo che ha creato quando nessuna lista lo usa più, controllando ogni dieci minuti. Rinominarlo, dargli un permesso o cambiarne i membri lo rende uno dei ruoli del tuo server, e TTM lo lascia stare. Vedi [I ruoli che TTM crea](/docs/owners-and-tags/#the-roles-ttm-creates).
+TTM elimina un ruolo che ha creato quando nessuna lista lo usa più, controllando ogni dieci minuti. Rinominarlo, dargli un permesso o cambiarne i membri lo rende uno dei ruoli del tuo server e TTM lo lascia stare. Vedi [I ruoli che TTM crea](/docs/owners-and-tags/#the-roles-ttm-creates).

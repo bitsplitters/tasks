@@ -1,6 +1,6 @@
 // I testi dei casi d'uso in italiano: le chiavi di src/i18n/testi/en/casi.ts. `fonte` è l'impronta dell'inglese
 // tradotto (npm run traduzioni -- --firma).
-export const fonte = 'df60eff66f91';
+export const fonte = '78caa53ada47';
 
 export const testi = {
   'indice.title': "Casi d'uso della gestione dei task su Discord — Team Tasks Manager",
@@ -26,10 +26,10 @@ export const testi = {
   'team.fuso':
     'Gli orari di questa pagina sono nel fuso orario del team, <code>{zona}</code>. Discord mostra ogni data nel fuso orario di chi la legge.',
   'lista.titolo': 'La lista su Discord',
-  'lista.dove': 'In #{canale}, {quando}.',
+  'lista.dove': 'In #{canale}, {giorno} alle {ora}.',
   'testo.titolo': 'Il testo dietro la lista',
   'testo.spiega':
-    'Ecco cosa mostra <strong>Modifica in blocco</strong> {icona} per la lista, con le date nel fuso orario del team. Lo scrivono i pulsanti per te. Puoi anche scriverlo a mano, o scrivere un testo come questo in <code>/crea-lista</code> con persone, ruoli e canali del tuo server.',
+    'Ecco cosa mostra <strong>Aggiornamento in blocco</strong> {icona} per la lista, con le date nel fuso orario del team. Lo scrivono i pulsanti per te. Puoi anche scriverlo a mano, o scrivere un testo come questo in <code>/crea-lista</code> con persone, ruoli e canali del tuo server.',
   'legenda.altro': 'Altro',
   'impostazioni.titolo': 'Come è configurato',
   'impostazioni.premium':

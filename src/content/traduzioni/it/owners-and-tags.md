@@ -12,11 +12,11 @@ Imposti entrambi con i pulsanti **Proprietario** <img class="inline-ic" src="/ic
 
 Il proprietario è chi possiede un task: chi può spuntarlo e chi riceve il suo promemoria. Può essere:
 
-- **Una persona** — possiede il task e il suo promemoria la raggiunge con un messaggio privato.
+- **Una persona** — possiede il task e il suo promemoria la raggiunge con un messaggio diretto.
 - **Un ruolo** — tutti quelli che hanno quel ruolo possiedono il task e ognuno di loro può spuntarlo. Il suo promemoria è un messaggio nel canale della lista che menziona il ruolo.
 - **Più persone** — TTM crea un ruolo per loro, lo assegna esattamente a quelle persone e lo rende il proprietario. Da lì in poi funziona come qualsiasi ruolo proprietario. È una funzione Premium, sbloccata per ogni server durante la beta: vedi [Cosa sblocca Premium](/docs/premium/).
 
-Non puoi mischiare persone e ruoli e puoi scegliere al massimo un ruolo: un task ha un solo proprietario. Per più persone il bot ha bisogno del permesso *Gestire i ruoli*: vedi [Che cosa gli serve](#what-it-needs).
+Non puoi mischiare persone e ruoli e puoi scegliere al massimo un ruolo: un task ha un solo proprietario. Per più persone il bot ha bisogno del permesso *Gestisci ruoli*: vedi [Che cosa gli serve](#what-it-needs).
 
 **Per prendere un task per te**, nel canale: clicca **Proprietario** finché diventa blu, poi scegli il task senza scegliere nessuno. Funziona su un task senza proprietario. Un task che ne ha già uno cambia solo se scegli te stesso nel menu: vedi [Proprietario](/docs/channel-tasks/#owner).
 
@@ -46,9 +46,9 @@ Quando dai un task a più persone, TTM:
 
 ### Che cosa gli serve
 
-Al bot serve il permesso *Gestire i ruoli* e il link d'invito lo include. Senza, TTM non crea né elimina ruoli. In un server che ha aggiunto il bot prima, un amministratore potrebbe dover concederlo al ruolo del bot. Fallo in *Impostazioni del server → Ruoli*, non su un canale.
+Al bot serve il permesso *Gestisci ruoli* e il link d'invito lo include. Senza, TTM non crea né elimina ruoli. In un server che ha aggiunto il bot prima, un amministratore potrebbe dover concederlo al ruolo del bot. Fallo in *Impostazioni del server → Ruoli*, non su un canale.
 
-Su un canale Discord mostra lo stesso permesso come *Gestire i permessi*. Lì fa un'altra cosa: permette a un ruolo di cambiare i permessi di quel canale.
+Su un canale Discord mostra lo stesso permesso come *Gestisci permessi*. Lì fa un'altra cosa: permette a un ruolo di cambiare i permessi di quel canale.
 
 Un server può avere al massimo **250 ruoli**: è un limite di Discord. Quando il server lo raggiunge, TTM non può creare il ruolo e lo dice.
 

@@ -26,7 +26,7 @@ list:
   at: 2026-12-10T19:00
   spaced: true
   look: |
-    Ogni milestone è un gruppo, con una riga vuota intorno. Quello che è fatto sbiadisce, quindi risalta quello che resta della 0.4: il playtest. «Mixare la musica del trailer» ora è di Ava, con il suo promemoria. Il webhook di «Creare la build di playtest» non si vede; `{{version=0.4.0}}` sì, e la build l'ha letta.
+    Ogni milestone è un gruppo, con una riga vuota intorno. Quello che è fatto sbiadisce, quindi risalta quello che resta della 0.4: il playtest. «Mixare la musica del trailer» ora è di Ava, con il suo promemoria. Il webhook di «Creare la build di playtest» non si vede; `{{version=0.4.0}}` sì: la build l'ha letta.
   text: |
     - [] Milestone 0.4: il playtest
      - [X] <@11849044175621001>: Pesca: lancio, attesa, recupero
@@ -89,7 +89,7 @@ week:
     text: "I bug sono corretti. Ava spunta «Creare la build di playtest» e il webhook avvia la build su GitHub Actions, con la versione scritta nel task."
     card: { kind: webhook, webhook: Build playtest, task: "1.4", by: "11849044175621001" }
   - at: 2026-12-11T18:00
-    text: "Il promemoria dei tester arriva in #dev, come risposta alla lista, e menziona @Tester. Uno qualsiasi di loro può spuntare il playtest dopo aver giocato e segnalato."
+    text: "Il promemoria dei tester arriva in #dev, come risposta alla lista e menziona @Tester. Uno qualsiasi di loro può spuntare il playtest dopo aver giocato e segnalato."
     card: { kind: reminder, task: "1.5" }
   - at: 2026-12-12T12:00
     text: "Il promemoria della musica del trailer raggiunge Ava in messaggio diretto, non Sam: un promemoria segue il proprietario del suo task."
@@ -99,7 +99,7 @@ fonte: 5d4a644822b2
 
 ## La prossima volta
 
-Quando la 0.4 è fatta, Ava preme **Pulisci lista**: la milestone finita se ne va, con i suoi subtask, e la 0.5 sale. Con **Aggiornamento in blocco** scrive sotto la 0.6, partendo dal design doc. Il webhook resta sul server: lo collega al prossimo task di build con **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" />, oppure scrive `{{wb=Build playtest}}` e `{{version=0.5.0}}` nel testo. Vedi [Pulisci lista](/docs/list-actions/#clean).
+Quando la 0.4 è fatta, Ava preme **Pulisci lista**: la milestone finita se ne va con i suoi subtask e la 0.5 sale. Con **Aggiornamento in blocco** scrive sotto la 0.6, partendo dal design doc. Il webhook resta sul server: lo collega al prossimo task di build con **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" />, oppure scrive `{{wb=Build playtest}}` e `{{version=0.5.0}}` nel testo. Vedi [Pulisci lista](/docs/list-actions/#clean).
 
 ## Cosa TTM non fa qui
 
@@ -109,7 +109,7 @@ TTM non è un issue tracker. Non legge il tuo repository, non chiude le issue e 
 
 ### Perché Ava non ha semplicemente scelto il task per prenderlo?
 
-Scegliere un task senza aver scelto nessuno lo prende solo se è libero. Un task di cui qualcun altro è proprietario resta suo, e TTM dice perché. Per sostituire un proprietario, prima scegli quello nuovo nel menu. Vedi [Proprietario](/docs/channel-tasks/#owner).
+Scegliere un task senza aver scelto nessuno lo prende solo se è libero. Un task di cui qualcun altro è proprietario resta suo e TTM dice perché. Per sostituire un proprietario, prima scegli quello nuovo nel menu. Vedi [Proprietario](/docs/channel-tasks/#owner).
 
 ### Riaprire il task avvia un'altra build?
 
@@ -117,4 +117,4 @@ No. Il webhook è stato creato con `evento:completamento`, quindi lo fa scattare
 
 ### Un tester può spuntare il playtest?
 
-Sì: il task appartiene a @Tester, quindi può spuntarlo qualsiasi membro del ruolo. Può farlo anche Ava, con *Gestire i messaggi* sul canale. Vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task).
+Sì: il task appartiene a @Tester, quindi può spuntarlo qualsiasi membro del ruolo. Può farlo anche Ava, con *Gestisci messaggi* sul canale. Vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task).

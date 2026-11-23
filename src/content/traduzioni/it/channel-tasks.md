@@ -86,7 +86,7 @@ Ora il pulsante resta attivo dopo ogni azione. Cosa fa Tag dipende da una sola d
 **Modifica in diretta — scegli il task, menu vuoto.** Porta Tag su blu e scegli il task di cui vuoi cambiare i tag, senza scegliere nessuno. Non è un errore: i tag attuali del task si caricano nel menu, già spuntati. Ora modifichi quel task direttamente:
 
 - ogni volta che chiudi il menu, il task si aggiorna subito;
-- togli la spunta a qualcuno e lascia il task; spunta qualcuno e entra nel task;
+- togli la spunta a qualcuno e lascia il task; spunta qualcuno ed entra nel task;
 - non c'è nessun passaggio di conferma e non viene sovrascritto niente: ritocchi l'insieme esistente;
 - togli la spunta a tutti per eliminare tutti i tag.
 

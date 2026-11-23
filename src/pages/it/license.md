@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Legal.astro
 title: "Licenza self-host"
-description: "La licenza che accompagna il pacchetto di Team Tasks Manager che esegui per conto tuo — cosa ti permette di fare, e cosa no."
+description: "La licenza che accompagna il pacchetto di Team Tasks Manager che esegui per conto tuo — cosa ti permette di fare e cosa no."
 updated: "Versione 1.0 — 5 settembre 2026"
 fonte: c3dcf4887bfd
 ---
@@ -18,7 +18,7 @@ Traduzione italiana di `LICENSE.txt`, fornita per comodità di lettura. In caso 
 
 Questa è una licenza d'*uso* di un programma, non una licenza sul suo codice sorgente. Il codice sorgente di Team Tasks Manager («il Software») non è pubblicato e non fa parte di questo pacchetto.
 
-Leggila: è breve, e dice in modo diretto cosa puoi e cosa non puoi fare.
+Leggila: è breve e dice in modo diretto cosa puoi e cosa non puoi fare.
 
 ## 1. Cosa ti concediamo
 
@@ -34,8 +34,8 @@ Questo permesso non scade e non dipende dal fatto che noi continuiamo a esistere
 
 Non puoi:
 
-- **(a)** fornire il Software ad altri come servizio — ospitato, gestito o in qualunque altra forma — a pagamento o gratuitamente. Eseguirlo per la tua organizzazione è uso; eseguirlo *per conto di altri* è ciò che facciamo noi, e non è compreso qui;
-- **(b)** distribuire, pubblicare, rivendere, noleggiare o prestare il Software, in tutto o in parte. Se interessa a qualcun altro, mandalo su [https://tasks.bitsplitters.app](/): lo otterrà con questa stessa licenza, e nella versione aggiornata;
+- **(a)** fornire il Software ad altri come servizio — ospitato, gestito o in qualunque altra forma — a pagamento o gratuitamente. Eseguirlo per la tua organizzazione è uso; eseguirlo *per conto di altri* è ciò che facciamo noi e non è compreso qui;
+- **(b)** distribuire, pubblicare, rivendere, noleggiare o prestare il Software, in tutto o in parte. Se interessa a qualcun altro, mandalo su [https://tasks.bitsplitters.app](/): lo otterrà con questa stessa licenza e nella versione aggiornata;
 - **(c)** modificare, adattare, tradurre o creare opere derivate dal Software;
 - **(d)** decompilare, disassemblare o tentare in altro modo di risalire al codice sorgente;
 - **(e)** rimuovere o alterare le indicazioni di copyright, paternità o licenza;
@@ -43,11 +43,11 @@ Non puoi:
 
 ## 3. I diritti che la legge ti riconosce comunque
 
-Le lettere (c) e (d) del punto 2 valgono solo nei limiti consentiti dalla legge. Nulla in questa licenza limita i diritti che ti sono riconosciuti da norme imperative — nell'Unione Europea, in particolare, gli atti consentiti dagli articoli 5 e 6 della direttiva 2009/24/CE, fra cui osservare e studiare il funzionamento del programma durante un uso lecito, e decompilarlo quando è indispensabile per ottenere l'interoperabilità con altri programmi.
+Le lettere (c) e (d) del punto 2 valgono solo nei limiti consentiti dalla legge. Nulla in questa licenza limita i diritti che ti sono riconosciuti da norme imperative — nell'Unione Europea, in particolare, gli atti consentiti dagli articoli 5 e 6 della direttiva 2009/24/CE, fra cui osservare e studiare il funzionamento del programma durante un uso lecito e decompilarlo quando è indispensabile per ottenere l'interoperabilità con altri programmi.
 
 Preferiremmo però che ce lo chiedessi: scrivici e, dove possiamo, ti aiutiamo.
 
-## 4. I tuoi dati sono tuoi, e la responsabilità anche
+## 4. I tuoi dati sono tuoi e la responsabilità anche
 
 Quando esegui il Software per conto tuo, i dati che tratta — i messaggi dei tuoi membri, il contenuto delle liste, gli identificativi — restano sulla tua macchina e sotto il tuo controllo. Noi non li riceviamo e non possiamo accedervi.
 

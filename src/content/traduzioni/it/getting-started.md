@@ -60,7 +60,7 @@ Ora scegli dove lavorarci. La lista è la stessa nei due posti e sta [in un post
 
 Sotto la lista c'è il **menu di spunta**, un menu a tendina che mostra il titolo della lista e due righe di pulsanti. Apri il menu e scegli un task: la sua casella passa da <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> a <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" /> e la lista si aggiorna per tutti. Sceglilo di nuovo per riaprirlo. Spuntare un gruppo spunta anche i suoi subtask. In base alle tue [impostazioni](/docs/configuration/), TTM può anche pubblicare una breve notifica sotto la lista e registrare la modifica in un thread della cronologia.
 
-<div class="callout"><div class="callout-t">Non riesci a spuntare un task?</div>Ogni pulsante della seconda riga deve essere <strong>spento</strong>: se uno è blu o rosso, scegliere un task applica l'azione di quel pulsante. E un task con un proprietario può essere spuntato solo dal proprietario e da chi ha <em>Gestire i messaggi</em> sul canale.</div>
+<div class="callout"><div class="callout-t">Non riesci a spuntare un task?</div>Ogni pulsante della seconda riga deve essere <strong>spento</strong>: se uno è blu o rosso, scegliere un task applica l'azione di quel pulsante. E un task con un proprietario può essere spuntato solo dal proprietario e da chi ha <em>Gestisci messaggi</em> sul canale.</div>
 
 ### Imposta un promemoria
 
@@ -88,9 +88,9 @@ Tutto ciò che c'è nella finestra: [L'Activity](/docs/activity/) e [Lavorare su
 
 ## Da sapere prima del primo promemoria
 
-- **Il promemoria va al proprietario del task**, con un messaggio privato se il proprietario è una persona.
-- **Se il task non ha ancora un proprietario, lo diventi tu**, così il promemoria arriva a te. Da quel momento solo tu e chi ha *Gestire i messaggi* potete spuntare quel task. Per darlo a qualcun altro, imposta prima il proprietario con **Proprietario** <img class="inline-ic" src="/icons/owner.png" alt="" />.
-- **Non è arrivato niente?** Consenti i messaggi privati dai membri del server: clicca il nome del server, poi *Impostazioni privacy*. Dopo un messaggio rifiutato, TTM aspetta alcune ore prima di scrivere di nuovo a quella persona: vedi [Promemoria con messaggio privato](/docs/known-limits/#reminders-by-direct-message).
+- **Il promemoria va al proprietario del task**, con un messaggio diretto se il proprietario è una persona.
+- **Se il task non ha ancora un proprietario, lo diventi tu**, così il promemoria arriva a te. Da quel momento solo tu e chi ha *Gestisci messaggi* potete spuntare quel task. Per darlo a qualcun altro, imposta prima il proprietario con **Proprietario** <img class="inline-ic" src="/icons/owner.png" alt="" />.
+- **Non è arrivato niente?** Consenti i messaggi diretti dai membri del server: clicca il nome del server, poi *Impostazioni privacy*. Dopo un messaggio rifiutato, TTM aspetta alcune ore prima di scrivere di nuovo a quella persona: vedi [Promemoria con messaggio diretto](/docs/known-limits/#reminders-by-direct-message).
 
 ## Prossimi passi
 

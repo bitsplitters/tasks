@@ -11,7 +11,7 @@ Un promemoria trasforma un task in qualcosa che ricorda *a te* e non il contrari
 - **Un promemoria ha una data, un'ora e un fuso orario.** Scatta **una volta sola**, a meno che il tuo server usi i [promemoria ricorrenti](#repeating-reminders), una funzione Premium.
 - **L'inizio deve essere almeno 5 minuti nel futuro.** Il modulo parte da dieci minuti da adesso: per un promemoria «fra poco» non devi scrivere niente.
 - **Solo un task ancora da fare può averne uno.** Completare un task ferma il suo promemoria: non c'è niente da ripulire dopo.
-- **Il promemoria va al proprietario del task**, con un messaggio diretto se il proprietario è una persona. Se il task non ha ancora un proprietario, **lo diventi tu** quando salvi il promemoria. Da quel momento solo tu e chi ha *Gestire i messaggi* sul canale potete spuntare quel task. Per darlo a qualcun altro, imposta il proprietario prima o dopo aver creato il promemoria: vedi [Proprietari e tag](/docs/owners-and-tags/).
+- **Il promemoria va al proprietario del task**, con un messaggio diretto se il proprietario è una persona. Se il task non ha ancora un proprietario, **lo diventi tu** quando salvi il promemoria. Da quel momento solo tu e chi ha *Gestisci messaggi* sul canale potete spuntare quel task. Per darlo a qualcun altro, imposta il proprietario prima o dopo aver creato il promemoria: vedi [Proprietari e tag](/docs/owners-and-tags/).
 - **Non cambia niente finché non salvi.** Quando modifichi un promemoria, Salva resta spento finché non cambi la data o la ricorrenza.
 - **Togliere il proprietario toglie il promemoria**, perché non resta nessuno a riceverlo.
 

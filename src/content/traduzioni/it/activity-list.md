@@ -26,7 +26,7 @@ Sopra la riga, **Home** ti porta alla [home del canale](/docs/activity/#the-home
 
 **Tocca la casella** davanti a un task per spuntarlo e toccala di nuovo per riaprirlo. Un gruppo si porta dietro i suoi subtask e risulta spuntato quando lo sono tutti, come nel canale. Ogni task che cambia fa scattare il suo [webhook](#webhook), subtask e gruppo compresi, come nel canale.
 
-Quando una spunta viene rifiutata, un fumetto sulla casella ti dice perché: un task con un proprietario può essere spuntato solo dal suo proprietario e da chi ha *Gestire i messaggi* sul canale (vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task)). Su un task che qualcun altro sta modificando, il fumetto dice chi.
+Quando una spunta viene rifiutata, un fumetto sulla casella ti dice perché: un task con un proprietario può essere spuntato solo dal suo proprietario e da chi ha *Gestisci messaggi* sul canale (vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task)). Su un task che qualcun altro sta modificando, il fumetto dice chi.
 
 ## Il pannello di un task
 
@@ -53,7 +53,7 @@ Mentre il pannello è aperto, il task è bloccato per gli altri: vedi [Chi sta m
 **Per prendere un task** senza proprietario, premi **Proprietario** finché diventa blu: il tuo nome è già scelto, quindi **Salva** rende tuo il task. Per darlo invece a qualcun altro, tocca il suo nome: prende il posto del tuo. Un task che ha già un proprietario lo mostra e cambia solo se scegli qualcuno.
 
 - Una persona o un ruolo bastano con ogni piano.
-- Più persone diventano un ruolo che TTM crea: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates). Serve Premium e il permesso *Gestire i ruoli* per TTM; senza, **Salva** resta spento e il pannello ne spiega il motivo. Discord permette a TTM di assegnare un ruolo a dieci persone ogni dieci secondi, quindi con più di dieci un avviso dice quanto ci vuole.
+- Più persone diventano un ruolo che TTM crea: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates). Serve Premium e il permesso *Gestisci ruoli* per TTM; senza, **Salva** resta spento e il pannello ne spiega il motivo. Discord permette a TTM di assegnare un ruolo a dieci persone ogni dieci secondi, quindi con più di dieci un avviso dice quanto ci vuole.
 
 **Rosso** rimuove il proprietario e anche il suo promemoria: non resta nessuno a riceverlo. Se il promemoria non è ancora scattato, il pannello ti chiede prima di confermare.
 

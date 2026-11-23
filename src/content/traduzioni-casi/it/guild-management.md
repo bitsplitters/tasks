@@ -5,7 +5,7 @@ name: Gilde e clan
 description: "La settimana di una gilda intorno alla serata di raid: un promemoria che si ripete ogni mercoledì per mesi, le prove delle reclute fatte una dopo l'altra e un foglio della formazione che si compila da solo con Make e Google Sheets."
 highlights: "Un promemoria ricorrente in giorni, prove fatte una dopo l'altra, un webhook verso Make e Google Sheets, variabili libere, Riapri tutti con una nuova data."
 intro: |
-  Ava guida **Ember Vanguard**, una gilda di raid di una sessantina di giocatori. Leo guida i raid, ogni mercoledì alle 20. Gli ufficiali reclutano, e ogni recluta gioca un raid di prova prima di entrare. I membri giocano dalle due sponde dell'Atlantico. Questa è la settimana della gilda da lunedì 7 a domenica 13 dicembre 2026.
+  Ava guida **Ember Vanguard**, una gilda di raid di una sessantina di giocatori. Leo guida i raid, ogni mercoledì alle 20. Gli ufficiali reclutano e ogni recluta gioca un raid di prova prima di entrare. I membri giocano dalle due sponde dell'Atlantico. Questa è la settimana della gilda da lunedì 7 a domenica 13 dicembre 2026.
 order: 5
 team:
   guild: Ember Vanguard
@@ -46,7 +46,7 @@ webhooks:
     body: |
       {"recruit": "{{recruit}}", "class": "{{class}}", "officer": "{{user}}", "state": "{{state}}", "when": "{{when}}", "list": "{{list}}"}
     setup: |
-      In Make, Ava crea uno scenario con due moduli. Il primo è *Webhooks → Custom webhook*: Make genera il suo URL, quello qui sopra, e lei lo incolla in `/config webhook`. Il secondo è *Google Sheets → Add a row*, sul foglio della formazione della gilda.
+      In Make, Ava crea uno scenario con due moduli. Il primo è *Webhooks → Custom webhook*: Make genera il suo URL (quello qui sopra) e lei lo incolla in `/config webhook`. Il secondo è *Google Sheets → Add a row*, sul foglio della formazione della gilda.
 
       Make impara la forma dei dati da una prima richiesta. Ava preme **Run once** nello scenario, collega il webhook a un task di prova e lo spunta. Ora i campi `recruit`, `class`, `officer`, `state` e `when` si possono associare alle colonne del foglio. Make disattiva un webhook che resta cinque giorni senza scenario, quindi lo scenario viene prima.
 
@@ -69,7 +69,7 @@ week:
   - at: 2026-12-07T20:00
     text: "Ava aggiunge tre prove con **Aggiornamento in blocco** <img class=\"inline-ic\" src=\"/icons/edit.png\" alt=\"\" />, un task per recluta. Scrive anche i codici: `{{wb=Foglio roster}}` collega il webhook, `{{recruit=…}}` e `{{class=…}}` portano il nome e la classe."
   - at: 2026-12-08T19:00
-    text: "Leo **prende** le tre prove. Preme **Proprietario** finché diventa blu, poi sceglie la prima prova, la seconda e la terza, senza scegliere nessuno. Con *Mantieni lo stato dopo la selezione*, **Proprietario** resta blu tra l'una e l'altra, e ogni task diventa suo."
+    text: "Leo **prende** le tre prove. Preme **Proprietario** finché diventa blu, poi sceglie la prima prova, la seconda e la terza, senza scegliere nessuno. Con *Mantieni lo stato dopo la selezione*, **Proprietario** resta blu tra l'una e l'altra e ogni task diventa suo."
     card: { kind: notice, type: claimed, by: "11859044175621002", task: "7" }
   - at: 2026-12-09T17:00
     text: "Il promemoria degli ufficiali menziona @Ufficiali in #raid. Kai rifornisce la banca della gilda e spunta il task."
@@ -92,7 +92,7 @@ Nessuno spunta il raid: spuntare un task ferma il suo promemoria. Il promemoria 
 
 ## Cosa TTM non fa qui
 
-TTM non legge il gioco. Non ha iscrizioni ai raid, presenze, né tracciamento del bottino, e nemmeno un calendario con RSVP: lo fa un bot per pianificare i raid. TTM tiene il lavoro della gilda, avvisa il team dei raid in orario e manda al foglio quello che gli ufficiali decidono.
+TTM non legge il gioco. Non ha iscrizioni ai raid, presenze, tracciamento del bottino o calendario con RSVP: lo fa un bot per pianificare i raid. TTM tiene il lavoro della gilda, avvisa il team dei raid in orario e manda al foglio quello che gli ufficiali decidono.
 
 ## Domande
 
@@ -102,8 +102,8 @@ Il 14 marzo 2027 a Chicago l'orologio avanza di un'ora. Con i giorni, il promemo
 
 ### Come mando al foglio il proprietario del task?
 
-`{{user}}` è chi spunta il task, che qui è Leo. Per mandare il proprietario anche quando spunta un altro ufficiale, scrivilo nel task come variabile libera, `{{owner=Leo}}`, e usa `{{owner}}` nel body. `{{task}}` porta il proprietario solo come codice Discord, `<@id>`, che un foglio non sa leggere. Vedi [Personalizzare i webhook con le variabili libere](/docs/tips/#personalize-webhooks-with-free-variables).
+`{{user}}` è chi spunta il task, che qui è Leo. Per mandare il proprietario anche quando spunta un altro ufficiale, scrivilo nel task come variabile libera (`{{owner=Leo}}`) e usa `{{owner}}` nel body. `{{task}}` porta il proprietario solo come codice Discord, `<@id>`, che un foglio non sa leggere. Vedi [Personalizzare i webhook con le variabili libere](/docs/tips/#personalize-webhooks-with-free-variables).
 
 ### Un raider può spuntare una prova?
 
-No: ogni prova appartiene a Leo. Un raider che ci prova riceve un rifiuto che vede solo lui. Gli ufficiali che gestiscono i messaggi del canale possono, con *Gestire i messaggi*. Vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task).
+No: ogni prova appartiene a Leo. Un raider che ci prova riceve un rifiuto che vede solo lui. Gli ufficiali che gestiscono i messaggi del canale possono, con *Gestisci messaggi*. Vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task).

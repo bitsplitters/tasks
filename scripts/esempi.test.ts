@@ -10,7 +10,7 @@ import { dataNelTesto } from '../src/components/home/demo/nomi.ts';
 import { percentEncode, risolvi, risolviBody, risolviUrl, testoPerIlToken, variabili } from '../src/lib/esempi/webhook.ts';
 import type { ContestoDelWebhook } from '../src/lib/esempi/webhook.ts';
 import { problemi } from '../src/lib/esempi/controllo.ts';
-import { dataDelTeam, giornoEOra, riproduzione } from '../src/lib/esempi/discord.ts';
+import { dataDelTeam, giornoEOra, giornoEOraSeparati, riproduzione } from '../src/lib/esempi/discord.ts';
 import { legenda } from '../src/lib/esempi/legenda.ts';
 import { settimanaDiversa } from '../src/lib/esempi/ossatura.ts';
 import type { Esempio } from '../src/lib/esempi/tipi.ts';
@@ -222,6 +222,7 @@ test('in italiano le schede hanno le frasi del bundle, le date di un client ital
   assert.equal(dataDelTeam(1765206000, 't', ZONA, 'it'), '15:00');
   assert.equal(dataDelTeam(1765206000, 'R', ZONA, 'it'), '5 minuti fa');
   assert.equal(giornoEOra('2026-12-08T18:00', ZONA, 'it'), 'martedì, 18:00');
+  assert.deepEqual(giornoEOraSeparati('2026-12-08T18:00', ZONA, 'it'), { giorno: 'martedì', ora: '18:00' });
 });
 
 test('la legenda in italiano: i testi della zona casi, i link con /it/, la ricorrenza coi plurali', () => {
