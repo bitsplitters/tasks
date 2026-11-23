@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "node --test \"scripts/*.test.ts\""
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.1",
