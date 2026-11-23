@@ -15,7 +15,7 @@ The owner is who a task belongs to: who can tick it, and who gets its reminder. 
 
 - **One person** — they own the task, and its reminder reaches them by direct message.
 - **One role** — everyone with that role owns the task, and any of them can tick it. Its reminder is a message in the list's channel that mentions the role.
-- **Several people** — TTM creates a role for them, gives it to exactly those people and makes it the owner. From then on, it works like any role owner. This is a Premium feature, unlocked for every server during the beta: see [What Premium unlocks](/docs/premium/).
+- **Several people** — TTM creates a role for them, gives it to exactly those people and makes it the owner. From then on, it works like any role owner. This is a [Premium](/docs/premium/) feature.
 
 You can't mix people and roles, and you can pick one role at most: a task has one owner. For several people, the bot needs the *Manage Roles* permission: see [What it needs](#what-it-needs).
 

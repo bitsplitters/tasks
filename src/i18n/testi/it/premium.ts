@@ -1,5 +1,5 @@
 // I testi della pagina dei piani in italiano: le stesse chiavi di src/i18n/testi/en/premium.ts.
-export const fonte = '36d7b422edf5';
+export const fonte = '58d30f90f911';
 
 export const testi = {
   'pagina.titolo': 'Piani e prezzi',
@@ -73,7 +73,7 @@ export const testi = {
   'chi.2':
     'Alex lavora a TTM a tempo pieno: scrive il codice e risponde sul nostro <a class="h-link" href="{community}">server Discord</a>. La tua idea arriva alla persona che può realizzarla.',
   'chi.3':
-    'TTM migliora ogni settimana: 15 versioni in meno di un mese, tutte nelle <a class="h-link" href="{note}">note di rilascio</a>. Ogni aggiornamento arriva a ogni server, anche a quelli sul piano Free.',
+    'TTM continua a migliorare, con versioni nuove frequenti, tutte nelle <a class="h-link" href="{note}">note di rilascio</a>. Ogni aggiornamento arriva a ogni server, anche a quelli sul piano Free.',
   'chi.4':
     'Premium dà più spazio ai team che crescono, collega le liste ai tuoi strumenti con i webhook e finanzia il prossimo aggiornamento per tutti. Se anche tu credi in TTM, il <a class="h-link" href="#founder">badge Founder</a> è il modo migliore per dircelo.',
   'chi.alt': 'Ritratto di Alex',

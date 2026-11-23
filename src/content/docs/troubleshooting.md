@@ -27,7 +27,7 @@ Check these points, in this order:
 
 ### I pressed Cancel and the list stays locked
 
-TTM locks a list while someone edits it: in **Bulk update**, in the form of a task's text and in a reminder form. Saving the form unlocks the list. Closing it with **Cancel** or the ✕ doesn't, because Discord doesn't tell the bot that the form was closed. The last line of the list says who locked it. Anyone can unlock the list: open **More** under the list and press **Unlock list** <img class="inline-ic" src="/icons/unlock.png" alt="" />. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
+TTM locks a list while someone edits it, and closing the form with **Cancel** or the ✕ doesn't unlock it, because Discord doesn't tell the bot. Anyone can unlock it: open **More** under the list and press **Unlock list** <img class="inline-ic" src="/icons/unlock.png" alt="" />. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 
 ### My tags or owner didn't save
 
@@ -90,7 +90,7 @@ After a reload, **Exit** still takes you out of the list, but because of a Disco
 ### My reminder didn't arrive
 
 - **The reminder goes to the task's owner.** That is you only if the task had no owner when you set it. A person gets a direct message, and a role gets a mention in the list's channel. See [The rules](/docs/reminders/#the-rules).
-- **The owner must allow direct messages from server members:** click the server name, then *Privacy Settings*. After a refused message, TTM waits some hours before it writes to that person again. See [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
+- **The owner must allow direct messages from server members**, in the server's *Privacy Settings*. See [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 - **The owner is a role that can't be mentioned.** The reminder appears in the channel, but nobody gets a notification. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
 - **The owner role was deleted.** The reminder is not sent to anyone. Choose another owner for the task. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
 - **TTM can't post in the list's channel.** If the owner is a role TTM created for several people, each of them gets the reminder by direct message, with the reason. For any other role the reminder is not delivered until an admin grants the permission. See [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
@@ -116,12 +116,7 @@ See [The repetition fields](/docs/reminders/#the-repetition-fields).
 
 ### I can't create a list, or the bot says to free a place
 
-During the beta, there is no limit on lists. After the beta, the Free plan lets you work on three lists at a time. When all three places are taken, TTM refuses to create, clone or import a list. The same refusal appears when you work on a list that isn't in use. To free a place, use one of these:
-
-- **Seal list** or **Delete list**, in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel of a list you no longer need, in the channel. A sealed list stays in the channel as a record.
-- `/config lists`, which marks the lists **in use** and can seal or delete several at once.
-
-Premium removes this limit. See [What happens to a fourth list](/docs/premium/#what-happens-to-a-fourth-list).
+During the beta there is no limit on lists. After it, the Free plan lets you work on three lists at a time, and TTM refuses a fourth until you seal or delete one: see [What happens to a fourth list](/docs/premium/#what-happens-to-a-fourth-list).
 
 ### Who can seal or delete a list?
 

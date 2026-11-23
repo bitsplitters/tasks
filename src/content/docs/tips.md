@@ -17,7 +17,7 @@ If something in the file doesn't fit the new server, TTM creates nothing and lis
 
 ## Hide the tips
 
-If your team already knows how to write a list and where to press, hide the **Tips** in [Configuration](/docs/configuration/#tips). `/create-list` then opens the creation form straight away, without the **Tutorial**, and lists end without the help line, in the channel and in the Activity.
+If your team already knows where to press, hide the **Tips** in [/config app](/docs/configuration/#tips): no Tutorial in `/create-list`, no help line under the lists.
 
 ## Clone instead of rebuilding
 
@@ -29,19 +29,19 @@ Running the same list in several channels? **Clone list** <img class="inline-ic"
 
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</p>
 
-Tick **Keep the state after a selection** in the **Behavior** menu of [Configuration](/docs/configuration/#keep-the-state-after-a-selection). The active button (owner, tag or reminder) stays on after each task, so you can tag five tasks in five clicks instead of fifteen.
+Tick **Keep the state after a selection** in the **Behavior** menu of [/config app](/docs/configuration/#keep-the-state-after-a-selection). The active button (owner, tag or reminder) stays on after each task, so you can tag five tasks in five clicks instead of fifteen.
 
 ## Keep the channel quiet
 
-If task notifications feel noisy, switch **Notification mode** to *keep last only* — or disable them entirely. Your list always stays up to date regardless. The summary of a session in the Activity follows the same setting.
+If task notifications feel noisy, set **Notification mode** in [/config app](/docs/configuration/#notification-mode) to keep only the last one, or turn them off: the list stays up to date either way.
 
 ## Reminders that survive the clock change
 
-On a *repeating* reminder (a Premium feature), choose **days** when you mean "same time tomorrow" and **hours** when you mean "exactly a day later": in the text of a list, `1d` and `24h`. Around daylight-saving switches the two differ by an hour — see [Reminders](/docs/reminders/#the-repetition-fields).
+On a repeating reminder, pick **Days** in the **Unit** menu for the same time of day, **Hours** for an exact interval: around a clock change the two differ by an hour. See [The repetition fields](/docs/reminders/#the-repetition-fields).
 
 ## A reminder in two clicks
 
-The reminder starts from ten minutes from now, in your time zone. For "remind me shortly", save it as it is, without typing anything: in the channel, submit the **When** form; in the Activity, tap **Save** in the reminder panel. Every reminder is a single event unless your server has turned on recurring reminders, a Premium feature that is off by default.
+The reminder starts ten minutes from now, so for "remind me shortly" just save it as it is, with **When** in the channel or **Save** in the Activity.
 
 ## Personalize webhooks with free variables
 
@@ -49,4 +49,4 @@ Drop `{{owner=alex}}` (or any `{{key=value}}`) into a task's text and reference 
 
 ## Make lists read-only for guests
 
-Sync permissions in [Configuration](/docs/configuration/#sync-permissions) so only your team can edit a list, while everyone else can still read it. The **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> button follows the same rules.
+Sync permissions in [/config app](/docs/configuration/#sync-permissions) so only your team can edit a list, while everyone else can still read it. The **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> button follows the same rules.

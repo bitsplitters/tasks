@@ -1,5 +1,5 @@
 // I testi della pagina della beta in italiano: le stesse chiavi di src/i18n/testi/en/beta.ts.
-export const fonte = '7ac870632eeb';
+export const fonte = '0e33f1c29fb9';
 
 export const testi = {
   'titolo': 'Beta aperta',
@@ -55,7 +55,7 @@ export const testi = {
   'voce.titolo': 'Decidi cosa viene dopo.',
   'voce.intro':
     'La beta è il momento in cui la tua voce conta di più. Fai domande, segnala bug e dicci cosa manca sul nostro server Discord: è lì che decidiamo cosa viene dopo.',
-  'voce.ritmo': 'Una versione nuova quasi ogni settimana dal lancio.',
+  'voce.ritmo': 'TTM continua a migliorare, con versioni nuove frequenti.',
   'voce.note': 'Vedi le note di rilascio',
 
   'finale.titolo': 'Inizia finché è tutto sbloccato.',

@@ -1,7 +1,7 @@
 ---
 title: Proprietari e tag
 description: A chi appartiene un task, chi menziona e i ruoli che crea TTM quando un task ha più proprietari.
-fonte: b224011b313d
+fonte: 9d78c40a198c
 ---
 
 Un task può avere un **proprietario** e più **tag**. Il proprietario è la persona a cui il task appartiene: chi può spuntarlo e chi riceve il suo promemoria. I tag sono gli utenti e i ruoli menzionati sul task, per esempio le persone da avvisare quando viene completato.
@@ -14,7 +14,7 @@ Il proprietario è chi possiede un task: chi può spuntarlo e chi riceve il suo 
 
 - **Una persona** — possiede il task e il suo promemoria la raggiunge con un messaggio diretto.
 - **Un ruolo** — tutti quelli che hanno quel ruolo possiedono il task e ognuno di loro può spuntarlo. Il suo promemoria è un messaggio nel canale della lista che menziona il ruolo.
-- **Più persone** — TTM crea un ruolo per loro, lo assegna esattamente a quelle persone e lo rende il proprietario. Da lì in poi funziona come qualsiasi ruolo proprietario. È una funzione Premium, sbloccata per ogni server durante la beta: vedi [Cosa sblocca Premium](/docs/premium/).
+- **Più persone** — TTM crea un ruolo per loro, lo assegna esattamente a quelle persone e lo rende il proprietario. Da lì in poi funziona come qualsiasi ruolo proprietario. È una funzione [Premium](/docs/premium/).
 
 Non puoi mischiare persone e ruoli e puoi scegliere al massimo un ruolo: un task ha un solo proprietario. Per più persone il bot ha bisogno del permesso *Gestisci ruoli*: vedi [Che cosa gli serve](#what-it-needs).
 

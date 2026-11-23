@@ -85,7 +85,7 @@ A ticked task can't get a reminder. On a task without an owner, the panel says t
 
 ## Webhook
 
-Webhooks are a **Premium** feature, unlocked for every server during the beta: see [What Premium unlocks](/docs/premium/).
+Webhooks are a [Premium](/docs/premium/) feature.
 
 **Blue** lists the server's webhooks by name, each with when it fires: *on completion*, *on reopening* or *always*. The address never shows. Choose one, then **Save**. A webhook that no longer exists shows on top, marked *no longer exists*, so you can choose another one. If the server has none, the panel says they are created with [/config webhook](/docs/config-webhook/).
 

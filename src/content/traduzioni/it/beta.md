@@ -1,7 +1,7 @@
 ---
 title: Come funziona la beta
 description: Durante la beta ogni funzione è sbloccata e anche dopo non perdi mai quello che hai costruito.
-fonte: ced27fcc6e00
+fonte: 0fc553242fd8
 ---
 
 Team Tasks Manager è in **beta aperta**. Ogni funzione è sbloccata, per ogni server e per tutta la beta: liste, promemoria, webhook e tutto il resto. Non c'è nessun periodo di prova, nessuna carta di credito da inserire e nessun pulsante bloccato.
@@ -30,19 +30,11 @@ Una lista con più di venti task li mantiene tutti. Nel piano Free, **Aggiorname
 
 **I webhook creati durante la beta restano.** Puoi ancora modificarli o eliminarli. Nel piano Free non puoi crearne di nuovi.
 
-Per liberare un posto usa **Sigilla lista** o **Elimina lista** su una lista che hai finito, oppure [`/config lists`](/docs/config-lists/).
+Per liberare un posto: vedi [Cosa succede a una quarta lista](/docs/premium/#what-happens-to-a-fourth-list).
 
 ## Il piano Free, dopo la beta
 
-Il piano Free dà a ogni server:
-
-- tre liste in uso alla volta;
-- venti task per lista;
-- dieci promemoria in attesa alla volta, solo singoli;
-- una persona o un ruolo come proprietario di un task;
-- nessun nuovo webhook.
-
-I piani a confronto e i prezzi, IVA esclusa, sono nella [pagina Premium](/premium/). Come funziona ogni limite è in [Cosa sblocca Premium](/docs/premium/).
+Cosa dà il piano Free a ogni server, e cosa cambia con Premium, è in [Cosa sblocca Premium](/docs/premium/). I piani a confronto e i prezzi, IVA esclusa, sono nella [pagina Premium](/premium/).
 
 Preferisci far girare TTM da solo? Puoi ospitarlo gratis, con ogni funzione Premium sbloccata e senza l'Activity, ma non offrirlo come servizio ad altri. Vedi [Preferisci ospitarlo da solo?](/premium/#self-host)
 

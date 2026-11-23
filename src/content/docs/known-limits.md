@@ -21,15 +21,7 @@ Team Tasks Manager works entirely inside Discord, so most of the limits below ar
 
 **Download always gives you a file.** A normal Discord message is capped at 2000 characters. So **Download**, in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel under the list in the channel, never posts the list as text. It sends a `.txt` file to you alone, in a message only you can see. It's the same file `/create-list` can import back.
 
-**Deleting the message is not the same as deleting the list.** A list lives in its message, but its data lives in TTM: tasks, owners, tags and above all **reminders**. If you delete the message by hand, the list disappears from the channel. Its reminders keep arriving, and they point to a message that no longer exists.
-
-TTM doesn't notice on its own that a message is gone: [/config lists](/docs/config-lists/) explains why. You have three ways out:
-
-- **Delete list**, in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel of the list in the channel: the ordinary way, and it takes the reminders with it.
-- **Seal list**, in the same panel, to keep the message as a record. Sealing is final: see [Seal](/docs/config-lists/#seal).
-- **`/config lists`**, when the message is already gone. It can delete the leftovers, or **regenerate** the list if you deleted the message by mistake. It can't seal a list whose message is gone.
-
-**Delete list** and **Seal list** need *Manage messages* on the channel.
+**Deleting the message is not the same as deleting the list.** The list keeps its place, and its reminders keep arriving: see [What happens to a fourth list](/docs/premium/#what-happens-to-a-fourth-list).
 
 ## Reminders
 
@@ -40,7 +32,7 @@ TTM doesn't notice on its own that a message is gone: [/config lists](/docs/conf
 | How soon a reminder can fire | **5 minutes** from now | The start date must be at least five minutes in the future, so the scheduler has time to pick it up. |
 | How punctual a reminder is | within about **10 seconds** | Reminders due together are spread over up to ten seconds, to stay within Discord's rate limits. The reminder still arrives within the right minute. |
 
-Repetitions are offered only on a plan that includes recurring reminders, and only when **Recurring reminders** is on in [Configuration](/docs/configuration/#recurring-reminders). By default every reminder is a single event. Recurring reminders you already have keep firing either way: see [Repeating reminders](/docs/reminders/#repeating-reminders).
+Repetitions are offered only on a plan that includes recurring reminders, and only when **Recurring reminders** is on in [/config app](/docs/configuration/#recurring-reminders). By default every reminder is a single event. Recurring reminders you already have keep firing either way: see [Repeating reminders](/docs/reminders/#repeating-reminders).
 
 ### Reminders by direct message
 
@@ -71,7 +63,7 @@ Each task has **one owner**: a person or a role. On Premium it can also be up to
 
 **Roles TTM creates count toward Discord's 250 roles per server.** At 250 roles, TTM can't create a new one, and it says so. When TTM deletes its roles: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates).
 
-**TTM sees how many members a role has, not who they are.** What this means for the roles TTM creates: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates).
+**TTM sees how many members a role has, not who they are.** Swap a member of a role TTM created for someone else, and TTM keeps showing the people it gave the role to: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates).
 
 ## Webhooks
 
@@ -97,7 +89,7 @@ Lists work in the chat of a voice channel too, with one difference: there they h
 
 When the timeline is on in [`/config app`](/docs/configuration/#history-tracking), whoever creates a list in a voice channel gets a short message about it, visible only to them; the Tutorial's practice list skips it. If you need the timeline, create the list in a text channel, or copy it there with **Clone list**.
 
-In a voice channel TTM doesn't need *Create public threads* and *Manage webhooks*, which only serve the timeline. It needs *Connect* instead: without it, TTM can't post in the voice channel's chat. See [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
+In a voice channel TTM doesn't need *Create public threads* and *Manage webhooks*, which only serve the timeline. It needs *Connect* instead: without it, TTM can't post in the voice channel's chat. Discord gives *Connect* to everyone by default; if your server takes it away on a voice channel, grant it to TTM there, or `/create-list` tells you it's missing.
 
 ## Notifications
 

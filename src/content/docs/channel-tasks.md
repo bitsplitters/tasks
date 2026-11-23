@@ -46,7 +46,7 @@ While the form is open, the list is locked for the others. Saving unlocks it; th
 
 **To take a task**, click **Owner** until it turns blue, then pick the task in the check selector without choosing anyone: it becomes yours, and the channel shows who took it. A task that is already yours, or that someone else owns, stays as it is, and TTM tells you why. To take a task from someone else, choose yourself in the menu, confirm the selection, then pick the task: replacing an owner takes an explicit choice.
 
-**To give a task to someone**, pick the owner in the menu, confirm the selection, then pick the task. To give a task to several people, a [Premium](/docs/premium/) feature unlocked for every server during the beta:
+**To give a task to someone**, pick the owner in the menu, confirm the selection, then pick the task. To give a task to several people, a [Premium](/docs/premium/) feature:
 
 1. Click **Owner** until it turns blue.
 2. Pick the people.
@@ -132,18 +132,18 @@ With [recurring reminders](/docs/reminders/#repeating-reminders) on (a Premium f
 
 <div class="callout"><div class="callout-t">Nothing is saved until you press Save</div>Editing the date or the recurrence only updates the card. You can change them as often as you need, and <strong>Cancel</strong> really cancels.</div>
 
-With recurring reminders off, or on the Free plan, the card appears only when you edit a reminder that is **already recurring**. That way the reminder doesn't lose its repetitions: **Edit recurrence** lets you keep the number of times it arrives or lower it, never go above the number it already has, and the form says why. A new reminder goes straight through **When** and is saved as a single event.
+With recurring reminders off, or on the Free plan, the card appears only when you edit a reminder that is **already recurring**, so that it keeps its repetitions: see [Repeating reminders](/docs/reminders/#repeating-reminders). A new reminder goes straight through **When** and is saved as a single event.
 
 ### Editing or removing
 
 - **Edit** — click **Reminder** to blue, pick the task, and set the new values. You land straight on the summary card if the task already has a *repeating* reminder, or for any reminder with recurring reminders on. The card shows the current date and badge, so you can change only what you need. Otherwise **When** opens, pre-filled with the current date. Submitting the same date and recurrence the reminder already has changes nothing: TTM tells you, and sends no notification.
 - **Remove** — click **Reminder** until it turns **red** (delete mode), then pick the task. The reminder is removed.
 
-<div class="callout"><div class="callout-t">Closing a form is not cancelling</div>Discord never tells a bot that you closed a form with the ✕, so TTM cannot know: the list stays locked. Use <strong>Cancel</strong> on the <a href="#the-summary-card">summary card</a> when it's there. If you closed a form the hard way, open <strong>More</strong> under the list and press <strong>Unlock list</strong> <img class="inline-ic" src="/icons/unlock.png" alt="" />.</div>
+<div class="callout"><div class="callout-t">Closing a form is not cancelling</div>A form closed with the ✕ leaves the list locked. Use <strong>Cancel</strong> on the <a href="#the-summary-card">summary card</a> when it's there; otherwise see <a href="/docs/the-task-list/#when-the-list-is-locked">When the list is locked</a>.</div>
 
 ## Webhook
 
-Webhooks are a **Premium** feature, unlocked for every server during the beta: see [What Premium unlocks](/docs/premium/).
+Webhooks are a [Premium](/docs/premium/) feature.
 
 Click **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" /> until it turns **blue**, pick the webhook from the selector that appears, then pick the task. From then on, completing or reopening that task fires the call. Click **Webhook** until it turns **red** and pick the task to remove the link.
 

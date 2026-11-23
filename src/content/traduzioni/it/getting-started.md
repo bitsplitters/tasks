@@ -1,7 +1,7 @@
 ---
 title: Per iniziare
 description: Invita il bot, crea una lista, poi spunta un task e imposta un promemoria, nel canale o nell'Activity.
-fonte: 2b9a9fa31d7a
+fonte: 4cabc1f604a6
 ---
 
 Team Tasks Manager (TTM) permette al tuo team di condividere e gestire i task **senza uscire da Discord**. Questa pagina ti porta da zero a una lista funzionante: la crei, spunti un task, imposti un promemoria.
@@ -39,7 +39,7 @@ Le regole:
 
 - **Una riga che inizia con `-` è un task.**
 - **Gli spazi prima del trattino la rendono un subtask** del task sopra. Un task con dei subtask diventa un **gruppo**.
-- Il titolo può avere fino a **90 caratteri**. La lista può avere fino a circa **4000 caratteri** e **50 task**, subtask compresi. Dopo la beta, il piano Free ne permette 20: vedi [Cosa sblocca Premium](/docs/premium/).
+- Il titolo può avere fino a **90 caratteri**, la lista circa **4000 caratteri** e **50 task**, subtask compresi: vedi [Limiti noti](/docs/known-limits/).
 
 Invia la form e la lista compare nel canale. Ecco la stessa lista dopo alcuni passaggi. Il primo task è spuntato, *Preparare i tabelloni* ha un proprietario e *Trasmettere la finale* ha un promemoria.
 
@@ -64,13 +64,13 @@ Sotto la lista c'è il **menu di spunta**, un menu a tendina che mostra il titol
 
 Nella seconda riga clicca una volta **Promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" />, il quarto pulsante: diventa **blu**. Poi scegli un task **non ancora spuntato**. Si apre una form intitolata *Imposta il promemoria per il task …*. È già compilata con dieci minuti da adesso: inviala così com'è. Finché non lo cambi, il fuso orario nell'ultimo campo è quello del server: cambialo se il tuo è diverso. Il task mostra l'ora e il promemoria arriva una volta sola. Se il tuo server ha attivato i promemoria ricorrenti, dopo la form arriva una scheda di riepilogo: premi **Salva**.
 
-**Hai chiuso la form con ✕?** La lista resta bloccata: apri **Altro** sotto la lista e premi **Sblocca lista**.
+**Hai chiuso la form con ✕?** La lista resta bloccata: apri **Altro** sotto la lista e premi **Sblocca lista**. Vedi [Quando la lista è bloccata](/docs/the-task-list/#when-the-list-is-locked).
 
 Ogni pulsante sotto la lista: [La lista nel canale](/docs/the-task-list/) e [Modificare un task nel canale](/docs/channel-tasks/).
 
 ## <img class="place-ic is-activity" src="/icons/activity.png" alt="" />4. Nell'Activity
 
-Prova la modalità Activity: più fluida e libera dai limiti dei canali testuali, ideale per sessioni di lavoro più lunghe o collaborative. Premi **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, il primo pulsante sotto la lista. La lista si apre in una finestra dentro Discord e gli altri nel canale possono unirsi a te. Puoi partire anche dall'Avvio app di Discord o da una chiamata vocale: vedi [Quattro modi per entrare](/docs/activity/#four-ways-in).
+Nell'Activity lavori sulla lista in una finestra dentro Discord, con caselle e pannelli al posto dei menu. Premi **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, il primo pulsante sotto la lista. Gli altri nel canale possono unirsi a te. Puoi partire anche dall'Avvio app di Discord o da una chiamata vocale: vedi [Quattro modi per entrare](/docs/activity/#four-ways-in).
 
 ### Spunta un task
 
@@ -87,8 +87,8 @@ Tutto ciò che c'è nella finestra: [L'Activity](/docs/activity/) e [Lavorare su
 ## Da sapere prima del primo promemoria
 
 - **Il promemoria va al proprietario del task**, con un messaggio diretto se il proprietario è una persona.
-- **Se il task non ha ancora un proprietario, lo diventi tu**, così il promemoria arriva a te. Da quel momento solo tu e chi ha *Gestisci messaggi* potete spuntare quel task. Per darlo a qualcun altro, imposta prima il proprietario con **Proprietario** <img class="inline-ic" src="/icons/owner.png" alt="" />.
-- **Non è arrivato niente?** Consenti i messaggi diretti dai membri del server: clicca il nome del server, poi *Impostazioni privacy*. Dopo un messaggio rifiutato, TTM aspetta alcune ore prima di scrivere di nuovo a quella persona: vedi [Promemoria con messaggio diretto](/docs/known-limits/#reminders-by-direct-message).
+- **Se il task non ha ancora un proprietario, lo diventi tu**, così il promemoria arriva a te: vedi [Le regole](/docs/reminders/#the-rules).
+- **Non è arrivato niente?** Consenti i messaggi diretti dai membri del server: vedi [Promemoria con messaggio diretto](/docs/known-limits/#reminders-by-direct-message).
 
 ## Prossimi passi
 

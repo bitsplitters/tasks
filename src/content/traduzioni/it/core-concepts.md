@@ -1,7 +1,7 @@
 ---
 title: Concetti di base
 description: Una lista in due posti, il vocabolario di TTM (task, gruppi, proprietari, tag, promemoria) e i permessi che chiede.
-fonte: dd96d7bfc045
+fonte: 207fda722dce
 ---
 
 Alcuni termini ricorrono in tutta l'app. Imparali una volta e il resto va a posto da solo.
@@ -43,7 +43,7 @@ Nel canale spunti o despunti un task nel [menu di spunta](/docs/the-task-list/#t
 
 ### Chi può spuntare un task
 
-**Solo il proprietario può spuntare o despuntare un task che ha un proprietario.** Possono farlo:
+**Un task con un proprietario possono spuntarlo o despuntarlo solo:**
 
 - il proprietario, o i membri del ruolo proprietario;
 - chi ha *Gestisci messaggi* sul canale.
@@ -63,21 +63,21 @@ Le regole di entrambi: [Proprietari e tag](/docs/owners-and-tags/).
 
 Un **promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" /> collega a un task una pianificazione: una data, un'ora e un fuso orario. Quando scade, TTM ricorda il **proprietario** del task, così nessuno deve controllare di continuo. Una persona riceve un messaggio diretto e un ruolo riceve una menzione nel canale della lista.
 
-Di default il promemoria suona una volta sola e nel piano Free è l'unico tipo. I promemoria ricorrenti aggiungono un intervallo e un numero di ripetizioni. Sono una funzione Premium che un server attiva in [Configurazione](/docs/configuration/#recurring-reminders). Tutti i dettagli in [Promemoria](/docs/reminders/).
+Di default il promemoria suona una volta sola e nel piano Free è l'unico tipo. I promemoria ricorrenti aggiungono un intervallo e un numero di ripetizioni. Sono una funzione Premium che un server attiva in [/config app](/docs/configuration/#recurring-reminders). Tutti i dettagli in [Promemoria](/docs/reminders/).
 
 ## Notifiche e cronologia
 
-Quando una lista viene creata, o un task viene spuntato o despuntato, TTM può pubblicare una notifica e, se lo attivi, registrare ogni azione in un **thread della cronologia** dedicato. La notifica di una lista nuova può menzionare i proprietari dei suoi task, così lo vengono a sapere. Le modifiche fatte nell'Activity arrivano in un unico riepilogo, quando la lista torna nel canale. Quanto rumore vuoi è del tutto una tua scelta: vedi [Configurazione](/docs/configuration/).
+Quando una lista viene creata, o un task viene spuntato o despuntato, TTM può pubblicare una notifica e, se lo attivi, registrare ogni azione in un **thread della cronologia** dedicato. La notifica di una lista nuova può menzionare i proprietari dei suoi task, così lo vengono a sapere. Le modifiche fatte nell'Activity arrivano in un unico riepilogo, quando la lista torna nel canale. Quanto rumore vuoi è del tutto una tua scelta: vedi [/config app](/docs/configuration/).
 
 ## Chi può usare liste e comandi
 
-Di default i comandi dell'app seguono le regole di visibilità di Discord (Impostazioni del server → Integrazioni). Pulsanti e liste restano invece usabili da chiunque, a meno che tu non **sincronizzi i permessi**: da quel momento la lista diventa di sola lettura per chi non è autorizzato, nel canale e nell'Activity. Anche questo sta in [Configurazione](/docs/configuration/#sync-permissions).
+Di default i comandi dell'app seguono le regole di visibilità di Discord (Impostazioni del server → Integrazioni). Pulsanti e liste restano invece usabili da chiunque, a meno che tu non **sincronizzi i permessi**: da quel momento la lista diventa di sola lettura per chi non è autorizzato, nel canale e nell'Activity. Anche questo sta in [/config app](/docs/configuration/#sync-permissions).
 
 `/config` ha una regola tutta sua: di default lo vedono solo i membri con *Gestisci server*. Un amministratore può cambiarlo in *Impostazioni del server → Integrazioni*. Vedi [Chi può aprire /config](/docs/config/#who-can-open-config).
 
 Alcune azioni hanno una regola propria:
 
-- solo il proprietario può spuntare o despuntare un task che ha un proprietario: vedi [Chi può spuntare un task](#who-can-tick-a-task);
+- un task con un proprietario può spuntarlo solo il proprietario, o chi ha *Gestisci messaggi*: vedi [Chi può spuntare un task](#who-can-tick-a-task);
 - sigillare o eliminare una lista dal suo pannello *Altro*, nel canale, richiede *Gestisci messaggi* sul canale. Da `/config lists` valgono i permessi di `/config`;
 - aprire una lista nell'Activity richiede il permesso di Discord *Usare le attività* sul canale: vedi [Quando la lista non si apre](/docs/activity/#when-the-list-doesnt-open).
 
@@ -100,6 +100,6 @@ Quando inviti il bot, Discord mostra i permessi che chiede. Ecco a che cosa serv
 | Gestisci ruoli | Creare il ruolo che rende proprietarie di un task più persone (Premium) |
 | Usare emoji esterne | Mostrare le icone del bot su pulsanti e liste |
 
-**In un canale vocale** una lista vive nella chat del canale, che non ha una cronologia: lì a TTM non servono *Creare thread pubblici* e *Gestisci webhook*. Gli serve *Connettersi*, il permesso di entrare nel canale vocale, perché senza non può pubblicare nella chat. TTM lo chiede quando lo inviti e Discord lo dà a tutti di default; se il tuo server lo toglie su un canale vocale, concedilo a TTM lì, altrimenti `/crea-lista` ti dirà che manca. Vedi [Canali vocali](/docs/known-limits/#voice-channels).
+**In un canale vocale** una lista vive nella chat del canale, che non ha una cronologia, e TTM ha bisogno di *Connettersi* per scriverci: vedi [Canali vocali](/docs/known-limits/#voice-channels).
 
 <div class="callout"><div class="callout-t">Da sapere</div>Puoi concederli anche dopo da <em>Impostazioni del server → Ruoli → Team Tasks Manager</em>, oppure per singolo canale dalle impostazioni dei permessi del canale. <em>Gestisci ruoli</em> fa eccezione: vale solo sul ruolo del bot, non per canale.</div>

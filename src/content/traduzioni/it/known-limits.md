@@ -1,7 +1,7 @@
 ---
 title: Limiti noti
 description: "I tetti su liste, task, promemoria e altro: la maggior parte viene da Discord stesso e come lavorarci dentro."
-fonte: c8ba25e8b5dd
+fonte: fad07d75572a
 ---
 
 Team Tasks Manager lavora interamente dentro Discord, quindi la maggior parte dei limiti qui sotto non è una scelta di TTM. Vengono da Discord stesso. Per esempio: quanto può essere lungo un messaggio, quanti menu stanno in un messaggio, fino a quanto indietro si possono eliminare i messaggi in blocco. Dove un limite è di Discord, lo diciamo.
@@ -20,15 +20,7 @@ Team Tasks Manager lavora interamente dentro Discord, quindi la maggior parte de
 
 **Download ti dà sempre un file.** Un normale messaggio di Discord è limitato a 2000 caratteri. Perciò **Download**, nel pannello **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> sotto la lista nel canale, non pubblica mai la lista come testo. Ti invia un file `.txt`, solo a te, in un messaggio che solo tu puoi vedere. È lo stesso file che `/crea-lista` può reimportare.
 
-**Eliminare il messaggio non equivale a eliminare la lista.** Una lista vive nel suo messaggio, ma i suoi dati vivono in TTM: task, proprietari, tag e soprattutto **promemoria**. Se elimini il messaggio a mano, la lista sparisce dal canale. I suoi promemoria continuano ad arrivare e puntano a un messaggio che non esiste più.
-
-TTM non si accorge da solo che un messaggio non c'è più: [/config lists](/docs/config-lists/) spiega perché. Hai tre strade:
-
-- **Elimina lista**, nel pannello **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> della lista nel canale: la via normale e si porta via i promemoria.
-- **Sigilla lista**, nello stesso pannello, per tenere il messaggio come resoconto. Sigillare è definitivo: vedi [Sigilla](/docs/config-lists/#seal).
-- **`/config lists`**, quando il messaggio non c'è più. Può eliminare gli avanzi oppure **rigenerare** la lista se hai eliminato il messaggio per errore. Non può sigillare una lista il cui messaggio non c'è più.
-
-**Elimina lista** e **Sigilla lista** richiedono *Gestisci messaggi* sul canale.
+**Eliminare il messaggio non equivale a eliminare la lista.** La lista tiene il suo posto e i suoi promemoria continuano ad arrivare: vedi [Cosa succede a una quarta lista](/docs/premium/#what-happens-to-a-fourth-list).
 
 ## Promemoria
 
@@ -39,7 +31,7 @@ TTM non si accorge da solo che un messaggio non c'è più: [/config lists](/docs
 | Quanto presto può scattare un promemoria | **5 minuti** da adesso | La data di inizio deve essere almeno cinque minuti nel futuro, così lo scheduler ha il tempo di prenderlo in carico. |
 | Quanto è puntuale un promemoria | entro circa **10 secondi** | I promemoria in scadenza insieme vengono distribuiti su un massimo di dieci secondi, per restare nei limiti di Discord. Il promemoria arriva comunque nel minuto giusto. |
 
-Le ripetizioni sono offerte solo con un piano che include i promemoria ricorrenti e solo quando **Promemoria ricorrenti** è acceso in [Configurazione](/docs/configuration/#recurring-reminders). Di base ogni promemoria è un evento singolo. I promemoria ricorrenti che hai già continuano a scattare in ogni caso: vedi [Promemoria ricorrenti](/docs/reminders/#repeating-reminders).
+Le ripetizioni sono offerte solo con un piano che include i promemoria ricorrenti e solo quando **Promemoria ricorrenti** è acceso in [/config app](/docs/configuration/#recurring-reminders). Di base ogni promemoria è un evento singolo. I promemoria ricorrenti che hai già continuano a scattare in ogni caso: vedi [Promemoria ricorrenti](/docs/reminders/#repeating-reminders).
 
 ### Promemoria con messaggio diretto
 
@@ -70,7 +62,7 @@ Ogni task ha **un proprietario**: una persona o un ruolo. Con Premium può avere
 
 **I ruoli creati da TTM contano nei 250 ruoli per server di Discord.** A 250 ruoli, TTM non può crearne di nuovi e lo dice. Quando TTM elimina i suoi ruoli: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates).
 
-**TTM vede quanti membri ha un ruolo, non chi sono.** Che cosa significa per i ruoli creati da TTM: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates).
+**TTM vede quanti membri ha un ruolo, non chi sono.** Se in un ruolo creato da TTM scambi un membro con un altro, TTM continua a mostrare le persone a cui l'ha dato: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates).
 
 ## Webhook
 
@@ -96,7 +88,7 @@ Le liste funzionano anche nella chat di un canale vocale, con una differenza: l�
 
 Quando la cronologia è accesa in [`/config app`](/docs/configuration/#history-tracking), chi crea una lista in un canale vocale riceve un breve messaggio su questo, visibile solo a lui; la lista di prova del Tutorial lo salta. Se ti serve la cronologia, crea la lista in un canale di testo, oppure copiala lì con **Clona lista**.
 
-In un canale vocale TTM non ha bisogno di *Creare thread pubblici* e *Gestisci webhook*, che servono solo alla cronologia. Gli serve invece *Connettersi*: senza, TTM non può scrivere nella chat del canale vocale. Vedi [I permessi che chiede TTM](/docs/core-concepts/#the-permissions-ttm-asks-for).
+In un canale vocale TTM non ha bisogno di *Creare thread pubblici* e *Gestisci webhook*, che servono solo alla cronologia. Gli serve invece *Connettersi*: senza, TTM non può scrivere nella chat del canale vocale. Discord dà *Connettersi* a tutti di default; se il tuo server lo toglie su un canale vocale, concedilo a TTM lì, altrimenti `/crea-lista` ti dice che manca.
 
 ## Notifiche
 

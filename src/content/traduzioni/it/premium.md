@@ -1,7 +1,7 @@
 ---
 title: Cosa sblocca Premium
 description: "Cosa aggiunge il piano a pagamento al Free e cosa cambia ogni limite, giorno per giorno."
-fonte: a30e7ff6132c
+fonte: 81baf237b76f
 ---
 
 TTM è **completamente sbloccato durante la beta**, quindi per ora niente di questa pagina si applica. Descrive il piano Free e cosa toglierà Premium quando la beta finirà. Cosa succede al tuo server quando la beta finisce è in [Come funziona la beta](/docs/beta/).
@@ -20,7 +20,7 @@ Oltre un limite del Free non puoi aggiungere altro, ma niente di ciò che c'è g
 
 **Promemoria attivi — 10 → illimitati.** Il limite conta i promemoria *in attesa nello stesso momento*, non i promemoria al giorno. Un promemoria smette di contare dopo il suo ultimo avviso o quando lo togli e uno ripetuto conta una volta sola.
 
-**Ripetizioni per promemoria — solo singolo → fino a 50.** Sul piano Free ogni promemoria scatta una volta. Su Premium un promemoria può arrivare fino a 50 volte in tutto, la prima compresa, se un admin attiva **Promemoria ricorrenti** in [Configurazione](/docs/configuration/#recurring-reminders). I promemoria ricorrenti che hai già continuano a scattare sul piano Free: vedi [Promemoria](/docs/reminders/#repeating-reminders).
+**Ripetizioni per promemoria — solo singolo → fino a 50.** Sul piano Free ogni promemoria scatta una volta. Su Premium un promemoria può arrivare fino a 50 volte in tutto, la prima compresa, se un admin attiva **Promemoria ricorrenti** in [/config app](/docs/configuration/#recurring-reminders). I promemoria ricorrenti che hai già continuano a scattare sul piano Free: vedi [Promemoria](/docs/reminders/#repeating-reminders).
 
 **Persone per proprietario — 1 → fino a 25 \*.** Sul piano Free il proprietario di un task è una persona o un ruolo. Su Premium può essere fino a 25 persone, che condividono un ruolo creato da TTM: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates). È Premium perché ogni persona costa una richiesta a Discord. Discord limita le richieste che un bot può inviare e tutti i suoi server condividono quel limite.
 
@@ -51,6 +51,8 @@ Quando tutti e tre i posti sono occupati, TTM rifiuta di creare, clonare o impor
 - **Sigilla lista**, nel pannello **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> di una lista con cui hai finito. La lista resta nel canale come resoconto, senza pulsanti.
 - **Elimina lista**, nello stesso pannello. Toglie la lista definitivamente.
 - [`/config lists`](/docs/config-lists/), che segna le liste in uso e può sigillarne o eliminarne diverse insieme.
+
+Eliminare a mano il messaggio di una lista non libera niente: la lista resta in TTM con il suo posto e i suoi promemoria continuano ad arrivare. Usa invece **Elimina lista**. Se il messaggio non c'è più, `/config lists` può eliminare gli avanzi oppure rigenerare la lista.
 
 ## Domande?
 

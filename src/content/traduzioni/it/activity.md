@@ -1,7 +1,7 @@
 ---
 title: L'Activity
 description: Apri una lista in una finestra dentro Discord, dove il tuo team ci lavora insieme e vede ogni modifica mentre accade.
-fonte: 00a824d5dbbe
+fonte: 3944b7fd591c
 ---
 
 Prova la modalità Activity: più fluida e libera dai limiti dei canali testuali, ideale per sessioni di lavoro più lunghe o collaborative.
@@ -21,7 +21,7 @@ L'Avvio app e la chiamata vocale aprono la home del canale, con tutte le sue lis
 
 ## Apri una lista nell'Activity
 
-Premi **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, il primo pulsante della [prima riga](/docs/the-task-list/#row-1--acts-on-the-whole-list), in un canale di testo o nella chat di un canale vocale. **Clona lista**, che stava lì prima, ora è in [Altro](/docs/the-task-list/#whats-inside-more). Una lista più vecchia riceve il pulsante la prima volta che cambia.
+Premi **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, il primo pulsante della [prima riga](/docs/the-task-list/#row-1--acts-on-the-whole-list), in un canale di testo o nella chat di un canale vocale. Una lista più vecchia riceve il pulsante la prima volta che cambia.
 
 Se la finestra non si connette entro 30 secondi, TTM ti avvisa e la lista resta nel canale.
 

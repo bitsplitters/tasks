@@ -1,7 +1,7 @@
 ---
 title: /config lists
 description: Guarda tutte le liste del server, sigilla o elimina quelle che hai finito, oppure recupera una lista il cui messaggio è stato eliminato per errore.
-fonte: 506698ddc87f
+fonte: 0da09921c70a
 ---
 
 Esegui il comando:
@@ -10,7 +10,7 @@ Esegui il comando:
 /config lists
 ```
 
-Apre un pannello privato, che solo tu puoi vedere, con **tutte le liste che questo server ha mai usato**. Ogni lista ha una riga: il nome della lista e il canale in cui vive, come link cliccabile.
+Apre un pannello privato, che solo tu puoi vedere, con **tutte le liste che questo server ha ancora**. Ogni lista ha una riga: il nome della lista e il canale in cui vive, come link cliccabile.
 
 Una lista che occupa uno dei posti del tuo piano è segnata **in uso** accanto al suo canale. Quando devi liberare un posto, sono queste le liste da sigillare o eliminare. Durante la beta non c'è nessun limite, quindi nessuna lista è segnata. Come una lista occupa un posto: vedi [Come funzionano i tre posti](/docs/premium/#how-the-three-places-work).
 

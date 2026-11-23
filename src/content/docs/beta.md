@@ -31,19 +31,11 @@ A list with more than twenty tasks keeps all of them. On the Free plan, **Bulk u
 
 **Webhooks created during the beta stay.** You can still change or delete them. On the Free plan you can't create new ones.
 
-To free a place, use **Seal list** or **Delete list** on a list you're done with, or [`/config lists`](/docs/config-lists/).
+To free a place: see [What happens to a fourth list](/docs/premium/#what-happens-to-a-fourth-list).
 
 ## The Free plan, after beta
 
-The Free plan gives every server:
-
-- three lists in use at a time;
-- twenty tasks per list;
-- ten reminders waiting at a time, single ones only;
-- one person or one role as the owner of a task;
-- no new webhooks.
-
-The plans side by side and the prices, before VAT, are on the [Premium page](/premium/). How each limit works is in [What Premium unlocks](/docs/premium/).
+What the Free plan gives every server, and what Premium changes, is in [What Premium unlocks](/docs/premium/). The plans side by side and the prices, before VAT, are on the [Premium page](/premium/).
 
 Rather run TTM yourself? You can host it for free, with every Premium feature unlocked and without the Activity, but not offer it as a service to others. See [Rather run it yourself?](/premium/#self-host)
 

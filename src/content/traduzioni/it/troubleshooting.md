@@ -1,7 +1,7 @@
 ---
 title: FAQ
 description: Domande frequenti — risposte rapide ai problemi più comuni, ognuna con il link alla pagina che la spiega per intero.
-fonte: 3a43f5cc8a96
+fonte: '452513482947'
 ---
 
 Trova qui sotto il problema che hai. Ogni risposta è breve e rimanda alla pagina che la spiega per intero. I problemi della lista sono divisi per luogo: [nel canale](#in-the-channel) e [nell'Activity](#in-the-activity).
@@ -26,7 +26,7 @@ Controlla questi punti, in quest'ordine:
 
 ### Ho premuto Annulla e la lista resta bloccata
 
-TTM blocca una lista mentre qualcuno la modifica: in **Aggiornamento in blocco**, nella finestra del testo di un task e in una finestra del promemoria. Salvare la finestra sblocca la lista. Chiuderla con **Annulla** o con la ✕ no, perché Discord non dice al bot che la finestra è stata chiusa. L'ultima riga della lista dice chi l'ha bloccata. Chiunque può sbloccare la lista: apri **Altro** sotto la lista e premi **Sblocca lista** <img class="inline-ic" src="/icons/unlock.png" alt="" />. Vedi [Quando la lista è bloccata](/docs/the-task-list/#when-the-list-is-locked).
+TTM blocca una lista mentre qualcuno la modifica e chiudere la finestra con **Annulla** o con la ✕ non la sblocca, perché Discord non lo dice al bot. Chiunque può sbloccarla: apri **Altro** sotto la lista e premi **Sblocca lista** <img class="inline-ic" src="/icons/unlock.png" alt="" />. Vedi [Quando la lista è bloccata](/docs/the-task-list/#when-the-list-is-locked).
 
 ### I miei tag o il mio proprietario non si sono salvati
 
@@ -89,7 +89,7 @@ Dopo un ricaricamento, **Esci** ti porta ancora fuori dalla lista, ma per un bug
 ### Il mio promemoria non è arrivato
 
 - **Il promemoria va al proprietario del task.** Sei tu solo se il task non aveva un proprietario quando l'hai impostato. Una persona riceve un messaggio diretto, un ruolo riceve una menzione nel canale della lista. Vedi [Le regole](/docs/reminders/#the-rules).
-- **Il proprietario deve consentire i messaggi diretti dai membri del server:** clicca il nome del server, poi *Impostazioni privacy*. Dopo un messaggio rifiutato, TTM aspetta qualche ora prima di scrivere di nuovo a quella persona. Vedi [Promemoria con messaggio diretto](/docs/known-limits/#reminders-by-direct-message).
+- **Il proprietario deve consentire i messaggi diretti dai membri del server**, nelle *Impostazioni privacy* del server. Vedi [Promemoria con messaggio diretto](/docs/known-limits/#reminders-by-direct-message).
 - **Il proprietario è un ruolo che non può essere menzionato.** Il promemoria compare nel canale, ma nessuno riceve una notifica. Vedi [Promemoria a un ruolo](/docs/known-limits/#reminders-to-a-role).
 - **Il ruolo proprietario è stato eliminato.** Il promemoria non viene inviato a nessuno. Scegli un altro proprietario per il task. Vedi [Promemoria a un ruolo](/docs/known-limits/#reminders-to-a-role).
 - **TTM non può scrivere nel canale della lista.** Se il proprietario è un ruolo che TTM ha creato per più persone, ognuna riceve il promemoria con un messaggio diretto, con il motivo. Per qualsiasi altro ruolo il promemoria non viene consegnato finché un admin non concede il permesso. Vedi [I permessi che chiede TTM](/docs/core-concepts/#the-permissions-ttm-asks-for).
@@ -115,12 +115,7 @@ Vedi [I campi della ripetizione](/docs/reminders/#the-repetition-fields).
 
 ### Non riesco a creare una lista, o il bot dice di liberare un posto
 
-Durante la beta non c'è nessun limite alle liste. Dopo la beta, il piano Free ti lascia lavorare su tre liste per volta. Quando tutti e tre i posti sono occupati, TTM rifiuta di creare, clonare o importare una lista. Lo stesso rifiuto compare quando lavori su una lista che non è in uso. Per liberare un posto usa una di queste strade:
-
-- **Sigilla lista** o **Elimina lista**, nel pannello **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> di una lista che non ti serve più, nel canale. Una lista sigillata resta nel canale come resoconto.
-- `/config lists`, che segna le liste **in uso** e può sigillarne o eliminarne diverse insieme.
-
-Premium toglie questo limite. Vedi [Cosa succede a una quarta lista](/docs/premium/#what-happens-to-a-fourth-list).
+Durante la beta non c'è nessun limite alle liste. Dopo, il piano Free ti lascia lavorare su tre liste per volta e TTM rifiuta la quarta finché non ne sigilli o elimini una: vedi [Cosa succede a una quarta lista](/docs/premium/#what-happens-to-a-fourth-list).
 
 ### Chi può sigillare o eliminare una lista?
 

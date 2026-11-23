@@ -1,7 +1,7 @@
 ---
 title: Azioni sulla lista
 description: Pulisci, Riapri tutti, Clona, Download, Sigilla ed Elimina — cosa fa ognuna all'intera lista e dove la trovi.
-fonte: eba07c193b5a
+fonte: f9d44b6a771e
 ---
 
 Queste azioni lavorano sull'**intera lista**, mai su un singolo task. Due esistono in entrambi i posti; le altre solo nel canale.
@@ -50,7 +50,7 @@ Una copia riceve promemoria nuovi, quindi un promemoria ricorrente può essere r
 
 La copia pubblica la propria notifica nel canale nuovo e può menzionare i proprietari dei suoi task: vedi [Quando una lista viene creata](/docs/configuration/#when-a-list-is-created). Il canale della lista originale riceve la solita notifica della copia, senza menzioni.
 
-Una copia è una lista nuova, quindi segue il tuo piano come ogni altra. Le serve un posto libero e non può avere più task di quanti ne consente il tuo piano. Sul piano Free, una lista con più di venti task non si può clonare: vedi [Cosa sblocca Premium](/docs/premium/).
+Una copia è una lista nuova: le serve un posto libero e non può avere più task di quanti ne consente il tuo piano. Vedi [Cosa sblocca Premium](/docs/premium/).
 
 Solo nel canale, anche quando la lista è bloccata.
 

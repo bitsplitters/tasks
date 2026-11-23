@@ -51,7 +51,7 @@ A clone gets new reminders, so a recurring reminder can be refused: see [Repeati
 
 The clone posts its own notification in the new channel, and it can mention the owners of its tasks: see [When a list is created](/docs/configuration/#when-a-list-is-created). The channel of the original list gets the usual notification of the clone, without mentions.
 
-A clone is a new list, so it follows your plan like any other. It needs a free place, and it can't have more tasks than your plan allows. On the Free plan, a list with more than twenty tasks can't be cloned: see [What Premium unlocks](/docs/premium/).
+A clone is a new list: it needs a free place, and it can't have more tasks than your plan allows. See [What Premium unlocks](/docs/premium/).
 
 Only in the channel, even while the list is locked.
 

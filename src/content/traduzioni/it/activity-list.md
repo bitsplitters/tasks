@@ -1,7 +1,7 @@
 ---
 title: Lavorare su una lista nell'Activity
 description: Le caselle, la prima riga, il pannello di un task (Contenuto, Proprietario, Tag, Promemoria e Webhook) e chi sta modificando che cosa.
-fonte: f08ca507a5eb
+fonte: 2b0a150e4991
 ---
 
 Dentro l'Activity la lista è una pagina a sé: una casella davanti a ogni task, una riga di pulsanti in alto e un pannello per ogni task. Le regole sono quelle del canale: proprietari, impostazioni del server, limiti del piano. Che cosa fa ogni funzione: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/), [Azioni sulla lista](/docs/list-actions/).
@@ -83,7 +83,7 @@ Un task spuntato non può avere un promemoria. Su un task senza proprietario, il
 
 ## Webhook
 
-I webhook sono una funzione **Premium**, sbloccata per ogni server durante la beta: vedi [Cosa sblocca Premium](/docs/premium/).
+I webhook sono una funzione [Premium](/docs/premium/).
 
 **Blu** elenca i webhook del server per nome, ciascuno con il momento in cui scatta: *al completamento*, *alla riapertura* o *sempre*. L'indirizzo non compare mai. Scegline uno, poi **Salva**. Un webhook che non esiste più compare in cima, segnato come *non esiste più*, così puoi sceglierne un altro. Se il server non ne ha, il pannello dice che si creano con [/config webhook](/docs/config-webhook/).
 

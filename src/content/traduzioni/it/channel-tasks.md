@@ -1,7 +1,7 @@
 ---
 title: Modificare un task nel canale
 description: La seconda riga di pulsanti sotto la lista — Contenuto, Proprietario, Tag, Promemoria e Webhook — con le loro finestre e i loro menu.
-fonte: c8dcfe13b95f
+fonte: 3e0a687d6a9e
 ---
 
 La seconda riga sotto la lista agisce su **un task alla volta**: il suo testo, il suo proprietario, i suoi tag, il suo promemoria e il suo webhook. Questa pagina mostra dove cliccare. Cosa fa ogni funzione e le sue regole: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/).
@@ -44,7 +44,7 @@ Il **blu** mostra un menu sotto i pulsanti, con la scritta *Scegli un task nel m
 
 **Per prendere un task**, clicca **Proprietario** finché diventa blu, poi scegli il task nel menu di spunta senza scegliere nessuno: il task diventa tuo e il canale mostra chi l'ha preso. Un task che è già tuo, o che ha un altro proprietario, resta com'è e TTM ti dice perché. Per prendere un task a qualcun altro, scegli te stesso nel menu, conferma la selezione, poi scegli il task: sostituire un proprietario richiede una scelta esplicita.
 
-**Per dare un task a qualcuno**, scegli il proprietario nel menu, conferma la selezione, poi scegli il task. Per dare un task a più persone, una funzione [Premium](/docs/premium/) sbloccata per ogni server durante la beta:
+**Per dare un task a qualcuno**, scegli il proprietario nel menu, conferma la selezione, poi scegli il task. Per dare un task a più persone, una funzione [Premium](/docs/premium/):
 
 1. Clicca **Proprietario** finché diventa blu.
 2. Scegli le persone.
@@ -130,18 +130,18 @@ Con i [promemoria ricorrenti](/docs/reminders/#repeating-reminders) attivi (una 
 
 <div class="callout"><div class="callout-t">Non viene salvato niente finché non premi Salva</div>Modificare la data o la ricorrenza aggiorna soltanto la scheda. Puoi cambiarle quante volte ti serve e <strong>Annulla</strong> annulla davvero.</div>
 
-Con i promemoria ricorrenti spenti, o sul piano Free, la scheda compare solo quando modifichi un promemoria che è **già ricorrente**. Così il promemoria non perde le sue ripetizioni: **Modifica ricorrenza** ti lascia tenere il numero di volte in cui arriva o abbassarlo, mai superare quello che ha già e la finestra ne spiega il motivo. Un promemoria nuovo passa direttamente da **Quando** e viene salvato come evento singolo.
+Con i promemoria ricorrenti spenti, o sul piano Free, la scheda compare solo quando modifichi un promemoria che è **già ricorrente**, così conserva le sue ripetizioni: vedi [Promemoria ricorrenti](/docs/reminders/#repeating-reminders). Un promemoria nuovo passa direttamente da **Quando** e viene salvato come evento singolo.
 
 ### Modificare o togliere
 
 - **Modificare** — clicca **Promemoria** su blu, scegli il task e imposta i nuovi valori. Arrivi direttamente alla scheda riepilogo se il task ha già un promemoria *ripetuto*, o per qualsiasi promemoria con i promemoria ricorrenti attivi. La scheda mostra la data attuale e il badge, così cambi solo ciò che serve. Altrimenti si apre **Quando**, precompilata con la data attuale. Inviare la stessa data e la stessa ricorrenza che il promemoria ha già non cambia niente: TTM te lo dice e non invia nessuna notifica.
 - **Togliere** — clicca **Promemoria** finché diventa **rosso** (modalità eliminazione), poi scegli il task. Il promemoria viene tolto.
 
-<div class="callout"><div class="callout-t">Chiudere una finestra non è annullare</div>Discord non dice mai a un bot che hai chiuso una finestra con la ✕, quindi TTM non può saperlo: la lista resta bloccata. Usa <strong>Annulla</strong> sulla <a href="#the-summary-card">scheda riepilogo</a> quando c'è. Se hai chiuso una finestra nel modo sbrigativo, apri <strong>Altro</strong> sotto la lista e premi <strong>Sblocca lista</strong> <img class="inline-ic" src="/icons/unlock.png" alt="" />.</div>
+<div class="callout"><div class="callout-t">Chiudere una finestra non è annullare</div>Una finestra chiusa con la ✕ lascia la lista bloccata. Usa <strong>Annulla</strong> sulla <a href="#the-summary-card">scheda riepilogo</a> quando c'è; altrimenti vedi <a href="/docs/the-task-list/#when-the-list-is-locked">Quando la lista è bloccata</a>.</div>
 
 ## Webhook
 
-I webhook sono una funzione **Premium**, sbloccata per ogni server durante la beta: vedi [Cosa sblocca Premium](/docs/premium/).
+I webhook sono una funzione [Premium](/docs/premium/).
 
 Clicca **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" /> finché diventa **blu**, scegli il webhook dal menu che compare, poi scegli il task. Da quel momento, completare o riaprire quel task fa partire la chiamata. Clicca **Webhook** finché diventa **rosso** e scegli il task per togliere il collegamento.
 

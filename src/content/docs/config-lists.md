@@ -11,7 +11,7 @@ Run the command:
 /config lists
 ```
 
-It opens a private panel, which only you can see, with **every list this server has ever used**. Each list has one row: the list name, and the channel it lives in as a clickable link.
+It opens a private panel, which only you can see, with **every list this server still has**. Each list has one row: the list name, and the channel it lives in as a clickable link.
 
 A list that holds one of the places of your plan is marked **in use** next to its channel. When you need to free a place, those are the lists to seal or delete. During the beta there is no limit, so no list is marked. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work).
 

@@ -23,7 +23,7 @@ The App Launcher and the voice call open the home of the channel, with all its l
 
 ## Open a list in the Activity
 
-Press **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, the first button of the [first row](/docs/the-task-list/#row-1--acts-on-the-whole-list), in a text channel or in the chat of a voice channel. **Clone list**, which sat there before, is now in [More](/docs/the-task-list/#whats-inside-more). An older list gets the button the first time it changes.
+Press **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, the first button of the [first row](/docs/the-task-list/#row-1--acts-on-the-whole-list), in a text channel or in the chat of a voice channel. An older list gets the button the first time it changes.
 
 If the window doesn't connect within 30 seconds, TTM warns you and the list stays in the channel.
 

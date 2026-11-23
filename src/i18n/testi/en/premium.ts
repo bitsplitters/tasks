@@ -77,7 +77,7 @@ export const testi = {
   'chi.2':
     'Alex works on TTM full time, writing the code and answering on our <a class="h-link" href="{community}">Discord server</a>. Your idea reaches the person who can build it.',
   'chi.3':
-    'TTM gets better every week: 15 releases in under a month, all in the <a class="h-link" href="{note}">release notes</a>. Every update reaches every server, including those on the Free plan.',
+    'TTM keeps getting better, with frequent new versions, all in the <a class="h-link" href="{note}">release notes</a>. Every update reaches every server, including those on the Free plan.',
   'chi.4':
     'Premium gives growing teams more room, connects your lists to your tools with webhooks, and funds the next update for everyone. If you believe in TTM too, the <a class="h-link" href="#founder">Founder badge</a> is the best way to tell us.',
   'chi.alt': 'Portrait of Alex',

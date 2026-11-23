@@ -49,9 +49,9 @@ A role is notified only if it can be mentioned. When that is the case, and what 
 
 ## Repeating reminders
 
-By default every reminder is a **single event** — one ping, nothing else to decide. Repetitions are a **Premium** feature, like webhooks: on the Free plan every reminder is single (see [What Premium unlocks](/docs/premium/); during the [beta](/docs/beta/) everything is unlocked). On a plan that includes them they are still an opt-in: a server manager enables **Recurring reminders** in [/config app](/docs/configuration/#recurring-reminders). Until then, only a reminder that is already recurring shows the repetition menus.
+By default every reminder is a **single event** — one ping, nothing else to decide. Repetitions are a [Premium](/docs/premium/) feature: on the Free plan every reminder is single. On a plan that includes them they are still an opt-in: a server manager enables **Recurring reminders** in [/config app](/docs/configuration/#recurring-reminders). Until then, only a reminder that is already recurring shows the repetition menus.
 
-<div class="callout"><div class="callout-t">Recurring reminders you already have keep working</div>A reminder that was already recurring, for example one created during the beta, keeps firing on the Free plan. It also keeps firing on Premium while the toggle is off. It stays editable: you can change its date, move it to another task or lower the number of times it arrives. What you can't do is raise that number, or add new recurring reminders.<br><br>Cloning or importing a list creates new reminders. So where new recurring reminders can't be created, on the Free plan or with the toggle off, a recurring reminder is refused there. Clone without reminders, or set its repetitions to <code>0</code>.</div>
+<div class="callout"><div class="callout-t">Recurring reminders you already have keep working</div>A reminder that was already recurring keeps firing on the Free plan, and on Premium while the toggle is off: you can change its date, move it to another task or lower the number of times it arrives, but not raise it. Cloning or importing a list creates new reminders, so where new recurring reminders can't be created, a clone or an import refuses a recurring one: clone without reminders, or set its repetitions to <code>0</code>.</div>
 
 ### The repetition fields
 
@@ -89,8 +89,7 @@ Several of these come from the channel's **When** form, where you type the date,
 | *A completed task can't have a reminder* | Untick the task first, if it's still to do; or pick a task that isn't ticked. |
 | *The date does not exist* | Check day, month and year together (e.g. 31 February). |
 | *Invalid time* | Use the 24-hour format `HH:mm`, e.g. `15:30`. |
-| *Over the plan* | On the Free plan recurring reminders are Premium: a reminder that was already recurring can keep the number of times it arrives or go lower, not higher. The menu offers only what is allowed, so you see this if the plan changed while the form was open: open the repetitions again. |
-| *Over what is allowed* | Recurring reminders are turned off on this server: a reminder that was already recurring can keep the number of times it arrives or go lower. You see this if they were turned off while the form was open. An admin can turn them on in `/config app`. |
+| *Over the plan* or *Over what is allowed* | Recurring reminders aren't available here: on the Free plan, or turned off in `/config app`. A reminder that was already recurring can keep the number of times it arrives or go lower. You see this if the plan or the setting changed while the form was open: open the repetitions again. |
 | *Incorrect time zone* | The name doesn't match an official zone — copy it from the time zone map. |
 
 A reminder didn't arrive, or something else went wrong? See the [FAQ](/docs/troubleshooting/#reminders).

@@ -1,7 +1,7 @@
 ---
 title: Promemoria
 description: "Associa un orario a un task e TTM avvisa il proprietario in tempo: chi lo riceve, i fusi orari, le ripetizioni."
-fonte: 412e85fa2c48
+fonte: b6d151b3bb24
 ---
 
 Un promemoria trasforma un task in qualcosa che ricorda *a te* e non il contrario. Lo imposti una volta e TTM si occupa degli avvisi. Lo aggiungi con **Promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" />: nel canale, nella seconda riga sotto la lista; nell'Activity, nel pannello di un task. Dove premere: [Come si fa](#how-to-do-it), in fondo.
@@ -48,9 +48,9 @@ Un ruolo viene avvisato solo se può essere menzionato. Quando succede e che cos
 
 ## Promemoria ricorrenti
 
-Di base ogni promemoria è un **evento singolo**: un solo avviso, niente da decidere. Le ripetizioni sono una funzione **Premium**, come i webhook: con il piano Free ogni promemoria è singolo (vedi [Cosa sblocca Premium](/docs/premium/); durante la [beta](/docs/beta/) tutto è sbloccato). Con un piano che li include sono comunque su richiesta: chi gestisce il server attiva **Promemoria ricorrenti** in [/config app](/docs/configuration/#recurring-reminders). Fino a quel momento i menu delle ripetizioni li mostra solo un promemoria che è già ricorrente.
+Di base ogni promemoria è un **evento singolo**: un solo avviso, niente da decidere. Le ripetizioni sono una funzione [Premium](/docs/premium/): con il piano Free ogni promemoria è singolo. Con un piano che li include sono comunque su richiesta: chi gestisce il server attiva **Promemoria ricorrenti** in [/config app](/docs/configuration/#recurring-reminders). Fino a quel momento i menu delle ripetizioni li mostra solo un promemoria che è già ricorrente.
 
-<div class="callout"><div class="callout-t">I promemoria ricorrenti che hai già continuano a funzionare</div>Un promemoria che era già ricorrente, per esempio uno creato durante la beta, continua a scattare con il piano Free. Continua a scattare anche con Premium mentre l'interruttore è spento. Resta modificabile: puoi cambiargli la data, spostarlo su un altro task o diminuire il numero di volte in cui arriva. Quello che non puoi fare è aumentare quel numero o aggiungere nuovi promemoria ricorrenti.<br><br>Clonare o importare una lista crea promemoria nuovi. Perciò dove non se ne possono creare di ricorrenti, con il piano Free o con l'interruttore spento, un promemoria ricorrente viene rifiutato. Clona senza promemoria, oppure imposta le sue ripetizioni a <code>0</code>.</div>
+<div class="callout"><div class="callout-t">I promemoria ricorrenti che hai già continuano a funzionare</div>Un promemoria che era già ricorrente continua a scattare con il piano Free e con Premium mentre l'interruttore è spento: puoi cambiargli la data, spostarlo su un altro task o diminuire il numero di volte in cui arriva, ma non aumentarlo. Clonare o importare una lista crea promemoria nuovi, quindi dove non se ne possono creare di ricorrenti un clone o un'importazione rifiuta un promemoria ricorrente: clona senza promemoria, oppure imposta le sue ripetizioni a <code>0</code>.</div>
 
 ### I campi della ripetizione
 
@@ -88,8 +88,7 @@ Molti vengono dalla finestra della data nel canale, dove scrivi la data, l'ora e
 | *Un task completato non può avere un promemoria* | Togli prima la spunta al task, se è ancora da fare; oppure scegli un task che non è spuntato. |
 | *La data non esiste* | Controlla insieme giorno, mese e anno (per esempio 31 febbraio). |
 | *Ora non valida* | Usa il formato a 24 ore `HH:mm`, per esempio `15:30`. |
-| *Oltre il piano* | Con il piano Free i promemoria ricorrenti sono Premium: un promemoria che era già ricorrente può mantenere il numero di volte in cui arriva o diminuirlo, non aumentarlo. Il menu offre solo ciò che è permesso, quindi lo vedi se il piano è cambiato mentre il modulo era aperto: riapri le ripetizioni. |
-| *Oltre il consentito* | I promemoria ricorrenti sono spenti su questo server: un promemoria che era già ricorrente può mantenere il numero di volte in cui arriva o diminuirlo. Lo vedi se sono stati spenti mentre il modulo era aperto. Un amministratore può accenderli in `/config app`. |
+| *Oltre il piano* o *Oltre il consentito* | Qui i promemoria ricorrenti non sono disponibili: con il piano Free, o spenti in `/config app`. Un promemoria che era già ricorrente può mantenere il numero di volte in cui arriva o diminuirlo. Lo vedi se il piano o l'impostazione sono cambiati mentre il modulo era aperto: riapri le ripetizioni. |
 | *Fuso orario errato* | Il nome non corrisponde a un fuso ufficiale: copialo dalla mappa dei fusi orari. |
 
 Un promemoria non è arrivato, o è andato storto qualcos'altro? Vedi le [FAQ](/docs/troubleshooting/#reminders).

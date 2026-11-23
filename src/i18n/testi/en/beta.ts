@@ -57,7 +57,7 @@ export const testi = {
   'voce.titolo': 'Shape what comes next.',
   'voce.intro':
     "The beta is when your voice counts most. Ask questions, report bugs and tell us what's missing on our Discord server: it's where we decide what comes next.",
-  'voce.ritmo': 'A new release almost every week since launch.',
+  'voce.ritmo': 'TTM keeps getting better, with frequent new versions.',
   'voce.note': 'See the release notes',
 
   'finale.titolo': 'Start while everything is unlocked.',

@@ -57,7 +57,10 @@ function firma(percorso) {
   } else {
     const m = /^---\r?\n([\s\S]*?)\r?\n---/.exec(testo);
     if (!m) throw new Error(`${percorso}: manca il frontmatter`);
-    const fm = /^fonte:.*$/m.test(m[1]) ? m[1].replace(/^fonte:.*$/m, `fonte: ${fonte}`) : `${m[1]}${nl}fonte: ${fonte}`;
+    // Un'impronta di sole cifre, o che sembra un numero in forma esponenziale (`12e345678901`), YAML la leggerebbe come
+    // numero e lo schema delle collezioni la rifiuterebbe: va tra apici.
+    const valore = /^[0-9.e+-]+$/i.test(fonte) ? `'${fonte}'` : fonte;
+    const fm = /^fonte:.*$/m.test(m[1]) ? m[1].replace(/^fonte:.*$/m, `fonte: ${valore}`) : `${m[1]}${nl}fonte: ${valore}`;
     nuovo = testo.slice(0, m.index) + `---${nl}${fm}${nl}---` + testo.slice(m.index + m[0].length);
   }
   if (nuovo !== testo) writeFileSync(assoluto, nuovo);
