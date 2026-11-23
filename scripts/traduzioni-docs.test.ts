@@ -16,7 +16,7 @@ import rehypeLinkDellaLingua, { conPrefisso } from '../src/lib/rehype-link-della
 import rehypeAncoreInglesi, { ancoreInglesi } from '../src/lib/rehype-ancore-inglesi.mjs';
 import rehypeNoteDiRilascio from '../src/lib/rehype-note-di-rilascio.mjs';
 import rehypeLinkEsterni from '../src/lib/rehype-link-esterni.mjs';
-import { traduzioneDi } from '../src/lib/lingua-del-file.mjs';
+import { paginaTradotta, traduzioneDi } from '../src/lib/lingua-del-file.mjs';
 
 // I plugin nell'ordine di astro.config.mjs.
 const processore = await createMarkdownProcessor({
@@ -129,4 +129,20 @@ test('ancoreInglesi: per ogni pagina inglese gli id sono quelli della pipeline d
     const attesi = (await rendi(percorso)).metadata.headings.map((h) => ({ depth: h.depth, slug: h.slug }));
     assert.deepEqual(await ancoreInglesi(percorso), attesi, nome);
   }
+});
+
+test('una pagina legale in src/pages/it/: link nella lingua e link esterni nella lingua, le sue ancore restano', async () => {
+  const pagine = join(radice, 'pages');
+  mkdirSync(join(pagine, 'it'), { recursive: true });
+  writeFileSync(join(pagine, 'privacy.md'), '## The Activity\n');
+  const it = join(pagine, 'it', 'privacy.md');
+  writeFileSync(it, '---\ntitle: Privacy\n---\n\n## L’Activity\n\nVedi [community](/docs/community/), [GDPR](/it/gdpr/#diritti) e [Discord](https://discord.com/).\n');
+  assert.deepEqual(paginaTradotta(it), { lingua: 'it', prefisso: 'it', inglese: join(pagine, 'privacy.md') });
+  assert.equal(paginaTradotta(join(pagine, 'privacy.md')), null);
+  assert.equal(paginaTradotta(join(pagine, 'docs', 'x.md')), null);
+  const { code } = await rendi(it);
+  assert.match(code, /<h2 id="lactivity">/);
+  assert.match(code, /href="\/it\/docs\/community\/"/);
+  assert.match(code, /href="\/it\/gdpr\/#diritti"/);
+  assert.match(code, /<span class="sr-only"> \(si apre in una nuova scheda\)<\/span>/);
 });

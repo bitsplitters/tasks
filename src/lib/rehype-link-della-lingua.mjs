@@ -1,13 +1,13 @@
 // I link interni delle traduzioni portano alla stessa lingua (spec 2026-11-19-sito-multilingua-design.md, §4.5, nel
 // repo team-tasks-manager). Chi traduce lascia i link dell'inglese (`[Premium page](/premium/)`); qui ogni `href` che
-// comincia con `/` prende il prefisso della lingua del file, salvo:
+// comincia con `/` prende il prefisso della lingua del file (anche le pagine legali in src/pages/<prefisso>/), salvo:
 // - un percorso che finisce con un'estensione (`/icons/other.png`, `/premium/premium-it.png`);
 // - un percorso in una cartella di file statici (`/icons/`, `/screens/`, `/video/`, `/og/`, `/badges/`,
 //   `/premium/premium-`);
 // - /invite/, il passaggio verso Discord, che esiste solo in inglese.
 // Anche i link dentro l'HTML scritto a mano (i riquadri `<div class="callout">`), che a questo punto della pipeline sono
 // ancora testo grezzo: rehype-raw li trasforma in elementi solo dopo i plugin.
-import { percorsoDelFile, traduzioneDi } from './lingua-del-file.mjs';
+import { linguaDiUnFile, percorsoDelFile } from './lingua-del-file.mjs';
 
 const STATICHE = ['/icons/', '/screens/', '/video/', '/og/', '/badges/', '/premium/premium-'];
 
@@ -29,7 +29,7 @@ export function htmlConPrefisso(html, prefisso) {
 
 export default function rehypeLinkDellaLingua() {
   return (tree, file) => {
-    const traduzione = traduzioneDi(percorsoDelFile(file));
+    const traduzione = linguaDiUnFile(percorsoDelFile(file));
     if (!traduzione) return;
     const { prefisso } = traduzione;
     const visita = (n) => {
