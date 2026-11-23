@@ -1,6 +1,6 @@
 ---
 title: Commands reference
-description: The complete list of slash commands — most of TTM lives in buttons, not commands.
+description: Every slash command in one place, with the page that explains it — most of TTM lives in buttons, not commands.
 group: Reference
 order: 9.4
 ---
@@ -9,11 +9,26 @@ TTM keeps commands to a minimum: once a list exists, you do everything with butt
 
 If your Discord is in another language, some names are translated: see [Command names in your language](#command-names-in-your-language) at the bottom.
 
+| Command | What it's for | Where it's explained |
+| :--- | :--- | :--- |
+| `/create-list` | Create a list, or rebuild one from a file | [Create your first list](/docs/getting-started/#2-create-your-first-list); the file [below](#create-list) |
+| `/config` | The three commands for whoever looks after TTM on the server | [/config](/docs/config/) |
+| `/config app` | The server's settings: notifications, history, tips, reminders, time zone, permissions | [/config app](/docs/configuration/) |
+| `/config lists` | Every list of the server: regenerate, seal or delete several at once | [/config lists](/docs/config-lists/) |
+| `/config webhook` | Create, view, modify or delete a webhook | [/config webhook](/docs/webhooks/#creating-a-webhook) |
+| `/my timezone` | Your time zone, the same in every server | [/my timezone](/docs/my-timezone/) |
+| `/beta` | What the beta means for your server | [How the beta works](/docs/beta/) |
+| `/help` | Your starting point inside Discord | [Below](#help) |
+| `/invite` | A card to add TTM to another server | [Below](#invite) |
+| `/news` | The latest news about TTM | [Below](#news) |
+
 ## `/create-list`
 
-Create a task list, in a text channel or in the chat of a voice channel. TTM checks that it has the permissions it needs in the channel, then posts the list with its button panel. In a voice channel the list has no activity timeline: see [Voice channels](/docs/known-limits/#voice-channels). This is the command you'll use most. With [Tips](/docs/configuration/#tips) on, it also offers a **Tutorial**: a practice list that teaches the buttons (see [Getting started](/docs/getting-started/#2-create-your-first-list)).
+To create a list from scratch, see [Create your first list](/docs/getting-started/#2-create-your-first-list). This section is about the command's only option, **`file`**, which you can leave out.
 
-The command has one option, **`file`**, and you can leave it out. Attach the `.txt` file that a list's **Download** gives you: it is named after the list, and it can come from another server. TTM then rebuilds the list from the file instead of opening the creation form. The list comes back with its tasks and their state, owners, tags, reminders and webhooks. Like any new list, it needs a free place on your plan (see [How the three places work](/docs/premium/#how-the-three-places-work)).
+Attach the `.txt` file that a list's **Download** gives you. It is named after the list, and it can come from another server. TTM then rebuilds the list from the file instead of opening the creation form.
+
+The list comes back with its tasks and their state, owners, tags, reminders and webhooks. Like any new list, it needs a free place on your plan (see [How the three places work](/docs/premium/#how-the-three-places-work)).
 
 TTM refuses a file straight away if it isn't a `.txt` or is bigger than **64 KB**. Otherwise TTM reads the file. If something doesn't fit, TTM creates nothing and lists every problem in one message, each with its line or its task:
 
@@ -24,39 +39,7 @@ TTM refuses a file straight away if it isn't a `.txt` or is bigger than **64 KB*
 
 Reminders whose alerts are all in the past are not a problem: they come back on their tasks, and send nothing more.
 
-→ See [The list in the channel](/docs/the-task-list/), and [Tips & tricks](/docs/tips/#reuse-a-list-anywhere) for reusing a list on another server.
-
-## `/config app`
-
-Open the settings panel of your server: notifications, the activity timeline, the tips for newcomers, recurring reminders, time zone, permissions and more.
-
-→ See [/config app](/docs/configuration/).
-
-## `/config lists`
-
-See every list of this server, and regenerate, seal or delete several of them at once. Regenerating brings back a list whose message was deleted by mistake.
-
-→ See [/config lists](/docs/config-lists/).
-
-## `/config webhook`
-
-Create, view, modify or delete a webhook, optionally limited to a **completion** or **reopen** trigger. It is the only command with options you must fill in: the **action** and the **webhook name**.
-
-Webhooks are a **Premium** feature, unlocked for every server during the beta: see [What Premium unlocks](/docs/premium/).
-
-→ See [/config webhook](/docs/webhooks/#creating-a-webhook).
-
-## `/my timezone`
-
-Your time zone, the same in every server: TTM proposes it whenever you pick a date, in the channel and in the Activity. The panel, visible only to you, shows your current zone and where it comes from: chosen by you, the last one you left in a reminder, your Discord language or the server. **Choose** opens a form: paste the name of your zone, such as `Europe/Rome`, found on the [time zone map](https://timezones.bitsplitters.app). **Back to automatic** forgets your choice, and TTM learns your zone from your reminders again. The Activity has the same choice in its gear. It works in servers only, and needs no permission.
-
-→ See [Your time zone](/docs/reminders/#your-time-zone).
-
-## `/beta`
-
-This command shows what the beta means for your server: every feature is unlocked and free for the whole beta. It also explains what happens when the beta ends, and why there's a paid plan. A button shows what that plan will look like.
-
-→ See [How the beta works](/docs/beta/).
+→ See [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
 
 ## `/help`
 
@@ -70,11 +53,15 @@ This command is your starting point inside Discord. It opens a panel with five b
 
 ## `/invite`
 
-Shows a card to add Team Tasks Manager to another server: the same presentation as its App Directory page (what it does, how to start), the **Add to Discord** button (Discord's authorization page for the bot, with the same permissions as https://tasks.bitsplitters.app/invite), the guide and the support server. The card is visible to everyone in the channel, so you can run it where the people who will set up the other server can see it. It reads nothing from the server and needs no permission.
+Shows a card to add Team Tasks Manager to another server: the same presentation as its App Directory page (what it does, how to start), the **Add to Discord** button, the guide and the support server. **Add to Discord** opens Discord's authorization page for the bot, with the same permissions as https://tasks.bitsplitters.app/invite.
+
+The card is visible to everyone in the channel, so you can run it where the people who will set up the other server can see it. It reads nothing from the server and needs no permission.
 
 ## `/news`
 
-The latest news about Team Tasks Manager, in your language: what's new in the bot and how to use it. The news opens in a message only you can see, with its date under the title. Under the text, **Discord server** opens our support server and **Release notes** opens that release on the [Release notes](/docs/release-notes/) page. When there's older or newer news, the **Previous** and **Next** buttons take you to it. Going back, you find every release since the first one, 1.0.0, each with the day it came out. It works in servers only, and needs no permission.
+The latest news about Team Tasks Manager, in your language: what's new in the bot and how to use it. The news opens in a message only you can see, with its date under the title.
+
+Under the text, **Discord server** opens our support server and **Release notes** opens that release on the [Release notes](/docs/release-notes/) page. When there's older or newer news, the **Previous** and **Next** buttons take you to it. Going back, you find every release since the first one, 1.0.0, each with the day it came out. It works in servers only, and needs no permission.
 
 When there's news nobody in your server has read yet, the last line of the bot's panels says so, in place of the usual footer: in `/help`, the Guide, **More**, `/config app` and the explanation that `/create-list` shows. As soon as someone in the server opens `/news`, the line goes away for everyone. A server that adds TTM after a piece of news doesn't get the line: the news is in `/news`.
 

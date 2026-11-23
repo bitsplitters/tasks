@@ -1,7 +1,7 @@
 ---
 title: Promemoria
 description: "Associa un orario a un task e TTM avvisa il proprietario in tempo: chi lo riceve, i fusi orari, le ripetizioni."
-fonte: e59da55a5dab
+fonte: 412e85fa2c48
 ---
 
 Un promemoria trasforma un task in qualcosa che ricorda *a te* e non il contrario. Lo imposti una volta e TTM si occupa degli avvisi. Lo aggiungi con **Promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" />: nel canale, nella seconda riga sotto la lista; nell'Activity, nel pannello di un task. Dove premere: [Come si fa](#how-to-do-it), in fondo.
@@ -21,7 +21,7 @@ Non è arrivato niente? Il proprietario deve accettare i messaggi diretti dai me
 
 TTM vuole il nome ufficiale di un fuso orario, come `Europe/Rome`. Cerca il tuo sulla **[mappa dei fusi orari](https://timezones.bitsplitters.app)**: seleziona la tua zona sulla mappa, copia il valore e incollalo nel campo. L'Activity permette anche di cercare per città o paese.
 
-<div class="callout"><div class="callout-t">Scegli il tuo fuso orario</div>Usa <a href="/docs/commands/#my-timezone"><strong>/my timezone</strong></a> in qualsiasi server, o l'ingranaggio nell'Activity e TTM ti propone il <strong>tuo</strong> fuso ovunque, nel canale e nell'Activity. <strong>Torna automatico</strong> lo dimentica. Finché non ne scegli uno, TTM lo impara: il fuso che lasci in un promemoria diventa il tuo e la riga sotto il campo te lo dice. Con un fuso tuo, un fuso diverso in un promemoria vale solo per quella data. Prima di avere un fuso tuo, il canale propone il fuso della lingua del tuo Discord, come <code>Europe/Rome</code> per l'italiano e l'Activity quello del tuo dispositivo. Una lingua parlata in più fusi, come l'inglese (US), prende il fuso del server. I promemoria che scrivi nel testo di una lista usano lo stesso fuso. Così ogni membro del team può ragionare nel proprio orario locale.</div>
+<div class="callout"><div class="callout-t">Scegli il tuo fuso orario</div>Usa <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> in qualsiasi server, o l'ingranaggio nell'Activity e TTM ti propone il <strong>tuo</strong> fuso ovunque, nel canale e nell'Activity. Finché non ne scegli uno, TTM lo impara: il fuso che lasci in un promemoria diventa il tuo. Con un fuso tuo, un fuso diverso in un promemoria vale solo per quella data. I promemoria che scrivi nel testo di una lista usano lo stesso fuso.</div>
 
 ## Come arriva il promemoria
 
