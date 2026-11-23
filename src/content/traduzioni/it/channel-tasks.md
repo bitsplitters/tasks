@@ -1,7 +1,7 @@
 ---
 title: Modificare un task nel canale
 description: La seconda riga di pulsanti sotto la lista — Contenuto, Proprietario, Tag, Promemoria e Webhook — con le loro finestre e i loro menu.
-fonte: cc0bb3e968c9
+fonte: ea53238b952e
 ---
 
 La seconda riga sotto la lista agisce su **un task alla volta**: il suo testo, il suo proprietario, i suoi tag, il suo promemoria e il suo webhook. Questa pagina mostra dove cliccare. Cosa fa ogni funzione e le sue regole: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/).
@@ -32,7 +32,7 @@ Dopo che usi **Proprietario**, **Tag** o **Promemoria**, il pulsante torna grigi
 
 ## Contenuto
 
-Il **blu** apre una finestra con il testo del task. I suoi tag non sono nella finestra: restano sul task, in fondo al testo, e li cambia il pulsante **Tag**.
+Il **blu** apre una finestra con il testo del task. I suoi tag non sono nella finestra: restano sul task in fondo al testo e li cambia il pulsante **Tag**.
 
 - Gli a capo diventano spazi e i canali compaiono con il nome, come in **Aggiornamento in blocco**.
 - Proprietari, tag, promemoria e webhook scritti lì vengono tolti e TTM ti dice cosa ha tolto: hanno i loro pulsanti.
@@ -62,7 +62,13 @@ Il **blu** mostra un menu sotto i pulsanti, con la scritta *Scegli un task nel m
 
 Cosa può essere un proprietario e quali ruoli crea TTM: [Proprietari e tag](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
-Con **Mantieni lo stato dopo la selezione** attivo, **Proprietario** resta blu dopo che prendi un task e il menu resta vuoto: scegli il task successivo per prendere anche quello. Un task che ha un altro proprietario carica invece il suo proprietario nel menu. Per un ruolo creato da TTM, il menu mostra le persone a cui TTM ha dato il ruolo. Ogni modifica che confermi si applica subito a quel task. Se svuoti il menu, il proprietario viene tolto e con lui il suo promemoria, come nella modalità rossa. Per tornare a prendere i task, clicca **Proprietario** finché è di nuovo blu.
+Con **Mantieni lo stato dopo la selezione** attivo, **Proprietario** resta blu dopo che prendi un task e il menu resta vuoto: scegli il task successivo per prendere anche quello.
+
+- Un task che ha un altro proprietario carica invece il suo proprietario nel menu; per un ruolo creato da TTM, il menu mostra le persone a cui TTM ha dato il ruolo.
+- Ogni modifica che confermi si applica subito a quel task.
+- Se svuoti il menu, il proprietario viene tolto e con lui il suo promemoria, come nella modalità rossa.
+
+Per tornare a prendere i task, clicca **Proprietario** finché è di nuovo blu.
 
 Il **rosso** toglie il proprietario e anche il suo promemoria: non resta nessuno a riceverlo. Se il promemoria non è ancora scattato, TTM ti chiede prima di confermare.
 

@@ -34,7 +34,7 @@ Per liberare un posto: vedi [Cosa succede a una quarta lista](/docs/premium/#wha
 
 ## Il piano Free, dopo la beta
 
-Cosa dà il piano Free a ogni server, e cosa cambia con Premium, è in [Cosa sblocca Premium](/docs/premium/). I piani a confronto e i prezzi, IVA esclusa, sono nella [pagina Premium](/premium/).
+Cosa dà il piano Free a ogni server e cosa cambia con Premium: vedi [Cosa sblocca Premium](/docs/premium/). I piani a confronto e i prezzi, IVA esclusa, sono nella [pagina Premium](/premium/).
 
 Preferisci far girare TTM da solo? Puoi ospitarlo gratis, con ogni funzione Premium sbloccata e senza l'Activity, ma non offrirlo come servizio ad altri. Vedi [Preferisci ospitarlo da solo?](/premium/#self-host)
 

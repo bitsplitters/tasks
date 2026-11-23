@@ -1,7 +1,7 @@
 ---
 title: La lista nel canale
 description: "Il messaggio della lista in un canale Discord: il menu di spunta, la prima riga di pulsanti, Altro e che cosa succede mentre qualcuno la modifica."
-fonte: 1a17ec476d16
+fonte: 6656d50714c3
 ---
 
 Quando una lista esiste, TTM mostra un **menu di spunta** e **due righe di pulsanti** sotto di essa. Quasi niente qui richiede un comando: basta un click. La prima riga agisce sull'intera lista ed è spiegata qui. La seconda agisce su un singolo task: vedi [Modificare un task nel canale](/docs/channel-tasks/).
@@ -39,7 +39,11 @@ Questi pulsanti non toccano mai un singolo task: agiscono sull'**intera lista**.
 
 ### Aggiornamento in blocco
 
-**Aggiornamento in blocco** apre un modulo con il titolo e l'intera lista come testo: una riga per task, nel formato spiegato in [Modificare una lista a mano](/docs/writing-a-list/). Persone, ruoli e canali compaiono per nome e le date dei promemoria nel tuo fuso orario. Una riga sotto il testo spiega come aggiungere qualcuno di nuovo e rimanda a [Modificare una lista a mano](/docs/writing-a-list/#people-roles-and-channels-by-name). Cambia ciò che ti serve e invia. Mentre il modulo è aperto, la lista è bloccata per tutti gli altri: vedi [Quando la lista è bloccata](#when-the-list-is-locked).
+**Aggiornamento in blocco** apre un modulo con il titolo e l'intera lista come testo: una riga per task, nel formato spiegato in [Modificare una lista a mano](/docs/writing-a-list/). Cambia ciò che ti serve e invia.
+
+- Persone, ruoli e canali compaiono per nome e le date dei promemoria nel tuo fuso orario.
+- Una riga sotto il testo spiega come aggiungere qualcuno di nuovo: vedi [Persone, ruoli e canali per nome](/docs/writing-a-list/#people-roles-and-channels-by-name).
+- Mentre il modulo è aperto, la lista è bloccata per tutti gli altri: vedi [Quando la lista è bloccata](#when-the-list-is-locked).
 
 Se la lista è cambiata mentre la modificavi, TTM ti chiede che cosa fare prima di salvare: vedi [Quando la lista cambia mentre la modifichi](#when-the-list-changes-while-you-edit-it). Se il testo non si può salvare, TTM te lo mostra di nuovo con tutti i problemi: vedi [Quando il testo non si può salvare](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

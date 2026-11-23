@@ -100,6 +100,6 @@ Quando inviti il bot, Discord mostra i permessi che chiede. Ecco a che cosa serv
 | Gestisci ruoli | Creare il ruolo che rende proprietarie di un task più persone (Premium) |
 | Usare emoji esterne | Mostrare le icone del bot su pulsanti e liste |
 
-**In un canale vocale** una lista vive nella chat del canale, che non ha una cronologia, e TTM ha bisogno di *Connettersi* per scriverci: vedi [Canali vocali](/docs/known-limits/#voice-channels).
+**In un canale vocale** una lista vive nella chat del canale, che non ha una cronologia. Per scriverci TTM ha bisogno di *Connettersi*: vedi [Canali vocali](/docs/known-limits/#voice-channels).
 
 <div class="callout"><div class="callout-t">Da sapere</div>Puoi concederli anche dopo da <em>Impostazioni del server → Ruoli → Team Tasks Manager</em>, oppure per singolo canale dalle impostazioni dei permessi del canale. <em>Gestisci ruoli</em> fa eccezione: vale solo sul ruolo del bot, non per canale.</div>

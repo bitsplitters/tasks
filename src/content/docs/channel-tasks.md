@@ -64,7 +64,13 @@ While the form is open, the list is locked for the others. Saving unlocks it; th
 
 What an owner can be, and the roles TTM creates: [Owners and tags](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
-With **Keep the state after a selection** on, **Owner** stays blue after you take a task, and the menu stays empty: pick the next task to take it too. A task someone else owns loads its owner into the menu instead. For a role TTM created, the menu shows the people it gave the role to. Every change you confirm applies to that task at once. If you empty the menu, the owner is removed, and its reminder too, as in red mode. To go back to taking tasks, click **Owner** until it's blue again.
+With **Keep the state after a selection** on, **Owner** stays blue after you take a task, and the menu stays empty: pick the next task to take it too.
+
+- A task someone else owns loads its owner into the menu instead; for a role TTM created, the menu shows the people it gave the role to.
+- Every change you confirm applies to that task at once.
+- If you empty the menu, the owner is removed, and its reminder too, as in red mode.
+
+To go back to taking tasks, click **Owner** until it's blue again.
 
 **Red** removes the owner, and its reminder too: nobody is left to receive it. If the reminder hasn't fired yet, TTM asks you to confirm first.
 

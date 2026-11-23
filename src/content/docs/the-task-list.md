@@ -41,7 +41,11 @@ These buttons never touch a single task: they act on the **entire list**. What e
 
 ### Bulk update
 
-**Bulk update** opens a form with the title and the whole list as text: one line per task, in the format explained in [Editing a list by hand](/docs/writing-a-list/). People, roles and channels show by name, and reminder dates in your time zone. A line under the text says how to add someone new, and links to [Editing a list by hand](/docs/writing-a-list/#people-roles-and-channels-by-name). Change what you need and submit. While the form is open, the list is locked for everyone else: see [When the list is locked](#when-the-list-is-locked).
+**Bulk update** opens a form with the title and the whole list as text: one line per task, in the format explained in [Editing a list by hand](/docs/writing-a-list/). Change what you need and submit.
+
+- People, roles and channels show by name, and reminder dates in your time zone.
+- A line under the text says how to add someone new: see [People, roles and channels by name](/docs/writing-a-list/#people-roles-and-channels-by-name).
+- While the form is open, the list is locked for everyone else: see [When the list is locked](#when-the-list-is-locked).
 
 If the list changed while you were editing, TTM asks you what to do before it saves: see [When the list changes while you edit it](#when-the-list-changes-while-you-edit-it). If the text can't be saved, TTM shows it back with every problem: see [When the text can't be saved](/docs/writing-a-list/#when-the-text-cant-be-saved).
 
