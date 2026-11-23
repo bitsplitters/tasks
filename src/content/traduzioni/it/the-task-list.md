@@ -1,7 +1,7 @@
 ---
 title: La lista nel canale
 description: "Il messaggio della lista in un canale Discord: il menu di spunta, la prima riga di pulsanti, Altro e che cosa succede mentre qualcuno la modifica."
-fonte: e331f2ab8fc8
+fonte: 1a17ec476d16
 ---
 
 Quando una lista esiste, TTM mostra un **menu di spunta** e **due righe di pulsanti** sotto di essa. Quasi niente qui richiede un comando: basta un click. La prima riga agisce sull'intera lista ed è spiegata qui. La seconda agisce su un singolo task: vedi [Modificare un task nel canale](/docs/channel-tasks/).
@@ -32,7 +32,7 @@ Questi pulsanti non toccano mai un singolo task: agiscono sull'**intera lista**.
 | Pulsante | Che cosa fa |
 | :--- | :--- |
 | **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> | Apre la lista nell'Activity, una finestra dentro Discord dove ci lavorate insieme. Vedi [L'Activity](/docs/activity/). |
-| **Aggiornamento in blocco** <img class="inline-ic" src="/icons/edit.png" alt="" /> | Modifica il titolo e l'intera lista in un unico modulo: il modo più rapido per cambiare due o più task. Vedi [Aggiornamento in blocco](#bulk-update). |
+| **Aggiornamento in blocco** <img class="inline-ic" src="/icons/edit.png" alt="" /> | Modifica il titolo e l'intera lista come testo, in un unico modulo. Per un solo task usa la [seconda riga](#row-2--acts-on-a-single-task). Vedi [Aggiornamento in blocco](#bulk-update). |
 | **Pulisci lista** <img class="inline-ic" src="/icons/clean.png" alt="" /> | Rimuove ogni task completato, dopo una conferma. |
 | **Riapri tutti** <img class="inline-ic" src="/icons/reopen.png" alt="" /> | Riporta da fare ogni task completato. Puoi anche spostare i loro promemoria a una nuova data. |
 | **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> | Apre un pannello con le azioni che ti servono meno spesso: la guida dentro Discord e clonare, scaricare, sigillare o eliminare la lista. Quando la lista è bloccata, la sblocchi da qui. |

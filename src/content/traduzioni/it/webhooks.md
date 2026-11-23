@@ -1,14 +1,14 @@
 ---
 title: Webhook
 description: "Fai partire una chiamata HTTP quando un task viene completato o riaperto: collega TTM a qualsiasi cosa."
-fonte: 36695e717849
+fonte: 18e8cdc31be4
 ---
 
 I webhook permettono a un task di parlare con il mondo esterno. Collegane uno a un task: quando quel task viene **completato** o **riaperto**, TTM invia una richiesta HTTP. Può andare a un sistema di CI, a una chat, a un'automazione di fogli di calcolo o a qualsiasi altra cosa che accetti una chiamata.
 
 Chi gestisce il server crea i webhook con [/config webhook](/docs/config-webhook/): l'indirizzo, il metodo, che cosa invia la chiamata. Poi li colleghi ai task con il pulsante **Webhook**.
 
-I webhook sono **Premium**, sbloccati per ogni server durante la beta: vedi [Cosa sblocca Premium](/docs/premium/).
+I webhook sono una funzione [Premium](/docs/premium/).
 
 <div class="howto" id="how-to-do-it"><div class="howto-t">Come si fa</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#webhook"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</span><span class="howto-d">Webhook, nella seconda riga sotto la lista: scegli il webhook, poi il task.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#webhook"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />Nell'Activity</span><span class="howto-d">Webhook, nel pannello di un task: i webhook del server per nome.</span></a></div></div>
 

@@ -1,7 +1,7 @@
 ---
 title: Per iniziare
 description: Invita il bot, crea una lista, poi spunta un task e imposta un promemoria, nel canale o nell'Activity.
-fonte: 4cabc1f604a6
+fonte: 65c887766b9d
 ---
 
 Team Tasks Manager (TTM) permette al tuo team di condividere e gestire i task **senza uscire da Discord**. Questa pagina ti porta da zero a una lista funzionante: la crei, spunti un task, imposti un promemoria.
@@ -48,7 +48,9 @@ Invia la form e la lista compare nel canale. Ecco la stessa lista dopo alcuni pa
   <img src="/screens/it/list-desktop.png" width="460" height="418" loading="lazy" alt="La lista Torneo del sabato in Discord: sei task numerati con le caselle. Il primo è spuntato e in grigio; Preparare i tabelloni ha due subtask e un proprietario; Trasmettere la finale ha un proprietario e la data di un promemoria. Sotto i task, una piccola riga rimanda ad Altro, alla Guida e alla documentazione completa e una barra verde mostra quanto è stato fatto. Sotto la lista ci sono il menu a tendina, Spunta task e due righe di pulsanti." />
 </picture>
 
-Preferisci imparare facendo? Accanto a **Crea la tua lista** c'è un pulsante **Tutorial**: trasforma la spiegazione in una lista di prova con sette lezioni, nella tua lingua e ti manda la Guida, la stessa che trovi in **Altro** → **Guida**, in un messaggio che vedi solo tu. Fai le lezioni in ordine: ognuna ti chiede di fare qualcosa a se stessa e nomina il pulsante con la sua icona. Spuntala, dalle un proprietario e un promemoria, cambia il suo testo, eliminala, spuntala nella modalità Activity. La lista di prova è una lista normale: come ogni lista nuova, richiede un posto libero nel tuo piano (vedi [Come funzionano i tre posti](/docs/premium/#how-the-three-places-work)) e puoi eliminarla da **Altro** → **Elimina lista** quando hai finito.
+Preferisci imparare facendo? Accanto a **Crea la tua lista** c'è un pulsante **Tutorial**: trasforma la spiegazione in una lista di prova con sette lezioni nella tua lingua e ti manda la Guida in un messaggio che vedi solo tu. Fai le lezioni in ordine: ognuna nomina un pulsante con la sua icona e ti chiede di fare qualcosa a se stessa, dalla spunta all'Activity.
+
+La lista di prova è una lista normale: quando hai finito, eliminala da **Altro** → **Elimina lista**.
 
 Ora scegli dove lavorarci. La lista è la stessa nei due posti e sta [in un posto alla volta](/docs/core-concepts/#one-list-two-places).
 
@@ -62,7 +64,13 @@ Sotto la lista c'è il **menu di spunta**, un menu a tendina che mostra il titol
 
 ### Imposta un promemoria
 
-Nella seconda riga clicca una volta **Promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" />, il quarto pulsante: diventa **blu**. Poi scegli un task **non ancora spuntato**. Si apre una form intitolata *Imposta il promemoria per il task …*. È già compilata con dieci minuti da adesso: inviala così com'è. Finché non lo cambi, il fuso orario nell'ultimo campo è quello del server: cambialo se il tuo è diverso. Il task mostra l'ora e il promemoria arriva una volta sola. Se il tuo server ha attivato i promemoria ricorrenti, dopo la form arriva una scheda di riepilogo: premi **Salva**.
+Nella seconda riga:
+
+1. Clicca una volta **Promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" />, il quarto pulsante: diventa **blu**.
+2. Scegli un task **non ancora spuntato**. Si apre una form intitolata *Imposta il promemoria per il task …*, già compilata con dieci minuti da adesso.
+3. Inviala così com'è. Se il tuo server ha attivato i promemoria ricorrenti, dopo la form arriva una scheda di riepilogo: premi **Salva**.
+
+Il task mostra l'ora e il promemoria arriva una volta sola. Finché non lo cambi, il fuso orario nell'ultimo campo è quello del server: cambialo se il tuo è diverso.
 
 **Hai chiuso la form con ✕?** La lista resta bloccata: apri **Altro** sotto la lista e premi **Sblocca lista**. Vedi [Quando la lista è bloccata](/docs/the-task-list/#when-the-list-is-locked).
 

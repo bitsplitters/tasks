@@ -1,7 +1,7 @@
 ---
 title: FAQ
 description: Domande frequenti — risposte rapide ai problemi più comuni, ognuna con il link alla pagina che la spiega per intero.
-fonte: '452513482947'
+fonte: c80b5664452a
 ---
 
 Trova qui sotto il problema che hai. Ogni risposta è breve e rimanda alla pagina che la spiega per intero. I problemi della lista sono divisi per luogo: [nel canale](#in-the-channel) e [nell'Activity](#in-the-activity).
@@ -34,13 +34,17 @@ I menu **Tag** e **Proprietario** aspettano che tu confermi la scelta. Da mobile
 
 Con **Mantieni lo stato dopo la selezione** spento (come di default), scegli prima le persone e poi il task. Vedi [Tag](/docs/channel-tasks/#tag).
 
-Se un task è diventato tuo invece di andare alle persone che avevi scelto, il menu era ancora vuoto quando hai scelto il task: con il menu vuoto, **Proprietario** dà il task a te. Clicca **Proprietario** finché è rosso e scegli il task per toglierlo, poi scegli le persone, conferma e scegli di nuovo il task.
+Se un task è diventato tuo invece di andare alle persone che avevi scelto, il menu era ancora vuoto quando hai scelto il task: con il menu vuoto, **Proprietario** dà il task a te. Per rimediare:
+
+1. Clicca **Proprietario** finché è rosso e scegli il task, per togliere il proprietario.
+2. Clicca **Proprietario** finché è blu, scegli le persone e conferma.
+3. Scegli di nuovo il task.
 
 ### Voglio dare un task a più persone
 
 Clicca **Proprietario** finché diventa blu. Nel menu sotto i pulsanti, con la scritta *Scegli un task nel menu in alto per prenderlo, o scegli a chi darlo*, scegli le persone. Conferma la scelta, poi scegli il task. TTM crea un ruolo per quelle persone e lo imposta come proprietario. Nell'Activity, scegli le persone nel pannello del task: vedi [Proprietario](/docs/activity-list/#owner).
 
-È una funzione Premium, sbloccata durante la beta. Al bot serve il permesso *Gestisci ruoli*: un admin lo concede al ruolo del bot in *Impostazioni del server → Ruoli*, non su un canale. Vedi [Proprietario: una persona, un ruolo o più persone](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
+È una funzione [Premium](/docs/premium/). Al bot serve il permesso *Gestisci ruoli*: un admin lo concede al ruolo del bot in *Impostazioni del server → Ruoli*, non su un canale. Vedi [Proprietario: una persona, un ruolo o più persone](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
 ### Ho eliminato per sbaglio il messaggio della lista
 
@@ -80,7 +84,9 @@ L'Activity è stata chiusa senza premere **Esci**. Per TTM, una finestra chiusa 
 
 ### L'Activity si ricarica dopo che cambio il tema di Discord
 
-Quando cambi il suo tema, Discord ricarica l'Activity da sé, a volte anche dopo un minuto: TTM non può impedirlo. La lista torna da sola in un attimo, con il tema che avevi. Se il tuo tema era **Come Discord**, diventa il tema che stavi vedendo: per seguire di nuovo Discord, scegli **Come Discord** con l'ingranaggio. Vedi [Le tue impostazioni](/docs/activity/#your-settings).
+Quando cambi il suo tema, Discord ricarica l'Activity da sé, a volte anche dopo un minuto: TTM non può impedirlo. La lista torna da sola in un attimo, con il tema che avevi.
+
+Se il tuo tema era **Come Discord**, diventa il tema che stavi vedendo. Per seguire di nuovo Discord, scegli **Come Discord** con l'ingranaggio: vedi [Le tue impostazioni](/docs/activity/#your-settings).
 
 Dopo un ricaricamento, **Esci** ti porta ancora fuori dalla lista, ma per un bug di Discord non può chiudere la finestra: chiudila da Discord.
 
@@ -92,13 +98,15 @@ Dopo un ricaricamento, **Esci** ti porta ancora fuori dalla lista, ma per un bug
 - **Il proprietario deve consentire i messaggi diretti dai membri del server**, nelle *Impostazioni privacy* del server. Vedi [Promemoria con messaggio diretto](/docs/known-limits/#reminders-by-direct-message).
 - **Il proprietario è un ruolo che non può essere menzionato.** Il promemoria compare nel canale, ma nessuno riceve una notifica. Vedi [Promemoria a un ruolo](/docs/known-limits/#reminders-to-a-role).
 - **Il ruolo proprietario è stato eliminato.** Il promemoria non viene inviato a nessuno. Scegli un altro proprietario per il task. Vedi [Promemoria a un ruolo](/docs/known-limits/#reminders-to-a-role).
-- **TTM non può scrivere nel canale della lista.** Se il proprietario è un ruolo che TTM ha creato per più persone, ognuna riceve il promemoria con un messaggio diretto, con il motivo. Per qualsiasi altro ruolo il promemoria non viene consegnato finché un admin non concede il permesso. Vedi [I permessi che chiede TTM](/docs/core-concepts/#the-permissions-ttm-asks-for).
+- **TTM non può scrivere nel canale della lista.** Vedi [I permessi che chiede TTM](/docs/core-concepts/#the-permissions-ttm-asks-for).
+  - Un ruolo che TTM ha creato per più persone: ognuna riceve il promemoria con un messaggio diretto, con il motivo.
+  - Qualsiasi altro ruolo: il promemoria non viene consegnato finché un admin non concede il permesso.
 - **Il proprietario è stato tolto, o la lista è stata sigillata.** In questi casi il promemoria sparisce. Prima di togliere un proprietario il cui promemoria non è ancora scattato, TTM ti chiede di confermare. Vedi [Proprietari e tag](/docs/owners-and-tags/) e [Sigillare](/docs/config-lists/#seal).
 - **Il task è spuntato.** Completare un task ferma il suo promemoria e un task spuntato non ne può ricevere uno nuovo.
 
 ### Voglio un promemoria settimanale
 
-TTM non ha un'unità per le settimane, quindi una settimana è 7 giorni. Per prima cosa un admin attiva **Promemoria ricorrenti** in [`/config app`](/docs/configuration/#recurring-reminders) (Premium, sbloccato durante la beta).
+TTM non ha un'unità per le settimane, quindi una settimana è 7 giorni. Per prima cosa un admin attiva **Promemoria ricorrenti** in [`/config app`](/docs/configuration/#recurring-reminders) (una funzione [Premium](/docs/premium/)).
 
 Nel canale:
 

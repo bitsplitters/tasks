@@ -193,7 +193,7 @@ The **Reminder** button sets a reminder for you, and checks it as you go: see [R
 - **A single event** uses the interval `0m` and `0` repetitions: `[2d3h,0m,0]`.
 - **Distance and interval** use only `d`, `h` and `m`. A value in months, such as `[1M,0m,0]`, is refused, and the line gets an arrow.
 
-`1d` and `24h` are not the same across a daylight-saving change: see [The repetition fields](/docs/reminders/#the-repetition-fields).
+`1d` and `24h` are not the same across a daylight-saving change: `1d` keeps the same time of day, `24h` is exact and can shift by an hour. See [The repetition fields](/docs/reminders/#the-repetition-fields).
 
 The rules are those of the reminder form, including how many reminders can wait at a time: see [Known limits](/docs/known-limits/). Where new recurring reminders can't be created, a triplet with repetitions above `0` is accepted only for a reminder the list already had, within the limits of [Repeating reminders](/docs/reminders/#repeating-reminders).
 

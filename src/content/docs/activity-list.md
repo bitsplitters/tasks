@@ -55,7 +55,7 @@ While the panel is open, the task is locked for the others: see [Who is editing 
 **To take a task** with no owner, press **Owner** until it turns blue: your name is already chosen, so **Save** makes the task yours. To give it to someone else instead, tap their name: it takes the place of yours. A task that already has an owner shows it, and changes only if you choose someone.
 
 - One person or one role is enough on every plan.
-- Several people become a role that TTM creates: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates). It needs Premium and the *Manage Roles* permission for TTM; without them **Save** stays off, and the panel says why. Discord lets TTM give a role to ten people every ten seconds, so with more than ten a notice says how long it takes.
+- Several people become a role that TTM creates, on Premium: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates). When something is missing, **Save** stays off and the panel says why.
 
 **Red** removes the owner, and its reminder too: nobody is left to receive it. If the reminder hasn't fired yet, the panel asks you to confirm first.
 
@@ -75,7 +75,11 @@ Remove them all and **Save** removes every tag, as **Red** does.
 - An **existing** reminder shows its values. **Save** stays off until you change something.
 - **Save** stays off for a date that has passed, or one less than 5 minutes away: *The date has already passed* tells you to choose a new one.
 
-Tap **Time zone** to choose it: search by city, country, a name such as `Europe/Rome` or an offset such as `+5:30`. *Your time zones* lists the ones that matter to you: this device's, yours or the last one you used, the server's. Under the field, a line tells you whether the zone is yours: until you choose one in **Settings**, the zone you leave here becomes yours. See [Your time zone](/docs/reminders/#your-time-zone). Under the fields, *On this device* shows the same moment in your device's time, when the zone is different.
+Tap **Time zone** to choose it: search by city, country, a name such as `Europe/Rome` or an offset such as `+5:30`.
+
+- *Your time zones* lists the ones that matter to you: this device's, yours or the last one you used, the server's.
+- A line under the field tells you whether the zone is yours. Until you choose one in **Settings**, the zone you leave here becomes yours: see [Your time zone](/docs/reminders/#your-time-zone).
+- *On this device* shows the same moment in your device's time, when the zone is different.
 
 The three repetition menus appear on Premium, with the [repeating reminders](/docs/reminders/#repeating-reminders) toggle on, or when the reminder already repeats: see [The repetition fields](/docs/reminders/#the-repetition-fields).
 

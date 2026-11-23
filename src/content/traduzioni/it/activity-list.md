@@ -1,7 +1,7 @@
 ---
 title: Lavorare su una lista nell'Activity
 description: Le caselle, la prima riga, il pannello di un task (Contenuto, Proprietario, Tag, Promemoria e Webhook) e chi sta modificando che cosa.
-fonte: 2b0a150e4991
+fonte: b319d1ca5512
 ---
 
 Dentro l'Activity la lista è una pagina a sé: una casella davanti a ogni task, una riga di pulsanti in alto e un pannello per ogni task. Le regole sono quelle del canale: proprietari, impostazioni del server, limiti del piano. Che cosa fa ogni funzione: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/), [Azioni sulla lista](/docs/list-actions/).
@@ -53,7 +53,7 @@ Mentre il pannello è aperto, il task è bloccato per gli altri: vedi [Chi sta m
 **Per prendere un task** senza proprietario, premi **Proprietario** finché diventa blu: il tuo nome è già scelto, quindi **Salva** rende tuo il task. Per darlo invece a qualcun altro, tocca il suo nome: prende il posto del tuo. Un task che ha già un proprietario lo mostra e cambia solo se scegli qualcuno.
 
 - Una persona o un ruolo bastano con ogni piano.
-- Più persone diventano un ruolo che TTM crea: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates). Serve Premium e il permesso *Gestisci ruoli* per TTM; senza, **Salva** resta spento e il pannello ne spiega il motivo. Discord permette a TTM di assegnare un ruolo a dieci persone ogni dieci secondi, quindi con più di dieci un avviso dice quanto ci vuole.
+- Più persone diventano un ruolo che TTM crea, su Premium: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates). Quando manca qualcosa, **Salva** resta spento e il pannello ne spiega il motivo.
 
 **Rosso** rimuove il proprietario e anche il suo promemoria: non resta nessuno a riceverlo. Se il promemoria non è ancora scattato, il pannello ti chiede prima di confermare.
 
@@ -73,7 +73,11 @@ Toglili tutti e **Salva** rimuove ogni tag, come fa **Rosso**.
 - Un promemoria **esistente** mostra i suoi valori. **Salva** resta spento finché non cambi qualcosa.
 - **Salva** resta spento per una data passata o a meno di 5 minuti da adesso: *La data è già passata* ti dice di sceglierne una nuova.
 
-Tocca **Fuso orario** per sceglierlo: cerca per città, paese, un nome come `Europe/Rome` o uno scarto come `+5:30`. *I tuoi fusi* elenca quelli che contano per te: quello di questo dispositivo, il tuo o l'ultimo che hai usato, quello del server. Sotto il campo una riga ti dice se il fuso è il tuo: finché non ne scegli uno in **Impostazioni**, il fuso che lasci qui diventa il tuo. Vedi [Il tuo fuso orario](/docs/reminders/#your-time-zone). Sotto i campi, *Su questo dispositivo* mostra lo stesso momento nell'ora del tuo dispositivo, quando il fuso è diverso.
+Tocca **Fuso orario** per sceglierlo: cerca per città, paese, un nome come `Europe/Rome` o uno scarto come `+5:30`.
+
+- *I tuoi fusi* elenca quelli che contano per te: quello di questo dispositivo, il tuo o l'ultimo che hai usato, quello del server.
+- Una riga sotto il campo ti dice se il fuso è il tuo. Finché non ne scegli uno in **Impostazioni**, il fuso che lasci qui diventa il tuo: vedi [Il tuo fuso orario](/docs/reminders/#your-time-zone).
+- *Su questo dispositivo* mostra lo stesso momento nell'ora del tuo dispositivo, quando il fuso è diverso.
 
 I tre menu della ripetizione compaiono con Premium, con l'interruttore dei [promemoria ricorrenti](/docs/reminders/#repeating-reminders) acceso, oppure quando il promemoria si ripete già: vedi [I campi della ripetizione](/docs/reminders/#the-repetition-fields).
 

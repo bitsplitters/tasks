@@ -18,7 +18,7 @@ Each button in the second row is a **three-state switch**. Click it to cycle thr
 
 The workflow is always the same: **turn a button blue or red, then pick the task** in the [check selector](/docs/the-task-list/#the-check-selector). TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button off, it says *Tick a task*: pick a task there to tick or untick it.
 
-Until you've picked a task this way once, turning **Content** or **Reminder** blue or red sends you a message only you can see: it says which task to pick in the selector above the buttons and what pressing the button again does, with a button that takes you back to the list. Once you've picked a task with a second-row button on, the message stops, on every server.
+Until you've picked a task this way once, turning **Content** or **Reminder** blue or red sends you a message only you can see. It says which task to pick and what pressing the button again does. Once you've picked a task with a second-row button on, the message stops, on every server.
 
 | Button | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :--- | :--- | :--- |
@@ -34,7 +34,13 @@ After you use **Owner**, **Tag** or **Reminder**, the button goes back to grey, 
 
 ## Content
 
-**Blue** opens a form with the task's text, without its tags: they stay on the task, and the **Tag** button changes them. Line breaks become spaces. Owners, tags, reminders and webhooks typed there are removed, and the bot tells you what it removed: they have their own buttons. A name TTM doesn't know stays text, but at the start, followed by a colon, it is an owner: the text isn't saved, and the message sends you to **Owner**. A text left empty, one with a reminder in months, or one that would make the list too long isn't saved either. When you change the text, its tags go back at the end, where **Tag** puts them too. Channels show by name, as in **Bulk update**. Channels, links and emoji: see [Writing a list](/docs/writing-a-list/).
+**Blue** opens a form with the task's text. Its tags aren't in the form: they stay on the task, at the end of the text, and the **Tag** button changes them.
+
+- Line breaks become spaces, and channels show by name, as in **Bulk update**.
+- Owners, tags, reminders and webhooks typed there are removed, and TTM tells you what it removed: they have their own buttons.
+- A text left empty, or one that would make the list too long, isn't saved.
+
+Channels, links and emoji in the text: see [Editing a list by hand](/docs/writing-a-list/).
 
 While the form is open, the list is locked for the others. Saving unlocks it; the ✕ doesn't: see [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 
@@ -64,26 +70,21 @@ With **Keep the state after a selection** on, **Owner** stays blue after you tak
 
 ## Tag
 
-How **Tag** behaves depends on **Keep the state after a selection**, in the **Behavior** menu of [/config app](/docs/configuration/#keep-the-state-after-a-selection). With it off (the default), tagging always **overwrites**. With it on, you also get a second mode, **live editing**.
+**Blue** shows a menu under the buttons. By default, choose up to 25 users or roles there, confirm the selection (see [Confirming a selection](#confirming-a-selection--desktop-vs-mobile)), then pick the task:
 
-<div class="callout"><div class="callout-t">In one line</div>With <strong>Keep the state after a selection</strong> off (the default), tagging always overwrites, and you must pick people first. With it on, pick people first to <em>overwrite</em> (assign), or pick the task first to <em>edit its tags live</em>.</div>
+- choose *Anna* and *@Devs*, and the task is tagged Anna and @Devs, nothing else: your choice **replaces** the task's tags;
+- pick the people **before** the task: with the menu empty, TTM asks you to select at least one tag first.
 
-### With the state reset — the default
-
-The button resets after every action, and Tag has one behavior: it **always overwrites**. Turn Tag blue, choose up to 25 users or roles in the menu that appears under the buttons, then pick the task.
-
-For example, you choose *Anna* and *@Devs*. The task is now tagged Anna and @Devs, and nothing else. Your choice **replaces** the whole set: it doesn't add to it. Anyone tagged before that you didn't pick again is removed.
-
-You must pick people **before** the task. If you pick a task with the menu empty, TTM shows an error: select at least one tag first.
+**Red** removes every tag on the task.
 
 ### With the state kept — two modes
 
-Now the button stays active after each action. What Tag does depends on one question: **did you pick people before the task?**
+With **Keep the state after a selection** on, in the **Behavior** menu of [/config app](/docs/configuration/#keep-the-state-after-a-selection), the button stays blue after each task. What Tag does then depends on what you pick first:
 
 - **People first** means **assign**.
 - **Task first**, with the menu still empty, means **live editing**.
 
-**Assign — pick people, then the task.** It works like the overwrite above: you choose the users or roles, you pick the task, and its tags become exactly your choice. The button stays active, so your picks stay in the menu too. You can apply the same set to the next task, and the next, without choosing again.
+**Assign — pick people, then the task.** The task's tags become exactly your choice, as above. Your picks stay in the menu, so you can apply the same set to the next task, and the next, without choosing again.
 
 **Live editing — pick the task, menu empty.** Turn Tag blue and pick the task you want to re-tag, without choosing anyone. This is not a mistake: the task's current tags load into the menu, already ticked. Now you edit that task directly:
 
@@ -93,8 +94,6 @@ Now the button stays active after each action. What Tag does depends on one ques
 - untick everyone to remove all tags.
 
 If you pick a different task, the editing moves there. Turn Tag off (grey) to finish: the next activation starts fresh.
-
-**Red** removes every tag on the task.
 
 ### Confirming a selection — desktop vs mobile
 
@@ -136,7 +135,10 @@ With recurring reminders off, or on the Free plan, the card appears only when yo
 
 ### Editing or removing
 
-- **Edit** — click **Reminder** to blue, pick the task, and set the new values. You land straight on the summary card if the task already has a *repeating* reminder, or for any reminder with recurring reminders on. The card shows the current date and badge, so you can change only what you need. Otherwise **When** opens, pre-filled with the current date. Submitting the same date and recurrence the reminder already has changes nothing: TTM tells you, and sends no notification.
+- **Edit** — click **Reminder** to blue and pick the task:
+  - if the task already has a *repeating* reminder, or recurring reminders are on, you land on the summary card, with the current date and badge: change only what you need;
+  - otherwise **When** opens, pre-filled with the current date;
+  - the same date and recurrence the reminder already has change nothing: TTM tells you, and sends no notification.
 - **Remove** — click **Reminder** until it turns **red** (delete mode), then pick the task. The reminder is removed.
 
 <div class="callout"><div class="callout-t">Closing a form is not cancelling</div>A form closed with the ✕ leaves the list locked. Use <strong>Cancel</strong> on the <a href="#the-summary-card">summary card</a> when it's there; otherwise see <a href="/docs/the-task-list/#when-the-list-is-locked">When the list is locked</a>.</div>

@@ -1,10 +1,12 @@
 ---
 title: Promemoria
 description: "Associa un orario a un task e TTM avvisa il proprietario in tempo: chi lo riceve, i fusi orari, le ripetizioni."
-fonte: b6d151b3bb24
+fonte: e9b5187d37f5
 ---
 
-Un promemoria trasforma un task in qualcosa che ricorda *a te* e non il contrario. Lo imposti una volta e TTM si occupa degli avvisi. Lo aggiungi con **Promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" />: nel canale, nella seconda riga sotto la lista; nell'Activity, nel pannello di un task. Dove premere: [Come si fa](#how-to-do-it), in fondo.
+Un promemoria trasforma un task in qualcosa che ricorda *a te* e non il contrario. Lo imposti una volta e TTM si occupa degli avvisi. Lo aggiungi con **Promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" />: nel canale, nella seconda riga sotto la lista; nell'Activity, nel pannello di un task.
+
+<div class="howto" id="how-to-do-it"><div class="howto-t">Come si fa</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</span><span class="howto-d">Promemoria, nella seconda riga sotto la lista: la finestra della data e la scheda riepilogativa.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />Nell'Activity</span><span class="howto-d">Promemoria, nel pannello di un task: data, ora, fuso orario e ripetizioni insieme.</span></a></div></div>
 
 ## Le regole
 
@@ -62,9 +64,13 @@ I menu sono tre, nel canale e nell'Activity, quindi non c'è niente da scrivere 
 | **Ogni** | Il tempo tra due avvisi, nell'unità del menu successivo. Con **1 volta** non conta. | da 1 a 10, 12, 14, poi da 15 a 50 a passi di 5, 60 e 90 |
 | **Unità** | Minuti, ore o giorni. Non ci sono settimane né mesi: una settimana è 7 giorni. | minuti, ore, giorni |
 
-Passando da una volta a più volte, **Ogni** parte da 1 giorno. I menu offrono sempre i valori che il promemoria ha già, anche se non sono nell'elenco: un promemoria scritto nel testo di una lista può scattare 37 volte, oppure ogni 48 ore. Uno che scatta già più di 50 volte mantiene il suo numero. Un intervallo che mescola le unità, come `1d12h` dal testo, appare nella sua unità più piccola, 36 ore: lascia **Ogni** e **Unità** come sono e resta `1d12h`.
+Passando da una volta a più volte, **Ogni** parte da 1 giorno. I menu offrono sempre i valori che il promemoria ha già, anche se non sono nell'elenco:
 
-<div class="callout"><div class="callout-t">Ora legale: il dettaglio che conta</div>I <strong>giorni</strong> mantengono lo <strong>stesso orario sull'orologio</strong> anche con il cambio dell'ora legale (per esempio sempre alle 09:00). Le <strong>ore</strong> sono <strong>esatte</strong>: ogni 24 ore può slittare di un'ora dopo il cambio degli orologi. Scegli quello che corrisponde a ciò che intendi. Nel testo di una lista è la differenza tra <code>1d</code> e <code>24h</code>.</div>
+- un promemoria scritto nel testo di una lista può scattare 37 volte, oppure ogni 48 ore;
+- uno che scatta già più di 50 volte mantiene il suo numero;
+- un intervallo che mescola le unità, come `1d12h`, appare nella sua unità più piccola, 36 ore: lascia **Ogni** e **Unità** come sono e resta `1d12h`.
+
+<div class="callout"><div class="callout-t">Ora legale: il dettaglio che conta</div>Nel menu <strong>Unità</strong> i <strong>giorni</strong> mantengono lo <strong>stesso orario sull'orologio</strong> anche con il cambio dell'ora, per esempio sempre alle 09:00. Le <strong>ore</strong> sono <strong>esatte</strong>: ogni 24 ore può slittare di un'ora dopo il cambio degli orologi. Scegli quello che corrisponde a ciò che intendi.</div>
 
 ## Leggere un promemoria sul task
 
@@ -92,5 +98,3 @@ Molti vengono dalla finestra della data nel canale, dove scrivi la data, l'ora e
 | *Fuso orario errato* | Il nome non corrisponde a un fuso ufficiale: copialo dalla mappa dei fusi orari. |
 
 Un promemoria non è arrivato, o è andato storto qualcos'altro? Vedi le [FAQ](/docs/troubleshooting/#reminders).
-
-<div class="howto" id="how-to-do-it"><div class="howto-t">Come si fa</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</span><span class="howto-d">Promemoria, nella seconda riga sotto la lista: la finestra della data e la scheda riepilogativa.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />Nell'Activity</span><span class="howto-d">Promemoria, nel pannello di un task: data, ora, fuso orario e ripetizioni insieme.</span></a></div></div>

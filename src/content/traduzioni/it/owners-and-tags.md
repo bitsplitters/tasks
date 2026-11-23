@@ -1,12 +1,14 @@
 ---
 title: Proprietari e tag
 description: A chi appartiene un task, chi menziona e i ruoli che crea TTM quando un task ha più proprietari.
-fonte: 9d78c40a198c
+fonte: 3beeb818c97b
 ---
 
 Un task può avere un **proprietario** e più **tag**. Il proprietario è la persona a cui il task appartiene: chi può spuntarlo e chi riceve il suo promemoria. I tag sono gli utenti e i ruoli menzionati sul task, per esempio le persone da avvisare quando viene completato.
 
-Imposti entrambi con i pulsanti **Proprietario** <img class="inline-ic" src="/icons/owner.png" alt="" /> e **Tag** <img class="inline-ic" src="/icons/tag.png" alt="" />: nel canale, nella seconda riga sotto la lista; nell'Activity, nel pannello di un task. Dove premere: [Come si fa](#how-to-do-it), in fondo.
+Imposti entrambi con i pulsanti **Proprietario** <img class="inline-ic" src="/icons/owner.png" alt="" /> e **Tag** <img class="inline-ic" src="/icons/tag.png" alt="" />: nel canale, nella seconda riga sotto la lista; nell'Activity, nel pannello di un task.
+
+<div class="howto" id="how-to-do-it"><div class="howto-t">Come si fa</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#owner"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</span><span class="howto-d">Proprietario e Tag, nella seconda riga sotto la lista.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#owner"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />Nell'Activity</span><span class="howto-d">Proprietario e Tag, nel pannello di un task.</span></a></div></div>
 
 ## Proprietario: una persona, un ruolo o più persone
 
@@ -14,9 +16,11 @@ Il proprietario è chi possiede un task: chi può spuntarlo e chi riceve il suo 
 
 - **Una persona** — possiede il task e il suo promemoria la raggiunge con un messaggio diretto.
 - **Un ruolo** — tutti quelli che hanno quel ruolo possiedono il task e ognuno di loro può spuntarlo. Il suo promemoria è un messaggio nel canale della lista che menziona il ruolo.
-- **Più persone** — TTM crea un ruolo per loro, lo assegna esattamente a quelle persone e lo rende il proprietario. Da lì in poi funziona come qualsiasi ruolo proprietario. È una funzione [Premium](/docs/premium/).
+- **Più persone** — TTM crea un ruolo per loro e lo rende il proprietario. È una funzione [Premium](/docs/premium/).
 
-Non puoi mischiare persone e ruoli e puoi scegliere al massimo un ruolo: un task ha un solo proprietario. Per più persone il bot ha bisogno del permesso *Gestisci ruoli*: vedi [Che cosa gli serve](#what-it-needs).
+Non puoi mischiare persone e ruoli e puoi scegliere al massimo un ruolo: un task ha un solo proprietario.
+
+**Un task di più persone** funziona come un task che ha per proprietario un ruolo. Il ruolo si chiama TTM1, TTM2 e così via e ce l'hanno solo le persone che hai scelto. Per crearlo TTM ha bisogno del permesso *Gestisci ruoli*: vedi [I ruoli che crea TTM](#the-roles-ttm-creates).
 
 **Per prendere un task per te**, nel canale: clicca **Proprietario** finché diventa blu, poi scegli il task senza scegliere nessuno. Funziona su un task senza proprietario. Un task che ne ha già uno cambia solo se scegli te stesso nel menu: vedi [Proprietario](/docs/channel-tasks/#owner).
 
@@ -37,6 +41,8 @@ Come li scegli cambia un po' fra i due posti. Nel canale un'impostazione del ser
 Nel testo di una lista un tag è `@` e il nome, come `@Ava` e il proprietario è lo stesso nome seguito da due punti, `@Ava:`: vedi [Modificare una lista a mano](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 
 ## I ruoli che crea TTM
+
+Questa parte è per chi gestisce il server: cosa fa TTM con i ruoli che crea per i task di più persone, cosa gli serve e quando li elimina.
 
 Quando dai un task a più persone, TTM:
 
@@ -87,5 +93,3 @@ TTM controlla ogni dieci minuti e non tocca mai un ruolo creato da meno di dieci
 
 - i ruoli di una lista **sigillata**, perché il messaggio sigillato li mostra ancora;
 - tutti i ruoli che TTM ha creato, quando il bot viene **rimosso** da un server.
-
-<div class="howto" id="how-to-do-it"><div class="howto-t">Come si fa</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#owner"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</span><span class="howto-d">Proprietario e Tag, nella seconda riga sotto la lista.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#owner"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />Nell'Activity</span><span class="howto-d">Proprietario e Tag, nel pannello di un task.</span></a></div></div>

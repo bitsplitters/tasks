@@ -35,13 +35,17 @@ The **Tag** and **Owner** menus wait for you to confirm your choice. On mobile, 
 
 With **Keep the state after a selection** off (the default), pick the people first and the task second. See [Tag](/docs/channel-tasks/#tag).
 
-If a task became yours instead of going to the people you picked, the menu was still empty when you picked the task: with the menu empty, **Owner** gives the task to you. Click **Owner** until it's red and pick the task to remove it, then pick the people, confirm, and pick the task again.
+If a task became yours instead of going to the people you picked, the menu was still empty when you picked the task: with the menu empty, **Owner** gives the task to you. To fix it:
+
+1. Click **Owner** until it's red and pick the task, to remove the owner.
+2. Click **Owner** until it's blue, pick the people and confirm.
+3. Pick the task again.
 
 ### I want to give a task to several people
 
 Click **Owner** until it turns blue. In the menu under the buttons, labelled *Pick a task in the menu above to take it, or choose who gets it*, pick the people. Confirm your choice, then pick the task. TTM creates a role for those people and makes it the owner. In the Activity, choose them in the panel of the task: see [Owner](/docs/activity-list/#owner).
 
-This is a Premium feature, unlocked during the beta. The bot needs the *Manage Roles* permission: an admin grants it on the bot's role in *Server Settings → Roles*, not on a channel. See [Owner: a person, a role, or several people](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
+This is a [Premium](/docs/premium/) feature. The bot needs the *Manage Roles* permission: an admin grants it on the bot's role in *Server Settings → Roles*, not on a channel. See [Owner: a person, a role, or several people](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
 ### I deleted the list message by mistake
 
@@ -81,7 +85,9 @@ The Activity was closed without pressing **Exit**. For TTM, a closed window look
 
 ### The Activity reloads after I change Discord's theme
 
-When you change its theme, Discord reloads the Activity on its own, sometimes up to a minute later: TTM can't stop it. The list comes back by itself in a moment, with the theme you had. If your theme was **Match Discord**, it becomes the theme you were seeing: to follow Discord again, choose **Match Discord** with the gear. See [Your settings](/docs/activity/#your-settings).
+When you change its theme, Discord reloads the Activity on its own, sometimes up to a minute later: TTM can't stop it. The list comes back by itself in a moment, with the theme you had.
+
+If your theme was **Match Discord**, it becomes the theme you were seeing. To follow Discord again, choose **Match Discord** with the gear: see [Your settings](/docs/activity/#your-settings).
 
 After a reload, **Exit** still takes you out of the list, but because of a Discord bug it can't close the window: close it from Discord.
 
@@ -93,13 +99,15 @@ After a reload, **Exit** still takes you out of the list, but because of a Disco
 - **The owner must allow direct messages from server members**, in the server's *Privacy Settings*. See [Reminders by direct message](/docs/known-limits/#reminders-by-direct-message).
 - **The owner is a role that can't be mentioned.** The reminder appears in the channel, but nobody gets a notification. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
 - **The owner role was deleted.** The reminder is not sent to anyone. Choose another owner for the task. See [Reminders to a role](/docs/known-limits/#reminders-to-a-role).
-- **TTM can't post in the list's channel.** If the owner is a role TTM created for several people, each of them gets the reminder by direct message, with the reason. For any other role the reminder is not delivered until an admin grants the permission. See [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
+- **TTM can't post in the list's channel.** See [The permissions TTM asks for](/docs/core-concepts/#the-permissions-ttm-asks-for).
+  - A role TTM created for several people: each of them gets the reminder by direct message, with the reason.
+  - Any other role: the reminder isn't delivered until an admin grants the permission.
 - **The owner was removed, or the list was sealed.** In these cases the reminder is gone. Before removing an owner whose reminder hasn't fired yet, TTM asks you to confirm. See [Owners and tags](/docs/owners-and-tags/) and [Seal](/docs/config-lists/#seal).
 - **The task is ticked.** Completing a task stops its reminder, and a ticked task can't get a new one.
 
 ### I want a weekly reminder
 
-TTM has no unit for weeks, so a week is 7 days. First, an admin turns on **Recurring reminders** in [`/config app`](/docs/configuration/#recurring-reminders) (Premium, unlocked during the beta).
+TTM has no unit for weeks, so a week is 7 days. First, an admin turns on **Recurring reminders** in [`/config app`](/docs/configuration/#recurring-reminders) (a [Premium](/docs/premium/) feature).
 
 In the channel:
 

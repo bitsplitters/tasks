@@ -1,7 +1,7 @@
 ---
 title: Azioni sulla lista
 description: Pulisci, Riapri tutti, Clona, Download, Sigilla ed Elimina — cosa fa ognuna all'intera lista e dove la trovi.
-fonte: f9d44b6a771e
+fonte: c473903dad41
 ---
 
 Queste azioni lavorano sull'**intera lista**, mai su un singolo task. Due esistono in entrambi i posti; le altre solo nel canale.
@@ -15,7 +15,7 @@ Queste azioni lavorano sull'**intera lista**, mai su un singolo task. Due esisto
 | [Sigilla](#seal) | sì e in `/config lists` | solo da `/config lists` |
 | [Elimina](#delete) | sì e in `/config lists` | solo da `/config lists` |
 
-Dove premerle: [Come si fa](#how-to-do-it), in fondo.
+<div class="howto" id="how-to-do-it"><div class="howto-t">Come si fa</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/the-task-list/#row-1--acts-on-the-whole-list"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</span><span class="howto-d">La prima riga sotto la lista e Altro per Clona, Download, Sigilla ed Elimina.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#the-first-row"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />Nell'Activity</span><span class="howto-d">Pulisci la lista e Riapri tutti, in alto nella lista.</span></a></div></div>
 
 ## Pulisci
 
@@ -77,5 +77,3 @@ Nel canale, da **Altro**, sigillare richiede *Gestisci messaggi* sul canale e un
 Eliminare non si può annullare e il bot ti chiede prima di confermare. I permessi sono gli stessi di [Sigilla](#seal). Da `/config lists`, eliminare una lista nell'Activity la toglie anche a chi ci sta dentro.
 
 <div class="callout"><div class="callout-t">Perché eliminare invece di togliere il messaggio?</div>Se elimini il messaggio a mano, i dati della lista restano e i suoi promemoria continuano ad arrivare. <strong>Elimina lista</strong> si porta via anche i promemoria. Se un messaggio non c'è già più, <a href="/docs/config-lists/"><code>/config lists</code></a> ti permette di fare pulizia, o di riportare la lista.</div>
-
-<div class="howto" id="how-to-do-it"><div class="howto-t">Come si fa</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/the-task-list/#row-1--acts-on-the-whole-list"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</span><span class="howto-d">La prima riga sotto la lista e Altro per Clona, Download, Sigilla ed Elimina.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#the-first-row"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />Nell'Activity</span><span class="howto-d">Pulisci la lista e Riapri tutti, in alto nella lista.</span></a></div></div>

@@ -10,7 +10,7 @@ Webhooks let a task talk to the outside world. Link one to a task: when that tas
 
 Whoever manages the server creates the webhooks with [/config webhook](/docs/config-webhook/): the address, the method, what the call sends. Then you link them to tasks with the **Webhook** button.
 
-Webhooks are **Premium**, unlocked for every server during the beta: see [What Premium unlocks](/docs/premium/).
+Webhooks are a [Premium](/docs/premium/) feature.
 
 <div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#webhook"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">Webhook, in the second row under the list: pick the webhook, then the task.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#webhook"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Webhook, in the panel of a task: the server's webhooks by name.</span></a></div></div>
 

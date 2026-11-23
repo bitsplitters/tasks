@@ -16,7 +16,7 @@ These actions work on the **whole list**, never on a single task. Two of them ex
 | [Seal](#seal) | yes, and in `/config lists` | only from `/config lists` |
 | [Delete](#delete) | yes, and in `/config lists` | only from `/config lists` |
 
-Where to press them: [How to do it](#how-to-do-it), at the bottom.
+<div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/the-task-list/#row-1--acts-on-the-whole-list"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">The first row under the list, and More for Clone, Download, Seal and Delete.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#the-first-row"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Clean the list and Reopen all, at the top of the list.</span></a></div></div>
 
 ## Clean
 
@@ -78,5 +78,3 @@ In the channel, from **More**, sealing needs *Manage messages* on the channel, a
 Deleting can't be undone, and the bot asks you to confirm first. The permissions are the same as for [Seal](#seal). From `/config lists`, deleting a list in the Activity removes it for the people inside too.
 
 <div class="callout"><div class="callout-t">Why delete instead of removing the message?</div>If you delete the message by hand, the list's data stays, and its reminders keep arriving. <strong>Delete</strong> takes the reminders with it. If a message is already gone, <a href="/docs/config-lists/"><code>/config lists</code></a> lets you clean up, or bring the list back.</div>
-
-<div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/the-task-list/#row-1--acts-on-the-whole-list"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">The first row under the list, and More for Clone, Download, Seal and Delete.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#the-first-row"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Clean the list and Reopen all, at the top of the list.</span></a></div></div>

@@ -34,7 +34,7 @@ These buttons never touch a single task: they act on the **entire list**. What e
 | Button | What it does |
 | :--- | :--- |
 | **Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> | Open the list in the Activity, a window inside Discord where you work on it together. See [The Activity](/docs/activity/). |
-| **Bulk update** <img class="inline-ic" src="/icons/edit.png" alt="" /> | Edit the title and the whole list in one form: the fastest way to change two or more tasks. See [Bulk update](#bulk-update). |
+| **Bulk update** <img class="inline-ic" src="/icons/edit.png" alt="" /> | Edit the title and the whole list as text, in one form. For a single task, use the [second row](#row-2--acts-on-a-single-task). See [Bulk update](#bulk-update). |
 | **Clean list** <img class="inline-ic" src="/icons/clean.png" alt="" /> | Remove every completed task, after a confirmation. |
 | **Reopen all** <img class="inline-ic" src="/icons/reopen.png" alt="" /> | Bring every completed task back to to-do. You can also move their reminders to a new date. |
 | **More** <img class="inline-ic" src="/icons/other.png" alt="" /> | Open a panel with the actions you need less often: the in-Discord guide, and clone, download, seal or delete the list. When the list is locked, you unlock it here. |

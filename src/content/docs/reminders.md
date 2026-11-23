@@ -5,7 +5,9 @@ group: Features
 order: 3
 ---
 
-A reminder turns a task into something that reminds *you*, instead of the other way round. You set it once; TTM handles the pings. You add one with **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" />: in the channel, in the second row under the list; in the Activity, in the panel of a task. Where to press: [How to do it](#how-to-do-it), at the bottom.
+A reminder turns a task into something that reminds *you*, instead of the other way round. You set it once; TTM handles the pings. You add one with **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" />: in the channel, in the second row under the list; in the Activity, in the panel of a task.
+
+<div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">Reminder, in the second row under the list: the When form and the summary card.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Reminder, in the panel of a task: date, time, time zone and repetitions together.</span></a></div></div>
 
 ## The rules
 
@@ -63,9 +65,13 @@ There are three menus, in the channel and in the Activity, so there is nothing t
 | **Every** | The time between two pings, in the unit of the next menu. It doesn't count with **1 time**. | 1 to 10, 12, 14, then 15 to 50 in steps of 5, 60 and 90 |
 | **Unit** | Minutes, hours or days. There are no weeks or months: a week is 7 days. | minutes, hours, days |
 
-Going from one time to more, **Every** starts from 1 day. The menus always offer the values the reminder already has, even when they aren't in the list: a reminder written in the text of a list can run 37 times, or every 48 hours. One that already runs more than 50 times keeps its number. An interval that mixes units, such as `1d12h` from the text, shows in its smallest unit, 36 hours: leave **Every** and **Unit** as they are and it stays `1d12h`.
+Going from one time to more, **Every** starts from 1 day. The menus always offer the values the reminder already has, even when they aren't in the list:
 
-<div class="callout"><div class="callout-t">Daylight saving — the detail that matters</div><strong>Days</strong> keep the <strong>same wall-clock time</strong> across a DST change (e.g. always 09:00). <strong>Hours</strong> are <strong>exact</strong>: every 24 hours can shift by an hour after the clocks change. Pick the one that matches what you mean. In the text of a list it's the difference between <code>1d</code> and <code>24h</code>.</div>
+- a reminder written in the text of a list can run 37 times, or every 48 hours;
+- one that already runs more than 50 times keeps its number;
+- an interval that mixes units, such as `1d12h`, shows in its smallest unit, 36 hours: leave **Every** and **Unit** as they are and it stays `1d12h`.
+
+<div class="callout"><div class="callout-t">Daylight saving — the detail that matters</div>In the <strong>Unit</strong> menu, <strong>Days</strong> keep the <strong>same wall-clock time</strong> across a clock change, for example always 09:00. <strong>Hours</strong> are <strong>exact</strong>: every 24 hours can shift by an hour after the clocks change. Pick the one that matches what you mean.</div>
 
 ## Reading a reminder on the task
 
@@ -93,5 +99,3 @@ Several of these come from the channel's **When** form, where you type the date,
 | *Incorrect time zone* | The name doesn't match an official zone — copy it from the time zone map. |
 
 A reminder didn't arrive, or something else went wrong? See the [FAQ](/docs/troubleshooting/#reminders).
-
-<div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">Reminder, in the second row under the list: the When form and the summary card.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#reminder"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Reminder, in the panel of a task: date, time, time zone and repetitions together.</span></a></div></div>

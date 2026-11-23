@@ -28,7 +28,13 @@ Tips are help for whoever is new to TTM, in four places:
 - under the list in the Activity, a line that says where to tap: *Not sure where to start? Tap a box to tick a task, tap its text for the rest.* See [Working on a list in the Activity](/docs/activity-list/);
 - in a new list, the first notification in the channel ends with a short explanation: why TTM posts notifications, what the history thread is, and where to set them up. It appears once per list: see [When a list is created](#when-a-list-is-created).
 
-On by default: handy while the team is learning the buttons, easy to switch off once everyone knows them. With tips hidden, `/create-list` opens the creation form straight away, one step fewer, lists end without the line, and new lists post their first notification without the explanation. Turning Tips off also removes the **Tutorial** button, which lives in the same explanation: see [Getting started](/docs/getting-started/#2-create-your-first-list). A list picks up the change the next time it's updated. A locked list still ends with a line that says who is editing it: see [When the list is locked](/docs/the-task-list/#when-the-list-is-locked). The [progress bar](/docs/the-task-list/#under-the-list) stays either way.
+On by default: handy while the team is learning the buttons, easy to switch off once everyone knows them. With tips hidden:
+
+- `/create-list` opens the creation form straight away, without the **Tutorial** button: see [Getting started](/docs/getting-started/#2-create-your-first-list);
+- lists end without the help line;
+- new lists post their first notification without the explanation.
+
+A list picks up the change the next time it's updated. Either way the [progress bar](/docs/the-task-list/#under-the-list) stays, and a locked list still ends with the line that says who is editing it: see [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 
 ## Notification mode
 
@@ -99,7 +105,9 @@ Off by default. When it's off, every reminder is a **single event**: creating or
 
 Turn it **on** to unlock **repetitions and intervals**. In the channel, reminder creation then uses the two-step flow: a [summary card](/docs/channel-tasks/#the-summary-card) plus a repetition dialog. In the Activity, the repetition menus join the date in the [reminder panel](/docs/activity-list/#reminder). See [The repetition fields](/docs/reminders/#the-repetition-fields).
 
-Recurring reminders are a **Premium** feature (see [What Premium unlocks](/docs/premium/)). The title of the group carries the Premium emoji on every server, Premium included: it marks a Premium feature, not a missing one. On the Free plan this dropdown is shown but switched off. Its note says: *"Recurring reminders are a Premium feature: on the Free plan every reminder is a single event. The recurring ones created before keep working."* Your choice isn't lost: on Premium the dropdown comes back set the way you left it.
+Recurring reminders are a [Premium](/docs/premium/) feature. On the Free plan this dropdown is shown but switched off, and its note says so. Your choice isn't lost: on Premium the dropdown comes back set the way you left it.
+
+The Premium emoji in the group's title shows on every server, Premium included: it marks a Premium feature, not a missing one.
 
 A reminder that is *already* recurring keeps firing even while the toggle is off, or on the Free plan. What you can still change: see [Repeating reminders](/docs/reminders/#repeating-reminders).
 

@@ -49,7 +49,9 @@ Submit the form, and the list appears in the channel. Here is the same list afte
   <img src="/screens/list-desktop.png" width="456" height="418" loading="lazy" alt="The Saturday tournament list in Discord: six numbered tasks with checkboxes. The first is ticked and greyed out; Prepare the brackets has two subtasks and an owner; Stream the final has an owner and a reminder date. Under the tasks, a small line points to More, Guide and the full docs, and a green bar shows how much is done. Below the list are the drop-down menu, Tick a task, and two rows of buttons." />
 </picture>
 
-Rather learn by doing? Next to **Create your list** there's a **Tutorial** button: it turns the explanation into a practice list of seven lessons, in your language, and sends you the Guide, the same one you'll find in **More** → **Guide**, in a message only you can see. Do the lessons in order: each one asks you to do something to itself, and names the button with its icon. Tick it, give it an owner and a reminder, change its text, delete it, tick it in Activity mode. The practice list is a normal list: like any new list, it needs a free place on your plan (see [How the three places work](/docs/premium/#how-the-three-places-work)), and you can delete it from **More** → **Delete list** when you're done.
+Rather learn by doing? Next to **Create your list** there's a **Tutorial** button: it turns the explanation into a practice list of seven lessons in your language, and sends you the Guide in a message only you can see. Do the lessons in order: each one names a button with its icon and asks you to do something to itself, from ticking it to opening it in the Activity.
+
+The practice list is a normal list: when you're done, delete it from **More** → **Delete list**.
 
 Now pick where to work on it. The list is the same in both places, and it is [in one place at a time](/docs/core-concepts/#one-list-two-places).
 
@@ -63,7 +65,13 @@ Under the list there is the **check selector**, a drop-down menu that shows the 
 
 ### Set a reminder
 
-In the second row, click **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" />, the fourth button, once: it turns **blue**. Then pick a task that is **not ticked yet**. A form titled *Set reminder for task …* opens. It is already filled in with ten minutes from now: submit it as it is. Until you change it, the time zone in the last field is the server's: change it if yours is different. The task shows the time, and the reminder arrives once. If your server has turned on recurring reminders, a summary card follows the form: press **Save**.
+In the second row:
+
+1. Click **Reminder** <img class="inline-ic" src="/icons/alertW.png" alt="" />, the fourth button, once: it turns **blue**.
+2. Pick a task that is **not ticked yet**. A form titled *Set reminder for task …* opens, filled in with ten minutes from now.
+3. Submit it as it is. If your server has turned on recurring reminders, a summary card follows: press **Save**.
+
+The task shows the time, and the reminder arrives once. Until you change it, the time zone in the last field is the server's: change it if yours is different.
 
 **Closed the form with ✕?** The list stays locked: open **More** under the list and press **Unlock list**. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 

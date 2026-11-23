@@ -1,7 +1,7 @@
 ---
 title: Modificare un task nel canale
 description: La seconda riga di pulsanti sotto la lista — Contenuto, Proprietario, Tag, Promemoria e Webhook — con le loro finestre e i loro menu.
-fonte: 3e0a687d6a9e
+fonte: cc0bb3e968c9
 ---
 
 La seconda riga sotto la lista agisce su **un task alla volta**: il suo testo, il suo proprietario, i suoi tag, il suo promemoria e il suo webhook. Questa pagina mostra dove cliccare. Cosa fa ogni funzione e le sue regole: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/).
@@ -16,7 +16,7 @@ Ogni pulsante della seconda riga è un **interruttore a tre stati**. Cliccalo pe
 
 Il procedimento è sempre lo stesso: **fai diventare un pulsante blu o rosso, poi scegli il task** nel [menu di spunta](/docs/the-task-list/#the-check-selector). TTM applica l'azione a quel task. Finché un pulsante è blu o rosso, il menu dice cosa succederà, per esempio *Modifica task* o *Elimina task*; con tutti i pulsanti spenti dice *Spunta task*: scegli un task lì per spuntarlo o toglierne la spunta.
 
-Finché non hai scelto un task in questo modo almeno una volta, portare **Contenuto** o **Promemoria** su blu o su rosso ti manda un messaggio che vedi solo tu: dice quale task scegliere nel menu sopra i pulsanti e cosa fa premere di nuovo il pulsante, con un pulsante che ti riporta alla lista. Dopo che hai scelto un task con un pulsante della seconda riga acceso, il messaggio non compare più, su qualsiasi server.
+Finché non hai scelto un task in questo modo almeno una volta, portare **Contenuto** o **Promemoria** su blu o su rosso ti manda un messaggio che vedi solo tu. Ti dice quale task scegliere e cosa fa premere di nuovo il pulsante. Dopo che hai scelto un task con un pulsante della seconda riga acceso, il messaggio non compare più, su qualsiasi server.
 
 | Pulsante | <span class="c-blue">Blu (modifica)</span> | <span class="c-red">Rosso (eliminazione)</span> |
 | :--- | :--- | :--- |
@@ -32,7 +32,13 @@ Dopo che usi **Proprietario**, **Tag** o **Promemoria**, il pulsante torna grigi
 
 ## Contenuto
 
-Il **blu** apre una finestra con il testo del task, senza i suoi tag: restano sul task e li cambia il pulsante **Tag**. Gli a capo diventano spazi. Proprietari, tag, promemoria e webhook scritti lì vengono tolti e il bot ti dice cosa ha tolto: hanno i loro pulsanti. Un nome che TTM non conosce resta testo, ma all'inizio e seguito da due punti è un proprietario: il testo non viene salvato e il messaggio ti manda a **Proprietario**. Non viene salvato nemmeno un testo lasciato vuoto, uno con un promemoria in mesi o uno che renderebbe la lista troppo lunga. Quando cambi il testo, i suoi tag tornano in fondo, dove li mette anche **Tag**. I canali compaiono con il nome, come in **Aggiornamento in blocco**. Canali, link ed emoji: vedi [Scrivere una lista](/docs/writing-a-list/).
+Il **blu** apre una finestra con il testo del task. I suoi tag non sono nella finestra: restano sul task, in fondo al testo, e li cambia il pulsante **Tag**.
+
+- Gli a capo diventano spazi e i canali compaiono con il nome, come in **Aggiornamento in blocco**.
+- Proprietari, tag, promemoria e webhook scritti lì vengono tolti e TTM ti dice cosa ha tolto: hanno i loro pulsanti.
+- Un testo lasciato vuoto, o uno che renderebbe la lista troppo lunga, non viene salvato.
+
+Canali, link ed emoji nel testo: vedi [Modificare una lista a mano](/docs/writing-a-list/).
 
 Finché la finestra è aperta, la lista è bloccata per gli altri. Salvando la sblocchi; la ✕ no: vedi [Quando la lista è bloccata](/docs/the-task-list/#when-the-list-is-locked).
 
@@ -62,26 +68,21 @@ Il **rosso** toglie il proprietario e anche il suo promemoria: non resta nessuno
 
 ## Tag
 
-Come si comporta **Tag** dipende da **Mantieni lo stato dopo la selezione**, nel menu **Comportamento** di [/config app](/docs/configuration/#keep-the-state-after-a-selection). Se è spento (come di default), taggare **sovrascrive** sempre. Se è acceso, hai anche una seconda modalità, la **modifica in diretta**.
+Il **blu** mostra un menu sotto i pulsanti. Di default scegli lì fino a 25 utenti o ruoli, conferma la selezione (vedi [Confermare una selezione](#confirming-a-selection--desktop-vs-mobile)), poi scegli il task:
 
-<div class="callout"><div class="callout-t">In una riga</div>Con <strong>Mantieni lo stato dopo la selezione</strong> spento (come di default), taggare sovrascrive sempre e devi scegliere prima le persone. Con quello acceso, scegli prima le persone per <em>sovrascrivere</em> (assegnare), oppure scegli prima il task per <em>modificarne i tag in diretta</em>.</div>
+- scegli *Anna* e *@Devs* e il task è taggato Anna e @Devs, nient'altro: la tua scelta **sostituisce** i tag del task;
+- scegli le persone **prima** del task: con il menu vuoto, TTM ti chiede di selezionare prima almeno un tag.
 
-### Con lo stato azzerato — il default
-
-Il pulsante si azzera dopo ogni azione e Tag ha un solo comportamento: **sovrascrive sempre**. Porta Tag su blu, scegli fino a 25 utenti o ruoli nel menu che compare sotto i pulsanti, poi scegli il task.
-
-Per esempio scegli *Anna* e *@Devs*. Il task ora è taggato Anna e @Devs e nient'altro. La tua scelta **sostituisce** l'intero insieme: non si aggiunge. Chiunque fosse taggato prima e non hai scelto di nuovo viene tolto.
-
-Devi scegliere le persone **prima** del task. Se scegli un task con il menu vuoto, TTM mostra un errore: seleziona prima almeno un tag.
+Il **rosso** toglie tutti i tag dal task.
 
 ### Con lo stato mantenuto — due modalità
 
-Ora il pulsante resta attivo dopo ogni azione. Cosa fa Tag dipende da una sola domanda: **hai scelto delle persone prima del task?**
+Con **Mantieni lo stato dopo la selezione** attivo, nel menu **Comportamento** di [/config app](/docs/configuration/#keep-the-state-after-a-selection), il pulsante resta blu dopo ogni task. Cosa fa Tag dipende allora da cosa scegli per primo:
 
 - **Prima le persone** vuol dire **assegnare**.
 - **Prima il task**, con il menu ancora vuoto, vuol dire **modifica in diretta**.
 
-**Assegnare — scegli le persone, poi il task.** Funziona come la sovrascrittura vista sopra: scegli gli utenti o i ruoli, scegli il task e i suoi tag diventano esattamente la tua scelta. Il pulsante resta attivo, quindi restano nel menu anche le tue scelte. Puoi applicare lo stesso insieme al task successivo e a quello dopo, senza sceglierlo di nuovo.
+**Assegnare — scegli le persone, poi il task.** I tag del task diventano esattamente la tua scelta, come sopra. Le tue scelte restano nel menu, quindi puoi applicare lo stesso insieme al task successivo e a quello dopo, senza sceglierlo di nuovo.
 
 **Modifica in diretta — scegli il task, menu vuoto.** Porta Tag su blu e scegli il task di cui vuoi cambiare i tag, senza scegliere nessuno. Non è un errore: i tag attuali del task si caricano nel menu, già spuntati. Ora modifichi quel task direttamente:
 
@@ -91,8 +92,6 @@ Ora il pulsante resta attivo dopo ogni azione. Cosa fa Tag dipende da una sola d
 - togli la spunta a tutti per eliminare tutti i tag.
 
 Se scegli un altro task, la modifica si sposta lì. Porta Tag su spento (grigio) per finire: la prossima attivazione riparte da zero.
-
-Il **rosso** toglie tutti i tag dal task.
 
 ### Confermare una selezione — desktop o mobile
 
@@ -134,7 +133,10 @@ Con i promemoria ricorrenti spenti, o sul piano Free, la scheda compare solo qua
 
 ### Modificare o togliere
 
-- **Modificare** — clicca **Promemoria** su blu, scegli il task e imposta i nuovi valori. Arrivi direttamente alla scheda riepilogo se il task ha già un promemoria *ripetuto*, o per qualsiasi promemoria con i promemoria ricorrenti attivi. La scheda mostra la data attuale e il badge, così cambi solo ciò che serve. Altrimenti si apre **Quando**, precompilata con la data attuale. Inviare la stessa data e la stessa ricorrenza che il promemoria ha già non cambia niente: TTM te lo dice e non invia nessuna notifica.
+- **Modificare** — clicca **Promemoria** su blu e scegli il task:
+  - se il task ha già un promemoria *ripetuto*, o se i promemoria ricorrenti sono attivi, arrivi alla scheda riepilogo, con la data attuale e il badge: cambia solo ciò che serve;
+  - altrimenti si apre **Quando**, precompilata con la data attuale;
+  - la stessa data e la stessa ricorrenza che il promemoria ha già non cambiano niente: TTM te lo dice e non invia nessuna notifica.
 - **Togliere** — clicca **Promemoria** finché diventa **rosso** (modalità eliminazione), poi scegli il task. Il promemoria viene tolto.
 
 <div class="callout"><div class="callout-t">Chiudere una finestra non è annullare</div>Una finestra chiusa con la ✕ lascia la lista bloccata. Usa <strong>Annulla</strong> sulla <a href="#the-summary-card">scheda riepilogo</a> quando c'è; altrimenti vedi <a href="/docs/the-task-list/#when-the-list-is-locked">Quando la lista è bloccata</a>.</div>

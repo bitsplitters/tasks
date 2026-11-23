@@ -1,7 +1,7 @@
 ---
 title: Modificare una lista a mano
 description: Il testo dietro una lista, per molte modifiche insieme o per una lista che copi da un'altra parte. I pulsanti fanno le stesse cose senza errori.
-fonte: eb6c0de4bb4d
+fonte: b688db5dddca
 ---
 
 Questa pagina è per quando preferisci cambiare tu il testo di una lista, in **Aggiornamento in blocco** nel canale o in **Modifica la lista** nell'Activity.
@@ -192,7 +192,7 @@ Il pulsante **Promemoria** imposta un promemoria per te e lo controlla mentre pr
 - **Un evento singolo** usa l'intervallo `0m` e `0` ripetizioni: `[2d3h,0m,0]`.
 - **Distanza e intervallo** usano solo `d`, `h` e `m`. Un valore in mesi, come `[1M,0m,0]`, viene rifiutato e la riga riceve una freccia.
 
-`1d` e `24h` non sono la stessa cosa quando cambia l'ora legale: vedi [I campi della ripetizione](/docs/reminders/#the-repetition-fields).
+`1d` e `24h` non sono la stessa cosa quando cambia l'ora legale: `1d` mantiene la stessa ora del giorno, `24h` è esatto e può slittare di un'ora. Vedi [I campi della ripetizione](/docs/reminders/#the-repetition-fields).
 
 Valgono le regole della form del promemoria, compreso quanti promemoria possono essere in attesa insieme: vedi [Limiti noti](/docs/known-limits/). Dove non si possono creare nuovi promemoria ricorrenti, una tripletta con ripetizioni sopra `0` è accettata solo per un promemoria che la lista aveva già, nei limiti di [Promemoria ripetuti](/docs/reminders/#repeating-reminders).
 

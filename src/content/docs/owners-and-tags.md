@@ -7,7 +7,9 @@ order: 2
 
 A task can have one **owner** and several **tags**. The owner is who the task belongs to: who can tick it, and who gets its reminder. Tags are the users and roles mentioned on the task, for example the people to notify when it is completed.
 
-You set both with the **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> and **Tag** <img class="inline-ic" src="/icons/tag.png" alt="" /> buttons: in the channel, in the second row under the list; in the Activity, in the panel of a task. Where to press: [How to do it](#how-to-do-it), at the bottom.
+You set both with the **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> and **Tag** <img class="inline-ic" src="/icons/tag.png" alt="" /> buttons: in the channel, in the second row under the list; in the Activity, in the panel of a task.
+
+<div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#owner"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">Owner and Tag, in the second row under the list.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#owner"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Owner and Tag, in the panel of a task.</span></a></div></div>
 
 ## Owner: a person, a role, or several people
 
@@ -15,9 +17,11 @@ The owner is who a task belongs to: who can tick it, and who gets its reminder. 
 
 - **One person** — they own the task, and its reminder reaches them by direct message.
 - **One role** — everyone with that role owns the task, and any of them can tick it. Its reminder is a message in the list's channel that mentions the role.
-- **Several people** — TTM creates a role for them, gives it to exactly those people and makes it the owner. From then on, it works like any role owner. This is a [Premium](/docs/premium/) feature.
+- **Several people** — TTM creates a role for them and makes it the owner. This is a [Premium](/docs/premium/) feature.
 
-You can't mix people and roles, and you can pick one role at most: a task has one owner. For several people, the bot needs the *Manage Roles* permission: see [What it needs](#what-it-needs).
+You can't mix people and roles, and you can pick one role at most: a task has one owner.
+
+**A task for several people** works like a task owned by a role. The role is called TTM1, TTM2 and so on, and only the people you picked have it. TTM needs the *Manage Roles* permission to create it: see [The roles TTM creates](#the-roles-ttm-creates).
 
 **To take a task yourself**, in the channel: click **Owner** until it turns blue, then pick the task without choosing anyone. It works on a task with no owner. A task that already has one changes only if you choose yourself in the menu: see [Owner](/docs/channel-tasks/#owner).
 
@@ -38,6 +42,8 @@ How you choose them differs a little between the two places. In the channel, a s
 In the text of a list, a tag is `@` and the name, such as `@Ava`, and the owner is the same name followed by a colon, `@Ava:`: see [Editing a list by hand](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 
 ## The roles TTM creates
+
+This part is for whoever manages the server: what TTM does with the roles it creates for tasks of several people, what it needs, and when it deletes them.
 
 When you give a task to several people, TTM:
 
@@ -88,5 +94,3 @@ TTM checks every ten minutes, and it never touches a role created less than ten 
 
 - the roles of a **sealed** list, because the sealed message still shows them;
 - every role TTM created, when the bot is **removed** from a server.
-
-<div class="howto" id="how-to-do-it"><div class="howto-t">How to do it</div><div class="howto-grid"><a class="howto-go is-channel" href="/docs/channel-tasks/#owner"><span class="howto-k"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</span><span class="howto-d">Owner and Tag, in the second row under the list.</span></a><a class="howto-go is-activity" href="/docs/activity-list/#owner"><span class="howto-k"><img class="place-ic" src="/icons/activity.png" alt="" />In the Activity</span><span class="howto-d">Owner and Tag, in the panel of a task.</span></a></div></div>

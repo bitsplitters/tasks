@@ -1,7 +1,7 @@
 ---
 title: /config app
 description: Personalizza notifiche, cronologia, promemoria, fuso orario e permessi con /config app.
-fonte: d8aebbb92058
+fonte: 449f5cc3050a
 ---
 
 Esegui il comando:
@@ -27,7 +27,13 @@ I suggerimenti aiutano chi è nuovo in TTM, in quattro posti:
 - sotto la lista nell'Activity, una riga che dice dove toccare: *Non sai da dove partire? Tocca una casella per spuntare un task, il suo testo per il resto.* Vedi [Lavorare su una lista nell'Activity](/docs/activity-list/);
 - in una lista nuova, la prima notifica nel canale finisce con una breve spiegazione: perché TTM pubblica le notifiche, cos'è il thread della cronologia e dove si impostano. Compare una volta per lista: vedi [Quando una lista viene creata](#when-a-list-is-created).
 
-Attivi di default: comodi mentre il team impara i pulsanti, facili da spegnere quando tutti li conoscono. Con i suggerimenti nascosti, `/crea-lista` apre subito la finestra di creazione, un passaggio in meno, le liste finiscono senza la riga e le liste nuove pubblicano la prima notifica senza la spiegazione. Spegnere i Suggerimenti toglie anche il pulsante **Tutorial**, che sta nella stessa spiegazione: vedi [Per cominciare](/docs/getting-started/#2-create-your-first-list). Una lista recepisce la modifica al suo prossimo aggiornamento. Una lista bloccata finisce comunque con una riga che dice chi la sta modificando: vedi [Quando la lista è bloccata](/docs/the-task-list/#when-the-list-is-locked). La [barra di avanzamento](/docs/the-task-list/#under-the-list) resta in ogni caso.
+Attivi di default: comodi mentre il team impara i pulsanti, facili da spegnere quando tutti li conoscono. Con i suggerimenti nascosti:
+
+- `/crea-lista` apre subito la finestra di creazione, senza il pulsante **Tutorial**: vedi [Per cominciare](/docs/getting-started/#2-create-your-first-list);
+- le liste finiscono senza la riga di aiuto;
+- le liste nuove pubblicano la prima notifica senza la spiegazione.
+
+Una lista recepisce la modifica al suo prossimo aggiornamento. In ogni caso la [barra di avanzamento](/docs/the-task-list/#under-the-list) resta e una lista bloccata finisce comunque con la riga che dice chi la sta modificando: vedi [Quando la lista è bloccata](/docs/the-task-list/#when-the-list-is-locked).
 
 ## Modalità notifica
 
@@ -98,7 +104,9 @@ Spenti di default. Quando sono spenti, ogni promemoria è un **evento singolo**:
 
 **Attivali** per sbloccare **ripetizioni e intervalli**. Nel canale, la creazione di un promemoria usa allora il flusso in due passaggi: una [scheda riepilogo](/docs/channel-tasks/#the-summary-card) più una finestra di ripetizione. Nell'Activity, i menu della ripetizione si aggiungono alla data nel [pannello del promemoria](/docs/activity-list/#reminder). Vedi [I campi della ripetizione](/docs/reminders/#the-repetition-fields).
 
-I promemoria ricorrenti sono una funzione **Premium** (vedi [Cosa sblocca Premium](/docs/premium/)). Il titolo del gruppo porta l'emoji Premium su ogni server, Premium compreso: segnala una funzione Premium, non una funzione assente. Sul piano Free questo menu a tendina è mostrato ma spento. La sua nota dice: *«I promemoria ricorrenti sono una funzione Premium: con il piano Free ogni promemoria è un evento singolo. Quelli ricorrenti creati prima continuano a funzionare.»* La tua scelta non va persa: su Premium il menu a tendina torna impostato come l'avevi lasciato.
+I promemoria ricorrenti sono una funzione [Premium](/docs/premium/). Sul piano Free questo menu a tendina è mostrato ma spento e la sua nota lo dice. La tua scelta non va persa: su Premium il menu a tendina torna impostato come l'avevi lasciato.
+
+L'emoji Premium nel titolo del gruppo compare su ogni server, Premium compreso: segnala una funzione Premium, non una funzione assente.
 
 Un promemoria che è *già* ricorrente continua a scattare anche con l'interruttore spento, o sul piano Free. Cosa puoi ancora cambiare: vedi [Promemoria ripetuti](/docs/reminders/#repeating-reminders).
 
