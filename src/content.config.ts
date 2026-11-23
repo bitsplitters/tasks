@@ -52,9 +52,7 @@ const traduzioni = defineCollection({
 // /config app e la settimana passano dal controllo di src/lib/esempi/controllo.ts: se il bot rifiuterebbe la lista,
 // o se una scheda nomina un task che non c'è, la build si ferma.
 const id = z.string().regex(/^\d{17,20}$/);
-const useCases = defineCollection({
-  loader: glob({ base: './src/content/use-cases', pattern: '**/*.md' }),
-  schema: z
+const caso = z
     .object({
       title: z.string(),
       seoTitle: z.string(),
@@ -109,10 +107,23 @@ const useCases = defineCollection({
           z.object({ kind: z.literal('webhook'), webhook: z.string(), task: z.string(), by: id }),
         ]).optional(),
       })),
-    })
-    .superRefine((d, ctx) => {
-      for (const message of problemi(d)) ctx.addIssue({ code: 'custom', message });
-    }),
+    });
+const controlla = (d: z.infer<typeof caso>, ctx: z.RefinementCtx) => {
+  for (const message of problemi(d)) ctx.addIssue({ code: 'custom', message });
+};
+const useCases = defineCollection({
+  loader: glob({ base: './src/content/use-cases', pattern: '**/*.md' }),
+  schema: caso.superRefine(controlla),
 });
 
-export const collections = { docs, traduzioni, useCases };
+// I casi d'uso tradotti (spec 2026-11-19-sito-multilingua-design.md, §4.3, nel repo team-tasks-manager):
+// src/content/traduzioni-casi/<prefisso>/<slug>.md, con lo stesso nome dell'inglese. Una traduzione è un esempio
+// intero, con lo schema e il controllo dell'inglese: la lista, i webhook e le schede sono scritti nella sua lingua, e
+// il bot deve poterla leggere come l'inglese. Gli id, le date e i tipi delle schede restano quelli dell'inglese:
+// src/pagine/PaginaCaso.astro li confronta e ferma la build se una traduzione si allontana. `fonte` come in traduzioni.
+const casiTradotti = defineCollection({
+  loader: glob({ base: './src/content/traduzioni-casi', pattern: '**/*.md' }),
+  schema: caso.extend({ fonte: z.string().optional() }).superRefine(controlla),
+});
+
+export const collections = { docs, traduzioni, useCases, casiTradotti };

@@ -10,7 +10,9 @@ import { dataNelTesto } from '../src/components/home/demo/nomi.ts';
 import { percentEncode, risolvi, risolviBody, risolviUrl, testoPerIlToken, variabili } from '../src/lib/esempi/webhook.ts';
 import type { ContestoDelWebhook } from '../src/lib/esempi/webhook.ts';
 import { problemi } from '../src/lib/esempi/controllo.ts';
-import { giornoEOra, riproduzione } from '../src/lib/esempi/discord.ts';
+import { dataDelTeam, giornoEOra, riproduzione } from '../src/lib/esempi/discord.ts';
+import { legenda } from '../src/lib/esempi/legenda.ts';
+import { settimanaDiversa } from '../src/lib/esempi/ossatura.ts';
 import type { Esempio } from '../src/lib/esempi/tipi.ts';
 
 const AVA = '1181730456203948101';
@@ -203,4 +205,50 @@ test('un promemoria a una persona arriva in DM; chi prende un task da sé non si
   assert.match(presa.html, /Leo: I took a task\.\./);
   assert.doesNotMatch(presa.html, /I took a task\.\. <span class="sc-mention">/);
   assert.equal(giornoEOra('2026-12-08T18:00', ZONA), 'Tuesday, 6:00 PM');
+});
+
+test('in italiano le schede hanno le frasi del bundle, le date di un client italiano e le righe sopra dalla zona casi', () => {
+  const e = esempio();
+  const it = { lingua: 'it' as const, push: true };
+  const [notifica, promemoria, webhook] = e.week.map((m) => riproduzione(e, m, it)!);
+  assert.equal(promemoria.dove, 'In #staff, in risposta alla lista, con la menzione di @Moderators');
+  assert.equal(notifica.dove, 'In #staff, sotto la lista');
+  assert.match(notifica.html, /ho assegnato il proprietario al seguente task/);
+  assert.match(notifica.html, /Ava: ho assegnato il proprietario a un task\.\. <span class="sc-mention">@Moderators/);
+  assert.match(notifica.html, /Notifica push/);
+  assert.equal(webhook.dove, 'In #staff, pubblicato dal webhook');
+  assert.equal(dataDelTeam(1765206000, 'f', ZONA, 'it'), '8 dicembre 2025 15:00');
+  assert.equal(dataDelTeam(1765206000, 'F', ZONA, 'it'), 'lunedì 8 dicembre 2025 15:00');
+  assert.equal(dataDelTeam(1765206000, 't', ZONA, 'it'), '15:00');
+  assert.equal(dataDelTeam(1765206000, 'R', ZONA, 'it'), '5 minuti fa');
+  assert.equal(giornoEOra('2026-12-08T18:00', ZONA, 'it'), 'martedì, 18:00');
+});
+
+test('la legenda in italiano: i testi della zona casi, i link con /it/, la ricorrenza coi plurali', () => {
+  const voci = legenda(TESTO, 'it');
+  assert.deepEqual(voci.map((v) => v.link.split('#')[0]).filter((l) => !l.startsWith('/it/')), []);
+  const ricorrente = voci.find((v) => v.codice === '[0m,7d,3]')!;
+  assert.equal(ricorrente.spiega, 'Un promemoria ricorrente: ogni 7 giorni, 3 volte dopo la prima. La lista mostra <code>↻7d ×4</code>.');
+  const una = legenda('- [] <t:1765206000> [0m,1d,1] <@1181730456203948101>: x', 'it').find((v) => v.codice === '[0m,1d,1]')!;
+  assert.equal(una.spiega, 'Un promemoria ricorrente: ogni giorno, una volta dopo la prima. La lista mostra <code>↻1d ×2</code>.');
+  assert.equal(legenda(TESTO).find((v) => v.codice === '[0m,7d,3]')!.spiega,
+    'A recurring reminder: every 7 days, 3 times after the first. The list shows <code>↻7d ×4</code>.');
+});
+
+test('una traduzione che cambia un orario, un id o una scheda non racconta la stessa settimana', () => {
+  const e = esempio();
+  const tradotto = structuredClone(e);
+  tradotto.list.title = 'Settimana dello staff';
+  tradotto.team.roles[0].name = 'Moderatori';
+  tradotto.webhooks[0].name = 'Regole cambiate';
+  assert.equal(settimanaDiversa(tradotto, e), null);
+  const spostato = structuredClone(tradotto);
+  spostato.week[1].at = '2026-12-08T19:00';
+  assert.match(settimanaDiversa(spostato, e) ?? '', /non racconta la stessa settimana/);
+  const altroOwner = structuredClone(tradotto);
+  altroOwner.team.people[0].id = '1181730456203948199';
+  assert.notEqual(settimanaDiversa(altroOwner, e), null);
+  const senzaPremium = structuredClone(tradotto);
+  senzaPremium.settings = senzaPremium.settings.map((x) => ({ ...x, premium: false }));
+  assert.notEqual(settimanaDiversa(senzaPremium, e), null);
 });

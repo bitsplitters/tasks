@@ -1,0 +1,99 @@
+/*
+ * I testi dei casi d'uso (spec 2026-11-19-sito-multilingua-design.md, §4.4, nel repo team-tasks-manager): l'indice,
+ * la pagina di un caso, la legenda del testo (src/lib/esempi/legenda.ts) e le righe sopra le riproduzioni
+ * (src/lib/esempi/discord.ts). Le storie stanno nei file Markdown, in src/content/use-cases/ e, tradotte, in
+ * src/content/traduzioni-casi/<prefisso>/. I testi del bot nelle riproduzioni stanno in discord.ts, col bundle.
+ */
+export const fonte = '';
+
+export const testi = {
+  'indice.title': 'Discord Task Management Use Cases — Team Tasks Manager',
+  'indice.h1': 'How Discord teams run their week with TTM',
+  'indice.sottotitolo':
+    'Six teams, one week each. See their list, who owns what, the reminders that reach them and what fires when a task is done.',
+  'indice.vedi': 'See the examples',
+  'indice.tuo.titolo': 'Make it your own',
+  'indice.tuo.testo':
+    "The teams are made up; everything they do is what TTM does today. Every list stays within the 20 tasks of the Free plan. Each page shows the text behind its list: to start from it, paste it into <code>/create-list</code> and swap the people, roles and channels for your server's. How the codes work: see <a href=\"{scrivere}\">Writing a list</a>.",
+  'finale.titolo': 'Add TTM to your server',
+  'finale.testo': "Then run <code>/create-list</code> and write your team's first list.",
+
+  'caso.title': '{titolo} — Team Tasks Manager',
+  'caso.vedi': 'See the example',
+  'caso.briciola': 'Use cases',
+  'team.titolo': 'The team',
+  'team.persone': 'People',
+  'team.ruoli': 'Roles',
+  'team.canali': 'Channels',
+  'team.membri': 'Members: {nomi}.',
+  'team.e': ' and ',
+  'team.fuso':
+    "The times on this page are in the team's time zone, <code>{zona}</code>. Discord shows every date in the time zone of whoever reads it.",
+  'lista.titolo': 'The list on Discord',
+  'lista.dove': 'In #{canale}, on {quando}.',
+  'testo.titolo': 'The text behind it',
+  'testo.spiega':
+    "This is what <strong>Bulk update</strong> {icona} shows for the list, with the dates in the team's time zone. The buttons write it for you. You can also type it, or write a text like this in <code>/create-list</code> with your own server's people, roles and channels.",
+  'legenda.altro': 'More',
+  'impostazioni.titolo': "How it's set up",
+  'impostazioni.premium':
+    'Webhooks, recurring reminders and owners of several people are <a href="{premium}">Premium</a> features, unlocked for every server during the beta.',
+  'impostazioni.scelte': 'The choices this team made in <a href="{configurazione}"><code>/config app</code></a>, and why.',
+  'impostazioni.voce': 'Setting',
+  'impostazioni.scelta': 'Choice',
+  'impostazioni.perche': 'Why',
+  'webhook.titolo': 'The webhook «{nome}»',
+  'webhook.creato': 'Created with this command, then linked to its task with <strong>Webhook</strong> {icona}.',
+  'webhook.completamento': 'With the trigger, it fires only when the task is completed.',
+  'webhook.entrambi': 'Without a trigger, it fires when the task is completed and when it is reopened.',
+  'webhook.comando': '/config webhook action:create webhook:{nome}',
+  'webhook.comando.evento': ' trigger:completion',
+  'webhook.metodo': 'HTTP method',
+  'webhook.url': 'URL',
+  'webhook.intestazioni': 'Headers',
+  'webhook.body': 'Body',
+  'webhook.servizio.discord': 'In Discord',
+  'webhook.servizio.github': 'In GitHub',
+  'webhook.servizio.make': 'In Make',
+  'settimana.titolo': 'How the week went',
+  'altri.titolo': 'Other use cases',
+
+  'dove.promemoria.ruolo': 'In #{canale}, as a reply to the list, mentioning @{nome}',
+  'dove.promemoria.persona': "In {nome}'s direct messages",
+  'dove.notifica': 'In #{canale}, under the list',
+  'dove.webhook': 'In #{canale}, posted by the webhook',
+  'dove.richiesta': 'The request TTM sends',
+
+  'legenda.subtask.codice': ' - [] ',
+  'legenda.subtask.spiega': 'A space before the dash makes a subtask of the task above. A task with subtasks is a group.',
+  'legenda.done.codice': '[X]',
+  'legenda.done.spiega': 'A completed task. <code>[]</code> is a task to do.',
+  'legenda.owner.codice': '@Name: ',
+  'legenda.owner.spiega':
+    'The owner: <code>@</code> and the name, followed by a colon, at the start of the task. A person or a role.',
+  'legenda.tag.codice': '@Name',
+  'legenda.tag.spiega': 'A tag: <code>@</code> and the name of a person or a role, without the colon.',
+  'legenda.channel.codice': '#channel',
+  'legenda.channel.spiega': 'A channel: <code>#</code> and its name. The link from <em>Copy Link</em> on the channel works too.',
+  'legenda.link.codice': '[text](https://…)',
+  'legenda.link.spiega': 'A link. <code>mailto:</code>, <code>tel:</code> and <code>sms:</code> work too.',
+  'legenda.message.codice': '[text](https://discord.com/channels/…)',
+  'legenda.message.spiega': 'A link to a message, from <em>Copy Message Link</em>. It stays a link.',
+  'legenda.emoji.codice': ':owner:',
+  'legenda.emoji.spiega': 'The emoji of a list button, written as a short name.',
+  'legenda.reminder.codice': 'YYYY-MM-DD HH:mm [0m,0m,0]',
+  'legenda.reminder.spiega':
+    'A reminder: the date in your time zone, then distance, interval and repetitions. <code>0m,0</code> is a single event. Writing a list from scratch, put the distance instead of the date: <code>[1d,0m,0]</code> is one day after you save.',
+  'legenda.recurring.codice': '[0m,7d,3]',
+  'legenda.recurring.spiega':
+    'A recurring reminder: every 7 days, 3 times after the first. The list shows <code>↻7d ×4</code>.',
+  'legenda.webhook.codice': '{{wb=name}}',
+  'legenda.webhook.spiega': "The webhook of the task. It doesn't show in the list.",
+  'legenda.variable.codice': '{{key=value}}',
+  'legenda.variable.spiega': 'A free variable: the webhook reads it as <code>{{key}}</code>. It stays in the text.',
+  'legenda.ricorrente': 'A recurring reminder: every {ogni}, {dopo}. The list shows <code>{mostra}</code>.',
+  'legenda.unita.d': { one: '{n} day', other: '{n} days' },
+  'legenda.unita.h': { one: '{n} hour', other: '{n} hours' },
+  'legenda.unita.m': { one: '{n} minute', other: '{n} minutes' },
+  'legenda.dopo': { one: 'once after the first', other: '{n} times after the first' },
+} as const;

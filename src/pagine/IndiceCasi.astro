@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import VetrinaFont from '../components/VetrinaFont.astro';
+import { docsCard } from '../lib/preview-card';
+import { casiDellaLingua } from '../lib/casi-lingua';
+import type { Lingua } from '../i18n/lingue.ts';
+import { percorso } from '../i18n/percorsi.ts';
+import { t, traduttore } from '../i18n/t.ts';
+import '../styles/docs.css';
+import '../styles/use-cases.css';
+
+// L'indice dei casi d'uso (spec 2026-11-20-casi-d-uso-esempi-completi-design.md, §7 e §12 punto 2, nel repo
+// team-tasks-manager). Sono esempi, non liste da incollare: il <title> perde «Templates», l'H1 dice che ogni caso è la
+// settimana di un team. Ogni scheda: il nome, la descrizione, cosa usa (`highlights`). In una lingua (spec
+// 2026-11-19-sito-multilingua-design.md, §4.1): la route inglese è src/pages/use-cases/index.astro, quelle delle altre
+// lingue src/pages/[lingua]/use-cases/index.astro.
+interface Props {
+  lingua: Lingua;
+}
+const { lingua } = Astro.props;
+const tt = traduttore(lingua, 'casi');
+const TITLE = tt('indice.title');
+const H1 = tt('indice.h1');
+const SUBTITLE = tt('indice.sottotitolo');
+
+const casi = await casiDellaLingua(lingua);
+---
+<Base title={TITLE} previewTitle={H1} description={SUBTITLE} embed={docsCard(lingua, H1, SUBTITLE, percorso(lingua, '/use-cases/'), tt('indice.vedi'))}>
+  <VetrinaFont slot="head" />
+  <main class="docs-main">
+    <article class="prose uc uc-index wrap">
+      <h1>{H1}</h1>
+      <p class="subtitle">{SUBTITLE}</p>
+      <ul class="uc-cases" role="list">
+        {casi.map((c) => (
+          <li lang={c.riserva ? 'en' : undefined}>
+            <a href={percorso(lingua, `/use-cases/${c.id}/`)}>
+              <span class="uc-case-t">{c.data.name}</span>
+              <span class="uc-case-d">{c.data.description}</span>
+              <span class="uc-case-h">{c.data.highlights}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <h2>{tt('indice.tuo.titolo')}</h2>
+      <p set:html={tt('indice.tuo.testo', { scrivere: percorso(lingua, '/docs/writing-a-list/') })} />
+      <section class="uc-final" aria-labelledby="uc-final-t">
+        <h2 id="uc-final-t">{tt('finale.titolo')}</h2>
+        <p set:html={tt('finale.testo')} />
+        <div class="cta-row">
+          <a class="btn" href="/invite">{t(lingua, 'comune.cta.aggiungi')}</a>
+          <a class="btn-ghost" href={percorso(lingua, '/docs/getting-started/')}>{t(lingua, 'comune.cta.inizia')}</a>
+        </div>
+      </section>
+    </article>
+  </main>
+</Base>

@@ -1,0 +1,13 @@
+---
+// L'indice dei casi d'uso nelle altre lingue pubblicate (spec 2026-11-19-sito-multilingua-design.md, §4.1 e §4.3, nel
+// repo team-tasks-manager).
+import IndiceCasi from '../../../pagine/IndiceCasi.astro';
+import { percorsiDelleLingue } from '../../../i18n/lingue.ts';
+
+export function getStaticPaths() {
+  return percorsiDelleLingue();
+}
+
+const { lingua } = Astro.props;
+---
+<IndiceCasi lingua={lingua} />

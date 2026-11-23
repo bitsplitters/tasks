@@ -71,4 +71,5 @@ test('t: chiavi, segnaposto e plurali', () => {
   assert.throws(() => t('en', 'comune.selettore.label'), /vuole il valore \{nome\}/);
   assert.throws(() => t('en', 'comune.note.modifiche'), /vuole il numero n/);
   assert.equal(traduttore('it', 'comune')('nav.casi'), "Casi d'uso");
+  assert.equal(t('en', 'casi.legenda.variable.spiega'), 'A free variable: the webhook reads it as <code>{{key}}</code>. It stays in the text.');
 });

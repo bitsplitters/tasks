@@ -4,6 +4,10 @@
  * un webhook. Le righe le disegna il motore della demo della home (righe.ts, markdown.ts), coi nomi, i canali e il
  * fuso del team; i testi sono quelli del bot, con la chiave del bundle o la classe accanto. HTML statico, con le classi
  * di scene.css (sc-*) e di use-cases.css (ex-*): niente pulsanti, sembrerebbero cliccabili.
+ *
+ * Ogni riproduzione esce nella lingua della pagina (spec 2026-11-19-sito-multilingua-design.md, §4.3): i testi del bot
+ * dal suo bundle in quella lingua (TESTI_DEL_BOT, con la chiave accanto), le date come le scrive un client Discord in
+ * quella lingua, le righe sopra le schede dalla zona `casi` dei testi del sito.
  */
 import { escape, markdown } from '../../components/home/demo/markdown.ts';
 import type { Contesto } from '../../components/home/demo/markdown.ts';
@@ -16,6 +20,8 @@ import { contestoDellaSpunta, taskIn } from './controllo.ts';
 import { leggi } from './testo.ts';
 import { risolvi, risolviBody, risolviUrl, variabili } from './webhook.ts';
 import type { Esempio, Momento, Scheda, Team, TipoDiNotifica } from './tipi.ts';
+import type { Lingua } from '../../i18n/lingue.ts';
+import { t } from '../../i18n/t.ts';
 
 /** L'istante di un momento della settimana, scritto nel fuso del team (`2026-12-08T18:00`). */
 export function istante(at: string, zona: string): number {
@@ -26,38 +32,58 @@ export function istante(at: string, zona: string): number {
 
 const FORMATI = new Map<string, Intl.DateTimeFormat>();
 
-function formato(zona: string): Intl.DateTimeFormat {
-  let f = FORMATI.get(zona);
+/** Il formato delle date del client Discord nella lingua: l'inglese americano a 12 ore, le altre a 24. */
+function formato(zona: string, lingua: Lingua): Intl.DateTimeFormat {
+  const chiave = `${lingua} ${zona}`;
+  let f = FORMATI.get(chiave);
   if (!f) {
-    f = new Intl.DateTimeFormat('en-US', {
-      timeZone: zona, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric',
-      minute: '2-digit', hour12: true,
-    });
-    FORMATI.set(zona, f);
+    f = lingua === 'en'
+      ? new Intl.DateTimeFormat('en-US', {
+        timeZone: zona, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric',
+        minute: '2-digit', hour12: true,
+      })
+      : new Intl.DateTimeFormat(lingua, {
+        timeZone: zona, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit',
+        minute: '2-digit', hourCycle: 'h23',
+      });
+    FORMATI.set(chiave, f);
   }
   return f;
 }
 
-/**
- * Una data come la scrive un client Discord in inglese americano nel fuso del team (dataDelCanale della demo):
- * `<t:N>` «December 8, 2026 6:00 PM», `:F` col giorno della settimana, `:t` l'ora. `:R` è «5 minutes ago»: le schede
- * mostrano il messaggio cinque minuti dopo che è arrivato.
- */
-export function dataDelTeam(at: number, stile: string, zona: string): string {
-  if (stile === 'R') return '5 minutes ago';
+const parti = (at: number, zona: string, lingua: Lingua) => {
   const p: Record<string, string> = {};
-  for (const x of formato(zona).formatToParts(new Date(at * 1000))) p[x.type] = x.value;
-  const ora = `${p.hour}:${p.minute} ${p.dayPeriod}`;
+  for (const x of formato(zona, lingua).formatToParts(new Date(at * 1000))) p[x.type] = x.value;
+  return p;
+};
+
+/** «5 minutes ago» nella lingua del client: le schede mostrano il messaggio cinque minuti dopo che è arrivato. */
+const CINQUE_MINUTI_FA: Partial<Record<Lingua, string>> = { en: '5 minutes ago', it: '5 minuti fa' };
+
+/**
+ * Una data come la scrive un client Discord nel fuso del team (dataDelCanale della demo). In inglese americano
+ * `<t:N>` «December 8, 2026 6:00 PM», `:F` col giorno della settimana, `:t` l'ora; in italiano «8 dicembre 2026 18:00»,
+ * «martedì 8 dicembre 2026 18:00», «18:00». `:R` è «5 minutes ago».
+ */
+export function dataDelTeam(at: number, stile: string, zona: string, lingua: Lingua = 'en'): string {
+  if (stile === 'R') return CINQUE_MINUTI_FA[lingua] ?? CINQUE_MINUTI_FA.en!;
+  const p = parti(at, zona, lingua);
+  if (lingua === 'en') {
+    const ora = `${p.hour}:${p.minute} ${p.dayPeriod}`;
+    if (stile === 't') return ora;
+    const data = `${p.month} ${p.day}, ${p.year} ${ora}`;
+    return stile === 'F' ? `${p.weekday}, ${data}` : data;
+  }
+  const ora = `${p.hour}:${p.minute}`;
   if (stile === 't') return ora;
-  const data = `${p.month} ${p.day}, ${p.year} ${ora}`;
-  return stile === 'F' ? `${p.weekday}, ${data}` : data;
+  const data = `${p.day} ${p.month} ${p.year} ${ora}`;
+  return stile === 'F' ? `${p.weekday} ${data}` : data;
 }
 
-/** Il giorno e l'ora di un momento, per la linea del tempo: «Tuesday, 6:00 PM». */
-export function giornoEOra(at: string, zona: string): string {
-  const p: Record<string, string> = {};
-  for (const x of formato(zona).formatToParts(new Date(istante(at, zona) * 1000))) p[x.type] = x.value;
-  return `${p.weekday}, ${p.hour}:${p.minute} ${p.dayPeriod}`;
+/** Il giorno e l'ora di un momento, per la linea del tempo: «Tuesday, 6:00 PM», «martedì, 18:00». */
+export function giornoEOra(at: string, zona: string, lingua: Lingua = 'en'): string {
+  const p = parti(istante(at, zona), zona, lingua);
+  return lingua === 'en' ? `${p.weekday}, ${p.hour}:${p.minute} ${p.dayPeriod}` : `${p.weekday}, ${p.hour}:${p.minute}`;
 }
 
 export function nomiDelTeam(team: Team): Nomi {
@@ -67,13 +93,13 @@ export function nomiDelTeam(team: Team): Nomi {
   };
 }
 
-export function contestoDelTeam(team: Team): Contesto {
+export function contestoDelTeam(team: Team, lingua: Lingua = 'en'): Contesto {
   const nomi = nomiDelTeam(team);
   return {
     persona: nomi.persona,
     ruolo: nomi.ruolo,
     canale: (id) => team.channels.find((c) => c.id === id)?.name,
-    data: (at, stile) => dataDelTeam(at, stile, team.zone),
+    data: (at, stile) => dataDelTeam(at, stile, team.zone, lingua),
   };
 }
 
@@ -98,18 +124,54 @@ function messaggio(corpo: string, ora: string, mittente?: { nome: string; colore
     + `${corpo}</div>`;
 }
 
-/** La riga dei Tips sotto la lista (tasklist.tips.line, con OTHER_BLUE e DOC_BLUE come EmbedDellaLista). */
-const RIGA_DEI_TIPS = '-# Not sure what the buttons do? <:other_blue:0> More → <:doc_blue:0> Guide · '
-  + '[Full docs](https://tasks.bitsplitters.app/docs/the-task-list/)';
+/**
+ * I testi del bot nelle riproduzioni, per lingua: i valori del suo bundle (slash-resource*.properties), con la chiave
+ * accanto e i riferimenti ${…} già risolti. Una lingua che non c'è prende l'inglese.
+ */
+interface TestiDelBot {
+  /** La riga dei Tips sotto la lista (tasklist.tips.line, con OTHER_BLUE e DOC_BLUE come EmbedDellaLista). */
+  tips: string;
+  /** Le frasi della notifica (tasklist.slct.owner.*, tasklist.slct.activities.completed) e della push (*.push). */
+  frasi: Record<TipoDiNotifica, { frase: string; push: string; emoji: boolean }>;
+  /** La riga sotto il testo push (config.slct.push.msg). */
+  push: string;
+}
+
+const TESTI_DEL_BOT: Partial<Record<Lingua, TestiDelBot>> = {
+  en: {
+    tips: '-# Not sure what the buttons do? <:other_blue:0> More → <:doc_blue:0> Guide · '
+      + '[Full docs](https://tasks.bitsplitters.app/docs/the-task-list/)',
+    frasi: {
+      claimed: { frase: 'I took the following task', push: 'I took a task..', emoji: true },
+      assigned: { frase: 'I assigned the owner to the following task', push: 'I assigned the owner to a task..', emoji: true },
+      updated: { frase: 'I updated the owner {2} of the following task', push: 'I updated the owner of a task..', emoji: true },
+      completed: { frase: 'I completed the following task:', push: 'I completed the following task..', emoji: false },
+    },
+    push: 'Push notification',
+  },
+  it: {
+    tips: '-# Non sai cosa fanno i pulsanti? <:other_blue:0> Altro → <:doc_blue:0> Guida · '
+      + '[Documentazione](https://tasks.bitsplitters.app/docs/the-task-list/)',
+    frasi: {
+      claimed: { frase: 'ho preso il seguente task', push: 'ho preso un task..', emoji: true },
+      assigned: { frase: 'ho assegnato il proprietario al seguente task', push: 'ho assegnato il proprietario a un task..', emoji: true },
+      updated: { frase: 'ho aggiornato il proprietario {2} nel seguente task', push: 'ho aggiornato il proprietario di un task..', emoji: true },
+      completed: { frase: 'ho completato il seguente task:', push: 'ho completato il seguente task..', emoji: false },
+    },
+    push: 'Notifica push',
+  },
+};
+
+const delBot = (lingua: Lingua): TestiDelBot => TESTI_DEL_BOT[lingua] ?? TESTI_DEL_BOT.en!;
 
 /** Il messaggio della lista nel canale, fermo: il titolo, le righe, la riga dei Tips se sono accesi, la barra. */
-export function htmlDellaLista(esempio: Esempio): string {
+export function htmlDellaLista(esempio: Esempio, lingua: Lingua = 'en'): string {
   const lista = listaDellEsempio(esempio);
-  const ctx = contestoDelTeam(esempio.team);
+  const ctx = contestoDelTeam(esempio.team, lingua);
   const righe = righeDelCanale(lista, nomiDelTeam(esempio.team), { contesto: ctx, spazi: esempio.list.spaced });
-  const tips = esempio.list.tips ? `<div class="ex-tips">${markdown(RIGA_DEI_TIPS, ctx)}</div>` : '';
+  const tips = esempio.list.tips ? `<div class="ex-tips">${markdown(delBot(lingua).tips, ctx)}</div>` : '';
   const pct = avanzamento(lista);
-  const ora = dataDelTeam(istante(esempio.list.at, esempio.team.zone), 't', esempio.team.zone);
+  const ora = dataDelTeam(istante(esempio.list.at, esempio.team.zone), 't', esempio.team.zone, lingua);
   return messaggio(`<div class="sc-embed"><p class="sc-title">${escape(lista.titolo)}</p>`
     + `<div class="sc-rows">${righe}</div>${tips}`
     + `<div class="sc-bar"${pct === 0 ? ' data-empty' : ''} style="--pct: ${pct}%"><div class="sc-bar-fill"></div></div>`
@@ -135,16 +197,29 @@ export interface Riproduzione {
 }
 
 /**
+ * Readable push notifications è accesa, se la tabella dell'esempio non la dice spenta. Si legge dall'esempio inglese:
+ * nelle traduzioni nome e scelta dell'impostazione sono tradotti.
+ */
+export function pushAccesa(esempio: Esempio): boolean {
+  return !esempio.settings.some((s) => s.setting === 'Readable push notifications' && s.choice === 'Off');
+}
+
+/** Come si rende una riproduzione: la lingua della pagina, e se il testo push è acceso (pushAccesa). */
+export interface Opzioni {
+  lingua: Lingua;
+  push: boolean;
+}
+
+/**
  * Il promemoria come arriva (ReminderNotificationHandler, ReminderSender): in DM a una persona, nel canale della
  * lista a un ruolo, come risposta alla lista, con la menzione del ruolo. Il testo fuori dall'embed c'è con Readable
  * push notifications accesa: in DM la prosa, nel canale la menzione e la prosa. Il pulsante porta alla lista, col suo
  * titolo.
  */
-function promemoria(esempio: Esempio, task: Task, ctx: Contesto): Riproduzione {
+function promemoria(esempio: Esempio, task: Task, ctx: Contesto, { lingua, push }: Opzioni): Riproduzione {
   const { team } = esempio;
   const at = task.promemoria!.at;
   const ruolo = task.owner!.tipo === 'ruolo';
-  const push = !esempio.settings.some((s) => s.setting === 'Readable push notifications' && s.choice === 'Off');
   const prosa = senzaEmoji(task.testo);
   const testo = !push ? (ruolo ? `<@&${task.owner!.id}>` : '') : ruolo ? `<@&${task.owner!.id}> ${prosa}` : prosa;
   const segno = '\u0001';
@@ -155,21 +230,14 @@ function promemoria(esempio: Esempio, task: Task, ctx: Contesto): Riproduzione {
   const html = messaggio((testo ? `<div class="ex-content">${markdown(testo, ctx)}</div>` : '')
     + `<div class="sc-embed ex-embed">${descrizione}</div>`
     + `<div class="ex-btns"><span class="ex-link">${escape(esempio.list.title)}${ESTERNO}</span></div>`,
-  dataDelTeam(at, 't', team.zone));
+  dataDelTeam(at, 't', team.zone, lingua));
   const canale = team.channels.find((c) => c.id === esempio.list.channel)!.name;
   const nome = ruolo ? team.roles.find((r) => r.id === task.owner!.id)!.name : team.people.find((p) => p.id === task.owner!.id)!.name;
-  return { dove: ruolo ? `In #${canale}, as a reply to the list, mentioning @${nome}` : `In ${nome}'s direct messages`, html };
+  const dove = ruolo ? t(lingua, 'casi.dove.promemoria.ruolo', { canale, nome }) : t(lingua, 'casi.dove.promemoria.persona', { nome });
+  return { dove, html };
 }
 
 const ESTERNO = '<svg class="ex-ext" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15 2a1 1 0 1 0 0 2h3.59l-7.3 7.3a1 1 0 0 0 1.42 1.4L20 5.42V9a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1h-6ZM5 3a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h13a3 3 0 0 0 3-3v-6a1 1 0 1 0-2 0v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6a1 1 0 1 0 0-2H5Z"/></svg>';
-
-/** Le frasi della notifica (bundle: tasklist.slct.owner.*, tasklist.slct.activities.completed) e della push. */
-const FRASI: Record<TipoDiNotifica, { frase: string; push: string; emoji: boolean }> = {
-  claimed: { frase: 'I took the following task', push: 'I took a task..', emoji: true },
-  assigned: { frase: 'I assigned the owner to the following task', push: 'I assigned the owner to a task..', emoji: true },
-  updated: { frase: 'I updated the owner {2} of the following task', push: 'I updated the owner of a task..', emoji: true },
-  completed: { frase: 'I completed the following task:', push: 'I completed the following task..', emoji: false },
-};
 
 /**
  * La notifica sotto la lista (NotificaAzione): l'embed con chi ha agito come autore, la frase citata, le righe del
@@ -177,24 +245,25 @@ const FRASI: Record<TipoDiNotifica, { frase: string; push: string; emoji: boolea
  * (ChiAvvisareDellOwner), poi «-# Push notification» (config.slct.push.msg).
  */
 function notifica(esempio: Esempio, c: Extract<Scheda, { kind: 'notice' }>, task: Task, quando: number,
-  ctx: Contesto): Riproduzione {
+  ctx: Contesto, lingua: Lingua): Riproduzione {
   const { team } = esempio;
   const chi = team.people.find((p) => p.id === c.by)!;
-  const f = FRASI[c.type];
+  const bot = delBot(lingua);
+  const f = bot.frasi[c.type];
   const dopo: Task = { ...task, fatto: c.type === 'completed' };
   const prima = c.from ? (team.roles.some((r) => r.id === c.from) ? `<@&${c.from}>` : `<@${c.from}>`) : '';
   const frase = markdown(f.frase.replace('{2}', prima), ctx, true);
   const nuovo = task.owner && c.type !== 'completed' && c.type !== 'claimed'
     && (task.owner.tipo === 'ruolo' || task.owner.id !== c.by)
     ? ` ${task.owner.tipo === 'ruolo' ? '<@&' : '<@'}${task.owner.id}>` : '';
-  const testo = `${chi.name}: ${f.push}${nuovo}\n-# Push notification`;
+  const testo = `${chi.name}: ${f.push}${nuovo}\n-# ${bot.push}`;
   const righe = righeDelCanale({ titolo: '', tasks: [dopo] }, nomiDelTeam(team), { contesto: ctx });
   const html = messaggio(`<div class="ex-content">${markdown(testo, ctx)}</div>`
     + `<div class="sc-embed ex-embed"><p class="ex-author">${avatar(chi.name, chi.color, 'ex-av')}${escape(chi.name)}</p>`
     + `<div class="ex-quote">${f.emoji ? icona('owner_blue') : ''}<em>${frase}</em></div>`
-    + `<div class="sc-rows ex-gap">${righe}</div></div>`, dataDelTeam(quando, 't', team.zone));
+    + `<div class="sc-rows ex-gap">${righe}</div></div>`, dataDelTeam(quando, 't', team.zone, lingua));
   const canale = team.channels.find((x) => x.id === esempio.list.channel)!.name;
-  return { dove: `In #${canale}, under the list`, html };
+  return { dove: t(lingua, 'casi.dove.notifica', { canale }), html };
 }
 
 /** Il JSON con due spazi, per leggere la richiesta. */
@@ -207,7 +276,7 @@ function bello(json: string): string {
  * (il `content` del body risolto, col nome del webhook); per gli altri servizi la richiesta, coi token sostituiti.
  */
 function webhook(esempio: Esempio, c: Extract<Scheda, { kind: 'webhook' }>, task: Task, quando: number,
-  ctx: Contesto): Riproduzione {
+  ctx: Contesto, lingua: Lingua): Riproduzione {
   const w = esempio.webhooks.find((x) => x.name === c.webhook)!;
   const tctx = contestoDellaSpunta(esempio, task, c.by, new Date(quando * 1000).toISOString().replace('.000Z', 'Z'));
   const vars = variabili(task.testo);
@@ -216,23 +285,27 @@ function webhook(esempio: Esempio, c: Extract<Scheda, { kind: 'webhook' }>, task
     const content = String((JSON.parse(body) as { content?: string }).content ?? '');
     const canale = esempio.team.channels.find((x) => x.id === w.postsAs!.channel)!.name;
     const html = messaggio(`<div class="ex-content">${markdown(content, ctx)}</div>`,
-      dataDelTeam(quando, 't', esempio.team.zone), { nome: w.postsAs.name, colore: w.postsAs.color });
-    return { dove: `In #${canale}, posted by the webhook`, html };
+      dataDelTeam(quando, 't', esempio.team.zone, lingua), { nome: w.postsAs.name, colore: w.postsAs.color });
+    return { dove: t(lingua, 'casi.dove.webhook', { canale }), html };
   }
   const intestazioni = w.headers.trim().split('\n').map((r) => risolvi(r, tctx, vars)).join('\n');
   const richiesta = `${w.method} ${risolviUrl(w.url, tctx, vars)}\n${intestazioni}\n\n${bello(body)}`;
-  return { dove: 'The request TTM sends', html: `<pre class="ex-req"><code>${escape(richiesta)}</code></pre>` };
+  return { dove: t(lingua, 'casi.dove.richiesta'), html: `<pre class="ex-req"><code>${escape(richiesta)}</code></pre>` };
 }
 
-/** La riproduzione della scheda di un momento, o null se il momento non ne ha. */
-export function riproduzione(esempio: Esempio, m: Momento): Riproduzione | null {
+/**
+ * La riproduzione della scheda di un momento, o null se il momento non ne ha. Senza opzioni è in inglese, col testo
+ * push letto dall'esempio stesso.
+ */
+export function riproduzione(esempio: Esempio, m: Momento, opzioni?: Opzioni): Riproduzione | null {
   const c = m.card;
   if (!c) return null;
+  const o = opzioni ?? { lingua: 'en', push: pushAccesa(esempio) };
   const tasks = listaDellEsempio(esempio).tasks;
   const task = taskIn(tasks, c.task)!;
-  const ctx = contestoDelTeam(esempio.team);
+  const ctx = contestoDelTeam(esempio.team, o.lingua);
   const quando = istante(m.at, esempio.team.zone);
-  if (c.kind === 'reminder') return promemoria(esempio, task, ctx);
-  if (c.kind === 'notice') return notifica(esempio, c, task, quando, ctx);
-  return webhook(esempio, c, task, quando, ctx);
+  if (c.kind === 'reminder') return promemoria(esempio, task, ctx, o);
+  if (c.kind === 'notice') return notifica(esempio, c, task, quando, ctx, o.lingua);
+  return webhook(esempio, c, task, quando, ctx, o.lingua);
 }

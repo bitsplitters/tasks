@@ -1,0 +1,17 @@
+---
+// I casi d'uso nelle altre lingue pubblicate (spec 2026-11-19-sito-multilingua-design.md, §4.1 e §4.3, nel repo
+// team-tasks-manager): uno per caso inglese, tradotto o con l'inglese di riserva (src/lib/casi-lingua.ts).
+import { getCollection } from 'astro:content';
+import PaginaCaso from '../../../pagine/PaginaCaso.astro';
+import { percorsiDelleLingue } from '../../../i18n/lingue.ts';
+
+export async function getStaticPaths() {
+  const casi = await getCollection('useCases');
+  return percorsiDelleLingue().flatMap(({ params, props }) =>
+    casi.map((entry) => ({ params: { ...params, slug: entry.id }, props: { ...props, id: entry.id } })),
+  );
+}
+
+const { lingua, id } = Astro.props;
+---
+<PaginaCaso lingua={lingua} id={id} />

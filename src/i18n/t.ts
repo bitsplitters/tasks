@@ -4,7 +4,8 @@
  * chiavi; una chiave si scrive `zona.voce` (`comune.nav.docs`).
  *
  * - Una chiave che manca lancia: la build si ferma invece di pubblicare un buco.
- * - I segnaposto si scrivono `{nome}`; un valore che manca lancia anche lui.
+ * - I segnaposto si scrivono `{nome}`; un valore che manca lancia anche lui. Le doppie graffe non sono segnaposto:
+ *   `{{key}}` è un token dei webhook e resta com'è.
  * - Un plurale è un oggetto di forme (`one`, `other`…), scelte con `Intl.PluralRules` della lingua dal valore `n`.
  * - Un testo con del markup (un link, un grassetto) si rende con `set:html`: è contenuto nostro, non di chi visita.
  */
@@ -37,7 +38,7 @@ export function t(lingua: Lingua, chiave: string, valori: Valori = {}): string {
     if (typeof valori.n !== 'number') throw new Error(`Il plurale «${chiave}» vuole il numero n`);
     testo = forma(lingua, valore, valori.n);
   }
-  return testo.replace(/\{(\w+)\}/g, (_, nome: string) => {
+  return testo.replace(/(?<!\{)\{(\w+)\}(?!\})/g, (_, nome: string) => {
     if (!Object.hasOwn(valori, nome)) throw new Error(`Il testo «${chiave}» in ${lingua} vuole il valore {${nome}}`);
     return String(valori[nome]);
   });

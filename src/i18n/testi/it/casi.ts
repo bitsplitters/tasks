@@ -1,0 +1,96 @@
+// I testi dei casi d'uso in italiano: le chiavi di src/i18n/testi/en/casi.ts. `fonte` è l'impronta dell'inglese
+// tradotto (npm run traduzioni -- --firma).
+export const fonte = '';
+
+export const testi = {
+  'indice.title': "Casi d'uso della gestione dei task su Discord — Team Tasks Manager",
+  'indice.h1': 'Come i team su Discord organizzano la settimana con TTM',
+  'indice.sottotitolo':
+    'Sei team, una settimana ciascuno. Guarda la loro lista, chi è proprietario di cosa, i promemoria che li raggiungono e cosa parte quando un task è fatto.',
+  'indice.vedi': 'Guarda gli esempi',
+  'indice.tuo.titolo': 'Adattalo al tuo team',
+  'indice.tuo.testo':
+    'I team sono inventati; tutto quello che fanno è quello che TTM fa oggi. Ogni lista sta nei 20 task del piano Free. Ogni pagina mostra il testo dietro la sua lista: per partire da lì incollalo in <code>/crea-lista</code> e metti al posto di persone, ruoli e canali quelli del tuo server. Come funzionano i codici: vedi <a href="{scrivere}">Scrivere una lista</a>.',
+  'finale.titolo': 'Aggiungi TTM al tuo server',
+  'finale.testo': 'Poi usa <code>/crea-lista</code> e scrivi la prima lista del tuo team.',
+
+  'caso.title': '{titolo} — Team Tasks Manager',
+  'caso.vedi': "Guarda l'esempio",
+  'caso.briciola': "Casi d'uso",
+  'team.titolo': 'Il team',
+  'team.persone': 'Persone',
+  'team.ruoli': 'Ruoli',
+  'team.canali': 'Canali',
+  'team.membri': 'Membri: {nomi}.',
+  'team.e': ' e ',
+  'team.fuso':
+    'Gli orari di questa pagina sono nel fuso orario del team, <code>{zona}</code>. Discord mostra ogni data nel fuso orario di chi la legge.',
+  'lista.titolo': 'La lista su Discord',
+  'lista.dove': 'In #{canale}, {quando}.',
+  'testo.titolo': 'Il testo dietro la lista',
+  'testo.spiega':
+    'Ecco cosa mostra <strong>Modifica in blocco</strong> {icona} per la lista, con le date nel fuso orario del team. Lo scrivono i pulsanti per te. Puoi anche scriverlo a mano, o scrivere un testo come questo in <code>/crea-lista</code> con persone, ruoli e canali del tuo server.',
+  'legenda.altro': 'Altro',
+  'impostazioni.titolo': 'Come è configurato',
+  'impostazioni.premium':
+    'Webhook, promemoria ricorrenti e proprietari di più persone sono funzioni <a href="{premium}">Premium</a>, sbloccate per ogni server durante la beta.',
+  'impostazioni.scelte': 'Le scelte di questo team in <a href="{configurazione}"><code>/config app</code></a> e il perché.',
+  'impostazioni.voce': 'Impostazione',
+  'impostazioni.scelta': 'Scelta',
+  'impostazioni.perche': 'Perché',
+  'webhook.titolo': 'Il webhook «{nome}»',
+  'webhook.creato': 'Creato con questo comando, poi collegato al suo task con <strong>Webhook</strong> {icona}.',
+  'webhook.completamento': "Con l'evento parte solo quando il task viene completato.",
+  'webhook.entrambi': 'Senza evento parte quando il task viene completato e quando viene riaperto.',
+  'webhook.comando': '/config webhook azione:crea webhook:{nome}',
+  'webhook.comando.evento': ' evento:completamento',
+  'webhook.metodo': 'Metodo HTTP',
+  'webhook.url': 'URL',
+  'webhook.intestazioni': 'Intestazioni',
+  'webhook.body': 'Body',
+  'webhook.servizio.discord': 'Su Discord',
+  'webhook.servizio.github': 'Su GitHub',
+  'webhook.servizio.make': 'Su Make',
+  'settimana.titolo': 'Com’è andata la settimana',
+  'altri.titolo': "Altri casi d'uso",
+
+  'dove.promemoria.ruolo': 'In #{canale}, in risposta alla lista, con la menzione di @{nome}',
+  'dove.promemoria.persona': 'Nei messaggi diretti di {nome}',
+  'dove.notifica': 'In #{canale}, sotto la lista',
+  'dove.webhook': 'In #{canale}, pubblicato dal webhook',
+  'dove.richiesta': 'La richiesta che TTM invia',
+
+  'legenda.subtask.codice': ' - [] ',
+  'legenda.subtask.spiega':
+    'Uno spazio prima del trattino fa del task un subtask di quello sopra. Un task con dei subtask è un gruppo.',
+  'legenda.done.codice': '[X]',
+  'legenda.done.spiega': 'Un task completato. <code>[]</code> è un task da fare.',
+  'legenda.owner.codice': '@Nome: ',
+  'legenda.owner.spiega':
+    'Il proprietario: <code>@</code> e il nome, seguiti dai due punti, all’inizio del task. Una persona o un ruolo.',
+  'legenda.tag.codice': '@Nome',
+  'legenda.tag.spiega': 'Un tag: <code>@</code> e il nome di una persona o di un ruolo, senza i due punti.',
+  'legenda.channel.codice': '#canale',
+  'legenda.channel.spiega': 'Un canale: <code>#</code> e il suo nome. Va bene anche il link di <em>Copia link</em> sul canale.',
+  'legenda.link.codice': '[testo](https://…)',
+  'legenda.link.spiega': 'Un link. Funzionano anche <code>mailto:</code>, <code>tel:</code> e <code>sms:</code>.',
+  'legenda.message.codice': '[testo](https://discord.com/channels/…)',
+  'legenda.message.spiega': 'Il link a un messaggio, da <em>Copia link del messaggio</em>. Resta un link.',
+  'legenda.emoji.codice': ':owner:',
+  'legenda.emoji.spiega': "L'emoji di un pulsante della lista, scritta col suo nome breve.",
+  'legenda.reminder.codice': 'YYYY-MM-DD HH:mm [0m,0m,0]',
+  'legenda.reminder.spiega':
+    'Un promemoria: la data nel tuo fuso orario, poi distanza, intervallo e ripetizioni. <code>0m,0</code> è un evento singolo. Se scrivi una lista da zero, al posto della data metti la distanza: <code>[1d,0m,0]</code> è un giorno dopo il salvataggio.',
+  'legenda.recurring.codice': '[0m,7d,3]',
+  'legenda.recurring.spiega':
+    'Un promemoria ricorrente: ogni 7 giorni, 3 volte dopo la prima. La lista mostra <code>↻7d ×4</code>.',
+  'legenda.webhook.codice': '{{wb=nome}}',
+  'legenda.webhook.spiega': 'Il webhook del task. Nella lista non si vede.',
+  'legenda.variable.codice': '{{chiave=valore}}',
+  'legenda.variable.spiega': 'Una variabile libera: il webhook la legge come <code>{{chiave}}</code>. Resta nel testo.',
+  'legenda.ricorrente': 'Un promemoria ricorrente: ogni {ogni}, {dopo}. La lista mostra <code>{mostra}</code>.',
+  'legenda.unita.d': { one: 'giorno', other: '{n} giorni' },
+  'legenda.unita.h': { one: 'ora', other: '{n} ore' },
+  'legenda.unita.m': { one: 'minuto', other: '{n} minuti' },
+  'legenda.dopo': { one: 'una volta dopo la prima', other: '{n} volte dopo la prima' },
+} as const;

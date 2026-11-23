@@ -22,6 +22,11 @@ export function conPrefisso(href, prefisso) {
   return `/${prefisso}${href}`;
 }
 
+/** Gli href di un pezzo di HTML nella lingua del prefisso: per l'HTML grezzo e per la prosa dei casi d'uso. */
+export function htmlConPrefisso(html, prefisso) {
+  return html.replace(/(\shref=)(["'])(\/[^"']*)\2/g, (_, a, q, href) => `${a}${q}${conPrefisso(href, prefisso)}${q}`);
+}
+
 export default function rehypeLinkDellaLingua() {
   return (tree, file) => {
     const traduzione = traduzioneDi(percorsoDelFile(file));
@@ -31,7 +36,7 @@ export default function rehypeLinkDellaLingua() {
       if (n.type === 'element' && n.tagName === 'a' && n.properties?.href) {
         n.properties.href = conPrefisso(String(n.properties.href), prefisso);
       } else if (n.type === 'raw') {
-        n.value = n.value.replace(/(\shref=)(["'])(\/[^"']*)\2/g, (_, a, q, href) => `${a}${q}${conPrefisso(href, prefisso)}${q}`);
+        n.value = htmlConPrefisso(n.value, prefisso);
       }
       (n.children ?? []).forEach(visita);
     };

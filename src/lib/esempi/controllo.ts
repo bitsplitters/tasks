@@ -60,6 +60,12 @@ function problemiDelWebhook(esempio: Esempio, w: WebhookDellEsempio, task: Task)
   return problemi;
 }
 
+/**
+ * Il nome dell'impostazione dei promemoria ricorrenti in /config app, nelle lingue dei casi d'uso: gli esempi tradotti
+ * (src/content/traduzioni-casi/) scrivono la tabella delle scelte nella loro lingua, coi nomi del bundle del bot.
+ */
+const PROMEMORIA_RICORRENTI = new Set(['Recurring reminders', 'Promemoria ricorrenti']);
+
 /** I problemi di un esempio; vuoto se va bene. */
 export function problemi(esempio: Esempio): string[] {
   const { team, list } = esempio;
@@ -101,7 +107,7 @@ export function problemi(esempio: Esempio): string[] {
     }
   }
   const ricorrenti = tasks.some((t) => (t.promemoria?.ricorrenza?.ripetizioni ?? 0) > 0);
-  if (ricorrenti && !esempio.settings.some((s) => s.setting === 'Recurring reminders')) {
+  if (ricorrenti && !esempio.settings.some((s) => PROMEMORIA_RICORRENTI.has(s.setting))) {
     p.push('settings: la lista ha promemoria ricorrenti, la tabella non dice che sono accesi');
   }
   for (const w of esempio.webhooks) {
