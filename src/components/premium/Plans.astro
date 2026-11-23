@@ -20,8 +20,9 @@ const { lingua } = Astro.props;
 const tt = traduttore(lingua, 'premium');
 const FREE = [1, 2, 3, 4].map((n) => tt(`free.${n}`));
 // Il segno di Discord sulle voci col limite fissato da Discord: 50 task, 25 webhook. La voce 5, i task di più
-// persone, ha le due stellette: la nota spiega il ruolo creato da TTM (e cita il suo limite di Discord, 25 persone).
-const PREMIUM = [1, 2, 3, 4, 5, 6].map((n) => ({ testo: tt(`premium.${n}`), discord: [2, 6].includes(n), ruoli: n === 5 }));
+// persone, non ha note: il ruolo creato da TTM lo spiega la pagina docs Owners and tags (scelta dell'utente del
+// 2026-11-23).
+const PREMIUM = [1, 2, 3, 4, 5, 6].map((n) => ({ testo: tt(`premium.${n}`), discord: [2, 6].includes(n) }));
 const aggiungi = t(lingua, 'comune.cta.aggiungi');
 ---
 <section class="p-plans wrap">
@@ -62,11 +63,7 @@ const aggiungi = t(lingua, 'comune.cta.aggiungi');
       </div>
       <p class="p-tagline">{tt('premium.tagline')}</p>
       <ul class="p-list" role="list">
-        {PREMIUM.map((v) => (
-          <li><span>{v.testo}{v.discord && <DiscordLimit lingua={lingua} />}{v.ruoli && (
-            <><span aria-hidden="true">&nbsp;**</span><span class="sr-only">{tt('ruoli.nota')}</span></>
-          )}</span></li>
-        ))}
+        {PREMIUM.map((v) => <li><span>{v.testo}{v.discord && <DiscordLimit lingua={lingua} />}</span></li>)}
       </ul>
       <a class="btn" href="/invite/">{aggiungi}</a>
     </article>
@@ -78,6 +75,5 @@ const aggiungi = t(lingua, 'comune.cta.aggiungi');
     <p id="vat" set:html={tt('fine.iva')} />
     <p>{tt('fine.prezzi')} <a class="h-link" href={percorso(lingua, '/docs/premium/')}>{tt('fine.limiti')}</a></p>
     <p><span aria-hidden="true">*</span> <Fragment set:html={tt('fine.discord', { limiti: percorso(lingua, '/docs/known-limits/') })} /></p>
-    <p><span aria-hidden="true">**</span> {tt('fine.ruoli')}</p>
   </div>
 </section>

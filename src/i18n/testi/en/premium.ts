@@ -12,7 +12,6 @@ export const testi = {
   'anteprima.vedi': 'See the plans',
   'iva': '+ VAT',
   'limite.discord': ' (Discord limit)',
-  'ruoli.nota': ' (see the note on roles)',
 
   'beta.label': 'Open beta',
   'beta.testo':
@@ -54,8 +53,6 @@ export const testi = {
   'fine.limiti': 'What each limit changes, in practice',
   'fine.discord':
     'A limit set by Discord, not by us. Premium lets you reach it, never go past it. See <a class="h-link" href="{limiti}">Known limits</a>.',
-  'fine.ruoli':
-    'Give a task to up to 25 people (a Discord limit): TTM creates a role for them, so reminders and notifications reach all of them. When no list uses it any more, TTM deletes it.',
 
 
   'inclusi.titolo': 'Included in both.',

@@ -1,5 +1,5 @@
 // I testi della pagina dei piani in italiano: le stesse chiavi di src/i18n/testi/en/premium.ts.
-export const fonte = '354dc7f5e587';
+export const fonte = '36d7b422edf5';
 
 export const testi = {
   'pagina.titolo': 'Piani e prezzi',
@@ -8,7 +8,6 @@ export const testi = {
   'anteprima.vedi': 'Vedi i piani',
   'iva': '+ IVA',
   'limite.discord': ' (limite di Discord)',
-  'ruoli.nota': ' (vedi la nota sui ruoli)',
 
   'beta.label': 'Beta aperta',
   'beta.testo':
@@ -50,8 +49,6 @@ export const testi = {
   'fine.limiti': 'Cosa cambia in pratica ogni limite',
   'fine.discord':
     'Un limite fissato da Discord, non da noi. Premium ti fa arrivare fin lì, mai oltre. Vedi <a class="h-link" href="{limiti}">Limiti noti</a>.',
-  'fine.ruoli':
-    'Dai un task a più persone, fino a 25 (limite di Discord): TTM crea un ruolo per loro, così promemoria e notifiche arrivano a tutte. Quando nessuna lista lo usa più, TTM lo elimina.',
 
 
   'inclusi.titolo': 'Incluso in tutti e due.',
