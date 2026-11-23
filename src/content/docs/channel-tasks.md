@@ -23,10 +23,10 @@ Until you've picked a task this way once, turning **Content** or **Reminder** bl
 | Button | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :--- | :--- | :--- |
 | [**Content**](#content) <img class="inline-ic" src="/icons/task.png" alt="" /> | Change the task text, in a form. | Delete the task. |
-| [**Owner**](#owner) <img class="inline-ic" src="/icons/owner.png" alt="" /> | Set or change the owner: one person, one role, or several people. | Remove the owner, and its reminder too. |
+| [**Owner**](#owner) <img class="inline-ic" src="/icons/owner.png" alt="" /> | Set or change the owner: one person, one role, or several people <a class="premium-tag" href="/docs/premium/" title="Unlocked for every server during the beta">Premium</a>. | Remove the owner, and its reminder too. |
 | [**Tag**](#tag) <img class="inline-ic" src="/icons/tag.png" alt="" /> | Set the users and roles to notify, several at once. | Remove every tag on the task. |
 | [**Reminder**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Add or edit a reminder. | Remove the reminder. |
-| [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> | Link a webhook to the task. | Remove the webhook from the task. |
+| [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> <a class="premium-tag" href="/docs/premium/" title="Unlocked for every server during the beta">Premium</a> | Link a webhook to the task. | Remove the webhook from the task. |
 
 With **Owner**, **Tag**, **Reminder** or **Webhook** red, the selector lists only the tasks that have something to remove: an owner, tags, a reminder or a webhook. A task made only of tags isn't listed, since without them it would have no text. If no task has anything to remove, the selector is off and says so, for example *No owner to remove*, and you get a note on how to add one.
 
@@ -46,7 +46,7 @@ While the form is open, the list is locked for the others. Saving unlocks it; th
 
 **To take a task**, click **Owner** until it turns blue, then pick the task in the check selector without choosing anyone: it becomes yours, and the channel shows who took it. A task that is already yours, or that someone else owns, stays as it is, and TTM tells you why. To take a task from someone else, choose yourself in the menu, confirm the selection, then pick the task: replacing an owner takes an explicit choice.
 
-**To give a task to someone**, pick the owner in the menu, confirm the selection, then pick the task. To give a task to several people:
+**To give a task to someone**, pick the owner in the menu, confirm the selection, then pick the task. To give a task to several people, a [Premium](/docs/premium/) feature unlocked for every server during the beta:
 
 1. Click **Owner** until it turns blue.
 2. Pick the people.
@@ -121,7 +121,7 @@ Everything arrives pre-filled with **ten minutes from now**. Submit it, and the 
 
 ### The summary card
 
-With [recurring reminders](/docs/reminders/#repeating-reminders) on, submitting **When** doesn't save yet. TTM shows you a private summary card with the date it understood, a **Recurrence** line and four buttons. The line says *none* for a single reminder, or shows the recurrence badge:
+With [recurring reminders](/docs/reminders/#repeating-reminders) on (a Premium feature), submitting **When** doesn't save yet. TTM shows you a private summary card with the date it understood, a **Recurrence** line and four buttons. The line says *none* for a single reminder, or shows the recurrence badge:
 
 | Button | What it does |
 | :--- | :--- |
@@ -142,6 +142,8 @@ With recurring reminders off, or on the Free plan, the card appears only when yo
 <div class="callout"><div class="callout-t">Closing a form is not cancelling</div>Discord never tells a bot that you closed a form with the ✕, so TTM cannot know: the list stays locked. Use <strong>Cancel</strong> on the <a href="#the-summary-card">summary card</a> when it's there. If you closed a form the hard way, open <strong>More</strong> under the list and press <strong>Unlock list</strong> <img class="inline-ic" src="/icons/unlock.png" alt="" />.</div>
 
 ## Webhook
+
+Webhooks are a **Premium** feature, unlocked for every server during the beta: see [What Premium unlocks](/docs/premium/).
 
 Click **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" /> until it turns **blue**, pick the webhook from the selector that appears, then pick the task. From then on, completing or reopening that task fires the call. Click **Webhook** until it turns **red** and pick the task to remove the link.
 

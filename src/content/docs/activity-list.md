@@ -77,13 +77,15 @@ Remove them all and **Save** removes every tag, as **Red** does.
 
 Tap **Time zone** to choose it: search by city, country, a name such as `Europe/Rome` or an offset such as `+5:30`. *Your time zones* lists the ones that matter to you: this device's, yours or the last one you used, the server's. Under the field, a line tells you whether the zone is yours: until you choose one in **Settings**, the zone you leave here becomes yours. See [Your time zone](/docs/reminders/#your-time-zone). Under the fields, *On this device* shows the same moment in your device's time, when the zone is different.
 
-The three repetition menus appear on a plan with [repeating reminders](/docs/reminders/#repeating-reminders) and the toggle on, or when the reminder already repeats: see [The repetition fields](/docs/reminders/#the-repetition-fields).
+The three repetition menus appear on Premium, with the [repeating reminders](/docs/reminders/#repeating-reminders) toggle on, or when the reminder already repeats: see [The repetition fields](/docs/reminders/#the-repetition-fields).
 
 A ticked task can't get a reminder. On a task without an owner, the panel says that saving makes you its owner.
 
 **Red** removes the reminder.
 
 ## Webhook
+
+Webhooks are a **Premium** feature, unlocked for every server during the beta: see [What Premium unlocks](/docs/premium/).
 
 **Blue** lists the server's webhooks by name, each with when it fires: *on completion*, *on reopening* or *always*. The address never shows. Choose one, then **Save**. A webhook that no longer exists shows on top, marked *no longer exists*, so you can choose another one. If the server has none, the panel says they are created with `/config webhook`: see [Webhooks](/docs/webhooks/).
 

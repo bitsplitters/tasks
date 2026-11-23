@@ -80,7 +80,7 @@ const premium = d.webhooks.length > 0 || d.settings.some((s) => s.premium) || te
           <ul role="list">
             {team.roles.map((r) => (
               <li>
-                <span class="ex-who"><span class="ex-role">@{r.name}</span>{r.ttm && <a class="ex-premium" href="/premium/" title="Unlocked for every server during the beta">Premium</a>}</span>
+                <span class="ex-who"><span class="ex-role">@{r.name}</span>{r.ttm && <a class="premium-tag" href="/premium/" title="Unlocked for every server during the beta">Premium</a>}</span>
                 <span class="ex-about">{r.about}{r.members && ` Members: ${r.members.map(nomeDi).join(' and ')}.`}</span>
               </li>
             ))}
@@ -125,7 +125,7 @@ const premium = d.webhooks.length > 0 || d.settings.some((s) => s.premium) || te
           <tbody>
             {impostazioni.map((s) => (
               <tr>
-                <th scope="row"><a href={`/docs/configuration/#${ancora(s.setting)}`}>{s.setting}</a>{s.premium && <> <a class="ex-premium" href="/premium/" title="Unlocked for every server during the beta">Premium</a></>}</th>
+                <th scope="row"><a href={`/docs/configuration/#${ancora(s.setting)}`}>{s.setting}</a>{s.premium && <> <a class="premium-tag" href="/premium/" title="Unlocked for every server during the beta">Premium</a></>}</th>
                 <td>{s.choice}</td>
                 <td><Fragment set:html={s.why} /></td>
               </tr>
@@ -135,7 +135,7 @@ const premium = d.webhooks.length > 0 || d.settings.some((s) => s.premium) || te
       </div>
       {webhook.map((w, i) => (
         <section class="ex-wh" aria-labelledby={`ex-wh-${i}`}>
-          <h3 id={`ex-wh-${i}`}>The webhook «{w.name}» <a class="ex-premium" href="/premium/" title="Unlocked for every server during the beta">Premium</a></h3>
+          <h3 id={`ex-wh-${i}`}>The webhook «{w.name}» <a class="premium-tag" href="/premium/" title="Unlocked for every server during the beta">Premium</a></h3>
           <p>Created with this command, then linked to its task with <strong>Webhook</strong> <img class="inline-ic" src="/icons/api.png" alt="" />. {w.trigger === 'completion' ? 'With the trigger, it fires only when the task is completed.' : 'Without a trigger, it fires when the task is completed and when it is reopened.'}</p>
           <pre translate="no"><code>{w.comando}</code></pre>
           <dl class="ex-form">

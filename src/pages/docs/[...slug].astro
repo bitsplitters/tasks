@@ -55,7 +55,7 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
             </div>
             {g.items.map((it) => (
               <a href={`/docs/${it.id}/`} class={it.id === current ? 'active' : ''}
-                aria-current={it.id === current ? 'page' : undefined}>{it.data.title}</a>
+                aria-current={it.id === current ? 'page' : undefined}>{it.data.title}{it.data.premium && <> <span class="premium-tag">Premium</span></>}</a>
             ))}
             {/* La pagina dei piani sta fuori dalla collezione docs: in fondo al gruppo Plans, mai `active`. */}
             {g.name === 'Plans' && <a href={PAGINA_PIANI.path}>{PAGINA_PIANI.title}</a>}
@@ -75,7 +75,8 @@ const posto = entry.data.place ? POSTI[entry.data.place] : null;
             <img class="place-ic" src={posto.icon} alt="" />{posto.label}
           </p>
         )}
-        <h1>{entry.data.title}</h1>
+        {/* L'etichetta Premium resta fuori dall'indice di Pagefind: i risultati della ricerca hanno il titolo della pagina. */}
+        <h1>{entry.data.title}{entry.data.premium && <> <a class="premium-tag" href="/docs/premium/" title="Unlocked for every server during the beta" data-pagefind-ignore>Premium</a></>}</h1>
         {entry.data.description && <p class="subtitle">{entry.data.description}</p>}
         <Content />
       </article>

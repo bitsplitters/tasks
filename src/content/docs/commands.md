@@ -42,6 +42,8 @@ See every list of this server, and regenerate, seal or delete several of them at
 
 Create, view, modify or delete a webhook, optionally limited to a **completion** or **reopen** trigger. It is the only command with options you must fill in: the **action** and the **webhook name**.
 
+Webhooks are a **Premium** feature, unlocked for every server during the beta: see [What Premium unlocks](/docs/premium/).
+
 → See [/config webhook](/docs/webhooks/#creating-a-webhook).
 
 ## `/my timezone`

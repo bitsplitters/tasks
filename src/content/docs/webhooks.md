@@ -3,9 +3,12 @@ title: /config webhook
 description: Fire an HTTP call when a task is completed or reopened — connect TTM to anything.
 group: Configuration
 order: 3
+premium: true
 ---
 
 Webhooks let a task talk to the outside world. Associate one with a task: when that task is **completed** or **reopened**, TTM sends an HTTP request you defined. It can go to a CI system, a chat, a spreadsheet automation, or anything else that accepts a call.
+
+Webhooks are a **Premium** feature, unlocked for every server during the beta. After the beta, on the Free plan the webhooks you already have stay, and you can still change or delete them, but you can't create new ones: see [What Premium unlocks](/docs/premium/).
 
 By default, only members with the *Manage Server* permission can use `/config webhook`, like the rest of `/config`. See [Who can open /config](/docs/config/#who-can-open-config).
 

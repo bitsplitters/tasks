@@ -26,6 +26,9 @@ const docs = defineCollection({
     // Le note di rilascio: ogni `##` diventa un riquadro che si apre, con la data e l'anteprima delle voci (spec
     // 2026-11-19-iva-e-note-di-rilascio-design.md, §4, nel repo team-tasks-manager; il plugin è src/lib/rehype-note-di-rilascio.mjs).
     releases: z.boolean().optional(),
+    // Una pagina che presenta per intero una funzione Premium (/config webhook): l'etichetta Premium accanto al titolo,
+    // nel menu e nell'indice. Le funzioni Premium dentro una pagina lo dicono nel testo (2026-11-23).
+    premium: z.boolean().optional(),
   }),
 });
 

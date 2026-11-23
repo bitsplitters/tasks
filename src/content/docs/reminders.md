@@ -9,7 +9,7 @@ A reminder turns a task into something that reminds *you*, instead of the other 
 
 ## The rules
 
-- **A reminder has a date, a time and a time zone.** It fires **once**, unless your server uses [repeating reminders](#repeating-reminders).
+- **A reminder has a date, a time and a time zone.** It fires **once**, unless your server uses [repeating reminders](#repeating-reminders), a Premium feature.
 - **The start must be at least 5 minutes in the future.** The form starts from ten minutes from now, so a reminder for "in a moment" needs no typing at all.
 - **Only a task still to do can get one.** Completing a task stops its reminder — no need to clean up afterwards.
 - **The reminder goes to the task's owner**, by direct message if the owner is a person. If the task has no owner yet, **you become it** when you save the reminder. From then on only you, and whoever has *Manage messages* on the channel, can tick that task. To give it to someone else, set the owner before or after creating the reminder: see [Owners and tags](/docs/owners-and-tags/).

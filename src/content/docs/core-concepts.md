@@ -55,7 +55,7 @@ Anyone else gets a refusal that only they see, and nothing changes. The rule cov
 
 These look similar but do different jobs:
 
-- **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> — the person or role *responsible* for the task. A task has one owner, and it can be several people: TTM creates a role for them (see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates)).
+- **Owner** <img class="inline-ic" src="/icons/owner.png" alt="" /> — the person or role *responsible* for the task. A task has one owner, and on Premium it can be several people: TTM creates a role for them (see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates)).
 - **Tag** <img class="inline-ic" src="/icons/tag.png" alt="" /> — one or more users or roles *mentioned* on the task, for example the people to notify when it is completed.
 
 The rules of both: [Owners and tags](/docs/owners-and-tags/).
