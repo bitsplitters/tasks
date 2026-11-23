@@ -16,7 +16,7 @@ export interface Zona {
 }
 
 /** Perché una zona è fra «Your time zones» (activity.zone.reason.*). */
-export type Motivo = 'device' | 'chosen' | 'server';
+export type Motivo = 'device' | 'learned' | 'server';
 
 /** Il fuso del dispositivo di chi guarda la demo. */
 export const DISPOSITIVO = ZONA;
@@ -133,12 +133,13 @@ export function stessaZona(a: string, b: string): boolean {
 }
 
 /**
- * «Your time zones», come yourZones del bot finto: il dispositivo, la zona che chi guarda ha scelto, quella del server,
- * ognuna coi suoi motivi; una riga sola quando due motivi danno la stessa zona.
+ * «Your time zones», come yourZones del bot finto: il dispositivo, la zona che chi guarda ha scelto in una data, quella
+ * del server, ognuna coi suoi motivi; una riga sola quando due motivi danno la stessa zona. Nella demo non c'è
+ * l'ingranaggio, quindi la zona di una data è imparata, «last used», come nell'Activity dalla 2.6.0 senza un fuso scelto.
  */
 export function tueZone(scelta: string | undefined, adesso: number): { zona: Zona; motivi: Motivo[] }[] {
   const fuori: { zona: Zona; motivi: Motivo[] }[] = [];
-  const motivi: [string | undefined, Motivo][] = [[DISPOSITIVO, 'device'], [scelta, 'chosen'], [ZONA, 'server']];
+  const motivi: [string | undefined, Motivo][] = [[DISPOSITIVO, 'device'], [scelta, 'learned'], [ZONA, 'server']];
   for (const [id, motivo] of motivi) {
     if (!id || delBrowser(id) === null) continue;
     const stessa = fuori.find((r) => stessaZona(r.zona.id, id));

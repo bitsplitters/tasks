@@ -59,8 +59,8 @@ test('un testo vuoto o che non trova niente dà un elenco vuoto', () => {
 test('le zone di chi guarda: Rome per il dispositivo e il server, poi quella scelta, se è un\'altra', () => {
   const inBreve = (scelto?: string) => tueZone(scelto, ADESSO).map((r) => [r.zona.citta, r.motivi]);
   assert.deepEqual(inBreve(), [['Rome', ['device', 'server']]]);
-  assert.deepEqual(inBreve('Europe/Rome'), [['Rome', ['device', 'chosen', 'server']]]);
-  assert.deepEqual(inBreve('Asia/Tokyo'), [['Rome', ['device', 'server']], ['Tokyo', ['chosen']]]);
+  assert.deepEqual(inBreve('Europe/Rome'), [['Rome', ['device', 'learned', 'server']]]);
+  assert.deepEqual(inBreve('Asia/Tokyo'), [['Rome', ['device', 'server']], ['Tokyo', ['learned']]]);
 });
 
 test('la stessa zona è lo stesso nome, o quello che il browser dà a tutti e due', () => {

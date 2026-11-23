@@ -150,7 +150,7 @@ test('senza testo, «Your time zones» coi motivi; la zona del campo è quella s
   const tokyo = htmlDelleZone('', 'Asia/Tokyo', 'Asia/Tokyo', ADESSO);
   assert.match(tokyo, /data-k="z-europe-rome" data-zona="Europe\/Rome">/);
   assert.match(tokyo, /data-k="z-asia-tokyo" data-zona="Asia\/Tokyo" aria-current="true">/);
-  assert.match(tokyo, /<span class="sc-zrreasons">chosen by you<\/span>/);
+  assert.match(tokyo, /<span class="sc-zrreasons">last used<\/span>/);
 });
 
 test('col testo, le zone trovate senza motivi; nessuna: «No time zone matches»', () => {
