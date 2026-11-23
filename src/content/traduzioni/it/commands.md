@@ -1,7 +1,7 @@
 ---
 title: Riferimento dei comandi
 description: Tutti gli slash command in un posto solo, con la pagina che li spiega. Gran parte di TTM vive nei pulsanti, non nei comandi.
-fonte: 5cddb04335e0
+fonte: c894f89deed9
 ---
 
 TTM tiene i comandi al minimo: una volta creata una lista, fai tutto con pulsanti e menu. Per eseguire un comando, scrivi `/` nella casella dei messaggi e sceglilo. Puoi anche aprire l'**Avvio app** nella barra dei messaggi e scegliere **Team Tasks Manager** sotto *App su questo server*.
@@ -72,9 +72,9 @@ Discord mostra ogni comando nella lingua della tua app Discord e in inglese per 
 | :--- | :--- | :--- | :--- |
 | Inglese e qualsiasi altra lingua | `/create-list` | `file` | `action` · `trigger` |
 | Italiano | `/crea-lista` | `file` | `azione` · `evento` |
-| Español | `/crear-lista` | `archivo` | `accion` · `evento` |
-| Português (Brasil) | `/criar-lista` | `arquivo` | `acao` · `evento` |
-| Français | `/creer-liste` | `fichier` | `action` · `evenement` |
+| Español | `/crear-lista` | `archivo` | `acción` · `evento` |
+| Português (Brasil) | `/criar-lista` | `arquivo` | `ação` · `evento` |
+| Français | `/creer-liste` | `fichier` | `action` · `événement` |
 | Deutsch | `/liste-erstellen` | `datei` | `aktion` · `ereignis` |
 
 Anche le scelte dentro le opzioni (visualizza, crea, modifica, elimina; completamento, riapertura) compaiono nella tua lingua.

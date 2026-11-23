@@ -73,9 +73,9 @@ Discord shows each command in the language of your Discord app, and in English f
 | :--- | :--- | :--- | :--- |
 | English, and any other language | `/create-list` | `file` | `action` · `trigger` |
 | Italiano | `/crea-lista` | `file` | `azione` · `evento` |
-| Español | `/crear-lista` | `archivo` | `accion` · `evento` |
-| Português (Brasil) | `/criar-lista` | `arquivo` | `acao` · `evento` |
-| Français | `/creer-liste` | `fichier` | `action` · `evenement` |
+| Español | `/crear-lista` | `archivo` | `acción` · `evento` |
+| Português (Brasil) | `/criar-lista` | `arquivo` | `ação` · `evento` |
+| Français | `/creer-liste` | `fichier` | `action` · `événement` |
 | Deutsch | `/liste-erstellen` | `datei` | `aktion` · `ereignis` |
 
 The choices inside the options — view, create, modify, delete; completion, reopen — appear in your language too.

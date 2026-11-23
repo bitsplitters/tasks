@@ -64,7 +64,10 @@ function problemiDelWebhook(esempio: Esempio, w: WebhookDellEsempio, task: Task)
  * Il nome dell'impostazione dei promemoria ricorrenti in /config app, nelle lingue dei casi d'uso: gli esempi tradotti
  * (src/content/traduzioni-casi/) scrivono la tabella delle scelte nella loro lingua, coi nomi del bundle del bot.
  */
-const PROMEMORIA_RICORRENTI = new Set(['Recurring reminders', 'Promemoria ricorrenti']);
+const PROMEMORIA_RICORRENTI = new Set([
+  'Recurring reminders', 'Promemoria ricorrenti', 'Wiederkehrende Erinnerungen', 'Rappels récurrents',
+  'Recordatorios recurrentes', 'Lembretes recorrentes',
+]);
 
 /** I problemi di un esempio; vuoto se va bene. */
 export function problemi(esempio: Esempio): string[] {

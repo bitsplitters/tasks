@@ -32,7 +32,10 @@ export function istante(at: string, zona: string): number {
 }
 
 /** «5 minutes ago» nella lingua del client: le schede mostrano il messaggio cinque minuti dopo che è arrivato. */
-const CINQUE_MINUTI_FA: Partial<Record<Lingua, string>> = { en: '5 minutes ago', it: '5 minuti fa' };
+const CINQUE_MINUTI_FA: Partial<Record<Lingua, string>> = {
+  en: '5 minutes ago', it: '5 minuti fa', de: 'vor 5 Minuten', fr: 'il y a 5 minutes', 'es-ES': 'hace 5 minutos',
+  'es-419': 'hace 5 minutos', 'pt-BR': 'há 5 minutos',
+};
 
 /**
  * Una data come la scrive un client Discord nel fuso del team (dataDiDiscord, come dataDelCanale della demo). In
@@ -131,6 +134,56 @@ const TESTI_DEL_BOT: Partial<Record<Lingua, TestiDelBot>> = {
       completed: { frase: 'ho completato il seguente task:', push: 'ho completato il seguente task..', emoji: false },
     },
     push: 'Notifica push',
+  },
+  de: {
+    tips: '-# Du weißt nicht, was die Buttons machen? <:other_blue:0> Mehr → <:doc_blue:0> Anleitung · [Dokumentation](https://tasks.bitsplitters.app/docs/the-task-list/)',
+    frasi: {
+      claimed: { frase: 'ich habe die folgende Aufgabe übernommen', push: 'ich habe eine Aufgabe übernommen..', emoji: true },
+      assigned: { frase: 'ich habe der folgenden Aufgabe einen Besitzer zugewiesen', push: 'ich habe einer Aufgabe einen Besitzer zugewiesen..', emoji: true },
+      updated: { frase: 'ich habe den Besitzer {2} der folgenden Aufgabe aktualisiert', push: 'ich habe den Besitzer einer Aufgabe aktualisiert..', emoji: true },
+      completed: { frase: 'ich habe die folgende Aufgabe abgeschlossen:', push: 'ich habe die folgende Aufgabe abgeschlossen..', emoji: false },
+    },
+    push: 'Push-Benachrichtigung',
+  },
+  fr: {
+    tips: '-# Tu ne sais pas à quoi servent les boutons ? <:other_blue:0> Autre → <:doc_blue:0> Guide · [Documentation](https://tasks.bitsplitters.app/docs/the-task-list/)',
+    frasi: {
+      claimed: { frase: 'J\'ai pris la tâche suivante', push: 'J\'ai pris une tâche..', emoji: true },
+      assigned: { frase: 'J\'ai attribué le propriétaire à la tâche suivante', push: 'J\'ai attribué le propriétaire à une tâche..', emoji: true },
+      updated: { frase: 'J\'ai mis à jour le propriétaire {2} de la tâche suivante', push: 'J\'ai mis à jour le propriétaire d\'une tâche..', emoji: true },
+      completed: { frase: 'j\'ai terminé la tâche suivante :', push: 'j\'ai terminé la tâche suivante..', emoji: false },
+    },
+    push: 'Notification push',
+  },
+  'es-ES': {
+    tips: '-# ¿No sabes qué hacen los botones? <:other_blue:0> Más → <:doc_blue:0> Guía · [Documentación](https://tasks.bitsplitters.app/docs/the-task-list/)',
+    frasi: {
+      claimed: { frase: 'He tomado la siguiente tarea', push: 'He tomado una tarea..', emoji: true },
+      assigned: { frase: 'He asignado el propietario a la siguiente tarea', push: 'He asignado el propietario a una tarea..', emoji: true },
+      updated: { frase: 'He actualizado el propietario {2} de la siguiente tarea', push: 'He actualizado el propietario de una tarea..', emoji: true },
+      completed: { frase: 'he completado la siguiente tarea:', push: 'he completado la siguiente tarea..', emoji: false },
+    },
+    push: 'Notificación push',
+  },
+  'es-419': {
+    tips: '-# ¿No sabes qué hacen los botones? <:other_blue:0> Más → <:doc_blue:0> Guía · [Documentación](https://tasks.bitsplitters.app/docs/the-task-list/)',
+    frasi: {
+      claimed: { frase: 'He tomado la siguiente tarea', push: 'He tomado una tarea..', emoji: true },
+      assigned: { frase: 'He asignado el propietario a la siguiente tarea', push: 'He asignado el propietario a una tarea..', emoji: true },
+      updated: { frase: 'He actualizado el propietario {2} de la siguiente tarea', push: 'He actualizado el propietario de una tarea..', emoji: true },
+      completed: { frase: 'he completado la siguiente tarea:', push: 'he completado la siguiente tarea..', emoji: false },
+    },
+    push: 'Notificación push',
+  },
+  'pt-BR': {
+    tips: '-# Não sabe o que os botões fazem? <:other_blue:0> Mais → <:doc_blue:0> Guia · [Documentação](https://tasks.bitsplitters.app/docs/the-task-list/)',
+    frasi: {
+      claimed: { frase: 'Peguei a seguinte tarefa', push: 'Peguei uma tarefa..', emoji: true },
+      assigned: { frase: 'Atribuí o proprietário à seguinte tarefa', push: 'Atribuí o proprietário a uma tarefa..', emoji: true },
+      updated: { frase: 'Atualizei o proprietário {2} da seguinte tarefa', push: 'Atualizei o proprietário de uma tarefa..', emoji: true },
+      completed: { frase: 'concluí a seguinte tarefa:', push: 'concluí a seguinte tarefa..', emoji: false },
+    },
+    push: 'Notificação push',
   },
 };
 
