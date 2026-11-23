@@ -1,59 +1,20 @@
 /*
  * Il test dei testi del bot nella demo (piano 2026-11-15-demo-fedele.md, compito 3, nel repo team-tasks-manager): ogni
- * testo è quello del bundle inglese del bot; le funzioni che li compongono fanno ciò che fa il bot. Si lancia dalla
+ * testo è quello del bundle del bot nella sua lingua; le funzioni che li compongono fanno ciò che fa il bot. Si lancia dalla
  * cartella tasks con `node --test "scripts/*.test.ts"`.
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
+import { LINGUE_PUBBLICATE } from '../src/i18n/lingue.ts';
+import { fileDelBundle, leggiProperties, risolvi } from './properties.mjs';
 import { PROPOSTO, statoIniziale } from '../src/components/home/demo/modello.ts';
 import {
-  TESTI, avviso, elencoDeiTolti, emoji, rispostaDellEsito, testo, testoDegliErrori, testoDelPromemoria,
+  TABELLE, avviso, elencoDeiTolti, emoji, rispostaDellEsito, testo, testoDegliErrori, testoDelPromemoria,
   testoDellaDomanda, testoDi, umoreDelFumetto,
 } from '../src/components/home/demo/testi.ts';
-import { FRASI, FRASI_NEL_CANALE } from '../src/components/home/scene-data.ts';
-
-const ESCAPE: Record<string, string> = { t: '\t', n: '\n', r: '\r', f: '\f' };
-
-/**
- * Le coppie di un file .properties come le legge java.util.Properties: una riga che comincia con «#» o «!» è un
- * commento; la chiave finisce al primo «=», «:» o spazio senza «\» davanti; gli spazi attorno al separatore non
- * contano; una riga che finisce con un numero dispari di «\» continua sulla seguente, senza gli spazi iniziali di
- * quella (e lì un «#» non apre un commento); «\n», «\t», «\uXXXX» sono escape, una «\» davanti a un altro carattere
- * lo lascia com'è.
- */
-function leggiProperties(sorgente: string): Map<string, string> {
-  const sciogli = (s: string) => s.replace(/\\(u[0-9a-fA-F]{4}|.)/g, (_, e: string) =>
-    e.length === 5 ? String.fromCharCode(parseInt(e.slice(1), 16)) : (ESCAPE[e] ?? e));
-  const senzaSpazi = (s: string) => s.replace(/^[ \t\f]+/, '');
-  const righe = sorgente.split(/\r\n|\r|\n/);
-  const coppie = new Map<string, string>();
-  for (let i = 0; i < righe.length; i++) {
-    let riga = senzaSpazi(righe[i]);
-    if (riga === '' || riga[0] === '#' || riga[0] === '!') continue;
-    while ((riga.length - riga.replace(/\\+$/, '').length) % 2 === 1) {
-      riga = riga.slice(0, -1) + senzaSpazi(righe[++i] ?? '');
-    }
-    let fine = 0;
-    while (fine < riga.length && !'=: \t\f'.includes(riga[fine])) fine += riga[fine] === '\\' ? 2 : 1;
-    let valore = senzaSpazi(riga.slice(fine));
-    if (valore[0] === '=' || valore[0] === ':') valore = senzaSpazi(valore.slice(1));
-    coppie.set(sciogli(riga.slice(0, fine)), sciogli(valore));
-  }
-  return coppie;
-}
-
-/**
- * Il valore con i riferimenti ${chiave} risolti dal bundle stesso, come PropertyResolver del framework: un riferimento
- * a una chiave che non c'è, o che chiuderebbe un giro, resta com'è.
- */
-function risolvi(bundle: Map<string, string>, chiave: string, inCorso = new Set<string>()): string {
-  inCorso.add(chiave);
-  const risolto = (bundle.get(chiave) ?? '').replace(/\$\{(.+?)\}/g, (tutto, riferita: string) =>
-    bundle.has(riferita) && !inCorso.has(riferita) ? risolvi(bundle, riferita, inCorso) : tutto);
-  inCorso.delete(chiave);
-  return risolto;
-}
+import { TESTI } from '../src/components/home/demo/testi/en.ts';
+import { frasi, frasiNelCanale } from '../src/components/home/scene-data.ts';
 
 test('il bundle si legge come Properties di Java', () => {
   const letto = leggiProperties([
@@ -87,25 +48,30 @@ test('i riferimenti si risolvono dal bundle; uno sconosciuto o in un giro resta 
   assert.equal(risolvi(bundle, 'b'), '${nessuna} at example.com/x');
 });
 
-// Il bundle del bot, nel repo accanto: senza, il confronto si salta.
-const BUNDLE = new URL('../../team-tasks-manager/src/main/resources/slash-resource.properties', import.meta.url);
+// Il bundle del bot, nel repo accanto o in TTM_RISORSE (scripts/properties.mjs): senza, il confronto si salta.
+const MANCA = !existsSync(fileDelBundle('')) && 'manca il bundle del bot: team-tasks-manager accanto a tasks o TTM_RISORSE';
 
-test('ogni testo della demo è quello del bundle inglese del bot, coi riferimenti risolti', {
-  skip: !existsSync(BUNDLE) && 'manca team-tasks-manager accanto a tasks',
-}, () => {
-  const bundle = leggiProperties(readFileSync(BUNDLE, 'utf8'));
-  for (const [chiave, valore] of Object.entries(TESTI)) {
-    assert.ok(bundle.has(chiave), `${chiave}: non è nel bundle`);
-    const atteso = risolvi(bundle, chiave);
-    assert.doesNotMatch(atteso, /\$\{/, `${chiave}: un riferimento che non si risolve`);
-    assert.equal(valore, atteso, chiave);
+test('ogni testo della demo è quello del bundle della sua lingua, coi riferimenti risolti', { skip: MANCA }, () => {
+  for (const lingua of LINGUE_PUBBLICATE) {
+    const tabella = TABELLE[lingua.codice];
+    assert.ok(tabella, `${lingua.codice}: la demo non ha i testi (npm run testi-demo)`);
+    assert.deepEqual(Object.keys(tabella), Object.keys(TESTI), `${lingua.codice}: le chiavi non sono quelle inglesi`);
+    const bundle = leggiProperties(readFileSync(fileDelBundle(lingua.bundle), 'utf8'));
+    for (const [chiave, valore] of Object.entries(tabella)) {
+      assert.ok(bundle.has(chiave), `${lingua.codice} ${chiave}: non è nel bundle`);
+      const atteso = risolvi(bundle, chiave);
+      assert.doesNotMatch(atteso, /\$\{/, `${lingua.codice} ${chiave}: un riferimento che non si risolve`);
+      assert.equal(valore, atteso, `${lingua.codice} ${chiave} (npm run testi-demo)`);
+    }
   }
 });
 
 test('negli apostrofi dei testi non c\'è niente che ICU leggerebbe come virgolette', () => {
   // ResourceBundleUtil.format usa ICU MessageFormat, che tiene letterale un apostrofo solo se non sta davanti a «{»,
   // «}», «#», «|» o a un altro apostrofo: finché è così, testo() non deve sapere niente delle virgolette.
-  for (const [chiave, valore] of Object.entries(TESTI)) assert.doesNotMatch(valore, /'['{}#|]/, chiave);
+  for (const [lingua, tabella] of Object.entries(TABELLE)) {
+    for (const [chiave, valore] of Object.entries(tabella!)) assert.doesNotMatch(valore, /'['{}#|]/, `${lingua} ${chiave}`);
+  }
 });
 
 test('testo mette gli argomenti al loro posto e sceglie la forma del plurale', () => {
@@ -225,9 +191,9 @@ test("rispostaDellEsito: ciò che il bot risponde all'esito di un'azione, nel fu
 });
 
 test("Owner blu: nel selettore del canale la frase del claim, nel pannello dell'Activity quella di sempre", () => {
-  assert.equal(FRASI_NEL_CANALE.owner.blue, TESTI['tasklist.slct.activities.hint.owner.take']);
-  assert.equal(FRASI.owner.blue, TESTI['tasklist.slct.activities.hint.owner.edit']);
-  assert.deepEqual({ ...FRASI_NEL_CANALE, owner: FRASI.owner }, FRASI);
+  assert.equal(frasiNelCanale().owner.blue, TESTI['tasklist.slct.activities.hint.owner.take']);
+  assert.equal(frasi().owner.blue, TESTI['tasklist.slct.activities.hint.owner.edit']);
+  assert.deepEqual({ ...frasiNelCanale(), owner: frasi().owner }, frasi());
 });
 
 test('umoreDelFumetto: la mascotte è sorpresa per gli avvisi del bot e contenta per le altre risposte', () => {

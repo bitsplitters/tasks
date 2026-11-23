@@ -4,6 +4,10 @@
  * il server della demo, le due liste di partenza e l'orologio fermo. Non tocca il DOM: lo usano le regole, il disegno
  * delle righe, la demo, i video e il build.
  */
+import { datiDi, type Lingua } from '../../../i18n/lingue.ts';
+import { dataDiDiscord } from './date-di-discord.ts';
+import { linguaDellaDemo } from './lingua.ts';
+import { delSito } from './sito.ts';
 
 /** La posizione di un task: 2.1 è { main: 2, sub: 1 }, un task principale ha sub 0. */
 export interface Pos {
@@ -104,10 +108,13 @@ export const PERSONE: readonly Persona[] = [
   { id: SAM, nome: 'Sam', username: 'sam_rivers', colore: '#f0b232' },
 ];
 
-/** I webhook già creati nel server: mancavano, ed era il motivo per cui il webhook non si poteva provare. */
-export const WEBHOOK: readonly Webhook[] = [
-  { nome: 'Scrim results', scatta: 'completion' },
-  { nome: 'Staff alerts', scatta: 'both' },
+/**
+ * I webhook già creati nel server, coi nomi nella lingua della demo: mancavano, ed era il motivo per cui il webhook non
+ * si poteva provare.
+ */
+export const webhookDellaDemo = (): Webhook[] => [
+  { nome: delSito('lista.webhook.risultati'), scatta: 'completion' },
+  { nome: delSito('lista.webhook.staff'), scatta: 'both' },
 ];
 
 /** Chi è nell'Activity: le pillole del selettore delle persone prima di scrivere (activity.picker.here). */
@@ -122,30 +129,22 @@ export const ADESSO = Date.UTC(2026, 10, 15, 17, 4) / 1000;
 /** Il promemoria proposto: adesso più dieci minuti, come WhenModalFields.prefillBase. */
 export const PROPOSTO = ADESSO + 600;
 
-export const TITOLO = 'Roster & scrims — week 12';
-
-const TESTI = [
-  "Confirm the five-man roster for Saturday's scrim block",
-  'Lock the scrim block vs. Nova Collective',
-  'Clip the three teamfights for the review',
-  'VOD review: mid rotations, game 3',
-  'Publish the match-day graphic',
-] as const;
-
+/** Il titolo e i testi della lista, nella lingua della demo (src/i18n/testi/<lingua>/demo.ts). */
 function listaDiPartenza(conOwner: boolean): Lista {
-  const task3: Task = { pos: { main: 3, sub: 0 }, testo: TESTI[3], fatto: false };
+  const testo = (n: string) => delSito(`lista.task.${n}` as Parameters<typeof delSito>[0]);
+  const task3: Task = { pos: { main: 3, sub: 0 }, testo: testo('3'), fatto: false };
   if (conOwner) {
     task3.owner = { tipo: 'persona', id: MIA };
     task3.promemoria = { at: PROPOSTO, zona: ZONA };
   }
   return {
-    titolo: TITOLO,
+    titolo: delSito('lista.titolo'),
     tasks: [
-      { pos: { main: 1, sub: 0 }, testo: TESTI[0], fatto: true },
-      { pos: { main: 2, sub: 0 }, testo: TESTI[1], fatto: false },
-      { pos: { main: 2, sub: 1 }, testo: TESTI[2], fatto: false },
+      { pos: { main: 1, sub: 0 }, testo: testo('1'), fatto: true },
+      { pos: { main: 2, sub: 0 }, testo: testo('2'), fatto: false },
+      { pos: { main: 2, sub: 1 }, testo: testo('2.1'), fatto: false },
       task3,
-      { pos: { main: 4, sub: 0 }, testo: TESTI[4], fatto: false },
+      { pos: { main: 4, sub: 0 }, testo: testo('4'), fatto: false },
     ],
   };
 }
@@ -164,7 +163,7 @@ export function listaDeiVideo(): Lista {
 export function statoIniziale(lista: Lista = listaDellaDemo()): Stato {
   return {
     lista,
-    ruoli: [{ id: COACHES, nome: 'Coaches', membri: [MIA, LEO], diTtm: false }],
+    ruoli: [{ id: COACHES, nome: delSito('lista.ruolo'), membri: [MIA, LEO], diTtm: false }],
     bloccata: false,
     inActivity: false,
   };
@@ -234,30 +233,30 @@ export function daiCampi(giorno: number, mese: number, anno: number, ora: string
   return validi.length ? Math.min(...validi) : ingenuo - prima * 60;
 }
 
-const DEL_CANALE = new Intl.DateTimeFormat('en-US', {
-  timeZone: ZONA, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit',
-  hour12: true,
-});
-
 /**
- * Una data come la scrive un client Discord in inglese americano, a Roma: `<t:N>` «November 15, 2026 6:14 PM»,
- * `<t:N:F>` «Sunday, November 15, 2026 6:14 PM», `<t:N:t>` «6:14 PM» (l'ora accanto al nome nel messaggio). Gli altri
- * stili, che la demo non usa, come `<t:N>`.
+ * Una data come la scrive un client Discord nella lingua della demo, a Roma (dataDiDiscord): `<t:N>` «November 15, 2026
+ * 6:14 PM», `<t:N:F>` col giorno della settimana, `<t:N:t>` «6:14 PM» (l'ora accanto al nome nel messaggio); in
+ * italiano «15 novembre 2026 18:14».
  */
 export function dataDelCanale(at: number, stile = ''): string {
-  const p = parti(DEL_CANALE, at);
-  const ora = `${p.hour}:${p.minute} ${p.dayPeriod}`;
-  if (stile === 't') return ora;
-  const data = `${p.month} ${p.day}, ${p.year} ${ora}`;
-  return stile === 'F' ? `${p.weekday}, ${data}` : data;
+  return dataDiDiscord(at, stile, ZONA, linguaDellaDemo());
 }
 
-const DELL_ACTIVITY = new Intl.DateTimeFormat('en-GB', {
-  timeZone: ZONA, day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
-});
+const DELL_ACTIVITY = new Map<Lingua, Intl.DateTimeFormat>();
 
-/** Una data come la scrive in inglese la pagina dell'Activity (en-GB, text/time.ts): «15 November 2026 18:14». */
+/**
+ * Una data come la scrive la pagina dell'Activity (text/time.ts) nella lingua della demo, a 24 ore: «15 November 2026
+ * 18:14» (en-GB), «15 novembre 2026 18:14».
+ */
 export function dataDellActivity(at: number): string {
-  const p = parti(DELL_ACTIVITY, at);
+  const lingua = linguaDellaDemo();
+  let f = DELL_ACTIVITY.get(lingua);
+  if (!f) {
+    f = new Intl.DateTimeFormat(datiDi(lingua).intl, {
+      timeZone: ZONA, day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+    });
+    DELL_ACTIVITY.set(lingua, f);
+  }
+  const p = parti(f, at);
   return `${p.day} ${p.month} ${p.year} ${p.hour}:${p.minute}`;
 }

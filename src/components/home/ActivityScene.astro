@@ -11,15 +11,19 @@
  * demo/pannello.ts, nella demo e nei video. Il posto del dialogo della pagina (dlg) nasce vuoto.
  */
 import ChannelScene from './ChannelScene.astro';
-import { IN_CIMA_ACTIVITY, PRIMA_RIGA_ACTIVITY, TASTI, fraseDelPannello } from './scene-data';
+import { fraseDelPannello, inCimaActivity, primaRigaActivity, tasti } from './scene-data';
 import { NELL_ACTIVITY, PERSONE, statoIniziale } from './demo/modello.ts';
 import type { Lista } from './demo/modello.ts';
 import { avanzamento } from './demo/regole.ts';
 import { contestoDellActivity, nomiDi, righeDellActivity } from './demo/righe.ts';
-import { markdown } from './demo/markdown.ts';
+import { escape, markdown } from './demo/markdown.ts';
 import { emoji, testo } from './demo/testi.ts';
+import { usaLingua } from './demo/lingua.ts';
+import type { Lingua } from '../../i18n/lingue.ts';
 
 interface Props {
+  /** La lingua della pagina (ChannelScene). */
+  lingua: Lingua;
   /** La lista da disegnare: quella della demo o quella dei video (demo/modello.ts). */
   lista: Lista;
   /** La finestra è già aperta, la lista nell'Activity: com'è nella demo. */
@@ -27,16 +31,23 @@ interface Props {
   /** I Tips del server, accesi di default (ChannelScene). */
   tips?: boolean;
 }
-const { lista, aperta = true, tips: conTips = true } = Astro.props;
+const { lista, lingua, aperta = true, tips: conTips = true } = Astro.props;
+usaLingua(lingua);
+const inCima = inCimaActivity();
 const pct = avanzamento(lista);
 // La riga dei Tips della pagina (activity.tips.line), dopo una riga vuota, come il footer di TaskList.tsx.
 const tips = markdown(testo('activity.tips.line', emoji('doc')), contestoDellActivity(statoIniziale(lista)));
 const icona = (n: string) => `/icons/${n}.png`;
 const si = (v: boolean) => (v ? '' : undefined);
 const qui = NELL_ACTIVITY.map((id) => PERSONE.find((p) => p.id === id)!);
+// activity.exit.hint: il grassetto, l'a capo e l'emoji di Exit al posto di {0}.
+const notaDiUscita = escape(testo('activity.exit.hint', '\u0000'))
+  .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  .replace(/\n/g, '<br />')
+  .replace('\u0000', `<img src="${icona('back')}" alt="" />`);
 ---
 <div class="sc-under" inert>
-  <ChannelScene lista={lista} inActivity={aperta} tips={conTips} />
+  <ChannelScene lista={lista} lingua={lingua} inActivity={aperta} tips={conTips} />
 </div>
 <div class="sc-shade" data-k="shade" aria-hidden="true"></div>
 <div class="sc-win" data-k="win" data-open={si(aperta)} data-save="off">
@@ -46,18 +57,18 @@ const qui = NELL_ACTIVITY.map((id) => PERSONE.find((p) => p.id === id)!);
   <div class="sc-apage" data-k="page">
     <div class="sc-apage-in" data-k="page-in">
       <div class="sc-atop">
-        <button type="button" class="sc-abtn" data-k="a-lists" data-tt="ac-lists">{IN_CIMA_ACTIVITY.lists.nome}</button>
+        <button type="button" class="sc-abtn" data-k="a-lists" data-tt="ac-lists">{inCima.lists.nome}</button>
         <div class="sc-atools">
           {/* activity.here.list */}
           <button type="button" class="sc-who" data-k="a-people" data-tt="ac-people">
             <span class="sc-whoav" aria-hidden="true">
               {qui.map((p) => <span class="sc-av" style={`--av: ${p.colore}`}>{p.nome[0]}</span>)}
             </span>
-            <span>{qui.length} people in this list</span>
+            <span>{testo('activity.here.list', qui.length)}</span>
           </button>
           <button
             type="button" class="sc-abtn sc-gear" data-k="a-settings" data-tt="ac-settings"
-            aria-label={IN_CIMA_ACTIVITY.settings.nome}
+            aria-label={inCima.settings.nome}
           >
             {/* GearIcon.tsx */}
             <svg viewBox="0 0 20 20" aria-hidden="true">
@@ -77,7 +88,7 @@ const qui = NELL_ACTIVITY.map((id) => PERSONE.find((p) => p.id === id)!);
         </div>
       </div>
       <div class="sc-afirst">
-        {PRIMA_RIGA_ACTIVITY.map((p) => (
+        {primaRigaActivity().map((p) => (
           <button
             type="button" class:list={['sc-abtn', { 'sc-blue': p.k !== 'exit' }]} data-k={`a-${p.k}`}
             data-tt={`ac-${p.k}`} aria-label={p.nome}
@@ -85,18 +96,15 @@ const qui = NELL_ACTIVITY.map((id) => PERSONE.find((p) => p.id === id)!);
         ))}
       </div>
       {/* activity.exit.hint, con l'emoji di Exit al posto di {0} */}
-      <p class="sc-exitnote">
-        ⚠️ <strong>Important</strong>:<br />To leave this mode properly, click <img src={icona('back')} alt="" />
-        <strong>Exit</strong>: this lets TTM update the list in the channel instantly.
-      </p>
+      <p class="sc-exitnote" set:html={notaDiUscita} />
       {/* Il pannello del task (TaskPanel.tsx): la frase, la X, i cinque pulsanti, l'area, Close e Save o Delete. */}
-      <section class="sc-panel" data-k="panel" aria-label="Task 3">
+      <section class="sc-panel" data-k="panel" aria-label={testo('activity.panel.label', '3')}>
         <div class="sc-phead">
           <p class="sc-phrase" data-k="p-phrase" aria-live="polite">{fraseDelPannello('3')}</p>
-          <button type="button" class="sc-px" data-k="p-x" aria-label="Close">&times;</button>
+          <button type="button" class="sc-px" data-k="p-x" aria-label={testo('activity.panel.close')}>&times;</button>
         </div>
         <div class="sc-pbtns" role="toolbar">
-          {TASTI.map((t) => (
+          {tasti().map((t) => (
             <button
               type="button" class="sc-abtn" data-k={`p-${t.k}`} data-ptasto={t.k} data-tt={`ac-p-${t.k}`}
               aria-label={t.nome} aria-pressed="false"
@@ -107,12 +115,12 @@ const qui = NELL_ACTIVITY.map((id) => PERSONE.find((p) => p.id === id)!);
             sotto. */}
         <div class="sc-parea" data-k="p-form"><div class="sc-pcontent"></div></div>
         <div class="sc-pfoot">
-          <button type="button" class="sc-abtn sc-raised" data-k="p-close">Close</button>
+          <button type="button" class="sc-abtn sc-raised" data-k="p-close">{testo('activity.panel.close')}</button>
           <button type="button" class="sc-abtn sc-blue sc-psave" data-k="p-save" aria-disabled="true">
-            <span class="sc-savetext">Save</span><span class="sc-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="sc-savetext">{testo('activity.panel.save')}</span><span class="sc-dots" aria-hidden="true"><i></i><i></i><i></i></span>
           </button>
           <button type="button" class="sc-abtn sc-red sc-pdelete" data-k="p-delete" aria-disabled="true">
-            <span class="sc-savetext">Delete</span><span class="sc-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="sc-savetext">{testo('activity.panel.delete')}</span><span class="sc-dots" aria-hidden="true"><i></i><i></i><i></i></span>
           </button>
         </div>
       </section>

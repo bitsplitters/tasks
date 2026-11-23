@@ -11,7 +11,7 @@ import type { Acceso } from './condiviso.ts';
 import { escape, markdown } from './markdown.ts';
 import { coiCodici, coiNomi, rubricaDi } from './nomi.ts';
 import type { Contesto } from './markdown.ts';
-import { ADESSO, PROPOSTO, WEBHOOK, fusoDi, posizione } from './modello.ts';
+import { ADESSO, PROPOSTO, fusoDi, posizione, webhookDellaDemo } from './modello.ts';
 import type { Stato, Task } from './modello.ts';
 import {
   applicaOwnerActivity, applicaPromemoria, applicaTagActivity, applicaWebhook, eliminaTask, eliminaTaskConfermato,
@@ -154,10 +154,11 @@ export interface SceltaDelWebhook {
 }
 
 export function scelteDelWebhook(task: Task): SceltaDelWebhook[] {
-  const manca = task.webhook !== undefined && !WEBHOOK.some((w) => w.nome === task.webhook) ? task.webhook : null;
+  const creati = webhookDellaDemo();
+  const manca = task.webhook !== undefined && !creati.some((w) => w.nome === task.webhook) ? task.webhook : null;
   return [
     ...(manca === null ? [] : [{ nome: manca, meta: testo('activity.webhook.missing'), manca: true }]),
-    ...WEBHOOK.map((w) => ({ nome: w.nome, meta: testo(`activity.webhook.trigger.${w.scatta}`), manca: false })),
+    ...creati.map((w) => ({ nome: w.nome, meta: testo(`activity.webhook.trigger.${w.scatta}`), manca: false })),
   ];
 }
 

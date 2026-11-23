@@ -6,7 +6,7 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { AVVISO_ILLUSTRATIVO, DISCORD } from '../src/components/home/scene-data.ts';
+import { avvisoIllustrativo, discord } from '../src/components/home/scene-data.ts';
 import { COACHES, LEO, MIA, SAM, idRuoloTtm } from '../src/components/home/demo/modello.ts';
 import { chiave, senzaAccenti } from '../src/components/home/demo/ui/comune.ts';
 import { controllaCampo, htmlDellaModale } from '../src/components/home/demo/ui/modale.ts';
@@ -70,12 +70,12 @@ test('i controlli della modale prima di mandare: obbligo, poi lunghezza minima (
 });
 
 test('i testi di Discord e l\'avviso della sola lettura stanno in scene-data (§1.2.14)', () => {
-  assert.equal(DISCORD.almeno(4), 'Must be at least 4 characters long.');
-  assert.equal(DISCORD.annulla, 'Cancel');
-  assert.equal(DISCORD.invia, 'Submit');
-  assert.equal(DISCORD.soloTu, 'Only you can see this');
-  assert.equal(DISCORD.dismiss, 'Dismiss message');
-  assert.equal(AVVISO_ILLUSTRATIVO, 'For illustration only: this demo doesn\'t fully replicate how TTM works.');
+  assert.equal(discord().almeno(4), 'Must be at least 4 characters long.');
+  assert.equal(discord().annulla, 'Cancel');
+  assert.equal(discord().invia, 'Submit');
+  assert.equal(discord().soloTu, 'Only you can see this');
+  assert.equal(discord().dismiss, 'Dismiss message');
+  assert.equal(avvisoIllustrativo(), 'For illustration only: this demo doesn\'t fully replicate how TTM works.');
 });
 
 const PROMEMORIA: Modale = {
@@ -122,7 +122,7 @@ test('la modale: dialogo con il titolo, i campi coi loro data-k, Cancel e Submit
 });
 
 test('la modale in sola lettura: l\'avviso in cima, i campi non si scrivono, Submit spento (§8.3)', () => {
-  const html = htmlDellaModale({ ...PROMEMORIA, solaLettura: AVVISO_ILLUSTRATIVO }, 8);
+  const html = htmlDellaModale({ ...PROMEMORIA, solaLettura: avvisoIllustrativo() }, 8);
   assert.match(html, /<div class="ui-avviso" role="note">For illustration only: this demo doesn't fully replicate/);
   assert.ok(html.indexOf('ui-avviso') < html.indexOf('data-k="m-day"'));
   for (const k of ['m-day', 'm-zone', 'm-text']) assert.match(tag(html, k), / readonly/);

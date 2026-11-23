@@ -16,7 +16,7 @@ import {
 } from '../src/components/home/demo/regole.ts';
 import type { Campi, Esito } from '../src/components/home/demo/regole.ts';
 import type { Campo } from '../src/components/home/demo/ui/modale.ts';
-import { AVVISO_ILLUSTRATIVO } from '../src/components/home/scene-data.ts';
+import { avvisoIllustrativo } from '../src/components/home/scene-data.ts';
 
 /** Lo stato di un esito «fatto»: un altro esito fa fallire il test. */
 function statoDi(esito: Esito): Stato {
@@ -138,7 +138,7 @@ test('modaleDiModificaInBlocco: in sola lettura, il titolo, la legenda con le so
   const s0 = statoIniziale();
   const m = modaleDiModificaInBlocco(s0);
   assert.equal(m.titolo, 'Edit your activities list');
-  assert.equal(m.solaLettura, AVVISO_ILLUSTRATIVO);
+  assert.equal(m.solaLettura, avvisoIllustrativo());
   assert.match(testoDellaLista(s0.lista), new RegExp(`<t:\\d+> \\[0m,0m,0\\] <@${MIA}>: VOD review`));
   assert.deepEqual(m.campi, [
     {

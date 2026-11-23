@@ -12,7 +12,7 @@ import { statoIniziale } from '../src/components/home/demo/modello.ts';
 import type { Stato } from '../src/components/home/demo/modello.ts';
 import { invertiSpunta, riapri, riapriConfermato } from '../src/components/home/demo/regole.ts';
 import type { Domanda } from '../src/components/home/demo/regole.ts';
-import { AVVISO_ILLUSTRATIVO } from '../src/components/home/scene-data.ts';
+import { avvisoIllustrativo } from '../src/components/home/scene-data.ts';
 
 /** Le chiavi dei pulsanti del messaggio, in ordine. */
 const tasti = (html: string) => [...html.matchAll(/data-k="e-([a-z]+)"/g)].map((m) => m[1]);
@@ -70,7 +70,7 @@ const CHIUSURA = '<div class="ui-spazio"></div><div class="ui-td">' +
 
 test('More: l\'avviso della demo, poi Guide, Clone list, Download, Seal list e Delete list coi pulsanti spenti', () => {
   const html = htmlDelPannello(statoIniziale());
-  assert.ok(html.startsWith(`<div class="ui-cont"><div class="ui-avviso" role="note">${AVVISO_ILLUSTRATIVO}</div>` +
+  assert.ok(html.startsWith(`<div class="ui-cont"><div class="ui-avviso" role="note">${avvisoIllustrativo()}</div>` +
     '<div class="ui-voce"><div class="ui-td"><strong>Guide</strong><br>How every button of the list works, in ' +
     'short.</div><button type="button" class="sc-btn sc-blue" data-k="e-guide" aria-label="Guide" ' +
     'aria-disabled="true"><img src="/icons/doc.png" alt=""></button></div>'), html);
@@ -89,7 +89,7 @@ test('More: l\'avviso della demo, poi Guide, Clone list, Download, Seal list e D
 test('More con la lista bloccata: Unlock list in cima, accesa, per chi la modifica; niente Seal e Delete', () => {
   const html = htmlDelPannello({ ...statoIniziale(), bloccata: true });
   assert.deepEqual(tasti(html), ['unlock', 'guide', 'clone', 'download']);
-  assert.ok(html.includes(`${AVVISO_ILLUSTRATIVO}</div><div class="ui-voce"><div class="ui-td"><strong>Unlock ` +
+  assert.ok(html.includes(`${avvisoIllustrativo()}</div><div class="ui-voce"><div class="ui-td"><strong>Unlock ` +
     'list</strong><br><span class="sc-mention">@Sam</span> is editing the list: its buttons are off. If they closed ' +
     'without saving, turn it back on for everyone here.</div><button type="button" class="sc-btn sc-blue" ' +
     'data-k="e-unlock" aria-label="Unlock list"><img src="/icons/unlock.png" alt=""></button></div>'), html);
@@ -100,7 +100,7 @@ test('More con la lista bloccata: Unlock list in cima, accesa, per chi la modifi
 
 test('More dopo Unlock list: l\'esito in cima, una linea davanti alla prima voce, di nuovo Seal e Delete', () => {
   const html = htmlDelPannello(statoIniziale(), true);
-  assert.ok(html.includes(`${AVVISO_ILLUSTRATIVO}</div><div class="ui-td ui-esito"><img class="sc-emoji" ` +
+  assert.ok(html.includes(`${avvisoIllustrativo()}</div><div class="ui-td ui-esito"><img class="sc-emoji" ` +
     'src="/icons/unlock_blue.png" alt="">  List unlocked: its buttons work again.</div><div class="ui-linea"></div>' +
     '<div class="ui-voce">'), html);
   assert.deepEqual(tasti(html), ['guide', 'clone', 'download', 'seal', 'delete']);

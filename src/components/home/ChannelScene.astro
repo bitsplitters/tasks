@@ -11,15 +11,19 @@
  * sotto i pulsanti (sub, wb) nascono vuoti: li riempiono i pezzi della demo (demo/ui), come la modale, che si apre in
  * un velo suo. I testi sono quelli del bot, con la chiave del bundle accanto.
  */
-import { CHEV, FRASE_SPUNTA, PRIMA_RIGA, TASTI } from './scene-data';
+import { CHEV, discord, fraseSpunta, primaRiga, tasti } from './scene-data';
 import { ADESSO, NOME_DEL_CANALE, dataDelCanale, statoIniziale } from './demo/modello.ts';
 import type { Lista } from './demo/modello.ts';
 import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
 import { contestoDelCanale, nomiDi, opzioniDelSelettore, righeDelCanale } from './demo/righe.ts';
 import { markdown } from './demo/markdown.ts';
 import { emoji, testo } from './demo/testi.ts';
+import { usaLingua } from './demo/lingua.ts';
+import type { Lingua } from '../../i18n/lingue.ts';
 
 interface Props {
+  /** La lingua della pagina: i testi del bot e di Discord, le date, la lista (demo/lingua.ts). */
+  lingua: Lingua;
   /** La lista da disegnare: quella della demo o quella dei video (demo/modello.ts). */
   lista: Lista;
   /** La lista è nell'Activity: al posto dei pulsanti, «Join the Activity». */
@@ -27,7 +31,8 @@ interface Props {
   /** I Tips del server (/config app), accesi di default: i video li spengono, perché non ci starebbero. */
   tips?: boolean;
 }
-const { lista, inActivity = false, tips: conTips = true } = Astro.props;
+const { lista, lingua, inActivity = false, tips: conTips = true } = Astro.props;
+usaLingua(lingua);
 const stato = { ...statoIniziale(lista), inActivity };
 const accesi = pulsantiAccesi(stato);
 const spento = (nome: string) => String(!accesi.has(nome));
@@ -36,6 +41,8 @@ const pct = avanzamento(lista);
 const tips = markdown(testo('tasklist.tips.line', emoji('other'), emoji('doc')), contestoDelCanale(stato));
 const icona = (n: string) => `/icons/${n}.png`;
 const si = (v: boolean) => (v ? '' : undefined);
+// tasklist.activity.line senza «-# {0}»: l'icona la mette la scena.
+const rigaActivity = testo('tasklist.activity.line', '').replace(/^-#\s*/, '').trim();
 ---
 <div class="sc-chan" data-k="chan" data-inact={si(inActivity)}>
   <div class="sc-chhead" aria-hidden="true"><span class="sc-hash">#</span>{NOME_DEL_CANALE}</div>
@@ -51,7 +58,7 @@ const si = (v: boolean) => (v ? '' : undefined);
         <div class="sc-rows" set:html={righeDelCanale(lista, nomiDi(stato))}></div>
         {conTips && <div class="sc-tips" set:html={tips}></div>}
         {/* tasklist.activity.line, al posto della riga dei Tips */}
-        <p class="sc-actline"><img src={icona('activity_blue')} alt="" /> This list is being worked on in the Activity.</p>
+        <p class="sc-actline"><img src={icona('activity_blue')} alt="" /> {rigaActivity}</p>
         <div class="sc-bar" data-bar data-empty={si(pct === 0)} style={`--pct: ${pct}%`}>
           <div class="sc-bar-fill"></div>
         </div>
@@ -62,14 +69,14 @@ const si = (v: boolean) => (v ? '' : undefined);
             type="button" class="sc-sel" data-k="sel" aria-haspopup="listbox" aria-expanded="false"
             aria-disabled={spento('sel')}
           >
-            <span data-k="sel-text">{FRASE_SPUNTA}</span>
+            <span data-k="sel-text">{fraseSpunta()}</span>
             <svg class="sc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d={CHEV} fill="currentColor" /></svg>
           </button>
           {/* Le opzioni: l'emoji della casella e «<posizione> <testo>», senza descrizione (TaskActivityConverter). */}
           <div class="sc-menu" data-k="menu" role="listbox" set:html={opzioniDelSelettore(lista)}></div>
         </div>
         <div class="sc-btns">
-          {PRIMA_RIGA.map((p) => (
+          {primaRiga().map((p) => (
             <button
               type="button" class="sc-btn sc-blue" data-k={`b-${p.k}`} data-tt={`ch-${p.k}`} aria-label={p.nome}
               aria-disabled={spento(p.k)}
@@ -77,7 +84,7 @@ const si = (v: boolean) => (v ? '' : undefined);
           ))}
         </div>
         <div class="sc-btns">
-          {TASTI.map((t) => (
+          {tasti().map((t) => (
             <button
               type="button" class="sc-btn" data-k={`b-${t.k}`} data-tasto={t.k} data-tt={`ch-${t.k}`}
               aria-label={t.nome} aria-pressed="false" aria-disabled={spento(t.k)}
@@ -91,12 +98,12 @@ const si = (v: boolean) => (v ? '' : undefined);
       </div>
       <div class="sc-join">
         <button type="button" class="sc-btn sc-blue sc-joinbtn" data-k="b-join" aria-disabled={spento('join')}>
-          <img src={icona('activity')} alt="" />Join the Activity
+          <img src={icona('activity')} alt="" />{testo('tasklist.btn.activity.enter')}
         </button>
       </div>
     </div>
     {/* Il messaggio effimero sotto la lista, che vede solo chi agisce: lo scrive la demo. */}
     <div class="sc-eph" data-k="eph" hidden></div>
   </div>
-  <div class="sc-input" aria-hidden="true">Message #{NOME_DEL_CANALE}</div>
+  <div class="sc-input" aria-hidden="true">{discord().scrivi(NOME_DEL_CANALE)}</div>
 </div>

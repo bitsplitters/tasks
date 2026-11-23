@@ -4,7 +4,7 @@
  * message». Ce n'è uno alla volta: il nuovo prende il posto del vecchio, Dismiss lo toglie. I pulsanti del contenuto
  * (`e-<id>`) li ascolta chi lo mostra.
  */
-import { DISCORD } from '../../scene-data.ts';
+import { discord } from '../../scene-data.ts';
 import { ADESSO, dataDelCanale } from '../modello.ts';
 import { OCCHIO } from './comune.ts';
 
@@ -13,8 +13,8 @@ export function htmlDellEffimero(html: string): string {
   return '<div class="sc-msg ui-eff"><img class="sc-avatar" src="/icons/ttm-avatar.png" alt="">' +
     '<p class="sc-mhead"><span class="sc-name">Team Tasks Manager</span><span class="sc-app">APP</span>' +
     `<span class="sc-time">${dataDelCanale(ADESSO, 't')}</span></p><div class="ui-effcorpo">${html}</div>` +
-    `<p class="ui-effpiede">${OCCHIO}<span>${DISCORD.soloTu}</span><span aria-hidden="true">•</span>` +
-    `<button type="button" class="ui-effvia" data-k="eph-dismiss">${DISCORD.dismiss}</button></p></div>`;
+    `<p class="ui-effpiede">${OCCHIO}<span>${discord().soloTu}</span><span aria-hidden="true">•</span>` +
+    `<button type="button" class="ui-effvia" data-k="eph-dismiss">${discord().dismiss}</button></p></div>`;
 }
 
 /**

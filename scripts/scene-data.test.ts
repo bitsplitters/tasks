@@ -5,7 +5,9 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { TOOLTIP } from '../src/components/home/scene-data.ts';
+import { tooltipDellaDemo } from '../src/components/home/scene-data.ts';
+
+const TOOLTIP = tooltipDellaDemo();
 
 test('ogni pulsante delle scene ha il suo tooltip', () => {
   const chiavi = ['activity', 'bulk', 'clean', 'reopen', 'more', 'content', 'owner', 'tag', 'reminder', 'webhook']

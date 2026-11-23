@@ -7,10 +7,11 @@
  * Non tengono stato: ogni chiamata dice com'è un pezzo della scena, da capo. Così un copione può ridisegnare
  * qualunque istante e la demo non deve ricordare cosa c'era prima.
  */
-import { FRASE_SPUNTA, FRASI, FRASI_NEL_CANALE, fraseDelPannello, type Colore, type Tasto } from './scene-data.ts';
+import { fraseDelPannello, fraseSpunta, frasi, frasiNelCanale, type Colore, type Tasto } from './scene-data.ts';
 import type { Stato } from './demo/modello.ts';
 import { avanzamento, pulsantiAccesi } from './demo/regole.ts';
 import { nomiDi, opzioniDelSelettore, righeDelCanale, righeDellActivity } from './demo/righe.ts';
+import { testo } from './demo/testi.ts';
 
 export type Salvataggio = 'off' | 'on' | 'pending';
 
@@ -94,13 +95,13 @@ export function apriSelettore(chan: HTMLElement, aperto: boolean): void {
 export function accendiNelCanale(chan: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
   accendi(chan, 'tasto', tasto, colore);
   const sel = k(chan, 'sel-text');
-  if (sel) sel.textContent = tasto && colore ? FRASI_NEL_CANALE[tasto][colore] : FRASE_SPUNTA;
+  if (sel) sel.textContent = tasto && colore ? frasiNelCanale()[tasto][colore] : fraseSpunta();
 }
 
 /** Il pannello aperto sul task id, da capo (pulsanti grigi, area vuota, Save spento), o chiuso (null). */
 export function apriPannello(win: HTMLElement, id: string | null): void {
   attributo(win, 'data-panel', id);
-  k(win, 'panel')?.setAttribute('aria-label', `Task ${id ?? ''}`);
+  k(win, 'panel')?.setAttribute('aria-label', testo('activity.panel.label', id ?? ''));
   azzeraIlPannello(win);
   posizionaPannello(win);
 }
@@ -149,7 +150,7 @@ export function posizionaPannello(win: HTMLElement): void {
 export function tastoDelPannello(win: HTMLElement, tasto: Tasto | null, colore: Colore | null): void {
   accendi(win, 'ptasto', tasto, colore);
   const frase = k(win, 'p-phrase');
-  if (frase) frase.textContent = tasto && colore ? FRASI[tasto][colore] : fraseDelPannello(win.dataset.panel ?? '');
+  if (frase) frase.textContent = tasto && colore ? frasi()[tasto][colore] : fraseDelPannello(win.dataset.panel ?? '');
   attributo(win, 'data-delete', colore === 'red' ? '' : null);
 }
 

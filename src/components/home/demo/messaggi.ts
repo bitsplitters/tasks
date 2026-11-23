@@ -4,7 +4,7 @@
  * e il pannello More, in HTML, come li compone il bot. ui/effimero.ts mette loro intorno il messaggio di TTM; i
  * pulsanti (`e-<id>`) li ascolta canale.ts.
  */
-import { AVVISO_ILLUSTRATIVO } from '../scene-data.ts';
+import { avvisoIllustrativo } from '../scene-data.ts';
 import { escape, markdown } from './markdown.ts';
 import { SAM } from './modello.ts';
 import type { Stato } from './modello.ts';
@@ -117,6 +117,6 @@ export function htmlDelPannello(stato: Stato, dopoLoSblocco = false): string {
       stato));
   }
   const chiusura = `${emoji('separator').repeat(3)}\n-# ${testo('embed.footer.text')}`;
-  return `<div class="ui-cont">${riquadroAvviso(AVVISO_ILLUSTRATIVO)}${parti.join('')}<div class="ui-spazio"></div>` +
+  return `<div class="ui-cont">${riquadroAvviso(avvisoIllustrativo())}${parti.join('')}<div class="ui-spazio"></div>` +
     `${td(chiusura, stato)}</div>`;
 }

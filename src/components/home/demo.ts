@@ -14,6 +14,7 @@ import { collegaTab } from './tabs';
 import { avviaTooltip } from './tooltip';
 import { montaActivity } from './demo/activity.ts';
 import { montaCanale } from './demo/canale.ts';
+import { linguaDellaPagina, usaLingua } from './demo/lingua.ts';
 import type { Condiviso } from './demo/condiviso.ts';
 import { statoIniziale } from './demo/modello.ts';
 import type { Stato } from './demo/modello.ts';
@@ -62,6 +63,8 @@ function testoDelFumetto(html: string): HTMLSpanElement {
 }
 
 export function avviaDemo(): void {
+  // Prima di qualsiasi testo: la demo parla la lingua della pagina (demo/lingua.ts).
+  usaLingua(linguaDellaPagina());
   const radice = document.querySelector<HTMLElement>('[data-demo]');
   if (radice) avvia(radice);
 }

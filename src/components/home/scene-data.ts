@@ -6,9 +6,13 @@
  * server della demo e le regole del bot stanno in demo/ (spec 2026-11-15-demo-fedele-design.md): modello.ts,
  * regole.ts, testi.ts.
  *
- * Le frasi dell'interfaccia sono quelle del bundle inglese del bot (slash-resource.properties), con la chiave
- * accanto; quelle dei tooltip sono del §8 della spec; quelle di Discord, del suo client in inglese.
+ * Le frasi dell'interfaccia sono quelle del bundle del bot (demo/testi.ts), con la chiave accanto; quelle dei tooltip
+ * sono del §8 della spec; quelle di Discord, del suo client. Tutte nella lingua della demo (demo/lingua.ts, spec
+ * 2026-11-19-sito-multilingua-design.md, §10): per questo sono funzioni, che la leggono quando servono, e non costanti.
+ * I testi che non sono del bot stanno in src/i18n/testi/<lingua>/demo.ts.
  */
+import { delSito } from './demo/sito.ts';
+import { testo } from './demo/testi.ts';
 
 export type Tasto = 'content' | 'owner' | 'tag' | 'reminder' | 'webhook';
 export type Colore = 'blue' | 'red';
@@ -16,38 +20,47 @@ export type Colore = 'blue' | 'red';
 /** Grigio, blu, rosso, di nuovo grigio: un clic alla volta, come nel bot. */
 export const prossimoColore = (c: Colore | null): Colore | null => (c === null ? 'blue' : c === 'blue' ? 'red' : null);
 
-/** La seconda riga del canale e i pulsanti del pannello (nomi: tasklist.guide.card.*). */
-export const TASTI: readonly { k: Tasto; icona: string; nome: string }[] = [
-  { k: 'content', icona: 'task', nome: 'Content' },
-  { k: 'owner', icona: 'owner', nome: 'Owner' },
-  { k: 'tag', icona: 'tag', nome: 'Tag' },
-  { k: 'reminder', icona: 'alertW', nome: 'Reminder' },
-  { k: 'webhook', icona: 'api', nome: 'Webhook' },
+/** I pulsanti della seconda riga del canale e del pannello, con le icone. */
+const I_TASTI: readonly { k: Tasto; icona: string }[] = [
+  { k: 'content', icona: 'task' },
+  { k: 'owner', icona: 'owner' },
+  { k: 'tag', icona: 'tag' },
+  { k: 'reminder', icona: 'alertW' },
+  { k: 'webhook', icona: 'api' },
 ];
 
+/** La seconda riga del canale e i pulsanti del pannello (nomi: tasklist.guide.card.*). */
+export const tasti = (): { k: Tasto; icona: string; nome: string }[] =>
+  I_TASTI.map((t) => ({ ...t, nome: testo(`tasklist.guide.card.${t.k}`) }));
+
 /** Il selettore a riposo (tasklist.slct.activities.hint.check). */
-export const FRASE_SPUNTA = 'Tick a task';
+export const fraseSpunta = (): string => testo('tasklist.slct.activities.hint.check');
+
+const due = (k: string, blu: string, rosso: string): Record<Colore, string> => ({
+  blue: testo(`tasklist.slct.activities.hint.${k}.${blu}`),
+  red: testo(`tasklist.slct.activities.hint.${k}.${rosso}`),
+});
 
 /** Il pannello dell'Activity con un pulsante acceso (tasklist.slct.activities.hint.*). */
-export const FRASI: Record<Tasto, Record<Colore, string>> = {
-  content: { blue: 'Edit task', red: 'Delete task' },
-  owner: { blue: 'Edit owner', red: 'Remove owner' },
-  tag: { blue: 'Edit tags', red: 'Remove tags' },
-  reminder: { blue: 'Edit reminder', red: 'Remove reminder' },
-  webhook: { blue: 'Link webhook', red: 'Unlink webhook' },
-};
+export const frasi = (): Record<Tasto, Record<Colore, string>> => ({
+  content: due('content', 'edit', 'delete'),
+  owner: due('owner', 'edit', 'delete'),
+  tag: due('tag', 'edit', 'delete'),
+  reminder: due('reminder', 'edit', 'delete'),
+  webhook: due('webhook', 'edit', 'delete'),
+});
 
 /**
  * Il selettore del canale con un pulsante acceso: come il pannello, ma Owner blu dice il claim
  * (tasklist.slct.activities.hint.owner.take), che nell'Activity non c'è.
  */
-export const FRASI_NEL_CANALE: Record<Tasto, Record<Colore, string>> = {
-  ...FRASI,
-  owner: { blue: 'Take or assign a task', red: 'Remove owner' },
-};
+export const frasiNelCanale = (): Record<Tasto, Record<Colore, string>> => ({
+  ...frasi(),
+  owner: due('owner', 'take', 'delete'),
+});
 
 /** Il pannello a riposo (activity.panel.choose). */
-export const fraseDelPannello = (id: string) => `Choose what to change in task ${id}`;
+export const fraseDelPannello = (id: string): string => testo('activity.panel.choose', id);
 
 export interface Pulsante {
   k: string;
@@ -56,44 +69,33 @@ export interface Pulsante {
   testo: string;
 }
 
-/** La prima riga del canale (tasklist.guide.card.*), tutta blu. */
-export const PRIMA_RIGA: readonly Pulsante[] = [
-  { k: 'activity', icona: 'activity', nome: 'Activity',
-    testo: 'Open the list in a window inside Discord and work on it together.' },
-  { k: 'bulk', icona: 'edit', nome: 'Bulk update', testo: 'Edit the title and every task at once.' },
-  { k: 'clean', icona: 'clean', nome: 'Clean list', testo: 'Clear away the completed tasks.' },
-  { k: 'reopen', icona: 'reopen', nome: 'Reopen all', testo: 'Bring every completed task back to to-do.' },
-  { k: 'more', icona: 'other', nome: 'More',
-    testo: 'Clone, download, seal or delete the list, plus the guide to every button.' },
+/** La prima riga del canale (nomi: tasklist.guide.card.*), tutta blu; i testi sono dei tooltip. */
+export const primaRiga = (): Pulsante[] => [
+  { k: 'activity', icona: 'activity', nome: testo('tasklist.guide.card.activity'), testo: delSito('tooltip.activity') },
+  { k: 'bulk', icona: 'edit', nome: testo('tasklist.guide.card.bulk'), testo: delSito('tooltip.bulk') },
+  { k: 'clean', icona: 'clean', nome: testo('tasklist.guide.card.clean'), testo: delSito('tooltip.clean') },
+  { k: 'reopen', icona: 'reopen', nome: testo('tasklist.guide.card.reopen'), testo: delSito('tooltip.reopen') },
+  { k: 'more', icona: 'other', nome: testo('tasklist.guide.card.other'), testo: delSito('tooltip.more') },
 ];
 
 /** Cosa fanno i pulsanti della seconda riga e del pannello (§8, «I tooltip»). */
-export const TESTI_TASTI: Record<Tasto, string> = {
-  content: 'Edit or delete a task.',
-  owner: 'Give a task its owner: a person, a role, or several people.',
-  tag: 'Choose who hears about it when the task is done.',
-  reminder: 'Set when the owner gets reminded.',
-  webhook: 'Let your other systems know when the task is ticked or reopened.',
-};
-
-export const NOTA_COLORI = 'Blue edits, red deletes.';
+const testoDelTasto = (k: Tasto): string => delSito(`tooltip.${k}`);
 
 /** La prima riga dell'Activity (activity.btn.*): Guide, Edit, Clean, Reopen in blu, Exit in grigio. */
-export const PRIMA_RIGA_ACTIVITY: readonly Pulsante[] = [
-  { k: 'guide', icona: 'doc', nome: 'Guide', testo: 'What every button does.' },
-  { k: 'edit', icona: 'edit', nome: 'Edit the list', testo: PRIMA_RIGA[1].testo },
-  { k: 'clean', icona: 'clean', nome: 'Clean the list', testo: PRIMA_RIGA[2].testo },
-  { k: 'reopen', icona: 'reopen', nome: 'Reopen all', testo: PRIMA_RIGA[3].testo },
-  { k: 'exit', icona: 'back', nome: 'Exit',
-    testo: 'Leave the Activity. The last one out sends the list back to the channel, with a summary.' },
+export const primaRigaActivity = (): Pulsante[] => [
+  { k: 'guide', icona: 'doc', nome: testo('activity.btn.guide'), testo: delSito('tooltip.guide') },
+  { k: 'edit', icona: 'edit', nome: testo('activity.btn.edit'), testo: delSito('tooltip.bulk') },
+  { k: 'clean', icona: 'clean', nome: testo('activity.btn.clean'), testo: delSito('tooltip.clean') },
+  { k: 'reopen', icona: 'reopen', nome: testo('activity.btn.reopen'), testo: delSito('tooltip.reopen') },
+  { k: 'exit', icona: 'back', nome: testo('activity.btn.exit'), testo: delSito('tooltip.exit') },
 ];
 
-/** In cima alla pagina dell'Activity: «Lists» (activity.btn.home), chi è dentro, la rotella (activity.btn.settings). */
-export const IN_CIMA_ACTIVITY = {
-  lists: { nome: 'Lists', testo: 'See the other lists of this channel.' },
-  people: { nome: 'People here', testo: "Who's working on the list right now." },
-  settings: { nome: 'Settings', testo: 'Your theme and text size, just for you.' },
-} as const;
+/** In cima alla pagina dell'Activity: le liste del canale, chi è dentro, la rotella (activity.btn.settings). */
+export const inCimaActivity = () => ({
+  lists: { nome: delSito('tooltip.lists.nome'), testo: delSito('tooltip.lists') },
+  people: { nome: delSito('tooltip.people.nome'), testo: delSito('tooltip.people') },
+  settings: { nome: testo('activity.btn.settings'), testo: delSito('tooltip.settings') },
+});
 
 export interface Tooltip {
   nome: string;
@@ -102,13 +104,16 @@ export interface Tooltip {
 }
 
 /** I tooltip della demo, per chiave: `ch-` nel canale, `ac-` nell'Activity, `ac-p-` nel pannello. */
-export const TOOLTIP: Record<string, Tooltip> = Object.fromEntries([
-  ...PRIMA_RIGA.map((p) => [`ch-${p.k}`, { nome: p.nome, testo: p.testo }]),
-  ...TASTI.map((t) => [`ch-${t.k}`, { nome: t.nome, testo: TESTI_TASTI[t.k], nota: NOTA_COLORI }]),
-  ...PRIMA_RIGA_ACTIVITY.map((p) => [`ac-${p.k}`, { nome: p.nome, testo: p.testo }]),
-  ...TASTI.map((t) => [`ac-p-${t.k}`, { nome: t.nome, testo: TESTI_TASTI[t.k], nota: NOTA_COLORI }]),
-  ...Object.entries(IN_CIMA_ACTIVITY).map(([k, v]) => [`ac-${k}`, { ...v }]),
-]);
+export function tooltipDellaDemo(): Record<string, Tooltip> {
+  const nota = delSito('tooltip.colori');
+  return Object.fromEntries([
+    ...primaRiga().map((p) => [`ch-${p.k}`, { nome: p.nome, testo: p.testo }]),
+    ...tasti().map((t) => [`ch-${t.k}`, { nome: t.nome, testo: testoDelTasto(t.k), nota }]),
+    ...primaRigaActivity().map((p) => [`ac-${p.k}`, { nome: p.nome, testo: p.testo }]),
+    ...tasti().map((t) => [`ac-p-${t.k}`, { nome: t.nome, testo: testoDelTasto(t.k), nota }]),
+    ...Object.entries(inCimaActivity()).map(([k, v]) => [`ac-${k}`, { ...v }]),
+  ]);
+}
 
 export type Modo = 'channel' | 'activity';
 
@@ -123,20 +128,22 @@ export const CHEV =
   'M5.3 9.3a1 1 0 0 1 1.4 0l5.3 5.3 5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6a1 1 0 0 1-1.4 0l-6-6a1 1 0 0 1 0-1.4Z';
 
 /**
- * I testi di Discord, non del bot (piano 2026-11-15-demo-fedele, §1.2.12 e §1.2.14): la modale coi suoi controlli, i
- * menu, il messaggio effimero. Quelli del bot stanno in demo/testi.ts.
+ * I testi di Discord, non del bot (piano 2026-11-15-demo-fedele, §1.2.12 e §1.2.14), nella lingua della demo: la
+ * modale coi suoi controlli, i menu, il messaggio effimero, la casella del messaggio. Quelli del bot stanno in
+ * demo/testi.ts.
  */
-export const DISCORD = {
-  annulla: 'Cancel',
-  invia: 'Submit',
-  chiudi: 'Close',
-  obbligatorio: 'This field is required.',
-  almeno: (n: number) => `Must be at least ${n} characters long.`,
-  togli: (nome: string) => `Remove ${nome}`,
-  nessuno: 'No results found',
-  soloTu: 'Only you can see this',
-  dismiss: 'Dismiss message',
-} as const;
+export const discord = () => ({
+  annulla: delSito('discord.annulla'),
+  invia: delSito('discord.invia'),
+  chiudi: delSito('discord.chiudi'),
+  obbligatorio: delSito('discord.obbligatorio'),
+  almeno: (n: number) => delSito('discord.almeno', { n }),
+  togli: (nome: string) => delSito('discord.togli', { nome }),
+  nessuno: delSito('discord.nessuno'),
+  soloTu: delSito('discord.soloTu'),
+  dismiss: delSito('discord.dismiss'),
+  scrivi: (nome: string) => delSito('discord.scrivi', { nome }),
+});
 
 /** L'avviso della sola lettura (spec §1 e §8.3): in cima a Modifica in blocco, al pannello More, a Edit the list. */
-export const AVVISO_ILLUSTRATIVO = "For illustration only: this demo doesn't fully replicate how TTM works.";
+export const avvisoIllustrativo = (): string => delSito('avviso');

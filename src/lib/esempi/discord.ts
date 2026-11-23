@@ -22,6 +22,7 @@ import { risolvi, risolviBody, risolviUrl, variabili } from './webhook.ts';
 import type { Esempio, Momento, Scheda, Team, TipoDiNotifica } from './tipi.ts';
 import type { Lingua } from '../../i18n/lingue.ts';
 import { t } from '../../i18n/t.ts';
+import { dataDiDiscord, oraDiDiscord, parti } from '../../components/home/demo/date-di-discord.ts';
 
 /** L'istante di un momento della settimana, scritto nel fuso del team (`2026-12-08T18:00`). */
 export function istante(at: string, zona: string): number {
@@ -30,60 +31,22 @@ export function istante(at: string, zona: string): number {
   return daiCampi(giorno, mese, anno, ora, zona);
 }
 
-const FORMATI = new Map<string, Intl.DateTimeFormat>();
-
-/** Il formato delle date del client Discord nella lingua: l'inglese americano a 12 ore, le altre a 24. */
-function formato(zona: string, lingua: Lingua): Intl.DateTimeFormat {
-  const chiave = `${lingua} ${zona}`;
-  let f = FORMATI.get(chiave);
-  if (!f) {
-    f = lingua === 'en'
-      ? new Intl.DateTimeFormat('en-US', {
-        timeZone: zona, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric',
-        minute: '2-digit', hour12: true,
-      })
-      : new Intl.DateTimeFormat(lingua, {
-        timeZone: zona, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit',
-        minute: '2-digit', hourCycle: 'h23',
-      });
-    FORMATI.set(chiave, f);
-  }
-  return f;
-}
-
-const parti = (at: number, zona: string, lingua: Lingua) => {
-  const p: Record<string, string> = {};
-  for (const x of formato(zona, lingua).formatToParts(new Date(at * 1000))) p[x.type] = x.value;
-  return p;
-};
-
 /** «5 minutes ago» nella lingua del client: le schede mostrano il messaggio cinque minuti dopo che è arrivato. */
 const CINQUE_MINUTI_FA: Partial<Record<Lingua, string>> = { en: '5 minutes ago', it: '5 minuti fa' };
 
 /**
- * Una data come la scrive un client Discord nel fuso del team (dataDelCanale della demo). In inglese americano
- * `<t:N>` «December 8, 2026 6:00 PM», `:F` col giorno della settimana, `:t` l'ora; in italiano «8 dicembre 2026 18:00»,
- * «martedì 8 dicembre 2026 18:00», «18:00». `:R` è «5 minutes ago».
+ * Una data come la scrive un client Discord nel fuso del team (dataDiDiscord, come dataDelCanale della demo). In
+ * inglese americano `<t:N>` «December 8, 2026 6:00 PM», in italiano «8 dicembre 2026 18:00». `:R` è «5 minutes ago».
  */
 export function dataDelTeam(at: number, stile: string, zona: string, lingua: Lingua = 'en'): string {
   if (stile === 'R') return CINQUE_MINUTI_FA[lingua] ?? CINQUE_MINUTI_FA.en!;
-  const p = parti(at, zona, lingua);
-  if (lingua === 'en') {
-    const ora = `${p.hour}:${p.minute} ${p.dayPeriod}`;
-    if (stile === 't') return ora;
-    const data = `${p.month} ${p.day}, ${p.year} ${ora}`;
-    return stile === 'F' ? `${p.weekday}, ${data}` : data;
-  }
-  const ora = `${p.hour}:${p.minute}`;
-  if (stile === 't') return ora;
-  const data = `${p.day} ${p.month} ${p.year} ${ora}`;
-  return stile === 'F' ? `${p.weekday} ${data}` : data;
+  return dataDiDiscord(at, stile, zona, lingua);
 }
 
 /** Il giorno e l'ora di un momento, per la linea del tempo: «Tuesday, 6:00 PM», «martedì, 18:00». */
 export function giornoEOra(at: string, zona: string, lingua: Lingua = 'en'): string {
-  const p = parti(istante(at, zona), zona, lingua);
-  return lingua === 'en' ? `${p.weekday}, ${p.hour}:${p.minute} ${p.dayPeriod}` : `${p.weekday}, ${p.hour}:${p.minute}`;
+  const t = istante(at, zona);
+  return `${parti(t, zona, lingua).weekday}, ${oraDiDiscord(t, zona, lingua)}`;
 }
 
 export function nomiDelTeam(team: Team): Nomi {

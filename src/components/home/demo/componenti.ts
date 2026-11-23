@@ -4,10 +4,12 @@
  * modali del contenuto, del promemoria, delle domande, di Modifica in blocco e di New date, come le costruisce il bot.
  * Non tocca il DOM: canale.ts li monta coi pezzi di ui/.
  */
-import { AVVISO_ILLUSTRATIVO } from '../scene-data.ts';
+import { datiDi } from '../../../i18n/lingue.ts';
+import { avvisoIllustrativo } from '../scene-data.ts';
+import { linguaDellaDemo } from './lingua.ts';
 import { markdown } from './markdown.ts';
 import { coiNomi, legendaDeiNomi, rubricaDi } from './nomi.ts';
-import { NELL_ACTIVITY, PERSONE, WEBHOOK, posizione } from './modello.ts';
+import { NELL_ACTIVITY, PERSONE, posizione, webhookDellaDemo } from './modello.ts';
 import type { Stato } from './modello.ts';
 import { prosaDelTask, testoDellaLista } from './regole.ts';
 import type { Campi, Domanda } from './regole.ts';
@@ -23,11 +25,15 @@ export const MAX_VALUE_LENGTH = 4000;
 /** Il tetto del titolo di una lista (TaskList.TITLE_MAX_LENGTH). */
 export const TITOLO_MAX = 90;
 
-/** I mesi del campo Month, come Month.getDisplayName(FULL_STANDALONE) in inglese. */
-const MESI = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-];
+/**
+ * I mesi del campo Month nella lingua della demo, come Month.getDisplayName(FULL_STANDALONE): «January», «gennaio».
+ * Intl li scrive da sé (month: 'long' da solo è la forma standalone).
+ */
+function mesi(): string[] {
+  const lingua = linguaDellaDemo();
+  const f = new Intl.DateTimeFormat(lingua === 'en' ? 'en-US' : datiDi(lingua).intl, { month: 'long', timeZone: 'UTC' });
+  return Array.from({ length: 12 }, (_, i) => f.format(Date.UTC(2026, i, 15)));
+}
 
 /**
  * Le righe del menu di menzioni, come le mostra Discord: prima le persone, col pallino verde per chi è in linea (chi è
@@ -50,7 +56,7 @@ export function divisa(ids: readonly string[], stato: Stato): { persone: string[
 
 /** Le voci del menu «Choose the webhook to associate»: i webhook già creati nel server, per nome. */
 export function opzioniDeiWebhook(): Opzione[] {
-  return WEBHOOK.map((w) => ({ valore: w.nome, testo: w.nome }));
+  return webhookDellaDemo().map((w) => ({ valore: w.nome, testo: w.nome }));
 }
 
 /** Un TextDisplay della modale: il Markdown del bot in HTML. */
@@ -95,7 +101,7 @@ function campiDelQuando(campi: Campi): Campo[] {
     },
     {
       tipo: 'scelta', id: 'month', etichetta: testo('tasklist.modal.when.month'),
-      opzioni: MESI.map((m, i) => ({ valore: String(i + 1), testo: m })), scelto: campi.mese, obbligatorio: true,
+      opzioni: mesi().map((m, i) => ({ valore: String(i + 1), testo: m })), scelto: campi.mese, obbligatorio: true,
     },
     {
       tipo: 'testo', id: 'year', etichetta: testo('tasklist.modal.when.year'), valore: campi.anno,
@@ -138,7 +144,7 @@ export function modaleDiModificaInBlocco(stato: Stato): Modale {
   const rubrica = rubricaDi(stato);
   return {
     titolo: testo('tasklist.modal.edit.title'),
-    solaLettura: AVVISO_ILLUSTRATIVO,
+    solaLettura: avvisoIllustrativo(),
     campi: [
       {
         tipo: 'testo', id: 'title', etichetta: testo('tasklist.modal.edit.txt.title.label'),

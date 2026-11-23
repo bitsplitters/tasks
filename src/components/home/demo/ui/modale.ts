@@ -5,7 +5,7 @@
  * come Discord: l'obbligo, poi la lunghezza minima; la massima la tiene il campo. In sola lettura l'avviso in un
  * riquadro in cima, i campi che non si scrivono, Submit spento (spec §8.3).
  */
-import { DISCORD } from '../../scene-data.ts';
+import { discord } from '../../scene-data.ts';
 import { escape } from '../markdown.ts';
 import { CROCE, giraIlTab, nuovoNumero, rendiIlFocus, riquadroAvviso } from './comune.ts';
 import { htmlDellaScelta, montaScelta } from './scelta.ts';
@@ -24,7 +24,7 @@ export type Campo =
 export interface Modale {
   titolo: string;
   campi: Campo[];
-  /** Il testo dell'avviso della sola lettura (AVVISO_ILLUSTRATIVO): se c'è, la modale non si manda. */
+  /** Il testo dell'avviso della sola lettura (avvisoIllustrativo, scene-data.ts): se c'è, la modale non si manda. */
   solaLettura?: string;
 }
 
@@ -34,8 +34,8 @@ export interface Modale {
  * vuoto e gli spazi: un testo fatto solo di spazi lo rifiuta il bot (tasklist.modal.task.blank.error).
  */
 export function controllaCampo(campo: { obbligatorio?: boolean; min?: number }, valore: string): string | null {
-  if (valore === '') return campo.obbligatorio ? DISCORD.obbligatorio : null;
-  if (campo.min !== undefined && valore.length < campo.min) return DISCORD.almeno(campo.min);
+  if (valore === '') return campo.obbligatorio ? discord().obbligatorio : null;
+  if (campo.min !== undefined && valore.length < campo.min) return discord().almeno(campo.min);
   return null;
 }
 
@@ -77,11 +77,11 @@ export function htmlDellaModale(modale: Modale, n: number): string {
   return `<div class="sc-modal ui-modale" data-k="modal" role="dialog" aria-modal="true" ` +
     `aria-labelledby="${titolo}" tabindex="-1">` +
     `<div class="sc-mhd"><p class="sc-mtitle" id="${titolo}">${escape(modale.titolo)}</p>` +
-    `<button type="button" class="sc-mx" data-k="m-x" aria-label="${DISCORD.chiudi}">${CROCE}</button></div>` +
+    `<button type="button" class="sc-mx" data-k="m-x" aria-label="${discord().chiudi}">${CROCE}</button></div>` +
     avviso + modale.campi.map((c) => htmlDelCampo(c, n, sola)).join('') +
-    `<div class="sc-mfoot"><button type="button" class="sc-mbtn" data-k="m-cancel">${DISCORD.annulla}</button>` +
+    `<div class="sc-mfoot"><button type="button" class="sc-mbtn" data-k="m-cancel">${discord().annulla}</button>` +
     `<button type="button" class="sc-mbtn sc-mbtn-blue" data-k="m-submit"${sola ? ' disabled' : ''}>` +
-    `${DISCORD.invia}</button></div></div>`;
+    `${discord().invia}</button></div></div>`;
 }
 
 /** Il velo di ogni contenitore, con la modale aperta: aprirne un'altra chiude quella di prima. */

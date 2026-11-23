@@ -4,7 +4,12 @@
  * activity/src/app/zones.ts (ZoneBook), le zone di chi guarda e l'ora del dispositivo sotto i campi. Il dispositivo
  * della demo è a Roma, come il server. Non tocca il DOM: lo usano la vista dei fusi e il campo del fuso.
  */
+import { datiDi, type Lingua } from '../../../i18n/lingue.ts';
+import { linguaDellaDemo } from './lingua.ts';
 import { ZONA, offsetMinuti } from './modello.ts';
+
+/** Il locale della pagina dell'Activity nella lingua della demo: i nomi dei paesi e l'ordine delle città. */
+const localeDi = (lingua: Lingua) => (lingua === 'en' ? 'en' : datiDi(lingua).intl);
 
 /** Una zona come la mostra la vista: città e paese, lo scarto da UTC e l'ora di adesso. */
 export interface Zona {
@@ -58,17 +63,23 @@ interface Riga {
   paese: string;
 }
 
-/** La tabella nell'ordine delle città, come il bot dà il suo catalogo (tableZones). Si fa alla prima richiesta. */
-let righe: Riga[] | null = null;
+/**
+ * La tabella nell'ordine delle città, come il bot dà il suo catalogo (tableZones), coi paesi nella lingua della demo
+ * (activity/src/fake/zones.ts). Si fa alla prima richiesta, una volta per lingua.
+ */
+const righe = new Map<Lingua, Riga[]>();
 
 function tabella(): Riga[] {
-  if (!righe) {
-    const paesi = new Intl.DisplayNames(['en'], { type: 'region' });
-    const ordine = new Intl.Collator('en');
-    righe = TABELLA.map(([id, paese, citta]) => ({ id, citta, paese: paesi.of(paese) ?? paese }))
+  const lingua = linguaDellaDemo();
+  let r = righe.get(lingua);
+  if (!r) {
+    const paesi = new Intl.DisplayNames([localeDi(lingua)], { type: 'region' });
+    const ordine = new Intl.Collator(localeDi(lingua));
+    r = TABELLA.map(([id, paese, citta]) => ({ id, citta, paese: paesi.of(paese) ?? paese }))
       .sort((a, b) => ordine.compare(a.citta, b.citta) || a.id.localeCompare(b.id));
+    righe.set(lingua, r);
   }
-  return righe;
+  return r;
 }
 
 /** L'ora di una zona, come `clock` della pagina in inglese; null per una zona che il browser non sa disegnare. */
@@ -100,21 +111,23 @@ export function scarto(minuti: number): string {
 }
 
 /** Le righe per il nome del browser: una zona fuori dalla tabella in un'altra forma (Asia/Calcutta) ha i suoi nomi. */
-let perIlBrowser: Map<string, Riga> | null = null;
+const perIlBrowser = new Map<Lingua, Map<string, Riga>>();
 
 function nominata(id: string): Riga | null {
   const riga = tabella().find((r) => r.id === id);
   if (riga) return riga;
   const nome = delBrowser(id);
   if (nome === null) return null;
-  if (!perIlBrowser) {
-    perIlBrowser = new Map();
+  let mappa = perIlBrowser.get(linguaDellaDemo());
+  if (!mappa) {
+    mappa = new Map();
     for (const r of tabella()) {
       const suo = delBrowser(r.id);
-      if (suo !== null && !perIlBrowser.has(suo)) perIlBrowser.set(suo, r);
+      if (suo !== null && !mappa.has(suo)) mappa.set(suo, r);
     }
+    perIlBrowser.set(linguaDellaDemo(), mappa);
   }
-  return perIlBrowser.get(nome) ?? null;
+  return mappa.get(nome) ?? null;
 }
 
 /** La zona come la mostrano la vista e il campo: senza un posto, la città è lo scarto. */
@@ -164,15 +177,19 @@ interface Chiave {
   tutto: string;
 }
 
-let chiavi: Chiave[] | null = null;
+const chiavi = new Map<Lingua, Chiave[]>();
 
 /** Le righe che il browser sa disegnare: senza, non ci sarebbe un'ora da mostrare. */
 function leChiavi(): Chiave[] {
-  chiavi ??= tabella().filter((r) => delBrowser(r.id) !== null).map((riga) => {
-    const citta = normale(riga.citta);
-    return { riga, citta, tutto: `${citta}\n${normale(riga.paese)}\n${normale(riga.id)}` };
-  });
-  return chiavi;
+  let c = chiavi.get(linguaDellaDemo());
+  if (!c) {
+    c = tabella().filter((r) => delBrowser(r.id) !== null).map((riga) => {
+      const citta = normale(riga.citta);
+      return { riga, citta, tutto: `${citta}\n${normale(riga.paese)}\n${normale(riga.id)}` };
+    });
+    chiavi.set(linguaDellaDemo(), c);
+  }
+  return c;
 }
 
 /**
@@ -194,12 +211,21 @@ export function cercaZone(testo: string, adesso: number): Zona[] {
   return trovate.map((k) => zona(k.riga.id, adesso));
 }
 
-const BREVE = new Intl.DateTimeFormat('en-GB', {
-  timeZone: DISPOSITIVO, weekday: 'short', day: 'numeric', month: 'short',
-});
+const BREVI = new Map<Lingua, Intl.DateTimeFormat>();
 
-/** L'ora che il dispositivo mostrerà (activity.reminder.device), come shortDateTime: «Sun 15 Nov, 18:14». */
+/**
+ * L'ora che il dispositivo mostrerà (activity.reminder.device), come shortDateTime nella lingua della demo: «Sun 15
+ * Nov, 18:14» (en-GB), «dom 15 nov, 18:14».
+ */
 export function sulDispositivo(at: number): string {
+  const lingua = linguaDellaDemo();
+  let breve = BREVI.get(lingua);
+  if (!breve) {
+    breve = new Intl.DateTimeFormat(lingua === 'en' ? 'en-GB' : datiDi(lingua).intl, {
+      timeZone: DISPOSITIVO, weekday: 'short', day: 'numeric', month: 'short',
+    });
+    BREVI.set(lingua, breve);
+  }
   const data = new Date(at * 1000);
-  return `${BREVE.format(data)}, ${orologio(DISPOSITIVO)?.format(data) ?? ''}`;
+  return `${breve.format(data)}, ${orologio(DISPOSITIVO)?.format(data) ?? ''}`;
 }

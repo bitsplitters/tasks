@@ -10,12 +10,16 @@
 import './scene.css';
 import ChannelScene from './ChannelScene.astro';
 import ActivityScene from './ActivityScene.astro';
+import { usaLingua } from './demo/lingua.ts';
 import { listaDellaDemo } from './demo/modello.ts';
 import type { Lingua } from '../../i18n/lingue.ts';
 import { traduttore } from '../../i18n/t.ts';
 
 interface Props { lingua: Lingua; }
-const tt = traduttore(Astro.props.lingua, 'home');
+const { lingua } = Astro.props;
+const tt = traduttore(lingua, 'home');
+// La lista della demo nasce qui, prima delle scene: già nella lingua della pagina (demo/lingua.ts).
+usaLingua(lingua);
 ---
 <section class="h-sec wrap" id="two-ways" aria-labelledby="h-demo-title">
   <h2 id="h-demo-title">{tt('demo.titolo')}</h2>
@@ -35,7 +39,7 @@ const tt = traduttore(Astro.props.lingua, 'home');
       <p class="dm-say" set:html={tt('demo.canale.frase')} />
       <div class="sc-box dm-box">
         <div class="scene sc-live sc-auto" data-scene="channel">
-          <ChannelScene lista={listaDellaDemo()} />
+          <ChannelScene lista={listaDellaDemo()} lingua={lingua} />
           {/* Il fumetto: i rifiuti e gli esiti brevi del bot. Sempre nel DOM, vuoto quando non serve, perché gli
               screen reader annunciano il testo che arriva in una regione role="status" già presente. */}
           <p class="dm-bubble" data-k="bubble" role="status"></p>
@@ -46,7 +50,7 @@ const tt = traduttore(Astro.props.lingua, 'home');
       <p class="dm-say" set:html={tt('demo.activity.frase')} />
       <div class="sc-box dm-box">
         <div class="scene sc-live" data-scene="activity">
-          <ActivityScene lista={listaDellaDemo()} />
+          <ActivityScene lista={listaDellaDemo()} lingua={lingua} />
           <p class="dm-bubble" data-k="bubble" role="status"></p>
         </div>
       </div>

@@ -5,7 +5,7 @@
  * Save acceso nel pannello Edit, Clean e Reopen all aspettano (useTaskLock): sembrano spenti e un tocco dice perché,
  * senza chiudere il pannello. Le funzioni pure danno i testi e le regole; montaPrimaRiga tiene vivi i dialoghi.
  */
-import { AVVISO_ILLUSTRATIVO } from '../scene-data.ts';
+import { avvisoIllustrativo } from '../scene-data.ts';
 import { bloccaLaPrimaRiga } from '../scene-dom.ts';
 import { MAX_VALUE_LENGTH, TITOLO_MAX } from './componenti.ts';
 import type { Condiviso } from './condiviso.ts';
@@ -105,7 +105,7 @@ export function corpoDellaModifica(stato: Stato, n: number): string {
   const campo = (k: string, etichetta: string, controllo: string) =>
     `<div class="sc-field"><label class="sc-flabel" for="${k}-${n}">${escape(testo(etichetta))}</label>` +
     `${controllo}</div>`;
-  return riquadroAvviso(AVVISO_ILLUSTRATIVO) +
+  return riquadroAvviso(avvisoIllustrativo()) +
     campo('d-title', 'tasklist.modal.edit.txt.title.label', `<input class="sc-pin" type="text" id="d-title-${n}" ` +
       `data-k="d-title" value="${escape(stato.lista.titolo)}" maxlength="${TITOLO_MAX}" readonly>`) +
     campo('d-list', 'tasklist.modal.edit.txt.list.label', `<textarea class="sc-pin ui-edittesto" id="d-list-${n}" ` +

@@ -1,7 +1,7 @@
 /*
  * I tooltip della demo (Demo.astro; spec 2026-11-15-home-video-e-demo-design.md, §5.4, nel repo team-tasks-manager):
  * il fumetto scuro di Discord sopra i pulsanti con data-tt, col nome, cosa fa e, sui pulsanti dei task, la nota sui
- * colori (i testi sono in scene-data.ts, TOOLTIP).
+ * colori (i testi sono in scene-data.ts, tooltipDellaDemo).
  *
  * Col mouse fermo sopra o col focus da tastiera compare dopo 500 ms; se ne è appena sparito un altro (meno di 300 ms
  * fa), subito, come in Discord lungo una fila di pulsanti. Sparisce quando il mouse esce, col blur, con Esc, quando
@@ -11,7 +11,7 @@
  * aria-describedby si mette appena arrivano il puntatore o il focus: un elemento nascosto, se citato per id, vale
  * comunque come descrizione.
  */
-import { TOOLTIP } from './scene-data';
+import { tooltipDellaDemo } from './scene-data';
 
 const ATTESA = 500;
 const SUBITO = 300;
@@ -26,6 +26,7 @@ export interface Tooltips {
 }
 
 export function avviaTooltip(radice: HTMLElement): Tooltips {
+  const tooltip = tooltipDellaDemo();
   const tt = document.createElement('div');
   tt.className = 'tt';
   tt.id = 'dm-tooltip';
@@ -60,7 +61,7 @@ export function avviaTooltip(radice: HTMLElement): Tooltips {
     if (corrente === b) return;
     corrente?.removeAttribute('aria-describedby');
     corrente = b;
-    const voce = TOOLTIP[b.dataset.tt ?? ''];
+    const voce = tooltip[b.dataset.tt ?? ''];
     nome.textContent = voce?.nome ?? '';
     testo.textContent = voce?.testo ?? '';
     nota.textContent = voce?.nota ?? '';

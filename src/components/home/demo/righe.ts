@@ -11,6 +11,7 @@ import type { Contesto } from './markdown.ts';
 import { CANALE, NOME_DEL_CANALE, PERSONE, dataDelCanale, dataDellActivity, posizione } from './modello.ts';
 import type { Lista, Pos, Stato, Task } from './modello.ts';
 import { conOwner, senzaSpaziInPiu } from './regole.ts';
+import { testo } from './testi.ts';
 
 /** I nomi che le menzioni mostrano: undefined per chi non è nel server. */
 export interface Nomi {
@@ -155,17 +156,17 @@ export function righeDelCanale(lista: Lista, nomi: Nomi, opzioni: OpzioniDelCana
 function rigaDellActivity(task: Task, riga: Riga, prima: boolean, ctx: Contesto): string {
   const pos = posizione(task.pos);
   const numero = prima ? `<span class="sc-nmain">${task.pos.main}</span>${task.pos.sub ? `.${task.pos.sub}` : ''}` : '';
-  const testo = (chiave: string, t: string) =>
+  const bottone = (chiave: string, t: string) =>
     `<button type="button" class="sc-atext" data-k="${chiave}-${pos}">${markdown(t, ctx, true)}</button>`;
   const casella = `<button type="button" class="sc-cb sc-acb" data-k="a-cb-${pos}" aria-pressed="${task.fatto}"`
-    + ` aria-label="Task ${pos}">${CASELLA}</button>`;
-  const corpo = riga.tipo === 'webhook' ? `<span class="sc-aicon">${icona('wb')}</span>${testo('a-wb', riga.nome)}`
-    : riga.tipo === 'promemoria' ? `<span class="sc-aicon">${icona('alert')}</span>${testo('a-rem', `<t:${riga.at}>`)}`
-    : `<span class="sc-aicon">${casella}</span>${testo('a-txt', riga.testo)}`;
+    + ` aria-label="${escape(testo('activity.panel.label', pos))}">${CASELLA}</button>`;
+  const corpo = riga.tipo === 'webhook' ? `<span class="sc-aicon">${icona('wb')}</span>${bottone('a-wb', riga.nome)}`
+    : riga.tipo === 'promemoria' ? `<span class="sc-aicon">${icona('alert')}</span>${bottone('a-rem', `<t:${riga.at}>`)}`
+    : `<span class="sc-aicon">${casella}</span>${bottone('a-txt', riga.testo)}`;
   return `${apertura('sc-arow', task, riga)}<span class="sc-anum">${numero}</span>${corpo}</div>`;
 }
 
-/** Le righe della pagina dell'Activity, con le date della pagina in inglese (en-GB). */
+/** Le righe della pagina dell'Activity, con le date della pagina nella lingua della demo (en-GB in inglese). */
 export function righeDellActivity(lista: Lista, nomi: Nomi): string {
   const ctx = contesto(nomi, dataDellActivity);
   return disegna(lista, (t, r, prima) => rigaDellActivity(t, r, prima, ctx));

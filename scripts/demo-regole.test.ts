@@ -20,8 +20,8 @@ import {
   togliOwnerConfermato, togliPromemoria, togliTag, togliWebhook, tokenTolti, validaNuovaData, validaPromemoria,
 } from '../src/components/home/demo/regole.ts';
 import type { Campi, Domanda, Esito } from '../src/components/home/demo/regole.ts';
-import { PRIMA_RIGA, TASTI } from '../src/components/home/scene-data.ts';
-import { TESTI } from '../src/components/home/demo/testi.ts';
+import { primaRiga, tasti } from '../src/components/home/scene-data.ts';
+import { TESTI } from '../src/components/home/demo/testi/en.ts';
 
 /** I task come «posizione prima parola»: '2.1 Clip'. */
 const elenco = (s: Stato) => s.lista.tasks.map((t) => `${posizione(t.pos)} ${t.testo.split(' ')[0]}`);
@@ -607,7 +607,7 @@ test('il fuso scritto al posto di quello proposto diventa quello di chi guarda (
 
 test("la lista libera ha tutto acceso; bloccata, solo More; nell'Activity, solo Join (BloccoLista)", () => {
   const s0 = statoIniziale();
-  const tutti = [...PRIMA_RIGA.map((p) => p.k), ...TASTI.map((t) => t.k), 'sel'];
+  const tutti = [...primaRiga().map((p) => p.k), ...tasti().map((t) => t.k), 'sel'];
   assert.equal(new Set(tutti).size, 11);
   assert.deepEqual([...pulsantiAccesi(s0)].sort(), tutti.sort());
   assert.deepEqual([...pulsantiAccesi({ ...s0, bloccata: true })], ['more']);

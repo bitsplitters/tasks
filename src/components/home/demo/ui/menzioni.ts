@@ -5,7 +5,7 @@
  * nome e quanti membri ha; ogni riga ha la casella. Un clic sceglie o toglie e il menu resta aperto; scrivere filtra.
  * Un clic fuori, Esc o Tab lo chiudono: è lì che Discord manda la scelta al bot. Qui arriva `chiusura`.
  */
-import { DISCORD } from '../../scene-data.ts';
+import { discord } from '../../scene-data.ts';
 import { escape } from '../markdown.ts';
 import { CROCE, FRECCIA, OMINO, SCUDO, SPUNTA, chiave, inVista, nuovoNumero, senzaAccenti } from './comune.ts';
 
@@ -55,7 +55,7 @@ export function htmlDellEtichetta(voce: Voce): string {
   const k = chiave(voce.nome);
   return `<span class="ui-mztag" data-k="tag-${k}">${voce.ruolo ? SCUDO : avatar(voce, '')}` +
     `<span class="ui-mztn">${escape(voce.nome)}</span><button type="button" class="ui-mztx" data-k="tagx-${k}" ` +
-    `aria-label="${escape(DISCORD.togli(voce.nome))}" tabindex="-1">${CROCE}</button></span>`;
+    `aria-label="${escape(discord().togli(voce.nome))}" tabindex="-1">${CROCE}</button></span>`;
 }
 
 /** Le stesse scelte, in qualunque ordine: riaprire e richiudere senza cambiare nulla non manda niente. */
@@ -113,7 +113,7 @@ export function montaMenzioni(dove: HTMLElement, voci: readonly Voce[], scelte: 
     mostrate = filtraVoci(voci, cerca.value);
     menu.innerHTML = mostrate.length
       ? mostrate.map((v, i) => htmlDellaVoce(v, scelti.includes(v.id), `${lista}-${i}`)).join('')
-      : `<div class="ui-mzvuoto">${DISCORD.nessuno}</div>`;
+      : `<div class="ui-mzvuoto">${discord().nessuno}</div>`;
     evidenzia(cerca.value.trim() && mostrate.length ? 0 : -1);
   };
   const apri = () => {
