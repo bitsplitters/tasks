@@ -1,7 +1,7 @@
 ---
 title: La lista nel canale
 description: "Il messaggio della lista in un canale Discord: il menu di spunta, la prima riga di pulsanti, Altro e che cosa succede mentre qualcuno la modifica."
-fonte: 478e8ae42909
+fonte: e331f2ab8fc8
 ---
 
 Quando una lista esiste, TTM mostra un **menu di spunta** e **due righe di pulsanti** sotto di essa. Quasi niente qui richiede un comando: basta un click. La prima riga agisce sull'intera lista ed è spiegata qui. La seconda agisce su un singolo task: vedi [Modificare un task nel canale](/docs/channel-tasks/).
@@ -39,7 +39,7 @@ Questi pulsanti non toccano mai un singolo task: agiscono sull'**intera lista**.
 
 ### Aggiornamento in blocco
 
-**Aggiornamento in blocco** apre un modulo con il titolo e l'intera lista come testo: una riga per task, nel formato di [Scrivere una lista](/docs/writing-a-list/). Persone, ruoli e canali compaiono per nome e le date dei promemoria nel tuo fuso orario. Una riga sotto il testo spiega come aggiungere qualcuno di nuovo e rimanda a [Scrivere una lista](/docs/writing-a-list/#people-roles-and-channels-by-name). Cambia ciò che ti serve e invia. Mentre il modulo è aperto, la lista è bloccata per tutti gli altri: vedi [Quando la lista è bloccata](#when-the-list-is-locked).
+**Aggiornamento in blocco** apre un modulo con il titolo e l'intera lista come testo: una riga per task, nel formato spiegato in [Modificare una lista a mano](/docs/writing-a-list/). Persone, ruoli e canali compaiono per nome e le date dei promemoria nel tuo fuso orario. Una riga sotto il testo spiega come aggiungere qualcuno di nuovo e rimanda a [Modificare una lista a mano](/docs/writing-a-list/#people-roles-and-channels-by-name). Cambia ciò che ti serve e invia. Mentre il modulo è aperto, la lista è bloccata per tutti gli altri: vedi [Quando la lista è bloccata](#when-the-list-is-locked).
 
 Se la lista è cambiata mentre la modificavi, TTM ti chiede che cosa fare prima di salvare: vedi [Quando la lista cambia mentre la modifichi](#when-the-list-changes-while-you-edit-it). Se il testo non si può salvare, TTM te lo mostra di nuovo con tutti i problemi: vedi [Quando il testo non si può salvare](/docs/writing-a-list/#when-the-text-cant-be-saved).
 
@@ -117,6 +117,6 @@ Se la lista viene bloccata o sigillata prima che tu confermi Pulisci o Riapri, n
 
 - [Modificare un task nel canale](/docs/channel-tasks/): la seconda riga, cioè contenuto, proprietario, tag, promemoria e webhook.
 - [L'Activity](/docs/activity/): lavorate insieme su una lista, in una finestra dentro Discord.
-- [Scrivere una lista](/docs/writing-a-list/): menzioni, proprietari, link e promemoria, scritti a mano in Aggiornamento in blocco.
+- [Modificare una lista a mano](/docs/writing-a-list/): menzioni, proprietari, link e promemoria nel testo di Aggiornamento in blocco.
 - [/config app](/docs/configuration/): controlla notifiche, cronologia e permessi.
 - [FAQ](/docs/troubleshooting/#in-the-channel): risposte rapide ai problemi più comuni.

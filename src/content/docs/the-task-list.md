@@ -41,7 +41,7 @@ These buttons never touch a single task: they act on the **entire list**. What e
 
 ### Bulk update
 
-**Bulk update** opens a form with the title and the whole list as text: one line per task, in the format of [Writing a list](/docs/writing-a-list/). People, roles and channels show by name, and reminder dates in your time zone. A line under the text says how to add someone new, and links to [Writing a list](/docs/writing-a-list/#people-roles-and-channels-by-name). Change what you need and submit. While the form is open, the list is locked for everyone else: see [When the list is locked](#when-the-list-is-locked).
+**Bulk update** opens a form with the title and the whole list as text: one line per task, in the format explained in [Editing a list by hand](/docs/writing-a-list/). People, roles and channels show by name, and reminder dates in your time zone. A line under the text says how to add someone new, and links to [Editing a list by hand](/docs/writing-a-list/#people-roles-and-channels-by-name). Change what you need and submit. While the form is open, the list is locked for everyone else: see [When the list is locked](#when-the-list-is-locked).
 
 If the list changed while you were editing, TTM asks you what to do before it saves: see [When the list changes while you edit it](#when-the-list-changes-while-you-edit-it). If the text can't be saved, TTM shows it back with every problem: see [When the text can't be saved](/docs/writing-a-list/#when-the-text-cant-be-saved).
 
@@ -119,6 +119,6 @@ If the list gets locked or sealed before you confirm Clean or Reopen, nothing ch
 
 - [Editing a task in the channel](/docs/channel-tasks/) — the second row: content, owner, tags, reminder and webhook.
 - [The Activity](/docs/activity/) — work on a list together, in a window inside Discord.
-- [Writing a list](/docs/writing-a-list/) — mentions, owners, links and reminders, written by hand in Bulk update.
+- [Editing a list by hand](/docs/writing-a-list/) — mentions, owners, links and reminders in the text of Bulk update.
 - [/config app](/docs/configuration/) — control notifications, history and permissions.
 - [FAQ](/docs/troubleshooting/#in-the-channel) — quick answers to the most common problems.

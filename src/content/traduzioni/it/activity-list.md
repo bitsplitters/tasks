@@ -1,7 +1,7 @@
 ---
 title: Lavorare su una lista nell'Activity
 description: Le caselle, la prima riga, il pannello di un task (Contenuto, Proprietario, Tag, Promemoria e Webhook) e chi sta modificando che cosa.
-fonte: facb45beab20
+fonte: f08ca507a5eb
 ---
 
 Dentro l'Activity la lista è una pagina a sé: una casella davanti a ogni task, una riga di pulsanti in alto e un pannello per ogni task. Le regole sono quelle del canale: proprietari, impostazioni del server, limiti del piano. Che cosa fa ogni funzione: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/), [Azioni sulla lista](/docs/list-actions/).
@@ -91,7 +91,7 @@ I webhook sono una funzione **Premium**, sbloccata per ogni server durante la be
 
 ## Modifica la lista
 
-**Modifica la lista** mostra il titolo e ogni task come testo, nel formato di [Scrivere una lista](/docs/writing-a-list/): lo stesso testo dell'**Aggiornamento in blocco** del canale, letto con le stesse regole: persone, ruoli e canali per nome, date dei promemoria nel tuo fuso orario. Una riga sotto il testo spiega come aggiungere qualcuno di nuovo e rimanda a [Scrivere una lista](/docs/writing-a-list/#people-roles-and-channels-by-name). Cambia ciò che ti serve e salva.
+**Modifica la lista** mostra il titolo e ogni task come testo, nel formato spiegato in [Modificare una lista a mano](/docs/writing-a-list/): lo stesso testo dell'**Aggiornamento in blocco** del canale, letto con le stesse regole: persone, ruoli e canali per nome, date dei promemoria nel tuo fuso orario. Una riga sotto il testo spiega come aggiungere qualcuno di nuovo e rimanda a [Modificare una lista a mano](/docs/writing-a-list/#people-roles-and-channels-by-name). Cambia ciò che ti serve e salva.
 
 La lista è bloccata per gli altri dal momento in cui si apre finché non salvi o annulli: **Annulla**, la ✕ e un tocco fuori la sbloccano. Si chiude da sola dopo 30 secondi senza attività. Se il testo non si può salvare, i problemi compaiono sotto: vedi [Quando il testo non si può salvare](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

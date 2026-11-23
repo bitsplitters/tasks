@@ -1,7 +1,7 @@
 ---
 title: Proprietari e tag
 description: A chi appartiene un task, chi menziona e i ruoli che crea TTM quando un task ha più proprietari.
-fonte: ef72428e525b
+fonte: b224011b313d
 ---
 
 Un task può avere un **proprietario** e più **tag**. Il proprietario è la persona a cui il task appartiene: chi può spuntarlo e chi riceve il suo promemoria. I tag sono gli utenti e i ruoli menzionati sul task, per esempio le persone da avvisare quando viene completato.
@@ -34,7 +34,7 @@ Una nuova scelta di tag **sostituisce** la vecchia: il task viene taggato esatta
 
 Come li scegli cambia un po' fra i due posti. Nel canale un'impostazione del server decide se sovrascrivi i tag o li modifichi dal vivo: vedi [Tag](/docs/channel-tasks/#tag). Nell'Activity parti sempre dai tag che il task ha adesso: vedi [Tag](/docs/activity-list/#tag).
 
-Nel testo di una lista un tag è `@` e il nome, come `@Ava` e il proprietario è lo stesso nome seguito da due punti, `@Ava:`: vedi [Scrivere una lista](/docs/writing-a-list/#owners-the-mention-with-a-colon).
+Nel testo di una lista un tag è `@` e il nome, come `@Ava` e il proprietario è lo stesso nome seguito da due punti, `@Ava:`: vedi [Modificare una lista a mano](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 
 ## I ruoli che crea TTM
 

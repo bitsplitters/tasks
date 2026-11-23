@@ -57,7 +57,7 @@ Only in the channel, even while the list is locked.
 
 ## Download
 
-**Download** gives you a `.txt` file of the list, written as in [Writing a list](/docs/writing-a-list/) and sent **only to you**. The file keeps Discord's codes in place of the names: see [The codes behind the names](/docs/writing-a-list/#the-codes-behind-the-names). Keep it as a backup, or rebuild the list from it with `/create-list`, even on another server: see [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
+**Download** gives you a `.txt` file of the list, written as explained in [Editing a list by hand](/docs/writing-a-list/) and sent **only to you**. The file keeps Discord's codes in place of the names: see [The codes behind the names](/docs/writing-a-list/#the-codes-behind-the-names). Keep it as a backup, or rebuild the list from it with `/create-list`, even on another server: see [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
 
 A Discord message is capped at 2000 characters, so Download never posts the list as text: it is always a file.
 

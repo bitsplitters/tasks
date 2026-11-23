@@ -1,7 +1,7 @@
 ---
 title: Azioni sulla lista
 description: Pulisci, Riapri tutti, Clona, Download, Sigilla ed Elimina — cosa fa ognuna all'intera lista e dove la trovi.
-fonte: 0ff98625c39b
+fonte: eba07c193b5a
 ---
 
 Queste azioni lavorano sull'**intera lista**, mai su un singolo task. Due esistono in entrambi i posti; le altre solo nel canale.
@@ -56,7 +56,7 @@ Solo nel canale, anche quando la lista è bloccata.
 
 ## Download
 
-**Download** ti dà un file `.txt` della lista, scritto come in [Scrivere una lista](/docs/writing-a-list/) e inviato **solo a te**. Il file mantiene i codici di Discord al posto dei nomi: vedi [I codici dietro i nomi](/docs/writing-a-list/#the-codes-behind-the-names). Tienilo come backup, oppure ricostruisci la lista da lì con `/crea-lista`, anche su un altro server: vedi [Riusare una lista ovunque](/docs/tips/#reuse-a-list-anywhere).
+**Download** ti dà un file `.txt` della lista, scritto come spiegato in [Modificare una lista a mano](/docs/writing-a-list/) e inviato **solo a te**. Il file mantiene i codici di Discord al posto dei nomi: vedi [I codici dietro i nomi](/docs/writing-a-list/#the-codes-behind-the-names). Tienilo come backup, oppure ricostruisci la lista da lì con `/crea-lista`, anche su un altro server: vedi [Riusare una lista ovunque](/docs/tips/#reuse-a-list-anywhere).
 
 Un messaggio di Discord è limitato a 2000 caratteri, quindi Download non pubblica mai la lista come testo: è sempre un file.
 
