@@ -100,7 +100,7 @@ Per i link a qualsiasi cosa fuori da Discord usa il Markdown standard:
 
 Quindi `[la nostra roadmap](https://example.com/roadmap)` diventa **[la nostra roadmap](https://example.com/roadmap)**: un link pulito e cliccabile al posto di un URL nudo.
 
-La destinazione non deve per forza essere una pagina web. I link `mailto:`, `tel:` e `sms:` funzionano allo stesso modo: aprono l'app di chi legge. `[il responsabile del rilascio](mailto:release@example.com)` trasforma un task in un «scrivi a questa persona» con un clic; `[il telefono di reperibilità](tel:+12025550100)` compone il numero direttamente da un telefono.
+La destinazione non deve per forza essere una pagina web. I link `mailto:`, `tel:` e `sms:` funzionano allo stesso modo: aprono l'app di chi legge. `[il responsabile del rilascio](mailto:release@example.com)` trasforma un task in un «scrivi a questa persona» con un click; `[il telefono di reperibilità](tel:+12025550100)` compone il numero direttamente da un telefono.
 
 Un link può anche puntare a **un'altra lista**: clicca con il tasto destro sul suo messaggio → **Copia link del messaggio** e incollalo tra le parentesi. I link ai messaggi restano come sono: solo i link semplici a un canale vengono abbreviati in un tag `#canale`.
 

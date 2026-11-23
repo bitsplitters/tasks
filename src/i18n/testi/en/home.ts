@@ -92,7 +92,6 @@ export const testi = {
   'demo.intro': 'The real interface, right here.',
   'demo.hover': 'Hover any button to see what it does.',
   'demo.touch': 'Press and hold any button to see what it does.',
-  'demo.nuovo': 'New in 2.0',
   'demo.canale.frase':
     '<strong>On the fly.</strong> The list lives in the conversation: everyone sees it, and a tick takes two clicks.',
   'demo.activity.frase':

@@ -79,7 +79,7 @@ week:
   - at: 2026-12-07T09:00
     text: "Ava scrive la lista della settimana in #staff con `/crea-lista`, senza proprietari."
   - at: 2026-12-07T09:10
-    text: "Ava sceglie @Moderatori nel menu sotto **Proprietario**, poi i task uno dopo l'altro. Con *Mantieni lo stato dopo la selezione*, **Proprietario** resta blu tra l'uno e l'altro, quindi ogni task prende il ruolo con un clic. Ogni notifica menziona @Moderatori; con *Elimina tutte le notifiche tranne l'ultima*, resta solo l'ultima."
+    text: "Ava sceglie @Moderatori nel menu sotto **Proprietario**, poi i task uno dopo l'altro. Con *Mantieni lo stato dopo la selezione*, **Proprietario** resta blu tra l'uno e l'altro, quindi ogni task prende il ruolo con un click. Ogni notifica menziona @Moderatori; con *Elimina tutte le notifiche tranne l'ultima*, resta solo l'ultima."
   - at: 2026-12-07T10:30
     text: "Ava assegna «Affiancare un moderatore per un giorno» a Kai e Zoe insieme: sceglie entrambi nel menu. TTM crea il ruolo **TTM1**, lo dà a tutti e due e lo rende proprietario. La notifica menziona il ruolo, così vengono avvisati entrambi. Un proprietario di più persone è una funzione [Premium](/premium/), sbloccata per tutti i server durante la Beta."
     card: { kind: notice, type: assigned, by: "11829044175621001", task: "6" }

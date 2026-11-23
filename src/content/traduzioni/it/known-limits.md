@@ -45,7 +45,7 @@ Le ripetizioni sono offerte solo con un piano che include i promemoria ricorrent
 
 Il promemoria di una persona arriva con un messaggio diretto, quindi dipende dalle impostazioni dei messaggi diretti del proprietario. Se il proprietario non accetta messaggi diretti dai membri del server, Discord rifiuta il messaggio e quel promemoria non arriva. Lo stesso succede se il proprietario non condivide più un server con il bot.
 
-Per accettare i messaggi diretti dai membri di un server, fai clic sul nome del server, poi su *Impostazioni privacy*.
+Per accettare i messaggi diretti dai membri di un server, fai click sul nome del server, poi su *Impostazioni privacy*.
 
 Dopo un messaggio rifiutato, TTM se lo ricorda e non riprova con quella persona per **6 ore**. Dopo, riprova e il primo messaggio diretto che passa cancella la pausa.
 

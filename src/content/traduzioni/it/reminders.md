@@ -38,8 +38,8 @@ Un messaggio diretto può essere rifiutato: in quel caso TTM aspetta alcune ore 
 
 Decidi tu, dalle impostazioni di Discord:
 
-- **Tenerli senza avviso.** Fai clic destro sulla tua conversazione con TTM e scegli *Silenzia*. I promemoria arrivano comunque, in silenzio.
-- **Fermarli.** Fai clic sul nome del server, poi su *Impostazioni privacy* e disattiva *Messaggi diretti*. Questo blocca i messaggi diretti di tutti i membri di quel server, non solo di TTM.
+- **Tenerli senza avviso.** Fai click destro sulla tua conversazione con TTM e scegli *Silenzia*. I promemoria arrivano comunque, in silenzio.
+- **Fermarli.** Fai click sul nome del server, poi su *Impostazioni privacy* e disattiva *Messaggi diretti*. Questo blocca i messaggi diretti di tutti i membri di quel server, non solo di TTM.
 - **Passare il task a un altro.** Chiedi a chi gestisce la lista di dare il task a qualcun altro, con **Proprietario** <img class="inline-ic" src="/icons/owner.png" alt="" />.
 
 Silenziare il server non basta: silenzia i canali del server, non i tuoi messaggi diretti.

@@ -59,8 +59,6 @@
 .hv-tab[aria-selected="true"], .dm-tab[aria-selected="true"] {
   border-color: var(--accent); background: var(--accent); color: var(--on-accent);
 }
-/* «New in 2.0» sul tab scelto: sul fondo ambra prende il colore del testo. */
-.dm-tab[aria-selected="true"] .h-new { color: var(--on-accent); border-color: color-mix(in srgb, var(--on-accent) 45%, transparent); }
 
 /* ── I video ──────────────────────────────────────────────────────────────────────────────────────────── */
 .hv { margin: 0; min-width: 0; }
@@ -203,7 +201,7 @@
 .h-feats p { margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.55; max-width: 48ch; }
 @media (min-width: 640px) { .h-feats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 960px) { .h-feats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-/* Le etichette: «New in 2.0» sul tab della demo, «Premium» su Webhooks (un link ai piani). */
+/* L'etichetta «Premium» su Webhooks (un link ai piani). */
 .h-new {
   font-size: .78rem; font-weight: 650; font-stretch: 100%; line-height: 1.4; color: var(--accent-text);
   border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 999px; padding: .1rem .6rem;

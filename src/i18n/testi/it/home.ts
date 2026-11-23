@@ -1,15 +1,15 @@
 // I testi della home in italiano: le stesse chiavi di src/i18n/testi/en/home.ts.
-export const fonte = '1f9f89d4ba47';
+export const fonte = 'bfbe78a147c3';
 
 export const testi = {
   'title': 'Team Tasks Manager — bot Discord per liste di task con promemoria',
   'description':
-    'Team Tasks Manager è un bot Discord per le liste di cose da fare: liste di task condivise nei tuoi canali, con proprietari, tag e promemoria in DM. Niente da imparare. Basta un clic.',
+    'Team Tasks Manager è un bot Discord per le liste di cose da fare: liste di task condivise nei tuoi canali, con proprietari, tag e promemoria in DM. Niente da imparare. Basta un click.',
   'pitch':
     '## Team Tasks Manager\nCoordina il tuo team là dove parla già.\n- Checklist condivise nel canale\n- Task per persone o ruoli\n- Promemoria automatici',
   'anteprima.alt': 'Una lista di Team Tasks Manager in un canale Discord',
   'hero.titolo': 'Coordina il tuo team là dove parla già.',
-  'hero.tagline': 'Niente da imparare. Basta un clic.',
+  'hero.tagline': 'Niente da imparare. Basta un click.',
   'hero.lede':
     "Team Tasks Manager porta checklist condivise, proprietari e promemoria nel tuo server Discord. Ci lavori direttamente nel canale o insieme agli altri nell'Activity.",
   'finale.titolo': 'Dai al tuo team un solo posto dove guardare.',
@@ -91,9 +91,8 @@ export const testi = {
   'demo.intro': "L'interfaccia vera, proprio qui.",
   'demo.hover': 'Passa sopra un pulsante per vedere cosa fa.',
   'demo.touch': 'Tieni premuto un pulsante per vedere cosa fa.',
-  'demo.nuovo': 'Novità della 2.0',
   'demo.canale.frase':
-    '<strong>Al volo.</strong> La lista vive nella conversazione: tutti la vedono e una spunta costa due clic.',
+    '<strong>Al volo.</strong> La lista vive nella conversazione: tutti la vedono e una spunta costa due click.',
   'demo.activity.frase':
     '<strong>Insieme, con lo spazio per lavorare.</strong> Una finestra intera dentro Discord, su computer e telefono, dove il team dà forma alla lista dal vivo, per tutta la sessione.',
   'demo.reset': 'Ricomincia',

@@ -28,7 +28,7 @@ Gestisci la stessa lista in più canali? **Clona lista** <img class="inline-ic" 
 
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</p>
 
-Spunta **Mantieni lo stato dopo la selezione** nel menu **Comportamento** di [Configurazione](/docs/configuration/#keep-the-state-after-a-selection). Il pulsante attivo (proprietario, tag o promemoria) resta acceso dopo ogni task, così puoi mettere un tag a cinque task in cinque clic invece di quindici.
+Spunta **Mantieni lo stato dopo la selezione** nel menu **Comportamento** di [Configurazione](/docs/configuration/#keep-the-state-after-a-selection). Il pulsante attivo (proprietario, tag o promemoria) resta acceso dopo ogni task, così puoi mettere un tag a cinque task in cinque click invece di quindici.
 
 ## Tieni tranquillo il canale
 
@@ -38,7 +38,7 @@ Se le notifiche dei task ti sembrano rumorose, imposta **Modalità notifica** su
 
 Su un promemoria *ricorrente* (una funzione Premium), scegli **giorni** quando intendi «domani alla stessa ora» e **ore** quando intendi «esattamente un giorno dopo»: nel testo di una lista, `1d` e `24h`. Intorno al passaggio all'ora legale i due differiscono di un'ora: vedi [Promemoria](/docs/reminders/#the-repetition-fields).
 
-## Un promemoria in due clic
+## Un promemoria in due click
 
 Il promemoria parte da dieci minuti da adesso, nel tuo fuso orario. Per «ricordamelo fra poco», salvalo così com'è, senza scrivere niente: nel canale, invia la finestra della data; nell'Activity, tocca **Salva** nel pannello del promemoria. Ogni promemoria è un evento singolo a meno che il tuo server abbia acceso i promemoria ricorrenti, una funzione Premium spenta di base.
 

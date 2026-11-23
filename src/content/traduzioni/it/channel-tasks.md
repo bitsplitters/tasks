@@ -101,7 +101,7 @@ I menu **Tag** e **Proprietario** permettono di sceglierne più d'uno insieme. Q
 - **Da mobile** sotto il menu aperto compare un pulsante **Salva**. Toccalo per applicare le tue scelte.
 - **Da desktop** **non c'è nessun pulsante Salva**. **Clicca in un punto qualsiasi fuori dal menu** per chiuderlo: chiuderlo applica la selezione. Se i tag non sembrano applicarsi, quasi sempre è per questo.
 
-Conta soprattutto nella modifica in diretta di tag o proprietario: da desktop, ogni clic fuori dal menu salva una modifica.
+Conta soprattutto nella modifica in diretta di tag o proprietario: da desktop, ogni click fuori dal menu salva una modifica.
 
 ## Promemoria
 

@@ -68,7 +68,7 @@ Il collegamento è salvato **nel task stesso**, come token riservato `{{wb=…}}
 Un webhook parte quando il suo task viene **completato o riaperto**, con una spunta o con **Riapri tutti**. Spunti nel canale con il menu di spunta, il menu a tendina sotto la lista e nell'Activity con la casella del task. In dettaglio:
 
 - **ogni task che cambia** fa partire il suo webhook: quello che hai scelto e quelli che cambiano con lui, subtask spuntati a cascata o un gruppo completato dal suo ultimo subtask. Un subtask già spuntato non cambia, quindi non parte;
-- le chiamate escono **una dopo l'altra**, nell'ordine della lista e l'intera spunta conta come **un solo clic**, qualunque sia il numero di task che cambia;
+- le chiamate escono **una dopo l'altra**, nell'ordine della lista e l'intera spunta conta come **un solo click**, qualunque sia il numero di task che cambia;
 - **Riapri tutti** fa partire i webhook di riapertura dei task che riapre. **Aggiornamento in blocco** e **Modifica la lista** cambiano molti task insieme e **non** fanno partire nessun webhook;
 - **la lista deve essere in uso**, cioè occupare uno dei posti del tuo piano. Come una lista prende un posto: vedi [Come funzionano i tre posti](/docs/premium/#how-the-three-places-work). Una lista creata durante la beta fa eccezione: i suoi task si possono comunque spuntare senza un posto. I loro webhook restano muti finché la lista non ne prende uno. TTM te lo dice in privato.
 
