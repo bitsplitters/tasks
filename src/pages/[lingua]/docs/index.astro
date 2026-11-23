@@ -1,0 +1,13 @@
+---
+// L'indice della documentazione nelle altre lingue pubblicate (spec 2026-11-19-sito-multilingua-design.md, §4.1, nel
+// repo team-tasks-manager).
+import IndiceDocs from '../../../pagine/IndiceDocs.astro';
+import { percorsiDelleLingue } from '../../../i18n/lingue.ts';
+
+export function getStaticPaths() {
+  return percorsiDelleLingue();
+}
+
+const { lingua } = Astro.props;
+---
+<IndiceDocs lingua={lingua} />

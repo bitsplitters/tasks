@@ -1,0 +1,18 @@
+---
+// Le pagine della documentazione nelle altre lingue pubblicate (spec 2026-11-19-sito-multilingua-design.md, §4.1 e
+// §4.2, nel repo team-tasks-manager): una per pagina inglese, tradotta o con l'inglese di riserva
+// (src/lib/docs-lingua.ts).
+import { getCollection } from 'astro:content';
+import PaginaDocs from '../../../pagine/PaginaDocs.astro';
+import { percorsiDelleLingue } from '../../../i18n/lingue.ts';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return percorsiDelleLingue().flatMap(({ params, props }) =>
+    docs.map((entry) => ({ params: { ...params, slug: entry.id }, props: { ...props, id: entry.id } })),
+  );
+}
+
+const { lingua, id } = Astro.props;
+---
+<PaginaDocs lingua={lingua} id={id} />

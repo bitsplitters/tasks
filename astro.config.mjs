@@ -1,9 +1,11 @@
 import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
-import rehypeExternalLinks from 'rehype-external-links';
 import { fileURLToPath } from 'node:url';
 import rehypeNoteDiRilascio from './src/lib/rehype-note-di-rilascio.mjs';
+import rehypeLinkEsterni from './src/lib/rehype-link-esterni.mjs';
+import rehypeLinkDellaLingua from './src/lib/rehype-link-della-lingua.mjs';
+import rehypeAncoreInglesi from './src/lib/rehype-ancore-inglesi.mjs';
 import { LINGUE_PUBBLICATE } from './src/i18n/lingue.ts';
 
 // I link che portano FUORI dal sito si aprono in una scheda nuova; quelli interni no.
@@ -95,10 +97,16 @@ export default defineConfig({
     processor: unified({
       rehypePlugins: [
         rehypeNoTranslateCode,
+        // Le traduzioni (spec 2026-11-19-sito-multilingua-design.md, §4.5 e §8, nel repo team-tasks-manager): i link
+        // interni prendono il prefisso della lingua, i titoli gli id della pagina inglese. Lavorano solo sui file di
+        // src/content/traduzioni*/; le ancore vanno date prima che le note di rilascio spostino i titoli.
+        rehypeLinkDellaLingua,
+        rehypeAncoreInglesi,
         // Le note di rilascio a riquadri: solo nelle pagine con `releases: true` (src/lib/rehype-note-di-rilascio.mjs).
         rehypeNoteDiRilascio,
         [
-          rehypeExternalLinks,
+          // rehype-external-links, col testo per gli screen reader nella lingua del file (src/lib/rehype-link-esterni.mjs).
+          rehypeLinkEsterni,
           {
             target: '_blank',
             rel: ['noopener', 'noreferrer'],
@@ -114,14 +122,8 @@ export default defineConfig({
               ),
 
             // La freccina che il CSS aggiunge e' decorativa, e uno screen reader non la legge.
-            // Senza questo testo, chi non la vede scopre la scheda nuova solo premendo Indietro e
-            // non ottenendo niente.
-            content: {
-              type: 'element',
-              tagName: 'span',
-              properties: { className: ['sr-only'] },
-              children: [{ type: 'text', value: ' (opens in a new tab)' }],
-            },
+            // Senza il testo « (opens in a new tab)», che rehypeLinkEsterni aggiunge nella lingua del
+            // file, chi non la vede scopre la scheda nuova solo premendo Indietro e non ottenendo niente.
           },
         ],
       ],

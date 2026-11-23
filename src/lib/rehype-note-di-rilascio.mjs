@@ -9,8 +9,20 @@
 // testo non cambia: Astro gli dà l'id dopo questo plugin, e le news di /news linkano quegli id dal database.
 //
 // La prima riga `---` chiude le release: sparisce, e quello che segue (il riquadro «Coming soon») resta fuori.
+//
+// La lingua viene dalla cartella del file (spec 2026-11-19-sito-multilingua-design.md, §8): la data si scrive con
+// l'Intl della lingua («19 November 2026», «19 novembre 2026»), «N more» e «N changes» vengono dai testi comuni. La riga
+// `Released AAAA-MM-GG` resta in inglese in ogni lingua: è un segno per la build, che la toglie.
+import { datiDi } from '../i18n/lingue.ts';
+import { t } from '../i18n/t.ts';
+import { readFileSync } from 'node:fs';
+import { parseFrontmatter } from '@astrojs/markdown-remark';
+import { percorsoDelFile, traduzioneDi } from './lingua-del-file.mjs';
 
-const DATA = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const formatoData = (lingua) =>
+  new Intl.DateTimeFormat(lingua === 'en' ? 'en-GB' : datiDi(lingua).intl, {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+  });
 const ANTEPRIMA = 3;
 
 const el = (tagName, properties, children) => ({ type: 'element', tagName, properties, children });
@@ -18,7 +30,6 @@ const testo = (value) => ({ type: 'text', value });
 const eTag = (n, tag) => n?.type === 'element' && n.tagName === tag;
 const vuoto = (n) => n.type === 'text' && !n.value.trim();
 const testoDi = (n) => (n.type === 'text' ? n.value : (n.children ?? []).map(testoDi).join(''));
-const plurale = (n, una, tante) => `${n} ${n === 1 ? una : tante}`;
 
 /** Una copia del nodo senza i link, come elenco di nodi: di un link resta il testo. */
 const senzaLink = (n) => {
@@ -28,7 +39,7 @@ const senzaLink = (n) => {
 };
 
 /** La data della riga `Released AAAA-MM-GG`, se è una data vera. */
-const leggiData = (riga, titolo) => {
+const leggiData = (riga, titolo, data) => {
   const m = eTag(riga, 'p') && /^Released (\S+)$/.exec(testoDi(riga).trim());
   if (!m) throw new Error(`note di rilascio: sotto «${titolo}» manca la riga «Released AAAA-MM-GG»`);
   const giorno = m[1];
@@ -36,7 +47,7 @@ const leggiData = (riga, titolo) => {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(giorno) || Number.isNaN(d.getTime()) || d.toISOString().slice(0, 10) !== giorno) {
     throw new Error(`note di rilascio: in «${titolo}» la data «${giorno}» non è una data AAAA-MM-GG valida`);
   }
-  return { giorno, scritta: DATA.format(d) };
+  return { giorno, scritta: data.format(d) };
 };
 
 /** Il grassetto con cui comincia la voce: in un elenco largo sta dentro un paragrafo. */
@@ -51,10 +62,10 @@ const grassetto = (li, titolo) => {
 
 const separatore = () => el('span', { className: ['rel-sep'] }, [testo(' · ')]);
 
-function sezione(h2, contenuto, aperta) {
+function sezione(h2, contenuto, aperta, lingua, data) {
   const titolo = testoDi(h2).trim();
   const primo = contenuto.findIndex((n) => !vuoto(n));
-  const { giorno, scritta } = leggiData(contenuto[primo], titolo);
+  const { giorno, scritta } = leggiData(contenuto[primo], titolo, data);
   const corpo = contenuto.filter((_, i) => i !== primo);
 
   // Le voci sono quelle degli elenchi della release, non quelle annidate dentro una voce.
@@ -70,8 +81,8 @@ function sezione(h2, contenuto, aperta) {
   const altre = voci.length - ANTEPRIMA;
   const sommario = [
     el('span', { className: ['rel-preview'] }, anteprima),
-    ...(altre > 0 ? [el('span', { className: ['rel-more'] }, [separatore(), testo(`${altre} more`)])] : []),
-    el('span', { className: ['rel-all'] }, [testo(plurale(voci.length, 'change', 'changes'))]),
+    ...(altre > 0 ? [el('span', { className: ['rel-more'] }, [separatore(), testo(t(lingua, 'comune.note.altre', { n: altre }))])] : []),
+    el('span', { className: ['rel-all'] }, [testo(t(lingua, 'comune.note.modifiche', { n: voci.length }))]),
   ];
 
   return el('section', { className: ['rel'] }, [
@@ -87,7 +98,14 @@ function sezione(h2, contenuto, aperta) {
 
 export default function rehypeNoteDiRilascio() {
   return (tree, file) => {
-    if (!file.data?.astro?.frontmatter?.releases) return;
+    // Le traduzioni non ripetono `releases` nel frontmatter: lo prendono dalla pagina inglese con lo stesso nome.
+    const traduzione = traduzioneDi(percorsoDelFile(file));
+    const releases = traduzione
+      ? parseFrontmatter(readFileSync(traduzione.inglese, 'utf8')).frontmatter.releases
+      : file.data?.astro?.frontmatter?.releases;
+    if (!releases) return;
+    const lingua = traduzione?.lingua ?? 'en';
+    const data = formatoData(lingua);
     const figli = [];
     let i = 0;
     let chiuse = false;
@@ -107,7 +125,7 @@ export default function rehypeNoteDiRilascio() {
         chiuse = true;
         i++;
       }
-      figli.push(sezione(n, contenuto, prima));
+      figli.push(sezione(n, contenuto, prima, lingua, data));
       prima = false;
     }
     tree.children = figli;

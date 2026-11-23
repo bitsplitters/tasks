@@ -32,6 +32,20 @@ const docs = defineCollection({
   }),
 });
 
+// Le pagine della documentazione tradotte (spec 2026-11-19-sito-multilingua-design.md, §4.2 e §7, nel repo
+// team-tasks-manager): src/content/traduzioni/<prefisso>/<slug>.md, con lo stesso nome della pagina inglese. Una
+// traduzione porta solo i testi: titolo e descrizione nel frontmatter, il corpo sotto. Gruppo, ordine, `place`,
+// `releases` e `premium` vengono dalla pagina inglese (src/lib/docs-lingua.ts), così una pagina non cambia posto da una
+// lingua all'altra. `fonte` è l'impronta dell'inglese tradotto, che src/lib/traduzioni.mjs confronta con quella di oggi.
+const traduzioni = defineCollection({
+  loader: glob({ base: './src/content/traduzioni', pattern: '**/*.md' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    fonte: z.string().optional(),
+  }),
+});
+
 // I casi d'uso (spec 2026-11-20-casi-d-uso-esempi-completi-design.md, §6, nel repo team-tasks-manager): la storia di un
 // team che usa TTM per una settimana. `title` è l'H1, `seoTitle` il <title>, `name` il nome corto dell'indice e dei
 // rimandi, `highlights` la frase delle schede. Il team, la lista come in Bulk update, i webhook, le scelte di
@@ -101,4 +115,4 @@ const useCases = defineCollection({
     }),
 });
 
-export const collections = { docs, useCases };
+export const collections = { docs, traduzioni, useCases };

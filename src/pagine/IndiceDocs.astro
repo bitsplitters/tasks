@@ -1,0 +1,88 @@
+---
+// L'indice della documentazione, in una lingua (spec 2026-11-19-sito-multilingua-design.md, §4.1, nel repo
+// team-tasks-manager): la route inglese è src/pages/docs/index.astro, quelle delle altre lingue
+// src/pages/[lingua]/docs/index.astro.
+import Base from '../layouts/Base.astro';
+import VetrinaFont from '../components/VetrinaFont.astro';
+import DocsSearch from '../components/DocsSearch.astro';
+import { docsCard } from '../lib/preview-card';
+import { paginaPiani } from '../lib/pagina-piani';
+import { GRUPPI_DOCS, POSTI } from '../lib/gruppi-docs';
+import { docsDellaLingua } from '../lib/docs-lingua';
+import type { Lingua } from '../i18n/lingue.ts';
+import { percorso } from '../i18n/percorsi.ts';
+import { traduttore } from '../i18n/t.ts';
+// docs.css dopo Base, che importa global.css: le regole della documentazione vengono dopo quelle comuni.
+import '../styles/docs.css';
+
+interface Props {
+  lingua: Lingua;
+}
+const { lingua } = Astro.props;
+const testo = traduttore(lingua, 'docs');
+const PAGINA_PIANI = paginaPiani(lingua);
+
+// Il sottotitolo serve due volte: sotto il titolo della pagina e come descrizione dell'anteprima.
+const SUBTITLE = testo('sottotitolo');
+
+const all = await docsDellaLingua(lingua);
+const grouped = GRUPPI_DOCS
+  .map((g) => ({ ...g, items: all.filter((d) => d.data.group === g.name) }))
+  .filter((g) => g.items.length);
+---
+<Base title={testo('title')} description={SUBTITLE} card="large" embed={docsCard(lingua, testo('titolo'), SUBTITLE, percorso(lingua, '/docs/'), testo('sfoglia'))}>
+  <VetrinaFont slot="head" />
+  <main class="docs-main">
+    <div class="docs-shell">
+      <aside class="docs-side">
+        <a href={percorso(lingua, '/docs/')} class="side-overview active" aria-current="page">{testo('panoramica')}</a>
+        {grouped.map((g) => (
+          <div>
+            <div class={g.place ? `grp grp-place is-${g.place}` : 'grp'}>
+              {g.place && <img class="place-ic" src={POSTI[g.place].icon} alt="" />}{testo(`gruppo.${g.chiave}`)}
+            </div>
+            {g.items.map((it) => (
+              <a href={percorso(lingua, `/docs/${it.id}/`)}>{it.data.title}{it.data.premium && <> <span class="premium-tag">Premium</span></>}</a>
+            ))}
+            {/* La pagina dei piani sta fuori dalla collezione docs: in fondo al gruppo Plans. */}
+            {g.name === 'Plans' && <a href={PAGINA_PIANI.path}>{PAGINA_PIANI.title}</a>}
+          </div>
+        ))}
+      </aside>
+      {/* La ricerca sotto il sottotitolo: l'indice è la pagina da cui parte chi cerca. Sul telefono è l'unica ricerca
+          a vista. Poi una sezione per gruppo, con le pagine in un elenco: role="list" perché senza i pallini Safari
+          non lo leggerebbe più come tale. */}
+      <article class="prose d-index">
+        <h1>{testo('titolo')}</h1>
+        <p class="subtitle">{SUBTITLE}</p>
+        <DocsSearch class="d-search" lingua={lingua} />
+        {grouped.map((g) => (
+          <section class="d-grp">
+            <h2 class={g.place ? `h-place is-${g.place}` : undefined}>
+              {g.place && <img class="place-ic" src={POSTI[g.place].icon} alt="" />}{testo(`gruppo.${g.chiave}`)}
+            </h2>
+            {g.intro && <p class="grp-intro">{testo(`gruppo.${g.chiave}.intro`)}</p>}
+            <ul class="d-list" role="list">
+              {g.items.map((it) => (
+                <li>
+                  <a href={percorso(lingua, `/docs/${it.id}/`)} lang={it.riserva ? 'en' : undefined}>
+                    <span class="d-t">{it.data.title}{it.data.premium && <> <span class="premium-tag">Premium</span></>}</span>
+                    {it.data.description && <span class="d-d">{it.data.description}</span>}
+                  </a>
+                </li>
+              ))}
+              {g.name === 'Plans' && (
+                <li>
+                  <a href={PAGINA_PIANI.path}>
+                    <span class="d-t">{PAGINA_PIANI.title}</span>
+                    <span class="d-d">{PAGINA_PIANI.description}</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </section>
+        ))}
+      </article>
+    </div>
+  </main>
+</Base>
