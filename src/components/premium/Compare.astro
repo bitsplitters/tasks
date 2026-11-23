@@ -1,25 +1,30 @@
 ---
 import DiscordLimit from './DiscordLimit.astro';
+import type { Lingua } from '../../i18n/lingue.ts';
+import { percorso } from '../../i18n/percorsi.ts';
+import { traduttore } from '../../i18n/t.ts';
 /*
  * Il confronto dei limiti (spec della pagina Premium, §3.4 e §6), con la tabella della home (vetrina.css):
  * Premium è la colonna accesa, Free quella spenta. Sotto i 720 px ogni riga diventa un blocco: la voce sopra,
  * Free e Premium affiancati sotto (premium.css). Il nome della colonna ripetuto in ogni cella è solo per gli occhi
  * (aria-hidden): gli screen reader lo hanno già dall'intestazione.
  */
-const COLONNE = { free: 'Free', premium: 'Premium' };
-const RIGHE = [
-  { voce: 'Lists in use per server', free: '3', premium: 'Unlimited' },
-  { voce: 'Tasks per list', free: '20', premium: '50', discord: true },
-  { voce: 'Reminders waiting at a time', free: '10', premium: 'Unlimited' },
-  { voce: 'Repetitions per reminder', free: 'Single reminders only', premium: 'Up to 50' },
-  { voce: 'People per owner', free: '1, a person or a role', premium: 'Up to 25', discord: true },
-  { voce: 'Webhooks', free: 'No new ones', premium: 'Up to 25', discord: true },
-];
+interface Props { lingua: Lingua; }
+const { lingua } = Astro.props;
+const tt = traduttore(lingua, 'premium');
+const COLONNE = { free: tt('free.nome'), premium: tt('premium.nome') };
+// Il segno di Discord sulle righe col limite fissato da Discord: task, persone per proprietario, webhook.
+const RIGHE = [1, 2, 3, 4, 5, 6].map((n) => ({
+  voce: tt(`confronto.${n}.voce`),
+  free: tt(`confronto.${n}.free`),
+  premium: tt(`confronto.${n}.premium`),
+  discord: [2, 5, 6].includes(n),
+}));
 ---
 <section class="h-sec wrap p-compare" aria-labelledby="p-compare-title">
-  <h2 id="p-compare-title">Free and Premium, side by side.</h2>
+  <h2 id="p-compare-title">{tt('confronto.titolo')}</h2>
   <table class="h-table" role="table">
-    <caption class="sr-only">The limits of the Free and Premium plans</caption>
+    <caption class="sr-only">{tt('confronto.didascalia')}</caption>
     <thead role="rowgroup">
       <tr role="row">
         <td role="cell"></td>
@@ -35,11 +40,11 @@ const RIGHE = [
             <span class="h-cell-col" aria-hidden="true">{COLONNE.free}</span>{r.free}
           </td>
           <td role="cell" class="h-acc">
-            <span class="h-cell-col" aria-hidden="true">{COLONNE.premium}</span>{r.premium}{r.discord && <DiscordLimit />}
+            <span class="h-cell-col" aria-hidden="true">{COLONNE.premium}</span>{r.premium}{r.discord && <DiscordLimit lingua={lingua} />}
           </td>
         </tr>
       ))}
     </tbody>
   </table>
-  <p class="p-after">Planned limits, which may be tuned before the beta ends. <a class="h-link" href="/docs/premium/">What each limit changes, in practice</a></p>
+  <p class="p-after" set:html={tt('confronto.dopo', { premium: percorso(lingua, '/docs/premium/') })} />
 </section>

@@ -4,7 +4,8 @@ import Base from '../../layouts/Base.astro';
 import VetrinaFont from '../../components/VetrinaFont.astro';
 import DocsSearch from '../../components/DocsSearch.astro';
 import { docsCard } from '../../lib/preview-card';
-import { PAGINA_PIANI } from '../../lib/pagina-piani';
+import { paginaPiani } from '../../lib/pagina-piani';
+const PAGINA_PIANI = paginaPiani('en');
 import { GRUPPI_DOCS, POSTI } from '../../lib/gruppi-docs';
 // docs.css dopo Base, che importa global.css: le regole della documentazione vengono dopo quelle comuni.
 import '../../styles/docs.css';
@@ -17,7 +18,7 @@ const grouped = GRUPPI_DOCS
   .map((g) => ({ ...g, items: all.filter((d) => d.data.group === g.name) }))
   .filter((g) => g.items.length);
 ---
-<Base title="Documentation — Team Tasks Manager" description={SUBTITLE} card="large" embed={docsCard('Documentation', SUBTITLE, '/docs/', 'Browse the docs')}>
+<Base title="Documentation — Team Tasks Manager" description={SUBTITLE} card="large" embed={docsCard('en', 'Documentation', SUBTITLE, '/docs/', 'Browse the docs')}>
   <VetrinaFont slot="head" />
   <main class="docs-main">
     <div class="docs-shell">

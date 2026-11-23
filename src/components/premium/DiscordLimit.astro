@@ -1,5 +1,9 @@
 ---
 // L'asterisco dei limiti fissati da Discord (spec della pagina Premium, §7): visibile ma muto per gli screen
 // reader, che leggono invece «(Discord limit)». La spiegazione sta sotto le card.
+import type { Lingua } from '../../i18n/lingue.ts';
+import { t } from '../../i18n/t.ts';
+
+interface Props { lingua: Lingua; }
 ---
-<span aria-hidden="true">&nbsp;*</span><span class="sr-only"> (Discord limit)</span>
+<span aria-hidden="true">&nbsp;*</span><span class="sr-only">{t(Astro.props.lingua, 'premium.limite.discord')}</span>

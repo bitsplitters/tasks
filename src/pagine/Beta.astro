@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import { docsCard } from '../lib/preview-card';
+import VetrinaFont from '../components/VetrinaFont.astro';
+// vetrina.css prima di beta.css: le regole della pagina vengono dopo quelle comuni.
+import '../styles/vetrina.css';
+import '../styles/beta.css';
+import Unlocked from '../components/beta/Unlocked.astro';
+import Timeline from '../components/beta/Timeline.astro';
+import type { Lingua } from '../i18n/lingue.ts';
+import { percorso } from '../i18n/percorsi.ts';
+import { traduttore } from '../i18n/t.ts';
+
+// La pagina che vende la beta (spec docs/superpowers/specs/2026-11-15-pagina-beta-design.md, nel repo
+// team-tasks-manager), in una lingua: la rendono src/pages/beta.astro e src/pages/[lingua]/beta.astro. Il riferimento
+// resta /docs/beta/, «How the beta works», che il bot linka: questa è per chi arriva dal sito. Niente cifre (scelta
+// dell'utente del 15/11): i prezzi stanno su /premium/. Niente data-pagefind-body, come /premium/: la ricerca copre la
+// documentazione. I testi in src/i18n/testi/<lingua>/beta.ts.
+interface Props { lingua: Lingua; }
+const { lingua } = Astro.props;
+const tt = traduttore(lingua, 'beta');
+const tc = traduttore(lingua, 'comune');
+const PREVIEW_TITLE = tt('titolo');
+const TITLE = `${PREVIEW_TITLE} — Team Tasks Manager`;
+const DESCRIPTION = tt('descrizione');
+const EMBED = docsCard(lingua, PREVIEW_TITLE, DESCRIPTION, percorso(lingua, '/beta/'), tt('anteprima.vedi'));
+const community = percorso(lingua, '/docs/community/');
+
+// Le tre frasi di «When the beta ends» di /docs/beta/, accorciate: nessuna promessa nuova (§4.3).
+const PROMESSE = [1, 2, 3].map((n) => ({ titolo: tt(`promessa.${n}.t`), testo: tt(`promessa.${n}.d`) }));
+---
+<Base title={TITLE} previewTitle={PREVIEW_TITLE} description={DESCRIPTION} embed={EMBED}>
+  <VetrinaFont slot="head" />
+  <main class="beta vetrina">
+    <section class="b-hero wrap">
+      <p class="b-pill"><span class="b-pill-dot" aria-hidden="true"></span>{tt('titolo')}</p>
+      <h1><span>{tt('hero.titolo1')}</span> <span>{tt('hero.titolo2')}</span></h1>
+      <p class="h-intro">{tt('hero.intro')}</p>
+      <div class="cta-row">
+        <a class="btn" href="/invite">{tc('cta.aggiungi')}</a>
+        <a class="btn-ghost" href={community}>{tc('cta.discord')}</a>
+      </div>
+    </section>
+
+    <Unlocked lingua={lingua} />
+
+    <section class="h-sec wrap" id="promise" aria-labelledby="b-promise-title">
+      <h2 id="b-promise-title">{tt('promessa.titolo')}</h2>
+      <ul class="b-promise" role="list">
+        {PROMESSE.map((p) => (
+          <li>
+            <span class="b-tick" aria-hidden="true">✓</span>
+            <h3>{p.titolo}</h3>
+            <p>{p.testo}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="callout b-callout"><div class="callout-t">{tt('promessa.riquadro.t')}</div>{tt('promessa.riquadro')}</div>
+      <p class="b-after"><a class="h-link" href={percorso(lingua, '/docs/beta/')}>{tt('promessa.dettagli')}</a></p>
+    </section>
+
+    <Timeline lingua={lingua} />
+
+    <section class="h-sec wrap b-shape" aria-labelledby="b-shape-title">
+      <h2 id="b-shape-title">{tt('voce.titolo')}</h2>
+      <p class="h-intro">{tt('voce.intro')}</p>
+      <p class="b-pace">{tt('voce.ritmo')} <a class="h-link" href={percorso(lingua, '/docs/release-notes/')}>{tt('voce.note')}</a></p>
+      <div class="cta-row"><a class="btn-ghost" href={community}>{tc('cta.discord')}</a></div>
+    </section>
+
+    <section class="h-sec wrap b-final" aria-labelledby="b-final-title">
+      <h2 id="b-final-title">{tt('finale.titolo')}</h2>
+      <p class="h-intro">{tc('cta.finale')}</p>
+      <div class="cta-row">
+        <a class="btn" href="/invite">{tc('cta.aggiungi')}</a>
+        <a class="btn-ghost" href={percorso(lingua, '/docs/getting-started/')}>{tc('cta.inizia')}</a>
+      </div>
+    </section>
+  </main>
+</Base>

@@ -1,0 +1,108 @@
+---
+/*
+ * La home in una lingua (spec 2026-11-19-sito-multilingua-design.md, §4.1, nel repo team-tasks-manager): la rendono
+ * src/pages/index.astro per l'inglese e src/pages/[lingua]/index.astro per le altre lingue pubblicate. I testi in
+ * src/i18n/testi/<lingua>/home.ts.
+ */
+import Base from '../layouts/Base.astro';
+import { abs, previewCard } from '../lib/preview-card';
+import VetrinaFont from '../components/VetrinaFont.astro';
+// vetrina.css prima di home.css: le regole della home vengono dopo quelle comuni, come quando stavano in un
+// foglio solo.
+import '../styles/vetrina.css';
+import '../styles/home.css';
+import HeroVideo from '../components/home/HeroVideo.astro';
+import Problem from '../components/home/Problem.astro';
+import Pillars from '../components/home/Pillars.astro';
+import UseCases from '../components/home/UseCases.astro';
+import Features from '../components/home/Features.astro';
+import Compare from '../components/home/Compare.astro';
+import Demo from '../components/home/Demo.astro';
+import type { Lingua } from '../i18n/lingue.ts';
+import { percorso } from '../i18n/percorsi.ts';
+import { t, traduttore } from '../i18n/t.ts';
+
+interface Props { lingua: Lingua; }
+const { lingua } = Astro.props;
+const tt = traduttore(lingua, 'home');
+const tc = traduttore(lingua, 'comune');
+const inizia = percorso(lingua, '/docs/getting-started/');
+
+// Scheda dell'anteprima su Discord: le righe della home e una lista vera, perché chi riceve il link
+// veda subito com'è TTM in un canale. /invite/ esiste solo in inglese.
+const EMBED = previewCard(
+  tt('pitch'),
+  [
+    { label: tc('cta.aggiungi'), url: abs('/invite/') },
+    { label: tc('cta.inizia'), url: abs(inizia) },
+    { label: tc('nav.docs'), url: abs(percorso(lingua, '/docs/')) },
+  ],
+  { url: abs('/screens/list-desktop.png'), alt: tt('anteprima.alt') },
+  lingua,
+);
+
+// Title e descrizione sono quello che Google mostra nei risultati. Il nome da solo non dice né
+// «Discord» né «bot», e sono le parole con cui si cerca: le dicono loro (piano marketing, F4).
+const TITLE = tt('title');
+const DESCRIPTION = tt('description');
+
+// Chi pubblica il sito, e il sito, per i motori di ricerca. Non `SoftwareApplication`: il risultato
+// arricchito di Google la vuole con valutazioni o recensioni, e non ne abbiamo.
+// `<` diventa < per la stessa ragione di PreviewMeta: il JSON sta dentro uno <script>.
+const JSON_LD = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'bitsplitters',
+    url: 'https://bitsplitters.app/',
+    logo: 'https://bitsplitters.app/brand/bs-icon.png',
+    email: 'info@bitsplitters.app',
+    sameAs: ['https://github.com/bitsplitters'],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Team Tasks Manager',
+    url: abs(percorso(lingua, '/')),
+    inLanguage: lingua,
+    publisher: { '@type': 'Organization', name: 'bitsplitters', url: 'https://bitsplitters.app/' },
+  },
+]).replace(/</g, '\\u003c');
+---
+<Base title={TITLE} description={DESCRIPTION} card="large" embed={EMBED}>
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON_LD} />
+  <VetrinaFont slot="head" />
+  <main class="home vetrina">
+    <section class="h-hero">
+      <div class="h-hero-in">
+        <div class="h-hero-text">
+          <p class="h-brand"><img src="/icons/ttm-avatar.png" alt="" width="28" height="28" /><span>Team Tasks Manager</span><span class="h-app">APP</span></p>
+          <h1>{tt('hero.titolo')}</h1>
+          <p class="h-tagline">{tt('hero.tagline')}</p>
+          <p class="h-lede">{tt('hero.lede')}</p>
+          <div class="cta-row">
+            <a class="btn" href="/invite">{tc('cta.aggiungi')}</a>
+            <a class="btn-ghost" href={inizia}>{tc('cta.inizia')}</a>
+          </div>
+        </div>
+        <HeroVideo lingua={lingua} />
+      </div>
+    </section>
+
+    <Problem lingua={lingua} />
+    <Pillars lingua={lingua} />
+    <UseCases lingua={lingua} />
+    <Features lingua={lingua} />
+    <Compare lingua={lingua} />
+    <Demo lingua={lingua} />
+
+    <section class="h-sec wrap h-final" aria-labelledby="h-final-title">
+      <h2 id="h-final-title">{tt('finale.titolo')}</h2>
+      <p class="h-intro">{t(lingua, 'comune.cta.finale')}</p>
+      <div class="cta-row">
+        <a class="btn" href="/invite">{tc('cta.aggiungi')}</a>
+        <a class="btn-ghost" href={inizia}>{tc('cta.inizia')}</a>
+      </div>
+    </section>
+  </main>
+</Base>

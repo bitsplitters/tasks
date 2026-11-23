@@ -56,7 +56,7 @@ const settimana = await Promise.all(d.week.map(async (m) => ({
 const giorni = settimana.map((m, i) => i === 0 || settimana[i - 1].giorno !== m.giorno);
 const premium = d.webhooks.length > 0 || d.settings.some((s) => s.premium) || team.roles.some((r) => r.ttm);
 ---
-<Base title={`${d.seoTitle} — Team Tasks Manager`} previewTitle={d.title} description={d.description} embed={docsCard(d.title, d.description, Astro.url.pathname, 'See the example')}>
+<Base title={`${d.seoTitle} — Team Tasks Manager`} previewTitle={d.title} description={d.description} embed={docsCard('en', d.title, d.description, Astro.url.pathname, 'See the example')}>
   <VetrinaFont slot="head" />
   <main class="docs-main">
     <article class="prose uc wrap">

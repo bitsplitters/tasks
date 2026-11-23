@@ -16,7 +16,7 @@ const SUBTITLE =
 
 const casi = (await getCollection('useCases')).sort((a, b) => a.data.order - b.data.order);
 ---
-<Base title={TITLE} previewTitle={H1} description={SUBTITLE} embed={docsCard(H1, SUBTITLE, '/use-cases/', 'See the examples')}>
+<Base title={TITLE} previewTitle={H1} description={SUBTITLE} embed={docsCard('en', H1, SUBTITLE, '/use-cases/', 'See the examples')}>
   <VetrinaFont slot="head" />
   <main class="docs-main">
     <article class="prose uc uc-index wrap">

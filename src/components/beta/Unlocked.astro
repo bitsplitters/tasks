@@ -10,34 +10,18 @@
  * le lascia il posto su telefono e la griglia sta in un contenitore (b-tiles-zona) su cui appoggiarla.
  */
 import Festeggia from '../mascotte/Festeggia.astro';
+import type { Lingua } from '../../i18n/lingue.ts';
+import { percorso } from '../../i18n/percorsi.ts';
+import { traduttore } from '../../i18n/t.ts';
 
-interface Voce {
-  icona?: string;
-  titolo: string;
-  testo: string;
-}
-const VOCI: Voce[] = [
-  { icona: 'task_list', titolo: 'Unlimited lists', testo: 'Every project, squad or event gets its own list.' },
-  { icona: 'single_task', titolo: '50 tasks per list', testo: 'Room for a real backlog, subtasks included.' },
-  { icona: 'alertW', titolo: 'Reminders without a cap', testo: 'As many waiting at once as your team needs.' },
-  {
-    titolo: 'Repeating reminders',
-    testo: 'Up to 50 pings, every day or every two hours. An admin turns them on first.',
-  },
-  {
-    icona: 'owner',
-    titolo: 'A team as owner',
-    testo: 'Up to 25 people share a task, through a role TTM creates.',
-  },
-  {
-    icona: 'api',
-    titolo: 'Webhooks',
-    testo: 'A ticked task calls your deploy, your spreadsheet or your ticket system.',
-  },
-];
+interface Props { lingua: Lingua; }
+const { lingua } = Astro.props;
+const tt = traduttore(lingua, 'beta');
+const ICONE = ['task_list', 'single_task', 'alertW', undefined, 'owner', 'api'];
+const VOCI = ICONE.map((icona, i) => ({ icona, titolo: tt(`sbloccato.${i + 1}.t`), testo: tt(`sbloccato.${i + 1}.d`) }));
 ---
 <section class="h-sec wrap mx-festa-zona" aria-labelledby="b-unlocked-title">
-  <h2 id="b-unlocked-title" class="mx-festa-titolo">Unlocked for you, right now.</h2>
+  <h2 id="b-unlocked-title" class="mx-festa-titolo">{tt('sbloccato.titolo')}</h2>
   <div class="b-tiles-zona">
     <Festeggia />
     <ul class="b-tiles" role="list">
@@ -54,5 +38,5 @@ const VOCI: Voce[] = [
       ))}
     </ul>
   </div>
-  <p class="b-after">After the beta, these are what <a class="h-link" href="/premium/">Premium</a> adds. What you set up during the beta stays: see <a class="h-link" href="#promise">our promise</a> below.</p>
+  <p class="b-after" set:html={tt('sbloccato.dopo', { premium: percorso(lingua, '/premium/') })} />
 </section>

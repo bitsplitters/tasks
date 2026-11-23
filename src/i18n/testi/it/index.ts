@@ -1,4 +1,7 @@
 // Le zone dei testi italiani, per t.ts: le stesse di src/i18n/testi/en/index.ts.
+import { testi as beta } from './beta.ts';
 import { testi as comune } from './comune.ts';
+import { testi as home } from './home.ts';
+import { testi as premium } from './premium.ts';
 
-export const ZONE = { comune };
+export const ZONE = { comune, home, premium, beta };

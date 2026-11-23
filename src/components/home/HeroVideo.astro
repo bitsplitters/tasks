@@ -1,5 +1,7 @@
 ---
 import Sbircia from '../mascotte/Sbircia.astro';
+import type { Lingua } from '../../i18n/lingue.ts';
+import { traduttore } from '../../i18n/t.ts';
 
 /*
  * I video in apertura (spec 2026-11-15-home-video-e-demo-design.md, §4.6 e §4.7, nel repo team-tasks-manager): due
@@ -9,27 +11,18 @@ import Sbircia from '../mascotte/Sbircia.astro';
  * torna, accende i passi e muove il comando. Senza JavaScript resta l'immagine ferma del canale, coi passi accesi.
  *
  * I video sono decorativi (aria-hidden): per gli screen reader parlano i tab e la frase nascosta di ogni pannello.
+ * Le due etichette del comando (avvia, metti in pausa) arrivano a hero-video.ts dagli attributi data-.
  */
+interface Props { lingua: Lingua; }
+const tt = traduttore(Astro.props.lingua, 'home');
 const VIDEO = [
-  {
-    k: 'channel',
-    tab: 'In the channel',
-    frase:
-      'Video: a Team Tasks Manager list in a Discord channel. A task is ticked from the menu under the list, then ' +
-      'another gets an owner and a reminder.',
-  },
-  {
-    k: 'activity',
-    tab: 'In the Activity',
-    frase:
-      'Video: the Activity button opens the list in a window inside Discord, where a task is ticked and another ' +
-      'gets an owner and a reminder.',
-  },
+  { k: 'channel', tab: tt('modi.canale'), frase: tt('video.canale.frase') },
+  { k: 'activity', tab: tt('modi.activity'), frase: tt('video.activity.frase') },
 ];
-const PASSI = ['Tick a task', 'Set an owner', 'Add a reminder'];
+const PASSI = [tt('video.passo1'), tt('video.passo2'), tt('video.passo3')];
 ---
 <figure class="hv" data-hv>
-  <div class="hv-tabs" role="tablist" aria-label="Two ways to work">
+  <div class="hv-tabs" role="tablist" aria-label={tt('modi.label')}>
     {VIDEO.map((v, i) => (
       <button
         type="button" role="tab" class="hv-tab" id={`hv-t-${v.k}`} data-tab={v.k} aria-controls={`hv-p-${v.k}`}
@@ -71,7 +64,7 @@ const PASSI = ['Tick a task', 'Set an owner', 'Add a reminder'];
     <button type="button" class="hv-ctl" data-k="ctl" data-mode="paused" hidden>
       <svg class="hv-i hv-i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor" /><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor" /></svg>
       <svg class="hv-i hv-i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.2-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5z" fill="currentColor" /></svg>
-      <span class="sr-only" data-label>Play the video</span>
+      <span class="sr-only" data-label data-avvia={tt('video.avvia')} data-pausa={tt('video.pausa')}>{tt('video.avvia')}</span>
     </button>
   </figcaption>
 </figure>

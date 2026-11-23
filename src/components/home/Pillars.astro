@@ -5,41 +5,47 @@
  * immagini sono pezzi d'interfaccia in HTML e CSS (nitidi a ogni misura, fermi, aria-hidden), pochi elementi grandi
  * perché sembrino della stessa famiglia: il comando con un pulsante sotto il cursore; tre titoli della lista a
  * ventaglio in tre delle sei lingue; il «#» del canale e l'icona dell'Activity in due tessere uguali coi nomi sotto
- * (variante «1», scelta dall'utente).
+ * (variante «1», scelta dall'utente). Il comando è quello che Discord mostra nella lingua della pagina (/crea-lista);
+ * i tre titoli a ventaglio restano in tre lingue in ogni pagina: sono il punto della scheda.
  */
+import type { Lingua } from '../../i18n/lingue.ts';
+import { traduttore } from '../../i18n/t.ts';
+
+interface Props { lingua: Lingua; }
+const tt = traduttore(Astro.props.lingua, 'home');
 const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
 ---
 <section class="h-sec wrap" aria-labelledby="h-pillars-title">
-  <h2 id="h-pillars-title">So we put the plan inside the conversation.</h2>
+  <h2 id="h-pillars-title">{tt('pilastri.titolo')}</h2>
   <ul class="h-pcards" role="list">
     <li class="h-pcard">
       <div class="h-art h-art-simple" aria-hidden="true">
-        <span class="h-art-cmd"><span class="h-art-chip">/create-list</span></span>
+        <span class="h-art-cmd"><span class="h-art-chip">{tt('pilastri.comando')}</span></span>
         <span class="h-art-btn">
           <img src="/icons/task.png" alt="" />
           <svg viewBox="0 0 24 24"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
         </span>
       </div>
-      <h3>Simple to use</h3>
-      <p>One command to start. After that, it's just buttons you already know.</p>
+      <h3>{tt('pilastri.semplice.t')}</h3>
+      <p>{tt('pilastri.semplice.d')}</p>
     </li>
     <li class="h-pcard">
       <div class="h-art h-art-lang" aria-hidden="true">
-        <span class="h-art-t h-art-de">Kader &amp; Scrims — Woche 12</span>
-        <span class="h-art-t h-art-it">Roster e scrim — settimana 12</span>
-        <span class="h-art-t h-art-en">Roster &amp; scrims — week 12</span>
+        <span class="h-art-t h-art-de" lang="de">Kader &amp; Scrims — Woche 12</span>
+        <span class="h-art-t h-art-it" lang="it">Roster e scrim — settimana 12</span>
+        <span class="h-art-t h-art-en" lang="en">Roster &amp; scrims — week 12</span>
       </div>
-      <h3>Multilanguage</h3>
-      <p>English, Italian, German, French, Spanish and Portuguese. Your whole community feels at home.</p>
+      <h3>{tt('pilastri.lingue.t')}</h3>
+      <p>{tt('pilastri.lingue.d')}</p>
     </li>
     <li class="h-pcard">
       <div class="h-art h-art-ways" aria-hidden="true">
-        <span class="h-art-tile"><span class="h-art-ic h-art-hash">#</span><span class="h-art-name">In the channel</span></span>
-        <span class="h-art-tile"><span class="h-art-ic h-art-app"><img src="/icons/activity.png" alt="" /></span><span class="h-art-name">In the Activity</span></span>
+        <span class="h-art-tile"><span class="h-art-ic h-art-hash">#</span><span class="h-art-name">{tt('modi.canale')}</span></span>
+        <span class="h-art-tile"><span class="h-art-ic h-art-app"><img src="/icons/activity.png" alt="" /></span><span class="h-art-name">{tt('modi.activity')}</span></span>
       </div>
-      <h3>Two ways to work</h3>
-      <p>Tick a task on the fly, right in the chat. When there's real work to do, open the list in the Activity and do it together.</p>
-      <a class="h-link" href="#two-ways">Try both</a>
+      <h3>{tt('pilastri.modi.t')}</h3>
+      <p>{tt('pilastri.modi.d')}</p>
+      <a class="h-link" href="#two-ways">{tt('pilastri.modi.link')}</a>
     </li>
   </ul>
 </section>

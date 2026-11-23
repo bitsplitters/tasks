@@ -4,27 +4,30 @@
  * design.md, §7, nel repo team-tasks-manager): fra il perché (Pillars) e le funzionalità (Features), dove chi legge si
  * chiede se TTM fa per lui. Ogni scheda porta alla sua pagina, la storia di un team per una settimana, e mostra il
  * nome del caso e cosa usa (`highlights`). Sul telefono resta una riga col nome. I casi vengono dalla collezione
- * `useCases`: una pagina nuova compare qui da sola.
+ * `useCases`, o dalla loro traduzione (lib/casi-lingua.ts): una pagina nuova compare qui da sola.
  */
-import { getCollection } from 'astro:content';
+import type { Lingua } from '../../i18n/lingue.ts';
+import { percorso } from '../../i18n/percorsi.ts';
+import { traduttore } from '../../i18n/t.ts';
+import { casiDellaLingua } from '../../lib/casi-lingua.ts';
 
-const casi = (await getCollection('useCases')).sort((a, b) => a.data.order - b.data.order);
+interface Props { lingua: Lingua; }
+const { lingua } = Astro.props;
+const tt = traduttore(lingua, 'home');
+const casi = await casiDellaLingua(lingua);
 ---
 <section class="h-sec wrap" id="use-cases" aria-labelledby="h-uc-title">
-  <h2 id="h-uc-title">What teams use it for.</h2>
-  <p class="h-intro">
-    Each case follows a team through one week: the list, who owns what, the reminders that reach them and the
-    webhooks that fire when a task is done.
-  </p>
+  <h2 id="h-uc-title">{tt('casi.titolo')}</h2>
+  <p class="h-intro">{tt('casi.intro')}</p>
   <ul class="h-ucs" role="list">
     {casi.map((c) => (
       <li>
-        <a class="h-uc" href={`/use-cases/${c.id}/`}>
+        <a class="h-uc" href={percorso(lingua, `/use-cases/${c.id}/`)}>
           <h3>{c.data.name}</h3>
           <span class="h-uc-d">{c.data.highlights}</span>
         </a>
       </li>
     ))}
   </ul>
-  <p class="h-ucs-more"><a class="h-link" href="/use-cases/">See all use cases</a></p>
+  <p class="h-ucs-more"><a class="h-link" href={percorso(lingua, '/use-cases/')}>{tt('casi.tutti')}</a></p>
 </section>

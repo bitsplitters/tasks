@@ -4,18 +4,16 @@
  * La spunta è la stessa per tutte: fra le icone del bot mancano quelle della cronologia e delle lingue, e
  * mescolare icone e glifi farebbe sembrare a metà le voci senza icona. Niente riquadri: la home li usa già.
  */
-const VOCI = [
-  { titolo: 'The Activity', testo: 'Open a list in a window inside Discord and work on it together, live.' },
-  { titolo: 'Owners and tags', testo: 'Give each task an owner, and tag the people or roles to notify.' },
-  { titolo: 'Reminders', testo: 'A ping when a task is due, in your time zone.' },
-  { titolo: 'Groups and subtasks', testo: 'Indent a line and it becomes a subtask. Groups are recognized automatically.' },
-  { titolo: 'Activity timeline', testo: 'Every change to a list, with who made it, in a dedicated thread.' },
-  { titolo: 'Six languages', testo: 'English, Italian, German, French, Spanish and Portuguese.' },
-];
+import type { Lingua } from '../../i18n/lingue.ts';
+import { traduttore } from '../../i18n/t.ts';
+
+interface Props { lingua: Lingua; }
+const tt = traduttore(Astro.props.lingua, 'premium');
+const VOCI = [1, 2, 3, 4, 5, 6].map((n) => ({ titolo: tt(`inclusi.${n}.t`), testo: tt(`inclusi.${n}.d`) }));
 ---
 <section class="h-sec wrap" aria-labelledby="p-included-title">
-  <h2 id="p-included-title">Included in both.</h2>
-  <p class="h-intro">Every plan gets the whole bot. The limits are the only difference.</p>
+  <h2 id="p-included-title">{tt('inclusi.titolo')}</h2>
+  <p class="h-intro">{tt('inclusi.intro')}</p>
   <ul class="p-grid" role="list">
     {VOCI.map((v) => (
       <li>
@@ -25,5 +23,5 @@ const VOCI = [
       </li>
     ))}
   </ul>
-  <p class="p-after">Every fix and every update reaches Free too.</p>
+  <p class="p-after">{tt('inclusi.dopo')}</p>
 </section>

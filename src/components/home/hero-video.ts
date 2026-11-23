@@ -43,7 +43,7 @@ export function avviaVideo(): void {
 
   const comando = () => {
     ctl.dataset.mode = inPausa ? 'paused' : 'playing';
-    etichetta.textContent = inPausa ? 'Play the video' : 'Pause the video';
+    etichetta.textContent = (inPausa ? etichetta.dataset.avvia : etichetta.dataset.pausa) ?? '';
   };
 
   /** Il video del tab scelto parte o si ferma secondo lo stato; la sorgente arriva al primo avvio. */

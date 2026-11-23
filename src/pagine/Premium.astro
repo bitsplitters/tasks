@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import { docsCard } from '../lib/preview-card';
+import { paginaPiani } from '../lib/pagina-piani';
+import VetrinaFont from '../components/VetrinaFont.astro';
+// vetrina.css prima di premium.css: le regole della pagina vengono dopo quelle comuni.
+import '../styles/vetrina.css';
+import '../styles/premium.css';
+import Plans from '../components/premium/Plans.astro';
+import Compare from '../components/premium/Compare.astro';
+import Included from '../components/premium/Included.astro';
+import FounderStato from '../components/FounderStato.astro';
+import type { Lingua } from '../i18n/lingue.ts';
+import { percorso } from '../i18n/percorsi.ts';
+import { t, traduttore } from '../i18n/t.ts';
+
+// La pagina per scegliere un piano (spec docs/superpowers/specs/2026-11-14-pagina-premium-design.md, nel repo
+// team-tasks-manager), in una lingua: la rendono src/pages/premium.astro e src/pages/[lingua]/premium.astro. Il
+// riferimento tecnico dei limiti resta /docs/premium/; i prezzi stanno solo qui. I testi in
+// src/i18n/testi/<lingua>/premium.ts.
+// Niente data-pagefind-body: la ricerca copre la documentazione, e questa pagina si trova dal menu, dalle barre
+// laterali e dai rimandi. Nella cartella dist/premium/ stanno anche le immagini che il bot linka
+// (/premium/premium-*.png): la pagina inglese ci finisce accanto, e i loro indirizzi non cambiano.
+interface Props { lingua: Lingua; }
+const { lingua } = Astro.props;
+const tt = traduttore(lingua, 'premium');
+const PIANI = paginaPiani(lingua);
+const TITLE = `${PIANI.title} — Team Tasks Manager`;
+const EMBED = docsCard(lingua, PIANI.title, PIANI.description, PIANI.path, tt('anteprima.vedi'));
+const community = percorso(lingua, '/docs/community/');
+
+// Il Founder (spec docs/superpowers/specs/2026-11-15-founder-design.md, §4): un evento a tempo, il prezzo in chiaro.
+// Le cifre scritte (20 € contro 36 €, 1000 posti, 30 giorni) sono regole vere. Il numero del badge va ai primi 1000
+// che comprano, non a chi lo sblocca soltanto (correzione dell'utente del 22/11, spec del Founder, regola 2): da qui
+// «#0001 – #1000» sulla matrice del biglietto. Mille si scrive senza separatori, in ogni lingua: «1,000» confonde chi
+// usa la virgola per i decimali, e il numero di un badge è un identificativo (utente, 22/11).
+const PUNTI = [1, 2, 3].map((n) => ({ titolo: tt(`fd.${n}.t`), testo: tt(`fd.${n}.d`) }));
+---
+<Base title={TITLE} previewTitle={PIANI.title} description={PIANI.description} embed={EMBED}>
+  <VetrinaFont slot="head" />
+  <main class="vetrina">
+    <section class="p-beta" aria-label={tt('beta.label')}>
+      <p class="wrap" set:html={tt('beta.testo', { beta: percorso(lingua, '/beta/') })} />
+    </section>
+
+    <section class="p-hero wrap">
+      <h1><span>{tt('hero.titolo1')}</span> <span>{tt('hero.titolo2')}</span></h1>
+      <p class="h-intro">{tt('hero.intro')}</p>
+    </section>
+
+    <Plans lingua={lingua} />
+    <Compare lingua={lingua} />
+    <Included lingua={lingua} />
+
+    {/* Chi fa TTM (2026-11-21): risponde ai dubbi di chi è indeciso (posso fidarmi di un team piccolo? ci sarà ancora?
+        chi mi risponde?) invece di giustificare il prezzo. Ogni affermazione dev'essere vera: le 15 versioni sono quelle
+        delle note di rilascio dalla 1.0.0 (23/10) alla 2.4.1 (21/11). Chiusura sul Founder finché il programma è aperto;
+        quando chiude, l'ultima frase diventa «Start on Free. If TTM earns its place in your server, Premium is there
+        when you need more.» Un commento Astro e non HTML: non finisce nella pagina pubblicata. */}
+    <section class="h-sec wrap" id="who" aria-labelledby="p-who-title">
+      <h2 id="p-who-title">{tt('chi.titolo')}</h2>
+      <div class="p-who">
+        <div class="p-text">
+          <p set:html={tt('chi.1')} />
+          <p set:html={tt('chi.2', { community })} />
+          <p set:html={tt('chi.3', { note: percorso(lingua, '/docs/release-notes/') })} />
+          <p set:html={tt('chi.4')} />
+        </div>
+        <figure class="p-who-card">
+          <img src="/team/alex.jpg" alt={tt('chi.alt')} width="256" height="256" loading="lazy" decoding="async" />
+          <figcaption><strong>Alex</strong> <span>{tt('chi.ruolo')}</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="h-sec wrap" id="self-host" aria-labelledby="p-self-title">
+      <h2 id="p-self-title">{tt('self.titolo')}</h2>
+      <div class="p-text">
+        <p set:html={tt('self.1', { community })} />
+        <p set:html={tt('self.2', { licenza: percorso(lingua, '/license/') })} />
+        <div class="callout"><div class="callout-t">{tt('self.conti.t')}</div><Fragment set:html={tt('self.conti')} /></div>
+      </div>
+    </section>
+
+    <section class="h-sec wrap" id="founder" aria-labelledby="p-founder-title">
+      <div class="p-fd">
+        <p class="p-fd-band">
+          <span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg> <strong>{tt('fd.evento')}</strong> ·</span>
+          <span>{tt('fd.quando')}</span>
+        </p>
+        <div class="p-fd-body">
+          <div class="p-fd-head">
+            <div>
+              <h2 id="p-founder-title">{tt('fd.titolo')}</h2>
+              <p class="p-fd-status"><span class="p-fd-dot" aria-hidden="true"></span><span><FounderStato lingua={lingua} /></span></p>
+              <p class="p-fd-lead">{tt('fd.lead')}</p>
+            </div>
+            <div class="p-fd-price">
+              <div class="p-fd-tk-main">
+              <p class="p-fd-price-t">{tt('fd.prezzo.t')}</p>
+              <p class="p-fd-amount"><span class="p-fd-now">{tt('fd.importo')}</span><span class="p-fd-per">{tt('fd.all.anno')} <a class="p-vat" href="#vat">{tt('iva')}</a></span> <span class="p-fd-sconto"><s class="p-fd-was"><span class="sr-only">{tt('fd.invece')}</span>{tt('fd.era')}</s> <span class="p-fd-off">&minus;44%</span></span></p>
+              <p class="p-fd-price-note">{tt('fd.prezzo.nota')}</p>
+              </div>
+              <p class="p-fd-tk-stub"><span class="p-fd-tk-lab">{tt('fd.badge')}</span> <span class="p-fd-tk-no">#0001<span aria-hidden="true"> – </span><span class="sr-only">{tt('fd.fino.a')}</span>#1000</span></p>
+            </div>
+          </div>
+          <ul class="p-fd-tiles" role="list">
+            {PUNTI.map((p) => (
+              <li>
+                <h3>{p.titolo}</h3>
+                <p>{p.testo}</p>
+              </li>
+            ))}
+          </ul>
+          <p class="p-fd-fine">{tt('fd.fine')}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="h-sec wrap" aria-labelledby="p-questions-title">
+      <h2 id="p-questions-title">{tt('domande.titolo')}</h2>
+      <p class="h-intro">{tt('domande.intro')}</p>
+      <p class="p-links"><a class="h-link" href={community}>{t(lingua, 'comune.cta.discord')}</a> <a class="h-link" href={percorso(lingua, '/docs/premium/')}>{tt('domande.limiti')}</a></p>
+    </section>
+  </main>
+</Base>

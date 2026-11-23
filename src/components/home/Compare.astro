@@ -12,43 +12,26 @@
  * browser ne perdono la semantica; aria-colindex dice agli screen reader quale colonna resta quando l'altra è nascosta.
  *
  * Il segno (✓, –) sta fuori dal testo, così le righe che vanno a capo si allineano al testo e non al segno; le parole
- * col trattino («re-explaining») non si spezzano. Un testo in più frasi (un array) va a capo dopo ognuna: la seconda,
- * corta, resta intera su una riga sua (richiesta dell'utente del 15/11).
+ * col trattino («re-explaining») non si spezzano. Un testo in più frasi (righe separate da `\n` nei testi) va a capo
+ * dopo ognuna: la seconda, corta, resta intera su una riga sua (richiesta dell'utente del 15/11).
  */
-type Testo = string | readonly string[];
-const COLONNE = { ttm: 'Team Tasks Manager', altra: 'A separate task app' };
-const RIGHE: { voce: string; ttm: Testo; altra: Testo }[] = [
-  {
-    voce: 'Where the tasks are',
-    ttm: 'In the channel where the work is discussed.',
-    altra: 'In another tool, while the team talks on Discord.',
-  },
-  {
-    voce: 'Keeping up to date',
-    ttm: ['The whole team sees the same list.', 'All in real time.'],
-    altra: 'Every update means switching windows, copying links, re-explaining status.',
-  },
-  {
-    voce: 'The full picture',
-    ttm: 'One list, in the place everyone already looks.',
-    altra: 'Scattered across windows: no one has the full picture.',
-  },
-  {
-    voce: 'Deadlines',
-    ttm: 'The owner gets the reminder on Discord.',
-    altra: 'Nobody owns the reminder, so deadlines slip.',
-  },
-  {
-    voce: 'Getting started',
-    ttm: ['Add the bot and type one command.', 'No new accounts.'],
-    altra: 'Sign-ups for everyone, and a new tool to learn.',
-  },
-];
-const frasi = (t: Testo) => (typeof t === 'string' ? [t] : t);
+import type { Lingua } from '../../i18n/lingue.ts';
+import { traduttore } from '../../i18n/t.ts';
+
+interface Props { lingua: Lingua; }
+const tt = traduttore(Astro.props.lingua, 'home');
+
+const COLONNE = { ttm: tt('confronto.ttm'), altra: tt('confronto.altra') };
+const RIGHE = [1, 2, 3, 4, 5].map((n) => ({
+  voce: tt(`confronto.${n}.voce`),
+  ttm: tt(`confronto.${n}.ttm`),
+  altra: tt(`confronto.${n}.altra`),
+}));
+const frasi = (testo: string) => testo.split('\n');
 const parti = (testo: string) => testo.split(/(\S+-\S+)/);
 ---
 <section class="h-sec wrap h-compare" aria-labelledby="h-compare-title">
-  <h2 id="h-compare-title">Coordination shouldn't cost you your focus.</h2>
+  <h2 id="h-compare-title">{tt('confronto.titolo')}</h2>
   <fieldset class="h-switch" aria-labelledby="h-compare-caption">
     <input type="radio" name="h-mostra" id="h-mostra-ttm" value="ttm" checked />
     <label for="h-mostra-ttm">{COLONNE.ttm}</label>
@@ -56,7 +39,7 @@ const parti = (testo: string) => testo.split(/(\S+-\S+)/);
     <label for="h-mostra-altra">{COLONNE.altra}</label>
   </fieldset>
   <table class="h-table" role="table" aria-colcount="3">
-    <caption class="sr-only" id="h-compare-caption">Team Tasks Manager compared with a separate task app</caption>
+    <caption class="sr-only" id="h-compare-caption">{tt('confronto.didascalia')}</caption>
     <thead role="rowgroup">
       <tr role="row">
         <td role="cell" aria-colindex="1"></td>

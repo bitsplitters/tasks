@@ -5,7 +5,8 @@ import VetrinaFont from '../../components/VetrinaFont.astro';
 import DocsSearch from '../../components/DocsSearch.astro';
 import AperturaNoteDiRilascio from '../../components/AperturaNoteDiRilascio.astro';
 import { docsCard } from '../../lib/preview-card';
-import { PAGINA_PIANI } from '../../lib/pagina-piani';
+import { paginaPiani } from '../../lib/pagina-piani';
+const PAGINA_PIANI = paginaPiani('en');
 import { GRUPPI_DOCS, POSTI } from '../../lib/gruppi-docs';
 // docs.css dopo Base, che importa global.css: le regole della documentazione vengono dopo quelle comuni.
 import '../../styles/docs.css';
@@ -28,7 +29,7 @@ const grouped = GRUPPI_DOCS
 const current = entry.id;
 const posto = entry.data.place ? POSTI[entry.data.place] : null;
 ---
-<Base title={entry.data.title + " — Team Tasks Manager docs"} previewTitle={entry.data.title} description={entry.data.description} embed={docsCard(entry.data.title, entry.data.description, Astro.url.pathname)}>
+<Base title={entry.data.title + " — Team Tasks Manager docs"} previewTitle={entry.data.title} description={entry.data.description} embed={docsCard('en', entry.data.title, entry.data.description, Astro.url.pathname)}>
   <VetrinaFont slot="head" />
   {/* Il <main> dà a chi usa uno screen reader un punto di arrivo per il contenuto, come nelle pagine della vetrina.
       Porta il carattere: il menu in alto e il piè di pagina restano in mono. */}

@@ -7,13 +7,16 @@
 //   d'invito: è la forma della scheda di /invite del bot, barra verde compresa.
 // Regole e limiti: https://docs.discord.com/developers/link-previews/component-embeds
 
+import type { Lingua } from '../i18n/lingue.ts';
+import { t } from '../i18n/t.ts';
+
 // URL assoluti: Discord li vuole tali per immagini e pulsanti, e la scheda si apre fuori dal sito.
 export const abs = (path: string) => new URL(path, import.meta.env.SITE).href;
 
 // Le tre righe della home, le stesse della scheda della pagina d'invito e dell'immagine
 // og/ttm-card.png. La scheda di /invite del bot non le usa più: dal 2026-10-26 ha i testi della
-// pagina dell'App Directory.
-export const PITCH = '## Team Tasks Manager\nCoordinate your team where it already talks.\n- Shared checklists inside the channel\n- Tasks for people or roles\n- Automatic reminders';
+// pagina dell'App Directory. Stanno nei testi della home (`home.pitch`); /invite/ esiste solo in inglese.
+export const PITCH = t('en', 'home.pitch');
 
 // Il banner v5, lo stesso di /invite, del benvenuto e del profilo del bot (Presentazione.BANNER nel
 // bot). Il file non si cancella e non si rinomina: i messaggi del bot già mandati lo puntano. Se il
@@ -36,7 +39,7 @@ const buttons = (links: Link[]) => ({
   components: links.map((l) => ({ type: 2, style: 5, label: l.label, url: l.url })),
 });
 
-export function previewCard(text: string, links: Link[], picture?: Picture) {
+export function previewCard(text: string, links: Link[], picture?: Picture, lingua: Lingua = 'en') {
   return {
     type: 17,
     accent_color: 0xE9A44C,
@@ -44,7 +47,7 @@ export function previewCard(text: string, links: Link[], picture?: Picture) {
       {
         type: 9,
         components: [{ type: 10, content: text }],
-        accessory: { type: 11, media: { url: abs('/og/ttm-logo.png?v=2') }, description: 'Team Tasks Manager logo' },
+        accessory: { type: 11, media: { url: abs('/og/ttm-logo.png?v=2') }, description: t(lingua, 'comune.anteprima.logo') },
       },
       ...(picture ? [{ type: 12, items: [{ media: { url: picture.url }, description: picture.alt }] }] : []),
       buttons(links),
@@ -72,15 +75,21 @@ export function bannerCard(text: string, links: Link[]) {
 export const md = (s: string) => s.replace(/[\\*_~`|[\]]/g, '\\$&');
 
 // Scheda di una pagina della documentazione: titolo cliccabile, descrizione, e i due passi naturali
-// di chi riceve il link — leggere la pagina o aggiungere il bot.
-export function docsCard(title: string, description: string | undefined, path: string, readLabel = 'Read the guide') {
+// di chi riceve il link — leggere la pagina o aggiungere il bot. I testi nella lingua della pagina; il pulsante
+// d'invito porta a /invite/, che esiste solo in inglese.
+export function docsCard(
+  lingua: Lingua, title: string, description: string | undefined, path: string,
+  readLabel = t(lingua, 'comune.anteprima.leggi'),
+) {
   const url = abs(path);
   const body = description ? `\n${md(description)}` : '';
   return previewCard(
-    `## [${md(title)}](${url})${body}\n-# Team Tasks Manager docs`,
+    `## [${md(title)}](${url})${body}\n-# ${t(lingua, 'comune.anteprima.docs')}`,
     [
       { label: readLabel, url },
-      { label: 'Add to Discord', url: abs('/invite/') },
+      { label: t(lingua, 'comune.anteprima.aggiungi'), url: abs('/invite/') },
     ],
+    undefined,
+    lingua,
   );
 }
