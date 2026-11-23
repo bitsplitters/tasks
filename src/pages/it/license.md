@@ -3,8 +3,6 @@ layout: ../../layouts/Legal.astro
 title: "Licenza self-host"
 description: "La licenza che accompagna il pacchetto di Team Tasks Manager che esegui per conto tuo — cosa ti permette di fare, e cosa no."
 updated: "Versione 1.0 — 5 settembre 2026"
-lang: it
-alt: /license/
 ---
 
 Questa è la licenza del **pacchetto che scarichi ed esegui sulla tua macchina**. È pubblicata qui perché tu possa leggerla *prima* di decidere di scaricare qualunque cosa; lo stesso testo è incluso nel pacchetto, in inglese, come `LICENSE.txt`, insieme alla traduzione italiana `LICENSE.it.txt`, che è quella che trovi in questa pagina.

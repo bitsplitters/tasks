@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
 import { fileURLToPath } from 'node:url';
 import rehypeNoteDiRilascio from './src/lib/rehype-note-di-rilascio.mjs';
+import { LINGUE_PUBBLICATE } from './src/i18n/lingue.ts';
 
 // I link che portano FUORI dal sito si aprono in una scheda nuova; quelli interni no.
 //
@@ -68,6 +69,12 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => new URL(page).pathname !== '/invite/',
+      // Le lingue pubblicate (spec 2026-11-19-sito-multilingua-design.md, §9, nel repo team-tasks-manager): ogni URL
+      // porta i suoi alternate hreflang. La chiave è il prefisso del percorso, il valore il codice della lingua.
+      i18n: {
+        defaultLocale: 'en',
+        locales: Object.fromEntries(LINGUE_PUBBLICATE.map((l) => [l.prefisso || 'en', l.codice])),
+      },
     }),
     registrazioneVideo,
   ],

@@ -3,8 +3,6 @@ layout: ../../layouts/Legal.astro
 title: "Termini di servizio"
 description: "I termini che regolano l'uso del bot Discord Team Tasks Manager."
 updated: "Ultimo aggiornamento: 22 ottobre 2026"
-lang: it
-alt: /terms/
 ---
 
 I presenti Termini di servizio («Termini») regolano l'uso che fai del bot Discord **Team Tasks Manager** («TTM», «il bot», «il servizio»), fornito da bitsplitters («noi»). Aggiungendo il bot a un server Discord o usandolo, accetti questi Termini. Se non li accetti, non usare il bot.

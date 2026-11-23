@@ -137,8 +137,33 @@ a.btn[target="_blank"]::after, a.btn-ghost[target="_blank"]::after { content: no
    negative side margin lines the icon up with the content edge, like the text of the links. */
 .site-tools { display: flex; align-items: center; }
 .site-tools .theme-toggle { margin-right: -7px; }
-/* Without JavaScript the switch could not work: it isn't shown, nor is its group (§3.3). */
-:root:not([data-theme]) :is(.theme-toggle, .site-tools) { display: none; }
+/* Without JavaScript the switch could not work: it isn't shown. The language selector stays: its links work without
+   JavaScript (multilingual spec, §6). */
+:root:not([data-theme]) .theme-toggle { display: none; }
+/* The language selector (Selettore.astro): closed it looks like a select, the code of the page's language and a caret;
+   open, a menu of the published languages, each in its own language. The last item of the corner, against the edge. */
+.lang-pick { position: relative; margin-left: .35rem; }
+.lang-pick summary {
+  display: inline-flex; align-items: center; gap: .35rem; height: 32px; padding: 0 .55rem;
+  font-family: var(--mono); font-size: .8rem; font-weight: 600; color: var(--muted); cursor: pointer;
+  border: 1px solid var(--line-2); border-radius: 6px; list-style: none; transition: color .18s ease, border-color .18s ease;
+}
+.lang-pick summary::-webkit-details-marker { display: none; }
+.lang-pick summary:hover, .lang-pick[open] summary { color: var(--text); border-color: var(--muted); }
+.lang-pick summary svg { width: 10px; height: 6px; transition: transform .18s ease; }
+.lang-pick[open] summary svg { transform: rotate(180deg); }
+.lang-menu {
+  position: absolute; right: 0; top: calc(100% + .4rem); z-index: 60; margin: 0; padding: .3rem; list-style: none;
+  min-width: 11rem; background: var(--bg); border: 1px solid var(--line-2); border-radius: 8px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / .25);
+}
+.lang-menu a {
+  display: block; padding: .45rem .7rem; border-radius: 6px; font-family: var(--mono); font-size: .85rem;
+  color: var(--text-body); text-decoration: none; white-space: nowrap;
+}
+.lang-menu a:hover { background: var(--line); color: var(--text); }
+.lang-menu a[aria-current] { color: var(--accent-text); font-weight: 600; }
+.lang-pick summary:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
 /* Up to 400 px, narrower sides and a slightly smaller mark: the corner will also hold the language selector. */
 @media (max-width: 400px) {
   .site-top, .site-nav { padding-left: 1rem; padding-right: 1rem; }
@@ -178,3 +203,5 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-text); o
    della ricerca, scrollIntoView) arrivano 24 px sotto la parte che resta ferma (--head-h), fuori dal menu. */
 html { overflow-x: hidden; scroll-padding-top: calc(var(--head-h) + 24px); }
 .foot-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+.foot-langs { display: flex; flex-wrap: wrap; gap: 1rem; flex-basis: 100%; }
+.foot-langs a[aria-current] { color: var(--text); }

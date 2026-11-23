@@ -3,8 +3,6 @@ layout: ../../layouts/Legal.astro
 title: "Informativa sulla privacy"
 description: "Quali dati raccoglie il bot Discord Team Tasks Manager, perché e come vengono trattati."
 updated: "Ultimo aggiornamento: 23 novembre 2026"
-lang: it
-alt: /privacy/
 ---
 
 Questa Informativa sulla privacy spiega quali dati raccoglie il bot **Team Tasks Manager** («TTM») e come li trattiamo. Si applica all'uso del bot su Discord, Activity compresa (vedi [L'Activity](#lactivity)), al nostro server community su Discord (vedi [Il nostro server community](#il-nostro-server-community)) e ai nostri siti web (vedi [I nostri siti web](#i-nostri-siti-web)). Per i tuoi diritti ai sensi della normativa UE sulla protezione dei dati, consulta anche la nostra [pagina GDPR](/it/gdpr/).

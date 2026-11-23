@@ -1,0 +1,60 @@
+---
+/*
+ * Il selettore della lingua (spec 2026-11-19-sito-multilingua-design.md, §6, nel repo team-tasks-manager): l'ultimo
+ * elemento della riga del marchio, a destra dello switch del tema. Chiuso è la sigla della lingua della pagina e una
+ * freccina, «EN ▾»: una scritta, non un globo. Aperto è un menu coi nomi delle lingue pubblicate, ognuno nella sua
+ * lingua. È un <details> con dei link veri, non un <select>: si apre e porta all'altra lingua anche senza JavaScript, e
+ * i motori di ricerca seguono i link. Con una lingua sola non c'è.
+ *
+ * Lo script salva la scelta prima di andare e porta con sé l'ancora in cui si trova chi legge; lega anche i link delle
+ * lingue del piè di pagina (Base.astro), che hanno lo stesso `data-lingua`.
+ */
+import { LINGUE_PUBBLICATE, datiDi } from '../i18n/lingue.ts';
+import type { Lingua } from '../i18n/lingue.ts';
+import { equivalente } from '../i18n/percorsi.ts';
+import { t } from '../i18n/t.ts';
+
+interface Props { lingua: Lingua; }
+const { lingua } = Astro.props;
+const qui = datiDi(lingua);
+---
+{LINGUE_PUBBLICATE.length > 1 && (
+  <details class="lang-pick">
+    <summary aria-label={t(lingua, 'comune.selettore.label', { nome: qui.nome })}>
+      <span>{qui.sigla}</span>
+      <svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </summary>
+    <ul class="lang-menu" role="list">
+      {LINGUE_PUBBLICATE.map((l) => (
+        <li>
+          <a
+            href={equivalente(Astro.url.pathname, l.codice)} lang={l.codice} hreflang={l.codice} data-lingua={l.codice}
+            aria-current={l.codice === lingua ? 'true' : undefined}
+          >{l.nome}</a>
+        </li>
+      ))}
+    </ul>
+  </details>
+)}
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('a[data-lingua]').forEach((a) => {
+    a.addEventListener('click', () => {
+      try { localStorage.setItem('lingua', a.dataset.lingua ?? 'en'); } catch { /* la scelta vale per questo clic */ }
+      if (location.hash) a.href = a.href.split('#')[0] + location.hash;
+    });
+  });
+  // Il menu si chiude con Esc e con un clic fuori, come un select.
+  const menu = document.querySelector<HTMLDetailsElement>('details.lang-pick');
+  if (menu) {
+    document.addEventListener('click', (e) => {
+      if (menu.open && e.target instanceof Node && !menu.contains(e.target)) menu.open = false;
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector('summary')?.focus();
+      }
+    });
+  }
+</script>

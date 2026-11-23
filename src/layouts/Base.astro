@@ -3,26 +3,39 @@ import '../styles/global.css';
 import PreviewMeta from '../components/PreviewMeta.astro';
 import Analytics from '../components/Analytics.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import Selettore from '../components/Selettore.astro';
+import { LINGUE_PUBBLICATE, TRADOTTE } from '../i18n/lingue.ts';
+import { equivalente, linguaDi, percorso } from '../i18n/percorsi.ts';
+import { SCRIPT_RINVIO } from '../i18n/script-rinvio.ts';
+import { traduttore } from '../i18n/t.ts';
 // `previewTitle`: il titolo della scheda di anteprima, quando quello della pagina porta gia' il nome
 // del sito, che la scheda mostra a parte (og:site_name). `card` ed `embed`: vedi PreviewMeta.
-export interface Props { title: string; description?: string; lang?: 'en' | 'it'; card?: 'large' | 'small'; previewTitle?: string; embed?: Record<string, unknown>; }
-const { title, description, lang = 'en', card, previewTitle, embed } = Astro.props;
-// Solo le pagine legali esistono anche in italiano (Codice del consumo, art. 9): il footer di una
-// pagina italiana punta alle copie italiane, quello delle altre alle inglesi.
-const it = lang === 'it';
-const legali = it
-  ? [['/it/terms/', 'Termini'], ['/it/privacy/', 'Privacy'], ['/it/gdpr/', 'GDPR'], ['/it/license/', 'Licenza']]
-  : [['/terms/', 'Terms'], ['/privacy/', 'Privacy'], ['/gdpr/', 'GDPR'], ['/license/', 'Licence']];
+export interface Props { title: string; description?: string; card?: 'large' | 'small'; previewTitle?: string; embed?: Record<string, unknown>; }
+const { title, description, card, previewTitle, embed } = Astro.props;
+// La lingua della pagina viene dal suo indirizzo (spec 2026-11-19-sito-multilingua-design.md, §2, nel repo
+// team-tasks-manager): `/it/…` è italiano, senza prefisso inglese. Da lei la navigazione, il piè di pagina e i link.
+const lingua = linguaDi(Astro.url.pathname);
+const tt = traduttore(lingua, 'comune');
+const legali = [
+  ['/terms/', tt('piede.terms')], ['/privacy/', tt('piede.privacy')], ['/gdpr/', tt('piede.gdpr')],
+  ['/license/', tt('piede.license')],
+].map(([inglese, testo]) => [percorso(lingua, inglese), testo]);
 // L'indirizzo canonico, lo stesso di og:url (PreviewMeta): senza query string, quindi un link con un
 // parametro (per esempio quello che dice da quale canale arriva chi legge) non diventa per Google una
 // seconda copia della pagina. /invite non passa da qui: ha il suo canonical, sull'URL OAuth2.
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// La stessa pagina nelle altre lingue pubblicate, per hreflang (§9): reciproci, più x-default sull'inglese.
+const multilingua = LINGUE_PUBBLICATE.length > 1;
+const alternate = (codice: Parameters<typeof equivalente>[1]) => new URL(equivalente(Astro.url.pathname, codice), Astro.site).href;
 ---
 <!doctype html>
-<html lang={lang}>
+<html lang={lingua}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {/* Il rinvio alla lingua di chi visita (§5), prima del tema e per lo stesso motivo: un modulo arriverebbe dopo il
+      primo disegno. Con l'inglese solo non serve. */}
+  {TRADOTTE.length > 0 && <script is:inline set:html={SCRIPT_RINVIO} />}
   {/* Il tema, prima del primo disegno (spec 2026-11-19-tema-chiaro-sito-design.md, §3.2, nel repo
       team-tasks-manager): lo scuro, tranne per chi ha scelto il chiaro con lo switch. Inline e in testa, perche'
       un modulo arriverebbe dopo il disegno col lampo del tema sbagliato. Il tema del dispositivo non conta. Senza
@@ -33,7 +46,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   </script>
   <title>{title}</title>
   <link rel="canonical" href={canonical} />
-  <PreviewMeta title={previewTitle ?? title} description={description} card={card} embed={embed} />
+  {multilingua && LINGUE_PUBBLICATE.map((l) => <link rel="alternate" hreflang={l.codice} href={alternate(l.codice)} />)}
+  {multilingua && <link rel="alternate" hreflang="x-default" href={alternate('en')} />}
+  <PreviewMeta title={previewTitle ?? title} description={description} card={card} embed={embed} lingua={lingua} />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -45,24 +60,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         «bitsplitters / tasks». L'immagine è decorativa, il nome è il testo del link; bitsplitters resta nel pie' di
         pagina. */}
     <div class="mark">
-      <a class="brand" href="/"><img src="/icons/ttm-mascotte.svg" alt="" width="28" height="28" />Team Tasks Manager</a>
+      <a class="brand" href={percorso(lingua, '/')}><img src="/icons/ttm-mascotte.svg" alt="" width="28" height="28" />Team Tasks Manager</a>
     </div>
     {/* L'angolo in alto a destra (utente, 2026-11-19): lo switch del tema e, col multilingua, alla sua destra il
         selettore della lingua (spec 2026-11-19-sito-multilingua-design.md, §6, nel repo team-tasks-manager). Sulla
         riga del marchio nient'altro, a ogni larghezza: lo switch non sta più nel menu della documentazione né nel
         pie' di pagina. */}
-    <div class="site-tools"><ThemeToggle lang={lang} /></div>
+    <div class="site-tools"><ThemeToggle lingua={lingua} /><Selettore lingua={lingua} /></div>
   </header>
   {/* La navigazione sta nella seconda riga, in parole, uguale sul telefono e sul desktop (utente, 2026-11-19). Niente
       «Help»: puntava alla risoluzione dei problemi, mentre chi cerca aiuto può voler scrivere allo staff, e il gruppo
       «Help & community» della documentazione ha l'una e l'altra cosa. Sul desktop la riga resta ferma sotto la prima;
       sul telefono scorre via, e resta ferma solo la prima (global.css). */}
-  <nav class="site-nav" aria-label="Site">
-    <a href="/docs/">Docs</a>
-    <a href="/use-cases/">Use cases</a>
-    <a href="/premium/">Premium</a>
-    <a href="/beta/">Beta</a>
-    <a href="/docs/release-notes/">Release notes</a>
+  <nav class="site-nav" aria-label={tt('nav.label')}>
+    <a href={percorso(lingua, '/docs/')}>{tt('nav.docs')}</a>
+    <a href={percorso(lingua, '/use-cases/')}>{tt('nav.casi')}</a>
+    <a href={percorso(lingua, '/premium/')}>{tt('nav.premium')}</a>
+    <a href={percorso(lingua, '/beta/')}>{tt('nav.beta')}</a>
+    <a href={percorso(lingua, '/docs/release-notes/')}>{tt('nav.note')}</a>
   </nav>
   <slot />
   <footer class="site-foot">
@@ -71,13 +86,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
           e' una copia locale (lo consente la loro guida), cosi' la pagina non chiama fazier.com. */}
       <div class="foot-left">
         <span>&copy; 2026 <a href="https://bitsplitters.app">bitsplitters</a> &middot; Team Tasks Manager</span>
-        <a class="foot-badge" href="https://fazier.com/launches/tasks.bitsplitters.app"><img src="/badges/fazier.svg" alt="Fazier badge" width="120" height="51" /></a>
+        <a class="foot-badge" href="https://fazier.com/launches/tasks.bitsplitters.app"><img src="/badges/fazier.svg" alt={tt('piede.fazier')} width="120" height="51" /></a>
       </div>
       <nav class="foot-links">
         {legali.map(([href, testo]) => <a href={href}>{testo}</a>)}
-        {it ? <a href="/terms/" lang="en">English</a> : <a href="/it/terms/" lang="it">Italiano</a>}
         <a href="mailto:info@bitsplitters.app">info@bitsplitters.app</a>
       </nav>
+      {/* Le lingue pubblicate (§6): la stessa pagina in ognuna, coi link che anche i motori di ricerca seguono. Lo
+          script di Selettore.astro salva la scelta al clic. */}
+      {multilingua && (
+        <nav class="foot-langs" aria-label={tt('piede.lingue')}>
+          {LINGUE_PUBBLICATE.map((l) => (
+            <a href={equivalente(Astro.url.pathname, l.codice)} lang={l.codice} hreflang={l.codice} data-lingua={l.codice}
+              aria-current={l.codice === lingua ? 'true' : undefined}>{l.nome}</a>
+          ))}
+        </nav>
+      )}
     </div>
   </footer>
   <Analytics />

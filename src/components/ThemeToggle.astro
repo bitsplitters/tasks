@@ -3,11 +3,11 @@
 // del tema in cui si passa: il sole nello scuro, la luna nel chiaro. La sceglie il CSS da data-theme (global.css),
 // quindi è giusta dal primo disegno. Il nome dice l'azione; le due etichette stanno in data-* e lo script le alterna.
 // Lo stile sta in global.css, coi posti in cui il pulsante compare.
-export interface Props { lang?: 'en' | 'it'; }
-const { lang = 'en' } = Astro.props;
-const [chiaro, scuro] = lang === 'it'
-  ? ['Passa al tema chiaro', 'Passa al tema scuro']
-  : ['Switch to light theme', 'Switch to dark theme'];
+import type { Lingua } from '../i18n/lingue.ts';
+import { t } from '../i18n/t.ts';
+export interface Props { lingua: Lingua; }
+const { lingua } = Astro.props;
+const [chiaro, scuro] = [t(lingua, 'comune.tema.chiaro'), t(lingua, 'comune.tema.scuro')];
 ---
 <button type="button" class="theme-toggle" aria-label={chiaro} title={chiaro}
   data-label-light={chiaro} data-label-dark={scuro}>

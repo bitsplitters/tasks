@@ -18,7 +18,12 @@
 // componenti V2 (https://docs.discord.com/developers/link-previews/component-embeds). I tag Open
 // Graph restano comunque: sono la scheda che Discord mostra se scarta il JSON, e quella degli
 // altri servizi.
+import { LINGUE_PUBBLICATE, datiDi } from '../i18n/lingue.ts';
+import type { Lingua } from '../i18n/lingue.ts';
+import { t } from '../i18n/t.ts';
+
 export interface Props {
+  lingua: Lingua;
   title: string;
   description?: string;
   card?: 'large' | 'small';
@@ -28,14 +33,15 @@ export interface Props {
   embed?: Record<string, unknown>;
 }
 
-const DEFAULT_DESCRIPTION = 'Team Tasks Manager brings task coordination inside Discord: shared checklists, reminders and roles, without leaving your server.';
-
-const { title, description = DEFAULT_DESCRIPTION, card = 'small', image: largeImage, embed } = Astro.props;
+const { lingua, title, description = t(lingua, 'comune.anteprima.descrizione'), card = 'small', image: largeImage, embed } = Astro.props;
+// og:locale e le altre lingue in cui c'è la pagina (spec 2026-11-19-sito-multilingua-design.md, §9).
+const locale = datiDi(lingua).og;
+const altriLocale = LINGUE_PUBBLICATE.filter((l) => l.codice !== lingua).map((l) => l.og);
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const image = card === 'large'
-  ? largeImage ?? { path: '/og/ttm-card.png?v=2', width: 1200, height: 630, alt: 'Team Tasks Manager: coordinate your team where it already talks.' }
-  : { path: '/og/ttm-logo.png?v=2', width: 512, height: 512, alt: 'Team Tasks Manager logo' };
+  ? largeImage ?? { path: '/og/ttm-card.png?v=2', width: 1200, height: 630, alt: t(lingua, 'comune.anteprima.card') }
+  : { path: '/og/ttm-logo.png?v=2', width: 512, height: 512, alt: t(lingua, 'comune.anteprima.logo') };
 
 // Discord ignora un payload oltre i 3.000 byte, contando gli escape per intero, e non lo segnala:
 // la scheda semplicemente non compare. Meglio fermare la build che pubblicarla.
@@ -58,6 +64,8 @@ const themeColor = typeof accent === 'number' ? '#' + accent.toString(16).toUppe
 <meta name="description" content={description} />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Team Tasks Manager" />
+<meta property="og:locale" content={locale} />
+{altriLocale.map((l) => <meta property="og:locale:alternate" content={l} />)}
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={url} />
