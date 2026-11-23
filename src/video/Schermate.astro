@@ -30,7 +30,8 @@ const prefisso = datiDi(lingua).prefisso;
 const file = path.join(process.cwd(), 'src', 'content',
   ...(prefisso ? ['traduzioni', prefisso] : ['docs']), 'getting-started.md');
 const md = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
-const esempio = /\*([^*\n]+)\*:\s*\n+```\n([\s\S]*?)```/.exec(md);
+// Prima dei due punti uno spazio facoltativo: il francese ci mette lo spazio insecabile («*Tournoi du samedi* :»).
+const esempio = /\*([^*\n]+)\*[  ]?:\s*\n+```\n([\s\S]*?)```/.exec(md);
 if (!esempio) throw new Error(`${file}: manca la lista d'esempio, «*titolo*:» seguito dal blocco di codice`);
 
 let main = 0;

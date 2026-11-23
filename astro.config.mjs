@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import rehypeNoteDiRilascio from './src/lib/rehype-note-di-rilascio.mjs';
 import rehypeLinkEsterni from './src/lib/rehype-link-esterni.mjs';
@@ -86,6 +88,22 @@ const controlloTraduzioni = {
   },
 };
 
+// Gli alternate hreflang della sitemap (spec 2026-11-19-sito-multilingua-design.md, §9, nel repo team-tasks-manager):
+// ogni URL porta le sue versioni nelle lingue pubblicate che l'hanno nel dist, e un URL che esiste in una lingua sola
+// non ne porta, come faceva l'opzione `i18n` dell'integrazione. Non quell'opzione: @astrojs/sitemap 3.7 vuole i valori
+// dei locale di sole lettere e trattini, rifiuta `es-419` con un WARN e non scrive la sitemap (2026-11-24).
+const DIST = fileURLToPath(new URL('./dist/', import.meta.url));
+function alternateDellaSitemap(item) {
+  const { pathname } = new URL(item.url);
+  const da = LINGUE_PUBBLICATE.find((l) => l.prefisso && l.prefisso === pathname.split('/')[1]);
+  const base = da ? pathname.slice(da.prefisso.length + 1) : pathname;
+  const links = LINGUE_PUBBLICATE
+    .map((l) => ({ lang: l.codice, percorso: (l.prefisso ? `/${l.prefisso}` : '') + base }))
+    .filter((l) => existsSync(join(DIST, l.percorso, 'index.html')))
+    .map((l) => ({ lang: l.lang, url: new URL(l.percorso, item.url).href }));
+  return links.length > 1 ? { ...item, links } : item;
+}
+
 export default defineConfig({
   site: 'https://tasks.bitsplitters.app',
 
@@ -108,12 +126,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => new URL(page).pathname !== '/invite/',
-      // Le lingue pubblicate (spec 2026-11-19-sito-multilingua-design.md, §9, nel repo team-tasks-manager): ogni URL
-      // porta i suoi alternate hreflang. La chiave è il prefisso del percorso, il valore il codice della lingua.
-      i18n: {
-        defaultLocale: 'en',
-        locales: Object.fromEntries(LINGUE_PUBBLICATE.map((l) => [l.prefisso || 'en', l.codice])),
-      },
+      serialize: alternateDellaSitemap,
     }),
     registrazioneVideo,
     controlloTraduzioni,
