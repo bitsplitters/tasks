@@ -162,7 +162,7 @@ A webhook linked to a task is stored in the task itself, as a reserved token in 
 
 You can move it, copy it onto another task or delete it by hand, exactly like a mention. The token never shows up in the rendered list. A task with the token also needs some text.
 
-`wb` is the only reserved key. Any other `{{key=value}}` in a task's text is a **free variable**: the webhook can use it as `{{key}}`. See [Tokens](/docs/webhooks/#tokens).
+`wb` is the only reserved key. Any other `{{key=value}}` in a task's text is a **free variable**: the webhook can use it as `{{key}}`. See [Tokens](/docs/config-webhook/#tokens).
 
 ## The codes behind the names
 

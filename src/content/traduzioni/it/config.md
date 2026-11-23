@@ -1,7 +1,7 @@
 ---
 title: /config
 description: "Il comando per chi gestisce TTM su un server: tre pannelli (impostazioni, liste e webhook) e chi può aprirli."
-fonte: e94642721dad
+fonte: 2d6f9fe746d2
 ---
 
 `/config` è il comando per chi si occupa di TTM sul tuo server. Ha tre sottocomandi, ognuno con il suo compito:
@@ -10,7 +10,7 @@ fonte: e94642721dad
 | :--- | :--- |
 | [`/config app`](/docs/configuration/) | Come si comporta il bot qui: notifiche, cronologia, i suggerimenti per i nuovi arrivati, promemoria, fuso orario e permessi. |
 | [`/config lists`](/docs/config-lists/) | Tutte le liste del server: rigenera una lista eliminata, sigilla o elimina quelle che hai finito. |
-| [`/config webhook`](/docs/webhooks/) <a class="premium-tag" href="/docs/premium/" title="Sbloccato per ogni server durante la beta">Premium</a> | Crea, visualizza, modifica o elimina i webhook che i tuoi task chiamano quando vengono completati o riaperti. |
+| [`/config webhook`](/docs/config-webhook/) <a class="premium-tag" href="/docs/premium/" title="Sbloccato per ogni server durante la beta">Premium</a> | Crea, visualizza, modifica o elimina i webhook che i tuoi task chiamano quando vengono completati o riaperti. |
 
 I task in sé non si gestiscono mai da qui: tutto ciò che riguarda una singola lista sta nei suoi pulsanti, nel canale e nell'Activity. Vedi [La lista nel canale](/docs/the-task-list/) e [Lavorare su una lista nell'Activity](/docs/activity-list/).
 

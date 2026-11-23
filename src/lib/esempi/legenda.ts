@@ -33,7 +33,7 @@ const VOCI: ReadonlyArray<[string, string]> = [
   ['reminder', `${W}#reminders-in-the-text`],
   ['recurring', `${W}#reminders-in-the-text`],
   ['webhook', `${W}#webhooks-in-the-text`],
-  ['variable', '/docs/webhooks/#tokens'],
+  ['variable', '/docs/config-webhook/#tokens'],
 ];
 
 /** Le forme che il testo usa, cercate nel testo con gli id. */

@@ -113,6 +113,6 @@ By default, Discord's integration permissions only hide *commands* — the gener
 
 Define the rules in *Server Settings → Integrations → Team Tasks Manager*, then sync. Channel restrictions are honoured as well: if a channel is off-limits for a user, the lists living there are read-only for them. The **Activity** button under the list follows the same rules: see [When the list doesn't open](/docs/activity/#when-the-list-doesnt-open).
 
-<div class="callout"><div class="callout-t">Webhooks live in their own command</div>Webhooks are not configured from this panel: use <code>/config webhook</code>. See the full <a href="/docs/webhooks/">Webhooks</a> guide.</div>
+<div class="callout"><div class="callout-t">Webhooks live in their own command</div>Webhooks are not configured from this panel: use <a href="/docs/config-webhook/"><code>/config webhook</code></a>. What they do: see <a href="/docs/webhooks/">Webhooks</a>.</div>
 
 <div class="callout"><div class="callout-t">Looking for your lists?</div>This panel holds <em>settings</em> — how the bot behaves. To see the lists this server has, and to delete, seal or regenerate one, use <code>/config lists</code>: see <a href="/docs/config-lists/">/config lists</a>.</div>

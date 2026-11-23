@@ -1,7 +1,7 @@
 ---
 title: Scrivere una lista
 description: Il testo di una lista — task e subtask, proprietari, menzioni, link, promemoria e webhook — ovunque lo scrivi.
-fonte: 7e0c02380050
+fonte: 431106a04b11
 ---
 
 Una lista è testo: puoi scriverla tutta a mano. Il formato è lo stesso ovunque lo incontri:
@@ -161,7 +161,7 @@ Un webhook collegato a un task è memorizzato nel task stesso, come un token ris
 
 Puoi spostarlo, copiarlo su un altro task o eliminarlo a mano, esattamente come una menzione. Il token non compare mai nella lista renderizzata. Un task con il token ha bisogno anche di un testo.
 
-`wb` è l'unica chiave riservata. Ogni altro `{{chiave=valore}}` nel testo di un task è una **variabile libera**: il webhook può usarla come `{{chiave}}`. Vedi [Token](/docs/webhooks/#tokens).
+`wb` è l'unica chiave riservata. Ogni altro `{{chiave=valore}}` nel testo di un task è una **variabile libera**: il webhook può usarla come `{{chiave}}`. Vedi [Token](/docs/config-webhook/#tokens).
 
 ## I codici dietro i nomi
 

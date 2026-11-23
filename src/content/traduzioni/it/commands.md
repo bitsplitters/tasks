@@ -1,7 +1,7 @@
 ---
 title: Riferimento dei comandi
 description: Tutti gli slash command in un posto solo, con la pagina che li spiega. Gran parte di TTM vive nei pulsanti, non nei comandi.
-fonte: 2bff5ecf0dd3
+fonte: 5cddb04335e0
 ---
 
 TTM tiene i comandi al minimo: una volta creata una lista, fai tutto con pulsanti e menu. Per eseguire un comando, scrivi `/` nella casella dei messaggi e sceglilo. Puoi anche aprire l'**Avvio app** nella barra dei messaggi e scegliere **Team Tasks Manager** sotto *App su questo server*.
@@ -14,7 +14,7 @@ Se il tuo Discord è in un'altra lingua, alcuni nomi sono tradotti: vedi [Nomi d
 | `/config` | I tre comandi per chi si occupa di TTM nel server | [/config](/docs/config/) |
 | `/config app` | Le impostazioni del server: notifiche, cronologia, suggerimenti, promemoria, fuso orario, permessi | [/config app](/docs/configuration/) |
 | `/config lists` | Tutte le liste del server: rigenerarne, sigillarne o eliminarne più d'una insieme | [/config lists](/docs/config-lists/) |
-| `/config webhook` | Crea, visualizza, modifica o elimina un webhook | [/config webhook](/docs/webhooks/#creating-a-webhook) |
+| `/config webhook` | Crea, visualizza, modifica o elimina un webhook | [/config webhook](/docs/config-webhook/) |
 | `/my timezone` | Il tuo fuso orario, uguale in ogni server | [/my timezone](/docs/my-timezone/) |
 | `/beta` | Che cosa significa la beta per il tuo server | [Come funziona la beta](/docs/beta/) |
 | `/help` | Il tuo punto di partenza dentro Discord | [Qui sotto](#help) |

@@ -1,7 +1,7 @@
 ---
 title: Modificare un task nel canale
 description: La seconda riga di pulsanti sotto la lista — Contenuto, Proprietario, Tag, Promemoria e Webhook — con le loro finestre e i loro menu.
-fonte: 2dd4a4d619c9
+fonte: c8dcfe13b95f
 ---
 
 La seconda riga sotto la lista agisce su **un task alla volta**: il suo testo, il suo proprietario, i suoi tag, il suo promemoria e il suo webhook. Questa pagina mostra dove cliccare. Cosa fa ogni funzione e le sue regole: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/).
@@ -145,7 +145,7 @@ I webhook sono una funzione **Premium**, sbloccata per ogni server durante la be
 
 Clicca **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" /> finché diventa **blu**, scegli il webhook dal menu che compare, poi scegli il task. Da quel momento, completare o riaprire quel task fa partire la chiamata. Clicca **Webhook** finché diventa **rosso** e scegli il task per togliere il collegamento.
 
-I webhook si creano con `/config webhook`, da chi gestisce il server: vedi [Webhook](/docs/webhooks/). La finestra **Contenuto** non mostra il webhook di un task e toglie quello che scrivi lì, avvisandoti. In **Aggiornamento in blocco** compare come un token: vedi [Webhook nel testo](/docs/writing-a-list/#webhooks-in-the-text).
+I webhook si creano con [/config webhook](/docs/config-webhook/), da chi gestisce il server. La finestra **Contenuto** non mostra il webhook di un task e toglie quello che scrivi lì, avvisandoti. In **Aggiornamento in blocco** compare come un token: vedi [Webhook nel testo](/docs/writing-a-list/#webhooks-in-the-text).
 
 ## Dove andare dopo
 

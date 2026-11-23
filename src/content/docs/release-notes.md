@@ -32,7 +32,7 @@ Released 2026-11-23
 
 Released 2026-11-21
 
-- **Webhooks with quotes in the text** — a task, a variable or a name with quotes, a backslash or a line break no longer breaks the body of the call: TTM escapes the value, so the service gets valid JSON. See [Tokens](/docs/webhooks/#tokens).
+- **Webhooks with quotes in the text** — a task, a variable or a name with quotes, a backslash or a line break no longer breaks the body of the call: TTM escapes the value, so the service gets valid JSON. See [Tokens](/docs/config-webhook/#tokens).
 - **Every `@time` format sets the reminder** — dates in Discord's `s` and `S` styles, the short date with the time, now count as the date of the reminder. `S` is the first format in the `@time` menu: until now TTM didn't see it, so the reminder was counted from when you saved, and the date stayed in the text. See [Reminders in the text](/docs/writing-a-list/#reminders-in-the-text).
 
 ## 2.4.0 — The second row shows you the way
@@ -151,7 +151,7 @@ Released 2026-10-26
 Released 2026-10-24
 
 - **Spanish, Portuguese, French and German, reviewed in full** — one word for each feature, one tone throughout, and permission names as Discord shows them. Latin American Spanish now says *tú*, not *vos*.
-- **`/config webhook` options with accents** in the languages that use them, such as *acción*, *événement* or *löschen*: see [/config webhook](/docs/webhooks/).
+- **`/config webhook` options with accents** in the languages that use them, such as *acción*, *événement* or *löschen*: see [/config webhook](/docs/config-webhook/).
 
 ## 1.0.0 — First public release
 
@@ -188,7 +188,7 @@ The first release of Team Tasks Manager by **bitsplitters**. What it brings:
 
 - **The Free plan and Premium** — after the beta, the Free plan has limits and Premium lifts them: see [What Premium unlocks](/docs/premium/). What you build during the beta: see [How the beta works](/docs/beta/).
 - **Configuration** — `/config app` sets notifications, the activity timeline, reminders, time zone and permissions for the server: see [/config app](/docs/configuration/).
-- **Webhooks** (Premium) send an HTTP request you define when a task is completed or reopened. They take `{{ }}` tokens, and only public `https` addresses: see [/config webhook](/docs/webhooks/).
+- **Webhooks** (Premium) send an HTTP request you define when a task is completed or reopened. They take `{{ }}` tokens, and only public `https` addresses: see [/config webhook](/docs/config-webhook/).
 - **Told where it matters** — when TTM can't post in a list's channel, it tells the person who acted, privately. A failed webhook gets a warning too: see [The bot says a permission is missing](/docs/troubleshooting/#the-bot-says-a-permission-is-missing) and [When a webhook fails](/docs/webhooks/#when-a-webhook-fails).
 - **Localized interface** — the bot's texts and some command names appear in your language: see [Command names in your language](/docs/commands/#command-names-in-your-language). This site works with your browser's translation.
 

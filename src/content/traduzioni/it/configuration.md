@@ -1,7 +1,7 @@
 ---
 title: /config app
 description: Personalizza notifiche, cronologia, promemoria, fuso orario e permessi con /config app.
-fonte: 3e08a0fdd919
+fonte: d8aebbb92058
 ---
 
 Esegui il comando:
@@ -112,6 +112,6 @@ Di default, i permessi di integrazione di Discord nascondono solo i *comandi* �
 
 Definisci le regole in *Impostazioni del server → Integrazioni → Team Tasks Manager*, poi sincronizza. Vengono rispettate anche le restrizioni dei canali: se un canale è vietato a un utente, le liste che ci vivono sono in sola lettura per lui. Il pulsante **Activity** sotto la lista segue le stesse regole: vedi [Quando la lista non si apre](/docs/activity/#when-the-list-doesnt-open).
 
-<div class="callout"><div class="callout-t">I webhook hanno un comando tutto loro</div>I webhook non si configurano da questo pannello: usa <code>/config webhook</code>. Vedi la guida completa ai <a href="/docs/webhooks/">Webhook</a>.</div>
+<div class="callout"><div class="callout-t">I webhook hanno un comando tutto loro</div>I webhook non si configurano da questo pannello: usa <a href="/docs/config-webhook/"><code>/config webhook</code></a>. Che cosa fanno: vedi <a href="/docs/webhooks/">Webhook</a>.</div>
 
 <div class="callout"><div class="callout-t">Cerchi le tue liste?</div>Questo pannello contiene le <em>impostazioni</em> — come si comporta il bot. Per vedere le liste che ha questo server e per eliminarne, sigillarne o rigenerarne una, usa <code>/config lists</code>: vedi <a href="/docs/config-lists/">/config lists</a>.</div>

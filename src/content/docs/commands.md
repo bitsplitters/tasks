@@ -15,7 +15,7 @@ If your Discord is in another language, some names are translated: see [Command 
 | `/config` | The three commands for whoever looks after TTM on the server | [/config](/docs/config/) |
 | `/config app` | The server's settings: notifications, history, tips, reminders, time zone, permissions | [/config app](/docs/configuration/) |
 | `/config lists` | Every list of the server: regenerate, seal or delete several at once | [/config lists](/docs/config-lists/) |
-| `/config webhook` | Create, view, modify or delete a webhook | [/config webhook](/docs/webhooks/#creating-a-webhook) |
+| `/config webhook` | Create, view, modify or delete a webhook | [/config webhook](/docs/config-webhook/) |
 | `/my timezone` | Your time zone, the same in every server | [/my timezone](/docs/my-timezone/) |
 | `/beta` | What the beta means for your server | [How the beta works](/docs/beta/) |
 | `/help` | Your starting point inside Discord | [Below](#help) |

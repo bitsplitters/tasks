@@ -147,7 +147,7 @@ Webhooks are a **Premium** feature, unlocked for every server during the beta: s
 
 Click **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" /> until it turns **blue**, pick the webhook from the selector that appears, then pick the task. From then on, completing or reopening that task fires the call. Click **Webhook** until it turns **red** and pick the task to remove the link.
 
-The webhooks themselves are created with `/config webhook`, by whoever manages the server: see [Webhooks](/docs/webhooks/). The **Content** form doesn't show the webhook of a task, and removes one you type there, telling you. In **Bulk update** it shows as a token: see [Webhooks in the text](/docs/writing-a-list/#webhooks-in-the-text).
+The webhooks themselves are created with [/config webhook](/docs/config-webhook/), by whoever manages the server. The **Content** form doesn't show the webhook of a task, and removes one you type there, telling you. In **Bulk update** it shows as a token: see [Webhooks in the text](/docs/writing-a-list/#webhooks-in-the-text).
 
 ## Where to go next
 

@@ -1,7 +1,7 @@
 ---
 title: Note di rilascio
 description: Le novità di Team Tasks Manager, dalla più recente.
-fonte: 2f8e575d43e7
+fonte: 77cbf888899e
 ---
 
 Ogni cambiamento che vedi in Discord è elencato qui, dal più recente. Ogni voce rimanda alla pagina che lo spiega.
@@ -29,7 +29,7 @@ Released 2026-11-23
 
 Released 2026-11-21
 
-- **Webhook con virgolette nel testo** — un task, una variabile o un nome con virgolette, una barra rovesciata o un'andata a capo non rompe più il corpo della chiamata: TTM fa l'escape del valore, così il servizio riceve un JSON valido. Vedi [Token](/docs/webhooks/#tokens).
+- **Webhook con virgolette nel testo** — un task, una variabile o un nome con virgolette, una barra rovesciata o un'andata a capo non rompe più il corpo della chiamata: TTM fa l'escape del valore, così il servizio riceve un JSON valido. Vedi [Token](/docs/config-webhook/#tokens).
 - **Ogni formato di `@time` imposta il promemoria** — le date negli stili `s` e `S` di Discord, la data breve con l'ora, ora contano come data del promemoria. `S` è il primo formato del menu di `@time`: finora TTM non lo vedeva, quindi il promemoria si contava da quando salvavi e la data restava nel testo. Vedi [Promemoria nel testo](/docs/writing-a-list/#reminders-in-the-text).
 
 ## 2.4.0 — La seconda riga ti mostra la strada
@@ -148,7 +148,7 @@ Released 2026-10-26
 Released 2026-10-24
 
 - **Spagnolo, portoghese, francese e tedesco, rivisti per intero** — una parola per ogni funzione, un solo tono dall'inizio alla fine e i nomi dei permessi come li mostra Discord. Lo spagnolo latinoamericano ora dice *tú*, non *vos*.
-- **Opzioni di `/config webhook` con gli accenti** nelle lingue che li usano, come *acción*, *événement* o *löschen*: vedi [/config webhook](/docs/webhooks/).
+- **Opzioni di `/config webhook` con gli accenti** nelle lingue che li usano, come *acción*, *événement* o *löschen*: vedi [/config webhook](/docs/config-webhook/).
 
 ## 1.0.0 — Primo rilascio pubblico
 
@@ -185,7 +185,7 @@ Il primo rilascio di Team Tasks Manager di **bitsplitters**. Cosa porta:
 
 - **Il piano Free e Premium** — dopo la beta il piano Free ha dei limiti e Premium li toglie: vedi [Cosa sblocca Premium](/docs/premium/). Cosa costruisci durante la beta: vedi [Come funziona la beta](/docs/beta/).
 - **Configurazione** — `/config app` imposta per il server notifiche, cronologia delle attività, promemoria, fuso orario e permessi: vedi [/config app](/docs/configuration/).
-- **I webhook** (Premium) inviano una richiesta HTTP che definisci quando un task viene completato o riaperto. Accettano i token `{{ }}` e solo indirizzi `https` pubblici: vedi [/config webhook](/docs/webhooks/).
+- **I webhook** (Premium) inviano una richiesta HTTP che definisci quando un task viene completato o riaperto. Accettano i token `{{ }}` e solo indirizzi `https` pubblici: vedi [/config webhook](/docs/config-webhook/).
 - **Avvisato dove serve** — quando TTM non può scrivere nel canale di una lista, lo dice in privato a chi ha agito. Anche un webhook fallito riceve un avviso: vedi [Il bot dice che manca un permesso](/docs/troubleshooting/#the-bot-says-a-permission-is-missing) e [Quando un webhook fallisce](/docs/webhooks/#when-a-webhook-fails).
 - **Interfaccia localizzata** — i testi del bot e alcuni nomi dei comandi compaiono nella tua lingua: vedi [I nomi dei comandi nella tua lingua](/docs/commands/#command-names-in-your-language). Questo sito funziona con la traduzione del tuo browser.
 
