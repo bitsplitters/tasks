@@ -29,7 +29,7 @@ A few actions exist only in the channel: Clone, Download, Seal, Delete, Unlock a
 | **Subtask** | An activity that belongs to a larger one. |
 | **Task group** | A task made of subtasks. |
 
-You never pick these types from a menu — TTM infers them from how you write the list. A line starting with `-` is a task. Spaces before the dash turn it into a subtask of the line above. A task with subtasks automatically becomes a **group**. The whole format: [Writing a list](/docs/writing-a-list/).
+You never pick these types from a menu — TTM infers them from how you write the list. A line starting with `-` is a task. Spaces before the dash turn it into a subtask of the line above. A task with subtasks automatically becomes a **group**. How to write them: [Create your first list](/docs/getting-started/#2-create-your-first-list).
 
 Groups behave as a unit: ticking a group ticks its subtasks too, and ticking every subtask marks the group as done.
 

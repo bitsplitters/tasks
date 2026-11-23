@@ -3,7 +3,7 @@ title: Pianifica i tuoi video con chi li realizza
 seoTitle: "Bot Discord per content creator: la pipeline dei tuoi video"
 name: Content creator
 description: "Un video a settimana con un montatore e un'artista delle miniature: un promemoria della scadenza che segue il lavoro quando qualcuno è assente, il ping ai moderatori prima della première e il nuovo video annunciato da un webhook."
-highlights: "Task assegnati a un altro, un promemoria che segue il nuovo proprietario, una revisione di due persone, un link mailto, un webhook che annuncia il video, Download e importazione."
+highlights: "Task assegnati a un altro, un promemoria che segue il nuovo proprietario, una revisione di due persone, un link mailto, un webhook che annuncia il video, Clona per il prossimo video."
 intro: |
   Mia fa un video a settimana per il suo canale. Leo monta, Sam disegna le miniature e i moderatori del server gestiscono la chat durante la première. Il video di questa settimana parla di una minuscola scrivania costruita in un weekend. La lista vive in #produzione, da lunedì 7 a domenica 13 dicembre 2026, con la première sabato alle 18.
 order: 6
@@ -63,7 +63,7 @@ settings:
     why: "Venerdì la maggior parte della lista è fatta. I task spuntati sbiadiscono e la première risalta."
 week:
   - at: 2026-12-07T10:00
-    text: "Mia lancia `/crea-lista` in #produzione e scrive la settimana, proprietari compresi. La prima notifica menziona Leo, Sam e @Moderatori, così ognuno sa cosa è suo. Il link dello sponsor apre una nuova email, con l'oggetto già scritto."
+    text: "Mia lancia `/crea-lista` in #produzione e scrive i task della settimana. Poi dà a ognuno il suo proprietario con **Proprietario**: le notifiche menzionano Leo, Sam e @Moderatori, così ognuno sa cosa è suo. **Promemoria** fissa la scadenza del montaggio e l'avviso della premiere, **Webhook** collega «Pubblicare il video» a Nuovo video. Il link dello sponsor apre una nuova email, con l'oggetto già scritto."
   - at: 2026-12-07T10:30
     text: "Mia assegna «Revisione finale» a Leo e Sam insieme: sceglie entrambi nel menu sotto **Proprietario**. TTM crea per loro il ruolo **TTM1** e lo rende proprietario. Un proprietario di più persone è una funzione [Premium](/premium/), sbloccata per tutti i server durante la Beta."
   - at: 2026-12-08T09:00
@@ -82,14 +82,14 @@ week:
   - at: 2026-12-12T18:00
     text: "La première inizia. Mia spunta «Pubblicare il video» e il webhook posta il link in #annunci."
     card: { kind: webhook, webhook: Nuovo video, task: "9", by: "11869044175621001" }
-fonte: 2c58269841f3
+fonte: ef4a937f2aeb
 ---
 
 ## La prossima volta
 
-Dopo questo video, Mia preme **Download** <img class="inline-ic" src="/icons/download.png" alt="" /> in **Altro** <img class="inline-ic" src="/icons/other.png" alt="" />: TTM le manda la lista come file `.txt`, con proprietari, tag, promemoria e webhook. Per ogni nuovo video cambia il file, i titoli, i link e rimette `[X]` a `[]`, poi lancia `/crea-lista` e lo allega. Un promemoria con la data passata torna senza scattare, quindi a ognuno dà la nuova data con **Promemoria**. Vedi [Riusare una lista ovunque](/docs/tips/#reuse-a-list-anywhere).
+Dopo questo video, Mia apre **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> e preme **Clona**: lo stesso canale, senza le spunte e senza i promemoria. Con **Aggiornamento in blocco** cambia il titolo, i task e i link e toglie il `{{video=…}}` del video vecchio. Poi dà le nuove date con **Promemoria**. Vedi [Clona](/docs/list-actions/#clone).
 
-TTM1 resta finché una lista lo usa. Se Mia elimina prima la vecchia lista, TTM elimina il ruolo e l'importazione di un file che lo nomina si ferma ed elenca il ruolo mancante: lei tiene la vecchia lista finché la nuova non è dentro.
+Il clone tiene TTM1 come proprietario di «Revisione finale», quindi il ruolo resta anche se Mia elimina la vecchia lista: TTM lo elimina solo quando nessuna lista lo usa più.
 
 ## Cosa TTM non fa qui
 

@@ -229,11 +229,11 @@ test('la legenda in italiano: i testi della zona casi, i link con /it/, la ricor
   const voci = legenda(TESTO, 'it');
   assert.deepEqual(voci.map((v) => v.link.split('#')[0]).filter((l) => !l.startsWith('/it/')), []);
   const ricorrente = voci.find((v) => v.codice === '[0m,7d,3]')!;
-  assert.equal(ricorrente.spiega, 'Un promemoria ricorrente: ogni 7 giorni, 3 volte dopo la prima. La lista mostra <code>↻7d ×4</code>.');
+  assert.equal(ricorrente.spiega, 'Un promemoria ricorrente, dal pulsante <strong>Promemoria</strong>: ogni 7 giorni, 3 volte dopo la prima. La lista mostra <code>↻7d ×4</code>.');
   const una = legenda('- [] <t:1765206000> [0m,1d,1] <@1181730456203948101>: x', 'it').find((v) => v.codice === '[0m,1d,1]')!;
-  assert.equal(una.spiega, 'Un promemoria ricorrente: ogni giorno, una volta dopo la prima. La lista mostra <code>↻1d ×2</code>.');
+  assert.equal(una.spiega, 'Un promemoria ricorrente, dal pulsante <strong>Promemoria</strong>: ogni giorno, una volta dopo la prima. La lista mostra <code>↻1d ×2</code>.');
   assert.equal(legenda(TESTO).find((v) => v.codice === '[0m,7d,3]')!.spiega,
-    'A recurring reminder: every 7 days, 3 times after the first. The list shows <code>↻7d ×4</code>.');
+    'A recurring reminder, from the <strong>Reminder</strong> button: every 7 days, 3 times after the first. The list shows <code>↻7d ×4</code>.');
 });
 
 test('una traduzione che cambia un orario, un id o una scheda non racconta la stessa settimana', () => {

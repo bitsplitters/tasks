@@ -67,7 +67,7 @@ settings:
     why: "Un promemoria per ogni raid fino a fine marzo, invece di uno nuovo ogni settimana."
 week:
   - at: 2026-12-07T20:00
-    text: "Ava aggiunge tre prove con **Aggiornamento in blocco** <img class=\"inline-ic\" src=\"/icons/edit.png\" alt=\"\" />, un task per recluta. Scrive anche i codici: `{{wb=Foglio roster}}` collega il webhook, `{{recruit=…}}` e `{{class=…}}` portano il nome e la classe."
+    text: "Ava aggiunge tre prove con **Aggiornamento in blocco** <img class=\"inline-ic\" src=\"/icons/edit.png\" alt=\"\" />, un task per recluta, con il nome e la classe come variabili libere: `{{recruit=…}}` e `{{class=…}}`. Poi collega ogni prova a Foglio roster con **Webhook**."
   - at: 2026-12-08T19:00
     text: "Leo **prende** le tre prove. Preme **Proprietario** finché diventa blu, poi sceglie la prima prova, la seconda e la terza, senza scegliere nessuno. Con *Mantieni lo stato dopo la selezione*, **Proprietario** resta blu tra l'una e l'altra e ogni task diventa suo."
     card: { kind: notice, type: claimed, by: "11859044175621002", task: "7" }
@@ -81,12 +81,12 @@ week:
     card: { kind: webhook, webhook: Foglio roster, task: "5", by: "11859044175621002" }
   - at: 2026-12-10T21:30
     text: "Thorn gioca una seconda prova giovedì, con un gruppo più piccolo. Leo la spunta: un'altra riga sul foglio."
-fonte: 4f4c151799fb
+fonte: 0d0a1a51d2e4
 ---
 
 ## La prossima volta
 
-Ogni lunedì, Ava prima sostituisce le prove finite con le nuove reclute, con **Aggiornamento in blocco**: non fa scattare nessun webhook, quindi il foglio non cambia. Poi preme **Riapri tutti** <img class="inline-ic" src="/icons/reopen.png" alt="" /> e sceglie **Nuova data**, con il mercoledì successivo alle 17: il promemoria della banca si sposta lì. Riaprire fa scattare i webhook di riapertura dei task che riapre, quindi le prove vengono per prime.
+Ogni lunedì, Ava prima sostituisce le prove finite con le nuove reclute, con **Aggiornamento in blocco**, che non fa scattare nessun webhook. Poi preme **Riapri tutti** <img class="inline-ic" src="/icons/reopen.png" alt="" /> e sceglie **Nuova data**, con il mercoledì successivo alle 17: il promemoria della banca si sposta lì. **Riapri tutti** fa scattare i webhook dei task che riapre: con le prove finite ancora lì, il foglio avrebbe una riga «riaperto» per ognuna.
 
 Nessuno spunta il raid: spuntare un task ferma il suo promemoria. Il promemoria del raid torna ogni mercoledì da solo. Vedi [Riapri tutti](/docs/list-actions/#reopen-all).
 
@@ -96,9 +96,9 @@ TTM non legge il gioco. Non ha iscrizioni ai raid, presenze, tracciamento del bo
 
 ## Domande
 
-### Perché `7d` e non `168h`?
+### Perché giorni e non ore?
 
-Il 14 marzo 2027 a Chicago l'orologio avanza di un'ora. Con i giorni, il promemoria resta alle 19:30 dopo il cambio. Con le ore, arriverebbe alle 20:30, a raid già iniziato. Vedi [I campi della ripetizione](/docs/reminders/#the-repetition-fields).
+Il 14 marzo 2027 a Chicago l'orologio avanza di un'ora. Ava ha scelto **Giorni** nel menu **Unità**, così il promemoria resta alle 19:30 dopo il cambio. Con **Ore**, arriverebbe alle 20:30, a raid già iniziato. Vedi [I campi della ripetizione](/docs/reminders/#the-repetition-fields).
 
 ### Come mando al foglio il proprietario del task?
 

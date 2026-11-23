@@ -58,15 +58,12 @@ settings:
   - setting: Tips
     choice: On, then Off
     why: "Leo is new to TTM: the Tutorial and the help line under the list show him where to press. Ava turns them off on Saturday night, once the server is open and he knows the buttons."
-  - setting: Mention owners in new lists
-    choice: On
-    why: "The first notification of the list mentions @Admins and Leo, so Discord tells Leo straight away what's his."
   - setting: Sync permissions
     choice: Loaded
     why: "In *Server Settings → Integrations*, only @Admins can use TTM. After the sync, a moderator added later sees the list read-only until Ava gives them the role."
 week:
   - at: 2026-12-07T10:00
-    text: "Ava runs `/create-list` in #setup and writes the list, with the owners followed by a colon. @Admins goes by name, like every role; Leo, whom a new list doesn't mention yet, goes by his code ([Writing someone new](/docs/writing-a-list/#writing-someone-new) shows how). The first notification under it mentions @Admins and Leo, so Discord notifies Leo. Ava isn't mentioned: she made the list."
+    text: "Ava runs `/create-list` in #setup and writes only the tasks. Then she gives the owners with **Owner**: @Admins for the jobs either of them can do, Leo for the how-to, herself for Community and «Open the doors». With **Webhook** she links «Open the doors» to Opening post."
   - at: 2026-12-07T10:20
     text: "Leo **takes** «Set up AutoMod»: he presses **Owner** until it turns blue, then picks the task without choosing anyone. The task becomes his, and the channel says who took it."
     card: { kind: notice, type: claimed, by: "11819044175621002", task: "3" }
@@ -105,7 +102,7 @@ TTM tracks the work, and you do the setup. It doesn't create your channels, chan
 
 ### Do I need to write the codes?
 
-No. The buttons write them: **Owner** for the owner, **Tag** for the tags, **Reminder** for the reminder, **Webhook** for the webhook. You write only the tasks. The codes matter when you copy a list, or when you'd rather type than click: see [Writing a list](/docs/writing-a-list/).
+No. The buttons write them: **Owner** for the owner, **Tag** for the tags, **Reminder** for the reminder, **Webhook** for the webhook. You write only the tasks. The codes matter when you copy a list, or when you'd rather type than click: see [Editing a list by hand](/docs/writing-a-list/).
 
 ### Why did Leo get a mention and Ava didn't?
 

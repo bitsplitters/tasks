@@ -67,7 +67,7 @@ settings:
     why: "One reminder for every raid until late March, instead of a new one each week."
 week:
   - at: 2026-12-07T20:00
-    text: "Ava adds three trials with **Bulk update** <img class=\"inline-ic\" src=\"/icons/edit.png\" alt=\"\" />, one task per recruit. She writes the codes too: `{{wb=Roster sheet}}` links the webhook, `{{recruit=…}}` and `{{class=…}}` carry the name and the class."
+    text: "Ava adds three trials with **Bulk update** <img class=\"inline-ic\" src=\"/icons/edit.png\" alt=\"\" />, one task per recruit, with the name and the class as free variables: `{{recruit=…}}` and `{{class=…}}`. Then she links each trial to Roster sheet with **Webhook**."
   - at: 2026-12-08T19:00
     text: "Leo **takes** the three trials. He presses **Owner** until it turns blue, then picks the first trial, the second and the third, without choosing anyone. With *Keep the state after a selection*, **Owner** stays blue between them, and each task becomes his."
     card: { kind: notice, type: claimed, by: "11859044175621002", task: "7" }
@@ -85,7 +85,7 @@ week:
 
 ## Next time
 
-Every Monday, Ava first replaces the finished trials with the new recruits, with **Bulk update**: it fires no webhooks, so the sheet doesn't change. Then she presses **Reopen all** <img class="inline-ic" src="/icons/reopen.png" alt="" /> and picks **New date**, with next Wednesday at 5 PM: the bank's reminder moves there. Reopening fires the reopening webhooks of the tasks it reopens, so the trials go first.
+Every Monday, Ava first replaces the finished trials with the new recruits, with **Bulk update**, which fires no webhooks. Then she presses **Reopen all** <img class="inline-ic" src="/icons/reopen.png" alt="" /> and picks **New date**, with next Wednesday at 5 PM: the bank's reminder moves there. **Reopen all** fires the webhooks of the tasks it reopens: with the finished trials still there, the sheet would get a «reopened» row for each.
 
 Nobody ticks the raid: ticking a task stops its reminder. The raid's reminder comes back every Wednesday on its own. See [Reopen all](/docs/list-actions/#reopen-all).
 
@@ -95,9 +95,9 @@ TTM doesn't read the game. It has no raid sign-ups, no attendance, no loot track
 
 ## Questions
 
-### Why `7d` and not `168h`?
+### Why days and not hours?
 
-On 14 March 2027 the clocks in Chicago move forward an hour. With days, the reminder stays at 7:30 PM after the change. With hours, it would arrive at 8:30 PM, when the raid has started. See [The repetition fields](/docs/reminders/#the-repetition-fields).
+On 14 March 2027 the clocks in Chicago move forward an hour. Ava chose **Days** in the **Unit** menu, so the reminder stays at 7:30 PM after the change. With **Hours**, it would arrive at 8:30 PM, when the raid has started. See [The repetition fields](/docs/reminders/#the-repetition-fields).
 
 ### How do I send the owner of the task to the sheet?
 

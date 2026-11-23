@@ -3,7 +3,7 @@ title: Plan your videos with the people who make them
 seoTitle: "Discord Bot for Content Creators: Your Video Pipeline"
 name: Content creators
 description: "A video a week with an editor and a thumbnail artist: a deadline reminder that follows the work when someone is away, the mods' ping before the premiere and the new video announced by a webhook."
-highlights: "Tasks given to someone else, a reminder that follows its new owner, a review owned by two people, a mailto link, a webhook that announces the video, Download and import."
+highlights: "Tasks given to someone else, a reminder that follows its new owner, a review owned by two people, a mailto link, a webhook that announces the video, Clone for the next video."
 intro: |
   Mia makes a video a week for her channel. Leo edits, Sam draws the thumbnails, and the server's mods run the chat during the premiere. This week's video is about a tiny desk she built in a weekend. The list lives in #production, from Monday 7 to Sunday 13 December 2026, with the premiere on Saturday at 6 PM.
 order: 6
@@ -63,7 +63,7 @@ settings:
     why: "By Friday most of the list is done. The ticked tasks fade, and the premiere stands out."
 week:
   - at: 2026-12-07T10:00
-    text: "Mia runs `/create-list` in #production and writes the week, the owners included. The first notification mentions Leo, Sam and @Mods, so each of them knows what's theirs. The sponsor link opens a new email, with the subject already written."
+    text: "Mia runs `/create-list` in #production and writes the week's tasks. Then she gives each its owner with **Owner**: the notifications mention Leo, Sam and @Mods, so each of them knows what's theirs. **Reminder** sets the cut's deadline and the premiere's ping, and **Webhook** links «Publish the video» to New video. The sponsor link opens a new email, with the subject already written."
   - at: 2026-12-07T10:30
     text: "Mia gives «Final review» to Leo and Sam together: she picks both in the menu under **Owner**. TTM creates the role **TTM1** for them and makes it the owner. An owner of several people is a [Premium](/premium/) feature, unlocked for every server during the beta."
   - at: 2026-12-08T09:00
@@ -86,9 +86,9 @@ week:
 
 ## Next time
 
-After this video, Mia presses **Download** <img class="inline-ic" src="/icons/download.png" alt="" /> in **More** <img class="inline-ic" src="/icons/other.png" alt="" />: TTM sends her the list as a `.txt` file, owners, tags, reminders and webhooks included. For each new video she changes the file, the titles, the links and `[X]` back to `[]`, then runs `/create-list` and attaches it. A reminder whose date has passed comes back without firing, so she gives each one its new date with **Reminder**. See [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
+After this video, Mia opens **More** <img class="inline-ic" src="/icons/other.png" alt="" /> and presses **Clone**: the same channel, without the ticks and without the reminders. With **Bulk update** she changes the title, the tasks and the links, and removes the old video's `{{video=…}}`. Then she gives the new dates with **Reminder**. See [Clone](/docs/list-actions/#clone).
 
-TTM1 stays while a list uses it. If Mia deletes the old list first, TTM deletes the role, and the import of a file that names it stops and lists the missing role: she keeps the old list until the new one is in.
+The clone keeps TTM1 as the owner of «Final review», so the role stays even if Mia deletes the old list: TTM deletes it only once no list uses it.
 
 ## What TTM doesn't do here
 

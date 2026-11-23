@@ -1,7 +1,7 @@
 ---
 title: Concetti di base
 description: Una lista in due posti, il vocabolario di TTM (task, gruppi, proprietari, tag, promemoria) e i permessi che chiede.
-fonte: c2c6dfc26190
+fonte: dd96d7bfc045
 ---
 
 Alcuni termini ricorrono in tutta l'app. Imparali una volta e il resto va a posto da solo.
@@ -28,7 +28,7 @@ Alcune azioni esistono solo nel canale: Clona, Download, Sigilla, Elimina, Sbloc
 | **Subtask** | Un'attività che appartiene a una più grande. |
 | **Gruppo di task** | Un task fatto di subtask. |
 
-Non scegli mai questi tipi da un menu: TTM li ricava da come scrivi la lista. Una riga che inizia con `-` è un task. Gli spazi prima del trattino la trasformano in un subtask della riga sopra. Un task con dei subtask diventa automaticamente un **gruppo**. Il formato completo: [Scrivere una lista](/docs/writing-a-list/).
+Non scegli mai questi tipi da un menu: TTM li ricava da come scrivi la lista. Una riga che inizia con `-` è un task. Gli spazi prima del trattino la trasformano in un subtask della riga sopra. Un task con dei subtask diventa automaticamente un **gruppo**. Come si scrivono: [Crea la tua prima lista](/docs/getting-started/#2-create-your-first-list).
 
 I gruppi si comportano come un'unità: spuntare un gruppo spunta anche i suoi subtask e spuntare tutti i subtask segna il gruppo come completato.
 

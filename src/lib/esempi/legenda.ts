@@ -1,7 +1,8 @@
 /*
  * La legenda sotto il testo di un caso d'uso (spec 2026-11-20-casi-d-uso-esempi-completi-design.md, §3 punto 4, nel
- * repo team-tasks-manager): le sole forme che il testo di quell'esempio usa, nell'ordine di «Writing a list», ognuna
- * con la sua sezione. La pagina mostra il testo coi nomi (coiNomi, 2.5.0), la legenda lo riconosce dal testo con gli
+ * repo team-tasks-manager): le sole forme che il testo di quell'esempio usa, nell'ordine della pagina a mano
+ * (/docs/writing-a-list/), ognuna con la pagina che la spiega: il pulsante che la scrive, quando c'è, prima del testo
+ * (spec 2026-11-23-documentazione-prima-i-pulsanti-design.md, §5). La pagina mostra il testo coi nomi (coiNomi, 2.5.0), la legenda lo riconosce dal testo con gli
  * id del frontmatter. I testi sono in HTML, già sicuri: stanno nella zona `casi` dei testi del sito (legenda.*), non
  * nel frontmatter. I link portano alla sezione nella lingua della pagina; le ancore sono le stesse in ogni lingua.
  */
@@ -19,20 +20,22 @@ export interface VoceDellaLegenda {
 }
 
 const W = '/docs/writing-a-list/';
+const C = '/docs/core-concepts/';
+const O = '/docs/owners-and-tags/';
 
-/** Le voci nell'ordine di «Writing a list», con la loro sezione. */
+/** Le voci nell'ordine della pagina a mano, con la loro sezione. */
 const VOCI: ReadonlyArray<[string, string]> = [
-  ['subtask', `${W}#tasks-and-subtasks`],
-  ['done', `${W}#tasks-and-subtasks`],
-  ['owner', `${W}#owners-the-mention-with-a-colon`],
-  ['tag', `${W}#mentioning-people-and-roles`],
+  ['subtask', `${C}#tasks-subtasks-and-groups`],
+  ['done', `${C}#task-state`],
+  ['owner', `${O}#owner-a-person-a-role-or-several-people`],
+  ['tag', `${O}#tags`],
   ['channel', `${W}#linking-channels`],
   ['link', `${W}#adding-a-hyperlink`],
   ['message', `${W}#adding-a-hyperlink`],
   ['emoji', `${W}#button-emoji`],
-  ['reminder', `${W}#reminders-in-the-text`],
-  ['recurring', `${W}#reminders-in-the-text`],
-  ['webhook', `${W}#webhooks-in-the-text`],
+  ['reminder', '/docs/reminders/'],
+  ['recurring', '/docs/reminders/#repeating-reminders'],
+  ['webhook', '/docs/webhooks/#associating-a-webhook-with-a-task'],
   ['variable', '/docs/config-webhook/#tokens'],
 ];
 
@@ -55,7 +58,7 @@ function usati(testo: string): Set<string> {
   return u;
 }
 
-/** Le voci della legenda per questo testo, nell'ordine di «Writing a list», nella lingua della pagina. */
+/** Le voci della legenda per questo testo, nell'ordine della pagina a mano, nella lingua della pagina. */
 export function legenda(testo: string, lingua: Lingua = 'en'): VoceDellaLegenda[] {
   const u = usati(testo);
   return VOCI.filter(([chiave]) => u.has(chiave)).map(([chiave, link]) => {

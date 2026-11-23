@@ -1,6 +1,6 @@
 // I testi dei casi d'uso in italiano: le chiavi di src/i18n/testi/en/casi.ts. `fonte` è l'impronta dell'inglese
 // tradotto (npm run traduzioni -- --firma).
-export const fonte = '78caa53ada47';
+export const fonte = '1596478237ae';
 
 export const testi = {
   'indice.title': "Casi d'uso della gestione dei task su Discord — Team Tasks Manager",
@@ -10,7 +10,7 @@ export const testi = {
   'indice.vedi': 'Guarda gli esempi',
   'indice.tuo.titolo': 'Adattalo al tuo team',
   'indice.tuo.testo':
-    'I team sono inventati; tutto quello che fanno è quello che TTM fa oggi. Ogni lista sta nei 20 task del piano Free. Ogni pagina mostra il testo dietro la sua lista: per partire da lì incollalo in <code>/crea-lista</code> e metti al posto di persone, ruoli e canali quelli del tuo server. Come funzionano i codici: vedi <a href="{scrivere}">Scrivere una lista</a>.',
+    'I team sono inventati; tutto quello che fanno è quello che TTM fa oggi. Ogni lista sta nei 20 task del piano Free. Ogni pagina mostra il testo dietro la sua lista. Per partire da lì incolla in <code>/crea-lista</code> solo i task, poi dai proprietari, tag e promemoria con i pulsanti. Vuoi copiare il testo intero, codici compresi? Vedi <a href="{scrivere}">Modificare una lista a mano</a>.',
   'finale.titolo': 'Aggiungi TTM al tuo server',
   'finale.testo': 'Poi usa <code>/crea-lista</code> e scrivi la prima lista del tuo team.',
 
@@ -67,9 +67,9 @@ export const testi = {
   'legenda.done.spiega': 'Un task completato. <code>[]</code> è un task da fare.',
   'legenda.owner.codice': '@Nome: ',
   'legenda.owner.spiega':
-    'Il proprietario: <code>@</code> e il nome, seguiti dai due punti, all’inizio del task. Una persona o un ruolo.',
+    'Il proprietario, dato col pulsante <strong>Proprietario</strong>. Nel testo: <code>@</code> e il nome, seguiti dai due punti, all’inizio del task. Una persona o un ruolo.',
   'legenda.tag.codice': '@Nome',
-  'legenda.tag.spiega': 'Un tag: <code>@</code> e il nome di una persona o di un ruolo, senza i due punti.',
+  'legenda.tag.spiega': 'Un tag, dato col pulsante <strong>Tag</strong>. Nel testo: <code>@</code> e il nome di una persona o di un ruolo, senza i due punti.',
   'legenda.channel.codice': '#canale',
   'legenda.channel.spiega': 'Un canale: <code>#</code> e il suo nome. Va bene anche il link di <em>Copia link</em> sul canale.',
   'legenda.link.codice': '[testo](https://…)',
@@ -80,15 +80,15 @@ export const testi = {
   'legenda.emoji.spiega': "L'emoji di un pulsante della lista, scritta col suo nome breve.",
   'legenda.reminder.codice': 'YYYY-MM-DD HH:mm [0m,0m,0]',
   'legenda.reminder.spiega':
-    'Un promemoria: la data nel tuo fuso orario, poi distanza, intervallo e ripetizioni. <code>0m,0</code> è un evento singolo. Se scrivi una lista da zero, al posto della data metti la distanza: <code>[1d,0m,0]</code> è un giorno dopo il salvataggio.',
+    'Un promemoria, impostato col pulsante <strong>Promemoria</strong>. Nel testo: la data nel tuo fuso orario, poi distanza, intervallo e ripetizioni. <code>0m,0</code> è un evento singolo.',
   'legenda.recurring.codice': '[0m,7d,3]',
   'legenda.recurring.spiega':
-    'Un promemoria ricorrente: ogni 7 giorni, 3 volte dopo la prima. La lista mostra <code>↻7d ×4</code>.',
+    'Un promemoria ricorrente, dal pulsante <strong>Promemoria</strong>: ogni 7 giorni, 3 volte dopo la prima. La lista mostra <code>↻7d ×4</code>.',
   'legenda.webhook.codice': '{{wb=nome}}',
-  'legenda.webhook.spiega': 'Il webhook del task. Nella lista non si vede.',
+  'legenda.webhook.spiega': 'Il webhook del task, collegato col pulsante <strong>Webhook</strong>. Nella lista non si vede.',
   'legenda.variable.codice': '{{chiave=valore}}',
   'legenda.variable.spiega': 'Una variabile libera: il webhook la legge come <code>{{chiave}}</code>. Resta nel testo.',
-  'legenda.ricorrente': 'Un promemoria ricorrente: ogni {ogni}, {dopo}. La lista mostra <code>{mostra}</code>.',
+  'legenda.ricorrente': 'Un promemoria ricorrente, dal pulsante <strong>Promemoria</strong>: ogni {ogni}, {dopo}. La lista mostra <code>{mostra}</code>.',
   'legenda.unita.d': { one: 'giorno', other: '{n} giorni' },
   'legenda.unita.h': { one: 'ora', other: '{n} ore' },
   'legenda.unita.m': { one: 'minuto', other: '{n} minuti' },

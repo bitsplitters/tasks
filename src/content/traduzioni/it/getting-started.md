@@ -1,7 +1,7 @@
 ---
 title: Per iniziare
 description: Invita il bot, crea una lista, poi spunta un task e imposta un promemoria, nel canale o nell'Activity.
-fonte: 44e63eaea78b
+fonte: 2b9a9fa31d7a
 ---
 
 Team Tasks Manager (TTM) permette al tuo team di condividere e gestire i task **senza uscire da Discord**. Questa pagina ti porta da zero a una lista funzionante: la crei, spunti un task, imposti un promemoria.
@@ -40,8 +40,6 @@ Le regole:
 - **Una riga che inizia con `-` è un task.**
 - **Gli spazi prima del trattino la rendono un subtask** del task sopra. Un task con dei subtask diventa un **gruppo**.
 - Il titolo può avere fino a **90 caratteri**. La lista può avere fino a circa **4000 caratteri** e **50 task**, subtask compresi. Dopo la beta, il piano Free ne permette 20: vedi [Cosa sblocca Premium](/docs/premium/).
-
-Nel testo si possono scrivere anche menzioni, proprietari, link e promemoria: vedi [Scrivere una lista](/docs/writing-a-list/).
 
 Invia la form e la lista compare nel canale. Ecco la stessa lista dopo alcuni passaggi. Il primo task è spuntato, *Preparare i tabelloni* ha un proprietario e *Trasmettere la finale* ha un promemoria.
 

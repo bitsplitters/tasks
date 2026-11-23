@@ -12,7 +12,7 @@ export const testi = {
   'indice.vedi': 'See the examples',
   'indice.tuo.titolo': 'Make it your own',
   'indice.tuo.testo':
-    "The teams are made up; everything they do is what TTM does today. Every list stays within the 20 tasks of the Free plan. Each page shows the text behind its list: to start from it, paste it into <code>/create-list</code> and swap the people, roles and channels for your server's. How the codes work: see <a href=\"{scrivere}\">Writing a list</a>.",
+    "The teams are made up; everything they do is what TTM does today. Every list stays within the 20 tasks of the Free plan. Each page shows the text behind its list. To start from it, paste only the tasks into <code>/create-list</code>, then give owners, tags and reminders with the buttons. Copying the whole text, codes included? See <a href=\"{scrivere}\">Editing a list by hand</a>.",
   'finale.titolo': 'Add TTM to your server',
   'finale.testo': "Then run <code>/create-list</code> and write your team's first list.",
 
@@ -68,9 +68,9 @@ export const testi = {
   'legenda.done.spiega': 'A completed task. <code>[]</code> is a task to do.',
   'legenda.owner.codice': '@Name: ',
   'legenda.owner.spiega':
-    'The owner: <code>@</code> and the name, followed by a colon, at the start of the task. A person or a role.',
+    'The owner, given with the <strong>Owner</strong> button. In the text: <code>@</code> and the name, followed by a colon, at the start of the task. A person or a role.',
   'legenda.tag.codice': '@Name',
-  'legenda.tag.spiega': 'A tag: <code>@</code> and the name of a person or a role, without the colon.',
+  'legenda.tag.spiega': 'A tag, given with the <strong>Tag</strong> button. In the text: <code>@</code> and the name of a person or a role, without the colon.',
   'legenda.channel.codice': '#channel',
   'legenda.channel.spiega': 'A channel: <code>#</code> and its name. The link from <em>Copy Link</em> on the channel works too.',
   'legenda.link.codice': '[text](https://…)',
@@ -81,15 +81,15 @@ export const testi = {
   'legenda.emoji.spiega': 'The emoji of a list button, written as a short name.',
   'legenda.reminder.codice': 'YYYY-MM-DD HH:mm [0m,0m,0]',
   'legenda.reminder.spiega':
-    'A reminder: the date in your time zone, then distance, interval and repetitions. <code>0m,0</code> is a single event. Writing a list from scratch, put the distance instead of the date: <code>[1d,0m,0]</code> is one day after you save.',
+    'A reminder, set with the <strong>Reminder</strong> button. In the text: the date in your time zone, then distance, interval and repetitions. <code>0m,0</code> is a single event.',
   'legenda.recurring.codice': '[0m,7d,3]',
   'legenda.recurring.spiega':
-    'A recurring reminder: every 7 days, 3 times after the first. The list shows <code>↻7d ×4</code>.',
+    'A recurring reminder, from the <strong>Reminder</strong> button: every 7 days, 3 times after the first. The list shows <code>↻7d ×4</code>.',
   'legenda.webhook.codice': '{{wb=name}}',
-  'legenda.webhook.spiega': "The webhook of the task. It doesn't show in the list.",
+  'legenda.webhook.spiega': "The webhook of the task, linked with the <strong>Webhook</strong> button. It doesn't show in the list.",
   'legenda.variable.codice': '{{key=value}}',
   'legenda.variable.spiega': 'A free variable: the webhook reads it as <code>{{key}}</code>. It stays in the text.',
-  'legenda.ricorrente': 'A recurring reminder: every {ogni}, {dopo}. The list shows <code>{mostra}</code>.',
+  'legenda.ricorrente': 'A recurring reminder, from the <strong>Reminder</strong> button: every {ogni}, {dopo}. The list shows <code>{mostra}</code>.',
   'legenda.unita.d': { one: '{n} day', other: '{n} days' },
   'legenda.unita.h': { one: '{n} hour', other: '{n} hours' },
   'legenda.unita.m': { one: '{n} minute', other: '{n} minutes' },

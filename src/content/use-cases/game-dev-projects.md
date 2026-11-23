@@ -79,7 +79,7 @@ settings:
     why: "Every milestone is a group: a blank line shows where one ends and the next begins."
 week:
   - at: 2026-12-07T20:00
-    text: "Ava adds milestone 0.5 with **Bulk update** <img class=\"inline-ic\" src=\"/icons/edit.png\" alt=\"\" />: the trailer, in four tasks, each with its owner."
+    text: "Ava adds milestone 0.5 with **Bulk update** <img class=\"inline-ic\" src=\"/icons/edit.png\" alt=\"\" />: the trailer, in four tasks. Then she gives each its owner with **Owner**, and the music its deadline with **Reminder**."
   - at: 2026-12-08T09:15
     text: "Sam is ill for the week, and the trailer music is due on Saturday. Ava **takes** «Mix the trailer music» from him: she presses **Owner**, chooses herself in the menu, confirms, then picks the task. Picking the task alone wouldn't do: replacing an owner takes an explicit choice. The notification names Sam and mentions nobody, because Ava knows. The task's reminder now goes to her."
     card: { kind: notice, type: updated, by: "11849044175621001", from: "11849044175621003", task: "2.1" }
@@ -98,7 +98,7 @@ week:
 
 ## Next time
 
-When 0.4 is done, Ava presses **Clean**: the finished milestone goes, with its subtasks, and 0.5 moves up. With **Bulk update** she writes 0.6 under it, from the design doc. The webhook stays on the server: she links it to the next build task with **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" />, or writes `{{wb=Playtest build}}` and `{{version=0.5.0}}` in the text. See [Clean](/docs/list-actions/#clean).
+When 0.4 is done, Ava presses **Clean**: the finished milestone goes, with its subtasks, and 0.5 moves up. With **Bulk update** she writes 0.6 under it, from the design doc. The webhook stays on the server: she links it to the next build task with **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" />, and writes `{{version=0.5.0}}` in its text with **Content**. See [Clean](/docs/list-actions/#clean).
 
 ## What TTM doesn't do here
 

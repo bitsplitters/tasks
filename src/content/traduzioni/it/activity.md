@@ -1,7 +1,7 @@
 ---
 title: L'Activity
 description: Apri una lista in una finestra dentro Discord, dove il tuo team ci lavora insieme e vede ogni modifica mentre accade.
-fonte: 3c177a7fa184
+fonte: 00a824d5dbbe
 ---
 
 Prova la modalità Activity: più fluida e libera dai limiti dei canali testuali, ideale per sessioni di lavoro più lunghe o collaborative.
@@ -48,7 +48,7 @@ Mentre sei nell'Activity, il tuo profilo Discord mostra Team Tasks Manager con *
 
 Quando parti dall'**Avvio app** o da una **chiamata vocale** (vedi [Quattro modi per entrare](#four-ways-in)), TTM apre la home del canale, con il nome del canale come titolo. Thread, post dei forum, canali annunci e stage restano fuori. La home ha tre parti:
 
-- **Nuova lista**, sotto il titolo — un titolo e i task, scritti come in [Scrivere una lista](/docs/writing-a-list/), creati qui e già nell'Activity. Il riepilogo che la riporta nel canale comincia con la sua creazione e può menzionare i proprietari dei suoi task: vedi [Quando una lista viene creata](/docs/configuration/#when-a-list-is-created). I file si importano con `/crea-lista`, nel canale.
+- **Nuova lista**, sotto il titolo — un titolo e i task, scritti come in [Crea la tua prima lista](/docs/getting-started/#2-create-your-first-list), creati qui e già nell'Activity. Il riepilogo che la riporta nel canale comincia con la sua creazione e può menzionare i proprietari dei suoi task: vedi [Quando una lista viene creata](/docs/configuration/#when-a-list-is-created). I file si importano con `/crea-lista`, nel canale.
 - **Ora nell'Activity** — chi c'è su ogni lista e chi la sta modificando. Tocca una lista per unirti.
 - **Nel canale** — le altre liste, dalla più recente. Tocca una lista per leggerla, poi **Porta nell'Activity**, che resta in attesa finché qualcuno la modifica nel canale.
 

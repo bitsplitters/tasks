@@ -43,10 +43,6 @@ On a *repeating* reminder (a Premium feature), choose **days** when you mean "sa
 
 The reminder starts from ten minutes from now, in your time zone. For "remind me shortly", save it as it is, without typing anything: in the channel, submit the **When** form; in the Activity, tap **Save** in the reminder panel. Every reminder is a single event unless your server has turned on recurring reminders, a Premium feature that is off by default.
 
-## Write names, not IDs
-
-In the text of a list, write `@` and a name, or `#` and a channel: `@Ava: Post the rules in #general`. When you save, TTM turns them into mentions. By name you write the people the list already mentions, and every role and channel; someone new comes from the **Owner** or **Tag** button. See [Writing a list](/docs/writing-a-list/#people-roles-and-channels-by-name).
-
 ## Personalize webhooks with free variables
 
 Drop `{{owner=alex}}` (or any `{{key=value}}`) into a task's text and reference `{{owner}}` in your webhook body. It's a lightweight way to pass task-specific data without hard-coding it. See [Webhooks in the text](/docs/writing-a-list/#webhooks-in-the-text).

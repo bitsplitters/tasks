@@ -50,7 +50,7 @@ While you're in the Activity, your Discord profile shows Team Tasks Manager with
 
 When you start from the **App Launcher** or from a **voice call** (see [Four ways in](#four-ways-in)), TTM opens the home of the channel, with the channel's name as its title. Threads, forum posts, announcement channels and stages are left out. The home has three parts:
 
-- **New list**, under the title — a title and the tasks, written as in [Writing a list](/docs/writing-a-list/), created here and already in the Activity. The summary that follows it back to the channel starts with its creation, and can mention the owners of its tasks: see [When a list is created](/docs/configuration/#when-a-list-is-created). Files are imported with `/create-list`, in the channel.
+- **New list**, under the title — a title and the tasks, written as in [Create your first list](/docs/getting-started/#2-create-your-first-list), created here and already in the Activity. The summary that follows it back to the channel starts with its creation, and can mention the owners of its tasks: see [When a list is created](/docs/configuration/#when-a-list-is-created). Files are imported with `/create-list`, in the channel.
 - **Now in the Activity** — who is on each list, and who is editing. Tap one to join.
 - **In the channel** — the other lists, newest first. Tap one to read it, then **Bring into the Activity**, which waits while someone edits it in the channel.
 

@@ -79,7 +79,7 @@ settings:
     why: "Ogni milestone è un gruppo: una riga vuota mostra dove finisce una e inizia la successiva."
 week:
   - at: 2026-12-07T20:00
-    text: "Ava aggiunge la milestone 0.5 con **Aggiornamento in blocco** <img class=\"inline-ic\" src=\"/icons/edit.png\" alt=\"\" />: il trailer, in quattro task, ciascuno con il suo proprietario."
+    text: "Ava aggiunge la milestone 0.5 con **Aggiornamento in blocco** <img class=\"inline-ic\" src=\"/icons/edit.png\" alt=\"\" />: il trailer, in quattro task. Poi dà a ognuno il suo proprietario con **Proprietario** e alla musica la sua scadenza con **Promemoria**."
   - at: 2026-12-08T09:15
     text: "Sam è malato per tutta la settimana e la musica del trailer è in scadenza sabato. Ava gli **prende** «Mixare la musica del trailer»: preme **Proprietario**, sceglie sé stessa nel menu, conferma, poi sceglie il task. Scegliere solo il task non basterebbe: sostituire un proprietario richiede una scelta esplicita. La notifica nomina Sam e non menziona nessuno, perché Ava lo sa. Il promemoria del task ora va a lei."
     card: { kind: notice, type: updated, by: "11849044175621001", from: "11849044175621003", task: "2.1" }
@@ -94,12 +94,12 @@ week:
   - at: 2026-12-12T12:00
     text: "Il promemoria della musica del trailer raggiunge Ava in messaggio diretto, non Sam: un promemoria segue il proprietario del suo task."
     card: { kind: reminder, task: "2.1" }
-fonte: 5d4a644822b2
+fonte: e78bad9b590a
 ---
 
 ## La prossima volta
 
-Quando la 0.4 è fatta, Ava preme **Pulisci lista**: la milestone finita se ne va con i suoi subtask e la 0.5 sale. Con **Aggiornamento in blocco** scrive sotto la 0.6, partendo dal design doc. Il webhook resta sul server: lo collega al prossimo task di build con **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" />, oppure scrive `{{wb=Build playtest}}` e `{{version=0.5.0}}` nel testo. Vedi [Pulisci lista](/docs/list-actions/#clean).
+Quando la 0.4 è fatta, Ava preme **Pulisci lista**: la milestone finita se ne va con i suoi subtask e la 0.5 sale. Con **Aggiornamento in blocco** scrive sotto la 0.6, partendo dal design doc. Il webhook resta sul server: lo collega al prossimo task di build con **Webhook** <img class="inline-ic" src="/icons/api.png" alt="" /> e scrive `{{version=0.5.0}}` nel suo testo con **Contenuto**. Vedi [Pulisci lista](/docs/list-actions/#clean).
 
 ## Cosa TTM non fa qui
 

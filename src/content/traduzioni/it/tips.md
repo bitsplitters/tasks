@@ -1,7 +1,7 @@
 ---
 title: Trucchi e consigli
 description: Piccole abitudini che rendono TTM più veloce e più silenzioso, nel canale e nell'Activity.
-fonte: ab9d146ac6cf
+fonte: 220d717b92e3
 ---
 
 La maggior parte funziona ovunque sia la lista. Quelli che esistono in un solo posto lo dicono sotto il titolo.
@@ -41,10 +41,6 @@ Su un promemoria *ricorrente* (una funzione Premium), scegli **giorni** quando i
 ## Un promemoria in due click
 
 Il promemoria parte da dieci minuti da adesso, nel tuo fuso orario. Per «ricordamelo fra poco», salvalo così com'è, senza scrivere niente: nel canale, invia la finestra della data; nell'Activity, tocca **Salva** nel pannello del promemoria. Ogni promemoria è un evento singolo a meno che il tuo server abbia acceso i promemoria ricorrenti, una funzione Premium spenta di base.
-
-## Scrivi i nomi, non gli ID
-
-Nel testo di una lista scrivi `@` e un nome, oppure `#` e un canale: `@Ava: Pubblica le regole in #general`. Quando salvi, TTM li trasforma in menzioni. Per nome scrivi le persone che la lista già menziona e ogni ruolo e canale; chi è nuovo arriva dal pulsante **Proprietario** o **Tag**. Vedi [Scrivere una lista](/docs/writing-a-list/#people-roles-and-channels-by-name).
 
 ## Personalizza i webhook con variabili libere
 

@@ -58,15 +58,12 @@ settings:
   - setting: Suggerimenti
     choice: Attivi, poi disattivati
     why: "Leo è nuovo in TTM: il Tutorial e la riga di aiuto sotto la lista gli mostrano dove premere. Ava li disattiva sabato notte, a server aperto e con Leo che ormai conosce i pulsanti."
-  - setting: Menziona i proprietari nelle liste nuove
-    choice: Attivo
-    why: "La prima notifica della lista menziona @Admin e Leo, così Discord dice subito a Leo cosa è suo."
   - setting: Sincronizza permessi
     choice: Caricati
     why: "In *Impostazioni del server → Integrazioni*, solo @Admin può usare TTM. Dopo la sincronizzazione, un moderatore aggiunto più tardi vede la lista in sola lettura finché Ava non gli dà il ruolo."
 week:
   - at: 2026-12-07T10:00
-    text: "Ava lancia `/crea-lista` in #setup e scrive la lista, con i proprietari seguiti da due punti. @Admin si scrive per nome, come ogni ruolo; Leo, che una lista nuova non menziona ancora, si scrive con il suo codice ([Scrivere qualcuno di nuovo](/docs/writing-a-list/#writing-someone-new) spiega come). La prima notifica sotto la lista menziona @Admin e Leo, così Discord avvisa Leo. Ava non viene menzionata: ha creato lei la lista."
+    text: "Ava lancia `/crea-lista` in #setup e scrive solo i task. Poi dà i proprietari con **Proprietario**: @Admin per i lavori che può fare uno dei due, Leo per la guida, sé stessa per la Community e «Aprire le porte». Con **Webhook** collega «Aprire le porte» a Post di apertura."
   - at: 2026-12-07T10:20
     text: "Leo **prende** «Configurare AutoMod»: preme **Proprietario** finché diventa blu, poi sceglie il task senza scegliere nessuno. Il task diventa suo e il canale dice chi l'ha preso."
     card: { kind: notice, type: claimed, by: "11819044175621002", task: "3" }
@@ -89,7 +86,7 @@ week:
     card: { kind: webhook, webhook: Post di apertura, task: "10", by: "11819044175621001" }
   - at: 2026-12-12T18:40
     text: "Ava e Leo escono dall'Activity. La lista torna in #setup con un riepilogo di ciò che hanno cambiato; il thread della lista registra ogni modifica con chi l'ha fatta. Ava disattiva i **Suggerimenti** in `/config app`."
-fonte: cf9989f82635
+fonte: 46fb8aa39338
 ---
 
 ## La prossima volta
@@ -106,7 +103,7 @@ TTM tiene traccia del lavoro; la configurazione la fai tu. Non crea i tuoi canal
 
 ### Devo scrivere i codici?
 
-No. Li scrivono i pulsanti: **Proprietario** per il proprietario, **Tag** per i tag, **Promemoria** per il promemoria, **Webhook** per il webhook. Tu scrivi solo i task. I codici contano quando copi una lista, o quando preferisci digitare invece di cliccare: vedi [Scrivere una lista](/docs/writing-a-list/).
+No. Li scrivono i pulsanti: **Proprietario** per il proprietario, **Tag** per i tag, **Promemoria** per il promemoria, **Webhook** per il webhook. Tu scrivi solo i task. I codici contano quando copi una lista, o quando preferisci digitare invece di cliccare: vedi [Modificare una lista a mano](/docs/writing-a-list/).
 
 ### Perché Leo ha ricevuto una menzione e Ava no?
 

@@ -73,10 +73,10 @@ settings:
   - setting: Promemoria ricorrenti
     choice: Ricorrenti attivati
     premium: true
-    why: "«Chiamare le squadre mancanti» avvisa ogni 15 minuti, finché qualcuno lo spunta."
+    why: "«Chiamare le squadre mancanti» avvisa ogni 15 minuti, fino a tre volte."
 week:
   - at: 2026-12-07T19:00
-    text: "Mia lancia `/crea-lista` in #staff-torneo e scrive i task di sabato, con @Arbitri come proprietario dei lavori che può fare qualsiasi arbitro, scritto come `@Arbitri:` ([Scrivere una lista](/docs/writing-a-list/#owners-the-mention-with-a-colon) spiega come). Incolla il link del tabellone di Challonge. La prima notifica menziona @Arbitri, così ogni arbitro viene avvisato."
+    text: "Mia lancia `/crea-lista` in #staff-torneo e scrive i task di sabato, con @Arbitri come proprietario dei lavori che può fare qualsiasi arbitro, scritto come `@Arbitri:` ([Modificare una lista a mano](/docs/writing-a-list/#owners-the-mention-with-a-colon) spiega come). Incolla il link del tabellone di Challonge. La prima notifica menziona @Arbitri, così ogni arbitro viene avvisato."
   - at: 2026-12-08T20:30
     text: "Mia assegna «Andare in diretta» a Leo e Sam insieme: sceglie entrambi nel menu sotto **Proprietario**. TTM crea il ruolo **TTM1** per i due e lo rende proprietario. Un proprietario di più persone è una funzione [Premium](/premium/), sbloccata per tutti i server durante la Beta."
   - at: 2026-12-09T21:00
@@ -99,7 +99,7 @@ week:
     card: { kind: webhook, webhook: Risultati, task: "8", by: "11839044175621001" }
   - at: 2026-12-12T19:05
     text: "L'ultimo arbitro esce dall'Activity. La lista torna in #staff-torneo con un riepilogo, una riga per ogni modifica con chi l'ha fatta. Il riepilogo menziona Zoe, che ha ricevuto la Partita C dentro l'Activity: le menzioni di una sessione arrivano con essa."
-fonte: 081a51356eb8
+fonte: b260b9b17faa
 ---
 
 ## La prossima volta
