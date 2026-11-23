@@ -1,6 +1,6 @@
 // I testi della documentazione in italiano: le chiavi di src/i18n/testi/en/docs.ts. `fonte` è l'impronta dell'inglese
 // tradotto (npm run traduzioni -- --firma).
-export const fonte = '41f727f89758';
+export const fonte = '9c3ddc506cca';
 
 export const testi = {
   titolo: 'Documentazione',
@@ -13,6 +13,8 @@ export const testi = {
   'menu.pulsante': 'Documentazione',
   'menu.chiudi': 'Chiudi il menu',
   'riserva': 'Questa pagina non è ancora tradotta: eccola in inglese.',
+  'copia': 'Copia',
+  'copiato': 'Copiato',
   'gruppo.inizio': 'Per iniziare',
   'gruppo.funzioni': 'Funzioni',
   'gruppo.funzioni.intro': "Cosa fa ogni funzione e con quali regole. Sono le stesse nel canale e nell'Activity.",
@@ -21,7 +23,11 @@ export const testi = {
   'gruppo.activity': "Nell'Activity",
   'gruppo.activity.intro':
     'La lista in una finestra dentro Discord, dove ci lavorate insieme: cosa vedi e dove toccare.',
-  'gruppo.configurazione': 'Configurazione',
+  'gruppo.perte': 'Per te',
+  'gruppo.perte.intro': "Quello che TTM tiene solo per te, uguale in ogni server e nell'Activity.",
+  'gruppo.configurazione': 'Impostazioni del server',
+  'gruppo.configurazione.intro':
+    "Le imposta chi gestisce il server con /config, da qualunque canale. Valgono per le liste nel canale e nell'Activity.",
   'gruppo.riferimento': 'Riferimento',
   'gruppo.piani': 'Piani',
   'gruppo.aiuto': 'Aiuto e community',

@@ -14,6 +14,9 @@ export const testi = {
   'menu.pulsante': 'Documentation',
   'menu.chiudi': 'Close menu',
   'riserva': 'This page is not translated yet: here it is in English.',
+  // Il pulsante di copia sui blocchi di codice: l'etichetta e l'annuncio dopo il click.
+  'copia': 'Copy',
+  'copiato': 'Copied',
   'gruppo.inizio': 'Getting started',
   'gruppo.funzioni': 'Features',
   'gruppo.funzioni.intro': 'What each feature does and its rules. They are the same in the channel and in the Activity.',
@@ -22,7 +25,11 @@ export const testi = {
   'gruppo.activity': 'In the Activity',
   'gruppo.activity.intro':
     'The list in a window inside Discord, where you work on it together: what you see, and where to tap.',
-  'gruppo.configurazione': 'Configuration',
+  'gruppo.perte': 'For you',
+  'gruppo.perte.intro': 'What TTM keeps for you alone, the same in every server and in the Activity.',
+  'gruppo.configurazione': 'Server settings',
+  'gruppo.configurazione.intro':
+    'Set by whoever runs the server, with /config, from any channel. They apply to the lists in the channel and in the Activity.',
   'gruppo.riferimento': 'Reference',
   'gruppo.piani': 'Plans',
   'gruppo.aiuto': 'Help & community',

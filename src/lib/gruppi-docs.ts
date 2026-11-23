@@ -21,7 +21,11 @@ export const GRUPPI_DOCS: GruppoDocs[] = [
   { name: 'Features', chiave: 'funzioni', intro: true },
   { name: 'In the channel', chiave: 'canale', intro: true, place: 'channel' },
   { name: 'In the Activity', chiave: 'activity', intro: true, place: 'activity' },
-  { name: 'Configuration', chiave: 'configurazione' },
+  // Lo specchio del gruppo dopo: /config è per il server, /my per te (spec 2026-11-23-documentazione-prima-i-pulsanti-
+  // design.md, §8). Il nome è quello del gruppo dell'ingranaggio dell'Activity, «For you, everywhere».
+  { name: 'For you', chiave: 'perte', intro: true },
+  // Il valore del frontmatter resta «Configuration»; il nome che si legge è «Server settings» (stessa spec, §7).
+  { name: 'Configuration', chiave: 'configurazione', intro: true },
   { name: 'Reference', chiave: 'riferimento' },
   { name: 'Plans', chiave: 'piani' },
   { name: 'Help & community', chiave: 'aiuto' },

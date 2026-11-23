@@ -88,7 +88,7 @@ const posto = data.place ?? null;
           «webhook» restituirebbe tutte le pagine del sito. Effetto collaterale voluto: appena un
           attributo del genere esiste, Pagefind indicizza SOLO le pagine che lo hanno, quindi la
           ricerca copre la documentazione e non le pagine legali. */}
-      <article class="prose" data-pagefind-body lang={pagina.riserva ? 'en' : undefined}>
+      <article class="prose" data-pagefind-body lang={pagina.riserva ? 'en' : undefined} data-copia={testo('copia')} data-copiato={testo('copiato')}>
         {/* La pillola del posto sta sopra il titolo: si legge prima di tutto il resto. Dice di quale dei due posti
             parlano i pulsanti della pagina. */}
         {posto && (
@@ -171,5 +171,56 @@ const posto = data.place ?? null;
     // barra nel frattempo.
     const scorsaA = side?.scrollTop;
     document.fonts.ready.then(() => { if (side?.scrollTop === scorsaA) voceApertaInVista(); });
+
+    // Il pulsante di copia sui blocchi di codice (spec 2026-11-23-documentazione-prima-i-pulsanti-design.md, §6, nel
+    // repo team-tasks-manager). Lo aggiunge lo script: senza JavaScript non copierebbe. Il contenitore tiene fermo il
+    // pulsante quando il blocco scorre in orizzontale.
+    const ICONA_COPIA = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+    const ICONA_FATTO = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+    const articolo = document.querySelector<HTMLElement>('article.prose');
+    if (articolo) {
+      const etichetta = articolo.dataset.copia ?? 'Copy';
+      const annuncio = document.createElement('p');
+      annuncio.className = 'sr-only';
+      annuncio.setAttribute('aria-live', 'polite');
+      articolo.append(annuncio);
+      articolo.querySelectorAll('pre').forEach((pre) => {
+        const box = document.createElement('div');
+        box.className = 'code-box';
+        pre.replaceWith(box);
+        box.append(pre);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'code-copy';
+        btn.setAttribute('aria-label', etichetta);
+        btn.title = etichetta;
+        btn.innerHTML = ICONA_COPIA;
+        let attesa: ReturnType<typeof setTimeout> | undefined;
+        btn.addEventListener('click', async () => {
+          // Gli spazi in testa restano: sono loro a fare i subtask. Via solo l'ultimo a capo.
+          const testo = (pre.textContent ?? '').replace(/\n$/, '');
+          try {
+            await navigator.clipboard.writeText(testo);
+            btn.innerHTML = ICONA_FATTO;
+            btn.classList.add('done');
+            annuncio.textContent = articolo.dataset.copiato ?? 'Copied';
+            clearTimeout(attesa);
+            attesa = setTimeout(() => {
+              btn.innerHTML = ICONA_COPIA;
+              btn.classList.remove('done');
+              annuncio.textContent = '';
+            }, 2000);
+          } catch {
+            // Gli appunti non disponibili: il testo resta selezionato, pronto per Ctrl+C.
+            const r = document.createRange();
+            r.selectNodeContents(pre);
+            const sel = window.getSelection();
+            sel?.removeAllRanges();
+            sel?.addRange(r);
+          }
+        });
+        box.append(btn);
+      });
+    }
   </script>
 </Base>
