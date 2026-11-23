@@ -2,7 +2,7 @@
 layout: ../../layouts/Legal.astro
 title: "Informativa sulla privacy"
 description: "Quali dati raccoglie il bot Discord Team Tasks Manager, perché e come vengono trattati."
-updated: "Ultimo aggiornamento: 19 novembre 2026"
+updated: "Ultimo aggiornamento: 23 novembre 2026"
 lang: it
 alt: /privacy/
 ---
@@ -20,7 +20,7 @@ TTM conserva solo ciò che serve per far funzionare le liste di task nel tuo ser
 - **Identificativi Discord** — ID di server (guild), canali e messaggi; ID di utenti e ruoli quando assegni un owner, aggiungi un tag o configuri i permessi.
 - **Contenuto dei task che crei** — titoli delle liste e testo dei task, compreso tutto ciò che vi scrivi (menzioni, link, note).
 - **Promemoria** — date, intervalli, ripetizioni e il fuso orario impostato per il server.
-- **Il tuo fuso orario personale** — il fuso orario che imposti al posto di quello proposto quando scegli una data: in un promemoria, in **Clona lista** con i promemoria, o nella nuova data di **Riapri tutti**, nel canale come nell'[Activity](#lactivity). È associato al tuo ID utente Discord e riutilizzato da un server all'altro. Se lasci quello proposto, non viene salvato nulla.
+- **Il tuo fuso orario personale** — il fuso orario che scegli con `/my timezone` o con l'ingranaggio dell'[Activity](#lactivity), oppure, finché non ne scegli uno, quello che imposti al posto di quello proposto quando scegli una data: in un promemoria, in **Clona lista** con i promemoria, o nella nuova data di **Riapri tutti**, nel canale come nell'Activity. È associato al tuo ID utente Discord, insieme al fatto che l'hai scelto, e riutilizzato da un server all'altro. Se lasci quello proposto non viene salvato nulla; **Torna automatico** lo cancella.
 - **Il tuo canale di messaggi diretti** — quando sei l'owner di un task, i suoi promemoria ti arrivano per messaggio diretto, quindi il bot conserva l'ID del suo canale di messaggi diretti con te, per recapitarli con una sola richiesta a Discord. Se non accetti messaggi diretti, conserva anche il momento fino al quale non riprovare (sei ore dopo il tentativo non riuscito). Entrambi sono associati al tuo ID utente Discord, come il fuso orario; i messaggi in sé non vengono conservati.
 - **Se hai imparato la seconda riga** — quando premi **Contenuto** o **Promemoria** sotto una lista, il bot ti manda un breve aiuto col passo successivo, finché non scegli per la prima volta un task dal menu della lista con uno dei due acceso. Da lì l'aiuto non torna più, in nessun server: per questo il bot conserva il tuo ID utente Discord e il momento in cui l'hai fatto, nient'altro.
 - **Ruoli creati da TTM** — quando un task viene assegnato a più persone, TTM crea un ruolo e ne conserva l'ID, il nome che gli ha dato, gli ID utente delle persone a cui l'ha assegnato, chi l'ha richiesto, quando e in quale lingua del bot: per mostrare quelle persone quando il task viene modificato, per eliminare il ruolo quando nessuna lista lo usa più e, quanto alla lingua, per scrivere l'avviso che accompagna un promemoria mandato a quelle persone in privato quando TTM non può scrivere nel canale della lista.
@@ -57,7 +57,7 @@ I dati sono conservati finché il bot è presente e in uso nel tuo server.
 
 **Backup** — eseguiamo ogni giorno un backup del database, per ripristinare il servizio dopo un guasto. I backup sono conservati per **14 giorni**, nell'UE. I dati che elimini, o che eliminiamo quando il bot lascia un server, possono quindi sopravvivere in un backup fino a 14 giorni; poi spariscono per sempre. Un backup si usa solo per ripristinare il servizio.
 
-**Il tuo fuso orario personale, il tuo canale di messaggi diretti e la seconda riga** — il fuso orario che imposti al posto di quello proposto, l'ID del tuo canale di messaggi diretti con il bot (insieme, se non accetti messaggi diretti, al momento fino al quale non riprovare) e il ricordo che hai imparato la seconda riga sono associati al tuo ID utente Discord e non sono legati a un singolo server, quindi rimuovere il bot da un server non li elimina. Scrivi a **info@bitsplitters.app** indicando il tuo ID utente Discord e li elimineremo. Cancellare il ricordo della seconda riga fa solo tornare l'aiuto.
+**Il tuo fuso orario personale, il tuo canale di messaggi diretti e la seconda riga** — il fuso orario che scegli o che imposti al posto di quello proposto (puoi cancellarlo tu con **Torna automatico**), l'ID del tuo canale di messaggi diretti con il bot (insieme, se non accetti messaggi diretti, al momento fino al quale non riprovare) e il ricordo che hai imparato la seconda riga sono associati al tuo ID utente Discord e non sono legati a un singolo server, quindi rimuovere il bot da un server non li elimina. Scrivi a **info@bitsplitters.app** indicando il tuo ID utente Discord e li elimineremo. Cancellare il ricordo della seconda riga fa solo tornare l'aiuto.
 
 **L'Activity** — la chiave della sua finestra vale 24 ore: la sua impronta viene eliminata entro un'ora dalla scadenza. La registrazione delle modifiche fatte lì viene eliminata quando la lista torna nel canale. Vedi [L'Activity](#lactivity).
 

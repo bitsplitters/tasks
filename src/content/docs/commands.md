@@ -44,6 +44,12 @@ Create, view, modify or delete a webhook, optionally limited to a **completion**
 
 → See [/config webhook](/docs/webhooks/#creating-a-webhook).
 
+## `/my timezone`
+
+Your time zone, the same in every server: TTM proposes it whenever you pick a date, in the channel and in the Activity. The panel, visible only to you, shows your current zone and where it comes from: chosen by you, the last one you left in a reminder, your Discord language or the server. **Choose** opens a form: paste the name of your zone, such as `Europe/Rome`, found on the [time zone map](https://timezones.bitsplitters.app). **Back to automatic** forgets your choice, and TTM learns your zone from your reminders again. The Activity has the same choice in its gear. It works in servers only, and needs no permission.
+
+→ See [Your time zone](/docs/reminders/#your-time-zone).
+
 ## `/beta`
 
 This command shows what the beta means for your server: every feature is unlocked and free for the whole beta. It also explains what happens when the beta ends, and why there's a paid plan. A button shows what that plan will look like.
@@ -72,7 +78,7 @@ When there's news nobody in your server has read yet, the last line of the bot's
 
 ## Command names in your language
 
-Discord shows each command in the language of your Discord app, and in English for a language TTM isn't translated into. `/config app`, `/config lists`, `/config webhook` (with its `webhook` option), `/beta`, `/help`, `/invite` and `/news` keep the same name everywhere.
+Discord shows each command in the language of your Discord app, and in English for a language TTM isn't translated into. `/config app`, `/config lists`, `/config webhook` (with its `webhook` option), `/my timezone`, `/beta`, `/help`, `/invite` and `/news` keep the same name everywhere.
 
 | Language | `/create-list` | its `file` option | `/config webhook` options |
 | :--- | :--- | :--- | :--- |

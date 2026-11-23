@@ -75,7 +75,7 @@ Remove them all and **Save** removes every tag, as **Red** does.
 - An **existing** reminder shows its values. **Save** stays off until you change something.
 - **Save** stays off for a date that has passed, or one less than 5 minutes away: *The date has already passed* tells you to choose a new one.
 
-Tap **Time zone** to choose it: search by city, country, a name such as `Europe/Rome` or an offset such as `+5:30`. *Your time zones* lists the ones that matter to you: this device's, the one you chose, the server's. Under the fields, *On this device* shows the same moment in your device's time, when the zone is different. The zone you choose is remembered: see [Your time zone](/docs/reminders/#your-time-zone).
+Tap **Time zone** to choose it: search by city, country, a name such as `Europe/Rome` or an offset such as `+5:30`. *Your time zones* lists the ones that matter to you: this device's, yours or the last one you used, the server's. Under the field, a line tells you whether the zone is yours: until you choose one in **Settings**, the zone you leave here becomes yours. See [Your time zone](/docs/reminders/#your-time-zone). Under the fields, *On this device* shows the same moment in your device's time, when the zone is different.
 
 The three repetition menus appear on a plan with [repeating reminders](/docs/reminders/#repeating-reminders) and the toggle on, or when the reminder already repeats: see [The repetition fields](/docs/reminders/#the-repetition-fields).
 
