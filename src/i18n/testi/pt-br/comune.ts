@@ -5,10 +5,10 @@ export const fonte = 'f552d30498a5';
 export const testi = {
   'nav.label': 'Site',
   'nav.docs': 'Docs',
-  'nav.casi': 'Casos de uso',
+  'nav.casi': 'Exemplos',
   'nav.premium': 'Premium',
   'nav.beta': 'Beta',
-  'nav.note': 'Novidades',
+  'nav.note': 'Versões',
   'piede.terms': 'Termos',
   'piede.privacy': 'Privacidade',
   'piede.gdpr': 'GDPR',

@@ -44,8 +44,8 @@ Die Regeln:
 Sende das Formular ab, und die Liste erscheint im Kanal. Hier ist dieselbe Liste nach ein paar Schritten. Die erste Aufgabe ist abgehakt, *Die Turnierbäume vorbereiten* hat einen Besitzer und *Das Finale streamen* hat eine Erinnerung.
 
 <picture class="screen">
-  <source media="(max-width: 640px)" srcset="/screens/list-mobile.png" width="795" height="1059" />
-  <img src="/screens/list-desktop.png" width="456" height="418" loading="lazy" alt="Die Liste Samstagsturnier in Discord: sechs nummerierte Aufgaben mit Kästchen. Die erste ist abgehakt und ausgegraut; Die Turnierbäume vorbereiten hat zwei Unteraufgaben und einen Besitzer; Das Finale streamen hat einen Besitzer und ein Erinnerungsdatum. Unter den Aufgaben verweist eine kleine Zeile auf Mehr, Anleitung und die vollständige Dokumentation, und ein grüner Balken zeigt, wie viel erledigt ist. Unter der Liste stehen das Dropdown-Menü Aufgabe abhaken und zwei Reihen Buttons." />
+  <source media="(max-width: 640px)" srcset="/screens/de/list-mobile.png" width="795" height="1106" />
+  <img src="/screens/de/list-desktop.png" width="540" height="418" loading="lazy" alt="Die Liste Samstagsturnier in Discord: sechs nummerierte Aufgaben mit Kästchen. Die erste ist abgehakt und ausgegraut; Die Turnierbäume vorbereiten hat zwei Unteraufgaben und einen Besitzer; Das Finale streamen hat einen Besitzer und ein Erinnerungsdatum. Unter den Aufgaben verweist eine kleine Zeile auf Mehr, Anleitung und die vollständige Dokumentation, und ein grüner Balken zeigt, wie viel erledigt ist. Unter der Liste stehen das Dropdown-Menü Aufgabe abhaken und zwei Reihen Buttons." />
 </picture>
 
 Lieber durch Ausprobieren lernen? Neben **Erstelle deine Liste** gibt es einen Button **Tutorial**: Er macht aus der Erklärung eine Übungsliste mit sieben Lektionen in deiner Sprache und schickt dir die Anleitung in einer Nachricht, die nur du siehst. Mach die Lektionen der Reihe nach: Jede nennt einen Button mit seinem Icon und bittet dich, etwas damit zu tun, vom Abhaken bis zum Öffnen in der Activity.

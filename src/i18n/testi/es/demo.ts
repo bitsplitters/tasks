@@ -40,10 +40,10 @@ export const testi = {
 
   // La lista de la demo y de los vídeos, con los nombres del servidor
   'lista.titolo': 'Plantilla y scrims — semana 12',
-  'lista.task.1': 'Confirmar la plantilla de cinco para el bloque de scrims del sábado',
-  'lista.task.2': 'Cerrar el bloque de scrims contra Nova Collective',
-  'lista.task.2.1': 'Recortar las tres peleas de equipo para la revisión',
-  'lista.task.3': 'Revisión del VOD: rotaciones en mid, partida 3',
+  'lista.task.1': 'Confirmar la plantilla de cinco para los scrims del sábado',
+  'lista.task.2': 'Cerrar los scrims contra Nova Collective',
+  'lista.task.2.1': 'Recortar las tres peleas para la revisión',
+  'lista.task.3': 'Revisión del VOD: rotaciones, partida 3',
   'lista.task.4': 'Publicar el gráfico del día de partido',
   'lista.webhook.risultati': 'Resultados de scrims',
   'lista.webhook.staff': 'Alertas del staff',

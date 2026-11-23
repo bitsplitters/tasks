@@ -44,8 +44,8 @@ Las reglas:
 Envía el formulario y la lista aparece en el canal. Aquí tienes la misma lista tras unos pasos. La primera tarea está marcada, *Preparar los emparejamientos* tiene propietario y *Retransmitir la final* tiene un recordatorio.
 
 <picture class="screen">
-  <source media="(max-width: 640px)" srcset="/screens/list-mobile.png" width="795" height="1059" />
-  <img src="/screens/list-desktop.png" width="456" height="418" loading="lazy" alt="La lista Torneo del sábado en Discord: seis tareas numeradas con casillas. La primera está marcada y atenuada; Preparar los emparejamientos tiene dos subtareas y un propietario; Retransmitir la final tiene un propietario y una fecha de recordatorio. Bajo las tareas, una pequeña línea remite a Más, Guía y la documentación completa, y una barra verde muestra cuánto está hecho. Debajo de la lista están el menú desplegable, Marcar tarea, y dos filas de botones." />
+  <source media="(max-width: 640px)" srcset="/screens/es/list-mobile.png" width="795" height="1106" />
+  <img src="/screens/es/list-desktop.png" width="469" height="418" loading="lazy" alt="La lista Torneo del sábado en Discord: seis tareas numeradas con casillas. La primera está marcada y atenuada; Preparar los emparejamientos tiene dos subtareas y un propietario; Retransmitir la final tiene un propietario y una fecha de recordatorio. Bajo las tareas, una pequeña línea remite a Más, Guía y la documentación completa, y una barra verde muestra cuánto está hecho. Debajo de la lista están el menú desplegable, Marcar tarea, y dos filas de botones." />
 </picture>
 
 ¿Prefieres aprender haciendo? Junto a **Crea tu lista** hay un botón **Tutorial**: convierte la explicación en una lista de práctica de siete lecciones en tu idioma, y te envía la Guía en un mensaje que solo ves tú. Haz las lecciones en orden: cada una nombra un botón con su icono y te pide que hagas algo con él, desde marcarlo hasta abrirlo en la Activity.

@@ -40,8 +40,8 @@ export const testi = {
 
   // Die Liste der Demo und der Videos, mit den Namen des Servers
   'lista.titolo': 'Roster und Scrims — Woche 12',
-  'lista.task.1': 'Das Fünfer-Roster für den Scrim-Block am Samstag bestätigen',
-  'lista.task.2': 'Den Scrim-Block gegen Nova Collective festmachen',
+  'lista.task.1': 'Das Fünfer-Roster für die Scrims am Samstag bestätigen',
+  'lista.task.2': 'Scrims gegen Nova Collective festmachen',
   'lista.task.2.1': 'Die drei Teamfights für das Review clippen',
   'lista.task.3': 'VOD-Review: Mid-Rotationen, Game 3',
   'lista.task.4': 'Die Match-Day-Grafik veröffentlichen',

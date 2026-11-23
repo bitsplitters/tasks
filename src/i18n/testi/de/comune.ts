@@ -8,7 +8,7 @@ export const testi = {
   'nav.casi': 'Beispiele',
   'nav.premium': 'Premium',
   'nav.beta': 'Beta',
-  'nav.note': 'Neuigkeiten',
+  'nav.note': 'Neues',
   'piede.terms': 'Nutzungsbedingungen',
   'piede.privacy': 'Datenschutz',
   'piede.gdpr': 'DSGVO',

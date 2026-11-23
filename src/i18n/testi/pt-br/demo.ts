@@ -41,9 +41,9 @@ export const testi = {
 
   // A lista da demo e dos vídeos, com os nomes do servidor
   'lista.titolo': 'Elenco e treinos — semana 12',
-  'lista.task.1': 'Confirmar o elenco de cinco para o bloco de treinos de sábado',
-  'lista.task.2': 'Fechar o bloco de treinos contra a Nova Collective',
-  'lista.task.2.1': 'Recortar as três lutas de equipe para a revisão',
+  'lista.task.1': 'Confirmar o elenco de cinco para o treino de sábado',
+  'lista.task.2': 'Marcar o treino contra a Nova Collective',
+  'lista.task.2.1': 'Recortar as três lutas para a revisão',
   'lista.task.3': 'Revisão do VOD: rotações do meio, jogo 3',
   'lista.task.4': 'Publicar a arte do dia da partida',
   'lista.webhook.risultati': 'Resultados dos treinos',

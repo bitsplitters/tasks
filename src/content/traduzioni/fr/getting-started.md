@@ -44,8 +44,8 @@ Les règles :
 Envoie le formulaire, et la liste apparaît dans le salon. Voici la même liste après quelques étapes. La première tâche est cochée, *Préparer les tableaux* a un propriétaire et *Diffuser la finale* a un rappel.
 
 <picture class="screen">
-  <source media="(max-width: 640px)" srcset="/screens/list-mobile.png" width="795" height="1059" />
-  <img src="/screens/list-desktop.png" width="456" height="418" loading="lazy" alt="La liste Tournoi du samedi dans Discord : six tâches numérotées avec des cases. La première est cochée et grisée ; Préparer les tableaux a deux sous-tâches et un propriétaire ; Diffuser la finale a un propriétaire et une date de rappel. Sous les tâches, une petite ligne renvoie à Autre, au Guide et à la documentation complète, et une barre verte montre l'avancement. Sous la liste se trouvent le menu déroulant, Cocher une tâche, et deux rangées de boutons." />
+  <source media="(max-width: 640px)" srcset="/screens/fr/list-mobile.png" width="795" height="1063" />
+  <img src="/screens/fr/list-desktop.png" width="529" height="418" loading="lazy" alt="La liste Tournoi du samedi dans Discord : six tâches numérotées avec des cases. La première est cochée et grisée ; Préparer les tableaux a deux sous-tâches et un propriétaire ; Diffuser la finale a un propriétaire et une date de rappel. Sous les tâches, une petite ligne renvoie à Autre, au Guide et à la documentation complète, et une barre verte montre l'avancement. Sous la liste se trouvent le menu déroulant, Cocher une tâche, et deux rangées de boutons." />
 </picture>
 
 Tu préfères apprendre en faisant ? À côté de **Crée ta liste**, il y a un bouton **Tutoriel** : il transforme l'explication en une liste d'essai de sept leçons dans ta langue, et t'envoie le Guide dans un message que toi seul peux voir. Fais les leçons dans l'ordre : chacune nomme un bouton avec son icône et te demande de faire quelque chose avec lui, du simple cochage jusqu'à l'ouverture dans l'Activity.

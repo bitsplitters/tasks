@@ -44,8 +44,8 @@ As regras:
 Envie o formulário e a lista aparece no canal. Aqui está a mesma lista depois de alguns passos. A primeira tarefa está marcada, *Preparar as chaves* tem um proprietário e *Transmitir a final* tem um lembrete.
 
 <picture class="screen">
-  <source media="(max-width: 640px)" srcset="/screens/list-mobile.png" width="795" height="1059" />
-  <img src="/screens/list-desktop.png" width="456" height="418" loading="lazy" alt="A lista Torneio de sábado no Discord: seis tarefas numeradas com caixas. A primeira está marcada e em cinza; Preparar as chaves tem duas subtarefas e um proprietário; Transmitir a final tem um proprietário e a data de um lembrete. Sob as tarefas, uma pequena linha aponta para Mais, Guia e a documentação completa, e uma barra verde mostra quanto já foi feito. Abaixo da lista ficam o menu suspenso, Marcar tarefa, e duas linhas de botões." />
+  <source media="(max-width: 640px)" srcset="/screens/pt-br/list-mobile.png" width="795" height="1063" />
+  <img src="/screens/pt-br/list-desktop.png" width="465" height="418" loading="lazy" alt="A lista Torneio de sábado no Discord: seis tarefas numeradas com caixas. A primeira está marcada e em cinza; Preparar as chaves tem duas subtarefas e um proprietário; Transmitir a final tem um proprietário e a data de um lembrete. Sob as tarefas, uma pequena linha aponta para Mais, Guia e a documentação completa, e uma barra verde mostra quanto já foi feito. Abaixo da lista ficam o menu suspenso, Marcar tarefa, e duas linhas de botões." />
 </picture>
 
 Prefere aprender fazendo? Ao lado de **Crie sua lista** há um botão **Tutorial**: ele transforma a explicação em uma lista de prática com sete lições no seu idioma e envia o Guia a você em uma mensagem que só você vê. Faça as lições em ordem: cada uma nomeia um botão com o ícone dele e pede que você faça algo com ele mesmo, desde marcá-lo até abri-lo na Activity.

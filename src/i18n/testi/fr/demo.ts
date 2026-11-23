@@ -41,8 +41,8 @@ export const testi = {
 
   // La liste de la démo et des vidéos, avec les noms du serveur
   'lista.titolo': 'Roster et scrims — semaine 12',
-  'lista.task.1': 'Confirmer le roster à cinq pour le bloc de scrims de samedi',
-  'lista.task.2': 'Verrouiller le bloc de scrims contre Nova Collective',
+  'lista.task.1': 'Confirmer le roster à cinq pour les scrims de samedi',
+  'lista.task.2': 'Caler les scrims contre Nova Collective',
   'lista.task.2.1': 'Couper les trois teamfights pour la review',
   'lista.task.3': 'Review du VOD : rotations mid, game 3',
   'lista.task.4': 'Publier le visuel du jour de match',

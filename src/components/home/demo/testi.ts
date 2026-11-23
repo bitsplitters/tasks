@@ -10,14 +10,21 @@
 import { datiDi, type Lingua } from '../../../i18n/lingue.ts';
 import { linguaDellaDemo } from './lingua.ts';
 import type { Domanda, Esito, Testo } from './regole.ts';
+import { TESTI as DE } from './testi/de.ts';
 import { TESTI as EN } from './testi/en.ts';
+import { TESTI as ES } from './testi/es.ts';
+import { TESTI as LATAM } from './testi/es-419.ts';
+import { TESTI as FR } from './testi/fr.ts';
 import { TESTI as IT } from './testi/it.ts';
+import { TESTI as PT } from './testi/pt-br.ts';
 
 /**
  * Le tabelle dei testi per lingua: l'inglese scritto in testi/en.ts, le altre generate dal bundle della lingua
  * (scripts/testi-demo.mjs). Una lingua pubblicata senza tabella è un errore che il test trova.
  */
-export const TABELLE: Readonly<Partial<Record<Lingua, Readonly<Record<string, string>>>>> = { en: EN, it: IT };
+export const TABELLE: Readonly<Partial<Record<Lingua, Readonly<Record<string, string>>>>> = {
+  en: EN, it: IT, de: DE, fr: FR, 'es-ES': ES, 'es-419': LATAM, 'pt-BR': PT,
+};
 
 /** La tabella della lingua della demo. */
 function tabella(): Readonly<Record<string, string>> {
