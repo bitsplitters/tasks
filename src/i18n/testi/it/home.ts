@@ -1,5 +1,5 @@
 // I testi della home in italiano: le stesse chiavi di src/i18n/testi/en/home.ts.
-export const fonte = '';
+export const fonte = '1f9f89d4ba47';
 
 export const testi = {
   'title': 'Team Tasks Manager — bot Discord per liste di task con promemoria',

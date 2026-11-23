@@ -1,6 +1,6 @@
 // I testi della documentazione in italiano: le chiavi di src/i18n/testi/en/docs.ts. `fonte` è l'impronta dell'inglese
 // tradotto (npm run traduzioni -- --firma).
-export const fonte = '';
+export const fonte = '41f727f89758';
 
 export const testi = {
   titolo: 'Documentazione',

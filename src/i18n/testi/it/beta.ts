@@ -1,5 +1,5 @@
 // I testi della pagina della beta in italiano: le stesse chiavi di src/i18n/testi/en/beta.ts.
-export const fonte = '';
+export const fonte = 'd0612d9b344f';
 
 export const testi = {
   'titolo': 'Beta aperta',

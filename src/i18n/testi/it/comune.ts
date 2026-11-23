@@ -1,6 +1,6 @@
 // I testi comuni in italiano: le chiavi di src/i18n/testi/en/comune.ts. `fonte` è l'impronta dell'inglese tradotto
 // (npm run traduzioni -- --firma).
-export const fonte = '';
+export const fonte = 'f552d30498a5';
 
 export const testi = {
   'nav.label': 'Sito',

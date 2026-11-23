@@ -1,6 +1,6 @@
 // I testi dei casi d'uso in italiano: le chiavi di src/i18n/testi/en/casi.ts. `fonte` è l'impronta dell'inglese
 // tradotto (npm run traduzioni -- --firma).
-export const fonte = '';
+export const fonte = 'df60eff66f91';
 
 export const testi = {
   'indice.title': "Casi d'uso della gestione dei task su Discord — Team Tasks Manager",

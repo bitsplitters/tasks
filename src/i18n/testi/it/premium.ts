@@ -1,5 +1,5 @@
 // I testi della pagina dei piani in italiano: le stesse chiavi di src/i18n/testi/en/premium.ts.
-export const fonte = '';
+export const fonte = 'a65f1eac35cd';
 
 export const testi = {
   'pagina.titolo': 'Piani e prezzi',
