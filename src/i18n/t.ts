@@ -12,7 +12,12 @@
 import { datiDi } from './lingue.ts';
 import type { Lingua } from './lingue.ts';
 import { ZONE as EN } from './testi/en/index.ts';
+import { ZONE as DE } from './testi/de/index.ts';
+import { ZONE as ES } from './testi/es/index.ts';
+import { ZONE as LATAM } from './testi/es-419/index.ts';
+import { ZONE as FR } from './testi/fr/index.ts';
 import { ZONE as IT } from './testi/it/index.ts';
+import { ZONE as PT } from './testi/pt-br/index.ts';
 
 export type Forme = Partial<Record<Intl.LDMLPluralRule, string>> & { other: string };
 export type Valore = string | Forme;
@@ -20,7 +25,9 @@ export type Modulo = Readonly<Record<string, Valore>>;
 export type Valori = Readonly<Record<string, string | number>>;
 
 /** I testi di ogni lingua che ne ha: le lingue senza moduli non hanno pagine (lingue.ts). */
-export const TESTI: Readonly<Partial<Record<Lingua, Readonly<Record<string, Modulo>>>>> = { en: EN, it: IT };
+export const TESTI: Readonly<Partial<Record<Lingua, Readonly<Record<string, Modulo>>>>> = {
+  en: EN, it: IT, de: DE, fr: FR, 'es-ES': ES, 'es-419': LATAM, 'pt-BR': PT,
+};
 
 /** La forma di un plurale per il numero `n`, con le regole della lingua; `other` se la forma non c'è. */
 export function forma(lingua: Lingua, forme: Forme, n: number): string {
