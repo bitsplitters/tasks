@@ -3,20 +3,31 @@
  * La pagina da cui si registrano i video della home (spec 2026-11-15-home-video-e-demo-design.md, §2 e §7.1).
  * Esiste solo con `astro dev` (l'integrazione registrazione-video in astro.config.mjs): la build non la conosce.
  *
- *   /registrazione-video?modo=channel|activity&misura=wide|narrow[&t=12.5]
+ *   /registrazione-video[/it]?modo=channel|activity&misura=wide|narrow[&t=12.5]
  *
  * Disegna le scene della demo nello stato d'inizio dei video, col cursore e il tocco. registrazione.ts prepara
- * render(t) e DURATA per scripts/registra-video.cjs; con &t ferma la scena su quell'istante.
+ * render(t) e DURATA per scripts/registra-video.cjs; con &t ferma la scena su quell'istante. Il prefisso in coda al
+ * percorso è quello di una lingua pubblicata (lingue.ts): i testi e la lista dei video in quella lingua; senza,
+ * l'inglese. Sta nel percorso e non nella query perché astro dev toglie la query alle pagine statiche.
  */
 import '../components/home/scene.css';
 import ChannelScene from '../components/home/ChannelScene.astro';
 import ActivityScene from '../components/home/ActivityScene.astro';
+import { usaLingua } from '../components/home/demo/lingua.ts';
 import { listaDeiVideo } from '../components/home/demo/modello.ts';
+import { LINGUE_PUBBLICATE, type Lingua } from '../i18n/lingue.ts';
+
+export function getStaticPaths() {
+  return LINGUE_PUBBLICATE.map((l) => ({ params: { lingua: l.prefisso || undefined }, props: { lingua: l.codice } }));
+}
+
+const { lingua } = Astro.props as { lingua: Lingua };
+usaLingua(lingua);
 
 const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lingua}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,14 +48,14 @@ const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
       <div class="scene sc-rec sc-rec-chan">
         {/* I video mostrano un server coi Tips spenti: con la riga dei Tips, nel suo stato più alto il messaggio del
             canale non sta nell'inquadratura (408 px in una chat di 381), e i video registrati restano validi. */}
-        <ChannelScene lista={listaDeiVideo()} tips={false} />
+        <ChannelScene lista={listaDeiVideo()} lingua={lingua} tips={false} />
         <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
         <span class="sc-tap" aria-hidden="true"></span>
       </div>
     </div>
     <div class="sc-box rec-box" data-modo="activity" hidden>
       <div class="scene sc-rec">
-        <ActivityScene lista={listaDeiVideo()} aperta={false} tips={false} />
+        <ActivityScene lista={listaDeiVideo()} lingua={lingua} aperta={false} tips={false} />
         <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
         <span class="sc-tap" aria-hidden="true"></span>
       </div>

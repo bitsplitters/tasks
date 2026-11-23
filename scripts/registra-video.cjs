@@ -8,6 +8,7 @@
  * Con astro dev acceso (npx astro dev --host 127.0.0.1 --port 4321), dalla cartella tasks:
  *
  *   node scripts/registra-video.cjs                                  i quattro video e le quattro immagini ferme
+ *   node scripts/registra-video.cjs --lingua it                      gli stessi in italiano, in public/video/it
  *   node scripts/registra-video.cjs channel wide                     uno solo
  *   node scripts/registra-video.cjs channel wide <cartella> 2.6 8.3  solo quei fotogrammi, in PNG
  *   node scripts/registra-video.cjs esplora <uscita.mp4>             il video di Esplora, muto
@@ -15,6 +16,9 @@
  *
  * I video della home escono in public/video: {channel,activity}-{wide,narrow}.mp4 e, con lo stesso nome, il .webp
  * dell'ultimo fotogramma, l'immagine ferma di HeroVideo.astro (il suo <picture>), che resta anche senza JavaScript.
+ * Con --lingua <codice> (una lingua pubblicata di src/i18n/lingue.ts, fuori dall'inglese) la pagina disegna testi e
+ * lista in quella lingua, il browser la parla (i campi nativi di data e ora) e i file vanno in public/video/<prefisso>,
+ * dove HeroVideo.astro li cerca per le pagine di quella lingua (spec 2026-11-19-sito-multilingua-design.md, §10).
  * Il video di Esplora non è del sito: va dove gli si dice, a 1920 × 1080 e CRF 16 come il primo video.
  *
  * Quando rifarli: i video della home a ogni cambio dell'interfaccia del canale o dell'Activity che si vede nei video
@@ -51,7 +55,27 @@ const ESPLORA = new URL('/registrazione-esplora', PAGINA).href;
 // Le misure CSS della scena; i fotogrammi sono il doppio (deviceScaleFactor 2): 1440 × 960 e 780 × 1040.
 const MISURE = { wide: { width: 720, height: 480 }, narrow: { width: 390, height: 520 } };
 const MODI = ['channel', 'activity'];
-const USCITA = path.join(__dirname, '..', 'public', 'video');
+
+/**
+ * La lingua dei video della home (--lingua): il codice per la pagina, il locale del browser e la cartella d'uscita. Le
+ * lingue sono quelle pubblicate di src/i18n/lingue.ts (il .cjs non importa il .ts: si leggono dal sorgente).
+ */
+function linguaDegliArgomenti(argomenti) {
+  const i = argomenti.indexOf('--lingua');
+  if (i < 0) return { codice: 'en', locale: 'en-US', prefisso: '' };
+  const codice = argomenti[i + 1];
+  argomenti.splice(i, 2);
+  const sorgente = fs.readFileSync(path.join(__dirname, '..', 'src', 'i18n', 'lingue.ts'), 'utf8');
+  const riga = sorgente.split(/\r?\n(?=\s*\{)/).find((r) => r.includes(`codice: '${codice}'`));
+  if (!codice || !riga || !/pubblicata: true/.test(riga)) throw new Error(`--lingua vuole una lingua pubblicata, non ${codice}`);
+  const prefisso = /prefisso: '([^']*)'/.exec(riga)[1];
+  const intl = /intl: '([^']*)'/.exec(riga)[1];
+  return { codice, locale: intl.includes('-') ? intl : `${intl}-${intl.toUpperCase()}`, prefisso };
+}
+
+const ARGOMENTI = process.argv.slice(2);
+const LINGUA = linguaDegliArgomenti(ARGOMENTI);
+const USCITA = path.join(__dirname, '..', 'public', 'video', LINGUA.prefisso);
 
 /** ffmpeg con l'ingresso da stdin; fine si risolve quando esce senza errori. */
 function avviaFfmpeg(argomenti) {
@@ -62,7 +86,7 @@ function avviaFfmpeg(argomenti) {
 
 /** La pagina pronta (PRONTA, o l'errore nel titolo), con la sua durata e il fotogramma dell'istante t in PNG. */
 async function apri(browser, nome, indirizzo, viewport, scala) {
-  const page = await browser.newPage({ viewport, deviceScaleFactor: scala, locale: 'en-US' });
+  const page = await browser.newPage({ viewport, deviceScaleFactor: scala, locale: LINGUA.locale });
   page.on('pageerror', (e) => console.error(`${nome}: ${e.message}`));
   await page.goto(indirizzo);
   await page.waitForFunction(() => window.PRONTA === true || document.title.startsWith('ERRORE'), null,
@@ -78,7 +102,8 @@ async function apri(browser, nome, indirizzo, viewport, scala) {
 }
 
 const apriLaHome = (browser, modo, misura) =>
-  apri(browser, `${modo}-${misura}`, `${PAGINA}?modo=${modo}&misura=${misura}`, MISURE[misura], 2);
+  apri(browser, `${modo}-${misura}`, `${PAGINA}${LINGUA.prefisso ? `/${LINGUA.prefisso}` : ''}?modo=${modo}&misura=${misura}`,
+    MISURE[misura], 2);
 const apriEsplora = (browser) => apri(browser, 'esplora', ESPLORA, { width: 1920, height: 1080 }, 1);
 
 /** I fotogrammi da 0 a durata, in H.264 nel file mp4; restituisce quanti sono. */
@@ -148,7 +173,8 @@ async function esplora(browser, uscita, istanti) {
 }
 
 (async () => {
-  const [modo, ...resto] = process.argv.slice(2);
+  const [modo, ...resto] = ARGOMENTI;
+  if (modo === 'esplora' && LINGUA.codice !== 'en') throw new Error('il video di Esplora è solo in inglese');
   let lavoro;
   if (modo === 'esplora') {
     const [uscita, ...istanti] = resto;
@@ -164,8 +190,8 @@ async function esplora(browser, uscita, istanti) {
     lavoro = (browser) => laHome(browser, modo, misura, cartella, istanti);
   }
   // I campi nativi di data e ora (il promemoria dell'Activity) seguono la lingua del browser, non il locale della
-  // pagina (apri): con --lang sono in inglese come il resto del video, invece che nella lingua di chi registra.
-  const browser = await chromium.launch({ executablePath: CHROME, args: ['--lang=en-US'] });
+  // pagina (apri): con --lang sono nella lingua del video, invece che in quella di chi registra.
+  const browser = await chromium.launch({ executablePath: CHROME, args: [`--lang=${LINGUA.locale}`] });
   try {
     await lavoro(browser);
   } finally {

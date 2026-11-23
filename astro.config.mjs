@@ -40,17 +40,18 @@ function rehypeNoTranslateCode() {
 
 // Le pagine da cui si registrano i video (spec 2026-11-15-home-video-e-demo-design.md, §7.1, e
 // 2026-11-17-video-activity-esplora-design.md, §8, nel repo team-tasks-manager): i video della home e quello di
-// Esplora sull'Activity. Esistono solo con `astro dev`: injectRoute le aggiunge quando il comando è dev, e così
-// `astro build` non le conosce e `dist` non le contiene. Non sono pagine del sito: disegnano le scene per
-// scripts/registra-video.cjs.
+// Esplora sull'Activity; con loro quella delle schermate della lista di Getting started. Esistono solo con `astro dev`:
+// injectRoute le aggiunge quando il comando è dev, e così `astro build` non le conosce e `dist` non le contiene. Non
+// sono pagine del sito: disegnano le scene per scripts/registra-video.cjs e scripts/schermate-lista.cjs.
 const registrazioneVideo = {
   name: 'registrazione-video',
   hooks: {
     'astro:config:setup': ({ command, injectRoute }) => {
       if (command !== 'dev') return;
       const pagina = (nome) => fileURLToPath(new URL(`./src/video/${nome}.astro`, import.meta.url));
-      injectRoute({ pattern: '/registrazione-video', entrypoint: pagina('Registrazione') });
+      injectRoute({ pattern: '/registrazione-video/[...lingua]', entrypoint: pagina('Registrazione') });
       injectRoute({ pattern: '/registrazione-esplora', entrypoint: pagina('RegistrazioneEsplora') });
+      injectRoute({ pattern: '/schermate-lista/[...lingua]', entrypoint: pagina('Schermate') });
     },
   },
 };

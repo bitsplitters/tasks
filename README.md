@@ -130,6 +130,13 @@ SHA-256 of the English file with LF line endings. It sits in the frontmatter of 
   (`slash-resource_<lang>.properties` in `team-tasks-manager`): the page must say what the user sees on Discord.
 - **A use case translation is a whole example** in its language (the list, the webhooks, the cards): the ids, times and
   cards stay those of the English one, and the build stops if they differ.
+- **The home demo speaks the page's language.** The bot's texts are `src/components/home/demo/testi/<prefix>.ts`,
+  generated from the bundle by `npm run testi-demo` (with `team-tasks-manager` next to `tasks`, or
+  `TTM_RISORSE=<its src/main/resources>`); `npm test` checks them against the bundle the same way. The demo's other
+  texts (Discord, tooltips, the example list) are the `demo` zone.
+- **Each language has its own home videos and list screenshots**, made with `astro dev` running:
+  `node scripts/registra-video.cjs --lingua <code>` writes `public/video/<prefix>/`, `node scripts/schermate-lista.cjs
+  --lingua <code>` writes `public/screens/<prefix>/`. Without `--lingua`, the English ones.
 
 ## Local preview
 

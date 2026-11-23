@@ -18,12 +18,13 @@ import UseCases from '../components/home/UseCases.astro';
 import Features from '../components/home/Features.astro';
 import Compare from '../components/home/Compare.astro';
 import Demo from '../components/home/Demo.astro';
-import type { Lingua } from '../i18n/lingue.ts';
+import { datiDi, type Lingua } from '../i18n/lingue.ts';
 import { percorso } from '../i18n/percorsi.ts';
 import { t, traduttore } from '../i18n/t.ts';
 
 interface Props { lingua: Lingua; }
 const { lingua } = Astro.props;
+const prefisso = datiDi(lingua).prefisso;
 const tt = traduttore(lingua, 'home');
 const tc = traduttore(lingua, 'comune');
 const inizia = percorso(lingua, '/docs/getting-started/');
@@ -37,7 +38,8 @@ const EMBED = previewCard(
     { label: tc('cta.inizia'), url: abs(inizia) },
     { label: tc('nav.docs'), url: abs(percorso(lingua, '/docs/')) },
   ],
-  { url: abs('/screens/list-desktop.png'), alt: tt('anteprima.alt') },
+  // La schermata della lista nella lingua della pagina (scripts/schermate-lista.cjs).
+  { url: abs(`/screens/${prefisso ? `${prefisso}/` : ''}list-desktop.png`), alt: tt('anteprima.alt') },
   lingua,
 );
 

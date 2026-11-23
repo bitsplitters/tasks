@@ -1,6 +1,6 @@
 ---
 import Sbircia from '../mascotte/Sbircia.astro';
-import type { Lingua } from '../../i18n/lingue.ts';
+import { datiDi, type Lingua } from '../../i18n/lingue.ts';
 import { traduttore } from '../../i18n/t.ts';
 
 /*
@@ -12,9 +12,14 @@ import { traduttore } from '../../i18n/t.ts';
  *
  * I video sono decorativi (aria-hidden): per gli screen reader parlano i tab e la frase nascosta di ogni pannello.
  * Le due etichette del comando (avvia, metti in pausa) arrivano a hero-video.ts dagli attributi data-.
+ *
+ * Ogni lingua ha i suoi video, registrati con la sua interfaccia (scripts/registra-video.cjs --lingua): quelli inglesi
+ * in /video/, gli altri in /video/<prefisso>/.
  */
 interface Props { lingua: Lingua; }
 const tt = traduttore(Astro.props.lingua, 'home');
+const prefisso = datiDi(Astro.props.lingua).prefisso;
+const cartella = prefisso ? `/video/${prefisso}` : '/video';
 const VIDEO = [
   { k: 'channel', tab: tt('modi.canale'), frase: tt('video.canale.frase') },
   { k: 'activity', tab: tt('modi.activity'), frase: tt('video.activity.frase') },
@@ -42,15 +47,15 @@ const PASSI = [tt('video.passo1'), tt('video.passo2'), tt('video.passo3')];
         <p class="sr-only">{v.frase}</p>
         <div class="hv-box">
           <picture class="hv-still">
-            <source media="(max-width: 599px)" srcset={`/video/${v.k}-narrow.webp`} width="780" height="1040" />
+            <source media="(max-width: 599px)" srcset={`${cartella}/${v.k}-narrow.webp`} width="780" height="1040" />
             <img
-              src={`/video/${v.k}-wide.webp`} alt="" width="1440" height="960"
+              src={`${cartella}/${v.k}-wide.webp`} alt="" width="1440" height="960"
               loading={i === 0 ? 'eager' : 'lazy'} decoding="async"
             />
           </picture>
           {/* Niente src né <source>: la sorgente la sceglie hero-video.ts quando serve, così arriva un video solo. */}
           <video
-            class="hv-vid" data-wide={`/video/${v.k}-wide.mp4`} data-narrow={`/video/${v.k}-narrow.mp4`}
+            class="hv-vid" data-wide={`${cartella}/${v.k}-wide.mp4`} data-narrow={`${cartella}/${v.k}-narrow.mp4`}
             muted playsinline preload="none" aria-hidden="true" tabindex="-1" hidden
           ></video>
         </div>

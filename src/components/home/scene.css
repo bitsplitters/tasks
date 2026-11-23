@@ -47,9 +47,11 @@
 .sc-rec { border: 0; border-radius: 0; box-shadow: none; }
 .sc-rec, .sc-rec * { transition: none !important; animation: none !important; }
 /* Il video del canale inquadra il messaggio, fermo in alto, perché nel suo stato più alto (il menu di Owner aperto,
-   con Mia scelta) arrivi fin sopra il campo del messaggio: largo è il Discord vero, di 847 px; sotto i 640 px uno di
-   440 al posto di 460. render-comune.ts (chatFerma) si ferma se un giorno non ci sta più. */
-.sc-rec-chan { --u: calc(100cqi / 847); }
+   con Mia scelta) arrivi fin sopra il campo del messaggio: largo è un Discord di 856 px al posto di 847; sotto i 640 px
+   uno di 440 al posto di 460. Largo era il Discord vero finché le righe fatte hanno tenuto grandi il numero e la
+   casella (2026-11-21): con le tre righe fatte il messaggio sforava di 2 px. render-comune.ts (chatFerma) si ferma se
+   un giorno non ci sta più. */
+.sc-rec-chan { --u: calc(100cqi / 856); }
 
 /* ── Il canale ────────────────────────────────────────────────────────────────────────────────────────── */
 .sc-chan { position: absolute; inset: 0; display: flex; flex-direction: column; background: var(--dc-bg-chat); }

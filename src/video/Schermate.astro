@@ -1,0 +1,86 @@
+---
+/*
+ * La pagina delle schermate della lista di Getting started (public/screens/list-desktop.png e list-mobile.png, anche
+ * la scheda d'anteprima della home). Come Registrazione.astro esiste solo con `astro dev` (l'integrazione
+ * registrazione-video in astro.config.mjs); le schermate le fa scripts/schermate-lista.cjs.
+ *
+ *   /schermate-lista[/it]
+ *
+ * La lista è quella d'esempio della pagina nella lingua del prefisso: il titolo in corsivo prima del blocco di codice
+ * e le righe del blocco. Poi «la stessa lista dopo alcuni passaggi», come dice la pagina: il primo task spuntato, il
+ * secondo con Mia come proprietario, l'ultimo con Leo e un promemoria. La scena è quella del canale della demo, coi
+ * Tips accesi, a due misure: il Discord vero (847 px) e un telefono di 390 px.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import '../components/home/scene.css';
+import ChannelScene from '../components/home/ChannelScene.astro';
+import { usaLingua } from '../components/home/demo/lingua.ts';
+import { LEO, MIA, ZONA, type Lista, type Task } from '../components/home/demo/modello.ts';
+import { LINGUE_PUBBLICATE, datiDi, type Lingua } from '../i18n/lingue.ts';
+
+export function getStaticPaths() {
+  return LINGUE_PUBBLICATE.map((l) => ({ params: { lingua: l.prefisso || undefined }, props: { lingua: l.codice } }));
+}
+
+const { lingua } = Astro.props as { lingua: Lingua };
+usaLingua(lingua);
+
+const prefisso = datiDi(lingua).prefisso;
+const file = path.join(process.cwd(), 'src', 'content',
+  ...(prefisso ? ['traduzioni', prefisso] : ['docs']), 'getting-started.md');
+const md = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
+const esempio = /\*([^*\n]+)\*:\s*\n+```\n([\s\S]*?)```/.exec(md);
+if (!esempio) throw new Error(`${file}: manca la lista d'esempio, «*titolo*:» seguito dal blocco di codice`);
+
+let main = 0;
+let sub = 0;
+const tasks: Task[] = esempio[2].split('\n').filter((r) => r.trim()).map((r) => {
+  const riga = /^(\s*)- (.+)$/.exec(r);
+  if (!riga) throw new Error(`${file}: «${r}» non è una riga della lista`);
+  if (riga[1]) sub += 1;
+  else [main, sub] = [main + 1, 0];
+  return { pos: { main, sub }, testo: riga[2], fatto: false };
+});
+const principali = tasks.filter((t) => t.pos.sub === 0);
+if (principali.length < 3) throw new Error(`${file}: la lista d'esempio ha ${principali.length} task, ne servono 3`);
+principali[0].fatto = true;
+principali[1].owner = { tipo: 'persona', id: MIA };
+const ultimo = principali[principali.length - 1];
+ultimo.owner = { tipo: 'persona', id: LEO };
+// Sabato 21 novembre 2026, 19:30 a Roma.
+ultimo.promemoria = { at: Date.UTC(2026, 10, 21, 18, 30) / 1000, zona: ZONA };
+const lista: Lista = { titolo: esempio[1], tasks };
+
+const MISURE = [{ misura: 'desktop', larghezza: 847 }, { misura: 'mobile', larghezza: 390 }];
+---
+<!doctype html>
+<html lang={lingua}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Schermate della lista</title>
+    <style is:global>
+      html, body { margin: 0; background: #1a1a1e; }
+      astro-dev-toolbar { display: none !important; }
+      .sl-box { margin-bottom: 40px; }
+      /* La scena alta quanto il messaggio, senza cornice. */
+      .sl-box .scene { aspect-ratio: auto; height: auto; border: 0; border-radius: 0; box-shadow: none; }
+      .sl-box .sc-chan { position: relative; }
+      /* Le schermate tagliano l'intestazione del messaggio, che tiene il suo posto. */
+      .sl-box .sc-avatar, .sl-box .sc-mhead { visibility: hidden; }
+      /* Largo, l'embed è largo quanto il suo contenuto, come in Discord: almeno la barra, che nel bot è un'immagine di
+         400 px. Stretto riempie il messaggio, come sul telefono. */
+      [data-misura="desktop"] .sc-embed { width: fit-content; }
+      [data-misura="desktop"] .sc-bar { width: calc(400 * var(--u)); }
+    </style>
+  </head>
+  <body>
+    {MISURE.map((m) => (
+      <div class="sc-box sl-box" data-misura={m.misura} style={`width: ${m.larghezza}px`}>
+        <div class="scene"><ChannelScene lista={lista} lingua={lingua} /></div>
+      </div>
+    ))}
+  </body>
+</html>

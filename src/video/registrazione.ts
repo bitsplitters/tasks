@@ -3,6 +3,7 @@
  * alla larghezza della misura e prepara per scripts/registra-video.cjs window.render(t) e window.DURATA. Quando ha
  * finito mette window.PRONTA; un errore va nel titolo della pagina, dove lo script e la schermata lo mostrano.
  */
+import { linguaDellaPagina, usaLingua } from '../components/home/demo/lingua.ts';
 import { DURATA, type Modo } from '../components/home/scene-data';
 import { motore, type Copione } from './render-comune';
 import { copioneDelCanale } from './render-channel';
@@ -22,6 +23,8 @@ declare global {
 }
 
 async function avvia(): Promise<void> {
+  // La lingua dei testi del copione: quella della pagina (il prefisso nel percorso, Registrazione.astro).
+  usaLingua(linguaDellaPagina());
   const q = new URLSearchParams(location.search);
   const modo: Modo = q.get('modo') === 'activity' ? 'activity' : 'channel';
   const misura: Misura = q.get('misura') === 'narrow' ? 'narrow' : 'wide';

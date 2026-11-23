@@ -14,7 +14,11 @@
  */
 import '../components/home/scene.css';
 import ActivityScene from '../components/home/ActivityScene.astro';
+import { usaLingua } from '../components/home/demo/lingua.ts';
 import { listaDeiVideo } from '../components/home/demo/modello.ts';
+
+// Il video di Esplora è per la scheda di Discord: in inglese.
+usaLingua('en');
 
 const CURSORE = 'M5 2.5v17l4.3-4.1 2.9 6.4 3-1.4-2.9-6.3h6.1z';
 const LOGO = '/og/ttm-logo.png';
@@ -121,7 +125,7 @@ const LOGO = '/og/ttm-logo.png';
           <div class="sc-box esp-box">
             <div class="scene sc-rec">
               {/* Coi Tips spenti, come i video della home (Registrazione.astro). */}
-              <ActivityScene lista={listaDeiVideo()} aperta={false} tips={false} />
+              <ActivityScene lista={listaDeiVideo()} lingua="en" aperta={false} tips={false} />
               <svg class="sc-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d={CURSORE} fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round" /></svg>
               <span class="sc-tap" aria-hidden="true"></span>
               <span class="esp-mia" aria-hidden="true"></span>

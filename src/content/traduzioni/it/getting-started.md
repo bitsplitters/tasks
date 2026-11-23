@@ -1,7 +1,7 @@
 ---
 title: Per iniziare
 description: Invita il bot, crea una lista, poi spunta un task e imposta un promemoria, nel canale o nell'Activity.
-fonte: b18181d131c6
+fonte: 44e63eaea78b
 ---
 
 Team Tasks Manager (TTM) permette al tuo team di condividere e gestire i task **senza uscire da Discord**. Questa pagina ti porta da zero a una lista funzionante: la crei, spunti un task, imposti un promemoria.
@@ -46,8 +46,8 @@ Nel testo si possono scrivere anche menzioni, proprietari, link e promemoria: ve
 Invia la form e la lista compare nel canale. Ecco la stessa lista dopo alcuni passaggi. Il primo task è spuntato, *Preparare i tabelloni* ha un proprietario e *Trasmettere la finale* ha un promemoria.
 
 <picture class="screen">
-  <source media="(max-width: 640px)" srcset="/screens/list-mobile.png" width="803" height="1108" />
-  <img src="/screens/list-desktop.png" width="456" height="415" loading="lazy" alt="La lista Torneo del sabato in Discord: sei task numerati con le caselle. Il primo è spuntato e in grigio; Preparare i tabelloni ha due subtask e un proprietario; Trasmettere la finale ha un proprietario e la data di un promemoria. Sotto i task, una piccola riga rimanda ad Altro, alla Guida e alla documentazione completa e una barra verde mostra quanto è stato fatto. Sotto la lista ci sono il menu a tendina, Spunta task e due righe di pulsanti." />
+  <source media="(max-width: 640px)" srcset="/screens/it/list-mobile.png" width="795" height="1059" />
+  <img src="/screens/it/list-desktop.png" width="460" height="418" loading="lazy" alt="La lista Torneo del sabato in Discord: sei task numerati con le caselle. Il primo è spuntato e in grigio; Preparare i tabelloni ha due subtask e un proprietario; Trasmettere la finale ha un proprietario e la data di un promemoria. Sotto i task, una piccola riga rimanda ad Altro, alla Guida e alla documentazione completa e una barra verde mostra quanto è stato fatto. Sotto la lista ci sono il menu a tendina, Spunta task e due righe di pulsanti." />
 </picture>
 
 Preferisci imparare facendo? Accanto a **Crea la tua lista** c'è un pulsante **Tutorial**: trasforma la spiegazione in una lista di prova con sette lezioni, nella tua lingua e ti manda la Guida, la stessa che trovi in **Altro** → **Guida**, in un messaggio che vedi solo tu. Fai le lezioni in ordine: ognuna ti chiede di fare qualcosa a se stessa e nomina il pulsante con la sua icona. Spuntala, dalle un proprietario e un promemoria, cambia il suo testo, eliminala, spuntala nella modalità Activity. La lista di prova è una lista normale: come ogni lista nuova, richiede un posto libero nel tuo piano (vedi [Come funzionano i tre posti](/docs/premium/#how-the-three-places-work)) e puoi eliminarla da **Altro** → **Elimina lista** quando hai finito.
