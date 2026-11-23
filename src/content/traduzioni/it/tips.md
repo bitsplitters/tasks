@@ -1,7 +1,7 @@
 ---
 title: Trucchi e consigli
 description: Piccole abitudini che rendono TTM più veloce e più silenzioso, nel canale e nell'Activity.
-fonte: 38b1a4184e98
+fonte: 3e31d9102d49
 ---
 
 La maggior parte funziona ovunque sia la lista. Quelli che esistono in un solo posto lo dicono sotto il titolo.

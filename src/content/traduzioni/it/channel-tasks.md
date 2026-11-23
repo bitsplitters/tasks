@@ -1,7 +1,7 @@
 ---
 title: Modificare un task nel canale
 description: La seconda riga di pulsanti sotto la lista — Contenuto, Proprietario, Tag, Promemoria e Webhook — con le loro finestre e i loro menu.
-fonte: ea53238b952e
+fonte: b7393a97a79d
 ---
 
 La seconda riga sotto la lista agisce su **un task alla volta**: il suo testo, il suo proprietario, i suoi tag, il suo promemoria e il suo webhook. Questa pagina mostra dove cliccare. Cosa fa ogni funzione e le sue regole: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/).
@@ -21,7 +21,7 @@ Finché non hai scelto un task in questo modo almeno una volta, portare **Conten
 | Pulsante | <span class="c-blue">Blu (modifica)</span> | <span class="c-red">Rosso (eliminazione)</span> |
 | :--- | :--- | :--- |
 | [**Contenuto**](#content) <img class="inline-ic" src="/icons/task.png" alt="" /> | Cambia il testo del task, in una finestra. | Elimina il task. |
-| [**Proprietario**](#owner) <img class="inline-ic" src="/icons/owner.png" alt="" /> | Imposta o cambia il proprietario: una persona, un ruolo o più persone <a class="premium-tag" href="/docs/premium/" title="Sbloccato per ogni server durante la beta">Premium</a>. | Toglie il proprietario e anche il suo promemoria. |
+| [**Proprietario**](#owner) <img class="inline-ic" src="/icons/owner.png" alt="" /> | Imposta o cambia il proprietario: una persona o un ruolo. Con [Premium](/docs/premium/) anche più persone. | Toglie il proprietario e anche il suo promemoria. |
 | [**Tag**](#tag) <img class="inline-ic" src="/icons/tag.png" alt="" /> | Imposta gli utenti e i ruoli da avvisare, anche più d'uno insieme. | Toglie tutti i tag dal task. |
 | [**Promemoria**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Aggiunge o modifica un promemoria. | Toglie il promemoria. |
 | [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> <a class="premium-tag" href="/docs/premium/" title="Sbloccato per ogni server durante la beta">Premium</a> | Collega un webhook al task. | Toglie il webhook dal task. |

@@ -23,7 +23,7 @@ Until you've picked a task this way once, turning **Content** or **Reminder** bl
 | Button | <span class="c-blue">Blue (edit)</span> | <span class="c-red">Red (delete)</span> |
 | :--- | :--- | :--- |
 | [**Content**](#content) <img class="inline-ic" src="/icons/task.png" alt="" /> | Change the task text, in a form. | Delete the task. |
-| [**Owner**](#owner) <img class="inline-ic" src="/icons/owner.png" alt="" /> | Set or change the owner: one person, one role, or several people <a class="premium-tag" href="/docs/premium/" title="Unlocked for every server during the beta">Premium</a>. | Remove the owner, and its reminder too. |
+| [**Owner**](#owner) <img class="inline-ic" src="/icons/owner.png" alt="" /> | Set or change the owner: one person or one role. With [Premium](/docs/premium/), several people too. | Remove the owner, and its reminder too. |
 | [**Tag**](#tag) <img class="inline-ic" src="/icons/tag.png" alt="" /> | Set the users and roles to notify, several at once. | Remove every tag on the task. |
 | [**Reminder**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Add or edit a reminder. | Remove the reminder. |
 | [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> <a class="premium-tag" href="/docs/premium/" title="Unlocked for every server during the beta">Premium</a> | Link a webhook to the task. | Remove the webhook from the task. |

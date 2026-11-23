@@ -30,7 +30,7 @@ A webhook fires when its task is **completed or reopened**, by a tick or by **Re
 - **Bulk update** and **Edit the list** change many tasks at once, and fire **no** webhook.
 - **The list must be in use**, holding one of the places of your plan: see [How the three places work](/docs/premium/#how-the-three-places-work).
 
-A list created during the beta is the exception: its tasks can still be ticked without a place. Their webhooks stay silent until the list takes one, and TTM tells you so privately.
+A list created during the beta is the exception: its tasks can still be ticked without counting toward the three-list limit. Until the list becomes one of the three in use, their webhooks stay silent, and TTM tells you so privately.
 
 ## When a webhook fails
 

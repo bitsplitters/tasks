@@ -2,7 +2,7 @@
 title: Tips & tricks
 description: Small habits that make TTM faster and quieter, in the channel and in the Activity.
 group: Help & community
-order: 8
+order: 8.6
 ---
 
 Most of these work wherever the list is. The ones that exist in a single place say so under their title.

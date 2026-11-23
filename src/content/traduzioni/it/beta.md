@@ -1,7 +1,7 @@
 ---
 title: Come funziona la beta
 description: Durante la beta ogni funzione è sbloccata e anche dopo non perdi mai quello che hai costruito.
-fonte: 0fc553242fd8
+fonte: d0f1163ca10a
 ---
 
 Team Tasks Manager è in **beta aperta**. Ogni funzione è sbloccata, per ogni server e per tutta la beta: liste, promemoria, webhook e tutto il resto. Non c'è nessun periodo di prova, nessuna carta di credito da inserire e nessun pulsante bloccato.
@@ -22,7 +22,7 @@ Quando TTM esce dalla beta diventa **freemium**: un piano Free e un piano a paga
 Nel piano Free un server ha [tre posti per le liste](/docs/premium/#how-the-three-places-work): una lista che ne occupa uno è **in uso**. Quando la beta finisce nessuna lista occupa ancora un posto. Una lista creata durante la beta:
 
 - **resta nel canale così com'è.** I suoi promemoria continuano ad arrivare e lì puoi ancora scaricarla.
-- **ti lascia spuntare e togliere la spunta ai suoi task**, senza occupare un posto. I suoi webhook restano in silenzio finché la lista non occupa un posto.
+- **ti lascia spuntare e togliere la spunta ai suoi task**, senza contare nel limite delle tre liste. I suoi webhook restano in silenzio finché la lista non occupa un posto.
 - **occupa un posto per qualsiasi altra operazione**, come un aggiornamento in blocco, Pulisci lista, i proprietari o i promemoria. Senza un posto libero, quell'operazione viene rifiutata: vedi [Cosa succede a una quarta lista](/docs/premium/#what-happens-to-a-fourth-list).
 - **mantiene attivi i suoi promemoria ricorrenti.** [Promemoria](/docs/reminders/#repeating-reminders) spiega cosa puoi ancora cambiare.
 

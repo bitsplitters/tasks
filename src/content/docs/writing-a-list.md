@@ -1,6 +1,6 @@
 ---
 title: Editing a list by hand
-description: The text behind a list, for many changes at once or a list you copy from somewhere else. The buttons do the same things without mistakes.
+description: Edit a list by writing its text, to change many things at once or paste a list from somewhere else. For everything else, use the buttons, which are simpler and keep you from making mistakes.
 group: Reference
 order: 9.3
 ---

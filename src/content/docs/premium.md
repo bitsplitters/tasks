@@ -41,7 +41,7 @@ On the Free plan a server has three places for lists. A list that holds one is *
 - **A place doesn't expire.** Only sealing or deleting the list frees it.
 - **A list that isn't in use stays in the channel as it is.** You can still download it, seal it or delete it.
 
-Lists created during the beta are the exception: their tasks can still be ticked without a place. See [What a beta list keeps](/docs/beta/#what-a-beta-list-keeps).
+Lists created during the beta are the exception: their tasks can still be ticked without counting toward the three-list limit. See [What a beta list keeps](/docs/beta/#what-a-beta-list-keeps).
 
 <div class="callout"><div class="callout-t">No limit counts how often you use something</div>Every limit counts how many things you have, never how often you use them. A webhook that fires a thousand times a week still counts as one webhook.</div>
 

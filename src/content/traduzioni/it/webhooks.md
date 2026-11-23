@@ -1,7 +1,7 @@
 ---
 title: Webhook
 description: "Fai partire una chiamata HTTP quando un task viene completato o riaperto: collega TTM a qualsiasi cosa."
-fonte: 18e8cdc31be4
+fonte: 1b865a3d554e
 ---
 
 I webhook permettono a un task di parlare con il mondo esterno. Collegane uno a un task: quando quel task viene **completato** o **riaperto**, TTM invia una richiesta HTTP. Può andare a un sistema di CI, a una chat, a un'automazione di fogli di calcolo o a qualsiasi altra cosa che accetti una chiamata.
@@ -28,7 +28,7 @@ Un webhook parte quando il suo task viene **completato o riaperto**, con una spu
 - **Aggiornamento in blocco** e **Modifica la lista** cambiano molti task insieme e **non** fanno partire nessun webhook.
 - **La lista deve essere in uso**, cioè occupare uno dei posti del tuo piano: vedi [Come funzionano i tre posti](/docs/premium/#how-the-three-places-work).
 
-Una lista creata durante la beta fa eccezione: i suoi task si possono comunque spuntare senza un posto. I loro webhook restano muti finché la lista non ne prende uno e TTM te lo dice in privato.
+Una lista creata durante la beta fa eccezione: i suoi task si possono comunque spuntare senza contare nel limite delle tre liste. Finché la lista non diventa una delle tre in uso, i loro webhook restano muti: TTM te lo dice in privato.
 
 ## Quando un webhook fallisce
 

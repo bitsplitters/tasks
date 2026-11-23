@@ -1,7 +1,7 @@
 ---
 title: Cosa sblocca Premium
 description: "Cosa aggiunge il piano a pagamento al Free e cosa cambia ogni limite, giorno per giorno."
-fonte: 81baf237b76f
+fonte: 1ce2890c95d6
 ---
 
 TTM è **completamente sbloccato durante la beta**, quindi per ora niente di questa pagina si applica. Descrive il piano Free e cosa toglierà Premium quando la beta finirà. Cosa succede al tuo server quando la beta finisce è in [Come funziona la beta](/docs/beta/).
@@ -40,7 +40,7 @@ Sul piano Free un server ha tre posti per le liste. Una lista che ne occupa uno 
 - **Un posto non scade.** Solo sigillare o eliminare la lista lo libera.
 - **Una lista che non è in uso resta nel canale com'è.** Puoi ancora scaricarla, sigillarla o eliminarla.
 
-Le liste create durante la beta fanno eccezione: i loro task si possono ancora spuntare senza un posto. Vedi [Cosa conserva una lista della beta](/docs/beta/#what-a-beta-list-keeps).
+Le liste create durante la beta fanno eccezione: i loro task si possono ancora spuntare senza contare nel limite delle tre liste. Vedi [Cosa conserva una lista della beta](/docs/beta/#what-a-beta-list-keeps).
 
 <div class="callout"><div class="callout-t">Nessun limite conta quanto spesso usi qualcosa</div>Ogni limite conta quante cose hai, mai quanto spesso le usi. Un webhook che scatta mille volte a settimana conta comunque come un webhook.</div>
 

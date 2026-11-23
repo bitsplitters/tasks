@@ -1,7 +1,7 @@
 ---
 title: Modificare una lista a mano
-description: Il testo dietro una lista, per molte modifiche insieme o per una lista che copi da un'altra parte. I pulsanti fanno le stesse cose senza errori.
-fonte: b688db5dddca
+description: Modifica una lista scrivendo il suo testo, per cambiare molte cose insieme o incollare una lista da un'altra parte. Per tutto il resto usa i pulsanti, che sono più semplici e non fanno sbagliare.
+fonte: 7218c363e178
 ---
 
 Questa pagina è per quando preferisci cambiare tu il testo di una lista, in **Aggiornamento in blocco** nel canale o in **Modifica la lista** nell'Activity.
