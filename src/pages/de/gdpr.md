@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "DSGVO und deine Datenrechte"
 description: "Wie Team Tasks Manager die Datenschutz-Grundverordnung der EU einhält."
-updated: "Zuletzt aktualisiert: 23. November 2026"
-fonte: d9b5e46b7781
+updated: "Zuletzt aktualisiert: 24. November 2026"
+fonte: f96def244ac2
 ---
 
 Weil **bitsplitters** in der Europäischen Union tätig ist, unterliegt die Nutzung von **Team Tasks Manager** („TTM“) der **Datenschutz-Grundverordnung (DSGVO)**. Diese Seite erklärt die Rechtsgrundlage der Verarbeitung und die Rechte, die du hast. Sie ergänzt unsere [Datenschutzerklärung](/de/privacy/), die genau auflistet, welche Daten wir verarbeiten.

@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "GDPR e seus direitos sobre os dados"
 description: "Como o Team Tasks Manager cumpre o Regulamento Geral sobre a Proteção de Dados da União Europeia."
-updated: "Última atualização: 23 de novembro de 2026"
-fonte: d9b5e46b7781
+updated: "Última atualização: 24 de novembro de 2026"
+fonte: f96def244ac2
 ---
 
 Como a **bitsplitters** opera na União Europeia, o uso do **Team Tasks Manager** (“TTM”) está sujeito ao **Regulamento Geral sobre a Proteção de Dados (GDPR)**. Esta página explica a base legal do tratamento e os direitos que você tem. Ela complementa a nossa [Política de Privacidade](/pt-br/privacy/), que lista exatamente quais dados tratamos.

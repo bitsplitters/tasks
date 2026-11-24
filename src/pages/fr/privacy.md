@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Politique de confidentialité"
 description: "Quelles données le bot Discord Team Tasks Manager collecte, pourquoi, et comment elles sont traitées."
-updated: "Dernière mise à jour : 23 novembre 2026"
-fonte: c502da0ab375
+updated: "Dernière mise à jour : 24 novembre 2026"
+fonte: d07585e6e196
 ---
 
 Cette Politique de confidentialité explique quelles données le bot **Team Tasks Manager** (« TTM ») collecte et comment nous les traitons. Elle s'applique à l'utilisation du bot sur Discord, Activity comprise (voir [L'Activity](#lactivity)), à notre serveur communautaire Discord (voir [Notre serveur communautaire](#notre-serveur-communautaire)) et à nos sites web (voir [Nos sites web](#nos-sites-web)). Pour tes droits au titre de la législation européenne sur la protection des données, consulte aussi notre [page RGPD](/fr/gdpr/).

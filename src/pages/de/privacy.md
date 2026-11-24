@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Datenschutzerklärung"
 description: "Welche Daten der Discord-Bot Team Tasks Manager erhebt, warum und wie sie behandelt werden."
-updated: "Zuletzt aktualisiert: 23. November 2026"
-fonte: c502da0ab375
+updated: "Zuletzt aktualisiert: 24. November 2026"
+fonte: d07585e6e196
 ---
 
 Diese Datenschutzerklärung erklärt, welche Daten der Bot **Team Tasks Manager** („TTM“) erhebt und wie wir sie behandeln. Sie gilt für die Nutzung des Bots auf Discord, die Activity eingeschlossen (siehe [Die Activity](#die-activity)), für unseren Discord-Community-Server (siehe [Unser Community-Server](#unser-community-server)) und für unsere Websites (siehe [Unsere Websites](#unsere-websites)). Zu deinen Rechten nach dem Datenschutzrecht der EU siehe auch unsere [DSGVO-Seite](/de/gdpr/).

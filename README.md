@@ -101,8 +101,8 @@ The site has a dark theme, the default for everyone, and a light one chosen with
 
 ## Languages
 
-The site is in English and in the languages switched on in `src/i18n/lingue.ts` (`pubblicata: true`); today English
-and Italian. A language that is off has no pages, no entry in the language menu and no hreflang.
+The site is in English and in the languages switched on in `src/i18n/lingue.ts` (`pubblicata: true`); since 2026-11-24
+all seven. A language that is off has no pages, no entry in the language menu and no hreflang.
 
 Where the translations live, next to their English file with the same name:
 

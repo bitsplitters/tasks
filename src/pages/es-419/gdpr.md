@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "RGPD y tus derechos sobre los datos"
 description: "Cómo cumple Team Tasks Manager el Reglamento General de Protección de Datos de la Unión Europea."
-updated: "Última actualización: 23 de noviembre de 2026"
-fonte: d9b5e46b7781
+updated: "Última actualización: 24 de noviembre de 2026"
+fonte: f96def244ac2
 ---
 
 Como **bitsplitters** opera en la Unión Europea, el uso de **Team Tasks Manager** («TTM») está sujeto al **Reglamento General de Protección de Datos (RGPD)**. Esta página explica la base jurídica del tratamiento y los derechos que tienes. Complementa nuestra [Política de privacidad](/es-419/privacy/), que enumera exactamente qué datos tratamos.
