@@ -3,14 +3,16 @@ layout: ../../layouts/Legal.astro
 title: "Licença de hospedagem própria"
 description: "A licença que acompanha o pacote do Team Tasks Manager que você executa por conta própria — o que ela permite e o que não permite."
 updated: "Versão 1.1 — 24 de novembro de 2026"
-fonte: f860badc5c81
+fonte: eb320a1fe7b4
 ---
 
-Esta é a licença do **pacote que você baixa e executa na sua própria máquina**. Ela é publicada aqui para que você possa lê-la *antes* de decidir baixar qualquer coisa; o mesmo texto vai dentro do pacote como `LICENSE.txt`, junto com uma tradução em italiano.
+Esta é a licença do **pacote que você baixa e executa na sua própria máquina**. Ela é publicada aqui para que você possa lê-la *antes* de decidir baixar qualquer coisa; o mesmo texto vai dentro do pacote como `LICENSE.txt`, junto com as suas traduções para os outros idiomas deste site: a tradução em português, `LICENSE.pt-br.txt`, é o texto desta página.
 
 É um documento diferente dos nossos [Termos de Serviço](/pt-br/terms/), que regem o bot que **nós** hospedamos para você. Se você nunca usa hospedagem própria, esta página não diz respeito a você.
 
 *Copyright © 2026 Alessandro Vurro, com o nome comercial “bitsplitters” — Via di Dragone 478/B, 00126 Roma (RM), Itália. E-mail certificado (PEC): alessandro.vurro@pec.it. Todos os direitos reservados.*
+
+Tradução para o português de `LICENSE.txt`, fornecida para facilitar a leitura. Em caso de divergência entre os dois textos, prevalece o inglês.
 
 ## 0. O que é isto
 

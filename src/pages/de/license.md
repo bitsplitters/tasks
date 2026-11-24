@@ -3,14 +3,16 @@ layout: ../../layouts/Legal.astro
 title: "Lizenz für das Selbsthosting"
 description: "Die Lizenz, die dem Paket von Team Tasks Manager beiliegt, das du selbst betreibst: was sie dir erlaubt und was nicht."
 updated: "Version 1.1 — 24. November 2026"
-fonte: f860badc5c81
+fonte: eb320a1fe7b4
 ---
 
-Das ist die Lizenz für das **Paket, das du herunterlädst und auf deinem eigenen Rechner betreibst**. Sie ist hier veröffentlicht, damit du sie lesen kannst, *bevor* du dich entscheidest, etwas herunterzuladen; derselbe Text liegt dem Paket als `LICENSE.txt` bei, zusammen mit einer italienischen Übersetzung.
+Das ist die Lizenz für das **Paket, das du herunterlädst und auf deinem eigenen Rechner betreibst**. Sie ist hier veröffentlicht, damit du sie lesen kannst, *bevor* du dich entscheidest, etwas herunterzuladen; derselbe Text liegt dem Paket als `LICENSE.txt` bei, zusammen mit seinen Übersetzungen in die anderen Sprachen dieser Website: Die deutsche Übersetzung, `LICENSE.de.txt`, ist der Text dieser Seite.
 
 Sie ist ein anderes Dokument als unsere [Nutzungsbedingungen](/terms/), die den Bot regeln, den **wir** für dich hosten. Wenn du nie selbst hostest, betrifft dich diese Seite nicht.
 
 *Copyright © 2026 Alessandro Vurro, handelnd unter „bitsplitters“ — Via di Dragone 478/B, 00126 Rom (RM), Italien. Zertifizierte E-Mail (PEC): alessandro.vurro@pec.it. Alle Rechte vorbehalten.*
+
+Deutsche Übersetzung von `LICENSE.txt`, zur leichteren Lektüre bereitgestellt. Bei Abweichungen zwischen den beiden Texten ist der englische maßgeblich.
 
 ## 0. Was das ist
 

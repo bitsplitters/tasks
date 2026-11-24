@@ -3,14 +3,16 @@ layout: ../../layouts/Legal.astro
 title: "Licence d'auto-hébergement"
 description: "La licence qui accompagne le paquet de Team Tasks Manager que tu exécutes toi-même : ce qu'elle te permet de faire, et ce qu'elle ne te permet pas."
 updated: "Version 1.1 — 24 novembre 2026"
-fonte: f860badc5c81
+fonte: eb320a1fe7b4
 ---
 
-Voici la licence du **paquet que tu télécharges et que tu exécutes sur ta propre machine**. Elle est publiée ici pour que tu puisses la lire *avant* de décider de télécharger quoi que ce soit ; le même texte est fourni dans le paquet sous le nom `LICENSE.txt`, avec une traduction italienne.
+Voici la licence du **paquet que tu télécharges et que tu exécutes sur ta propre machine**. Elle est publiée ici pour que tu puisses la lire *avant* de décider de télécharger quoi que ce soit ; le même texte est fourni dans le paquet sous le nom `LICENSE.txt`, avec ses traductions dans les autres langues de ce site : la traduction française, `LICENSE.fr.txt`, est le texte de cette page.
 
 C'est un document différent de nos [Conditions d'utilisation](/fr/terms/), qui régissent le bot que **nous** hébergeons pour toi. Si tu n'auto-héberges jamais, cette page ne te concerne pas.
 
 *Copyright © 2026 Alessandro Vurro, exerçant sous le nom « bitsplitters » — Via di Dragone 478/B, 00126 Rome (RM), Italie. E-mail certifié (PEC) : alessandro.vurro@pec.it. Tous droits réservés.*
+
+Traduction française de `LICENSE.txt`, fournie pour faciliter la lecture. En cas de divergence entre les deux textes, le texte anglais prévaut.
 
 ## 0. De quoi il s'agit
 

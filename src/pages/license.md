@@ -5,7 +5,7 @@ description: The licence that comes with the Team Tasks Manager package you run 
 updated: "Version 1.1 — 24 November 2026"
 ---
 
-This is the licence for the **package you download and run on your own machine**. It is published here so you can read it *before* deciding to download anything; the same text ships inside the package as `LICENSE.txt`, together with an Italian translation.
+This is the licence for the **package you download and run on your own machine**. It is published here so you can read it *before* deciding to download anything; the same text ships inside the package as `LICENSE.txt`, together with its translations into the other languages of this site (`LICENSE.it.txt`, `LICENSE.de.txt` and so on).
 
 It is a different document from our [Terms of Service](/terms/), which govern the bot **we** host for you. If you never self-host, this page does not concern you.
 

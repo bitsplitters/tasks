@@ -3,14 +3,16 @@ layout: ../../layouts/Legal.astro
 title: "Licencia de autoalojamiento"
 description: "La licencia que acompaña al paquete de Team Tasks Manager que ejecutas por tu cuenta: qué te permite hacer y qué no."
 updated: "Versión 1.1 — 24 de noviembre de 2026"
-fonte: f860badc5c81
+fonte: eb320a1fe7b4
 ---
 
-Esta es la licencia del **paquete que descargas y ejecutas en tu propio equipo**. Se publica aquí para que puedas leerla *antes* de decidir descargar nada; el mismo texto va dentro del paquete como `LICENSE.txt`, junto con una traducción al italiano.
+Esta es la licencia del **paquete que descargas y ejecutas en tu propio equipo**. Se publica aquí para que puedas leerla *antes* de decidir descargar nada; el mismo texto va dentro del paquete como `LICENSE.txt`, junto con sus traducciones a los demás idiomas de este sitio: la traducción al español, `LICENSE.es.txt`, es el texto de esta página.
 
 Es un documento distinto de nuestros [Términos del servicio](/es/terms/), que regulan el bot que alojamos **nosotros** para ti. Si nunca lo alojas tú, esta página no te concierne.
 
 *Copyright © 2026 Alessandro Vurro, que opera como «bitsplitters» — Via di Dragone 478/B, 00126 Roma (RM), Italia. Correo electrónico certificado (PEC): alessandro.vurro@pec.it. Todos los derechos reservados.*
+
+Traducción al español de `LICENSE.txt`, ofrecida para facilitar la lectura. En caso de discrepancia entre ambos textos, prevalece el inglés.
 
 ## 0. Qué es esto
 
