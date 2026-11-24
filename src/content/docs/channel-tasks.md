@@ -16,7 +16,9 @@ Each button in the second row is a **three-state switch**. Click it to cycle thr
 - <span class="c-blue">Blue</span> — active in <span class="c-blue">edit</span> mode.
 - <span class="c-red">Red</span> — active in <span class="c-red">delete</span> mode.
 
-The workflow is always the same: **turn a button blue or red, then pick the task** in the [check selector](/docs/the-task-list/#the-check-selector). TTM applies the action to that task. While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button off, it says *Tick a task*: pick a task there to tick or untick it.
+The workflow is always the same: **turn a button blue or red, then pick the task** in the [check selector](/docs/the-task-list/#the-check-selector). TTM applies the action to that task.
+
+While a button is blue or red, the selector says what will happen, for example *Edit task* or *Delete task*; with every button off, it says *Tick a task*: pick a task there to tick or untick it.
 
 Until you've picked a task this way once, turning **Content** or **Reminder** blue or red sends you a message only you can see. It says which task to pick and what pressing the button again does. Once you've picked a task with a second-row button on, the message stops, on every server.
 
@@ -28,7 +30,9 @@ Until you've picked a task this way once, turning **Content** or **Reminder** bl
 | [**Reminder**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Add or edit a reminder. | Remove the reminder. |
 | [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> <a class="premium-tag" href="/docs/premium/" title="Unlocked for every server during the beta">Premium</a> | Link a webhook to the task. | Remove the webhook from the task. |
 
-With **Owner**, **Tag**, **Reminder** or **Webhook** red, the selector lists only the tasks that have something to remove: an owner, tags, a reminder or a webhook. A task made only of tags isn't listed, since without them it would have no text. If no task has anything to remove, the selector is off and says so, for example *No owner to remove*, and you get a note on how to add one.
+With **Owner**, **Tag**, **Reminder** or **Webhook** red, the selector lists only the tasks that have something to remove: an owner, tags, a reminder or a webhook. A task made only of tags isn't listed, since without them it would have no text.
+
+If no task has anything to remove, the selector is off and says so, for example *No owner to remove*, and you get a note on how to add one.
 
 After you use **Owner**, **Tag** or **Reminder**, the button goes back to grey, or stays on for the next task: your server decides, with **Keep the state after a selection** in the **Behavior** menu of [/config app](/docs/configuration/#keep-the-state-after-a-selection). Keeping the state changes what Owner and Tag can do: see [Owner](#owner) and [Tag](#tag).
 
@@ -50,7 +54,9 @@ While the form is open, the list is locked for the others. Saving unlocks it; th
 
 **Blue** shows a menu under the buttons, labelled *Pick a task in the menu above to take it, or choose who gets it*.
 
-**To take a task**, click **Owner** until it turns blue, then pick the task in the check selector without choosing anyone: it becomes yours, and the channel shows who took it. A task that is already yours, or that someone else owns, stays as it is, and TTM tells you why. To take a task from someone else, choose yourself in the menu, confirm the selection, then pick the task: replacing an owner takes an explicit choice.
+**To take a task**, click **Owner** until it turns blue, then pick the task in the check selector without choosing anyone: it becomes yours, and the channel shows who took it.
+
+A task that is already yours, or that someone else owns, stays as it is, and TTM tells you why. To take a task from someone else, choose yourself in the menu, confirm the selection, then pick the task: replacing an owner takes an explicit choice.
 
 **To give a task to someone**, pick the owner in the menu, confirm the selection, then pick the task. To give a task to several people, a [Premium](/docs/premium/) feature:
 

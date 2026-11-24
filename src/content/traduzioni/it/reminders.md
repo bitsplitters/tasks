@@ -1,7 +1,7 @@
 ---
 title: Promemoria
 description: "Associa un orario a un task e TTM avvisa il proprietario in tempo: chi lo riceve, i fusi orari, le ripetizioni."
-fonte: fb523a41633c
+fonte: 6ce351a678ab
 ---
 
 Un promemoria trasforma un task in qualcosa che ricorda *a te* e non il contrario. Lo imposti una volta e TTM si occupa degli avvisi. Lo aggiungi con **Promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" />: nel canale, nella seconda riga sotto la lista; nell'Activity, nel pannello di un task.
@@ -13,7 +13,9 @@ Un promemoria trasforma un task in qualcosa che ricorda *a te* e non il contrari
 - **Un promemoria ha una data, un'ora e un fuso orario.** Scatta **una volta sola**, a meno che il tuo server usi i [promemoria ricorrenti](#repeating-reminders), una funzione Premium.
 - **L'inizio deve essere almeno 5 minuti nel futuro.** Il modulo parte da dieci minuti da adesso: per un promemoria «fra poco» non devi scrivere niente.
 - **Solo un task ancora da fare può averne uno.** Completare un task ferma il suo promemoria: non c'è niente da ripulire dopo.
-- **Il promemoria va al proprietario del task**, con un messaggio diretto se il proprietario è una persona. Se il task non ha ancora un proprietario, **lo diventi tu** quando salvi il promemoria. Da quel momento solo tu e chi ha *Gestisci messaggi* sul canale potete spuntare quel task. Per darlo a qualcun altro, imposta il proprietario prima o dopo aver creato il promemoria: vedi [Proprietari e tag](/docs/owners-and-tags/).
+- **Il promemoria va al proprietario del task**, con un messaggio diretto se il proprietario è una persona. Se il task non ha ancora un proprietario, **lo diventi tu** quando salvi il promemoria.
+
+  Da quel momento solo tu e chi ha *Gestisci messaggi* sul canale potete spuntare quel task. Per darlo a qualcun altro, imposta il proprietario prima o dopo aver creato il promemoria: vedi [Proprietari e tag](/docs/owners-and-tags/).
 - **Non cambia niente finché non salvi.** Quando modifichi un promemoria, Salva resta spento finché non cambi la data o la ricorrenza.
 - **Togliere il proprietario toglie il promemoria**, perché non resta nessuno a riceverlo.
 
@@ -50,7 +52,9 @@ Un ruolo viene avvisato solo se può essere menzionato. Quando succede e che cos
 
 ## Promemoria ricorrenti
 
-Di base ogni promemoria è un **evento singolo**: un solo avviso, niente da decidere. Le ripetizioni sono una funzione [Premium](/docs/premium/): con il piano Free ogni promemoria è singolo. Con un piano che li include sono comunque su richiesta: chi gestisce il server attiva **Promemoria ricorrenti** in [/config app](/docs/configuration/#recurring-reminders). Fino a quel momento i menu delle ripetizioni li mostra solo un promemoria che è già ricorrente.
+Di base ogni promemoria è un **evento singolo**: un solo avviso, niente da decidere. Le ripetizioni sono una funzione [Premium](/docs/premium/): con il piano Free ogni promemoria è singolo.
+
+Con un piano che li include sono comunque su richiesta: chi gestisce il server attiva **Promemoria ricorrenti** in [/config app](/docs/configuration/#recurring-reminders). Fino a quel momento i menu delle ripetizioni li mostra solo un promemoria che è già ricorrente.
 
 <div class="callout"><div class="callout-t">I promemoria ricorrenti che hai già continuano a funzionare</div>Un promemoria che era già ricorrente continua a scattare con il piano Free e con Premium mentre l'interruttore è spento: puoi cambiargli la data, spostarlo su un altro task o diminuire il numero di volte in cui arriva, ma non aumentarlo. Clonare o importare una lista crea promemoria nuovi, quindi dove non se ne possono creare di ricorrenti un clone o un'importazione rifiuta un promemoria ricorrente: clona senza promemoria, oppure imposta le sue ripetizioni a <code>0</code>.</div>
 

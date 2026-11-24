@@ -1,7 +1,7 @@
 ---
 title: "/config lists"
 description: "Consulta todas las listas del servidor, sella o elimina las que ya terminaste, o recupera una cuyo mensaje se borró por error."
-fonte: 0da09921c70a
+fonte: 089e6935e4f2
 ---
 
 Ejecuta el comando:
@@ -12,7 +12,9 @@ Ejecuta el comando:
 
 Abre un panel privado, que solo ves tú, con **todas las listas que todavía tiene este servidor**. Cada lista tiene una fila: el nombre de la lista y el canal en el que vive, como enlace en el que se puede hacer clic.
 
-Una lista que ocupa uno de los lugares de tu plan se marca como **en uso** junto a su canal. Cuando necesites liberar un lugar, esas son las listas que debes sellar o eliminar. Durante la beta no hay límite, así que ninguna lista se marca. Cómo ocupa un lugar una lista: consulta [Cómo funcionan los tres lugares](/docs/premium/#how-the-three-places-work).
+Una lista que ocupa uno de los lugares de tu plan se marca como **en uso** junto a su canal. Cuando necesites liberar un lugar, esas son las listas que debes sellar o eliminar.
+
+Durante la beta no hay límite, así que ninguna lista se marca. Cómo ocupa un lugar una lista: consulta [Cómo funcionan los tres lugares](/docs/premium/#how-the-three-places-work).
 
 Una lista en la que alguien está trabajando en la [Activity](/docs/activity/) se marca como **en la Activity**. Todavía puedes regenerarla, sellarla o eliminarla, y la confirmación te avisa antes: consulta [Qué se queda en el canal](/docs/activity/#what-stays-in-the-channel).
 
@@ -33,9 +35,13 @@ Marca tantas listas como necesites (dos para eliminar, una para sellar y tres pa
 
 El bloque se ejecuta entonces **en orden**: primero las eliminaciones, luego los sellados y después las regeneraciones. Así un mismo bloque puede liberar un lugar y usarlo: una lista que eliminas o sellas cede su lugar a una lista que regeneras.
 
-Al final recibes un resumen, por nombre: las listas eliminadas, selladas y regeneradas, y las que no se pudieron procesar. Cada una de ellas viene con su motivo, por ejemplo una lista que ya no existe, o una regeneración sin ningún lugar libre en tu plan. El panel se redibuja entonces con las listas tal como están ahora.
+Al final recibes un resumen, por nombre: las listas eliminadas, selladas y regeneradas, y las que no se pudieron procesar.
 
-**Cancelar** cierra el panel y no hace nada. Tus elecciones sobreviven a un cambio de página: el encabezado te dice cuántas marcaste en otras páginas, y la confirmación las incluye. Las elecciones de la página que tienes delante viven en el propio panel, así que nunca caducan mientras lo piensas. Las de otras páginas se recuerdan durante una hora desde la última vez que tocas el panel.
+Cada una de ellas viene con su motivo, por ejemplo una lista que ya no existe, o una regeneración sin ningún lugar libre en tu plan. El panel se redibuja entonces con las listas tal como están ahora.
+
+**Cancelar** cierra el panel y no hace nada. Tus elecciones sobreviven a un cambio de página: el encabezado te dice cuántas marcaste en otras páginas, y la confirmación las incluye.
+
+Las elecciones de la página que tienes delante viven en el propio panel, así que nunca caducan mientras lo piensas. Las de otras páginas se recuerdan durante una hora desde la última vez que tocas el panel.
 
 ## Regenerar
 

@@ -12,7 +12,9 @@ Once a list exists, TTM shows a **check selector** and **two rows of buttons** b
 
 The list ends with a thin **progress bar**: the share of ticked boxes, tasks and subtasks alike, in steps of 5%. It moves as soon as one box is ticked, and it is full only when every box is. A sealed list keeps it, showing where the list ended.
 
-Above the bar, a small line helps whoever is new: *Not sure what the buttons do? More → Guide*. **Guide**, in [More](#whats-inside-more), explains every button without leaving Discord. If your team doesn't need it, hide the **Tips** in [/config app](/docs/configuration/#tips): the line goes, the bar stays. While the list is locked, the same line says who is editing it and how to unlock it, even with the Tips hidden: see [When the list is locked](#when-the-list-is-locked).
+Above the bar, a small line helps whoever is new: *Not sure what the buttons do? More → Guide*. **Guide**, in [More](#whats-inside-more), explains every button without leaving Discord. If your team doesn't need it, hide the **Tips** in [/config app](/docs/configuration/#tips): the line goes, the bar stays.
+
+While the list is locked, the same line says who is editing it and how to unlock it, even with the Tips hidden: see [When the list is locked](#when-the-list-is-locked).
 
 While the list is in the [Activity](/docs/activity/), the line says so, and **Join the Activity** is the only button under the list.
 
@@ -70,7 +72,9 @@ Discord allows five buttons per row, so the actions you need less often sit in a
 - **Seal list** <img class="inline-ic" src="/icons/seal.png" alt="" /> — keeps a finished list in the channel as a record, without buttons or menus. See [Seal](/docs/list-actions/#seal).
 - **Delete list** <img class="inline-ic" src="/icons/delete.png" alt="" /> — deletes the list **permanently**. See [Delete](/docs/list-actions/#delete).
 
-Sealing and deleting can't be undone, and the bot asks you to confirm first. Both need *Manage messages* on the channel: the same permission that lets you delete the list's message by hand. Without it, those two entries aren't there. Guide, Clone list and Download are there for everyone, and so is Unlock list when the list is locked.
+Sealing and deleting can't be undone, and the bot asks you to confirm first. Both need *Manage messages* on the channel: the same permission that lets you delete the list's message by hand.
+
+Without it, those two entries aren't there. Guide, Clone list and Download are there for everyone, and so is Unlock list when the list is locked.
 
 While the list is locked, Seal list and Delete list aren't there. Whoever is editing would save onto a list that no longer exists.
 
@@ -99,7 +103,9 @@ TTM locks the list while someone edits it:
 
 For everyone else, these turn off: the check selector, the Activity button, **Bulk update**, **Clean list**, **Reopen all** and the task buttons. **More** stays on, with **Clone list** inside. **More** shows who is editing, and a locked list can't be sealed or deleted from there.
 
-The last line of the list says it too: *🔒 @name is editing this list. Stuck? More → Unlock list*. It takes the place of the Tips line, and it shows even when your server hides the Tips. The mention shows the name and doesn't notify anyone. When the list is unlocked, the Tips line comes back, if your server shows it.
+The last line of the list says it too: *🔒 @name is editing this list. Stuck? More → Unlock list*. It takes the place of the Tips line, and it shows even when your server hides the Tips.
+
+The mention shows the name and doesn't notify anyone. When the list is unlocked, the Tips line comes back, if your server shows it.
 
 Locking the list also turns **Owner**, **Tag** and **Webhook** off if one of them was on: open it again from its button when you need it.
 

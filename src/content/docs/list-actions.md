@@ -22,7 +22,9 @@ These actions work on the **whole list**, never on a single task. Two of them ex
 
 **Clean** removes every completed task, subtasks included, and renumbers the tasks that stay. A group that isn't completed stays, even when some of its subtasks go.
 
-First, a confirmation tells you how many tasks will go, and what goes with them. They go **for good**, with their reminders and tags, if they have any. In the channel, if your server's configuration allows it, the notification in the list's channel or in its thread shows the removed tasks: see [Notification mode](/docs/configuration/#notification-mode). In the Activity, they end up in the summary at the end of the session.
+First, a confirmation tells you how many tasks will go, and what goes with them. They go **for good**, with their reminders and tags, if they have any.
+
+In the channel, if your server's configuration allows it, the notification in the list's channel or in its thread shows the removed tasks: see [Notification mode](/docs/configuration/#notification-mode). In the Activity, they end up in the summary at the end of the session.
 
 - **No task completed**: there is nothing to remove, and the bot says so at once.
 - **Every task completed**: Clean refuses, because a list can't be empty. Untick at least one task, or remove the whole list with [Delete](#delete), in the channel.
@@ -34,7 +36,9 @@ First, a confirmation tells you how many tasks will go, and what goes with them.
 First, the bot asks you to choose:
 
 - **Reopen** — reopen every task now.
-- **New date** — reopen, and move the reminders of the tasks you reopen. The first of those reminders in the calendar moves to the date you pick, at least 5 minutes from now. The others keep the same distance from it. Reminders of tasks still to do stay as they are. This choice appears only when a task you reopen has a reminder.
+- **New date** — reopen, and move the reminders of the tasks you reopen. The first of those reminders in the calendar moves to the date you pick, at least 5 minutes from now. The others keep the same distance from it.
+
+  Reminders of tasks still to do stay as they are. This choice appears only when a task you reopen has a reminder.
 - **Cancel** — leave the list as it is.
 
 Reopening fires the **reopening webhooks** of the tasks it reopens, and it ignores owners: anyone who can edit the list can reopen it.
@@ -57,7 +61,9 @@ Only in the channel, even while the list is locked.
 
 ## Download
 
-**Download** gives you a `.txt` file of the list, written as explained in [Editing a list by hand](/docs/writing-a-list/) and sent **only to you**. The file keeps Discord's codes in place of the names: see [The codes behind the names](/docs/writing-a-list/#the-codes-behind-the-names). Keep it as a backup, or rebuild the list from it with `/create-list`, even on another server: see [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
+**Download** gives you a `.txt` file of the list, written as explained in [Editing a list by hand](/docs/writing-a-list/) and sent **only to you**. The file keeps Discord's codes in place of the names: see [The codes behind the names](/docs/writing-a-list/#the-codes-behind-the-names).
+
+Keep it as a backup, or rebuild the list from it with `/create-list`, even on another server: see [Reuse a list anywhere](/docs/tips/#reuse-a-list-anywhere).
 
 A Discord message is capped at 2000 characters, so Download never posts the list as text: it is always a file.
 

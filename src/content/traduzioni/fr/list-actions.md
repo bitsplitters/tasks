@@ -1,7 +1,7 @@
 ---
 title: "Actions sur la liste"
 description: "Nettoyer, Tout rouvrir, Cloner, Télécharger, Sceller et Supprimer : ce que chacune fait à la liste entière, et où la trouver."
-fonte: c473903dad41
+fonte: d65f7aaf1e14
 ---
 
 Ces actions agissent sur la **liste entière**, jamais sur une seule tâche. Deux existent aux deux endroits ; les autres seulement dans le salon.
@@ -21,7 +21,9 @@ Ces actions agissent sur la **liste entière**, jamais sur une seule tâche. Deu
 
 **Nettoyer la liste** enlève toutes les tâches terminées, sous-tâches comprises, et renumérote les tâches qui restent. Un groupe non terminé reste, même quand certaines de ses sous-tâches partent.
 
-D'abord, une confirmation te dit combien de tâches vont partir, et ce qui part avec elles. Elles partent **pour de bon**, avec leurs rappels et leurs tags, si elles en ont. Dans le salon, si la configuration de ton serveur le permet, la notification dans le salon de la liste ou dans son fil montre les tâches enlevées : voir [Mode de notification](/docs/configuration/#notification-mode). Dans l'Activity, elles finissent dans le résumé à la fin de la session.
+D'abord, une confirmation te dit combien de tâches vont partir, et ce qui part avec elles. Elles partent **pour de bon**, avec leurs rappels et leurs tags, si elles en ont.
+
+Dans le salon, si la configuration de ton serveur le permet, la notification dans le salon de la liste ou dans son fil montre les tâches enlevées : voir [Mode de notification](/docs/configuration/#notification-mode). Dans l'Activity, elles finissent dans le résumé à la fin de la session.
 
 - **Aucune tâche terminée** : il n'y a rien à enlever, et le bot te le dit tout de suite.
 - **Toutes les tâches terminées** : Nettoyer refuse, car une liste ne peut pas être vide. Décoche au moins une tâche, ou supprime la liste entière avec [Supprimer](#delete), dans le salon.
@@ -33,7 +35,9 @@ D'abord, une confirmation te dit combien de tâches vont partir, et ce qui part 
 D'abord, le bot te demande de choisir :
 
 - **Rouvrir** — rouvre toutes les tâches tout de suite.
-- **Nouvelle date** — rouvre, et déplace les rappels des tâches que tu rouvres. Le premier de ces rappels au calendrier passe à la date que tu choisis, au moins 5 minutes à partir de maintenant. Les autres gardent le même écart avec lui. Les rappels des tâches encore à faire restent comme ils sont. Ce choix apparaît seulement quand une tâche que tu rouvres a un rappel.
+- **Nouvelle date** — rouvre, et déplace les rappels des tâches que tu rouvres. Le premier de ces rappels au calendrier passe à la date que tu choisis, au moins 5 minutes à partir de maintenant. Les autres gardent le même écart avec lui.
+
+  Les rappels des tâches encore à faire restent comme ils sont. Ce choix apparaît seulement quand une tâche que tu rouvres a un rappel.
 - **Annuler** — laisse la liste telle quelle.
 
 Rouvrir déclenche les **webhooks de réouverture** des tâches qu'il rouvre, et ignore les propriétaires : toute personne qui peut modifier la liste peut la rouvrir.
@@ -56,7 +60,9 @@ Seulement dans le salon, même quand la liste est verrouillée.
 
 ## Télécharger
 
-**Télécharger** te donne un fichier `.txt` de la liste, écrit comme expliqué dans [Modifier une liste à la main](/docs/writing-a-list/) et envoyé **à toi seul**. Le fichier garde les codes de Discord à la place des noms : voir [Les codes derrière les noms](/docs/writing-a-list/#the-codes-behind-the-names). Garde-le comme sauvegarde, ou reconstruis la liste à partir de lui avec `/creer-liste`, même sur un autre serveur : voir [Réutiliser une liste partout](/docs/tips/#reuse-a-list-anywhere).
+**Télécharger** te donne un fichier `.txt` de la liste, écrit comme expliqué dans [Modifier une liste à la main](/docs/writing-a-list/) et envoyé **à toi seul**. Le fichier garde les codes de Discord à la place des noms : voir [Les codes derrière les noms](/docs/writing-a-list/#the-codes-behind-the-names).
+
+Garde-le comme sauvegarde, ou reconstruis la liste à partir de lui avec `/creer-liste`, même sur un autre serveur : voir [Réutiliser une liste partout](/docs/tips/#reuse-a-list-anywhere).
 
 Un message Discord est limité à 2000 caractères, donc Télécharger ne publie jamais la liste en texte : c'est toujours un fichier.
 

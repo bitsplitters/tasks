@@ -23,7 +23,9 @@ Check these points, in this order:
 - **The task has an owner.** Only the owner, the members of the owner role and whoever has *Manage messages* on the channel can tick it. See [Who can tick a task](/docs/core-concepts/#who-can-tick-a-task).
 - **The menu is disabled.** Someone is editing the list, so it is locked: see [I pressed Cancel and the list stays locked](#i-pressed-cancel-and-the-list-stays-locked) below.
 - **The bot says *You're not allowed to use this feature on this server*.** Your server has synced its permissions, and the list is read-only for you. Ask an admin, and see [Sync permissions](/docs/configuration/#sync-permissions).
-- **The beta is over and your server is on the Free plan.** When all the places of your plan are taken, a list outside them refuses the tick. A list created during the beta is the exception: its tasks can still be ticked. See [How the three places work](/docs/premium/#how-the-three-places-work) and [What a beta list keeps](/docs/beta/#what-a-beta-list-keeps).
+- **The beta is over and your server is on the Free plan.** When all the places of your plan are taken, a list outside them refuses the tick.
+
+  A list created during the beta is the exception: its tasks can still be ticked. See [How the three places work](/docs/premium/#how-the-three-places-work) and [What a beta list keeps](/docs/beta/#what-a-beta-list-keeps).
 
 ### I pressed Cancel and the list stays locked
 
@@ -43,7 +45,9 @@ If a task became yours instead of going to the people you picked, the menu was s
 
 ### I want to give a task to several people
 
-Click **Owner** until it turns blue. In the menu under the buttons, labelled *Pick a task in the menu above to take it, or choose who gets it*, pick the people. Confirm your choice, then pick the task. TTM creates a role for those people and makes it the owner. In the Activity, choose them in the panel of the task: see [Owner](/docs/activity-list/#owner).
+Click **Owner** until it turns blue. In the menu under the buttons, labelled *Pick a task in the menu above to take it, or choose who gets it*, pick the people. Confirm your choice, then pick the task.
+
+TTM creates a role for those people and makes it the owner. In the Activity, choose them in the panel of the task: see [Owner](/docs/activity-list/#owner).
 
 This is a [Premium](/docs/premium/) feature. The bot needs the *Manage Roles* permission: an admin grants it on the bot's role in *Server Settings → Roles*, not on a channel. See [Owner: a person, a role, or several people](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
@@ -79,7 +83,9 @@ TTM tells you why. Usually:
 
 ### The list takes a while to come back from the Activity
 
-The Activity was closed without pressing **Exit**. For TTM, a closed window looks like a connection that dropped for a moment: it waits 30 seconds for you to come back, then brings the list back to the channel. With a phone left in the background or locked, it can take up to a minute, because the bot first has to notice that the page has stopped answering.
+The Activity was closed without pressing **Exit**. For TTM, a closed window looks like a connection that dropped for a moment: it waits 30 seconds for you to come back, then brings the list back to the channel.
+
+With a phone left in the background or locked, it can take up to a minute, because the bot first has to notice that the page has stopped answering.
 
 **Exit** tells the bot at once that you are done: if you are the last one in the list, it is back in the channel right away. See [Back to the channel](/docs/activity/#back-to-the-channel).
 

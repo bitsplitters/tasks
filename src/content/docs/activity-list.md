@@ -52,7 +52,9 @@ While the panel is open, the task is locked for the others: see [Who is editing 
 
 **Blue** shows a search over the people and roles of the server, with whoever is in the Activity first. Tap a name to add it, tap it again to remove it, then **Save**. Remove every name and **Save** removes the owner, as **Red** does.
 
-**To take a task** with no owner, press **Owner** until it turns blue: your name is already chosen, so **Save** makes the task yours. To give it to someone else instead, tap their name: it takes the place of yours. A task that already has an owner shows it, and changes only if you choose someone.
+**To take a task** with no owner, press **Owner** until it turns blue: your name is already chosen, so **Save** makes the task yours.
+
+To give it to someone else instead, tap their name: it takes the place of yours. A task that already has an owner shows it, and changes only if you choose someone.
 
 - One person or one role is enough on every plan.
 - Several people become a role that TTM creates, on Premium: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates). When something is missing, **Save** stays off and the panel says why.
@@ -91,13 +93,17 @@ A ticked task can't get a reminder. On a task without an owner, the panel says t
 
 Webhooks are a [Premium](/docs/premium/) feature.
 
-**Blue** lists the server's webhooks by name, each with when it fires: *on completion*, *on reopening* or *always*. The address never shows. Choose one, then **Save**. A webhook that no longer exists shows on top, marked *no longer exists*, so you can choose another one. If the server has none, the panel says they are created with [/config webhook](/docs/config-webhook/).
+**Blue** lists the server's webhooks by name, each with when it fires: *on completion*, *on reopening* or *always*. The address never shows. Choose one, then **Save**.
+
+A webhook that no longer exists shows on top, marked *no longer exists*, so you can choose another one. If the server has none, the panel says they are created with [/config webhook](/docs/config-webhook/).
 
 **Red** removes the webhook from the task.
 
 ## Edit the list
 
-**Edit the list** shows the title and every task as text, in the format explained in [Editing a list by hand](/docs/writing-a-list/): the same text as the channel's **Bulk update**, read by the same rules: people, roles and channels by name, reminder dates in your time zone. A line under the text says how to add someone new, and links to [Editing a list by hand](/docs/writing-a-list/#people-roles-and-channels-by-name). Change what you need and save.
+**Edit the list** shows the title and every task as text, in the format explained in [Editing a list by hand](/docs/writing-a-list/): the same text as the channel's **Bulk update**, read by the same rules: people, roles and channels by name, reminder dates in your time zone.
+
+A line under the text says how to add someone new, and links to [Editing a list by hand](/docs/writing-a-list/#people-roles-and-channels-by-name). Change what you need and save.
 
 The list is locked for the others from the moment it opens until you save or cancel: **Cancel**, the ✕ and a tap outside unlock it. It closes by itself after 30 seconds without activity. If the text can't be saved, the problems show under it: see [When the text can't be saved](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

@@ -1,7 +1,7 @@
 ---
 title: "Dicas e truques"
 description: "Pequenos hábitos que deixam o TTM mais rápido e mais silencioso, no canal e na Activity."
-fonte: 3e31d9102d49
+fonte: 6e297084b41a
 ---
 
 A maioria funciona onde quer que a lista esteja. As que existem em um único lugar dizem isso sob o título.
@@ -10,7 +10,9 @@ A maioria funciona onde quer que a lista esteja. As que existem em um único lug
 
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />No canal</p>
 
-Abra **Mais** <img class="inline-ic" src="/icons/other.png" alt="" /> e escolha **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: a lista chega como um arquivo `.txt` que só você vê. Depois use `/criar-lista` em qualquer servidor e anexe esse arquivo à opção `arquivo`. Tarefas, estados de conclusão, proprietários, tags, lembretes e webhooks voltam como estavam. Funciona bem para checklists que você repete, como releases, onboarding ou eventos.
+Abra **Mais** <img class="inline-ic" src="/icons/other.png" alt="" /> e escolha **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: a lista chega como um arquivo `.txt` que só você vê. Depois use `/criar-lista` em qualquer servidor e anexe esse arquivo à opção `arquivo`.
+
+Tarefas, estados de conclusão, proprietários, tags, lembretes e webhooks voltam como estavam. Funciona bem para checklists que você repete, como releases, onboarding ou eventos.
 
 Se algo no arquivo não combinar com o servidor novo, o TTM não cria nada e lista todos os problemas de uma vez. O que ele confere: veja [`/criar-lista`](/docs/commands/#create-list).
 

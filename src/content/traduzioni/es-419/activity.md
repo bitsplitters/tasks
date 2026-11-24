@@ -1,7 +1,7 @@
 ---
 title: "La Activity"
 description: "Abre una lista en una ventana dentro de Discord, donde tu equipo trabaja en ella a la vez y ve cada cambio al instante."
-fonte: 430ed626ef5b
+fonte: 38c066c5c9af
 ---
 
 Prueba el modo Activity: más fluido y libre de los límites de los canales de texto, ideal para sesiones de trabajo largas o colaborativas.
@@ -38,17 +38,23 @@ El botón sigue las reglas del resto de la lista, como los [permisos sincronizad
 
 Mientras una lista está en la Activity, su mensaje conserva un único botón, **Entrar a la Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, y la última línea dice <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> *Se está trabajando en esta lista en la Activity*. El **Unirse** de Discord, en el perfil de alguien que está dentro, también funciona. Mientras tanto, nada cambia la lista desde el canal.
 
-Para traer a alguien, presiona **Invitar**, arriba a la derecha del inicio y de cada lista, junto a quienes están allí. Discord abre su propia ventana, donde eliges amigos o un canal al que enviar la invitación. Necesita el permiso *Crear invitación* de Discord en el canal: sin él, TTM te lo dice en el botón y te explica cómo puede concedértelo un administrador.
+Para traer a alguien, presiona **Invitar**, arriba a la derecha del inicio y de cada lista, junto a quienes están allí. Discord abre su propia ventana, donde eliges amigos o un canal al que enviar la invitación.
+
+Necesita el permiso *Crear invitación* de Discord en el canal: sin él, TTM te lo dice en el botón y te explica cómo puede concedértelo un administrador.
 
 ## Tu estado en Discord
 
-Mientras estás en la Activity, tu perfil de Discord muestra Team Tasks Manager con *Planificando tareas con el equipo*, en tu idioma. No dice nada de la lista, el servidor ni el canal. Discord te lo pregunta antes, en la ventana donde dejas que TTM sepa quién eres. Si dices que no, la Activity se abre igualmente, sin esa línea.
+Mientras estás en la Activity, tu perfil de Discord muestra Team Tasks Manager con *Planificando tareas con el equipo*, en tu idioma. No dice nada de la lista, el servidor ni el canal.
+
+Discord te lo pregunta antes, en la ventana donde dejas que TTM sepa quién eres. Si dices que no, la Activity se abre igualmente, sin esa línea.
 
 ## El inicio del canal
 
 Cuando empiezas desde el **Lanzador de aplicaciones** o desde una **llamada de voz** (consulta [Cuatro formas de entrar](#four-ways-in)), TTM abre el inicio del canal, con el nombre del canal como título. Los hilos, las publicaciones de foros, los canales de anuncios y los escenarios quedan fuera. El inicio tiene tres partes:
 
-- **Nueva lista**, debajo del título: un título y las tareas, escritos como en [Crea tu primera lista](/docs/getting-started/#2-create-your-first-list), que se crea aquí y ya está en la Activity. El resumen que la acompaña de vuelta al canal empieza con su creación, y puede mencionar a los propietarios de sus tareas: consulta [Cuando se crea una lista](/docs/configuration/#when-a-list-is-created). Los archivos se importan con `/crear-lista`, en el canal.
+- **Nueva lista**, debajo del título: un título y las tareas, escritos como en [Crea tu primera lista](/docs/getting-started/#2-create-your-first-list), que se crea aquí y ya está en la Activity.
+
+  El resumen que la acompaña de vuelta al canal empieza con su creación, y puede mencionar a los propietarios de sus tareas: consulta [Cuando se crea una lista](/docs/configuration/#when-a-list-is-created). Los archivos se importan con `/crear-lista`, en el canal.
 - **Ahora en la Activity**: quién está en cada lista y quién está editando. Toca una para unirte.
 - **En el canal**: las demás listas, las más recientes primero. Toca una para leerla y luego **Llevar a la Activity**, que espera mientras alguien la edita en el canal.
 
@@ -77,7 +83,9 @@ Ninguna lista entra en la Activity, y el inicio oculta **Nueva lista**. Una list
 
 ## Tu configuración
 
-El engranaje arriba a la derecha tiene dos grupos. En **Para ti, en todas partes**, **Zona horaria** es tu zona horaria, la misma que en [/my timezone](/docs/my-timezone/): TTM la propone en el canal y también en todos los servidores, y **Quitar mi zona horaria** la olvida. En **En este dispositivo**, **Tamaño del texto**, **Tema** y **Filas espaciadas**, más espacio para tocar en un celular, se aplican solo a ti, en ese dispositivo.
+El engranaje arriba a la derecha tiene dos grupos. En **Para ti, en todas partes**, **Zona horaria** es tu zona horaria, la misma que en [/my timezone](/docs/my-timezone/): TTM la propone en el canal y también en todos los servidores, y **Quitar mi zona horaria** la olvida.
+
+En **En este dispositivo**, **Tamaño del texto**, **Tema** y **Filas espaciadas**, más espacio para tocar en un celular, se aplican solo a ti, en ese dispositivo.
 
 ## Adónde ir después
 

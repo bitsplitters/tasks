@@ -1,7 +1,7 @@
 ---
 title: L'Activity
 description: Apri una lista in una finestra dentro Discord, dove il tuo team ci lavora insieme e vede ogni modifica mentre accade.
-fonte: 430ed626ef5b
+fonte: 38c066c5c9af
 ---
 
 Prova la modalità Activity: più fluida e libera dai limiti dei canali testuali, ideale per sessioni di lavoro più lunghe o collaborative.
@@ -38,17 +38,23 @@ Il pulsante segue le regole del resto della lista, come i [permessi sincronizzat
 
 Finché una lista è nell'Activity, il suo messaggio tiene un solo pulsante, **Entra nell'Activity** <img class="inline-ic" src="/icons/activity.png" alt="" /> e l'ultima riga dice <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> *La lista è in lavorazione nell'Activity*. Funziona anche **Unisciti** di Discord, sul profilo di chi è dentro. Nel frattempo niente cambia la lista dal canale.
 
-Per portare dentro qualcuno, premi **Invita**, in alto a destra nella home e in ogni lista, accanto a chi c'è. Discord apre la sua finestra, dove scegli gli amici o un canale a cui mandare l'invito. Serve il permesso di Discord *Creare invito* sul canale: senza, TTM te lo dice sul pulsante e spiega come lo concede un amministratore.
+Per portare dentro qualcuno, premi **Invita**, in alto a destra nella home e in ogni lista, accanto a chi c'è. Discord apre la sua finestra, dove scegli gli amici o un canale a cui mandare l'invito.
+
+Serve il permesso di Discord *Creare invito* sul canale: senza, TTM te lo dice sul pulsante e spiega come lo concede un amministratore.
 
 ## Il tuo stato su Discord
 
-Mentre sei nell'Activity, il tuo profilo Discord mostra Team Tasks Manager con *Pianifica i task con il team*, nella tua lingua. Non dice nulla sulla lista, sul server o sul canale. Discord te lo chiede prima, nella finestra in cui fai sapere a TTM chi sei. Se rifiuti, l'Activity si apre lo stesso, senza quella riga.
+Mentre sei nell'Activity, il tuo profilo Discord mostra Team Tasks Manager con *Pianifica i task con il team*, nella tua lingua. Non dice nulla sulla lista, sul server o sul canale.
+
+Discord te lo chiede prima, nella finestra in cui fai sapere a TTM chi sei. Se rifiuti, l'Activity si apre lo stesso, senza quella riga.
 
 ## La home del canale
 
 Quando parti dall'**Avvio app** o da una **chiamata vocale** (vedi [Quattro modi per entrare](#four-ways-in)), TTM apre la home del canale, con il nome del canale come titolo. Thread, post dei forum, canali annunci e stage restano fuori. La home ha tre parti:
 
-- **Nuova lista**, sotto il titolo — un titolo e i task, scritti come in [Crea la tua prima lista](/docs/getting-started/#2-create-your-first-list), creati qui e già nell'Activity. Il riepilogo che la riporta nel canale comincia con la sua creazione e può menzionare i proprietari dei suoi task: vedi [Quando una lista viene creata](/docs/configuration/#when-a-list-is-created). I file si importano con `/crea-lista`, nel canale.
+- **Nuova lista**, sotto il titolo — un titolo e i task, scritti come in [Crea la tua prima lista](/docs/getting-started/#2-create-your-first-list), creati qui e già nell'Activity.
+
+  Il riepilogo che la riporta nel canale comincia con la sua creazione e può menzionare i proprietari dei suoi task: vedi [Quando una lista viene creata](/docs/configuration/#when-a-list-is-created). I file si importano con `/crea-lista`, nel canale.
 - **Ora nell'Activity** — chi c'è su ogni lista e chi la sta modificando. Tocca una lista per unirti.
 - **Nel canale** — le altre liste, dalla più recente. Tocca una lista per leggerla, poi **Porta nell'Activity**, che resta in attesa finché qualcuno la modifica nel canale.
 
@@ -77,7 +83,9 @@ Nessuna lista entra nell'Activity e la home nasconde **Nuova lista**. Una lista 
 
 ## Le tue impostazioni
 
-L'ingranaggio in alto a destra ha due gruppi. Sotto **Per te, ovunque**, **Fuso orario** è il tuo fuso orario, lo stesso di [/my timezone](/docs/my-timezone/): TTM te lo propone nel canale e in ogni server e **Togli il mio fuso** lo dimentica. Sotto **Su questo dispositivo**, **Dimensione del testo**, **Tema** e **Righe distanziate**, più spazio per toccare su un telefono, valgono solo per te, su quel dispositivo.
+L'ingranaggio in alto a destra ha due gruppi. Sotto **Per te, ovunque**, **Fuso orario** è il tuo fuso orario, lo stesso di [/my timezone](/docs/my-timezone/): TTM te lo propone nel canale e in ogni server e **Togli il mio fuso** lo dimentica.
+
+Sotto **Su questo dispositivo**, **Dimensione del testo**, **Tema** e **Righe distanziate**, più spazio per toccare su un telefono, valgono solo per te, su quel dispositivo.
 
 ## Dove andare dopo
 

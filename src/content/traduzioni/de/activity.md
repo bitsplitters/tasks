@@ -1,7 +1,7 @@
 ---
 title: "Die Activity"
 description: "Öffne eine Liste in einem Fenster innerhalb von Discord, in dem dein Team gemeinsam daran arbeitet und jede Änderung sofort sieht."
-fonte: 430ed626ef5b
+fonte: 38c066c5c9af
 ---
 
 Probiere den Activity-Modus: flüssiger und frei von den Grenzen der Textkanäle, ideal für längere oder gemeinsame Arbeitssitzungen.
@@ -38,17 +38,23 @@ Der Button folgt den Regeln der restlichen Liste, etwa den [synchronisierten Ber
 
 Solange eine Liste in der Activity ist, behält ihre Nachricht einen einzigen Button, **Activity beitreten** <img class="inline-ic" src="/icons/activity.png" alt="" />, und die letzte Zeile sagt <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> *An dieser Liste wird gerade in der Activity gearbeitet*. Auch das **Beitreten** von Discord im Profil einer Person, die drin ist, funktioniert. In der Zwischenzeit ändert nichts die Liste vom Kanal aus.
 
-Um jemanden dazuzuholen, drücke **Einladen**, oben rechts auf der Startseite und in jeder Liste, neben den Anwesenden. Discord öffnet sein eigenes Fenster, in dem du Freunde oder einen Kanal wählst, an die die Einladung geht. Dafür braucht es die Discord-Berechtigung *Einladung erstellen* im Kanal: Fehlt sie, sagt dir TTM das am Button und wie ein Administrator sie gewährt.
+Um jemanden dazuzuholen, drücke **Einladen**, oben rechts auf der Startseite und in jeder Liste, neben den Anwesenden. Discord öffnet sein eigenes Fenster, in dem du Freunde oder einen Kanal wählst, an die die Einladung geht.
+
+Dafür braucht es die Discord-Berechtigung *Einladung erstellen* im Kanal: Fehlt sie, sagt dir TTM das am Button und wie ein Administrator sie gewährt.
 
 ## Dein Status auf Discord
 
-Während du in der Activity bist, zeigt dein Discord-Profil Team Tasks Manager mit *Plant Aufgaben mit dem Team*, in deiner Sprache. Es sagt nichts über die Liste, den Server oder den Kanal. Discord fragt dich vorher, in dem Fenster, in dem du TTM mitteilst, wer du bist. Sagst du nein, öffnet sich die Activity trotzdem, ohne diese Zeile.
+Während du in der Activity bist, zeigt dein Discord-Profil Team Tasks Manager mit *Plant Aufgaben mit dem Team*, in deiner Sprache. Es sagt nichts über die Liste, den Server oder den Kanal.
+
+Discord fragt dich vorher, in dem Fenster, in dem du TTM mitteilst, wer du bist. Sagst du nein, öffnet sich die Activity trotzdem, ohne diese Zeile.
 
 ## Die Startseite des Kanals
 
 Wenn du vom **App-Launcher** oder aus einem **Sprachanruf** startest (siehe [Vier Wege hinein](#four-ways-in)), öffnet TTM die Startseite des Kanals mit dem Namen des Kanals als Titel. Threads, Forenbeiträge, Ankündigungskanäle und Stages bleiben außen vor. Die Startseite hat drei Teile:
 
-- **Neue Liste**, unter dem Titel: ein Titel und die Aufgaben, so geschrieben wie in [Erstelle deine erste Liste](/docs/getting-started/#2-create-your-first-list), hier erstellt und gleich in der Activity. Die Zusammenfassung, die mit ihr in den Kanal zurückkommt, beginnt mit ihrer Erstellung und kann die Besitzer ihrer Aufgaben erwähnen: siehe [Wenn eine Liste erstellt wird](/docs/configuration/#when-a-list-is-created). Dateien importierst du mit `/liste-erstellen` im Kanal.
+- **Neue Liste**, unter dem Titel: ein Titel und die Aufgaben, so geschrieben wie in [Erstelle deine erste Liste](/docs/getting-started/#2-create-your-first-list), hier erstellt und gleich in der Activity.
+
+  Die Zusammenfassung, die mit ihr in den Kanal zurückkommt, beginnt mit ihrer Erstellung und kann die Besitzer ihrer Aufgaben erwähnen: siehe [Wenn eine Liste erstellt wird](/docs/configuration/#when-a-list-is-created). Dateien importierst du mit `/liste-erstellen` im Kanal.
 - **Jetzt in der Activity**: wer in welcher Liste ist und wer bearbeitet. Tippe auf eine, um beizutreten.
 - **Im Kanal**: die anderen Listen, die neueste zuerst. Tippe auf eine, um sie zu lesen, dann auf **In die Activity bringen**; der Button wartet, solange jemand sie im Kanal bearbeitet.
 
@@ -77,7 +83,9 @@ Keine Liste kommt in die Activity, und die Startseite blendet **Neue Liste** aus
 
 ## Deine Einstellungen
 
-Das Zahnrad oben rechts hat zwei Gruppen. Unter **Für dich, überall** ist **Zeitzone** deine Zeitzone, dieselbe wie bei [/my timezone](/docs/my-timezone/): TTM schlägt sie dir im Kanal und auch auf jedem Server vor, und **Meine Zeitzone entfernen** vergisst sie. Unter **Auf diesem Gerät** gelten **Textgröße**, **Design** und **Zeilen mit Abstand**, mehr Platz zum Tippen auf dem Handy, nur für dich und auf diesem Gerät.
+Das Zahnrad oben rechts hat zwei Gruppen. Unter **Für dich, überall** ist **Zeitzone** deine Zeitzone, dieselbe wie bei [/my timezone](/docs/my-timezone/): TTM schlägt sie dir im Kanal und auch auf jedem Server vor, und **Meine Zeitzone entfernen** vergisst sie.
+
+Unter **Auf diesem Gerät** gelten **Textgröße**, **Design** und **Zeilen mit Abstand**, mehr Platz zum Tippen auf dem Handy, nur für dich und auf diesem Gerät.
 
 ## Wie es weitergeht
 

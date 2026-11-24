@@ -1,7 +1,7 @@
 ---
 title: "/config app"
 description: "Personaliza notificaciones, historial, recordatorios, zona horaria y permisos con /config app."
-fonte: 449f5cc3050a
+fonte: cc3b2bd36302
 ---
 
 Ejecuta el comando:
@@ -52,15 +52,21 @@ En la Activity, los marcados no publican una notificación uno a uno: cuando la 
 
 ### Cuando se crea una lista
 
-Una lista nueva publica bajo sí misma su propia notificación: *he creado la lista*, con un enlace a la lista. Viene de `/crear-lista`, del Tutorial, de una importación desde un archivo, de una clonación y de **Nueva lista** en la Activity. Una clonación la publica en el canal nuevo, y el canal de la lista original recibe la notificación habitual de la clonación. Con el modo **Notificaciones desactivadas** no se publica nada en el canal, pero el hilo del historial registra igualmente la creación.
+Una lista nueva publica bajo sí misma su propia notificación: *he creado la lista*, con un enlace a la lista. Viene de `/crear-lista`, del Tutorial, de una importación desde un archivo, de una clonación y de **Nueva lista** en la Activity.
+
+Una clonación la publica en el canal nuevo, y el canal de la lista original recibe la notificación habitual de la clonación. Con el modo **Notificaciones desactivadas** no se publica nada en el canal, pero el hilo del historial registra igualmente la creación.
 
 Con [Mencionar a los propietarios en listas nuevas](#mention-owners-in-new-lists) activado, la notificación menciona a los propietarios de las tareas, así que Discord les avisa. Una lista creada en la Activity los menciona en el resumen que la sigue cuando vuelve al canal.
 
-Con los [Consejos](#tips) activados, la primera notificación de una lista nueva termina con una explicación: por qué TTM publica notificaciones y, con el seguimiento del historial activado, qué es el hilo. Aparece una vez por lista, y solo si los consejos y las notificaciones estaban los dos activados cuando se creó la lista: un equipo que desactivó uno de ellos ya sabe cómo moverse. Las listas creadas antes de que llegara esta explicación no la muestran.
+Con los [Consejos](#tips) activados, la primera notificación de una lista nueva termina con una explicación: por qué TTM publica notificaciones y, con el seguimiento del historial activado, qué es el hilo.
+
+Aparece una vez por lista, y solo si los consejos y las notificaciones estaban los dos activados cuando se creó la lista: un equipo que desactivó uno de ellos ya sabe cómo moverse. Las listas creadas antes de que llegara esta explicación no la muestran.
 
 ## Seguimiento del historial
 
-Cuando está activado, **cada acción sobre tus listas se registra en un hilo dedicado**, y tienes un rastro de quién hizo qué y cuándo. Activado por defecto. El hilo empieza con la lista: su primera línea dice quién la creó. Las listas de los canales de voz no tienen hilo de historial, porque Discord no permite hilos ahí: consulta [Canales de voz](/docs/known-limits/#voice-channels). Una sesión en la Activity va al hilo completa, una línea por cambio, cuando la lista vuelve al canal.
+Cuando está activado, **cada acción sobre tus listas se registra en un hilo dedicado**, y tienes un rastro de quién hizo qué y cuándo. Activado por defecto. El hilo empieza con la lista: su primera línea dice quién la creó.
+
+Las listas de los canales de voz no tienen hilo de historial, porque Discord no permite hilos ahí: consulta [Canales de voz](/docs/known-limits/#voice-channels). Una sesión en la Activity va al hilo completa, una línea por cambio, cuando la lista vuelve al canal.
 
 ## Comportamiento
 
@@ -68,11 +74,15 @@ Un menú desplegable con tres opciones: **Notificaciones push legibles**, **Mant
 
 ### Notificaciones push legibles
 
-Cuando está activada, TTM agrega texto plano junto a los embeds, para que tus **notificaciones push del celular** se lean de un vistazo. Los embeds solos suelen aparecer vacíos en la pantalla de bloqueo. Activada por defecto. Desactivarla nunca detiene un recordatorio: llega solo con su tarjeta o, para un rol, solo con la mención. Las menciones de los propietarios salen igualmente con la opción desactivada, por su cuenta.
+Cuando está activada, TTM agrega texto plano junto a los embeds, para que tus **notificaciones push del celular** se lean de un vistazo. Los embeds solos suelen aparecer vacíos en la pantalla de bloqueo. Activada por defecto.
+
+Desactivarla nunca detiene un recordatorio: llega solo con su tarjeta o, para un rol, solo con la mención. Las menciones de los propietarios salen igualmente con la opción desactivada, por su cuenta.
 
 ### Mantener el estado tras la selección
 
-Solo en el canal. Después de usar **Propietario**, **Etiqueta** o **Recordatorio** en la segunda fila bajo la lista, esta opción decide si el botón vuelve a gris o **mantiene** el modo activo. Desactivada por defecto: el botón vuelve a gris. Actívala cuando apliques la misma acción a varias tareas seguidas.
+Solo en el canal. Después de usar **Propietario**, **Etiqueta** o **Recordatorio** en la segunda fila bajo la lista, esta opción decide si el botón vuelve a gris o **mantiene** el modo activo.
+
+Desactivada por defecto: el botón vuelve a gris. Actívala cuando apliques la misma acción a varias tareas seguidas.
 
 También cambia lo que pueden hacer **Etiqueta** y **Propietario**. Con la opción desactivada, tu elección siempre sobrescribe. Con la opción activada, también puedes editar en directo las etiquetas o el propietario existentes de una tarea. Consulta [Etiqueta](/docs/channel-tasks/#tag) para ver el detalle completo.
 
@@ -80,7 +90,9 @@ En la Activity, el panel de una tarea siempre funciona igual: tras una acción s
 
 ### Mencionar a los propietarios en listas nuevas
 
-Cuando alguien crea, importa o clona una lista, su primera notificación menciona a los propietarios de sus tareas: personas y roles, cada uno una vez, en el orden de la lista. Las menciones van en el texto plano de la notificación, así que Discord avisa a los propietarios. A quien creó la lista no se le menciona: ya lo sabe. Tampoco se menciona a @everyone, aunque sea propietario de una tarea: una lista nueva no avisa a todo el servidor.
+Cuando alguien crea, importa o clona una lista, su primera notificación menciona a los propietarios de sus tareas: personas y roles, cada uno una vez, en el orden de la lista. Las menciones van en el texto plano de la notificación, así que Discord avisa a los propietarios.
+
+A quien creó la lista no se le menciona: ya lo sabe. Tampoco se menciona a @everyone, aunque sea propietario de una tarea: una lista nueva no avisa a todo el servidor.
 
 Activada por defecto, también en los servidores que agregaron TTM antes de que llegara esta opción. Una lista creada dentro de una sesión de la Activity menciona a sus propietarios en el resumen, cuando vuelve al canal. Consulta [Cuando se crea una lista](#when-a-list-is-created).
 
@@ -96,7 +108,11 @@ Muestra cada tarea completada con el texto más pequeño y gris de Discord, para
 
 ### Espacio entre grupos
 
-Pone una línea en blanco encima y debajo de cada tarea que tiene subtareas, para que cada grupo se separe del resto de la lista. Desactivada por defecto, para una lista más compacta: los servidores que agregaron TTM antes de la versión 2.0.0 la tienen activada hasta que un administrador la desactiva. Cambia solo la lista: las notificaciones se quedan como están. Discord no tiene una línea en blanco más fina para una lista, así que la elección es entre una línea entera y ninguna.
+Pone una línea en blanco encima y debajo de cada tarea que tiene subtareas, para que cada grupo se separe del resto de la lista.
+
+Desactivada por defecto, para una lista más compacta: los servidores que agregaron TTM antes de la versión 2.0.0 la tienen activada hasta que un administrador la desactiva.
+
+Cambia solo la lista: las notificaciones se quedan como están. Discord no tiene una línea en blanco más fina para una lista, así que la elección es entre una línea entera y ninguna.
 
 ## Recordatorios recurrentes
 
@@ -112,7 +128,9 @@ Un recordatorio que *ya* es recurrente sigue enviándose aunque el interruptor e
 
 ## Zona horaria
 
-Fija la zona horaria en la que trabaja tu equipo. Los miembros pueden seguir usando la suya para los recordatorios: hasta que elijan una, TTM propone la zona de su idioma de Discord, y esta solo cuando su idioma se habla en varias zonas, como el inglés (EE. UU.). Consulta [Tu zona horaria](/docs/reminders/#your-time-zone). Haz clic en el botón y pega el nombre oficial de una zona: búscalo en el **[mapa de zonas horarias](https://timezones.bitsplitters.app)**.
+Fija la zona horaria en la que trabaja tu equipo. Los miembros pueden seguir usando la suya para los recordatorios: hasta que elijan una, TTM propone la zona de su idioma de Discord, y esta solo cuando su idioma se habla en varias zonas, como el inglés (EE. UU.). Consulta [Tu zona horaria](/docs/reminders/#your-time-zone).
+
+Haz clic en el botón y pega el nombre oficial de una zona: búscalo en el **[mapa de zonas horarias](https://timezones.bitsplitters.app)**.
 
 ## Sincronizar permisos
 

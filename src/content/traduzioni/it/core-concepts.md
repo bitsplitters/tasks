@@ -1,7 +1,7 @@
 ---
 title: Concetti di base
 description: Una lista in due posti, il vocabolario di TTM (task, gruppi, proprietari, tag, promemoria) e i permessi che chiede.
-fonte: 207fda722dce
+fonte: 193335652dfb
 ---
 
 Alcuni termini ricorrono in tutta l'app. Imparali una volta e il resto va a posto da solo.
@@ -12,7 +12,9 @@ Una lista vive in un messaggio in un canale di Discord, dove tutti la trovano. L
 
 Una lista sta in un posto alla volta. Finché è nell'Activity, il suo messaggio nel canale tiene solo **Entra nell'Activity**. Quando tutti escono, la lista torna nel canale con un riepilogo di ciò che è cambiato.
 
-Ciò che una lista può fare è uguale nei due posti: proprietari, tag, promemoria, webhook, le impostazioni del tuo server e i limiti del tuo piano. Cambia il modo di farlo. Nel canale usi i menu e i pulsanti sotto il messaggio. Nell'Activity tocchi la casella di un task o il suo testo. Queste pagine sono divise allo stesso modo:
+Ciò che una lista può fare è uguale nei due posti: proprietari, tag, promemoria, webhook, le impostazioni del tuo server e i limiti del tuo piano. Cambia il modo di farlo.
+
+Nel canale usi i menu e i pulsanti sotto il messaggio. Nell'Activity tocchi la casella di un task o il suo testo. Queste pagine sono divise allo stesso modo:
 
 - **Funzioni** — che cosa fa ogni funzione e le sue regole, uguali nei due posti.
 - **Nel canale** — il messaggio della lista, i suoi menu e i suoi pulsanti.
@@ -67,7 +69,9 @@ Di default il promemoria suona una volta sola e nel piano Free è l'unico tipo. 
 
 ## Notifiche e cronologia
 
-Quando una lista viene creata, o un task viene spuntato o despuntato, TTM può pubblicare una notifica e, se lo attivi, registrare ogni azione in un **thread della cronologia** dedicato. La notifica di una lista nuova può menzionare i proprietari dei suoi task, così lo vengono a sapere. Le modifiche fatte nell'Activity arrivano in un unico riepilogo, quando la lista torna nel canale. Quanto rumore vuoi è del tutto una tua scelta: vedi [/config app](/docs/configuration/).
+Quando una lista viene creata, o un task viene spuntato o despuntato, TTM può pubblicare una notifica e, se lo attivi, registrare ogni azione in un **thread della cronologia** dedicato. La notifica di una lista nuova può menzionare i proprietari dei suoi task, così lo vengono a sapere.
+
+Le modifiche fatte nell'Activity arrivano in un unico riepilogo, quando la lista torna nel canale. Quanto rumore vuoi è del tutto una tua scelta: vedi [/config app](/docs/configuration/).
 
 ## Chi può usare liste e comandi
 

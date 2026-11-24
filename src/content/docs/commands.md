@@ -32,7 +32,9 @@ The list comes back with its tasks and their state, owners, tags, reminders and 
 
 TTM refuses a file straight away if it isn't a `.txt` or is bigger than **64 KB**. Otherwise TTM reads the file. If something doesn't fit, TTM creates nothing and lists every problem in one message, each with its line or its task:
 
-- **The format** — the file isn't UTF-8 text, or it doesn't start with `#!ttm/1`. The title is missing or longer than 90 characters. A line isn't a task, or a reminder is written in months (`M`) or written badly. A webhook is linked to a task with no text, the list starts with a subtask, or there are no tasks.
+- **The format** — the file isn't UTF-8 text, or it doesn't start with `#!ttm/1`. The title is missing or longer than 90 characters.
+
+  A line isn't a task, or a reminder is written in months (`M`) or written badly. A webhook is linked to a task with no text, the list starts with a subtask, or there are no tasks.
 - **The size** — the list is too long for one message, or it has more tasks than a list can hold or your plan allows.
 - **The reminders** — a reminder has no owner, has no date and a distance of zero, or repeats more times than your plan allows. A recurring reminder is refused where new ones can't be created (see [Reminders](/docs/reminders/#repeating-reminders)). Too many reminders would be waiting at the same time.
 - **This server** — a role, a channel or a webhook in the file doesn't exist here, or a user in the file isn't a member.
@@ -53,7 +55,9 @@ This command is your starting point inside Discord. It opens a panel with five b
 
 ## `/invite`
 
-Shows a card to add Team Tasks Manager to another server: the same presentation as its App Directory page (what it does, how to start), the **Add to Discord** button, the guide and the support server. **Add to Discord** opens Discord's authorization page for the bot, with the same permissions as https://tasks.bitsplitters.app/invite.
+Shows a card to add Team Tasks Manager to another server: the same presentation as its App Directory page (what it does, how to start), the **Add to Discord** button, the guide and the support server.
+
+**Add to Discord** opens Discord's authorization page for the bot, with the same permissions as https://tasks.bitsplitters.app/invite.
 
 The card is visible to everyone in the channel, so you can run it where the people who will set up the other server can see it. It reads nothing from the server and needs no permission.
 
@@ -61,9 +65,13 @@ The card is visible to everyone in the channel, so you can run it where the peop
 
 The latest news about Team Tasks Manager, in your language: what's new in the bot and how to use it. The news opens in a message only you can see, with its date under the title.
 
-Under the text, **Discord server** opens our support server and **Release notes** opens that release on the [Release notes](/docs/release-notes/) page. When there's older or newer news, the **Previous** and **Next** buttons take you to it. Going back, you find every release since the first one, 1.0.0, each with the day it came out. It works in servers only, and needs no permission.
+Under the text, **Discord server** opens our support server and **Release notes** opens that release on the [Release notes](/docs/release-notes/) page. When there's older or newer news, the **Previous** and **Next** buttons take you to it.
 
-When there's news nobody in your server has read yet, the last line of the bot's panels says so, in place of the usual footer: in `/help`, the Guide, **More**, `/config app` and the explanation that `/create-list` shows. As soon as someone in the server opens `/news`, the line goes away for everyone. A server that adds TTM after a piece of news doesn't get the line: the news is in `/news`.
+Going back, you find every release since the first one, 1.0.0, each with the day it came out. It works in servers only, and needs no permission.
+
+When there's news nobody in your server has read yet, the last line of the bot's panels says so, in place of the usual footer: in `/help`, the Guide, **More**, `/config app` and the explanation that `/create-list` shows.
+
+As soon as someone in the server opens `/news`, the line goes away for everyone. A server that adds TTM after a piece of news doesn't get the line: the news is in `/news`.
 
 ## Command names in your language
 

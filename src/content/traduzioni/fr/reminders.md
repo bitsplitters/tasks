@@ -1,7 +1,7 @@
 ---
 title: "Rappels"
 description: "Associe un horaire à une tâche pour que TTM prévienne son propriétaire à temps : qui le reçoit, les fuseaux horaires, les répétitions."
-fonte: fb523a41633c
+fonte: 6ce351a678ab
 ---
 
 Un rappel fait d'une tâche quelque chose qui te rappelle *à toi*, et non l'inverse. Tu le définis une fois, et TTM s'occupe des alertes. Tu en ajoutes un avec **Rappel** <img class="inline-ic" src="/icons/alertW.png" alt="" /> : dans le salon, dans la deuxième rangée sous la liste ; dans l'Activity, dans le panneau d'une tâche.
@@ -13,7 +13,9 @@ Un rappel fait d'une tâche quelque chose qui te rappelle *à toi*, et non l'inv
 - **Un rappel a une date, une heure et un fuseau horaire.** Il part **une seule fois**, sauf si ton serveur utilise les [rappels répétés](#repeating-reminders), une fonctionnalité Premium.
 - **Le début doit être au moins 5 minutes dans le futur.** Le formulaire part de dix minutes à partir de maintenant, donc un rappel « dans un instant » n'a besoin d'aucune saisie.
 - **Seule une tâche encore à faire peut en recevoir un.** Terminer une tâche arrête son rappel : pas besoin de nettoyer ensuite.
-- **Le rappel va au propriétaire de la tâche**, par message privé si le propriétaire est une personne. Si la tâche n'a pas encore de propriétaire, **tu le deviens** quand tu enregistres le rappel. À partir de là, toi et ceux qui ont *Gérer les messages* sur le salon êtes les seuls à pouvoir cocher cette tâche. Pour la donner à quelqu'un d'autre, définis le propriétaire avant ou après avoir créé le rappel : voir [Propriétaires et tags](/docs/owners-and-tags/).
+- **Le rappel va au propriétaire de la tâche**, par message privé si le propriétaire est une personne. Si la tâche n'a pas encore de propriétaire, **tu le deviens** quand tu enregistres le rappel.
+
+  À partir de là, toi et ceux qui ont *Gérer les messages* sur le salon êtes les seuls à pouvoir cocher cette tâche. Pour la donner à quelqu'un d'autre, définis le propriétaire avant ou après avoir créé le rappel : voir [Propriétaires et tags](/docs/owners-and-tags/).
 - **Rien ne change tant que tu n'enregistres pas.** Quand tu modifies un rappel, Enregistrer reste éteint tant que tu ne changes pas la date ou la récurrence.
 - **Retirer le propriétaire retire le rappel**, parce que plus personne ne peut le recevoir.
 
@@ -50,7 +52,9 @@ Un rôle n'est prévenu que s'il peut être mentionné. Quand c'est le cas, et c
 
 ## Rappels répétés
 
-Par défaut, chaque rappel est un **événement unique** : une seule alerte, rien d'autre à décider. Les répétitions sont une fonctionnalité [Premium](/docs/premium/) : sur l'offre Free, chaque rappel est unique. Sur une offre qui les inclut, elles restent facultatives : une personne qui gère le serveur active **Rappels récurrents** dans [/config app](/docs/configuration/#recurring-reminders). Jusque-là, seul un rappel déjà récurrent affiche les menus de répétition.
+Par défaut, chaque rappel est un **événement unique** : une seule alerte, rien d'autre à décider. Les répétitions sont une fonctionnalité [Premium](/docs/premium/) : sur l'offre Free, chaque rappel est unique.
+
+Sur une offre qui les inclut, elles restent facultatives : une personne qui gère le serveur active **Rappels récurrents** dans [/config app](/docs/configuration/#recurring-reminders). Jusque-là, seul un rappel déjà récurrent affiche les menus de répétition.
 
 <div class="callout"><div class="callout-t">Les rappels récurrents que tu as déjà continuent de fonctionner</div>Un rappel qui était déjà récurrent continue de partir sur l'offre Free, et sur Premium tant que l'interrupteur est désactivé : tu peux changer sa date, le déplacer vers une autre tâche ou baisser le nombre de fois où il arrive, mais pas l'augmenter. Cloner ou importer une liste crée de nouveaux rappels : là où l'on ne peut pas créer de nouveaux rappels récurrents, un clone ou un import refuse un rappel récurrent. Clone sans les rappels, ou mets ses répétitions à <code>0</code>.</div>
 

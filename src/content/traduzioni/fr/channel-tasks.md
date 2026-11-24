@@ -1,7 +1,7 @@
 ---
 title: "Modifier une tâche dans le salon"
 description: "La deuxième rangée de boutons sous la liste — Contenu, Propriétaire, Tag, Rappel et Webhook — avec leurs formulaires et leurs menus."
-fonte: ba887a2603b7
+fonte: 9439d0a8db43
 ---
 
 La deuxième rangée sous la liste agit sur **une seule tâche à la fois** : son texte, son propriétaire, ses tags, son rappel et son webhook. Cette page montre où cliquer. Ce que fait chaque fonctionnalité, et ses règles : [Propriétaires et tags](/docs/owners-and-tags/), [Rappels](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -14,7 +14,9 @@ Chaque bouton de la deuxième rangée est un **interrupteur à trois états**. C
 - <span class="c-blue">Bleu</span> — actif en mode <span class="c-blue">modification</span>.
 - <span class="c-red">Rouge</span> — actif en mode <span class="c-red">suppression</span>.
 
-Le déroulement est toujours le même : **passe un bouton en bleu ou en rouge, puis choisis la tâche** dans le [menu de cochage](/docs/the-task-list/#the-check-selector). TTM applique l'action à cette tâche. Tant qu'un bouton est bleu ou rouge, le menu dit ce qui va se passer, par exemple *Modifier la tâche* ou *Supprimer la tâche* ; avec tous les boutons éteints, il dit *Cocher une tâche* : choisis une tâche là pour la cocher ou la décocher.
+Le déroulement est toujours le même : **passe un bouton en bleu ou en rouge, puis choisis la tâche** dans le [menu de cochage](/docs/the-task-list/#the-check-selector). TTM applique l'action à cette tâche.
+
+Tant qu'un bouton est bleu ou rouge, le menu dit ce qui va se passer, par exemple *Modifier la tâche* ou *Supprimer la tâche* ; avec tous les boutons éteints, il dit *Cocher une tâche* : choisis une tâche là pour la cocher ou la décocher.
 
 Tant que tu n'as pas choisi une tâche de cette façon au moins une fois, passer **Contenu** ou **Rappel** en bleu ou en rouge t'envoie un message que toi seul peux voir. Il dit quelle tâche choisir et ce que fait un nouvel appui sur le bouton. Dès que tu as choisi une tâche avec un bouton de la deuxième rangée allumé, le message s'arrête, sur tous les serveurs.
 
@@ -26,7 +28,9 @@ Tant que tu n'as pas choisi une tâche de cette façon au moins une fois, passer
 | [**Rappel**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Ajoute ou modifie un rappel. | Retire le rappel. |
 | [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> <a class="premium-tag" href="/docs/premium/" title="Débloquée pour tous les serveurs pendant la bêta">Premium</a> | Lie un webhook à la tâche. | Retire le webhook de la tâche. |
 
-Avec **Propriétaire**, **Tag**, **Rappel** ou **Webhook** en rouge, le menu ne liste que les tâches qui ont quelque chose à retirer : un propriétaire, des tags, un rappel ou un webhook. Une tâche faite uniquement de tags n'est pas listée, puisque sans eux elle n'aurait plus de texte. Si aucune tâche n'a rien à retirer, le menu est désactivé et le dit, par exemple *Aucun propriétaire à retirer*, et tu reçois une note sur la façon d'en ajouter un.
+Avec **Propriétaire**, **Tag**, **Rappel** ou **Webhook** en rouge, le menu ne liste que les tâches qui ont quelque chose à retirer : un propriétaire, des tags, un rappel ou un webhook. Une tâche faite uniquement de tags n'est pas listée, puisque sans eux elle n'aurait plus de texte.
+
+Si aucune tâche n'a rien à retirer, le menu est désactivé et le dit, par exemple *Aucun propriétaire à retirer*, et tu reçois une note sur la façon d'en ajouter un.
 
 Après avoir utilisé **Propriétaire**, **Tag** ou **Rappel**, le bouton redevient gris, ou reste allumé pour la tâche suivante : c'est ton serveur qui décide, avec **Conserver l'état après la sélection** dans le menu **Comportement** de [/config app](/docs/configuration/#keep-the-state-after-a-selection). Conserver l'état change ce que Propriétaire et Tag peuvent faire : voir [Propriétaire](#owner) et [Tag](#tag).
 
@@ -48,7 +52,9 @@ Tant que le formulaire est ouvert, la liste est verrouillée pour les autres. En
 
 **Bleu** affiche un menu sous les boutons, intitulé *Choisis une tâche dans le menu au-dessus pour la prendre, ou choisis à qui la donner*.
 
-**Pour prendre une tâche**, clique sur **Propriétaire** jusqu'à ce qu'il soit bleu, puis choisis la tâche dans le menu de cochage sans désigner personne : elle devient la tienne, et le salon montre qui l'a prise. Une tâche qui est déjà la tienne, ou qui appartient à quelqu'un d'autre, reste comme elle est, et TTM te dit pourquoi. Pour prendre une tâche à quelqu'un d'autre, choisis-toi dans le menu, confirme la sélection, puis choisis la tâche : remplacer un propriétaire demande un choix explicite.
+**Pour prendre une tâche**, clique sur **Propriétaire** jusqu'à ce qu'il soit bleu, puis choisis la tâche dans le menu de cochage sans désigner personne : elle devient la tienne, et le salon montre qui l'a prise.
+
+Une tâche qui est déjà la tienne, ou qui appartient à quelqu'un d'autre, reste comme elle est, et TTM te dit pourquoi. Pour prendre une tâche à quelqu'un d'autre, choisis-toi dans le menu, confirme la sélection, puis choisis la tâche : remplacer un propriétaire demande un choix explicite.
 
 **Pour donner une tâche à quelqu'un**, choisis le propriétaire dans le menu, confirme la sélection, puis choisis la tâche. Pour donner une tâche à plusieurs personnes, une fonctionnalité [Premium](/docs/premium/) :
 

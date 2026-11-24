@@ -1,7 +1,7 @@
 ---
 title: "Concepts de base"
 description: "Une liste à deux endroits, le vocabulaire de TTM (tâches, groupes, propriétaires, tags, rappels) et les permissions qu'il demande."
-fonte: 207fda722dce
+fonte: 193335652dfb
 ---
 
 Quelques termes reviennent dans toute l'app. Apprends-les une fois et le reste devient clair.
@@ -12,7 +12,9 @@ Une liste vit dans un message d'un salon Discord, où tout le monde la trouve. L
 
 Une liste est à un seul endroit à la fois. Tant qu'elle est dans l'Activity, son message dans le salon ne garde que **Rejoindre l'Activity**. Quand tout le monde est parti, la liste retourne dans le salon avec un récapitulatif de ce qui a changé.
 
-Ce qu'une liste peut faire est identique dans les deux endroits : propriétaires, tags, rappels, webhooks, les réglages de ton serveur et les limites de ton offre. Ce qui change, c'est la façon de le faire. Dans le salon, tu utilises les menus et les boutons sous le message. Dans l'Activity, tu touches la case d'une tâche, ou son texte. Ces pages sont divisées de la même façon :
+Ce qu'une liste peut faire est identique dans les deux endroits : propriétaires, tags, rappels, webhooks, les réglages de ton serveur et les limites de ton offre. Ce qui change, c'est la façon de le faire.
+
+Dans le salon, tu utilises les menus et les boutons sous le message. Dans l'Activity, tu touches la case d'une tâche, ou son texte. Ces pages sont divisées de la même façon :
 
 - **Fonctionnalités** : ce que fait chaque fonctionnalité et ses règles, les mêmes dans les deux endroits.
 - **Dans le salon** : le message de la liste, ses menus et ses boutons.
@@ -67,7 +69,9 @@ Par défaut, un rappel ne sonne qu'une fois, et avec l'offre Free c'est le seul 
 
 ## Notifications et historique
 
-Quand une liste est créée, ou qu'une tâche est cochée ou décochée, TTM peut publier une notification et, si tu l'actives, enregistrer chaque action dans un **fil d'historique** dédié. La notification d'une nouvelle liste peut mentionner les propriétaires de ses tâches, pour qu'ils l'apprennent. Les changements faits dans l'Activity arrivent sous forme d'un seul récapitulatif, quand la liste retourne dans le salon. Le niveau de bruit que tu veux dépend entièrement de toi : voir [/config app](/docs/configuration/).
+Quand une liste est créée, ou qu'une tâche est cochée ou décochée, TTM peut publier une notification et, si tu l'actives, enregistrer chaque action dans un **fil d'historique** dédié. La notification d'une nouvelle liste peut mentionner les propriétaires de ses tâches, pour qu'ils l'apprennent.
+
+Les changements faits dans l'Activity arrivent sous forme d'un seul récapitulatif, quand la liste retourne dans le salon. Le niveau de bruit que tu veux dépend entièrement de toi : voir [/config app](/docs/configuration/).
 
 ## Qui peut utiliser les listes et les commandes
 

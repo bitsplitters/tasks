@@ -1,7 +1,7 @@
 ---
 title: "Límites conocidos"
 description: "Los techos de listas, tareas, recordatorios y más: la mayoría vienen de Discord, y cómo trabajar dentro de ellos."
-fonte: fad07d75572a
+fonte: a9ff3dff4029
 ---
 
 Team Tasks Manager funciona por completo dentro de Discord, así que la mayoría de los límites de abajo no son una decisión de TTM. Vienen de Discord. Por ejemplo: cuánto puede durar un mensaje, cuántos menús caben en un mensaje, hasta cuánto tiempo atrás se pueden eliminar mensajes en bloque. Cuando un límite es de Discord, lo decimos.
@@ -18,7 +18,9 @@ Team Tasks Manager funciona por completo dentro de Discord, así que la mayoría
 
 <div class="callout"><div class="callout-t">¿Has llegado a un techo?</div>Reparte el trabajo en varias listas. Dos listas centradas se leen mejor que una al máximo, y cada una tiene sus propios recordatorios, propietarios y etiquetas.</div>
 
-**Descargar siempre te da un archivo.** Un mensaje normal de Discord está limitado a 2000 caracteres. Por eso **Descargar**, en el panel **Más** <img class="inline-ic" src="/icons/other.png" alt="" /> bajo la lista en el canal, nunca publica la lista como texto. Te envía un archivo `.txt` solo a ti, en un mensaje que solo tú puedes ver. Es el mismo archivo que `/crear-lista` puede volver a importar.
+**Descargar siempre te da un archivo.** Un mensaje normal de Discord está limitado a 2000 caracteres. Por eso **Descargar**, en el panel **Más** <img class="inline-ic" src="/icons/other.png" alt="" /> bajo la lista en el canal, nunca publica la lista como texto.
+
+Te envía un archivo `.txt` solo a ti, en un mensaje que solo tú puedes ver. Es el mismo archivo que `/crear-lista` puede volver a importar.
 
 **Eliminar el mensaje no es lo mismo que eliminar la lista.** La lista conserva su plaza y sus recordatorios siguen llegando: consulta [Qué pasa con una cuarta lista](/docs/premium/#what-happens-to-a-fourth-list).
 
@@ -58,7 +60,9 @@ En cualquier caso, solo se avisa a los miembros que pueden ver el canal de la li
 
 ## Propietarios y etiquetas
 
-Cada tarea tiene **un propietario**: una persona o un rol. Con Premium también puede tener hasta 25 personas, que comparten un rol que TTM crea para ellas. 25 es el máximo del menú de propietarios. Una tarea puede llevar **hasta 25 etiquetas**, los usuarios o roles a los que avisar: 25 es el máximo de Discord para un menú.
+Cada tarea tiene **un propietario**: una persona o un rol. Con Premium también puede tener hasta 25 personas, que comparten un rol que TTM crea para ellas. 25 es el máximo del menú de propietarios.
+
+Una tarea puede llevar **hasta 25 etiquetas**, los usuarios o roles a los que avisar: 25 es el máximo de Discord para un menú.
 
 **Los roles que crea TTM cuentan para los 250 roles por servidor de Discord.** Al llegar a 250 roles, TTM no puede crear otro y lo dice. Cuándo elimina TTM sus roles: consulta [Los roles que crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates).
 
@@ -78,17 +82,23 @@ de error cita el mismo número que lees aquí.
 
 ## El historial de actividad
 
-Cuando el historial está activado, TTM publica cada acción en un hilo junto a la lista, mediante un webhook de Discord. Discord permite **15 webhooks por canal**, así que TTM crea **un webhook por canal** y lo reutiliza para todas las listas de ese canal. El nombre y la imagen que ves en cada mensaje se establecen por mensaje, así que visualmente no cambia nada.
+Cuando el historial está activado, TTM publica cada acción en un hilo junto a la lista, mediante un webhook de Discord.
+
+Discord permite **15 webhooks por canal**, así que TTM crea **un webhook por canal** y lo reutiliza para todas las listas de ese canal. El nombre y la imagen que ves en cada mensaje se establecen por mensaje, así que visualmente no cambia nada.
 
 Si un canal ya ha llegado a los 15 de Discord (por otros bots o integraciones), el historial de una lista nueva no puede empezar. Libera uno en **Ajustes del canal → Integraciones → Webhooks**.
 
 ## Canales de voz
 
-Las listas también funcionan en el chat de un canal de voz, con una diferencia: allí no tienen [historial de actividad](#the-activity-timeline). El historial es un hilo junto a la lista, y Discord no permite hilos en los canales de voz. Todo lo demás funciona como en un canal de texto: los botones, las notificaciones, los recordatorios, la [Activity](/docs/activity/), **Clonar lista**, **Descargar**, **Sellar lista** y **Eliminar lista**.
+Las listas también funcionan en el chat de un canal de voz, con una diferencia: allí no tienen [historial de actividad](#the-activity-timeline). El historial es un hilo junto a la lista, y Discord no permite hilos en los canales de voz.
+
+Todo lo demás funciona como en un canal de texto: los botones, las notificaciones, los recordatorios, la [Activity](/docs/activity/), **Clonar lista**, **Descargar**, **Sellar lista** y **Eliminar lista**.
 
 Cuando el historial está activado en [`/config app`](/docs/configuration/#history-tracking), quien crea una lista en un canal de voz recibe un breve mensaje sobre ello, visible solo para esa persona; la lista de práctica del Tutorial se lo salta. Si necesitas el historial, crea la lista en un canal de texto, o cópiala allí con **Clonar lista**.
 
-En un canal de voz TTM no necesita *Crear hilos públicos* ni *Gestionar webhooks*, que solo sirven para el historial. En cambio necesita *Conectar*: sin él, TTM no puede escribir en el chat del canal de voz. Discord da *Conectar* a todos por defecto; si tu servidor lo quita en un canal de voz, concédeselo a TTM allí, o `/crear-lista` te dirá que falta.
+En un canal de voz TTM no necesita *Crear hilos públicos* ni *Gestionar webhooks*, que solo sirven para el historial. En cambio necesita *Conectar*: sin él, TTM no puede escribir en el chat del canal de voz.
+
+Discord da *Conectar* a todos por defecto; si tu servidor lo quita en un canal de voz, concédeselo a TTM allí, o `/crear-lista` te dirá que falta.
 
 ## Notificaciones
 

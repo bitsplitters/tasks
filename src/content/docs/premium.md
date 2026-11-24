@@ -23,9 +23,13 @@ Above a Free limit you can't add more, but nothing already there is deleted or h
 
 **Repetitions per reminder — single only → up to 50.** On the Free plan every reminder fires once. On Premium a reminder can arrive up to 50 times in total, the first included, if an admin turns on **Recurring reminders** in [/config app](/docs/configuration/#recurring-reminders). Recurring reminders you already have keep firing on the Free plan: see [Reminders](/docs/reminders/#repeating-reminders).
 
-**People per owner — 1 → up to 25 \*.** On the Free plan a task's owner is one person or one role. On Premium it can be up to 25 people, who share a role that TTM creates: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates). It is Premium because each person costs a Discord request. Discord limits the requests a bot can send, and all its servers share that limit.
+**People per owner — 1 → up to 25 \*.** On the Free plan a task's owner is one person or one role. On Premium it can be up to 25 people, who share a role that TTM creates: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates).
 
-**Webhooks — no new ones → up to 25 \*.** A webhook lets a completed task send an HTTP call to anything you run: a deploy, a spreadsheet, a ticket system. It is the main thing Premium adds. See [Webhooks](/docs/webhooks/). On the Free plan you can't create new webhooks, but the ones created during the beta stay: see [What a beta list keeps](/docs/beta/#what-a-beta-list-keeps).
+It is Premium because each person costs a Discord request. Discord limits the requests a bot can send, and all its servers share that limit.
+
+**Webhooks — no new ones → up to 25 \*.** A webhook lets a completed task send an HTTP call to anything you run: a deploy, a spreadsheet, a ticket system. It is the main thing Premium adds. See [Webhooks](/docs/webhooks/).
+
+On the Free plan you can't create new webhooks, but the ones created during the beta stay: see [What a beta list keeps](/docs/beta/#what-a-beta-list-keeps).
 
 ## How the three places work
 

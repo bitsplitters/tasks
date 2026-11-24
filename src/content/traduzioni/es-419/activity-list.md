@@ -1,7 +1,7 @@
 ---
 title: "Trabajar con una lista en la Activity"
 description: "Las casillas, la primera fila, el panel de una tarea (Contenido, Propietario, Etiqueta, Recordatorio y Webhook) y quién está editando qué."
-fonte: 3445f59ab104
+fonte: 39bbd6a8e201
 ---
 
 Dentro de la Activity la lista es una página propia: una casilla delante de cada tarea, una fila de botones arriba y un panel para cada tarea. Las reglas son las del canal: propietarios, configuración del servidor, límites del plan. Qué hace cada función: [Propietarios y etiquetas](/docs/owners-and-tags/), [Recordatorios](/docs/reminders/), [Webhooks](/docs/webhooks/), [Acciones sobre la lista](/docs/list-actions/).
@@ -50,7 +50,9 @@ Mientras el panel está abierto, la tarea está bloqueada para los demás: consu
 
 **Azul** muestra una búsqueda entre las personas y los roles del servidor, con quienes están en la Activity primero. Toca un nombre para agregarlo, tócalo otra vez para quitarlo y después **Guardar**. Quita todos los nombres y **Guardar** elimina el propietario, igual que **Rojo**.
 
-**Para tomar una tarea** sin propietario, presiona **Propietario** hasta que se ponga azul: tu nombre ya está elegido, así que **Guardar** hace tuya la tarea. Para dársela a otra persona, toca su nombre: ocupa el lugar del tuyo. Una tarea que ya tiene propietario lo muestra, y solo cambia si eliges a alguien.
+**Para tomar una tarea** sin propietario, presiona **Propietario** hasta que se ponga azul: tu nombre ya está elegido, así que **Guardar** hace tuya la tarea.
+
+Para dársela a otra persona, toca su nombre: ocupa el lugar del tuyo. Una tarea que ya tiene propietario lo muestra, y solo cambia si eliges a alguien.
 
 - Una persona o un rol bastan con cualquier plan.
 - Varias personas se convierten en un rol que crea TTM, en Premium: consulta [Los roles que crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates). Cuando falta algo, **Guardar** se queda apagado y el panel dice por qué.
@@ -89,13 +91,17 @@ Una tarea marcada no puede tener recordatorio. En una tarea sin propietario, el 
 
 Los webhooks son una función [Premium](/docs/premium/).
 
-**Azul** enumera los webhooks del servidor por nombre, cada uno con el momento en que se dispara: *al completarse*, *al reabrirse* o *siempre*. La dirección nunca se muestra. Elige uno y después **Guardar**. Un webhook que ya no existe aparece arriba, marcado como *ya no existe*, para que puedas elegir otro. Si el servidor no tiene ninguno, el panel dice que se crean con [/config webhook](/docs/config-webhook/).
+**Azul** enumera los webhooks del servidor por nombre, cada uno con el momento en que se dispara: *al completarse*, *al reabrirse* o *siempre*. La dirección nunca se muestra. Elige uno y después **Guardar**.
+
+Un webhook que ya no existe aparece arriba, marcado como *ya no existe*, para que puedas elegir otro. Si el servidor no tiene ninguno, el panel dice que se crean con [/config webhook](/docs/config-webhook/).
 
 **Rojo** quita el webhook de la tarea.
 
 ## Editar la lista
 
-**Editar la lista** muestra el título y cada tarea como texto, en el formato explicado en [Editar una lista a mano](/docs/writing-a-list/): el mismo texto que la **Actualización en bloque** del canal, leído con las mismas reglas: personas, roles y canales por su nombre, fechas de los recordatorios en tu zona horaria. Una línea bajo el texto explica cómo agregar a alguien nuevo y enlaza a [Editar una lista a mano](/docs/writing-a-list/#people-roles-and-channels-by-name). Cambia lo que necesites y guarda.
+**Editar la lista** muestra el título y cada tarea como texto, en el formato explicado en [Editar una lista a mano](/docs/writing-a-list/): el mismo texto que la **Actualización en bloque** del canal, leído con las mismas reglas: personas, roles y canales por su nombre, fechas de los recordatorios en tu zona horaria.
+
+Una línea bajo el texto explica cómo agregar a alguien nuevo y enlaza a [Editar una lista a mano](/docs/writing-a-list/#people-roles-and-channels-by-name). Cambia lo que necesites y guarda.
 
 La lista está bloqueada para los demás desde el momento en que se abre hasta que guardas o cancelas: **Cancelar**, la ✕ y un toque fuera la desbloquean. Se cierra sola tras 30 segundos sin actividad. Si el texto no se puede guardar, los problemas aparecen debajo: consulta [Cuando el texto no se puede guardar](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

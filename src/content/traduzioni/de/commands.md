@@ -1,7 +1,7 @@
 ---
 title: "Befehlsreferenz"
 description: "Jeder Slash-Befehl an einem Ort, mit der Seite, die ihn erklärt: Das meiste von TTM steckt in Buttons, nicht in Befehlen."
-fonte: c894f89deed9
+fonte: f50d9f1a0b4b
 ---
 
 TTM hält Befehle auf ein Minimum: Sobald eine Liste existiert, machst du alles mit Buttons und Menüs. Um einen Befehl auszuführen, tippe `/` in das Nachrichtenfeld und wähle ihn. Du kannst auch den **App-Launcher** in der Nachrichtenleiste öffnen und unter *Apps auf diesem Server* **Team Tasks Manager** wählen.
@@ -31,7 +31,9 @@ Die Liste kommt mit ihren Aufgaben und deren Zustand, Besitzern, Tags, Erinnerun
 
 TTM lehnt eine Datei sofort ab, wenn sie keine `.txt` ist oder größer als **64 KB**. Sonst liest TTM die Datei. Passt etwas nicht, erstellt TTM nichts und listet alle Probleme in einer Nachricht auf, jedes mit seiner Zeile oder seiner Aufgabe:
 
-- **Das Format**: Die Datei ist kein UTF-8-Text oder beginnt nicht mit `#!ttm/1`. Der Titel fehlt oder ist länger als 90 Zeichen. Eine Zeile ist keine Aufgabe, oder eine Erinnerung ist in Monaten (`M`) oder fehlerhaft geschrieben. Ein Webhook ist mit einer Aufgabe ohne Text verknüpft, die Liste beginnt mit einer Unteraufgabe oder es gibt keine Aufgaben.
+- **Das Format**: Die Datei ist kein UTF-8-Text oder beginnt nicht mit `#!ttm/1`. Der Titel fehlt oder ist länger als 90 Zeichen.
+
+  Eine Zeile ist keine Aufgabe, oder eine Erinnerung ist in Monaten (`M`) oder fehlerhaft geschrieben. Ein Webhook ist mit einer Aufgabe ohne Text verknüpft, die Liste beginnt mit einer Unteraufgabe oder es gibt keine Aufgaben.
 - **Die Größe**: Die Liste ist zu lang für eine Nachricht oder hat mehr Aufgaben, als eine Liste fassen kann oder dein Tarif erlaubt.
 - **Die Erinnerungen**: Eine Erinnerung hat keinen Besitzer, hat kein Datum und einen Abstand von null oder wiederholt sich öfter, als dein Tarif erlaubt. Eine wiederkehrende Erinnerung wird abgelehnt, wo keine neuen erstellt werden können (siehe [Erinnerungen](/docs/reminders/#repeating-reminders)). Es würden zu viele Erinnerungen gleichzeitig warten.
 - **Dieser Server**: Eine Rolle, ein Kanal oder ein Webhook in der Datei existiert hier nicht, oder ein Benutzer in der Datei ist kein Mitglied.
@@ -52,7 +54,9 @@ Dieser Befehl ist dein Ausgangspunkt in Discord. Er öffnet ein Panel mit fünf 
 
 ## `/invite`
 
-Zeigt eine Karte, um Team Tasks Manager auf einem anderen Server hinzuzufügen: dieselbe Präsentation wie seine Seite im App-Verzeichnis (was es macht, wie man startet), den Button **Zu Discord hinzufügen**, die Anleitung und den Support-Server. **Zu Discord hinzufügen** öffnet die Autorisierungsseite von Discord für den Bot, mit denselben Berechtigungen wie https://tasks.bitsplitters.app/invite.
+Zeigt eine Karte, um Team Tasks Manager auf einem anderen Server hinzuzufügen: dieselbe Präsentation wie seine Seite im App-Verzeichnis (was es macht, wie man startet), den Button **Zu Discord hinzufügen**, die Anleitung und den Support-Server.
+
+**Zu Discord hinzufügen** öffnet die Autorisierungsseite von Discord für den Bot, mit denselben Berechtigungen wie https://tasks.bitsplitters.app/invite.
 
 Die Karte ist für alle im Kanal sichtbar, du kannst sie also dort ausführen, wo die Personen sie sehen, die den anderen Server einrichten. Sie liest nichts vom Server und braucht keine Berechtigung.
 
@@ -60,9 +64,13 @@ Die Karte ist für alle im Kanal sichtbar, du kannst sie also dort ausführen, w
 
 Das Neueste zu Team Tasks Manager, in deiner Sprache: was es im Bot Neues gibt und wie du es nutzt. Die Meldung öffnet sich in einer Nachricht, die nur du siehst, mit ihrem Datum unter dem Titel.
 
-Unter dem Text öffnet **Discord-Server** unseren Support-Server und **Versionshinweise** öffnet diese Version auf der Seite [Versionshinweise](/docs/release-notes/). Gibt es ältere oder neuere Neuigkeiten, führen dich die Buttons **Zurück** und **Weiter** dorthin. Gehst du zurück, findest du jede Version seit der ersten, 1.0.0, jeweils mit ihrem Erscheinungsdatum. Es funktioniert nur auf Servern und braucht keine Berechtigung.
+Unter dem Text öffnet **Discord-Server** unseren Support-Server und **Versionshinweise** öffnet diese Version auf der Seite [Versionshinweise](/docs/release-notes/). Gibt es ältere oder neuere Neuigkeiten, führen dich die Buttons **Zurück** und **Weiter** dorthin.
 
-Gibt es Neuigkeiten, die noch niemand auf deinem Server gelesen hat, sagt das die letzte Zeile der Panels des Bots, anstelle der üblichen Fußzeile: in `/help`, der Anleitung, **Mehr**, `/config app` und der Erklärung, die `/liste-erstellen` zeigt. Sobald jemand auf dem Server `/news` öffnet, verschwindet die Zeile für alle. Ein Server, der TTM nach einer Neuigkeit hinzufügt, bekommt die Zeile nicht: Die Neuigkeit steht in `/news`.
+Gehst du zurück, findest du jede Version seit der ersten, 1.0.0, jeweils mit ihrem Erscheinungsdatum. Es funktioniert nur auf Servern und braucht keine Berechtigung.
+
+Gibt es Neuigkeiten, die noch niemand auf deinem Server gelesen hat, sagt das die letzte Zeile der Panels des Bots, anstelle der üblichen Fußzeile: in `/help`, der Anleitung, **Mehr**, `/config app` und der Erklärung, die `/liste-erstellen` zeigt.
+
+Sobald jemand auf dem Server `/news` öffnet, verschwindet die Zeile für alle. Ein Server, der TTM nach einer Neuigkeit hinzufügt, bekommt die Zeile nicht: Die Neuigkeit steht in `/news`.
 
 ## Befehlsnamen in deiner Sprache
 

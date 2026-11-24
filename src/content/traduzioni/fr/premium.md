@@ -1,7 +1,7 @@
 ---
 title: "Ce que Premium débloque"
 description: "Ce que l'offre payante ajoute au Free, et ce que chaque limite change au quotidien."
-fonte: 1ce2890c95d6
+fonte: 99b154c841ca
 ---
 
 TTM est **entièrement débloqué pendant la bêta**, donc rien de cette page ne s'applique encore. Elle décrit l'offre Free, et ce que Premium lèvera quand la bêta se terminera. Ce qui arrive à ton serveur à la fin de la bêta est dans [Comment fonctionne la bêta](/docs/beta/).
@@ -22,9 +22,13 @@ Au-delà d'une limite du Free, tu ne peux plus rien ajouter, mais rien de ce qui
 
 **Répétitions par rappel — unique seulement → jusqu'à 50.** Avec l'offre Free, chaque rappel se déclenche une fois. Avec Premium, un rappel peut arriver jusqu'à 50 fois au total, le premier compris, si un administrateur active **Rappels récurrents** dans [/config app](/docs/configuration/#recurring-reminders). Les rappels récurrents que tu as déjà continuent de se déclencher avec l'offre Free : voir [Rappels répétés](/docs/reminders/#repeating-reminders).
 
-**Personnes par propriétaire — 1 → jusqu'à 25 \*.** Avec l'offre Free, le propriétaire d'une tâche est une personne ou un rôle. Avec Premium, ce peut être jusqu'à 25 personnes, qui partagent un rôle créé par TTM : voir [Les rôles que TTM crée](/docs/owners-and-tags/#the-roles-ttm-creates). C'est Premium parce que chaque personne coûte une requête à Discord. Discord limite les requêtes qu'un bot peut envoyer, et tous ses serveurs se partagent cette limite.
+**Personnes par propriétaire — 1 → jusqu'à 25 \*.** Avec l'offre Free, le propriétaire d'une tâche est une personne ou un rôle. Avec Premium, ce peut être jusqu'à 25 personnes, qui partagent un rôle créé par TTM : voir [Les rôles que TTM crée](/docs/owners-and-tags/#the-roles-ttm-creates).
 
-**Webhooks — aucun nouveau → jusqu'à 25 \*.** Un webhook permet à une tâche terminée d'envoyer un appel HTTP à tout ce que tu gères toi-même : un déploiement, un tableur, un système de tickets. C'est la principale chose que Premium ajoute. Voir [Webhooks](/docs/webhooks/). Avec l'offre Free, tu ne peux pas créer de nouveaux webhooks, mais ceux créés pendant la bêta restent : voir [Ce que garde une liste de la bêta](/docs/beta/#what-a-beta-list-keeps).
+C'est Premium parce que chaque personne coûte une requête à Discord. Discord limite les requêtes qu'un bot peut envoyer, et tous ses serveurs se partagent cette limite.
+
+**Webhooks — aucun nouveau → jusqu'à 25 \*.** Un webhook permet à une tâche terminée d'envoyer un appel HTTP à tout ce que tu gères toi-même : un déploiement, un tableur, un système de tickets. C'est la principale chose que Premium ajoute. Voir [Webhooks](/docs/webhooks/).
+
+Avec l'offre Free, tu ne peux pas créer de nouveaux webhooks, mais ceux créés pendant la bêta restent : voir [Ce que garde une liste de la bêta](/docs/beta/#what-a-beta-list-keeps).
 
 ## Comment fonctionnent les trois places
 

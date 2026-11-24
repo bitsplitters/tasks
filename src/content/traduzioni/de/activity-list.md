@@ -1,7 +1,7 @@
 ---
 title: "An einer Liste in der Activity arbeiten"
 description: "Die Kästchen, die erste Reihe, das Panel einer Aufgabe (Inhalt, Besitzer, Tag, Erinnerung und Webhook) und wer was bearbeitet."
-fonte: 3445f59ab104
+fonte: 39bbd6a8e201
 ---
 
 In der Activity ist die Liste eine eigene Seite: ein Kästchen vor jeder Aufgabe, eine Reihe Buttons oben und ein Panel für jede Aufgabe. Es gelten die Regeln des Kanals: Besitzer, Servereinstellungen, Tarifgrenzen. Was jede Funktion tut: [Besitzer und Tags](/docs/owners-and-tags/), [Erinnerungen](/docs/reminders/), [Webhooks](/docs/webhooks/), [Aktionen auf der Liste](/docs/list-actions/).
@@ -50,7 +50,9 @@ Solange das Panel offen ist, ist die Aufgabe für die anderen gesperrt: Siehe [W
 
 **Blau** zeigt eine Suche über die Personen und Rollen des Servers, mit denen zuerst, die in der Activity sind. Tippe auf einen Namen, um ihn hinzuzufügen, tippe noch einmal, um ihn zu entfernen, dann **Speichern**. Entferne alle Namen, und **Speichern** entfernt den Besitzer, wie es **Rot** tut.
 
-**Um eine Aufgabe zu übernehmen**, die keinen Besitzer hat, drücke **Besitzer**, bis er blau wird: Dein Name ist schon gewählt, **Speichern** macht die Aufgabe also zu deiner. Um sie stattdessen jemand anderem zu geben, tippe auf dessen Namen: Er tritt an die Stelle deines. Eine Aufgabe, die schon einen Besitzer hat, zeigt ihn und ändert sich nur, wenn du jemanden wählst.
+**Um eine Aufgabe zu übernehmen**, die keinen Besitzer hat, drücke **Besitzer**, bis er blau wird: Dein Name ist schon gewählt, **Speichern** macht die Aufgabe also zu deiner.
+
+Um sie stattdessen jemand anderem zu geben, tippe auf dessen Namen: Er tritt an die Stelle deines. Eine Aufgabe, die schon einen Besitzer hat, zeigt ihn und ändert sich nur, wenn du jemanden wählst.
 
 - Eine Person oder eine Rolle genügt in jedem Tarif.
 - Mehrere Personen werden zu einer Rolle, die TTM erstellt, in Premium: Siehe [Die Rollen, die TTM erstellt](/docs/owners-and-tags/#the-roles-ttm-creates). Fehlt etwas, bleibt **Speichern** aus und das Panel sagt, warum.
@@ -89,13 +91,17 @@ Eine abgehakte Aufgabe kann keine Erinnerung bekommen. Bei einer Aufgabe ohne Be
 
 Webhooks sind eine [Premium](/docs/premium/)-Funktion.
 
-**Blau** listet die Webhooks des Servers mit Namen auf, jeden mit dem Zeitpunkt, an dem er auslöst: *beim Abschluss*, *bei Wiedereröffnung* oder *immer*. Die Adresse erscheint nie. Wähle einen, dann **Speichern**. Ein Webhook, den es nicht mehr gibt, erscheint oben, markiert mit *gibt es nicht mehr*, damit du einen anderen wählen kannst. Hat der Server keinen, sagt das Panel, dass sie mit [/config webhook](/docs/config-webhook/) erstellt werden.
+**Blau** listet die Webhooks des Servers mit Namen auf, jeden mit dem Zeitpunkt, an dem er auslöst: *beim Abschluss*, *bei Wiedereröffnung* oder *immer*. Die Adresse erscheint nie. Wähle einen, dann **Speichern**.
+
+Ein Webhook, den es nicht mehr gibt, erscheint oben, markiert mit *gibt es nicht mehr*, damit du einen anderen wählen kannst. Hat der Server keinen, sagt das Panel, dass sie mit [/config webhook](/docs/config-webhook/) erstellt werden.
 
 **Rot** entfernt den Webhook von der Aufgabe.
 
 ## Liste bearbeiten
 
-**Liste bearbeiten** zeigt den Titel und jede Aufgabe als Text, im Format, das unter [Eine Liste von Hand bearbeiten](/docs/writing-a-list/) erklärt wird: derselbe Text wie bei der **Sammelbearbeitung** des Kanals, nach denselben Regeln gelesen: Personen, Rollen und Kanäle mit Namen, Erinnerungsdaten in deiner Zeitzone. Eine Zeile unter dem Text sagt, wie man jemand Neuen hinzufügt, und verlinkt auf [Eine Liste von Hand bearbeiten](/docs/writing-a-list/#people-roles-and-channels-by-name). Ändere, was du brauchst, und speichere.
+**Liste bearbeiten** zeigt den Titel und jede Aufgabe als Text, im Format, das unter [Eine Liste von Hand bearbeiten](/docs/writing-a-list/) erklärt wird: derselbe Text wie bei der **Sammelbearbeitung** des Kanals, nach denselben Regeln gelesen: Personen, Rollen und Kanäle mit Namen, Erinnerungsdaten in deiner Zeitzone.
+
+Eine Zeile unter dem Text sagt, wie man jemand Neuen hinzufügt, und verlinkt auf [Eine Liste von Hand bearbeiten](/docs/writing-a-list/#people-roles-and-channels-by-name). Ändere, was du brauchst, und speichere.
 
 Die Liste ist für die anderen gesperrt, ab dem Moment, in dem sie sich öffnet, bis du speicherst oder abbrichst: **Abbrechen**, das ✕ und ein Tippen außerhalb entsperren sie. Das Fenster schließt sich von selbst nach 30 Sekunden ohne Aktivität. Lässt sich der Text nicht speichern, erscheinen die Probleme darunter: Siehe [Wenn der Text sich nicht speichern lässt](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

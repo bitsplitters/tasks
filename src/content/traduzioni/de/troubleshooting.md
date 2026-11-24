@@ -1,7 +1,7 @@
 ---
 title: "FAQ"
 description: "Häufige Fragen: schnelle Antworten auf die häufigsten Probleme, jeweils mit einem Link zur Seite, die sie ausführlich erklärt."
-fonte: c80b5664452a
+fonte: a72339b9982f
 ---
 
 Such dir unten das Problem heraus, das du hast. Jede Antwort ist kurz und verweist auf die Seite, die sie ausführlich erklärt. Die Probleme sind nach Ort aufgeteilt: [im Kanal](#in-the-channel) und [in der Activity](#in-the-activity).
@@ -22,7 +22,9 @@ Prüfe diese Punkte, in dieser Reihenfolge:
 - **Die Aufgabe hat einen Besitzer.** Nur der Besitzer, die Mitglieder der Besitzerrolle und alle mit *Nachrichten verwalten* im Kanal können sie abhaken. Siehe [Wer eine Aufgabe abhaken darf](/docs/core-concepts/#who-can-tick-a-task).
 - **Das Menü ist deaktiviert.** Jemand bearbeitet die Liste, sie ist also gesperrt: Siehe unten [Ich habe Abbrechen gedrückt und die Liste bleibt gesperrt](#i-pressed-cancel-and-the-list-stays-locked).
 - **Der Bot sagt *Du darfst diese Funktion auf diesem Server nicht verwenden*.** Dein Server hat seine Berechtigungen synchronisiert und die Liste ist für dich schreibgeschützt. Frag einen Admin und siehe [Berechtigungen synchronisieren](/docs/configuration/#sync-permissions).
-- **Die Beta ist vorbei und dein Server hat den Free-Tarif.** Wenn alle Plätze deines Tarifs belegt sind, lehnt eine Liste außerhalb dieser Plätze das Abhaken ab. Eine Liste, die während der Beta erstellt wurde, ist die Ausnahme: Ihre Aufgaben lassen sich weiter abhaken. Siehe [So funktionieren die drei Plätze](/docs/premium/#how-the-three-places-work) und [Was eine Beta-Liste behält](/docs/beta/#what-a-beta-list-keeps).
+- **Die Beta ist vorbei und dein Server hat den Free-Tarif.** Wenn alle Plätze deines Tarifs belegt sind, lehnt eine Liste außerhalb dieser Plätze das Abhaken ab.
+
+  Eine Liste, die während der Beta erstellt wurde, ist die Ausnahme: Ihre Aufgaben lassen sich weiter abhaken. Siehe [So funktionieren die drei Plätze](/docs/premium/#how-the-three-places-work) und [Was eine Beta-Liste behält](/docs/beta/#what-a-beta-list-keeps).
 
 ### Ich habe Abbrechen gedrückt und die Liste bleibt gesperrt
 
@@ -42,7 +44,9 @@ Wenn eine Aufgabe dir gehört, statt an die gewählten Personen zu gehen, war da
 
 ### Ich möchte eine Aufgabe mehreren Personen geben
 
-Klicke **Besitzer**, bis er blau wird. Wähle die Personen im Menü unter den Buttons, das die Beschriftung *Wähle eine Aufgabe im Menü oben, um sie zu übernehmen, oder wähle, wer sie bekommt* trägt. Bestätige deine Auswahl und wähle dann die Aufgabe. TTM erstellt für diese Personen eine Rolle und macht sie zum Besitzer. In der Activity wählst du sie im Panel der Aufgabe: Siehe [Besitzer](/docs/activity-list/#owner).
+Klicke **Besitzer**, bis er blau wird. Wähle die Personen im Menü unter den Buttons, das die Beschriftung *Wähle eine Aufgabe im Menü oben, um sie zu übernehmen, oder wähle, wer sie bekommt* trägt. Bestätige deine Auswahl und wähle dann die Aufgabe.
+
+TTM erstellt für diese Personen eine Rolle und macht sie zum Besitzer. In der Activity wählst du sie im Panel der Aufgabe: Siehe [Besitzer](/docs/activity-list/#owner).
 
 Das ist eine [Premium](/docs/premium/)-Funktion. Der Bot braucht die Berechtigung *Rollen verwalten*: Ein Admin gibt sie der Rolle des Bots unter *Servereinstellungen → Rollen*, nicht in einem Kanal. Siehe [Besitzer: eine Person, eine Rolle oder mehrere Personen](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
@@ -78,7 +82,9 @@ TTM sagt dir, warum. Meistens:
 
 ### Die Liste kommt erst nach einer Weile aus der Activity zurück
 
-Die Activity wurde geschlossen, ohne dass jemand **Verlassen** gedrückt hat. Für TTM sieht ein geschlossenes Fenster aus wie eine Verbindung, die kurz abgebrochen ist: Es wartet 30 Sekunden darauf, dass du zurückkommst, und bringt die Liste dann in den Kanal zurück. Bei einem Handy, das im Hintergrund liegt oder gesperrt ist, kann es bis zu einer Minute dauern, weil der Bot zuerst merken muss, dass die Seite nicht mehr antwortet.
+Die Activity wurde geschlossen, ohne dass jemand **Verlassen** gedrückt hat. Für TTM sieht ein geschlossenes Fenster aus wie eine Verbindung, die kurz abgebrochen ist: Es wartet 30 Sekunden darauf, dass du zurückkommst, und bringt die Liste dann in den Kanal zurück.
+
+Bei einem Handy, das im Hintergrund liegt oder gesperrt ist, kann es bis zu einer Minute dauern, weil der Bot zuerst merken muss, dass die Seite nicht mehr antwortet.
 
 **Verlassen** sagt dem Bot sofort, dass du fertig bist: Wenn niemand sonst mehr in der Liste ist, ist sie gleich wieder im Kanal. Siehe [Zurück in den Kanal](/docs/activity/#back-to-the-channel).
 

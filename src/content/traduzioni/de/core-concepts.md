@@ -1,7 +1,7 @@
 ---
 title: "Grundbegriffe"
 description: "Eine Liste an zwei Orten, das Vokabular von TTM (Aufgaben, Gruppen, Besitzer, Tags, Erinnerungen) und die Berechtigungen, die es anfragt."
-fonte: 207fda722dce
+fonte: 193335652dfb
 ---
 
 Ein paar Begriffe tauchen in der ganzen App auf. Lerne sie einmal, und alles andere fügt sich zusammen.
@@ -12,7 +12,9 @@ Eine Liste lebt in einer Nachricht in einem Discord-Kanal, wo alle sie finden. D
 
 Eine Liste ist immer nur an einem Ort. Solange sie in der Activity ist, behält ihre Nachricht im Kanal nur **Activity beitreten**. Wenn alle gehen, kommt die Liste mit einer Zusammenfassung der Änderungen in den Kanal zurück.
 
-Was eine Liste kann, ist an beiden Orten gleich: Besitzer, Tags, Erinnerungen, Webhooks, die Einstellungen deines Servers und die Grenzen deines Tarifs. Anders ist, wie du es machst. Im Kanal nutzt du die Menüs und Buttons unter der Nachricht. In der Activity tippst du auf das Kästchen einer Aufgabe oder auf ihren Text. Diese Seiten sind genauso aufgeteilt:
+Was eine Liste kann, ist an beiden Orten gleich: Besitzer, Tags, Erinnerungen, Webhooks, die Einstellungen deines Servers und die Grenzen deines Tarifs. Anders ist, wie du es machst.
+
+Im Kanal nutzt du die Menüs und Buttons unter der Nachricht. In der Activity tippst du auf das Kästchen einer Aufgabe oder auf ihren Text. Diese Seiten sind genauso aufgeteilt:
 
 - **Funktionen**: was jede Funktion macht und ihre Regeln, an beiden Orten gleich.
 - **Im Kanal**: die Nachricht der Liste, ihre Menüs und ihre Buttons.
@@ -67,7 +69,9 @@ Ein einzelner Ping ist der Standard, und im Free-Tarif ist er die einzige Art. W
 
 ## Benachrichtigungen und Verlauf
 
-Wenn eine Liste erstellt oder eine Aufgabe abgehakt oder wieder geöffnet wird, kann TTM eine Benachrichtigung posten und, wenn du es einschaltest, jede Aktion in einem eigenen **Verlaufs-Thread** festhalten. Die Benachrichtigung zu einer neuen Liste kann die Besitzer ihrer Aufgaben erwähnen, damit sie davon erfahren. Änderungen in der Activity kommen als eine einzige Zusammenfassung, wenn die Liste in den Kanal zurückkehrt. Wie viele Benachrichtigungen du willst, entscheidest allein du: siehe [/config app](/docs/configuration/).
+Wenn eine Liste erstellt oder eine Aufgabe abgehakt oder wieder geöffnet wird, kann TTM eine Benachrichtigung posten und, wenn du es einschaltest, jede Aktion in einem eigenen **Verlaufs-Thread** festhalten. Die Benachrichtigung zu einer neuen Liste kann die Besitzer ihrer Aufgaben erwähnen, damit sie davon erfahren.
+
+Änderungen in der Activity kommen als eine einzige Zusammenfassung, wenn die Liste in den Kanal zurückkehrt. Wie viele Benachrichtigungen du willst, entscheidest allein du: siehe [/config app](/docs/configuration/).
 
 ## Wer Listen und Befehle nutzen darf
 

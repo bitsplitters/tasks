@@ -1,7 +1,7 @@
 ---
 title: "Die Liste im Kanal"
 description: "Die Nachricht der Liste in einem Discord-Kanal: das Abhak-Menü, die erste Button-Reihe, Mehr und was passiert, während jemand sie bearbeitet."
-fonte: 6656d50714c3
+fonte: 6ef51298ef09
 ---
 
 Sobald eine Liste existiert, zeigt TTM darunter ein **Abhak-Menü** und **zwei Reihen Buttons**. Fast nichts hier braucht einen Befehl: Du klickst einfach. Die erste Reihe wirkt auf die ganze Liste und wird hier erklärt. Die zweite wirkt auf eine einzelne Aufgabe: Siehe [Eine Aufgabe im Kanal bearbeiten](/docs/channel-tasks/).
@@ -10,7 +10,9 @@ Sobald eine Liste existiert, zeigt TTM darunter ein **Abhak-Menü** und **zwei R
 
 Die Liste endet mit einem dünnen **Fortschrittsbalken**: dem Anteil der abgehakten Kästchen, Aufgaben und Unteraufgaben zusammen, in Schritten von 5 %. Er bewegt sich, sobald ein Kästchen abgehakt wird, und ist nur voll, wenn alle es sind. Eine versiegelte Liste behält ihn und zeigt, wo die Liste aufgehört hat.
 
-Über dem Balken hilft eine kleine Zeile allen, die neu sind: *Du weißt nicht, was die Buttons machen? Mehr → Anleitung*. Die **Anleitung** in [Mehr](#whats-inside-more) erklärt jeden Button, ohne Discord zu verlassen. Braucht dein Team sie nicht, blende die **Tipps** in [/config app](/docs/configuration/#tips) aus: Die Zeile verschwindet, der Balken bleibt. Solange die Liste gesperrt ist, sagt dieselbe Zeile, wer sie bearbeitet und wie man sie entsperrt, auch bei ausgeblendeten Tipps: Siehe [Wenn die Liste gesperrt ist](#when-the-list-is-locked).
+Über dem Balken hilft eine kleine Zeile allen, die neu sind: *Du weißt nicht, was die Buttons machen? Mehr → Anleitung*. Die **Anleitung** in [Mehr](#whats-inside-more) erklärt jeden Button, ohne Discord zu verlassen. Braucht dein Team sie nicht, blende die **Tipps** in [/config app](/docs/configuration/#tips) aus: Die Zeile verschwindet, der Balken bleibt.
+
+Solange die Liste gesperrt ist, sagt dieselbe Zeile, wer sie bearbeitet und wie man sie entsperrt, auch bei ausgeblendeten Tipps: Siehe [Wenn die Liste gesperrt ist](#when-the-list-is-locked).
 
 Solange die Liste in der [Activity](/docs/activity/) ist, sagt die Zeile es, und **Activity beitreten** ist der einzige Button unter der Liste.
 
@@ -68,7 +70,9 @@ Discord erlaubt fünf Buttons pro Reihe, deshalb stehen die Aktionen, die du sel
 - **Liste versiegeln** <img class="inline-ic" src="/icons/seal.png" alt="" />: behält eine fertige Liste als Protokoll im Kanal, ohne Buttons oder Menüs. Siehe [Versiegeln](/docs/list-actions/#seal).
 - **Liste löschen** <img class="inline-ic" src="/icons/delete.png" alt="" />: löscht die Liste **endgültig**. Siehe [Löschen](/docs/list-actions/#delete).
 
-Versiegeln und Löschen lassen sich nicht rückgängig machen und der Bot bittet dich vorher um Bestätigung. Beide brauchen *Nachrichten verwalten* im Kanal: dieselbe Berechtigung, mit der du die Nachricht der Liste von Hand löschen könntest. Ohne sie fehlen diese zwei Einträge. Anleitung, Liste klonen und Herunterladen gibt es für alle, ebenso Liste entsperren, wenn die Liste gesperrt ist.
+Versiegeln und Löschen lassen sich nicht rückgängig machen und der Bot bittet dich vorher um Bestätigung. Beide brauchen *Nachrichten verwalten* im Kanal: dieselbe Berechtigung, mit der du die Nachricht der Liste von Hand löschen könntest.
+
+Ohne sie fehlen diese zwei Einträge. Anleitung, Liste klonen und Herunterladen gibt es für alle, ebenso Liste entsperren, wenn die Liste gesperrt ist.
 
 Solange die Liste gesperrt ist, fehlen Liste versiegeln und Liste löschen. Wer gerade bearbeitet, würde auf eine Liste speichern, die es nicht mehr gibt.
 
@@ -97,7 +101,9 @@ TTM sperrt die Liste, solange jemand sie bearbeitet:
 
 Für alle anderen gehen dann aus: das Abhak-Menü, der Activity-Button, **Sammelbearbeitung**, **Liste bereinigen**, **Alle wieder öffnen** und die Aufgaben-Buttons. **Mehr** bleibt an, mit **Liste klonen** darin. **Mehr** zeigt, wer bearbeitet, und eine gesperrte Liste lässt sich von dort nicht versiegeln oder löschen.
 
-Auch die letzte Zeile der Liste sagt es: *🔒 @name bearbeitet gerade die Liste. Bleibt sie gesperrt? Mehr → Liste entsperren*. Sie tritt an die Stelle der Tipps-Zeile und erscheint auch, wenn dein Server die Tipps ausblendet. Die Erwähnung zeigt den Namen und benachrichtigt niemanden. Wenn die Liste entsperrt wird, kommt die Tipps-Zeile zurück, falls dein Server sie zeigt.
+Auch die letzte Zeile der Liste sagt es: *🔒 @name bearbeitet gerade die Liste. Bleibt sie gesperrt? Mehr → Liste entsperren*. Sie tritt an die Stelle der Tipps-Zeile und erscheint auch, wenn dein Server die Tipps ausblendet.
+
+Die Erwähnung zeigt den Namen und benachrichtigt niemanden. Wenn die Liste entsperrt wird, kommt die Tipps-Zeile zurück, falls dein Server sie zeigt.
 
 Die Liste zu sperren schaltet auch **Besitzer**, **Tag** und **Webhook** aus, wenn einer davon an war: Öffne ihn über seinen Button neu, wenn du ihn brauchst.
 

@@ -1,7 +1,7 @@
 ---
 title: "Trabalhando em uma lista na Activity"
 description: "As caixas, a primeira linha, o painel de uma tarefa (Conteúdo, Proprietário, Tag, Lembrete e Webhook) e quem está editando o quê."
-fonte: 3445f59ab104
+fonte: 39bbd6a8e201
 ---
 
 Dentro da Activity, a lista é uma página própria: uma caixa na frente de cada tarefa, uma linha de botões no alto e um painel para cada tarefa. As regras são as do canal: proprietários, configurações do servidor, limites do plano. O que cada recurso faz: [Proprietários e tags](/docs/owners-and-tags/), [Lembretes](/docs/reminders/), [Webhooks](/docs/webhooks/), [Ações da lista](/docs/list-actions/).
@@ -50,7 +50,9 @@ Enquanto o painel está aberto, a tarefa fica bloqueada para os outros: veja [Qu
 
 **Azul** mostra uma busca entre as pessoas e os cargos do servidor, com quem está na Activity em primeiro lugar. Toque em um nome para adicioná-lo, toque de novo para removê-lo e depois em **Salvar**. Remova todos os nomes e **Salvar** remove o proprietário, como faz o **Vermelho**.
 
-**Para pegar uma tarefa** sem proprietário, pressione **Proprietário** até ficar azul: o seu nome já está escolhido, então **Salvar** deixa a tarefa com você. Para dá-la a outra pessoa, toque no nome dela: ele toma o lugar do seu. Uma tarefa que já tem proprietário o mostra, e só muda se você escolher alguém.
+**Para pegar uma tarefa** sem proprietário, pressione **Proprietário** até ficar azul: o seu nome já está escolhido, então **Salvar** deixa a tarefa com você.
+
+Para dá-la a outra pessoa, toque no nome dela: ele toma o lugar do seu. Uma tarefa que já tem proprietário o mostra, e só muda se você escolher alguém.
 
 - Uma pessoa ou um cargo basta em todos os planos.
 - Várias pessoas viram um cargo que o TTM cria, no Premium: veja [Os cargos que o TTM cria](/docs/owners-and-tags/#the-roles-ttm-creates). Quando algo falta, **Salvar** continua desligado e o painel diz por quê.
@@ -89,13 +91,17 @@ Uma tarefa marcada não pode ter lembrete. Em uma tarefa sem proprietário, o pa
 
 Os webhooks são um recurso [Premium](/docs/premium/).
 
-**Azul** lista os webhooks do servidor pelo nome, cada um com o momento em que dispara: *na conclusão*, *na reabertura* ou *sempre*. O endereço nunca aparece. Escolha um e depois **Salvar**. Um webhook que não existe mais aparece no alto, marcado como *não existe mais*, para você escolher outro. Se o servidor não tem nenhum, o painel avisa que eles são criados com [/config webhook](/docs/config-webhook/).
+**Azul** lista os webhooks do servidor pelo nome, cada um com o momento em que dispara: *na conclusão*, *na reabertura* ou *sempre*. O endereço nunca aparece. Escolha um e depois **Salvar**.
+
+Um webhook que não existe mais aparece no alto, marcado como *não existe mais*, para você escolher outro. Se o servidor não tem nenhum, o painel avisa que eles são criados com [/config webhook](/docs/config-webhook/).
 
 **Vermelho** remove o webhook da tarefa.
 
 ## Editar a lista
 
-**Editar a lista** mostra o título e cada tarefa como texto, no formato explicado em [Editando uma lista à mão](/docs/writing-a-list/): o mesmo texto da **Atualização em bloco** do canal, lido pelas mesmas regras: pessoas, cargos e canais pelo nome, datas dos lembretes no seu fuso horário. Uma linha embaixo do texto diz como adicionar alguém novo e leva a [Editando uma lista à mão](/docs/writing-a-list/#people-roles-and-channels-by-name). Altere o que precisar e salve.
+**Editar a lista** mostra o título e cada tarefa como texto, no formato explicado em [Editando uma lista à mão](/docs/writing-a-list/): o mesmo texto da **Atualização em bloco** do canal, lido pelas mesmas regras: pessoas, cargos e canais pelo nome, datas dos lembretes no seu fuso horário.
+
+Uma linha embaixo do texto diz como adicionar alguém novo e leva a [Editando uma lista à mão](/docs/writing-a-list/#people-roles-and-channels-by-name). Altere o que precisar e salve.
 
 A lista fica bloqueada para os outros desde o momento em que abre até você salvar ou cancelar: **Cancelar**, o ✕ e um toque fora a desbloqueiam. Ela fecha sozinha depois de 30 segundos sem atividade. Se o texto não pode ser salvo, os problemas aparecem embaixo dele: veja [Quando o texto não pode ser salvo](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

@@ -1,7 +1,7 @@
 ---
 title: "Besitzer und Tags"
 description: "Wem eine Aufgabe gehört, wen sie erwähnt und welche Rollen TTM erstellt, wenn mehrere Personen eine Aufgabe besitzen."
-fonte: 3beeb818c97b
+fonte: bf7e5a683480
 ---
 
 Eine Aufgabe kann einen **Besitzer** und mehrere **Tags** haben. Der Besitzer ist, wem die Aufgabe gehört: wer sie abhaken darf und wer ihre Erinnerung bekommt. Tags sind die Benutzer und Rollen, die an der Aufgabe erwähnt werden, zum Beispiel die Personen, die bei ihrem Abschluss benachrichtigt werden sollen.
@@ -76,7 +76,9 @@ TTM merkt sich die Rollen, die es erstellt, und die Personen, denen es sie gegeb
 - keine Berechtigungen, weder auf dem Server noch in einem Kanal;
 - dieselbe Anzahl an Mitgliedern.
 
-Benenne sie um, gib ihr eine Berechtigung, nimm sie in die Berechtigungen eines Kanals auf oder füge ein Mitglied hinzu oder entferne eines: Dann wird sie eine Rolle deines Servers. TTM prüft das, bevor es eine Rolle löscht, und wenn es den Besitzer einer Aufgabe zum Ändern anzeigt. Eine Rolle, die nicht mehr TTM gehört, wird nie gelöscht, und die Besitzerauswahl zeigt die Rolle statt der Personen.
+Benenne sie um, gib ihr eine Berechtigung, nimm sie in die Berechtigungen eines Kanals auf oder füge ein Mitglied hinzu oder entferne eines: Dann wird sie eine Rolle deines Servers.
+
+TTM prüft das, bevor es eine Rolle löscht, und wenn es den Besitzer einer Aufgabe zum Ändern anzeigt. Eine Rolle, die nicht mehr TTM gehört, wird nie gelöscht, und die Besitzerauswahl zeigt die Rolle statt der Personen.
 
 Um eine Rolle für deinen Server zu behalten, **benenne sie also um**. Dann kannst du sie überall verwenden. Eine neue Farbe oder eine neue Position reicht nicht: TTM würde die Rolle trotzdem löschen, wenn keine Liste sie mehr nutzt.
 

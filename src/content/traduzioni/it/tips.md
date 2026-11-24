@@ -1,7 +1,7 @@
 ---
 title: Trucchi e consigli
 description: Piccole abitudini che rendono TTM più veloce e più silenzioso, nel canale e nell'Activity.
-fonte: 3e31d9102d49
+fonte: 6e297084b41a
 ---
 
 La maggior parte funziona ovunque sia la lista. Quelli che esistono in un solo posto lo dicono sotto il titolo.
@@ -10,7 +10,9 @@ La maggior parte funziona ovunque sia la lista. Quelli che esistono in un solo p
 
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</p>
 
-Apri **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> e scegli **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: la lista arriva come file `.txt` che solo tu puoi vedere. Poi esegui `/crea-lista` su qualsiasi server e allega quel file all'opzione `file`. Task, stati di completamento, proprietari, tag, promemoria e webhook tornano com'erano. Funziona bene per le checklist che ripeti, come rilasci, onboarding o eventi.
+Apri **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> e scegli **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: la lista arriva come file `.txt` che solo tu puoi vedere. Poi esegui `/crea-lista` su qualsiasi server e allega quel file all'opzione `file`.
+
+Task, stati di completamento, proprietari, tag, promemoria e webhook tornano com'erano. Funziona bene per le checklist che ripeti, come rilasci, onboarding o eventi.
 
 Se qualcosa nel file non va bene per il nuovo server, TTM non crea niente ed elenca tutti i problemi in una volta. Che cosa controlla: vedi [`/crea-lista`](/docs/commands/#create-list).
 

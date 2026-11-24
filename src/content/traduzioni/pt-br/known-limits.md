@@ -1,7 +1,7 @@
 ---
 title: "Limites conhecidos"
 description: "Os tetos de listas, tarefas, lembretes e mais: a maioria vem do próprio Discord, e como trabalhar dentro deles."
-fonte: fad07d75572a
+fonte: a9ff3dff4029
 ---
 
 O Team Tasks Manager funciona inteiramente dentro do Discord, então a maioria dos limites abaixo não é escolha do TTM. Eles vêm do próprio Discord. Por exemplo: o tamanho máximo de uma mensagem, quantos menus cabem em uma mensagem, até quanto tempo atrás dá para excluir mensagens em bloco. Quando um limite é do Discord, nós dizemos.
@@ -18,7 +18,9 @@ O Team Tasks Manager funciona inteiramente dentro do Discord, então a maioria d
 
 <div class="callout"><div class="callout-t">Chegou a um teto?</div>Divida o trabalho em várias listas. Duas listas focadas são mais fáceis de ler do que uma no limite, e cada uma tem os próprios lembretes, proprietários e tags.</div>
 
-**O Download sempre entrega um arquivo.** Uma mensagem normal do Discord é limitada a 2000 caracteres. Por isso o **Download**, no painel **Mais** <img class="inline-ic" src="/icons/other.png" alt="" /> sob a lista no canal, nunca publica a lista como texto. Ele envia um arquivo `.txt` só para você, em uma mensagem que só você vê. É o mesmo arquivo que o `/criar-lista` pode importar de volta.
+**O Download sempre entrega um arquivo.** Uma mensagem normal do Discord é limitada a 2000 caracteres. Por isso o **Download**, no painel **Mais** <img class="inline-ic" src="/icons/other.png" alt="" /> sob a lista no canal, nunca publica a lista como texto.
+
+Ele envia um arquivo `.txt` só para você, em uma mensagem que só você vê. É o mesmo arquivo que o `/criar-lista` pode importar de volta.
 
 **Excluir a mensagem não é o mesmo que excluir a lista.** A lista mantém a vaga dela, e os lembretes continuam chegando: veja [O que acontece com a quarta lista](/docs/premium/#what-happens-to-a-fourth-list).
 
@@ -58,7 +60,9 @@ Em todos os casos, só são notificados os membros que podem ver o canal da list
 
 ## Proprietários e tags
 
-Cada tarefa tem **um proprietário**: uma pessoa ou um cargo. No Premium, também pode ter até 25 pessoas, que compartilham um cargo que o TTM cria para elas. 25 é o máximo do menu de proprietários. Uma tarefa pode ter **até 25 tags**, os usuários ou cargos a avisar: 25 é o máximo do Discord para um menu.
+Cada tarefa tem **um proprietário**: uma pessoa ou um cargo. No Premium, também pode ter até 25 pessoas, que compartilham um cargo que o TTM cria para elas. 25 é o máximo do menu de proprietários.
+
+Uma tarefa pode ter **até 25 tags**, os usuários ou cargos a avisar: 25 é o máximo do Discord para um menu.
 
 **Os cargos que o TTM cria contam nos 250 cargos por servidor do Discord.** Com 250 cargos, o TTM não consegue criar um novo e avisa. Quando o TTM exclui os cargos dele: veja [Os cargos que o TTM cria](/docs/owners-and-tags/#the-roles-ttm-creates).
 
@@ -78,17 +82,23 @@ A mensagem de erro cita o mesmo número que você lê aqui.
 
 ## A timeline de atividades
 
-Quando a timeline está ativada, o TTM publica cada ação em um tópico ao lado da lista, por meio de um webhook do Discord. O Discord permite **15 webhooks por canal**, então o TTM cria **um webhook por canal** e o reutiliza para todas as listas desse canal. O nome e a imagem que você vê em cada mensagem são definidos por mensagem, então nada muda visualmente.
+Quando a timeline está ativada, o TTM publica cada ação em um tópico ao lado da lista, por meio de um webhook do Discord.
+
+O Discord permite **15 webhooks por canal**, então o TTM cria **um webhook por canal** e o reutiliza para todas as listas desse canal. O nome e a imagem que você vê em cada mensagem são definidos por mensagem, então nada muda visualmente.
 
 Se um canal já atingiu os 15 do Discord (por causa de outros bots ou integrações), a timeline de uma lista nova não consegue começar. Libere um em **Configurações do canal → Integrações → Webhooks**.
 
 ## Canais de voz
 
-As listas funcionam também no chat de um canal de voz, com uma diferença: lá elas não têm a [timeline de atividades](#the-activity-timeline). A timeline é um tópico ao lado da lista, e o Discord não permite tópicos em canais de voz. Todo o resto funciona como em um canal de texto: os botões, as notificações, os lembretes, a [Activity](/docs/activity/), **Clonar lista**, **Download**, **Selar lista** e **Excluir lista**.
+As listas funcionam também no chat de um canal de voz, com uma diferença: lá elas não têm a [timeline de atividades](#the-activity-timeline). A timeline é um tópico ao lado da lista, e o Discord não permite tópicos em canais de voz.
+
+Todo o resto funciona como em um canal de texto: os botões, as notificações, os lembretes, a [Activity](/docs/activity/), **Clonar lista**, **Download**, **Selar lista** e **Excluir lista**.
 
 Quando a timeline está ativada em [`/config app`](/docs/configuration/#history-tracking), quem cria uma lista em um canal de voz recebe uma mensagem curta sobre isso, visível só para essa pessoa; a lista de prática do Tutorial não tem essa mensagem. Se você precisa da timeline, crie a lista em um canal de texto, ou copie-a para lá com **Clonar lista**.
 
-Em um canal de voz o TTM não precisa de *Criar tópicos públicos* nem de *Gerenciar webhooks*, que só servem à timeline. Em vez disso, ele precisa de *Conectar*: sem ela, o TTM não consegue escrever no chat do canal de voz. O Discord dá *Conectar* a todos por padrão; se o seu servidor a retira em um canal de voz, conceda-a ao TTM lá, ou o `/criar-lista` avisa que ela está faltando.
+Em um canal de voz o TTM não precisa de *Criar tópicos públicos* nem de *Gerenciar webhooks*, que só servem à timeline. Em vez disso, ele precisa de *Conectar*: sem ela, o TTM não consegue escrever no chat do canal de voz.
+
+O Discord dá *Conectar* a todos por padrão; se o seu servidor a retira em um canal de voz, conceda-a ao TTM lá, ou o `/criar-lista` avisa que ela está faltando.
 
 ## Notificações
 

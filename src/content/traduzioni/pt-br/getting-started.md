@@ -1,7 +1,7 @@
 ---
 title: "Primeiros passos"
 description: "Convide o bot, crie uma lista, depois marque uma tarefa e defina um lembrete — no canal ou na Activity."
-fonte: 80e3e27e599a
+fonte: e7a439b39622
 ---
 
 O Team Tasks Manager (TTM) permite que sua equipe compartilhe e gerencie tarefas **sem sair do Discord**. Esta página leva você do zero a uma lista funcionando: criá-la, marcar uma tarefa, definir um lembrete.
@@ -48,7 +48,9 @@ Envie o formulário e a lista aparece no canal. Aqui está a mesma lista depois 
   <img src="/screens/pt-br/list-desktop.png" width="465" height="418" loading="lazy" alt="A lista Torneio de sábado no Discord: seis tarefas numeradas com caixas. A primeira está marcada e em cinza; Preparar as chaves tem duas subtarefas e um proprietário; Transmitir a final tem um proprietário e a data de um lembrete. Sob as tarefas, uma pequena linha aponta para Mais, Guia e a documentação completa, e uma barra verde mostra quanto já foi feito. Abaixo da lista ficam o menu suspenso, Marcar tarefa, e duas linhas de botões." />
 </picture>
 
-Prefere aprender fazendo? Ao lado de **Crie sua lista** há um botão **Tutorial**: ele transforma a explicação em uma lista de prática com sete lições no seu idioma e envia o Guia a você em uma mensagem que só você vê. Faça as lições em ordem: cada uma nomeia um botão com o ícone dele e pede que você faça algo com ele mesmo, desde marcá-lo até abri-lo na Activity.
+Prefere aprender fazendo? Ao lado de **Crie sua lista** há um botão **Tutorial**: ele transforma a explicação em uma lista de prática com sete lições no seu idioma e envia o Guia a você em uma mensagem que só você vê.
+
+Faça as lições em ordem: cada uma nomeia um botão com o ícone dele e pede que você faça algo com ele mesmo, desde marcá-lo até abri-lo na Activity.
 
 A lista de prática é uma lista normal: quando terminar, exclua-a em **Mais** → **Excluir lista**.
 
@@ -58,7 +60,9 @@ Agora escolha onde trabalhar nela. A lista é a mesma nos dois lugares, e ela fi
 
 ### Marque uma tarefa
 
-Sob a lista há o **seletor de marcação**, um menu suspenso que mostra o título da lista, e duas linhas de botões. Abra o menu e escolha uma tarefa: a caixa dela passa de <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> para <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" /> e a lista se atualiza para todos. Escolha-a de novo para reabri-la. Marcar um grupo marca também as subtarefas dele. Conforme as suas [configurações](/docs/configuration/), o TTM também pode publicar um aviso curto sob a lista e registrar a mudança em um tópico de timeline.
+Sob a lista há o **seletor de marcação**, um menu suspenso que mostra o título da lista, e duas linhas de botões. Abra o menu e escolha uma tarefa: a caixa dela passa de <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> para <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" /> e a lista se atualiza para todos. Escolha-a de novo para reabri-la.
+
+Marcar um grupo marca também as subtarefas dele. Conforme as suas [configurações](/docs/configuration/), o TTM também pode publicar um aviso curto sob a lista e registrar a mudança em um tópico de timeline.
 
 <div class="callout"><div class="callout-t">Não consegue marcar uma tarefa?</div>Todos os botões da segunda linha precisam estar <strong>desligados</strong>: se um estiver azul ou vermelho, escolher uma tarefa aplica a ação desse botão. E uma tarefa com proprietário só pode ser marcada pelo proprietário e por quem tem <em>Gerenciar mensagens</em> no canal.</div>
 

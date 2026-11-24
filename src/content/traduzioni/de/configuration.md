@@ -1,7 +1,7 @@
 ---
 title: "/config app"
 description: "Passe Benachrichtigungen, Verlauf, Erinnerungen, Zeitzone und Berechtigungen mit /config app an."
-fonte: 449f5cc3050a
+fonte: cc3b2bd36302
 ---
 
 Führe den Befehl aus:
@@ -52,15 +52,21 @@ In der Activity posten Haken keine Benachrichtigung einzeln: Wenn die Liste in d
 
 ### Wenn eine Liste erstellt wird
 
-Eine neue Liste postet unter sich ihre eigene Benachrichtigung: *ich habe die Liste erstellt*, mit einem Link zur Liste. Sie kommt von `/liste-erstellen`, vom Tutorial, von einem Import aus einer Datei, von einem Klon und von **Neue Liste** in der Activity. Ein Klon postet sie im neuen Kanal und der Kanal der Originalliste bekommt die übliche Benachrichtigung über den Klon. Im Modus **Benachrichtigungen deaktiviert** wird im Kanal nichts gepostet, aber der Verlaufs-Thread hält die Erstellung trotzdem fest.
+Eine neue Liste postet unter sich ihre eigene Benachrichtigung: *ich habe die Liste erstellt*, mit einem Link zur Liste. Sie kommt von `/liste-erstellen`, vom Tutorial, von einem Import aus einer Datei, von einem Klon und von **Neue Liste** in der Activity.
+
+Ein Klon postet sie im neuen Kanal und der Kanal der Originalliste bekommt die übliche Benachrichtigung über den Klon. Im Modus **Benachrichtigungen deaktiviert** wird im Kanal nichts gepostet, aber der Verlaufs-Thread hält die Erstellung trotzdem fest.
 
 Ist [Besitzer in neuen Listen erwähnen](#mention-owners-in-new-lists) an, erwähnt die Benachrichtigung die Besitzer der Aufgaben, sodass Discord sie benachrichtigt. Eine in der Activity erstellte Liste erwähnt sie in der Zusammenfassung, die mit ihr in den Kanal zurückkommt.
 
-Sind die [Tipps](#tips) an, endet die erste Benachrichtigung einer neuen Liste mit einer Erklärung: warum TTM Benachrichtigungen postet und, bei eingeschalteter Verlaufsverfolgung, was der Thread ist. Sie erscheint einmal pro Liste und nur, wenn Tipps und Benachrichtigungen beide an waren, als die Liste erstellt wurde: Ein Team, das eines davon ausgeschaltet hat, kennt sich schon aus. Listen, die erstellt wurden, bevor es diese Erklärung gab, zeigen sie nicht.
+Sind die [Tipps](#tips) an, endet die erste Benachrichtigung einer neuen Liste mit einer Erklärung: warum TTM Benachrichtigungen postet und, bei eingeschalteter Verlaufsverfolgung, was der Thread ist.
+
+Sie erscheint einmal pro Liste und nur, wenn Tipps und Benachrichtigungen beide an waren, als die Liste erstellt wurde: Ein Team, das eines davon ausgeschaltet hat, kennt sich schon aus. Listen, die erstellt wurden, bevor es diese Erklärung gab, zeigen sie nicht.
 
 ## Verlaufsverfolgung
 
-Wenn aktiviert, wird **jede Aktion auf deinen Listen in einem eigenen Thread festgehalten** und du bekommst ein Protokoll darüber, wer was wann getan hat. Standardmäßig an. Der Thread beginnt mit der Liste: Seine erste Zeile sagt, wer sie erstellt hat. Listen in Sprachkanälen haben keinen Verlaufs-Thread, weil Discord dort keine Threads erlaubt: Siehe [Sprachkanäle](/docs/known-limits/#voice-channels). Eine Sitzung in der Activity kommt vollständig in den Thread, eine Zeile pro Änderung, wenn die Liste in den Kanal zurückkehrt.
+Wenn aktiviert, wird **jede Aktion auf deinen Listen in einem eigenen Thread festgehalten** und du bekommst ein Protokoll darüber, wer was wann getan hat. Standardmäßig an. Der Thread beginnt mit der Liste: Seine erste Zeile sagt, wer sie erstellt hat.
+
+Listen in Sprachkanälen haben keinen Verlaufs-Thread, weil Discord dort keine Threads erlaubt: Siehe [Sprachkanäle](/docs/known-limits/#voice-channels). Eine Sitzung in der Activity kommt vollständig in den Thread, eine Zeile pro Änderung, wenn die Liste in den Kanal zurückkehrt.
 
 ## Verhalten
 
@@ -68,11 +74,15 @@ Ein Dropdown mit drei Optionen: **Lesbare Push-Benachrichtigungen**, **Zustand n
 
 ### Lesbare Push-Benachrichtigungen
 
-Eingeschaltet fügt TTM neben den Embeds Klartext hinzu, damit deine **Push-Benachrichtigungen auf dem Handy** auf einen Blick lesbar sind. Embeds allein erscheinen auf dem Sperrbildschirm oft leer. Standardmäßig an. Sie auszuschalten stoppt nie eine Erinnerung: Sie kommt nur mit ihrer Karte an, oder, bei einer Rolle, nur mit der Erwähnung. Die Erwähnungen der Besitzer gehen auch bei ausgeschalteter Option weiterhin allein raus.
+Eingeschaltet fügt TTM neben den Embeds Klartext hinzu, damit deine **Push-Benachrichtigungen auf dem Handy** auf einen Blick lesbar sind. Embeds allein erscheinen auf dem Sperrbildschirm oft leer. Standardmäßig an.
+
+Sie auszuschalten stoppt nie eine Erinnerung: Sie kommt nur mit ihrer Karte an, oder, bei einer Rolle, nur mit der Erwähnung. Die Erwähnungen der Besitzer gehen auch bei ausgeschalteter Option weiterhin allein raus.
 
 ### Zustand nach der Auswahl beibehalten
 
-Nur im Kanal. Nachdem du **Besitzer**, **Tag** oder **Erinnerung** in der zweiten Reihe unter der Liste benutzt hast, entscheidet das, ob der Button wieder grau wird oder den aktiven Modus **behält**. Standardmäßig aus: Der Button wird wieder grau. Schalte es ein, wenn du dieselbe Aktion auf mehrere Aufgaben nacheinander anwendest.
+Nur im Kanal. Nachdem du **Besitzer**, **Tag** oder **Erinnerung** in der zweiten Reihe unter der Liste benutzt hast, entscheidet das, ob der Button wieder grau wird oder den aktiven Modus **behält**.
+
+Standardmäßig aus: Der Button wird wieder grau. Schalte es ein, wenn du dieselbe Aktion auf mehrere Aufgaben nacheinander anwendest.
 
 Es ändert auch, was **Tag** und **Besitzer** können. Ist es aus, überschreibt deine Auswahl immer. Ist es an, kannst du außerdem die vorhandenen Tags oder den Besitzer einer Aufgabe live bearbeiten. Siehe [Tag](/docs/channel-tasks/#tag) für die ganze Aufschlüsselung.
 
@@ -80,7 +90,9 @@ In der Activity funktioniert das Panel einer Aufgabe immer gleich: Nach einer Ak
 
 ### Besitzer in neuen Listen erwähnen
 
-Wenn jemand eine Liste erstellt, importiert oder klont, erwähnt ihre erste Benachrichtigung die Besitzer ihrer Aufgaben: Personen und Rollen, jeweils einmal, in der Reihenfolge der Liste. Die Erwähnungen stehen im Klartext der Benachrichtigung, sodass Discord die Besitzer benachrichtigt. Die Person, die die Liste erstellt hat, wird nicht erwähnt: Sie weiß es schon. @everyone ebenfalls nicht, auch wenn es eine Aufgabe besitzt: Eine neue Liste benachrichtigt nicht den ganzen Server.
+Wenn jemand eine Liste erstellt, importiert oder klont, erwähnt ihre erste Benachrichtigung die Besitzer ihrer Aufgaben: Personen und Rollen, jeweils einmal, in der Reihenfolge der Liste. Die Erwähnungen stehen im Klartext der Benachrichtigung, sodass Discord die Besitzer benachrichtigt.
+
+Die Person, die die Liste erstellt hat, wird nicht erwähnt: Sie weiß es schon. @everyone ebenfalls nicht, auch wenn es eine Aufgabe besitzt: Eine neue Liste benachrichtigt nicht den ganzen Server.
 
 Standardmäßig an, auch auf Servern, die TTM hinzugefügt haben, bevor es diese Option gab. Eine Liste, die innerhalb einer Activity-Sitzung erstellt wird, erwähnt ihre Besitzer in der Zusammenfassung, wenn sie in den Kanal zurückkehrt. Siehe [Wenn eine Liste erstellt wird](#when-a-list-is-created).
 
@@ -96,7 +108,11 @@ Zeigt jede erledigte Aufgabe in dem kleineren, grauen Text von Discord, damit he
 
 ### Abstand um Gruppen
 
-Setzt eine Leerzeile über und unter jede Aufgabe, die Unteraufgaben hat, damit sich jede Gruppe vom Rest der Liste abhebt. Standardmäßig aus, für eine kompaktere Liste: Server, die TTM vor Version 2.0.0 hinzugefügt haben, haben es an, bis ein Admin es ausschaltet. Es ändert nur die Liste selbst: Benachrichtigungen bleiben, wie sie sind. Discord hat keine dünnere Leerzeile für eine Liste, die Wahl liegt also zwischen einer ganzen Zeile und keiner.
+Setzt eine Leerzeile über und unter jede Aufgabe, die Unteraufgaben hat, damit sich jede Gruppe vom Rest der Liste abhebt.
+
+Standardmäßig aus, für eine kompaktere Liste: Server, die TTM vor Version 2.0.0 hinzugefügt haben, haben es an, bis ein Admin es ausschaltet.
+
+Es ändert nur die Liste selbst: Benachrichtigungen bleiben, wie sie sind. Discord hat keine dünnere Leerzeile für eine Liste, die Wahl liegt also zwischen einer ganzen Zeile und keiner.
 
 ## Wiederkehrende Erinnerungen
 
@@ -112,7 +128,9 @@ Eine Erinnerung, die *schon* wiederkehrend ist, löst weiter aus, auch bei ausge
 
 ## Zeitzone
 
-Legt die Zeitzone fest, in der dein Team arbeitet. Mitglieder können für Erinnerungen trotzdem ihre eigene nutzen: Bis sie eine wählen, schlägt TTM die Zone ihrer Discord-Sprache vor und diese nur, wenn ihre Sprache in mehreren Zonen gesprochen wird, wie Englisch (US). Siehe [Deine Zeitzone](/docs/reminders/#your-time-zone). Klicke den Button und füge dann den offiziellen Namen einer Zone ein: Suche ihn auf der **[Zeitzonenkarte](https://timezones.bitsplitters.app)**.
+Legt die Zeitzone fest, in der dein Team arbeitet. Mitglieder können für Erinnerungen trotzdem ihre eigene nutzen: Bis sie eine wählen, schlägt TTM die Zone ihrer Discord-Sprache vor und diese nur, wenn ihre Sprache in mehreren Zonen gesprochen wird, wie Englisch (US). Siehe [Deine Zeitzone](/docs/reminders/#your-time-zone).
+
+Klicke den Button und füge dann den offiziellen Namen einer Zone ein: Suche ihn auf der **[Zeitzonenkarte](https://timezones.bitsplitters.app)**.
 
 ## Berechtigungen synchronisieren
 

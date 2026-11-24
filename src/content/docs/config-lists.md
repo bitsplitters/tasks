@@ -13,7 +13,9 @@ Run the command:
 
 It opens a private panel, which only you can see, with **every list this server still has**. Each list has one row: the list name, and the channel it lives in as a clickable link.
 
-A list that holds one of the places of your plan is marked **in use** next to its channel. When you need to free a place, those are the lists to seal or delete. During the beta there is no limit, so no list is marked. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work).
+A list that holds one of the places of your plan is marked **in use** next to its channel. When you need to free a place, those are the lists to seal or delete.
+
+During the beta there is no limit, so no list is marked. How a list takes a place: see [How the three places work](/docs/premium/#how-the-three-places-work).
 
 A list that someone is working on in the [Activity](/docs/activity/) is marked **in the Activity**. You can still regenerate, seal or delete it, and the confirmation warns you first: see [What stays in the channel](/docs/activity/#what-stays-in-the-channel).
 
@@ -34,9 +36,13 @@ Mark as many lists as you need — two to delete, one to seal and three to regen
 
 The block then runs **in order**: deletions first, then seals, then regenerations. So one block can free a place and use it: a list you delete or seal hands its place to a list you regenerate.
 
-At the end you get a summary, by name: the lists deleted, sealed and regenerated, and the ones that couldn't be handled. Each of those comes with its reason, for example a list that no longer exists, or a regeneration with no place left on your plan. The panel then redraws itself with the lists as they are now.
+At the end you get a summary, by name: the lists deleted, sealed and regenerated, and the ones that couldn't be handled.
 
-**Cancel** closes the panel and does nothing. Your choices survive a change of page: the header tells you how many you have marked on other pages, and the confirmation includes them. The choices on the page in front of you live in the panel itself, so they never expire while you think. Those on other pages are remembered for an hour after you last touch the panel.
+Each of those comes with its reason, for example a list that no longer exists, or a regeneration with no place left on your plan. The panel then redraws itself with the lists as they are now.
+
+**Cancel** closes the panel and does nothing. Your choices survive a change of page: the header tells you how many you have marked on other pages, and the confirmation includes them.
+
+The choices on the page in front of you live in the panel itself, so they never expire while you think. Those on other pages are remembered for an hour after you last touch the panel.
 
 ## Regenerate
 

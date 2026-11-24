@@ -1,7 +1,7 @@
 ---
 title: "Lembretes"
 description: "Associe um horário a uma tarefa para o TTM avisar o proprietário na hora certa: quem recebe, fusos horários, repetições."
-fonte: fb523a41633c
+fonte: 6ce351a678ab
 ---
 
 Um lembrete faz da tarefa algo que lembra *você*, em vez do contrário. Você o define uma vez, e o TTM cuida dos avisos. Você adiciona um com **Lembrete** <img class="inline-ic" src="/icons/alertW.png" alt="" />: no canal, na segunda linha embaixo da lista; na Activity, no painel de uma tarefa.
@@ -13,7 +13,9 @@ Um lembrete faz da tarefa algo que lembra *você*, em vez do contrário. Você o
 - **Um lembrete tem data, hora e fuso horário.** Ele dispara **uma vez**, a menos que o seu servidor use [lembretes repetidos](#repeating-reminders), um recurso Premium.
 - **O início precisa estar pelo menos 5 minutos no futuro.** O formulário começa dez minutos a partir de agora, então um lembrete para "daqui a pouco" não exige digitar nada.
 - **Só uma tarefa ainda pendente pode ter um.** Concluir uma tarefa interrompe o lembrete dela: não precisa limpar depois.
-- **O lembrete vai para o proprietário da tarefa**, por mensagem direta se o proprietário é uma pessoa. Se a tarefa ainda não tem proprietário, **você se torna o proprietário** ao salvar o lembrete. A partir daí, só você e quem tem *Gerenciar mensagens* no canal podem marcar essa tarefa. Para dá-la a outra pessoa, defina o proprietário antes ou depois de criar o lembrete: veja [Proprietários e tags](/docs/owners-and-tags/).
+- **O lembrete vai para o proprietário da tarefa**, por mensagem direta se o proprietário é uma pessoa. Se a tarefa ainda não tem proprietário, **você se torna o proprietário** ao salvar o lembrete.
+
+  A partir daí, só você e quem tem *Gerenciar mensagens* no canal podem marcar essa tarefa. Para dá-la a outra pessoa, defina o proprietário antes ou depois de criar o lembrete: veja [Proprietários e tags](/docs/owners-and-tags/).
 - **Nada muda até você salvar.** Quando você edita um lembrete, Salvar continua desligado até você mudar a data ou a recorrência.
 - **Remover o proprietário remove o lembrete**, porque não sobra ninguém para recebê-lo.
 
@@ -50,7 +52,9 @@ Um cargo só é avisado se puder ser mencionado. Quando isso acontece, e o que o
 
 ## Lembretes repetidos
 
-Por padrão, todo lembrete é um **evento único**: um aviso, e nada mais a decidir. As repetições são um recurso [Premium](/docs/premium/): no plano Free, todo lembrete é único. Em um plano que as inclui, elas ainda dependem de ativação: um administrador do servidor ativa **Lembretes recorrentes** em [/config app](/docs/configuration/#recurring-reminders). Até lá, só um lembrete que já é recorrente mostra os menus de repetição.
+Por padrão, todo lembrete é um **evento único**: um aviso, e nada mais a decidir. As repetições são um recurso [Premium](/docs/premium/): no plano Free, todo lembrete é único.
+
+Em um plano que as inclui, elas ainda dependem de ativação: um administrador do servidor ativa **Lembretes recorrentes** em [/config app](/docs/configuration/#recurring-reminders). Até lá, só um lembrete que já é recorrente mostra os menus de repetição.
 
 <div class="callout"><div class="callout-t">Os lembretes recorrentes que você já tem continuam funcionando</div>Um lembrete que já era recorrente continua disparando no plano Free, e no Premium enquanto a opção está desativada: você pode mudar a data dele, movê-lo para outra tarefa ou diminuir o número de vezes que ele chega, mas não aumentá-lo. Clonar ou importar uma lista cria lembretes novos, então, onde não é possível criar novos lembretes recorrentes, uma clonagem ou uma importação recusa um lembrete recorrente: clone sem os lembretes ou defina as repetições dele como <code>0</code>.</div>
 

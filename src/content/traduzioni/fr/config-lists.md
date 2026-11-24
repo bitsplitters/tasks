@@ -1,7 +1,7 @@
 ---
 title: "/config lists"
 description: "Vois toutes les listes du serveur, scelle ou supprime celles dont tu as fini, ou ramène celle dont le message a été supprimé par erreur."
-fonte: 0da09921c70a
+fonte: 089e6935e4f2
 ---
 
 Lance la commande :
@@ -12,7 +12,9 @@ Lance la commande :
 
 Elle ouvre un panneau privé, que toi seul peux voir, avec **toutes les listes que ce serveur a encore**. Chaque liste a une ligne : le nom de la liste, et le salon où elle vit sous forme de lien cliquable.
 
-Une liste qui occupe l'une des places de ton offre est marquée **utilisée** à côté de son salon. Quand tu dois libérer une place, ce sont les listes à sceller ou à supprimer. Pendant la bêta, il n'y a aucune limite, donc aucune liste n'est marquée. Comment une liste prend une place : voir [Comment fonctionnent les trois places](/docs/premium/#how-the-three-places-work).
+Une liste qui occupe l'une des places de ton offre est marquée **utilisée** à côté de son salon. Quand tu dois libérer une place, ce sont les listes à sceller ou à supprimer.
+
+Pendant la bêta, il n'y a aucune limite, donc aucune liste n'est marquée. Comment une liste prend une place : voir [Comment fonctionnent les trois places](/docs/premium/#how-the-three-places-work).
 
 Une liste sur laquelle quelqu'un travaille dans l'[Activity](/docs/activity/) est marquée **dans l'Activity**. Tu peux quand même la régénérer, la sceller ou la supprimer, et la confirmation te prévient d'abord : voir [Ce qui reste dans le salon](/docs/activity/#what-stays-in-the-channel).
 
@@ -33,9 +35,13 @@ Marque autant de listes que tu veux (deux à supprimer, une à sceller et trois 
 
 Le lot s'exécute alors **dans l'ordre** : d'abord les suppressions, puis les scellements, puis les régénérations. Un même lot peut donc libérer une place et l'utiliser : une liste que tu supprimes ou scelles cède sa place à une liste que tu régénères.
 
-À la fin, tu reçois un récapitulatif, par nom : les listes supprimées, scellées et régénérées, et celles qui n'ont pas pu être traitées. Chacune de ces dernières vient avec sa raison, par exemple une liste qui n'existe plus, ou une régénération sans place restante dans ton offre. Le panneau se redessine ensuite avec les listes telles qu'elles sont maintenant.
+À la fin, tu reçois un récapitulatif, par nom : les listes supprimées, scellées et régénérées, et celles qui n'ont pas pu être traitées.
 
-**Annuler** ferme le panneau et ne fait rien. Tes choix survivent à un changement de page : l'en-tête te dit combien tu en as marqué sur d'autres pages, et la confirmation les inclut. Les choix de la page que tu as devant les yeux vivent dans le panneau lui-même, donc ils n'expirent jamais pendant que tu réfléchis. Ceux des autres pages sont retenus pendant une heure après ta dernière action sur le panneau.
+Chacune de ces dernières vient avec sa raison, par exemple une liste qui n'existe plus, ou une régénération sans place restante dans ton offre. Le panneau se redessine ensuite avec les listes telles qu'elles sont maintenant.
+
+**Annuler** ferme le panneau et ne fait rien. Tes choix survivent à un changement de page : l'en-tête te dit combien tu en as marqué sur d'autres pages, et la confirmation les inclut.
+
+Les choix de la page que tu as devant les yeux vivent dans le panneau lui-même, donc ils n'expirent jamais pendant que tu réfléchis. Ceux des autres pages sont retenus pendant une heure après ta dernière action sur le panneau.
 
 ## Régénérer
 

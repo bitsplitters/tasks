@@ -1,7 +1,7 @@
 ---
 title: "Limites connues"
 description: "Les plafonds sur les listes, les tâches, les rappels et le reste : la plupart viennent de Discord lui-même, et comment travailler avec."
-fonte: fad07d75572a
+fonte: a9ff3dff4029
 ---
 
 Team Tasks Manager travaille entièrement dans Discord, donc la plupart des limites ci-dessous ne sont pas un choix de TTM. Elles viennent de Discord lui-même. Par exemple : la longueur maximale d'un message, le nombre de menus qui tiennent dans un message, jusqu'où on peut remonter pour supprimer des messages en masse. Quand une limite est celle de Discord, on le dit.
@@ -18,7 +18,9 @@ Team Tasks Manager travaille entièrement dans Discord, donc la plupart des limi
 
 <div class="callout"><div class="callout-t">Tu as touché un plafond ?</div>Répartis le travail sur plusieurs listes. Deux listes ciblées se lisent mieux qu'une seule au maximum, et chacune a ses propres rappels, propriétaires et tags.</div>
 
-**Télécharger te donne toujours un fichier.** Un message Discord normal est limité à 2000 caractères. C'est pourquoi **Télécharger**, dans le panneau **Autre** <img class="inline-ic" src="/icons/other.png" alt="" /> sous la liste dans le salon, ne publie jamais la liste sous forme de texte. Il t'envoie un fichier `.txt`, à toi seul, dans un message que toi seul peux voir. C'est le même fichier que `/creer-liste` peut réimporter.
+**Télécharger te donne toujours un fichier.** Un message Discord normal est limité à 2000 caractères. C'est pourquoi **Télécharger**, dans le panneau **Autre** <img class="inline-ic" src="/icons/other.png" alt="" /> sous la liste dans le salon, ne publie jamais la liste sous forme de texte.
+
+Il t'envoie un fichier `.txt`, à toi seul, dans un message que toi seul peux voir. C'est le même fichier que `/creer-liste` peut réimporter.
 
 **Supprimer le message n'est pas supprimer la liste.** La liste garde sa place, et ses rappels continuent d'arriver : voir [Ce qui arrive à une quatrième liste](/docs/premium/#what-happens-to-a-fourth-list).
 
@@ -58,7 +60,9 @@ Dans tous les cas, seuls les membres qui peuvent voir le salon de la liste sont 
 
 ## Propriétaires et tags
 
-Chaque tâche a **un propriétaire** : une personne ou un rôle. Avec Premium, il peut aussi y avoir jusqu'à 25 personnes, qui partagent un rôle que TTM crée pour elles. 25 est le maximum du menu des propriétaires. Une tâche peut porter **jusqu'à 25 tags**, les utilisateurs ou les rôles à prévenir : 25 est le maximum de Discord pour un menu.
+Chaque tâche a **un propriétaire** : une personne ou un rôle. Avec Premium, il peut aussi y avoir jusqu'à 25 personnes, qui partagent un rôle que TTM crée pour elles. 25 est le maximum du menu des propriétaires.
+
+Une tâche peut porter **jusqu'à 25 tags**, les utilisateurs ou les rôles à prévenir : 25 est le maximum de Discord pour un menu.
 
 **Les rôles que TTM crée comptent dans les 250 rôles par serveur de Discord.** À 250 rôles, TTM ne peut plus en créer de nouveau, et il le dit. Quand TTM supprime ses rôles : voir [Les rôles que TTM crée](/docs/owners-and-tags/#the-roles-ttm-creates).
 
@@ -78,17 +82,23 @@ d'erreur cite le même nombre que tu lis ici.
 
 ## La timeline de l'activité
 
-Quand la timeline est activée, TTM publie chaque action dans un fil à côté de la liste, via un webhook de Discord. Discord autorise **15 webhooks par salon**, donc TTM crée **un webhook par salon** et le réutilise pour chaque liste de ce salon. Le nom et l'image que tu vois sur chaque message sont définis message par message, donc rien ne change visuellement.
+Quand la timeline est activée, TTM publie chaque action dans un fil à côté de la liste, via un webhook de Discord.
+
+Discord autorise **15 webhooks par salon**, donc TTM crée **un webhook par salon** et le réutilise pour chaque liste de ce salon. Le nom et l'image que tu vois sur chaque message sont définis message par message, donc rien ne change visuellement.
 
 Si un salon a déjà atteint les 15 de Discord (à cause d'autres bots ou intégrations), la timeline d'une nouvelle liste ne peut pas démarrer. Libères-en un dans **Paramètres du salon → Intégrations → Webhooks**.
 
 ## Salons vocaux
 
-Les listes fonctionnent aussi dans le chat d'un salon vocal, avec une différence : là, elles n'ont pas de [timeline de l'activité](#the-activity-timeline). La timeline est un fil à côté de la liste, et Discord n'autorise pas les fils dans les salons vocaux. Tout le reste fonctionne comme dans un salon textuel : les boutons, les notifications, les rappels, l'[Activity](/docs/activity/), **Cloner la liste**, **Télécharger**, **Sceller la liste** et **Supprimer la liste**.
+Les listes fonctionnent aussi dans le chat d'un salon vocal, avec une différence : là, elles n'ont pas de [timeline de l'activité](#the-activity-timeline). La timeline est un fil à côté de la liste, et Discord n'autorise pas les fils dans les salons vocaux.
+
+Tout le reste fonctionne comme dans un salon textuel : les boutons, les notifications, les rappels, l'[Activity](/docs/activity/), **Cloner la liste**, **Télécharger**, **Sceller la liste** et **Supprimer la liste**.
 
 Quand la timeline est activée dans [`/config app`](/docs/configuration/#history-tracking), la personne qui crée une liste dans un salon vocal reçoit un court message à ce sujet, visible d'elle seule ; la liste d'essai du Tutoriel l'ignore. Si tu as besoin de la timeline, crée la liste dans un salon textuel, ou copie-la là avec **Cloner la liste**.
 
-Dans un salon vocal, TTM n'a pas besoin de *Créer des fils publics* ni de *Gérer les webhooks*, qui ne servent qu'à la timeline. Il lui faut *Se connecter* à la place : sans elle, TTM ne peut pas écrire dans le chat du salon vocal. Discord donne *Se connecter* à tout le monde par défaut ; si ton serveur la retire sur un salon vocal, accorde-la à TTM là, sinon `/creer-liste` te dit qu'elle manque.
+Dans un salon vocal, TTM n'a pas besoin de *Créer des fils publics* ni de *Gérer les webhooks*, qui ne servent qu'à la timeline. Il lui faut *Se connecter* à la place : sans elle, TTM ne peut pas écrire dans le chat du salon vocal.
+
+Discord donne *Se connecter* à tout le monde par défaut ; si ton serveur la retire sur un salon vocal, accorde-la à TTM là, sinon `/creer-liste` te dit qu'elle manque.
 
 ## Notifications
 

@@ -1,7 +1,7 @@
 ---
 title: "L'Activity"
 description: "Ouvre une liste dans une fenêtre à l'intérieur de Discord, où ton équipe travaille dessus ensemble et voit chaque changement en direct."
-fonte: 430ed626ef5b
+fonte: 38c066c5c9af
 ---
 
 Essaie le mode Activity : plus fluide et libéré des limites des salons textuels, idéal pour les sessions de travail longues ou collaboratives.
@@ -38,17 +38,23 @@ Le bouton suit les règles du reste de la liste, comme les [permissions synchron
 
 Tant qu'une liste est dans l'Activity, son message garde un seul bouton, **Rejoindre l'Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, et la dernière ligne dit <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> *On travaille sur cette liste dans l'Activity.* Le **Rejoindre** de Discord, dans le profil d'une personne qui est dedans, marche aussi. Rien ne change la liste depuis le salon pendant ce temps.
 
-Pour faire entrer quelqu'un, appuie sur **Inviter**, en haut à droite de l'accueil et de chaque liste, à côté des personnes présentes. Discord ouvre sa propre fenêtre, où tu choisis des amis ou un salon à qui envoyer l'invitation. Il faut la permission Discord *Créer une invitation* sur le salon : sans elle, TTM te le dit sur le bouton, et t'explique comment un administrateur l'accorde.
+Pour faire entrer quelqu'un, appuie sur **Inviter**, en haut à droite de l'accueil et de chaque liste, à côté des personnes présentes. Discord ouvre sa propre fenêtre, où tu choisis des amis ou un salon à qui envoyer l'invitation.
+
+Il faut la permission Discord *Créer une invitation* sur le salon : sans elle, TTM te le dit sur le bouton, et t'explique comment un administrateur l'accorde.
 
 ## Ton statut sur Discord
 
-Pendant que tu es dans l'Activity, ton profil Discord affiche Team Tasks Manager avec *Planifie les tâches avec l'équipe*, dans ta langue. Il ne dit rien de la liste, du serveur ni du salon. Discord te le demande d'abord, dans la fenêtre où tu fais savoir à TTM qui tu es. Si tu refuses, l'Activity s'ouvre quand même, sans cette ligne.
+Pendant que tu es dans l'Activity, ton profil Discord affiche Team Tasks Manager avec *Planifie les tâches avec l'équipe*, dans ta langue. Il ne dit rien de la liste, du serveur ni du salon.
+
+Discord te le demande d'abord, dans la fenêtre où tu fais savoir à TTM qui tu es. Si tu refuses, l'Activity s'ouvre quand même, sans cette ligne.
 
 ## L'accueil du salon
 
 Quand tu pars du **Lanceur d'applications** ou d'un **appel vocal** (voir [Quatre façons d'entrer](#four-ways-in)), TTM ouvre l'accueil du salon, avec le nom du salon pour titre. Les fils, les posts de forum, les salons d'annonces et les salons Stage sont exclus. L'accueil a trois parties :
 
-- **Nouvelle liste**, sous le titre : un titre et les tâches, écrits comme dans [Crée ta première liste](/docs/getting-started/#2-create-your-first-list), créée ici et déjà dans l'Activity. Le récapitulatif qui la suit dans le salon commence par sa création, et peut mentionner les propriétaires de ses tâches : voir [Quand une liste est créée](/docs/configuration/#when-a-list-is-created). Les fichiers s'importent avec `/creer-liste`, dans le salon.
+- **Nouvelle liste**, sous le titre : un titre et les tâches, écrits comme dans [Crée ta première liste](/docs/getting-started/#2-create-your-first-list), créée ici et déjà dans l'Activity.
+
+  Le récapitulatif qui la suit dans le salon commence par sa création, et peut mentionner les propriétaires de ses tâches : voir [Quand une liste est créée](/docs/configuration/#when-a-list-is-created). Les fichiers s'importent avec `/creer-liste`, dans le salon.
 - **En ce moment dans l'Activity** : qui est sur chaque liste, et qui est en train de modifier. Touches-en une pour la rejoindre.
 - **Dans le salon** : les autres listes, les plus récentes d'abord. Touches-en une pour la lire, puis **Emmener dans l'Activity**, qui attend tant que quelqu'un la modifie dans le salon.
 
@@ -77,7 +83,9 @@ Aucune liste n'entre dans l'Activity, et l'accueil masque **Nouvelle liste**. Un
 
 ## Tes réglages
 
-L'engrenage en haut à droite a deux groupes. Sous **Pour toi, partout**, **Fuseau horaire** est ton fuseau horaire, le même que [/my timezone](/docs/my-timezone/) : TTM le propose dans le salon et sur tous les serveurs aussi, et **Retirer mon fuseau** l'oublie. Sous **Sur cet appareil**, **Taille du texte**, **Thème** et **Lignes espacées**, plus de place pour toucher sur un téléphone, ne s'appliquent qu'à toi, sur cet appareil.
+L'engrenage en haut à droite a deux groupes. Sous **Pour toi, partout**, **Fuseau horaire** est ton fuseau horaire, le même que [/my timezone](/docs/my-timezone/) : TTM le propose dans le salon et sur tous les serveurs aussi, et **Retirer mon fuseau** l'oublie.
+
+Sous **Sur cet appareil**, **Taille du texte**, **Thème** et **Lignes espacées**, plus de place pour toucher sur un téléphone, ne s'appliquent qu'à toi, sur cet appareil.
 
 ## Pour aller plus loin
 

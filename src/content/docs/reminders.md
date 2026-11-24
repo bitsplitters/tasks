@@ -14,7 +14,9 @@ A reminder turns a task into something that reminds *you*, instead of the other 
 - **A reminder has a date, a time and a time zone.** It fires **once**, unless your server uses [repeating reminders](#repeating-reminders), a Premium feature.
 - **The start must be at least 5 minutes in the future.** The form starts from ten minutes from now, so a reminder for "in a moment" needs no typing at all.
 - **Only a task still to do can get one.** Completing a task stops its reminder — no need to clean up afterwards.
-- **The reminder goes to the task's owner**, by direct message if the owner is a person. If the task has no owner yet, **you become it** when you save the reminder. From then on only you, and whoever has *Manage messages* on the channel, can tick that task. To give it to someone else, set the owner before or after creating the reminder: see [Owners and tags](/docs/owners-and-tags/).
+- **The reminder goes to the task's owner**, by direct message if the owner is a person. If the task has no owner yet, **you become it** when you save the reminder.
+
+  From then on only you, and whoever has *Manage messages* on the channel, can tick that task. To give it to someone else, set the owner before or after creating the reminder: see [Owners and tags](/docs/owners-and-tags/).
 - **Nothing changes until you save.** When you edit a reminder, Save stays off until you change the date or the recurrence.
 - **Removing the owner removes the reminder**, because nobody is left to receive it.
 
@@ -51,7 +53,9 @@ A role is notified only if it can be mentioned. When that is the case, and what 
 
 ## Repeating reminders
 
-By default every reminder is a **single event** — one ping, nothing else to decide. Repetitions are a [Premium](/docs/premium/) feature: on the Free plan every reminder is single. On a plan that includes them they are still an opt-in: a server manager enables **Recurring reminders** in [/config app](/docs/configuration/#recurring-reminders). Until then, only a reminder that is already recurring shows the repetition menus.
+By default every reminder is a **single event** — one ping, nothing else to decide. Repetitions are a [Premium](/docs/premium/) feature: on the Free plan every reminder is single.
+
+On a plan that includes them they are still an opt-in: a server manager enables **Recurring reminders** in [/config app](/docs/configuration/#recurring-reminders). Until then, only a reminder that is already recurring shows the repetition menus.
 
 <div class="callout"><div class="callout-t">Recurring reminders you already have keep working</div>A reminder that was already recurring keeps firing on the Free plan, and on Premium while the toggle is off: you can change its date, move it to another task or lower the number of times it arrives, but not raise it. Cloning or importing a list creates new reminders, so where new recurring reminders can't be created, a clone or an import refuses a recurring one: clone without reminders, or set its repetitions to <code>0</code>.</div>
 

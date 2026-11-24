@@ -1,7 +1,7 @@
 ---
 title: "Eine Aufgabe im Kanal bearbeiten"
 description: "Die zweite Reihe von Buttons unter der Liste — Inhalt, Besitzer, Tag, Erinnerung und Webhook — mit ihren Formularen und Menüs."
-fonte: ba887a2603b7
+fonte: 9439d0a8db43
 ---
 
 Die zweite Reihe unter der Liste wirkt auf **eine Aufgabe auf einmal**: ihren Text, ihren Besitzer, ihre Tags, ihre Erinnerung und ihren Webhook. Diese Seite zeigt, wo du klickst. Was jede Funktion macht und welche Regeln gelten: [Besitzer und Tags](/docs/owners-and-tags/), [Erinnerungen](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -14,7 +14,9 @@ Jeder Button der zweiten Reihe ist ein **Schalter mit drei Zuständen**. Klicke 
 - <span class="c-blue">Blau</span> — aktiv im <span class="c-blue">Bearbeiten</span>-Modus.
 - <span class="c-red">Rot</span> — aktiv im <span class="c-red">Löschen</span>-Modus.
 
-Der Ablauf ist immer derselbe: **Schalte einen Button auf blau oder rot, dann wähle die Aufgabe** im [Abhak-Menü](/docs/the-task-list/#the-check-selector). TTM wendet die Aktion auf diese Aufgabe an. Solange ein Button blau oder rot ist, sagt das Menü, was passieren wird, zum Beispiel *Aufgabe bearbeiten* oder *Aufgabe löschen*; sind alle Buttons aus, sagt es *Aufgabe abhaken*: Wähle dort eine Aufgabe, um sie abzuhaken oder den Haken zu entfernen.
+Der Ablauf ist immer derselbe: **Schalte einen Button auf blau oder rot, dann wähle die Aufgabe** im [Abhak-Menü](/docs/the-task-list/#the-check-selector). TTM wendet die Aktion auf diese Aufgabe an.
+
+Solange ein Button blau oder rot ist, sagt das Menü, was passieren wird, zum Beispiel *Aufgabe bearbeiten* oder *Aufgabe löschen*; sind alle Buttons aus, sagt es *Aufgabe abhaken*: Wähle dort eine Aufgabe, um sie abzuhaken oder den Haken zu entfernen.
 
 Bis du auf diese Weise einmal eine Aufgabe gewählt hast, schickt dir **Inhalt** oder **Erinnerung** auf blau oder rot eine Nachricht, die nur du siehst. Sie sagt, welche Aufgabe du wählen sollst und was ein erneutes Drücken des Buttons bewirkt. Hast du einmal bei eingeschaltetem Button der zweiten Reihe eine Aufgabe gewählt, hört die Nachricht auf, auf jedem Server.
 
@@ -26,7 +28,9 @@ Bis du auf diese Weise einmal eine Aufgabe gewählt hast, schickt dir **Inhalt**
 | [**Erinnerung**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Eine Erinnerung hinzufügen oder bearbeiten. | Die Erinnerung entfernen. |
 | [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> <a class="premium-tag" href="/docs/premium/" title="Während der Beta für jeden Server freigeschaltet">Premium</a> | Einen Webhook mit der Aufgabe verknüpfen. | Den Webhook von der Aufgabe lösen. |
 
-Ist **Besitzer**, **Tag**, **Erinnerung** oder **Webhook** rot, listet das Menü nur die Aufgaben, die etwas zum Entfernen haben: einen Besitzer, Tags, eine Erinnerung oder einen Webhook. Eine Aufgabe, die nur aus Tags besteht, wird nicht gelistet, da sie ohne sie keinen Text hätte. Hat keine Aufgabe etwas zum Entfernen, ist das Menü aus und sagt es, zum Beispiel *Kein Besitzer zum Entfernen*, und du bekommst einen Hinweis, wie du einen hinzufügst.
+Ist **Besitzer**, **Tag**, **Erinnerung** oder **Webhook** rot, listet das Menü nur die Aufgaben, die etwas zum Entfernen haben: einen Besitzer, Tags, eine Erinnerung oder einen Webhook. Eine Aufgabe, die nur aus Tags besteht, wird nicht gelistet, da sie ohne sie keinen Text hätte.
+
+Hat keine Aufgabe etwas zum Entfernen, ist das Menü aus und sagt es, zum Beispiel *Kein Besitzer zum Entfernen*, und du bekommst einen Hinweis, wie du einen hinzufügst.
 
 Nachdem du **Besitzer**, **Tag** oder **Erinnerung** benutzt hast, wird der Button wieder grau oder bleibt für die nächste Aufgabe an: Das entscheidet dein Server mit **Zustand nach der Auswahl beibehalten** im Menü **Verhalten** von [/config app](/docs/configuration/#keep-the-state-after-a-selection). Das Beibehalten des Zustands ändert, was Besitzer und Tag können: Siehe [Besitzer](#owner) und [Tag](#tag).
 
@@ -48,7 +52,9 @@ Solange das Formular offen ist, ist die Liste für die anderen gesperrt. Speiche
 
 **Blau** zeigt unter den Buttons ein Menü mit der Beschriftung *Wähle eine Aufgabe im Menü oben, um sie zu übernehmen, oder wähle, wer sie bekommt*.
 
-**Um eine Aufgabe zu übernehmen**, klicke **Besitzer**, bis er blau wird, und wähle dann die Aufgabe im Abhak-Menü, ohne jemanden auszuwählen: Sie wird deine, und der Kanal zeigt, wer sie übernommen hat. Eine Aufgabe, die schon dir gehört oder die jemand anderem gehört, bleibt, wie sie ist, und TTM sagt dir, warum. Um jemand anderem eine Aufgabe abzunehmen, wähle im Menü dich selbst, bestätige die Auswahl und wähle dann die Aufgabe: Einen Besitzer zu ersetzen braucht eine ausdrückliche Wahl.
+**Um eine Aufgabe zu übernehmen**, klicke **Besitzer**, bis er blau wird, und wähle dann die Aufgabe im Abhak-Menü, ohne jemanden auszuwählen: Sie wird deine, und der Kanal zeigt, wer sie übernommen hat.
+
+Eine Aufgabe, die schon dir gehört oder die jemand anderem gehört, bleibt, wie sie ist, und TTM sagt dir, warum. Um jemand anderem eine Aufgabe abzunehmen, wähle im Menü dich selbst, bestätige die Auswahl und wähle dann die Aufgabe: Einen Besitzer zu ersetzen braucht eine ausdrückliche Wahl.
 
 **Um jemandem eine Aufgabe zu geben**, wähle den Besitzer im Menü, bestätige die Auswahl und wähle dann die Aufgabe. So gibst du eine Aufgabe mehreren Personen, eine [Premium](/docs/premium/)-Funktion:
 

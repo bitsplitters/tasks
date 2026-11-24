@@ -1,7 +1,7 @@
 ---
 title: "Bekannte Grenzen"
 description: "Die Obergrenzen für Listen, Aufgaben, Erinnerungen und mehr: Die meisten kommen von Discord selbst, und so arbeitest du damit."
-fonte: fad07d75572a
+fonte: a9ff3dff4029
 ---
 
 Team Tasks Manager arbeitet komplett innerhalb von Discord, deshalb sind die meisten Grenzen unten nicht die Entscheidung von TTM. Sie kommen von Discord selbst. Zum Beispiel: wie lang eine Nachricht sein darf, wie viele Menüs in eine Nachricht passen, wie weit zurück man Nachrichten gesammelt löschen kann. Wo eine Grenze von Discord kommt, sagen wir es dazu.
@@ -18,7 +18,9 @@ Team Tasks Manager arbeitet komplett innerhalb von Discord, deshalb sind die mei
 
 <div class="callout"><div class="callout-t">An eine Grenze gestoßen?</div>Verteile die Arbeit auf mehrere Listen. Zwei gezielte Listen lesen sich leichter als eine, die ausgereizt ist, und jede hat ihre eigenen Erinnerungen, Besitzer und Tags.</div>
 
-**Herunterladen gibt dir immer eine Datei.** Eine normale Discord-Nachricht ist auf 2000 Zeichen begrenzt. Deshalb postet **Herunterladen**, im Panel **Mehr** <img class="inline-ic" src="/icons/other.png" alt="" /> unter der Liste im Kanal, die Liste nie als Text. Es schickt dir eine `.txt`-Datei, nur dir, in einer Nachricht, die nur du sehen kannst. Es ist dieselbe Datei, die `/liste-erstellen` wieder importieren kann.
+**Herunterladen gibt dir immer eine Datei.** Eine normale Discord-Nachricht ist auf 2000 Zeichen begrenzt. Deshalb postet **Herunterladen**, im Panel **Mehr** <img class="inline-ic" src="/icons/other.png" alt="" /> unter der Liste im Kanal, die Liste nie als Text.
+
+Es schickt dir eine `.txt`-Datei, nur dir, in einer Nachricht, die nur du sehen kannst. Es ist dieselbe Datei, die `/liste-erstellen` wieder importieren kann.
 
 **Die Nachricht zu löschen ist nicht dasselbe, wie die Liste zu löschen.** Die Liste behält ihren Platz, und ihre Erinnerungen kommen weiter an: siehe [Was mit einer vierten Liste passiert](/docs/premium/#what-happens-to-a-fourth-list).
 
@@ -58,7 +60,9 @@ In jedem Fall werden nur die Mitglieder benachrichtigt, die den Kanal der Liste 
 
 ## Besitzer und Tags
 
-Jede Aufgabe hat **einen Besitzer**: eine Person oder eine Rolle. Mit Premium können es auch bis zu 25 Personen sein, die sich eine Rolle teilen, die TTM für sie erstellt. 25 ist das Maximum des Besitzer-Menüs. Eine Aufgabe kann **bis zu 25 Tags** tragen, die Benutzer oder Rollen, die benachrichtigt werden sollen: 25 ist das Maximum von Discord für ein Menü.
+Jede Aufgabe hat **einen Besitzer**: eine Person oder eine Rolle. Mit Premium können es auch bis zu 25 Personen sein, die sich eine Rolle teilen, die TTM für sie erstellt. 25 ist das Maximum des Besitzer-Menüs.
+
+Eine Aufgabe kann **bis zu 25 Tags** tragen, die Benutzer oder Rollen, die benachrichtigt werden sollen: 25 ist das Maximum von Discord für ein Menü.
 
 **Rollen, die TTM erstellt, zählen zu den 250 Rollen pro Server von Discord.** Bei 250 Rollen kann TTM keine neue erstellen und sagt es dir. Wann TTM seine Rollen löscht: siehe [Die Rollen, die TTM erstellt](/docs/owners-and-tags/#the-roles-ttm-creates).
 
@@ -78,17 +82,23 @@ nennt dieselbe Zahl, die du hier liest.
 
 ## Der Aktivitätsverlauf
 
-Wenn der Verlauf eingeschaltet ist, postet TTM jede Aktion über einen Discord-Webhook in einen Thread neben der Liste. Discord erlaubt **15 Webhooks pro Kanal**, deshalb erstellt TTM **einen Webhook pro Kanal** und nutzt ihn für jede Liste in diesem Kanal weiter. Name und Bild, die du bei jeder Nachricht siehst, werden pro Nachricht gesetzt, optisch ändert sich also nichts.
+Wenn der Verlauf eingeschaltet ist, postet TTM jede Aktion über einen Discord-Webhook in einen Thread neben der Liste.
+
+Discord erlaubt **15 Webhooks pro Kanal**, deshalb erstellt TTM **einen Webhook pro Kanal** und nutzt ihn für jede Liste in diesem Kanal weiter. Name und Bild, die du bei jeder Nachricht siehst, werden pro Nachricht gesetzt, optisch ändert sich also nichts.
 
 Hat ein Kanal die 15 von Discord schon erreicht (wegen anderer Bots oder Integrationen), kann der Verlauf einer neuen Liste nicht starten. Gib einen frei unter **Kanal bearbeiten → Integrationen → Webhooks**.
 
 ## Sprachkanäle
 
-Listen funktionieren auch im Chat eines Sprachkanals, mit einem Unterschied: Dort haben sie keinen [Aktivitätsverlauf](#the-activity-timeline). Der Verlauf ist ein Thread neben der Liste, und Discord erlaubt in Sprachkanälen keine Threads. Alles andere funktioniert wie in einem Textkanal: die Buttons, Benachrichtigungen, Erinnerungen, die [Activity](/docs/activity/), **Liste klonen**, **Herunterladen**, **Liste versiegeln** und **Liste löschen**.
+Listen funktionieren auch im Chat eines Sprachkanals, mit einem Unterschied: Dort haben sie keinen [Aktivitätsverlauf](#the-activity-timeline). Der Verlauf ist ein Thread neben der Liste, und Discord erlaubt in Sprachkanälen keine Threads.
+
+Alles andere funktioniert wie in einem Textkanal: die Buttons, Benachrichtigungen, Erinnerungen, die [Activity](/docs/activity/), **Liste klonen**, **Herunterladen**, **Liste versiegeln** und **Liste löschen**.
 
 Ist der Verlauf in [`/config app`](/docs/configuration/#history-tracking) eingeschaltet, bekommt jede Person, die eine Liste in einem Sprachkanal erstellt, eine kurze Nachricht dazu, die nur sie sehen kann; die Übungsliste des Tutorials überspringt sie. Wenn du den Verlauf brauchst, erstelle die Liste in einem Textkanal oder kopiere sie mit **Liste klonen** dorthin.
 
-In einem Sprachkanal braucht TTM weder *Öffentliche Threads erstellen* noch *Webhooks verwalten*, die nur dem Verlauf dienen. Stattdessen braucht es *Verbinden*: Ohne diese Berechtigung kann TTM nicht im Chat des Sprachkanals schreiben. Discord gibt *Verbinden* standardmäßig allen; nimmt dein Server sie in einem Sprachkanal weg, gib sie dort TTM, sonst sagt dir `/liste-erstellen`, dass sie fehlt.
+In einem Sprachkanal braucht TTM weder *Öffentliche Threads erstellen* noch *Webhooks verwalten*, die nur dem Verlauf dienen. Stattdessen braucht es *Verbinden*: Ohne diese Berechtigung kann TTM nicht im Chat des Sprachkanals schreiben.
+
+Discord gibt *Verbinden* standardmäßig allen; nimmt dein Server sie in einem Sprachkanal weg, gib sie dort TTM, sonst sagt dir `/liste-erstellen`, dass sie fehlt.
 
 ## Benachrichtigungen
 

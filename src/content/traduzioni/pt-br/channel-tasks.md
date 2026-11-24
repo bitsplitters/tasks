@@ -1,7 +1,7 @@
 ---
 title: "Editando uma tarefa no canal"
 description: "A segunda linha de botões sob a lista — Conteúdo, Proprietário, Tag, Lembrete e Webhook — com seus formulários e menus."
-fonte: ba887a2603b7
+fonte: 9439d0a8db43
 ---
 
 A segunda linha sob a lista age sobre **uma tarefa por vez**: o texto dela, o proprietário, as tags, o lembrete e o webhook. Esta página mostra onde clicar. O que cada recurso faz e as regras dele: [Proprietários e tags](/docs/owners-and-tags/), [Lembretes](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -14,7 +14,9 @@ Cada botão da segunda linha é um **interruptor de três estados**. Clique nele
 - <span class="c-blue">Azul</span> — ativo no modo <span class="c-blue">edição</span>.
 - <span class="c-red">Vermelho</span> — ativo no modo <span class="c-red">exclusão</span>.
 
-O procedimento é sempre o mesmo: **deixe um botão azul ou vermelho e depois escolha a tarefa** no [seletor de marcação](/docs/the-task-list/#the-check-selector). O TTM aplica a ação a essa tarefa. Enquanto um botão está azul ou vermelho, o seletor diz o que vai acontecer, por exemplo *Editar tarefa* ou *Excluir tarefa*; com todos os botões desligados, ele diz *Marcar tarefa*: escolha uma tarefa ali para marcá-la ou desmarcá-la.
+O procedimento é sempre o mesmo: **deixe um botão azul ou vermelho e depois escolha a tarefa** no [seletor de marcação](/docs/the-task-list/#the-check-selector). O TTM aplica a ação a essa tarefa.
+
+Enquanto um botão está azul ou vermelho, o seletor diz o que vai acontecer, por exemplo *Editar tarefa* ou *Excluir tarefa*; com todos os botões desligados, ele diz *Marcar tarefa*: escolha uma tarefa ali para marcá-la ou desmarcá-la.
 
 Até você escolher uma tarefa desse jeito uma vez, deixar **Conteúdo** ou **Lembrete** azul ou vermelho envia uma mensagem que só você vê. Ela diz qual tarefa escolher e o que acontece se você apertar o botão de novo. Depois que você escolhe uma tarefa com um botão da segunda linha ligado, a mensagem para de aparecer, em todos os servidores.
 
@@ -26,7 +28,9 @@ Até você escolher uma tarefa desse jeito uma vez, deixar **Conteúdo** ou **Le
 | [**Lembrete**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Adiciona ou edita um lembrete. | Remove o lembrete. |
 | [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> <a class="premium-tag" href="/docs/premium/" title="Liberado para todos os servidores durante a beta">Premium</a> | Vincula um webhook à tarefa. | Remove o webhook da tarefa. |
 
-Com **Proprietário**, **Tag**, **Lembrete** ou **Webhook** em vermelho, o seletor lista só as tarefas que têm algo a remover: um proprietário, tags, um lembrete ou um webhook. Uma tarefa feita só de tags não aparece, porque sem elas ficaria sem texto. Se nenhuma tarefa tem algo a remover, o seletor fica desligado e diz isso, por exemplo *Nenhum proprietário para remover*, e você recebe uma nota sobre como adicionar um.
+Com **Proprietário**, **Tag**, **Lembrete** ou **Webhook** em vermelho, o seletor lista só as tarefas que têm algo a remover: um proprietário, tags, um lembrete ou um webhook. Uma tarefa feita só de tags não aparece, porque sem elas ficaria sem texto.
+
+Se nenhuma tarefa tem algo a remover, o seletor fica desligado e diz isso, por exemplo *Nenhum proprietário para remover*, e você recebe uma nota sobre como adicionar um.
 
 Depois que você usa **Proprietário**, **Tag** ou **Lembrete**, o botão volta para cinza ou continua ligado para a próxima tarefa: quem decide é o seu servidor, com **Manter o estado após a seleção** no menu **Comportamento** do [/config app](/docs/configuration/#keep-the-state-after-a-selection). Manter o estado muda o que Proprietário e Tag podem fazer: veja [Proprietário](#owner) e [Tag](#tag).
 
@@ -48,7 +52,9 @@ O **vermelho** exclui a tarefa. Excluir um grupo com subtarefas pede confirmaç�
 
 O **azul** mostra um menu sob os botões, com o rótulo *Escolha uma tarefa no menu acima para pegá-la, ou escolha quem a recebe*.
 
-**Para pegar uma tarefa**, clique em **Proprietário** até ficar azul e depois escolha a tarefa no seletor de marcação, sem escolher ninguém: ela vira sua, e o canal mostra quem a pegou. Uma tarefa que já é sua, ou que é de outra pessoa, fica como está, e o TTM diz por quê. Para tirar uma tarefa de outra pessoa, escolha você mesmo no menu, confirme a seleção e depois escolha a tarefa: trocar um proprietário exige uma escolha explícita.
+**Para pegar uma tarefa**, clique em **Proprietário** até ficar azul e depois escolha a tarefa no seletor de marcação, sem escolher ninguém: ela vira sua, e o canal mostra quem a pegou.
+
+Uma tarefa que já é sua, ou que é de outra pessoa, fica como está, e o TTM diz por quê. Para tirar uma tarefa de outra pessoa, escolha você mesmo no menu, confirme a seleção e depois escolha a tarefa: trocar um proprietário exige uma escolha explícita.
 
 **Para dar uma tarefa a alguém**, escolha o proprietário no menu, confirme a seleção e depois escolha a tarefa. Para dar uma tarefa a várias pessoas, um recurso [Premium](/docs/premium/):
 

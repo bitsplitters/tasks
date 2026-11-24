@@ -1,7 +1,7 @@
 ---
 title: Azioni sulla lista
 description: Pulisci, Riapri tutti, Clona, Download, Sigilla ed Elimina — cosa fa ognuna all'intera lista e dove la trovi.
-fonte: c473903dad41
+fonte: d65f7aaf1e14
 ---
 
 Queste azioni lavorano sull'**intera lista**, mai su un singolo task. Due esistono in entrambi i posti; le altre solo nel canale.
@@ -21,7 +21,9 @@ Queste azioni lavorano sull'**intera lista**, mai su un singolo task. Due esisto
 
 **Pulisci lista** toglie ogni task completato, subtask compresi e rinumera i task che restano. Un gruppo non completato resta, anche quando alcuni dei suoi subtask se ne vanno.
 
-Prima, una conferma ti dice quanti task se ne andranno e cosa se ne va con loro. Se ne vanno **per sempre**, con i loro promemoria e tag, se ne hanno. Nel canale, se la configurazione del tuo server lo prevede, la notifica nel canale della lista o nel suo thread mostra i task tolti: vedi [Modalità notifica](/docs/configuration/#notification-mode). Nell'Activity finiscono nel riepilogo alla fine della sessione.
+Prima, una conferma ti dice quanti task se ne andranno e cosa se ne va con loro. Se ne vanno **per sempre**, con i loro promemoria e tag, se ne hanno.
+
+Nel canale, se la configurazione del tuo server lo prevede, la notifica nel canale della lista o nel suo thread mostra i task tolti: vedi [Modalità notifica](/docs/configuration/#notification-mode). Nell'Activity finiscono nel riepilogo alla fine della sessione.
 
 - **Nessun task completato**: non c'è niente da togliere e il bot lo dice subito.
 - **Ogni task completato**: Pulisci rifiuta, perché una lista non può essere vuota. Togli la spunta ad almeno un task, oppure elimina l'intera lista con [Elimina](#delete), nel canale.
@@ -33,7 +35,9 @@ Prima, una conferma ti dice quanti task se ne andranno e cosa se ne va con loro.
 Prima, il bot ti chiede di scegliere:
 
 - **Riapri** — riapre subito ogni task.
-- **Nuova data** — riapre e sposta i promemoria dei task che riapri. Il primo di quei promemoria in calendario si sposta alla data che scegli, almeno 5 minuti da adesso. Gli altri mantengono la stessa distanza da lui. I promemoria dei task ancora da fare restano come sono. Questa scelta compare solo quando un task che riapri ha un promemoria.
+- **Nuova data** — riapre e sposta i promemoria dei task che riapri. Il primo di quei promemoria in calendario si sposta alla data che scegli, almeno 5 minuti da adesso. Gli altri mantengono la stessa distanza da lui.
+
+  I promemoria dei task ancora da fare restano come sono. Questa scelta compare solo quando un task che riapri ha un promemoria.
 - **Annulla** — lascia la lista com'è.
 
 Riaprire fa partire i **webhook di riapertura** dei task che riapre e ignora i proprietari: chiunque può modificare la lista può riaprirla.
@@ -56,7 +60,9 @@ Solo nel canale, anche quando la lista è bloccata.
 
 ## Download
 
-**Download** ti dà un file `.txt` della lista, scritto come spiegato in [Modificare una lista a mano](/docs/writing-a-list/) e inviato **solo a te**. Il file mantiene i codici di Discord al posto dei nomi: vedi [I codici dietro i nomi](/docs/writing-a-list/#the-codes-behind-the-names). Tienilo come backup, oppure ricostruisci la lista da lì con `/crea-lista`, anche su un altro server: vedi [Riusare una lista ovunque](/docs/tips/#reuse-a-list-anywhere).
+**Download** ti dà un file `.txt` della lista, scritto come spiegato in [Modificare una lista a mano](/docs/writing-a-list/) e inviato **solo a te**. Il file mantiene i codici di Discord al posto dei nomi: vedi [I codici dietro i nomi](/docs/writing-a-list/#the-codes-behind-the-names).
+
+Tienilo come backup, oppure ricostruisci la lista da lì con `/crea-lista`, anche su un altro server: vedi [Riusare una lista ovunque](/docs/tips/#reuse-a-list-anywhere).
 
 Un messaggio di Discord è limitato a 2000 caratteri, quindi Download non pubblica mai la lista come testo: è sempre un file.
 

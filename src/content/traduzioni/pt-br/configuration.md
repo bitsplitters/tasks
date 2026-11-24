@@ -1,7 +1,7 @@
 ---
 title: "/config app"
 description: "Personalize notificações, histórico, lembretes, fuso horário e permissões com /config app."
-fonte: 449f5cc3050a
+fonte: cc3b2bd36302
 ---
 
 Execute o comando:
@@ -52,15 +52,21 @@ Na Activity, as marcações não publicam notificação uma a uma: quando a list
 
 ### Quando uma lista é criada
 
-Uma lista nova publica a própria notificação embaixo dela: *criei a lista*, com um link para a lista. Ela vem de `/criar-lista`, do Tutorial, de uma importação de arquivo, de uma clonagem e de **Nova lista** na Activity. Uma clonagem a publica no canal novo, e o canal da lista original recebe a notificação habitual da clonagem. Com o modo **Notificações desativadas**, nada é publicado no canal, mas o tópico do histórico ainda registra a criação.
+Uma lista nova publica a própria notificação embaixo dela: *criei a lista*, com um link para a lista. Ela vem de `/criar-lista`, do Tutorial, de uma importação de arquivo, de uma clonagem e de **Nova lista** na Activity.
+
+Uma clonagem a publica no canal novo, e o canal da lista original recebe a notificação habitual da clonagem. Com o modo **Notificações desativadas**, nada é publicado no canal, mas o tópico do histórico ainda registra a criação.
 
 Com [Mencionar os proprietários nas listas novas](#mention-owners-in-new-lists) ativado, a notificação menciona os proprietários das tarefas, e o Discord os avisa. Uma lista criada na Activity menciona os proprietários no resumo que a acompanha de volta ao canal.
 
-Com as [Dicas](#tips) ativadas, a primeira notificação de uma lista nova termina com uma explicação: por que o TTM publica notificações e, com o rastreamento do histórico ativado, o que é o tópico. Ela aparece uma vez por lista, e só se as dicas e as notificações estavam ativadas quando a lista foi criada: uma equipe que desativou uma das duas já sabe se virar. As listas criadas antes de essa explicação existir não a mostram.
+Com as [Dicas](#tips) ativadas, a primeira notificação de uma lista nova termina com uma explicação: por que o TTM publica notificações e, com o rastreamento do histórico ativado, o que é o tópico.
+
+Ela aparece uma vez por lista, e só se as dicas e as notificações estavam ativadas quando a lista foi criada: uma equipe que desativou uma das duas já sabe se virar. As listas criadas antes de essa explicação existir não a mostram.
 
 ## Rastreamento do histórico
 
-Quando ativado, **cada ação nas suas listas é registrada em um tópico dedicado**, o que dá uma trilha de auditoria de quem fez o quê e quando. Ativado por padrão. O tópico começa com a lista: a primeira linha dele diz quem a criou. As listas em canais de voz não têm tópico de histórico, porque o Discord não permite tópicos lá: veja [Canais de voz](/docs/known-limits/#voice-channels). Uma sessão na Activity entra no tópico por inteiro, uma linha por alteração, quando a lista volta ao canal.
+Quando ativado, **cada ação nas suas listas é registrada em um tópico dedicado**, o que dá uma trilha de auditoria de quem fez o quê e quando. Ativado por padrão. O tópico começa com a lista: a primeira linha dele diz quem a criou.
+
+As listas em canais de voz não têm tópico de histórico, porque o Discord não permite tópicos lá: veja [Canais de voz](/docs/known-limits/#voice-channels). Uma sessão na Activity entra no tópico por inteiro, uma linha por alteração, quando a lista volta ao canal.
 
 ## Comportamento
 
@@ -68,11 +74,15 @@ Um menu suspenso com três opções: **Notificações push legíveis**, **Manter
 
 ### Notificações push legíveis
 
-Quando ativada, o TTM acrescenta texto simples junto dos embeds, para que suas **notificações push no celular** sejam legíveis de relance. Só com embeds, elas muitas vezes aparecem vazias na tela de bloqueio. Ativada por padrão. Desativá-la nunca impede um lembrete: ele chega só com o cartão ou, no caso de um cargo, só com a menção. As menções aos proprietários continuam saindo, por conta própria, mesmo com ela desativada.
+Quando ativada, o TTM acrescenta texto simples junto dos embeds, para que suas **notificações push no celular** sejam legíveis de relance. Só com embeds, elas muitas vezes aparecem vazias na tela de bloqueio. Ativada por padrão.
+
+Desativá-la nunca impede um lembrete: ele chega só com o cartão ou, no caso de um cargo, só com a menção. As menções aos proprietários continuam saindo, por conta própria, mesmo com ela desativada.
 
 ### Manter o estado após a seleção
 
-Só no canal. Depois de usar **Proprietário**, **Tag** ou **Lembrete** na segunda linha embaixo da lista, isto decide se o botão volta ao cinza ou **mantém** o modo ativo. Desativada por padrão: o botão volta ao cinza. Ative quando você aplica a mesma ação a várias tarefas seguidas.
+Só no canal. Depois de usar **Proprietário**, **Tag** ou **Lembrete** na segunda linha embaixo da lista, isto decide se o botão volta ao cinza ou **mantém** o modo ativo.
+
+Desativada por padrão: o botão volta ao cinza. Ative quando você aplica a mesma ação a várias tarefas seguidas.
 
 Ela também muda o que **Tag** e **Proprietário** podem fazer. Com ela desativada, a sua escolha sempre sobrescreve. Com ela ativada, você também edita ao vivo as tags ou o proprietário que a tarefa já tem. Veja [Tag](/docs/channel-tasks/#tag) para o detalhamento completo.
 
@@ -80,7 +90,9 @@ Na Activity, o painel de uma tarefa sempre funciona do mesmo jeito: depois de um
 
 ### Mencionar os proprietários nas listas novas
 
-Quando alguém cria, importa ou clona uma lista, a primeira notificação dela menciona os proprietários das tarefas: pessoas e cargos, cada um uma vez, na ordem da lista. As menções vão no texto simples da notificação, então o Discord avisa os proprietários. Quem criou a lista não é mencionado: já sabe. O @everyone também não, mesmo quando é proprietário de uma tarefa: uma lista nova não avisa o servidor inteiro.
+Quando alguém cria, importa ou clona uma lista, a primeira notificação dela menciona os proprietários das tarefas: pessoas e cargos, cada um uma vez, na ordem da lista. As menções vão no texto simples da notificação, então o Discord avisa os proprietários.
+
+Quem criou a lista não é mencionado: já sabe. O @everyone também não, mesmo quando é proprietário de uma tarefa: uma lista nova não avisa o servidor inteiro.
 
 Ativada por padrão, inclusive nos servidores que adicionaram o TTM antes de essa opção existir. Uma lista criada dentro de uma sessão da Activity menciona os proprietários no resumo, quando volta ao canal. Veja [Quando uma lista é criada](#when-a-list-is-created).
 
@@ -96,7 +108,11 @@ Mostra cada tarefa concluída no texto menor e cinza do Discord, para que o que 
 
 ### Espaço entre grupos
 
-Coloca uma linha vazia acima e abaixo de cada tarefa que tem subtarefas, para que cada grupo fique separado do resto da lista. Desativada por padrão, para uma lista mais compacta: os servidores que adicionaram o TTM antes da versão 2.0.0 a têm ativada até um administrador desativá-la. Ela muda só a lista em si: as notificações ficam como estão. O Discord não tem uma linha vazia mais fina para uma lista, então a escolha é entre uma linha inteira e nenhuma.
+Coloca uma linha vazia acima e abaixo de cada tarefa que tem subtarefas, para que cada grupo fique separado do resto da lista.
+
+Desativada por padrão, para uma lista mais compacta: os servidores que adicionaram o TTM antes da versão 2.0.0 a têm ativada até um administrador desativá-la.
+
+Ela muda só a lista em si: as notificações ficam como estão. O Discord não tem uma linha vazia mais fina para uma lista, então a escolha é entre uma linha inteira e nenhuma.
 
 ## Lembretes recorrentes
 
@@ -112,7 +128,9 @@ Um lembrete que *já* é recorrente continua disparando mesmo com a opção desa
 
 ## Fuso horário
 
-Define o fuso horário em que a sua equipe trabalha. Os membros ainda podem usar o próprio nos lembretes: até escolherem um, o TTM propõe o fuso do idioma do Discord deles, e este aqui só quando o idioma é falado em vários fusos, como o inglês (EUA). Veja [Seu fuso horário](/docs/reminders/#your-time-zone). Clique no botão e cole o nome oficial de um fuso: procure-o no **[mapa de fusos horários](https://timezones.bitsplitters.app)**.
+Define o fuso horário em que a sua equipe trabalha. Os membros ainda podem usar o próprio nos lembretes: até escolherem um, o TTM propõe o fuso do idioma do Discord deles, e este aqui só quando o idioma é falado em vários fusos, como o inglês (EUA). Veja [Seu fuso horário](/docs/reminders/#your-time-zone).
+
+Clique no botão e cole o nome oficial de um fuso: procure-o no **[mapa de fusos horários](https://timezones.bitsplitters.app)**.
 
 ## Sincronizar permissões
 

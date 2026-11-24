@@ -1,7 +1,7 @@
 ---
 title: "Acciones sobre la lista"
 description: "Limpiar, Reabrir todo, Clonar, Descargar, Sellar y Eliminar: qué hace cada una con la lista completa y dónde la encuentras."
-fonte: c473903dad41
+fonte: d65f7aaf1e14
 ---
 
 Estas acciones trabajan sobre la **lista completa**, nunca sobre una sola tarea. Dos existen en los dos lugares; las demás, solo en el canal.
@@ -21,7 +21,9 @@ Estas acciones trabajan sobre la **lista completa**, nunca sobre una sola tarea.
 
 **Limpiar lista** quita todas las tareas completadas, subtareas incluidas, y renumera las tareas que se quedan. Un grupo que no está completado se queda, aunque algunas de sus subtareas se vayan.
 
-Primero, una confirmación te dice cuántas tareas se irán y qué se va con ellas. Se van **para siempre**, con sus recordatorios y etiquetas, si los tienen. En el canal, si la configuración de tu servidor lo permite, la notificación en el canal de la lista o en su hilo muestra las tareas quitadas: consulta [Modo de notificación](/docs/configuration/#notification-mode). En la Activity terminan en el resumen del final de la sesión.
+Primero, una confirmación te dice cuántas tareas se irán y qué se va con ellas. Se van **para siempre**, con sus recordatorios y etiquetas, si los tienen.
+
+En el canal, si la configuración de tu servidor lo permite, la notificación en el canal de la lista o en su hilo muestra las tareas quitadas: consulta [Modo de notificación](/docs/configuration/#notification-mode). En la Activity terminan en el resumen del final de la sesión.
 
 - **Ninguna tarea completada**: no hay nada que quitar, y el bot te lo dice de inmediato.
 - **Todas las tareas completadas**: Limpiar se niega, porque una lista no puede quedar vacía. Desmarca al menos una tarea, o elimina la lista completa con [Eliminar](#delete), en el canal.
@@ -33,7 +35,9 @@ Primero, una confirmación te dice cuántas tareas se irán y qué se va con ell
 Primero, el bot te pide que elijas:
 
 - **Reabrir**: reabre todas las tareas ahora.
-- **Nueva fecha**: reabre y mueve los recordatorios de las tareas que reabres. El primero de esos recordatorios en el calendario se mueve a la fecha que elijas, al menos 5 minutos después de ahora. Los demás mantienen la misma distancia respecto a él. Los recordatorios de las tareas todavía pendientes se quedan como están. Esta opción solo aparece cuando una tarea que reabres tiene un recordatorio.
+- **Nueva fecha**: reabre y mueve los recordatorios de las tareas que reabres. El primero de esos recordatorios en el calendario se mueve a la fecha que elijas, al menos 5 minutos después de ahora. Los demás mantienen la misma distancia respecto a él.
+
+  Los recordatorios de las tareas todavía pendientes se quedan como están. Esta opción solo aparece cuando una tarea que reabres tiene un recordatorio.
 - **Cancelar**: deja la lista como está.
 
 Al reabrir se disparan los **webhooks de reapertura** de las tareas que reabre, y se ignoran los propietarios: cualquiera que pueda editar la lista puede reabrirla.
@@ -56,7 +60,9 @@ Solo en el canal, incluso con la lista bloqueada.
 
 ## Descargar
 
-**Descargar** te da un archivo `.txt` de la lista, escrito como se explica en [Editar una lista a mano](/docs/writing-a-list/) y enviado **solo a ti**. El archivo conserva los códigos de Discord en lugar de los nombres: consulta [Los códigos detrás de los nombres](/docs/writing-a-list/#the-codes-behind-the-names). Guárdalo como copia de seguridad, o reconstruye la lista a partir de él con `/crear-lista`, incluso en otro servidor: consulta [Reutiliza una lista en cualquier lugar](/docs/tips/#reuse-a-list-anywhere).
+**Descargar** te da un archivo `.txt` de la lista, escrito como se explica en [Editar una lista a mano](/docs/writing-a-list/) y enviado **solo a ti**. El archivo conserva los códigos de Discord en lugar de los nombres: consulta [Los códigos detrás de los nombres](/docs/writing-a-list/#the-codes-behind-the-names).
+
+Guárdalo como copia de seguridad, o reconstruye la lista a partir de él con `/crear-lista`, incluso en otro servidor: consulta [Reutiliza una lista en cualquier lugar](/docs/tips/#reuse-a-list-anywhere).
 
 Un mensaje de Discord está limitado a 2000 caracteres, así que Descargar nunca publica la lista como texto: siempre es un archivo.
 

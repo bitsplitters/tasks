@@ -1,7 +1,7 @@
 ---
 title: "Listenaktionen"
 description: "Bereinigen, Alle wieder öffnen, Klonen, Herunterladen, Versiegeln und Löschen — was jede Aktion mit der ganzen Liste macht und wo du sie findest."
-fonte: c473903dad41
+fonte: d65f7aaf1e14
 ---
 
 Diese Aktionen wirken auf die **ganze Liste**, nie auf eine einzelne Aufgabe. Zwei gibt es an beiden Orten, die anderen nur im Kanal.
@@ -21,7 +21,9 @@ Diese Aktionen wirken auf die **ganze Liste**, nie auf eine einzelne Aufgabe. Zw
 
 **Liste bereinigen** entfernt jede erledigte Aufgabe, Unteraufgaben eingeschlossen, und nummeriert die verbleibenden Aufgaben neu. Eine Gruppe, die nicht erledigt ist, bleibt bestehen, auch wenn einige ihrer Unteraufgaben verschwinden.
 
-Zuerst sagt dir eine Bestätigung, wie viele Aufgaben verschwinden und was mit ihnen geht. Sie verschwinden **endgültig**, samt ihren Erinnerungen und Tags, falls sie welche haben. Im Kanal zeigt die Benachrichtigung im Kanal der Liste oder in ihrem Thread die entfernten Aufgaben, wenn die Konfiguration deines Servers das vorsieht: siehe [Benachrichtigungsmodus](/docs/configuration/#notification-mode). In der Activity landen sie in der Zusammenfassung am Ende der Sitzung.
+Zuerst sagt dir eine Bestätigung, wie viele Aufgaben verschwinden und was mit ihnen geht. Sie verschwinden **endgültig**, samt ihren Erinnerungen und Tags, falls sie welche haben.
+
+Im Kanal zeigt die Benachrichtigung im Kanal der Liste oder in ihrem Thread die entfernten Aufgaben, wenn die Konfiguration deines Servers das vorsieht: siehe [Benachrichtigungsmodus](/docs/configuration/#notification-mode). In der Activity landen sie in der Zusammenfassung am Ende der Sitzung.
 
 - **Keine Aufgabe erledigt**: Es gibt nichts zu entfernen, und der Bot sagt es sofort.
 - **Jede Aufgabe erledigt**: Bereinigen lehnt ab, denn eine Liste darf nicht leer sein. Nimm bei mindestens einer Aufgabe den Haken weg, oder entferne die ganze Liste mit [Löschen](#delete), im Kanal.
@@ -33,7 +35,9 @@ Zuerst sagt dir eine Bestätigung, wie viele Aufgaben verschwinden und was mit i
 Zuerst bittet dich der Bot, zu wählen:
 
 - **Wieder öffnen** — öffnet jetzt jede Aufgabe wieder.
-- **Neues Datum** — öffnet wieder und verschiebt die Erinnerungen der Aufgaben, die du wieder öffnest. Die erste dieser Erinnerungen im Kalender wird auf das Datum verschoben, das du wählst, mindestens 5 Minuten ab jetzt. Die anderen behalten denselben Abstand zu ihr. Erinnerungen von Aufgaben, die noch offen sind, bleiben, wie sie sind. Diese Auswahl erscheint nur, wenn eine Aufgabe, die du wieder öffnest, eine Erinnerung hat.
+- **Neues Datum** — öffnet wieder und verschiebt die Erinnerungen der Aufgaben, die du wieder öffnest. Die erste dieser Erinnerungen im Kalender wird auf das Datum verschoben, das du wählst, mindestens 5 Minuten ab jetzt. Die anderen behalten denselben Abstand zu ihr.
+
+  Erinnerungen von Aufgaben, die noch offen sind, bleiben, wie sie sind. Diese Auswahl erscheint nur, wenn eine Aufgabe, die du wieder öffnest, eine Erinnerung hat.
 - **Abbrechen** — lässt die Liste, wie sie ist.
 
 Das Wiedereröffnen löst die **Webhooks für die Wiedereröffnung** der Aufgaben aus, die es wieder öffnet, und ignoriert die Besitzer: Wer die Liste bearbeiten darf, darf sie wieder öffnen.
@@ -56,7 +60,9 @@ Nur im Kanal, auch wenn die Liste gesperrt ist.
 
 ## Herunterladen
 
-**Herunterladen** gibt dir eine `.txt`-Datei der Liste, geschrieben wie in [Eine Liste von Hand bearbeiten](/docs/writing-a-list/) erklärt, und **nur an dich** gesendet. Die Datei behält die Codes von Discord anstelle der Namen: siehe [Die Codes hinter den Namen](/docs/writing-a-list/#the-codes-behind-the-names). Heb sie als Backup auf oder baue die Liste daraus mit `/liste-erstellen` wieder auf, auch auf einem anderen Server: siehe [Eine Liste überall wiederverwenden](/docs/tips/#reuse-a-list-anywhere).
+**Herunterladen** gibt dir eine `.txt`-Datei der Liste, geschrieben wie in [Eine Liste von Hand bearbeiten](/docs/writing-a-list/) erklärt, und **nur an dich** gesendet. Die Datei behält die Codes von Discord anstelle der Namen: siehe [Die Codes hinter den Namen](/docs/writing-a-list/#the-codes-behind-the-names).
+
+Heb sie als Backup auf oder baue die Liste daraus mit `/liste-erstellen` wieder auf, auch auf einem anderen Server: siehe [Eine Liste überall wiederverwenden](/docs/tips/#reuse-a-list-anywhere).
 
 Eine Discord-Nachricht ist auf 2000 Zeichen begrenzt, deshalb veröffentlicht Herunterladen die Liste nie als Text: Es ist immer eine Datei.
 

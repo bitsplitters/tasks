@@ -1,7 +1,7 @@
 ---
 title: /config lists
 description: Guarda tutte le liste del server, sigilla o elimina quelle che hai finito, oppure recupera una lista il cui messaggio è stato eliminato per errore.
-fonte: 0da09921c70a
+fonte: 089e6935e4f2
 ---
 
 Esegui il comando:
@@ -12,7 +12,9 @@ Esegui il comando:
 
 Apre un pannello privato, che solo tu puoi vedere, con **tutte le liste che questo server ha ancora**. Ogni lista ha una riga: il nome della lista e il canale in cui vive, come link cliccabile.
 
-Una lista che occupa uno dei posti del tuo piano è segnata **in uso** accanto al suo canale. Quando devi liberare un posto, sono queste le liste da sigillare o eliminare. Durante la beta non c'è nessun limite, quindi nessuna lista è segnata. Come una lista occupa un posto: vedi [Come funzionano i tre posti](/docs/premium/#how-the-three-places-work).
+Una lista che occupa uno dei posti del tuo piano è segnata **in uso** accanto al suo canale. Quando devi liberare un posto, sono queste le liste da sigillare o eliminare.
+
+Durante la beta non c'è nessun limite, quindi nessuna lista è segnata. Come una lista occupa un posto: vedi [Come funzionano i tre posti](/docs/premium/#how-the-three-places-work).
 
 Una lista su cui qualcuno sta lavorando nell'[Activity](/docs/activity/) è segnata **nell'Activity**. Puoi comunque rigenerarla, sigillarla o eliminarla e la conferma ti avvisa prima: vedi [Che cosa resta nel canale](/docs/activity/#what-stays-in-the-channel).
 
@@ -33,9 +35,13 @@ Segna tutte le liste che ti servono (due da eliminare, una da sigillare e tre da
 
 Il blocco viene poi eseguito **in ordine**: prima le eliminazioni, poi le sigillature, poi le rigenerazioni. Quindi un solo blocco può liberare un posto e usarlo: una lista che elimini o sigilli cede il suo posto a una lista che rigeneri.
 
-Alla fine ricevi un riepilogo, per nome: le liste eliminate, quelle sigillate, quelle rigenerate e quelle che non si sono potute gestire. Ognuna di queste ha il suo motivo, per esempio una lista che non esiste più, oppure una rigenerazione senza posto libero nel tuo piano. Il pannello poi si ridisegna con le liste come sono adesso.
+Alla fine ricevi un riepilogo, per nome: le liste eliminate, quelle sigillate, quelle rigenerate e quelle che non si sono potute gestire.
 
-**Annulla** chiude il pannello e non fa niente. Le tue scelte sopravvivono al cambio di pagina: l'intestazione ti dice quante ne hai segnate su altre pagine e la conferma le include. Le scelte della pagina che hai davanti vivono nel pannello stesso, quindi non scadono mai mentre ci pensi. Quelle delle altre pagine vengono ricordate per un'ora dopo l'ultima volta che tocchi il pannello.
+Ognuna di queste ha il suo motivo, per esempio una lista che non esiste più, oppure una rigenerazione senza posto libero nel tuo piano. Il pannello poi si ridisegna con le liste come sono adesso.
+
+**Annulla** chiude il pannello e non fa niente. Le tue scelte sopravvivono al cambio di pagina: l'intestazione ti dice quante ne hai segnate su altre pagine e la conferma le include.
+
+Le scelte della pagina che hai davanti vivono nel pannello stesso, quindi non scadono mai mentre ci pensi. Quelle delle altre pagine vengono ricordate per un'ora dopo l'ultima volta che tocchi il pannello.
 
 ## Rigenera
 

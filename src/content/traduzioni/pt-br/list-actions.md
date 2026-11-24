@@ -1,7 +1,7 @@
 ---
 title: "Ações da lista"
 description: "Limpar, Reabrir tudo, Clonar, Download, Selar e Excluir: o que cada uma faz com a lista inteira e onde encontrá-la."
-fonte: c473903dad41
+fonte: d65f7aaf1e14
 ---
 
 Estas ações agem sobre a **lista inteira**, nunca sobre uma única tarefa. Duas existem nos dois lugares; as outras, só no canal.
@@ -21,7 +21,9 @@ Estas ações agem sobre a **lista inteira**, nunca sobre uma única tarefa. Dua
 
 **Limpar lista** remove todas as tarefas concluídas, subtarefas incluídas, e renumera as tarefas que ficam. Um grupo não concluído fica, mesmo quando algumas das subtarefas dele saem.
 
-Primeiro, uma confirmação diz quantas tarefas vão sair e o que sai com elas. Elas saem **para sempre**, com os lembretes e as tags, se tiverem. No canal, se a configuração do seu servidor permitir, a notificação no canal da lista ou no tópico dela mostra as tarefas removidas: veja [Modo de notificação](/docs/configuration/#notification-mode). Na Activity, elas vão para o resumo no fim da sessão.
+Primeiro, uma confirmação diz quantas tarefas vão sair e o que sai com elas. Elas saem **para sempre**, com os lembretes e as tags, se tiverem.
+
+No canal, se a configuração do seu servidor permitir, a notificação no canal da lista ou no tópico dela mostra as tarefas removidas: veja [Modo de notificação](/docs/configuration/#notification-mode). Na Activity, elas vão para o resumo no fim da sessão.
 
 - **Nenhuma tarefa concluída**: não há nada a remover, e o bot avisa na hora.
 - **Todas as tarefas concluídas**: Limpar recusa, porque uma lista não pode ficar vazia. Desmarque pelo menos uma tarefa, ou remova a lista inteira com [Excluir](#delete), no canal.
@@ -33,7 +35,9 @@ Primeiro, uma confirmação diz quantas tarefas vão sair e o que sai com elas. 
 Primeiro, o bot pede que você escolha:
 
 - **Reabrir** — reabre todas as tarefas agora.
-- **Nova data** — reabre e move os lembretes das tarefas que você reabre. O primeiro desses lembretes no calendário vai para a data que você escolher, com pelo menos 5 minutos a partir de agora. Os outros mantêm a mesma distância dele. Os lembretes das tarefas ainda pendentes continuam como estão. Esta escolha só aparece quando uma tarefa que você reabre tem lembrete.
+- **Nova data** — reabre e move os lembretes das tarefas que você reabre. O primeiro desses lembretes no calendário vai para a data que você escolher, com pelo menos 5 minutos a partir de agora. Os outros mantêm a mesma distância dele.
+
+  Os lembretes das tarefas ainda pendentes continuam como estão. Esta escolha só aparece quando uma tarefa que você reabre tem lembrete.
 - **Cancelar** — deixa a lista como está.
 
 Reabrir dispara os **webhooks de reabertura** das tarefas que reabre e ignora os proprietários: quem pode editar a lista pode reabri-la.
@@ -56,7 +60,9 @@ Só no canal, mesmo com a lista bloqueada.
 
 ## Download
 
-**Download** entrega um arquivo `.txt` da lista, escrito como explicado em [Editando uma lista à mão](/docs/writing-a-list/) e enviado **só para você**. O arquivo mantém os códigos do Discord no lugar dos nomes: veja [Os códigos por trás dos nomes](/docs/writing-a-list/#the-codes-behind-the-names). Guarde-o como backup, ou reconstrua a lista a partir dele com `/criar-lista`, até em outro servidor: veja [Reutilize uma lista em qualquer lugar](/docs/tips/#reuse-a-list-anywhere).
+**Download** entrega um arquivo `.txt` da lista, escrito como explicado em [Editando uma lista à mão](/docs/writing-a-list/) e enviado **só para você**. O arquivo mantém os códigos do Discord no lugar dos nomes: veja [Os códigos por trás dos nomes](/docs/writing-a-list/#the-codes-behind-the-names).
+
+Guarde-o como backup, ou reconstrua a lista a partir dele com `/criar-lista`, até em outro servidor: veja [Reutilize uma lista em qualquer lugar](/docs/tips/#reuse-a-list-anywhere).
 
 Uma mensagem do Discord tem limite de 2000 caracteres, então o Download nunca publica a lista como texto: é sempre um arquivo.
 

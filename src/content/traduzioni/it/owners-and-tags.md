@@ -1,7 +1,7 @@
 ---
 title: Proprietari e tag
 description: A chi appartiene un task, chi menziona e i ruoli che crea TTM quando un task ha più proprietari.
-fonte: 3beeb818c97b
+fonte: bf7e5a683480
 ---
 
 Un task può avere un **proprietario** e più **tag**. Il proprietario è la persona a cui il task appartiene: chi può spuntarlo e chi riceve il suo promemoria. I tag sono gli utenti e i ruoli menzionati sul task, per esempio le persone da avvisare quando viene completato.
@@ -76,7 +76,9 @@ TTM ricorda i ruoli che crea e le persone a cui li ha assegnati. Un ruolo resta 
 - nessun permesso, né sul server né su un canale;
 - lo stesso numero di membri.
 
-Se lo rinomini, gli dai un permesso, lo aggiungi ai permessi di un canale o aggiungi o togli un membro, diventa uno dei ruoli del tuo server. TTM lo controlla prima di eliminare un ruolo e quando mostra il proprietario di un task da cambiare. Un ruolo che non è più di TTM non viene mai eliminato e la scelta del proprietario mostra il ruolo al posto delle persone.
+Se lo rinomini, gli dai un permesso, lo aggiungi ai permessi di un canale o aggiungi o togli un membro, diventa uno dei ruoli del tuo server.
+
+TTM lo controlla prima di eliminare un ruolo e quando mostra il proprietario di un task da cambiare. Un ruolo che non è più di TTM non viene mai eliminato e la scelta del proprietario mostra il ruolo al posto delle persone.
 
 Quindi, per tenere un ruolo per il tuo server, **rinominalo**. Poi puoi usarlo dove vuoi. Un nuovo colore o una nuova posizione non bastano: TTM eliminerebbe comunque il ruolo quando nessuna lista lo usa più.
 

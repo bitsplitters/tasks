@@ -1,7 +1,7 @@
 ---
 title: "Conceitos básicos"
 description: "Uma lista em dois lugares, o vocabulário do TTM — tarefas, grupos, proprietários, tags, lembretes — e as permissões que ele pede."
-fonte: 207fda722dce
+fonte: 193335652dfb
 ---
 
 Alguns termos aparecem em todo o app. Aprenda-os uma vez e o resto se encaixa.
@@ -12,7 +12,9 @@ Uma lista vive em uma mensagem em um canal do Discord, onde todos a encontram. A
 
 Uma lista fica em um lugar de cada vez. Enquanto ela está na Activity, a mensagem dela no canal mantém só **Entrar na Activity**. Quando todos saem, a lista volta para o canal com um resumo do que mudou.
 
-O que uma lista pode fazer é igual nos dois lugares: proprietários, tags, lembretes, webhooks, as configurações do seu servidor e os limites do seu plano. O que muda é como você faz. No canal você usa os menus e botões sob a mensagem. Na Activity você toca na caixa de uma tarefa, ou no texto dela. Estas páginas são divididas do mesmo jeito:
+O que uma lista pode fazer é igual nos dois lugares: proprietários, tags, lembretes, webhooks, as configurações do seu servidor e os limites do seu plano. O que muda é como você faz.
+
+No canal você usa os menus e botões sob a mensagem. Na Activity você toca na caixa de uma tarefa, ou no texto dela. Estas páginas são divididas do mesmo jeito:
 
 - **Recursos** — o que cada recurso faz e as regras dele, iguais nos dois lugares.
 - **No canal** — a mensagem da lista, os menus e os botões dela.
@@ -67,7 +69,9 @@ Um único aviso é o padrão, e no plano Free é o único tipo. Os lembretes rec
 
 ## Notificações e histórico
 
-Quando uma lista é criada, ou uma tarefa é marcada ou desmarcada, o TTM pode publicar uma notificação e — se você ativar — registrar cada ação em um **tópico de histórico** dedicado. A notificação de uma lista nova pode mencionar os proprietários das tarefas, para que eles saibam dela. As mudanças feitas na Activity chegam como um único resumo, quando a lista volta para o canal. Quanto barulho você quer é inteiramente escolha sua: veja [/config app](/docs/configuration/).
+Quando uma lista é criada, ou uma tarefa é marcada ou desmarcada, o TTM pode publicar uma notificação e — se você ativar — registrar cada ação em um **tópico de histórico** dedicado. A notificação de uma lista nova pode mencionar os proprietários das tarefas, para que eles saibam dela.
+
+As mudanças feitas na Activity chegam como um único resumo, quando a lista volta para o canal. Quanto barulho você quer é inteiramente escolha sua: veja [/config app](/docs/configuration/).
 
 ## Quem pode usar listas e comandos
 

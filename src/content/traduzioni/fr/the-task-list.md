@@ -1,7 +1,7 @@
 ---
 title: "La liste dans le salon"
 description: "Le message de la liste dans un salon Discord : le menu de cochage, la première rangée de boutons, Autre, et ce qui se passe pendant que quelqu'un la modifie."
-fonte: 6656d50714c3
+fonte: 6ef51298ef09
 ---
 
 Dès qu'une liste existe, TTM affiche en dessous un **menu de cochage** et **deux rangées de boutons**. Presque rien ici ne demande une commande : tu cliques, c'est tout. La première rangée agit sur toute la liste, et elle est expliquée ici. La deuxième rangée agit sur une seule tâche : voir [Modifier une tâche dans le salon](/docs/channel-tasks/).
@@ -10,7 +10,9 @@ Dès qu'une liste existe, TTM affiche en dessous un **menu de cochage** et **deu
 
 La liste se termine par une fine **barre de progression** : la part de cases cochées, tâches et sous-tâches confondues, par pas de 5 %. Elle bouge dès qu'une case est cochée, et elle n'est pleine que quand toutes les cases le sont. Une liste scellée la garde, et elle montre où en était la liste à la fin.
 
-Au-dessus de la barre, une petite ligne aide qui débute : *Tu ne sais pas à quoi servent les boutons ? Autre → Guide*. **Guide**, dans [Autre](#whats-inside-more), explique chaque bouton sans quitter Discord. Si ton équipe n'en a pas besoin, masque les **Astuces** dans [/config app](/docs/configuration/#tips) : la ligne disparaît, la barre reste. Tant que la liste est verrouillée, la même ligne dit qui la modifie et comment la déverrouiller, même avec les Astuces masquées : voir [Quand la liste est verrouillée](#when-the-list-is-locked).
+Au-dessus de la barre, une petite ligne aide qui débute : *Tu ne sais pas à quoi servent les boutons ? Autre → Guide*. **Guide**, dans [Autre](#whats-inside-more), explique chaque bouton sans quitter Discord. Si ton équipe n'en a pas besoin, masque les **Astuces** dans [/config app](/docs/configuration/#tips) : la ligne disparaît, la barre reste.
+
+Tant que la liste est verrouillée, la même ligne dit qui la modifie et comment la déverrouiller, même avec les Astuces masquées : voir [Quand la liste est verrouillée](#when-the-list-is-locked).
 
 Tant que la liste est dans l'[Activity](/docs/activity/), la ligne le dit, et **Rejoindre l'Activity** est le seul bouton sous la liste.
 
@@ -68,7 +70,9 @@ Discord autorise cinq boutons par rangée, donc les actions dont tu as moins sou
 - **Sceller la liste** <img class="inline-ic" src="/icons/seal.png" alt="" /> : garde dans le salon une liste terminée comme compte rendu, sans boutons ni menus. Voir [Sceller](/docs/list-actions/#seal).
 - **Supprimer la liste** <img class="inline-ic" src="/icons/delete.png" alt="" /> : supprime la liste **définitivement**. Voir [Supprimer](/docs/list-actions/#delete).
 
-Sceller et supprimer sont irréversibles, et le bot te demande de confirmer d'abord. Les deux demandent *Gérer les messages* sur le salon : la même permission qui te permet de supprimer à la main le message de la liste. Sans elle, ces deux entrées ne sont pas là. Guide, Cloner la liste et Télécharger sont là pour tout le monde, et Déverrouiller la liste aussi quand la liste est verrouillée.
+Sceller et supprimer sont irréversibles, et le bot te demande de confirmer d'abord. Les deux demandent *Gérer les messages* sur le salon : la même permission qui te permet de supprimer à la main le message de la liste.
+
+Sans elle, ces deux entrées ne sont pas là. Guide, Cloner la liste et Télécharger sont là pour tout le monde, et Déverrouiller la liste aussi quand la liste est verrouillée.
 
 Tant que la liste est verrouillée, Sceller la liste et Supprimer la liste ne sont pas là. La personne qui modifie enregistrerait sur une liste qui n'existe plus.
 
@@ -97,7 +101,9 @@ TTM verrouille la liste pendant que quelqu'un la modifie :
 
 Pour tous les autres, ceci est désactivé : le menu de cochage, le bouton Activity, **Mise à jour groupée**, **Nettoyer la liste**, **Tout rouvrir** et les boutons de tâche. **Autre** reste actif, avec **Cloner la liste** dedans. **Autre** montre qui modifie, et une liste verrouillée ne peut pas être scellée ni supprimée depuis là.
 
-La dernière ligne de la liste le dit aussi : *🔒 @nom modifie la liste. Elle est restée verrouillée ? Autre → Déverrouiller la liste*. Elle prend la place de la ligne des Astuces, et elle s'affiche même quand ton serveur masque les Astuces. La mention montre le nom et ne prévient personne. Quand la liste est déverrouillée, la ligne des Astuces revient, si ton serveur l'affiche.
+La dernière ligne de la liste le dit aussi : *🔒 @nom modifie la liste. Elle est restée verrouillée ? Autre → Déverrouiller la liste*. Elle prend la place de la ligne des Astuces, et elle s'affiche même quand ton serveur masque les Astuces.
+
+La mention montre le nom et ne prévient personne. Quand la liste est déverrouillée, la ligne des Astuces revient, si ton serveur l'affiche.
 
 Verrouiller la liste désactive aussi **Propriétaire**, **Tag** et **Webhook** si l'un d'eux était actif : rouvre-le depuis son bouton quand tu en as besoin.
 

@@ -1,7 +1,7 @@
 ---
 title: "Was Premium freischaltet"
 description: "Was der kostenpflichtige Tarif zu Free hinzufügt und was jede Grenze im Alltag ändert."
-fonte: 1ce2890c95d6
+fonte: 99b154c841ca
 ---
 
 TTM ist **während der Beta komplett freigeschaltet**, deshalb gilt von dieser Seite noch nichts. Sie beschreibt den Free-Tarif und was Premium aufhebt, sobald die Beta endet. Was mit deinem Server passiert, wenn die Beta endet, steht in [So funktioniert die Beta](/docs/beta/).
@@ -22,9 +22,13 @@ TTM ist **während der Beta komplett freigeschaltet**, deshalb gilt von dieser S
 
 **Wiederholungen pro Erinnerung — nur einmalig → bis zu 50.** Im Free-Tarif löst jede Erinnerung einmal aus. Mit Premium kann eine Erinnerung insgesamt bis zu 50 Mal ankommen, die erste mitgezählt, wenn ein Admin **Wiederkehrende Erinnerungen** in [/config app](/docs/configuration/#recurring-reminders) einschaltet. Wiederkehrende Erinnerungen, die du schon hast, lösen im Free-Tarif weiter aus: siehe [Erinnerungen](/docs/reminders/#repeating-reminders).
 
-**Personen pro Besitzer — 1 → bis zu 25 \*.** Im Free-Tarif ist der Besitzer einer Aufgabe eine Person oder eine Rolle. Mit Premium können es bis zu 25 Personen sein, die sich eine Rolle teilen, die TTM erstellt: siehe [Die Rollen, die TTM erstellt](/docs/owners-and-tags/#the-roles-ttm-creates). Es ist Premium, weil jede Person eine Anfrage an Discord kostet. Discord begrenzt die Anfragen, die ein Bot senden darf, und alle seine Server teilen sich diese Grenze.
+**Personen pro Besitzer — 1 → bis zu 25 \*.** Im Free-Tarif ist der Besitzer einer Aufgabe eine Person oder eine Rolle. Mit Premium können es bis zu 25 Personen sein, die sich eine Rolle teilen, die TTM erstellt: siehe [Die Rollen, die TTM erstellt](/docs/owners-and-tags/#the-roles-ttm-creates).
 
-**Webhooks — keine neuen → bis zu 25 \*.** Ein Webhook lässt eine erledigte Aufgabe einen HTTP-Aufruf an alles senden, was du betreibst: ein Deployment, eine Tabelle, ein Ticketsystem. Es ist das Wichtigste, was Premium hinzufügt. Siehe [Webhooks](/docs/webhooks/). Im Free-Tarif kannst du keine neuen Webhooks erstellen, aber die während der Beta erstellten bleiben: siehe [Was eine Beta-Liste behält](/docs/beta/#what-a-beta-list-keeps).
+Es ist Premium, weil jede Person eine Anfrage an Discord kostet. Discord begrenzt die Anfragen, die ein Bot senden darf, und alle seine Server teilen sich diese Grenze.
+
+**Webhooks — keine neuen → bis zu 25 \*.** Ein Webhook lässt eine erledigte Aufgabe einen HTTP-Aufruf an alles senden, was du betreibst: ein Deployment, eine Tabelle, ein Ticketsystem. Es ist das Wichtigste, was Premium hinzufügt. Siehe [Webhooks](/docs/webhooks/).
+
+Im Free-Tarif kannst du keine neuen Webhooks erstellen, aber die während der Beta erstellten bleiben: siehe [Was eine Beta-Liste behält](/docs/beta/#what-a-beta-list-keeps).
 
 ## So funktionieren die drei Plätze
 

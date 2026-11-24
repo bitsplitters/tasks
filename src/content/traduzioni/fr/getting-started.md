@@ -1,7 +1,7 @@
 ---
 title: "Pour commencer"
 description: "Invite le bot, crée une liste, puis coche une tâche et définis un rappel, dans le salon ou dans l'Activity."
-fonte: 80e3e27e599a
+fonte: e7a439b39622
 ---
 
 Team Tasks Manager (TTM) permet à ton équipe de partager et de gérer ses tâches **sans quitter Discord**. Cette page t'emmène de zéro à une liste qui marche : tu la crées, tu coches une tâche, tu définis un rappel.
@@ -48,7 +48,9 @@ Envoie le formulaire, et la liste apparaît dans le salon. Voici la même liste 
   <img src="/screens/fr/list-desktop.png" width="529" height="418" loading="lazy" alt="La liste Tournoi du samedi dans Discord : six tâches numérotées avec des cases. La première est cochée et grisée ; Préparer les tableaux a deux sous-tâches et un propriétaire ; Diffuser la finale a un propriétaire et une date de rappel. Sous les tâches, une petite ligne renvoie à Autre, au Guide et à la documentation complète, et une barre verte montre l'avancement. Sous la liste se trouvent le menu déroulant, Cocher une tâche, et deux rangées de boutons." />
 </picture>
 
-Tu préfères apprendre en faisant ? À côté de **Crée ta liste**, il y a un bouton **Tutoriel** : il transforme l'explication en une liste d'essai de sept leçons dans ta langue, et t'envoie le Guide dans un message que toi seul peux voir. Fais les leçons dans l'ordre : chacune nomme un bouton avec son icône et te demande de faire quelque chose avec lui, du simple cochage jusqu'à l'ouverture dans l'Activity.
+Tu préfères apprendre en faisant ? À côté de **Crée ta liste**, il y a un bouton **Tutoriel** : il transforme l'explication en une liste d'essai de sept leçons dans ta langue, et t'envoie le Guide dans un message que toi seul peux voir.
+
+Fais les leçons dans l'ordre : chacune nomme un bouton avec son icône et te demande de faire quelque chose avec lui, du simple cochage jusqu'à l'ouverture dans l'Activity.
 
 La liste d'essai est une liste normale : quand tu as fini, supprime-la depuis **Autre** → **Supprimer la liste**.
 
@@ -58,7 +60,9 @@ Maintenant, choisis où travailler dessus. La liste est la même dans les deux e
 
 ### Cocher une tâche
 
-Sous la liste, il y a le **menu de cochage**, un menu déroulant qui affiche le titre de la liste, et deux rangées de boutons. Ouvre le menu et choisis une tâche : sa case passe de <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> à <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, et la liste se met à jour pour tout le monde. Choisis-la de nouveau pour la rouvrir. Cocher un groupe coche aussi ses sous-tâches. Selon tes [réglages](/docs/configuration/), TTM peut aussi publier une courte notification sous la liste et enregistrer le changement dans un fil de timeline.
+Sous la liste, il y a le **menu de cochage**, un menu déroulant qui affiche le titre de la liste, et deux rangées de boutons. Ouvre le menu et choisis une tâche : sa case passe de <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> à <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, et la liste se met à jour pour tout le monde. Choisis-la de nouveau pour la rouvrir.
+
+Cocher un groupe coche aussi ses sous-tâches. Selon tes [réglages](/docs/configuration/), TTM peut aussi publier une courte notification sous la liste et enregistrer le changement dans un fil de timeline.
 
 <div class="callout"><div class="callout-t">Tu n'arrives pas à cocher une tâche ?</div>Chaque bouton de la deuxième rangée doit être <strong>éteint</strong> : si l'un est bleu ou rouge, choisir une tâche applique l'action de ce bouton à la place. Et une tâche qui a un propriétaire ne peut être cochée que par son propriétaire, et par toute personne qui a <em>Gérer les messages</em> sur le salon.</div>
 

@@ -49,7 +49,9 @@ Submit the form, and the list appears in the channel. Here is the same list afte
   <img src="/screens/list-desktop.png" width="456" height="418" loading="lazy" alt="The Saturday tournament list in Discord: six numbered tasks with checkboxes. The first is ticked and greyed out; Prepare the brackets has two subtasks and an owner; Stream the final has an owner and a reminder date. Under the tasks, a small line points to More, Guide and the full docs, and a green bar shows how much is done. Below the list are the drop-down menu, Tick a task, and two rows of buttons." />
 </picture>
 
-Rather learn by doing? Next to **Create your list** there's a **Tutorial** button: it turns the explanation into a practice list of seven lessons in your language, and sends you the Guide in a message only you can see. Do the lessons in order: each one names a button with its icon and asks you to do something to itself, from ticking it to opening it in the Activity.
+Rather learn by doing? Next to **Create your list** there's a **Tutorial** button: it turns the explanation into a practice list of seven lessons in your language, and sends you the Guide in a message only you can see.
+
+Do the lessons in order: each one names a button with its icon and asks you to do something to itself, from ticking it to opening it in the Activity.
 
 The practice list is a normal list: when you're done, delete it from **More** → **Delete list**.
 
@@ -59,7 +61,9 @@ Now pick where to work on it. The list is the same in both places, and it is [in
 
 ### Tick a task
 
-Under the list there is the **check selector**, a drop-down menu that shows the list's title, and two rows of buttons. Open the menu and pick a task: its box changes from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it. Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.
+Under the list there is the **check selector**, a drop-down menu that shows the list's title, and two rows of buttons. Open the menu and pick a task: its box changes from <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> to <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, and the list updates for everyone. Pick it again to reopen it.
+
+Ticking a group ticks its subtasks too. Depending on your [settings](/docs/configuration/), TTM may also post a short notice under the list and record the change in a timeline thread.
 
 <div class="callout"><div class="callout-t">Can't tick a task?</div>Every button in the second row must be <strong>off</strong>: if one is blue or red, picking a task applies that button's action instead. And a task with an owner can be ticked only by its owner, and by whoever has <em>Manage messages</em> on the channel.</div>
 

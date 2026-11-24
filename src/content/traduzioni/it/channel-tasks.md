@@ -1,7 +1,7 @@
 ---
 title: Modificare un task nel canale
 description: La seconda riga di pulsanti sotto la lista — Contenuto, Proprietario, Tag, Promemoria e Webhook — con le loro finestre e i loro menu.
-fonte: ba887a2603b7
+fonte: 9439d0a8db43
 ---
 
 La seconda riga sotto la lista agisce su **un task alla volta**: il suo testo, il suo proprietario, i suoi tag, il suo promemoria e il suo webhook. Questa pagina mostra dove cliccare. Cosa fa ogni funzione e le sue regole: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/).
@@ -14,7 +14,9 @@ Ogni pulsante della seconda riga è un **interruttore a tre stati**. Cliccalo pe
 - <span class="c-blue">Blu</span> — attivo in modalità <span class="c-blue">modifica</span>.
 - <span class="c-red">Rosso</span> — attivo in modalità <span class="c-red">eliminazione</span>.
 
-Il procedimento è sempre lo stesso: **fai diventare un pulsante blu o rosso, poi scegli il task** nel [menu di spunta](/docs/the-task-list/#the-check-selector). TTM applica l'azione a quel task. Finché un pulsante è blu o rosso, il menu dice cosa succederà, per esempio *Modifica task* o *Elimina task*; con tutti i pulsanti spenti dice *Spunta task*: scegli un task lì per spuntarlo o toglierne la spunta.
+Il procedimento è sempre lo stesso: **fai diventare un pulsante blu o rosso, poi scegli il task** nel [menu di spunta](/docs/the-task-list/#the-check-selector). TTM applica l'azione a quel task.
+
+Finché un pulsante è blu o rosso, il menu dice cosa succederà, per esempio *Modifica task* o *Elimina task*; con tutti i pulsanti spenti dice *Spunta task*: scegli un task lì per spuntarlo o toglierne la spunta.
 
 Finché non hai scelto un task in questo modo almeno una volta, portare **Contenuto** o **Promemoria** su blu o su rosso ti manda un messaggio che vedi solo tu. Ti dice quale task scegliere e cosa fa premere di nuovo il pulsante. Dopo che hai scelto un task con un pulsante della seconda riga acceso, il messaggio non compare più, su qualsiasi server.
 
@@ -26,7 +28,9 @@ Finché non hai scelto un task in questo modo almeno una volta, portare **Conten
 | [**Promemoria**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Aggiunge o modifica un promemoria. | Toglie il promemoria. |
 | [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> <a class="premium-tag" href="/docs/premium/" title="Sbloccato per ogni server durante la beta">Premium</a> | Collega un webhook al task. | Toglie il webhook dal task. |
 
-Con **Proprietario**, **Tag**, **Promemoria** o **Webhook** su rosso, il menu elenca solo i task che hanno qualcosa da togliere: un proprietario, dei tag, un promemoria o un webhook. Un task fatto solo di tag non compare, perché senza tag non avrebbe più testo. Se nessun task ha qualcosa da togliere, il menu è spento e lo dice, per esempio *Nessun proprietario da eliminare* e ricevi una nota su come aggiungerne uno.
+Con **Proprietario**, **Tag**, **Promemoria** o **Webhook** su rosso, il menu elenca solo i task che hanno qualcosa da togliere: un proprietario, dei tag, un promemoria o un webhook. Un task fatto solo di tag non compare, perché senza tag non avrebbe più testo.
+
+Se nessun task ha qualcosa da togliere, il menu è spento e lo dice, per esempio *Nessun proprietario da eliminare* e ricevi una nota su come aggiungerne uno.
 
 Dopo che usi **Proprietario**, **Tag** o **Promemoria**, il pulsante torna grigio oppure resta acceso per il task successivo: lo decide il tuo server con **Mantieni lo stato dopo la selezione** nel menu **Comportamento** di [/config app](/docs/configuration/#keep-the-state-after-a-selection). Mantenere lo stato cambia cosa possono fare Proprietario e Tag: vedi [Proprietario](#owner) e [Tag](#tag).
 
@@ -48,7 +52,9 @@ Il **rosso** elimina il task. Eliminare un gruppo con dei subtask ti chiede prim
 
 Il **blu** mostra un menu sotto i pulsanti, con la scritta *Scegli un task nel menu in alto per prenderlo, o scegli a chi darlo*.
 
-**Per prendere un task**, clicca **Proprietario** finché diventa blu, poi scegli il task nel menu di spunta senza scegliere nessuno: il task diventa tuo e il canale mostra chi l'ha preso. Un task che è già tuo, o che ha un altro proprietario, resta com'è e TTM ti dice perché. Per prendere un task a qualcun altro, scegli te stesso nel menu, conferma la selezione, poi scegli il task: sostituire un proprietario richiede una scelta esplicita.
+**Per prendere un task**, clicca **Proprietario** finché diventa blu, poi scegli il task nel menu di spunta senza scegliere nessuno: il task diventa tuo e il canale mostra chi l'ha preso.
+
+Un task che è già tuo, o che ha un altro proprietario, resta com'è e TTM ti dice perché. Per prendere un task a qualcun altro, scegli te stesso nel menu, conferma la selezione, poi scegli il task: sostituire un proprietario richiede una scelta esplicita.
 
 **Per dare un task a qualcuno**, scegli il proprietario nel menu, conferma la selezione, poi scegli il task. Per dare un task a più persone, una funzione [Premium](/docs/premium/):
 

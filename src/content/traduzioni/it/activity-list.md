@@ -1,7 +1,7 @@
 ---
 title: Lavorare su una lista nell'Activity
 description: Le caselle, la prima riga, il pannello di un task (Contenuto, Proprietario, Tag, Promemoria e Webhook) e chi sta modificando che cosa.
-fonte: 3445f59ab104
+fonte: 39bbd6a8e201
 ---
 
 Dentro l'Activity la lista è una pagina a sé: una casella davanti a ogni task, una riga di pulsanti in alto e un pannello per ogni task. Le regole sono quelle del canale: proprietari, impostazioni del server, limiti del piano. Che cosa fa ogni funzione: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/), [Azioni sulla lista](/docs/list-actions/).
@@ -50,7 +50,9 @@ Mentre il pannello è aperto, il task è bloccato per gli altri: vedi [Chi sta m
 
 **Blu** mostra una ricerca tra le persone e i ruoli del server, con chi è nell'Activity per primo. Tocca un nome per aggiungerlo, toccalo di nuovo per toglierlo, poi **Salva**. Togli ogni nome e **Salva** rimuove il proprietario, come fa **Rosso**.
 
-**Per prendere un task** senza proprietario, premi **Proprietario** finché diventa blu: il tuo nome è già scelto, quindi **Salva** rende tuo il task. Per darlo invece a qualcun altro, tocca il suo nome: prende il posto del tuo. Un task che ha già un proprietario lo mostra e cambia solo se scegli qualcuno.
+**Per prendere un task** senza proprietario, premi **Proprietario** finché diventa blu: il tuo nome è già scelto, quindi **Salva** rende tuo il task.
+
+Per darlo invece a qualcun altro, tocca il suo nome: prende il posto del tuo. Un task che ha già un proprietario lo mostra e cambia solo se scegli qualcuno.
 
 - Una persona o un ruolo bastano con ogni piano.
 - Più persone diventano un ruolo che TTM crea, su Premium: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates). Quando manca qualcosa, **Salva** resta spento e il pannello ne spiega il motivo.
@@ -89,13 +91,17 @@ Un task spuntato non può avere un promemoria. Su un task senza proprietario, il
 
 I webhook sono una funzione [Premium](/docs/premium/).
 
-**Blu** elenca i webhook del server per nome, ciascuno con il momento in cui scatta: *al completamento*, *alla riapertura* o *sempre*. L'indirizzo non compare mai. Scegline uno, poi **Salva**. Un webhook che non esiste più compare in cima, segnato come *non esiste più*, così puoi sceglierne un altro. Se il server non ne ha, il pannello dice che si creano con [/config webhook](/docs/config-webhook/).
+**Blu** elenca i webhook del server per nome, ciascuno con il momento in cui scatta: *al completamento*, *alla riapertura* o *sempre*. L'indirizzo non compare mai. Scegline uno, poi **Salva**.
+
+Un webhook che non esiste più compare in cima, segnato come *non esiste più*, così puoi sceglierne un altro. Se il server non ne ha, il pannello dice che si creano con [/config webhook](/docs/config-webhook/).
 
 **Rosso** toglie il webhook dal task.
 
 ## Modifica la lista
 
-**Modifica la lista** mostra il titolo e ogni task come testo, nel formato spiegato in [Modificare una lista a mano](/docs/writing-a-list/): lo stesso testo dell'**Aggiornamento in blocco** del canale, letto con le stesse regole: persone, ruoli e canali per nome, date dei promemoria nel tuo fuso orario. Una riga sotto il testo spiega come aggiungere qualcuno di nuovo e rimanda a [Modificare una lista a mano](/docs/writing-a-list/#people-roles-and-channels-by-name). Cambia ciò che ti serve e salva.
+**Modifica la lista** mostra il titolo e ogni task come testo, nel formato spiegato in [Modificare una lista a mano](/docs/writing-a-list/): lo stesso testo dell'**Aggiornamento in blocco** del canale, letto con le stesse regole: persone, ruoli e canali per nome, date dei promemoria nel tuo fuso orario.
+
+Una riga sotto il testo spiega come aggiungere qualcuno di nuovo e rimanda a [Modificare una lista a mano](/docs/writing-a-list/#people-roles-and-channels-by-name). Cambia ciò che ti serve e salva.
 
 La lista è bloccata per gli altri dal momento in cui si apre finché non salvi o annulli: **Annulla**, la ✕ e un tocco fuori la sbloccano. Si chiude da sola dopo 30 secondi senza attività. Se il testo non si può salvare, i problemi compaiono sotto: vedi [Quando il testo non si può salvare](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

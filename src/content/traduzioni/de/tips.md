@@ -1,7 +1,7 @@
 ---
 title: "Tipps & Tricks"
 description: "Kleine Gewohnheiten, die TTM schneller und leiser machen, im Kanal und in der Activity."
-fonte: 3e31d9102d49
+fonte: 6e297084b41a
 ---
 
 Das meiste funktioniert überall, wo die Liste ist. Was es nur an einem Ort gibt, sagt das unter seinem Titel.
@@ -10,7 +10,9 @@ Das meiste funktioniert überall, wo die Liste ist. Was es nur an einem Ort gibt
 
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Im Kanal</p>
 
-Öffne **Mehr** <img class="inline-ic" src="/icons/other.png" alt="" /> und wähle **Herunterladen** <img class="inline-ic" src="/icons/download.png" alt="" />: Die Liste kommt als `.txt`-Datei, die nur du sehen kannst. Führe dann `/liste-erstellen` auf einem beliebigen Server aus und hänge diese Datei an die Option `datei` an. Aufgaben, Erledigt-Status, Besitzer, Tags, Erinnerungen und Webhooks kommen zurück, wie sie waren. Das eignet sich gut für Checklisten, die du wiederholst, etwa Releases, Onboarding oder Events.
+Öffne **Mehr** <img class="inline-ic" src="/icons/other.png" alt="" /> und wähle **Herunterladen** <img class="inline-ic" src="/icons/download.png" alt="" />: Die Liste kommt als `.txt`-Datei, die nur du sehen kannst. Führe dann `/liste-erstellen` auf einem beliebigen Server aus und hänge diese Datei an die Option `datei` an.
+
+Aufgaben, Erledigt-Status, Besitzer, Tags, Erinnerungen und Webhooks kommen zurück, wie sie waren. Das eignet sich gut für Checklisten, die du wiederholst, etwa Releases, Onboarding oder Events.
 
 Wenn etwas in der Datei nicht zum neuen Server passt, erstellt TTM nichts und listet alle Probleme auf einmal auf. Was es prüft: siehe [`/liste-erstellen`](/docs/commands/#create-list).
 

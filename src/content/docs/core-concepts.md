@@ -13,7 +13,9 @@ A list lives in a message in a Discord channel, where everyone finds it. The **A
 
 A list is in one place at a time. While it is in the Activity, its message in the channel keeps only **Join the Activity**. When everyone leaves, the list goes back to the channel with a summary of what changed.
 
-What a list can do is the same in both places: owners, tags, reminders, webhooks, your server's settings and the limits of your plan. What changes is how you do it. In the channel you use the menus and buttons under the message. In the Activity you tap a task's box, or its text. These pages are split the same way:
+What a list can do is the same in both places: owners, tags, reminders, webhooks, your server's settings and the limits of your plan. What changes is how you do it.
+
+In the channel you use the menus and buttons under the message. In the Activity you tap a task's box, or its text. These pages are split the same way:
 
 - **Features** — what each feature does and its rules, the same in both places.
 - **In the channel** — the list's message, its menus and its buttons.
@@ -68,7 +70,9 @@ One ping is the default, and on the Free plan it is the only kind. Repeating rem
 
 ## Notifications & history
 
-When a list is created, or a task is ticked or unticked, TTM can post a notification and — if you enable it — record every action in a dedicated **history thread**. A new list's notification can mention the owners of its tasks, so they hear about it. Changes made in the Activity arrive as one summary, when the list goes back to the channel. How much noise you want is entirely up to you: see [/config app](/docs/configuration/).
+When a list is created, or a task is ticked or unticked, TTM can post a notification and — if you enable it — record every action in a dedicated **history thread**. A new list's notification can mention the owners of its tasks, so they hear about it.
+
+Changes made in the Activity arrive as one summary, when the list goes back to the channel. How much noise you want is entirely up to you: see [/config app](/docs/configuration/).
 
 ## Who can use lists and commands
 

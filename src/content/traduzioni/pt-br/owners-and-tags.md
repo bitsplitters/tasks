@@ -1,7 +1,7 @@
 ---
 title: "Proprietários e tags"
 description: "A quem uma tarefa pertence, quem ela menciona e os cargos que o TTM cria quando várias pessoas são donas de uma tarefa."
-fonte: 3beeb818c97b
+fonte: bf7e5a683480
 ---
 
 Uma tarefa pode ter um **proprietário** e várias **tags**. O proprietário é a quem a tarefa pertence: quem pode marcá-la e quem recebe o lembrete dela. As tags são os usuários e cargos mencionados na tarefa, por exemplo as pessoas a avisar quando ela for concluída.
@@ -76,7 +76,9 @@ O TTM se lembra dos cargos que cria e das pessoas a quem os deu. Um cargo contin
 - nenhuma permissão, nem no servidor nem em um canal;
 - o mesmo número de membros.
 
-Renomeie-o, dê a ele uma permissão, adicione-o às permissões de um canal, ou adicione ou remova um membro: ele passa a ser um dos cargos do seu servidor. O TTM verifica isso antes de excluir um cargo e quando mostra o proprietário de uma tarefa para alterá-lo. Um cargo que não é mais do TTM nunca é excluído, e a escolha de proprietário mostra o cargo em vez das pessoas.
+Renomeie-o, dê a ele uma permissão, adicione-o às permissões de um canal, ou adicione ou remova um membro: ele passa a ser um dos cargos do seu servidor.
+
+O TTM verifica isso antes de excluir um cargo e quando mostra o proprietário de uma tarefa para alterá-lo. Um cargo que não é mais do TTM nunca é excluído, e a escolha de proprietário mostra o cargo em vez das pessoas.
 
 Então, para manter um cargo para o seu servidor, **renomeie-o**. Assim você pode usá-lo em qualquer lugar. Uma cor nova ou uma posição nova não bastam: o TTM ainda excluiria o cargo quando nenhuma lista o usasse mais.
 

@@ -77,7 +77,9 @@ TTM remembers the roles it creates and the people it gave them to. A role stays 
 - no permissions, neither on the server nor on a channel;
 - the same number of members.
 
-Rename it, give it a permission, add it to a channel's permissions, or add or remove a member: it becomes one of your server's roles. TTM checks this before it deletes a role, and when it shows a task's owner to change it. A role that is no longer TTM's is never deleted, and the owner choice shows the role instead of the people.
+Rename it, give it a permission, add it to a channel's permissions, or add or remove a member: it becomes one of your server's roles.
+
+TTM checks this before it deletes a role, and when it shows a task's owner to change it. A role that is no longer TTM's is never deleted, and the owner choice shows the role instead of the people.
 
 So, to keep a role for your server, **rename it**. Then you can use it anywhere. A new colour or a new position is not enough: TTM would still delete the role when no list uses it any more.
 

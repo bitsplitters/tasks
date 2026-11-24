@@ -1,7 +1,7 @@
 ---
 title: "/config lists"
 description: "Sieh jede Liste des Servers, versiegle oder lösche die, mit denen du fertig bist, oder hole eine zurück, deren Nachricht versehentlich gelöscht wurde."
-fonte: 0da09921c70a
+fonte: 089e6935e4f2
 ---
 
 Führe den Befehl aus:
@@ -12,7 +12,9 @@ Führe den Befehl aus:
 
 Er öffnet ein privates Panel, das nur du siehst, mit **jeder Liste, die dieser Server noch hat**. Jede Liste hat eine Zeile: den Namen der Liste und den Kanal, in dem sie lebt, als anklickbaren Link.
 
-Eine Liste, die einen der Plätze deines Tarifs belegt, ist neben ihrem Kanal als **in Gebrauch** markiert. Wenn du einen Platz freimachen musst, sind das die Listen, die du versiegeln oder löschen kannst. Während der Beta gibt es keine Grenze, deshalb ist keine Liste markiert. Wie eine Liste einen Platz belegt: siehe [So funktionieren die drei Plätze](/docs/premium/#how-the-three-places-work).
+Eine Liste, die einen der Plätze deines Tarifs belegt, ist neben ihrem Kanal als **in Gebrauch** markiert. Wenn du einen Platz freimachen musst, sind das die Listen, die du versiegeln oder löschen kannst.
+
+Während der Beta gibt es keine Grenze, deshalb ist keine Liste markiert. Wie eine Liste einen Platz belegt: siehe [So funktionieren die drei Plätze](/docs/premium/#how-the-three-places-work).
 
 Eine Liste, an der jemand in der [Activity](/docs/activity/) arbeitet, ist als **in der Activity** markiert. Du kannst sie trotzdem regenerieren, versiegeln oder löschen, und die Bestätigung warnt dich vorher: siehe [Was im Kanal bleibt](/docs/activity/#what-stays-in-the-channel).
 
@@ -33,9 +35,13 @@ Markiere so viele Listen, wie du brauchst, etwa zwei zum Löschen, eine zum Vers
 
 Der Block läuft dann **der Reihe nach**: zuerst das Löschen, dann das Versiegeln, dann das Regenerieren. So kann ein Block einen Platz freimachen und nutzen: Eine Liste, die du löschst oder versiegelst, gibt ihren Platz an eine Liste ab, die du regenerierst.
 
-Am Ende bekommst du eine Zusammenfassung nach Namen: die gelöschten, versiegelten und regenerierten Listen und die, die nicht bearbeitet werden konnten. Zu jeder davon gehört ihr Grund, zum Beispiel eine Liste, die es nicht mehr gibt, oder ein Regenerieren ohne freien Platz in deinem Tarif. Danach zeichnet sich das Panel mit den Listen neu, wie sie jetzt sind.
+Am Ende bekommst du eine Zusammenfassung nach Namen: die gelöschten, versiegelten und regenerierten Listen und die, die nicht bearbeitet werden konnten.
 
-**Abbrechen** schließt das Panel und tut nichts. Deine Auswahl überlebt einen Seitenwechsel: Die Kopfzeile sagt dir, wie viele du auf anderen Seiten markiert hast, und die Bestätigung bezieht sie mit ein. Die Auswahl auf der Seite vor dir steckt im Panel selbst, sie läuft also nie ab, während du nachdenkst. Die auf anderen Seiten werden eine Stunde lang gemerkt, nachdem du das Panel zuletzt angefasst hast.
+Zu jeder davon gehört ihr Grund, zum Beispiel eine Liste, die es nicht mehr gibt, oder ein Regenerieren ohne freien Platz in deinem Tarif. Danach zeichnet sich das Panel mit den Listen neu, wie sie jetzt sind.
+
+**Abbrechen** schließt das Panel und tut nichts. Deine Auswahl überlebt einen Seitenwechsel: Die Kopfzeile sagt dir, wie viele du auf anderen Seiten markiert hast, und die Bestätigung bezieht sie mit ein.
+
+Die Auswahl auf der Seite vor dir steckt im Panel selbst, sie läuft also nie ab, während du nachdenkst. Die auf anderen Seiten werden eine Stunde lang gemerkt, nachdem du das Panel zuletzt angefasst hast.
 
 ## Regenerieren
 

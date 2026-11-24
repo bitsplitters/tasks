@@ -40,17 +40,23 @@ The button follows the rules of the rest of the list, such as the [permissions s
 
 While a list is in the Activity, its message keeps a single button, **Join the Activity** <img class="inline-ic" src="/icons/activity.png" alt="" />, and the last line says <img class="inline-ic" src="/icons/activity_blue.png" alt="" /> *This list is being worked on in the Activity*. Discord's **Join**, on the profile of someone inside, works too. Nothing changes the list from the channel meanwhile.
 
-To bring someone in, press **Invite**, at the top right of the home and of every list, next to who is there. Discord opens its own window, where you pick friends or a channel to send the invite to. It needs Discord's *Create Invite* permission on the channel: without it, TTM tells you so on the button, and how an administrator grants it.
+To bring someone in, press **Invite**, at the top right of the home and of every list, next to who is there. Discord opens its own window, where you pick friends or a channel to send the invite to.
+
+It needs Discord's *Create Invite* permission on the channel: without it, TTM tells you so on the button, and how an administrator grants it.
 
 ## Your status on Discord
 
-While you're in the Activity, your Discord profile shows Team Tasks Manager with *Planning tasks with the team*, in your language. It says nothing about the list, the server or the channel. Discord asks you first, in the window where you let TTM know who you are. If you say no, the Activity opens all the same, without that line.
+While you're in the Activity, your Discord profile shows Team Tasks Manager with *Planning tasks with the team*, in your language. It says nothing about the list, the server or the channel.
+
+Discord asks you first, in the window where you let TTM know who you are. If you say no, the Activity opens all the same, without that line.
 
 ## The home of the channel
 
 When you start from the **App Launcher** or from a **voice call** (see [Four ways in](#four-ways-in)), TTM opens the home of the channel, with the channel's name as its title. Threads, forum posts, announcement channels and stages are left out. The home has three parts:
 
-- **New list**, under the title — a title and the tasks, written as in [Create your first list](/docs/getting-started/#2-create-your-first-list), created here and already in the Activity. The summary that follows it back to the channel starts with its creation, and can mention the owners of its tasks: see [When a list is created](/docs/configuration/#when-a-list-is-created). Files are imported with `/create-list`, in the channel.
+- **New list**, under the title — a title and the tasks, written as in [Create your first list](/docs/getting-started/#2-create-your-first-list), created here and already in the Activity.
+
+  The summary that follows it back to the channel starts with its creation, and can mention the owners of its tasks: see [When a list is created](/docs/configuration/#when-a-list-is-created). Files are imported with `/create-list`, in the channel.
 - **Now in the Activity** — who is on each list, and who is editing. Tap one to join.
 - **In the channel** — the other lists, newest first. Tap one to read it, then **Bring into the Activity**, which waits while someone edits it in the channel.
 
@@ -79,7 +85,9 @@ No list enters the Activity, and the home hides **New list**. A list already in 
 
 ## Your settings
 
-The gear at the top right has two groups. Under **For you, everywhere**, **Time zone** is your time zone, the same as [/my timezone](/docs/my-timezone/): TTM proposes it in the channel and in every server too, and **Remove my time zone** forgets it. Under **On this device**, **Text size**, **Theme** and **Spaced rows**, more room to tap on a phone, apply only to you, on that device.
+The gear at the top right has two groups. Under **For you, everywhere**, **Time zone** is your time zone, the same as [/my timezone](/docs/my-timezone/): TTM proposes it in the channel and in every server too, and **Remove my time zone** forgets it.
+
+Under **On this device**, **Text size**, **Theme** and **Spaced rows**, more room to tap on a phone, apply only to you, on that device.
 
 ## Where to go next
 

@@ -1,7 +1,7 @@
 ---
 title: Limiti noti
 description: "I tetti su liste, task, promemoria e altro: la maggior parte viene da Discord stesso e come lavorarci dentro."
-fonte: fad07d75572a
+fonte: a9ff3dff4029
 ---
 
 Team Tasks Manager lavora interamente dentro Discord, quindi la maggior parte dei limiti qui sotto non è una scelta di TTM. Vengono da Discord stesso. Per esempio: quanto può essere lungo un messaggio, quanti menu stanno in un messaggio, fino a quanto indietro si possono eliminare i messaggi in blocco. Dove un limite è di Discord, lo diciamo.
@@ -18,7 +18,9 @@ Team Tasks Manager lavora interamente dentro Discord, quindi la maggior parte de
 
 <div class="callout"><div class="callout-t">Hai toccato un tetto?</div>Dividi il lavoro su più liste. Due liste mirate si leggono meglio di una al limite e ognuna ha i suoi promemoria, proprietari e tag.</div>
 
-**Download ti dà sempre un file.** Un normale messaggio di Discord è limitato a 2000 caratteri. Perciò **Download**, nel pannello **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> sotto la lista nel canale, non pubblica mai la lista come testo. Ti invia un file `.txt`, solo a te, in un messaggio che solo tu puoi vedere. È lo stesso file che `/crea-lista` può reimportare.
+**Download ti dà sempre un file.** Un normale messaggio di Discord è limitato a 2000 caratteri. Perciò **Download**, nel pannello **Altro** <img class="inline-ic" src="/icons/other.png" alt="" /> sotto la lista nel canale, non pubblica mai la lista come testo.
+
+Ti invia un file `.txt`, solo a te, in un messaggio che solo tu puoi vedere. È lo stesso file che `/crea-lista` può reimportare.
 
 **Eliminare il messaggio non equivale a eliminare la lista.** La lista tiene il suo posto e i suoi promemoria continuano ad arrivare: vedi [Cosa succede a una quarta lista](/docs/premium/#what-happens-to-a-fourth-list).
 
@@ -58,7 +60,9 @@ In ogni caso vengono avvisati solo i membri che possono vedere il canale della l
 
 ## Proprietari e tag
 
-Ogni task ha **un proprietario**: una persona o un ruolo. Con Premium può avere anche fino a 25 persone, che condividono un ruolo creato da TTM per loro. 25 è il massimo del menu dei proprietari. Un task può avere **fino a 25 tag**, gli utenti o i ruoli da avvisare: 25 è il massimo di Discord per un menu.
+Ogni task ha **un proprietario**: una persona o un ruolo. Con Premium può avere anche fino a 25 persone, che condividono un ruolo creato da TTM per loro. 25 è il massimo del menu dei proprietari.
+
+Un task può avere **fino a 25 tag**, gli utenti o i ruoli da avvisare: 25 è il massimo di Discord per un menu.
 
 **I ruoli creati da TTM contano nei 250 ruoli per server di Discord.** A 250 ruoli, TTM non può crearne di nuovi e lo dice. Quando TTM elimina i suoi ruoli: vedi [I ruoli che crea TTM](/docs/owners-and-tags/#the-roles-ttm-creates).
 
@@ -78,17 +82,23 @@ di errore cita lo stesso numero che leggi qui.
 
 ## La cronologia delle attività
 
-Quando la cronologia è accesa, TTM pubblica ogni azione in un thread accanto alla lista, tramite un webhook di Discord. Discord permette **15 webhook per canale**, quindi TTM crea **un webhook per canale** e lo riusa per ogni lista di quel canale. Il nome e l'immagine che vedi su ogni messaggio sono impostati per messaggio, quindi visivamente non cambia niente.
+Quando la cronologia è accesa, TTM pubblica ogni azione in un thread accanto alla lista, tramite un webhook di Discord.
+
+Discord permette **15 webhook per canale**, quindi TTM crea **un webhook per canale** e lo riusa per ogni lista di quel canale. Il nome e l'immagine che vedi su ogni messaggio sono impostati per messaggio, quindi visivamente non cambia niente.
 
 Se un canale ha già raggiunto i 15 di Discord (a causa di altri bot o integrazioni), la cronologia di una nuova lista non può partire. Liberane uno in **Impostazioni del canale → Integrazioni → Webhook**.
 
 ## Canali vocali
 
-Le liste funzionano anche nella chat di un canale vocale, con una differenza: lì non hanno la [cronologia delle attività](#the-activity-timeline). La cronologia è un thread accanto alla lista e Discord non permette i thread nei canali vocali. Tutto il resto funziona come in un canale di testo: i pulsanti, le notifiche, i promemoria, l'[Activity](/docs/activity/), **Clona lista**, **Download**, **Sigilla lista** ed **Elimina lista**.
+Le liste funzionano anche nella chat di un canale vocale, con una differenza: lì non hanno la [cronologia delle attività](#the-activity-timeline). La cronologia è un thread accanto alla lista e Discord non permette i thread nei canali vocali.
+
+Tutto il resto funziona come in un canale di testo: i pulsanti, le notifiche, i promemoria, l'[Activity](/docs/activity/), **Clona lista**, **Download**, **Sigilla lista** ed **Elimina lista**.
 
 Quando la cronologia è accesa in [`/config app`](/docs/configuration/#history-tracking), chi crea una lista in un canale vocale riceve un breve messaggio su questo, visibile solo a lui; la lista di prova del Tutorial lo salta. Se ti serve la cronologia, crea la lista in un canale di testo, oppure copiala lì con **Clona lista**.
 
-In un canale vocale TTM non ha bisogno di *Creare thread pubblici* e *Gestisci webhook*, che servono solo alla cronologia. Gli serve invece *Connettersi*: senza, TTM non può scrivere nella chat del canale vocale. Discord dà *Connettersi* a tutti di default; se il tuo server lo toglie su un canale vocale, concedilo a TTM lì, altrimenti `/crea-lista` ti dice che manca.
+In un canale vocale TTM non ha bisogno di *Creare thread pubblici* e *Gestisci webhook*, che servono solo alla cronologia. Gli serve invece *Connettersi*: senza, TTM non può scrivere nella chat del canale vocale.
+
+Discord dà *Connettersi* a tutti di default; se il tuo server lo toglie su un canale vocale, concedilo a TTM lì, altrimenti `/crea-lista` ti dice che manca.
 
 ## Notifiche
 

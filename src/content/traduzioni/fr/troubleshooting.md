@@ -1,7 +1,7 @@
 ---
 title: "FAQ"
 description: "Questions fréquentes : des réponses rapides aux problèmes les plus courants, chacune avec un lien vers la page qui l'explique en entier."
-fonte: c80b5664452a
+fonte: a72339b9982f
 ---
 
 Trouve ci-dessous le problème que tu rencontres. Chaque réponse est courte et renvoie à la page qui l'explique en entier. Les problèmes de la liste sont répartis par endroit : [dans le salon](#in-the-channel) et [dans l'Activity](#in-the-activity).
@@ -22,7 +22,9 @@ Vérifie ces points, dans cet ordre :
 - **La tâche a un propriétaire.** Seuls le propriétaire, les membres du rôle propriétaire et ceux qui ont *Gérer les messages* sur le salon peuvent la cocher. Voir [Qui peut cocher une tâche](/docs/core-concepts/#who-can-tick-a-task).
 - **Le menu est désactivé.** Quelqu'un est en train de modifier la liste, elle est donc verrouillée : voir [J'ai appuyé sur Annuler et la liste reste verrouillée](#i-pressed-cancel-and-the-list-stays-locked) plus bas.
 - **Le bot dit *Tu n'es pas autorisé à utiliser cette fonction sur ce serveur*.** Ton serveur a synchronisé ses permissions et, pour toi, la liste est en lecture seule. Demande à un administrateur. Voir [Synchroniser les permissions](/docs/configuration/#sync-permissions).
-- **La bêta est terminée et ton serveur est sur l'offre Free.** Quand toutes les places de ton offre sont prises, une liste qui n'en fait pas partie refuse le cochage. Une liste créée pendant la bêta fait exception : ses tâches peuvent toujours être cochées. Voir [Comment fonctionnent les trois places](/docs/premium/#how-the-three-places-work) et [Ce que garde une liste de la bêta](/docs/beta/#what-a-beta-list-keeps).
+- **La bêta est terminée et ton serveur est sur l'offre Free.** Quand toutes les places de ton offre sont prises, une liste qui n'en fait pas partie refuse le cochage.
+
+  Une liste créée pendant la bêta fait exception : ses tâches peuvent toujours être cochées. Voir [Comment fonctionnent les trois places](/docs/premium/#how-the-three-places-work) et [Ce que garde une liste de la bêta](/docs/beta/#what-a-beta-list-keeps).
 
 ### J'ai appuyé sur Annuler et la liste reste verrouillée
 
@@ -42,7 +44,9 @@ Si une tâche est devenue la tienne au lieu d'aller aux personnes que tu avais c
 
 ### Je veux donner une tâche à plusieurs personnes
 
-Clique sur **Propriétaire** jusqu'à ce qu'il devienne bleu. Dans le menu sous les boutons, dont le texte est *Choisis une tâche dans le menu au-dessus pour la prendre, ou choisis à qui la donner*, choisis les personnes. Confirme ton choix, puis choisis la tâche. TTM crée un rôle pour ces personnes et en fait le propriétaire. Dans l'Activity, choisis-les dans le panneau de la tâche : voir [Propriétaire](/docs/activity-list/#owner).
+Clique sur **Propriétaire** jusqu'à ce qu'il devienne bleu. Dans le menu sous les boutons, dont le texte est *Choisis une tâche dans le menu au-dessus pour la prendre, ou choisis à qui la donner*, choisis les personnes. Confirme ton choix, puis choisis la tâche.
+
+TTM crée un rôle pour ces personnes et en fait le propriétaire. Dans l'Activity, choisis-les dans le panneau de la tâche : voir [Propriétaire](/docs/activity-list/#owner).
 
 C'est une fonctionnalité [Premium](/docs/premium/). Le bot a besoin de la permission *Gérer les rôles* : un administrateur l'accorde au rôle du bot dans *Paramètres du serveur → Rôles*, pas sur un salon. Voir [Propriétaire : une personne, un rôle ou plusieurs personnes](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
@@ -78,7 +82,9 @@ TTM te dit pourquoi. En général :
 
 ### La liste met du temps à revenir de l'Activity
 
-L'Activity a été fermée sans appuyer sur **Quitter**. Pour TTM, une fenêtre fermée ressemble à une connexion coupée un instant : il attend 30 secondes que tu reviennes, puis ramène la liste dans le salon. Avec un téléphone laissé en arrière-plan ou verrouillé, cela peut prendre jusqu'à une minute, parce que le bot doit d'abord remarquer que la page a cessé de répondre.
+L'Activity a été fermée sans appuyer sur **Quitter**. Pour TTM, une fenêtre fermée ressemble à une connexion coupée un instant : il attend 30 secondes que tu reviennes, puis ramène la liste dans le salon.
+
+Avec un téléphone laissé en arrière-plan ou verrouillé, cela peut prendre jusqu'à une minute, parce que le bot doit d'abord remarquer que la page a cessé de répondre.
 
 **Quitter** dit tout de suite au bot que tu as fini : si tu es le dernier dans la liste, elle revient aussitôt dans le salon. Voir [Revenir dans le salon](/docs/activity/#back-to-the-channel).
 

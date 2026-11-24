@@ -1,7 +1,7 @@
 ---
 title: "Erinnerungen"
 description: "Hänge einer Aufgabe einen Zeitplan an, damit TTM ihren Besitzer rechtzeitig erinnert: wer sie bekommt, Zeitzonen, Wiederholungen."
-fonte: fb523a41633c
+fonte: 6ce351a678ab
 ---
 
 Eine Erinnerung macht aus einer Aufgabe etwas, das *dich* erinnert, statt umgekehrt. Du setzt sie einmal, und TTM kümmert sich um die Pings. Du fügst eine mit **Erinnerung** <img class="inline-ic" src="/icons/alertW.png" alt="" /> hinzu: im Kanal in der zweiten Reihe unter der Liste, in der Activity im Panel einer Aufgabe.
@@ -13,7 +13,9 @@ Eine Erinnerung macht aus einer Aufgabe etwas, das *dich* erinnert, statt umgeke
 - **Eine Erinnerung hat ein Datum, eine Uhrzeit und eine Zeitzone.** Sie löst **einmal** aus, außer dein Server nutzt [wiederkehrende Erinnerungen](#repeating-reminders), eine Premium-Funktion.
 - **Der Start muss mindestens 5 Minuten in der Zukunft liegen.** Das Formular beginnt bei zehn Minuten ab jetzt: Für eine Erinnerung „gleich“ musst du also nichts tippen.
 - **Nur eine Aufgabe, die noch zu erledigen ist, kann eine bekommen.** Eine Aufgabe abzuschließen stoppt ihre Erinnerung, du musst danach nichts aufräumen.
-- **Die Erinnerung geht an den Besitzer der Aufgabe**, per Direktnachricht, wenn der Besitzer eine Person ist. Hat die Aufgabe noch keinen Besitzer, **wirst du es**, wenn du die Erinnerung speicherst. Von da an können nur du und alle mit *Nachrichten verwalten* im Kanal diese Aufgabe abhaken. Um sie jemand anderem zu geben, setze den Besitzer vor oder nach dem Erstellen der Erinnerung: Siehe [Besitzer und Tags](/docs/owners-and-tags/).
+- **Die Erinnerung geht an den Besitzer der Aufgabe**, per Direktnachricht, wenn der Besitzer eine Person ist. Hat die Aufgabe noch keinen Besitzer, **wirst du es**, wenn du die Erinnerung speicherst.
+
+  Von da an können nur du und alle mit *Nachrichten verwalten* im Kanal diese Aufgabe abhaken. Um sie jemand anderem zu geben, setze den Besitzer vor oder nach dem Erstellen der Erinnerung: Siehe [Besitzer und Tags](/docs/owners-and-tags/).
 - **Nichts ändert sich, bis du speicherst.** Wenn du eine Erinnerung bearbeitest, bleibt Speichern aus, bis du das Datum oder die Wiederholung änderst.
 - **Wer den Besitzer entfernt, entfernt die Erinnerung**, weil niemand sie mehr bekommen würde.
 
@@ -50,7 +52,9 @@ Eine Rolle wird nur benachrichtigt, wenn sie erwähnt werden kann. Wann das der 
 
 ## Wiederkehrende Erinnerungen
 
-Standardmäßig ist jede Erinnerung ein **Einzelereignis**: ein Ping, nichts weiter zu entscheiden. Wiederholungen sind eine [Premium](/docs/premium/)-Funktion: Im Free-Tarif ist jede Erinnerung einmalig. Bei einem Tarif, der sie enthält, sind sie trotzdem optional: Wer den Server verwaltet, schaltet **Wiederkehrende Erinnerungen** in [/config app](/docs/configuration/#recurring-reminders) ein. Bis dahin zeigt nur eine Erinnerung, die schon wiederkehrend ist, die Wiederholungsmenüs.
+Standardmäßig ist jede Erinnerung ein **Einzelereignis**: ein Ping, nichts weiter zu entscheiden. Wiederholungen sind eine [Premium](/docs/premium/)-Funktion: Im Free-Tarif ist jede Erinnerung einmalig.
+
+Bei einem Tarif, der sie enthält, sind sie trotzdem optional: Wer den Server verwaltet, schaltet **Wiederkehrende Erinnerungen** in [/config app](/docs/configuration/#recurring-reminders) ein. Bis dahin zeigt nur eine Erinnerung, die schon wiederkehrend ist, die Wiederholungsmenüs.
 
 <div class="callout"><div class="callout-t">Wiederkehrende Erinnerungen, die du schon hast, funktionieren weiter</div>Eine Erinnerung, die schon wiederkehrend war, löst im Free-Tarif weiter aus und in Premium auch bei ausgeschaltetem Schalter: Du kannst ihr Datum ändern, sie auf eine andere Aufgabe verschieben oder die Zahl senken, wie oft sie ankommt, aber nicht erhöhen. Eine Liste zu klonen oder zu importieren erstellt neue Erinnerungen. Wo keine neuen wiederkehrenden Erinnerungen erstellt werden können, lehnen ein Klon oder ein Import eine wiederkehrende also ab: Klone ohne Erinnerungen oder setze ihre Wiederholungen auf <code>0</code>.</div>
 

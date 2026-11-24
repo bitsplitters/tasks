@@ -1,7 +1,7 @@
 ---
 title: "Recordatorios"
 description: "Asocia un horario a una tarea para que TTM avise a su propietario a tiempo: quién lo recibe, zonas horarias, repeticiones."
-fonte: fb523a41633c
+fonte: 6ce351a678ab
 ---
 
 Un recordatorio convierte una tarea en algo que te recuerda *a ti*, en lugar de al revés. Lo configuras una vez; TTM se encarga de los avisos. Se añade con **Recordatorio** <img class="inline-ic" src="/icons/alertW.png" alt="" />: en el canal, en la segunda fila bajo la lista; en la Activity, en el panel de una tarea.
@@ -13,7 +13,9 @@ Un recordatorio convierte una tarea en algo que te recuerda *a ti*, en lugar de 
 - **Un recordatorio tiene una fecha, una hora y una zona horaria.** Se envía **una sola vez**, a menos que tu servidor use [recordatorios repetidos](#repeating-reminders), una función Premium.
 - **El inicio debe estar al menos 5 minutos en el futuro.** El formulario parte de diez minutos desde ahora, así que un recordatorio para «dentro de un momento» no necesita escribir nada.
 - **Solo una tarea pendiente puede tener uno.** Completar una tarea detiene su recordatorio: no hace falta limpiar después.
-- **El recordatorio va al propietario de la tarea**, por mensaje directo si el propietario es una persona. Si la tarea aún no tiene propietario, **te conviertes en él** al guardar el recordatorio. Desde entonces, solo tú y quien tenga *Gestionar mensajes* en el canal pueden marcar esa tarea. Para dársela a otra persona, fija el propietario antes o después de crear el recordatorio: consulta [Propietarios y etiquetas](/docs/owners-and-tags/).
+- **El recordatorio va al propietario de la tarea**, por mensaje directo si el propietario es una persona. Si la tarea aún no tiene propietario, **te conviertes en él** al guardar el recordatorio.
+
+  Desde entonces, solo tú y quien tenga *Gestionar mensajes* en el canal pueden marcar esa tarea. Para dársela a otra persona, fija el propietario antes o después de crear el recordatorio: consulta [Propietarios y etiquetas](/docs/owners-and-tags/).
 - **No cambia nada hasta que guardas.** Cuando editas un recordatorio, Guardar se queda apagado hasta que cambies la fecha o la recurrencia.
 - **Quitar el propietario quita el recordatorio**, porque no queda nadie que lo reciba.
 
@@ -50,7 +52,9 @@ Un rol recibe aviso solo si se le puede mencionar. Cuándo ocurre eso, y qué pa
 
 ## Recordatorios repetidos
 
-Por defecto, cada recordatorio es un **evento único**: un aviso, y nada más que decidir. Las repeticiones son una función [Premium](/docs/premium/): en el plan Free, cada recordatorio es único. En un plan que las incluye siguen siendo opcionales: una persona que gestiona el servidor activa **Recordatorios recurrentes** en [/config app](/docs/configuration/#recurring-reminders). Hasta entonces, solo un recordatorio que ya es recurrente muestra los menús de repetición.
+Por defecto, cada recordatorio es un **evento único**: un aviso, y nada más que decidir. Las repeticiones son una función [Premium](/docs/premium/): en el plan Free, cada recordatorio es único.
+
+En un plan que las incluye siguen siendo opcionales: una persona que gestiona el servidor activa **Recordatorios recurrentes** en [/config app](/docs/configuration/#recurring-reminders). Hasta entonces, solo un recordatorio que ya es recurrente muestra los menús de repetición.
 
 <div class="callout"><div class="callout-t">Los recordatorios recurrentes que ya tienes siguen funcionando</div>Un recordatorio que ya era recurrente sigue llegando en el plan Free, y en Premium con el interruptor desactivado: puedes cambiar su fecha, moverlo a otra tarea o reducir el número de veces que llega, pero no aumentarlo. Clonar o importar una lista crea recordatorios nuevos, así que donde no se pueden crear recordatorios recurrentes nuevos, una clonación o una importación rechaza uno recurrente: clona sin recordatorios, o pon sus repeticiones a <code>0</code>.</div>
 

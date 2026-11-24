@@ -1,7 +1,7 @@
 ---
 title: "Loslegen"
 description: "Lade den Bot ein, erstelle eine Liste, hake dann eine Aufgabe ab und stelle eine Erinnerung ein, im Kanal oder in der Activity."
-fonte: 80e3e27e599a
+fonte: e7a439b39622
 ---
 
 Team Tasks Manager (TTM) lässt dein Team Aufgaben teilen und verwalten, **ohne Discord zu verlassen**. Diese Seite führt dich von null zu einer funktionierenden Liste: erstellen, eine Aufgabe abhaken, eine Erinnerung einstellen.
@@ -48,7 +48,9 @@ Sende das Formular ab, und die Liste erscheint im Kanal. Hier ist dieselbe Liste
   <img src="/screens/de/list-desktop.png" width="540" height="418" loading="lazy" alt="Die Liste Samstagsturnier in Discord: sechs nummerierte Aufgaben mit Kästchen. Die erste ist abgehakt und ausgegraut; Die Turnierbäume vorbereiten hat zwei Unteraufgaben und einen Besitzer; Das Finale streamen hat einen Besitzer und ein Erinnerungsdatum. Unter den Aufgaben verweist eine kleine Zeile auf Mehr, Anleitung und die vollständige Dokumentation, und ein grüner Balken zeigt, wie viel erledigt ist. Unter der Liste stehen das Dropdown-Menü Aufgabe abhaken und zwei Reihen Buttons." />
 </picture>
 
-Lieber durch Ausprobieren lernen? Neben **Erstelle deine Liste** gibt es einen Button **Tutorial**: Er macht aus der Erklärung eine Übungsliste mit sieben Lektionen in deiner Sprache und schickt dir die Anleitung in einer Nachricht, die nur du siehst. Mach die Lektionen der Reihe nach: Jede nennt einen Button mit seinem Icon und bittet dich, etwas damit zu tun, vom Abhaken bis zum Öffnen in der Activity.
+Lieber durch Ausprobieren lernen? Neben **Erstelle deine Liste** gibt es einen Button **Tutorial**: Er macht aus der Erklärung eine Übungsliste mit sieben Lektionen in deiner Sprache und schickt dir die Anleitung in einer Nachricht, die nur du siehst.
+
+Mach die Lektionen der Reihe nach: Jede nennt einen Button mit seinem Icon und bittet dich, etwas damit zu tun, vom Abhaken bis zum Öffnen in der Activity.
 
 Die Übungsliste ist eine normale Liste: Wenn du fertig bist, lösche sie über **Mehr** → **Liste löschen**.
 
@@ -58,7 +60,9 @@ Jetzt wähle, wo du damit arbeitest. Die Liste ist an beiden Orten dieselbe, und
 
 ### Eine Aufgabe abhaken
 
-Unter der Liste findest du das **Abhak-Menü**, ein Dropdown-Menü, das den Titel der Liste zeigt, und zwei Reihen Buttons. Öffne das Menü und wähle eine Aufgabe: Ihr Kästchen wechselt von <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> zu <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, und die Liste aktualisiert sich für alle. Wähle sie noch einmal, um sie wieder zu öffnen. Wer eine Gruppe abhakt, hakt auch ihre Unteraufgaben ab. Je nach deinen [Einstellungen](/docs/configuration/) postet TTM außerdem eine kurze Benachrichtigung unter der Liste und hält die Änderung in einem Verlaufs-Thread fest.
+Unter der Liste findest du das **Abhak-Menü**, ein Dropdown-Menü, das den Titel der Liste zeigt, und zwei Reihen Buttons. Öffne das Menü und wähle eine Aufgabe: Ihr Kästchen wechselt von <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> zu <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" />, und die Liste aktualisiert sich für alle. Wähle sie noch einmal, um sie wieder zu öffnen.
+
+Wer eine Gruppe abhakt, hakt auch ihre Unteraufgaben ab. Je nach deinen [Einstellungen](/docs/configuration/) postet TTM außerdem eine kurze Benachrichtigung unter der Liste und hält die Änderung in einem Verlaufs-Thread fest.
 
 <div class="callout"><div class="callout-t">Du kannst eine Aufgabe nicht abhaken?</div>Jeder Button in der zweiten Reihe muss <strong>aus</strong> sein: Ist einer blau oder rot, führt die Wahl einer Aufgabe stattdessen die Aktion dieses Buttons aus. Und eine Aufgabe mit Besitzer können nur ihr Besitzer und alle mit <em>Nachrichten verwalten</em> im Kanal abhaken.</div>
 

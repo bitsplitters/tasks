@@ -11,7 +11,9 @@ Most of these work wherever the list is. The ones that exist in a single place s
 
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />In the channel</p>
 
-Open **More** <img class="inline-ic" src="/icons/other.png" alt="" /> and pick **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: the list arrives as a `.txt` file that only you can see. Then run `/create-list` on any server and attach that file to its `file` option. Tasks, completed states, owners, tags, reminders and webhooks come back as they were. It works well for checklists you repeat, like releases, onboarding or events.
+Open **More** <img class="inline-ic" src="/icons/other.png" alt="" /> and pick **Download** <img class="inline-ic" src="/icons/download.png" alt="" />: the list arrives as a `.txt` file that only you can see. Then run `/create-list` on any server and attach that file to its `file` option.
+
+Tasks, completed states, owners, tags, reminders and webhooks come back as they were. It works well for checklists you repeat, like releases, onboarding or events.
 
 If something in the file doesn't fit the new server, TTM creates nothing and lists every problem at once. What it checks: see [`/create-list`](/docs/commands/#create-list).
 

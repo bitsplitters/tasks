@@ -1,7 +1,7 @@
 ---
 title: "/config app"
 description: "Adapte les notifications, l'historique, les rappels, le fuseau horaire et les permissions avec /config app."
-fonte: 449f5cc3050a
+fonte: cc3b2bd36302
 ---
 
 Lance la commande :
@@ -52,15 +52,21 @@ Dans l'Activity, les cochages ne publient aucune notification un par un : quand
 
 ### Quand une liste est créée
 
-Une nouvelle liste publie sa propre notification sous elle : *j'ai créé la liste*, avec un lien vers la liste. Elle vient de `/creer-liste`, du Tutoriel, d'un import depuis un fichier, d'un clone et de **Nouvelle liste** dans l'Activity. Un clone la publie dans le nouveau salon, et le salon de la liste d'origine reçoit la notification habituelle du clone. Avec le mode **Notifications désactivées**, rien n'est publié dans le salon, mais le fil de l'historique enregistre quand même la création.
+Une nouvelle liste publie sa propre notification sous elle : *j'ai créé la liste*, avec un lien vers la liste. Elle vient de `/creer-liste`, du Tutoriel, d'un import depuis un fichier, d'un clone et de **Nouvelle liste** dans l'Activity.
+
+Un clone la publie dans le nouveau salon, et le salon de la liste d'origine reçoit la notification habituelle du clone. Avec le mode **Notifications désactivées**, rien n'est publié dans le salon, mais le fil de l'historique enregistre quand même la création.
 
 Avec [Mentionner les propriétaires dans les nouvelles listes](#mention-owners-in-new-lists) activé, la notification mentionne les propriétaires des tâches, et Discord les prévient. Une liste créée dans l'Activity les mentionne dans le récapitulatif qui la suit dans le salon.
 
-Avec les [Astuces](#tips) activées, la première notification d'une nouvelle liste se termine par une explication : pourquoi TTM publie des notifications et, si le suivi de l'historique est activé, ce qu'est le fil. Elle apparaît une seule fois par liste, et seulement si les astuces et les notifications étaient toutes les deux activées à la création de la liste : une équipe qui en a désactivé une s'y retrouve déjà. Les listes créées avant l'arrivée de cette explication ne l'affichent pas.
+Avec les [Astuces](#tips) activées, la première notification d'une nouvelle liste se termine par une explication : pourquoi TTM publie des notifications et, si le suivi de l'historique est activé, ce qu'est le fil.
+
+Elle apparaît une seule fois par liste, et seulement si les astuces et les notifications étaient toutes les deux activées à la création de la liste : une équipe qui en a désactivé une s'y retrouve déjà. Les listes créées avant l'arrivée de cette explication ne l'affichent pas.
 
 ## Suivi de l'historique
 
-Quand il est activé, **chaque action sur tes listes est enregistrée dans un fil dédié**, ce qui te donne une piste d'audit de qui a fait quoi et quand. Activé par défaut. Le fil commence avec la liste : sa première ligne dit qui l'a créée. Les listes dans les salons vocaux n'ont pas de fil d'historique, parce que Discord n'y autorise pas les fils : voir [Salons vocaux](/docs/known-limits/#voice-channels). Une session dans l'Activity entre en entier dans le fil, une ligne par modification, quand la liste revient dans le salon.
+Quand il est activé, **chaque action sur tes listes est enregistrée dans un fil dédié**, ce qui te donne une piste d'audit de qui a fait quoi et quand. Activé par défaut. Le fil commence avec la liste : sa première ligne dit qui l'a créée.
+
+Les listes dans les salons vocaux n'ont pas de fil d'historique, parce que Discord n'y autorise pas les fils : voir [Salons vocaux](/docs/known-limits/#voice-channels). Une session dans l'Activity entre en entier dans le fil, une ligne par modification, quand la liste revient dans le salon.
 
 ## Comportement
 
@@ -68,11 +74,15 @@ Un menu déroulant avec trois options : **Notifications push lisibles**, **Cons
 
 ### Notifications push lisibles
 
-Quand l'option est activée, TTM ajoute du texte simple à côté des embeds, pour que tes **notifications push sur mobile** soient lisibles d'un coup d'œil. Les embeds seuls s'affichent souvent vides sur un écran verrouillé. Activée par défaut. La désactiver n'arrête jamais un rappel : il arrive avec sa seule fiche, ou, pour un rôle, avec la seule mention. Les mentions des propriétaires partent quand même, seules, même avec l'option désactivée.
+Quand l'option est activée, TTM ajoute du texte simple à côté des embeds, pour que tes **notifications push sur mobile** soient lisibles d'un coup d'œil. Les embeds seuls s'affichent souvent vides sur un écran verrouillé. Activée par défaut.
+
+La désactiver n'arrête jamais un rappel : il arrive avec sa seule fiche, ou, pour un rôle, avec la seule mention. Les mentions des propriétaires partent quand même, seules, même avec l'option désactivée.
 
 ### Conserver l'état après la sélection
 
-Seulement dans le salon. Après avoir utilisé **Propriétaire**, **Tag** ou **Rappel** dans la deuxième rangée sous la liste, ce réglage décide si le bouton redevient gris ou **garde** le mode actif. Désactivée par défaut : le bouton redevient gris. Active-la quand tu appliques la même action à plusieurs tâches de suite.
+Seulement dans le salon. Après avoir utilisé **Propriétaire**, **Tag** ou **Rappel** dans la deuxième rangée sous la liste, ce réglage décide si le bouton redevient gris ou **garde** le mode actif.
+
+Désactivée par défaut : le bouton redevient gris. Active-la quand tu appliques la même action à plusieurs tâches de suite.
 
 Elle change aussi ce que **Tag** et **Propriétaire** peuvent faire. Désactivée, ton choix écrase toujours. Activée, tu peux aussi modifier en direct les tags ou le propriétaire existants d'une tâche. Voir [Tag](/docs/channel-tasks/#tag) pour le détail complet.
 
@@ -80,7 +90,9 @@ Dans l'Activity, le panneau d'une tâche fonctionne toujours de la même façon�
 
 ### Mentionner les propriétaires dans les nouvelles listes
 
-Quand quelqu'un crée, importe ou clone une liste, sa première notification mentionne les propriétaires de ses tâches : personnes et rôles, chacun une fois, dans l'ordre de la liste. Les mentions vont dans le texte simple de la notification, et Discord prévient donc les propriétaires. La personne qui a créé la liste n'est pas mentionnée : elle sait déjà. @everyone ne l'est pas non plus, même s'il est propriétaire d'une tâche : une nouvelle liste ne prévient pas tout le serveur.
+Quand quelqu'un crée, importe ou clone une liste, sa première notification mentionne les propriétaires de ses tâches : personnes et rôles, chacun une fois, dans l'ordre de la liste. Les mentions vont dans le texte simple de la notification, et Discord prévient donc les propriétaires.
+
+La personne qui a créé la liste n'est pas mentionnée : elle sait déjà. @everyone ne l'est pas non plus, même s'il est propriétaire d'une tâche : une nouvelle liste ne prévient pas tout le serveur.
 
 Activée par défaut, y compris sur les serveurs qui ont ajouté TTM avant l'arrivée de cette option. Une liste créée pendant une session de l'Activity mentionne ses propriétaires dans le récapitulatif, quand elle revient dans le salon. Voir [Quand une liste est créée](#when-a-list-is-created).
 
@@ -96,7 +108,11 @@ Affiche chaque tâche terminée dans le texte plus petit et gris de Discord, pou
 
 ### Espace autour des groupes
 
-Met une ligne vide au-dessus et en dessous de chaque tâche qui a des sous-tâches, pour que chaque groupe se détache du reste de la liste. Désactivée par défaut, pour une liste plus compacte : les serveurs qui ont ajouté TTM avant la version 2.0.0 l'ont activée jusqu'à ce qu'un administrateur la désactive. Elle ne change que la liste elle-même : les notifications restent comme elles sont. Discord n'a pas de ligne vide plus fine pour une liste, donc le choix est entre une ligne entière et aucune.
+Met une ligne vide au-dessus et en dessous de chaque tâche qui a des sous-tâches, pour que chaque groupe se détache du reste de la liste.
+
+Désactivée par défaut, pour une liste plus compacte : les serveurs qui ont ajouté TTM avant la version 2.0.0 l'ont activée jusqu'à ce qu'un administrateur la désactive.
+
+Elle ne change que la liste elle-même : les notifications restent comme elles sont. Discord n'a pas de ligne vide plus fine pour une liste, donc le choix est entre une ligne entière et aucune.
 
 ## Rappels récurrents
 
@@ -112,7 +128,9 @@ Un rappel qui est *déjà* récurrent continue de partir même quand l'interrupt
 
 ## Fuseau horaire
 
-Définit le fuseau horaire dans lequel travaille ton équipe. Les membres peuvent quand même utiliser le leur pour les rappels : tant qu'ils n'en ont pas choisi un, TTM leur propose le fuseau de leur langue Discord, et celui-ci seulement quand leur langue est parlée sur plusieurs fuseaux, comme l'anglais (US). Voir [Ton fuseau horaire](/docs/reminders/#your-time-zone). Clique sur le bouton, puis colle un nom de fuseau officiel : cherche-le sur la **[carte des fuseaux horaires](https://timezones.bitsplitters.app)**.
+Définit le fuseau horaire dans lequel travaille ton équipe. Les membres peuvent quand même utiliser le leur pour les rappels : tant qu'ils n'en ont pas choisi un, TTM leur propose le fuseau de leur langue Discord, et celui-ci seulement quand leur langue est parlée sur plusieurs fuseaux, comme l'anglais (US). Voir [Ton fuseau horaire](/docs/reminders/#your-time-zone).
+
+Clique sur le bouton, puis colle un nom de fuseau officiel : cherche-le sur la **[carte des fuseaux horaires](https://timezones.bitsplitters.app)**.
 
 ## Synchroniser les permissions
 

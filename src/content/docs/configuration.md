@@ -53,15 +53,21 @@ In the Activity, ticks post no notification one by one: when the list goes back 
 
 ### When a list is created
 
-A new list posts its own notification under it: *I created the list*, with a link to the list. It comes from `/create-list`, the Tutorial, an import from a file, a clone and **New list** in the Activity. A clone posts it in the new channel, and the channel of the original list gets the usual notification of the clone. With the mode **Disabled**, nothing is posted in the channel, but the history thread still records the creation.
+A new list posts its own notification under it: *I created the list*, with a link to the list. It comes from `/create-list`, the Tutorial, an import from a file, a clone and **New list** in the Activity.
+
+A clone posts it in the new channel, and the channel of the original list gets the usual notification of the clone. With the mode **Disabled**, nothing is posted in the channel, but the history thread still records the creation.
 
 With [Mention owners in new lists](#mention-owners-in-new-lists) on, the notification mentions the owners of the tasks, so Discord notifies them. A list created in the Activity mentions them in the summary that follows it back to the channel.
 
-With [Tips](#tips) on, the first notification of a new list ends with an explanation: why TTM posts notifications and, with history tracking on, what the thread is. It appears once per list, and only if tips and notifications were both on when the list was created: a team that switched one of them off already knows its way around. Lists created before this explanation came don't show it.
+With [Tips](#tips) on, the first notification of a new list ends with an explanation: why TTM posts notifications and, with history tracking on, what the thread is.
+
+It appears once per list, and only if tips and notifications were both on when the list was created: a team that switched one of them off already knows its way around. Lists created before this explanation came don't show it.
 
 ## History tracking
 
-When enabled, **every action on your lists is recorded in a dedicated thread**, giving you an audit trail of who did what and when. On by default. The thread starts with the list: its first line says who created it. Lists in voice channels have no history thread, because Discord doesn't allow threads there: see [Voice channels](/docs/known-limits/#voice-channels). A session in the Activity goes in the thread in full, one line per change, when the list goes back to the channel.
+When enabled, **every action on your lists is recorded in a dedicated thread**, giving you an audit trail of who did what and when. On by default. The thread starts with the list: its first line says who created it.
+
+Lists in voice channels have no history thread, because Discord doesn't allow threads there: see [Voice channels](/docs/known-limits/#voice-channels). A session in the Activity goes in the thread in full, one line per change, when the list goes back to the channel.
 
 ## Behavior
 
@@ -69,11 +75,15 @@ One dropdown with three options: **Readable push notifications**, **Keep the sta
 
 ### Readable push notifications
 
-When on, TTM adds plain text alongside embeds, so your **mobile push notifications** are readable at a glance. Embeds alone often show up empty on a lock screen. On by default. Turning it off never stops a reminder: it arrives with just its card — or, for a role, just the mention. The mentions of owners still go out with it off, on their own.
+When on, TTM adds plain text alongside embeds, so your **mobile push notifications** are readable at a glance. Embeds alone often show up empty on a lock screen. On by default.
+
+Turning it off never stops a reminder: it arrives with just its card — or, for a role, just the mention. The mentions of owners still go out with it off, on their own.
 
 ### Keep the state after a selection
 
-Only in the channel. After you use **Owner**, **Tag** or **Reminder** in the second row under the list, this decides whether the button goes back to grey or **keeps** the active mode. Off by default: the button goes back to grey. Turn it on when you apply the same action to several tasks in a row.
+Only in the channel. After you use **Owner**, **Tag** or **Reminder** in the second row under the list, this decides whether the button goes back to grey or **keeps** the active mode.
+
+Off by default: the button goes back to grey. Turn it on when you apply the same action to several tasks in a row.
 
 It also changes what **Tag** and **Owner** can do. With it off, your choice always overwrites. With it on, you also get live editing of a task's existing tags or owner. See [Tag](/docs/channel-tasks/#tag) for the full breakdown.
 
@@ -81,7 +91,9 @@ In the Activity the panel of a task always works the same way: after an action i
 
 ### Mention owners in new lists
 
-When someone creates, imports or clones a list, its first notification mentions the owners of its tasks: people and roles, each once, in the order of the list. The mentions go in the plain text of the notification, so Discord notifies the owners. Whoever created the list isn't mentioned: they already know. Neither is @everyone, even when it owns a task: a new list doesn't notify the whole server.
+When someone creates, imports or clones a list, its first notification mentions the owners of its tasks: people and roles, each once, in the order of the list. The mentions go in the plain text of the notification, so Discord notifies the owners.
+
+Whoever created the list isn't mentioned: they already know. Neither is @everyone, even when it owns a task: a new list doesn't notify the whole server.
 
 On by default, also on servers that added TTM before this option came. A list created inside an Activity session mentions its owners in the summary, when it goes back to the channel. See [When a list is created](#when-a-list-is-created).
 
@@ -97,7 +109,11 @@ Shows every completed task in Discord's smaller, grey text, so what is still to 
 
 ### Space around groups
 
-Puts a blank line above and below every task that has subtasks, so each group stands apart from the rest of the list. Off by default, for a more compact list: servers that added TTM before version 2.0.0 have it on until an admin switches it off. It changes only the list itself: notifications stay as they are. Discord has no thinner blank line for a list, so the choice is between a full line and none.
+Puts a blank line above and below every task that has subtasks, so each group stands apart from the rest of the list.
+
+Off by default, for a more compact list: servers that added TTM before version 2.0.0 have it on until an admin switches it off.
+
+It changes only the list itself: notifications stay as they are. Discord has no thinner blank line for a list, so the choice is between a full line and none.
 
 ## Recurring reminders
 
@@ -113,7 +129,9 @@ A reminder that is *already* recurring keeps firing even while the toggle is off
 
 ## Time zone
 
-Sets the time zone your team works in. Members can still use their own for reminders: until they choose one, TTM proposes the zone of their Discord language, and this one only when their language is spoken across several zones, such as English (US). See [Your time zone](/docs/reminders/#your-time-zone). Click the button, then paste an official zone name — look it up on the **[time zone map](https://timezones.bitsplitters.app)**.
+Sets the time zone your team works in. Members can still use their own for reminders: until they choose one, TTM proposes the zone of their Discord language, and this one only when their language is spoken across several zones, such as English (US). See [Your time zone](/docs/reminders/#your-time-zone).
+
+Click the button, then paste an official zone name — look it up on the **[time zone map](https://timezones.bitsplitters.app)**.
 
 ## Sync permissions
 

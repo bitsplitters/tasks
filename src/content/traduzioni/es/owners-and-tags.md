@@ -1,7 +1,7 @@
 ---
 title: "Propietarios y etiquetas"
 description: "A quién pertenece una tarea, a quién menciona y los roles que crea TTM cuando varias personas son propietarias de una tarea."
-fonte: 3beeb818c97b
+fonte: bf7e5a683480
 ---
 
 Una tarea puede tener un **propietario** y varias **etiquetas**. El propietario es a quien pertenece la tarea: quien puede marcarla y quien recibe su recordatorio. Las etiquetas son los usuarios y roles mencionados en la tarea, por ejemplo las personas a las que avisar cuando se completa.
@@ -76,7 +76,9 @@ TTM recuerda los roles que crea y las personas a las que se los dio. Un rol sigu
 - sin permisos, ni en el servidor ni en un canal;
 - el mismo número de miembros.
 
-Si lo renombras, le das un permiso, lo añades a los permisos de un canal, o añades o quitas un miembro, pasa a ser uno de los roles de tu servidor. TTM lo comprueba antes de eliminar un rol y cuando muestra el propietario de una tarea para cambiarlo. Un rol que ya no es de TTM nunca se elimina, y la elección de propietario muestra el rol en lugar de las personas.
+Si lo renombras, le das un permiso, lo añades a los permisos de un canal, o añades o quitas un miembro, pasa a ser uno de los roles de tu servidor.
+
+TTM lo comprueba antes de eliminar un rol y cuando muestra el propietario de una tarea para cambiarlo. Un rol que ya no es de TTM nunca se elimina, y la elección de propietario muestra el rol en lugar de las personas.
 
 Así que, para conservar un rol para tu servidor, **renómbralo**. Entonces puedes usarlo donde quieras. Un color nuevo o una posición nueva no bastan: TTM seguiría eliminando el rol cuando ninguna lista lo use ya.
 

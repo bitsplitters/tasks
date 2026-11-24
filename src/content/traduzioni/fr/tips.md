@@ -1,7 +1,7 @@
 ---
 title: "Astuces et conseils"
 description: "De petites habitudes qui rendent TTM plus rapide et plus discret, dans le salon et dans l'Activity."
-fonte: 3e31d9102d49
+fonte: 6e297084b41a
 ---
 
 La plupart fonctionnent partout où se trouve la liste. Celles qui n'existent qu'à un seul endroit le disent sous leur titre.
@@ -10,7 +10,9 @@ La plupart fonctionnent partout où se trouve la liste. Celles qui n'existent qu
 
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Dans le salon</p>
 
-Ouvre **Autre** <img class="inline-ic" src="/icons/other.png" alt="" /> et choisis **Télécharger** <img class="inline-ic" src="/icons/download.png" alt="" /> : la liste arrive sous forme de fichier `.txt` que toi seul peux voir. Ensuite, lance `/creer-liste` sur n'importe quel serveur et joins ce fichier à son option `fichier`. Les tâches, les états terminés, les propriétaires, les tags, les rappels et les webhooks reviennent tels qu'ils étaient. Ça marche bien pour les checklists que tu répètes, comme les releases, l'onboarding ou les événements.
+Ouvre **Autre** <img class="inline-ic" src="/icons/other.png" alt="" /> et choisis **Télécharger** <img class="inline-ic" src="/icons/download.png" alt="" /> : la liste arrive sous forme de fichier `.txt` que toi seul peux voir. Ensuite, lance `/creer-liste` sur n'importe quel serveur et joins ce fichier à son option `fichier`.
+
+Les tâches, les états terminés, les propriétaires, les tags, les rappels et les webhooks reviennent tels qu'ils étaient. Ça marche bien pour les checklists que tu répètes, comme les releases, l'onboarding ou les événements.
 
 Si quelque chose dans le fichier ne convient pas au nouveau serveur, TTM ne crée rien et liste tous les problèmes d'un coup. Ce qu'il vérifie : voir [`/creer-liste`](/docs/commands/#create-list).
 

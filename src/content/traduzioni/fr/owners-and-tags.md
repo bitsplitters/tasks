@@ -1,7 +1,7 @@
 ---
 title: "Propriétaires et tags"
 description: "À qui appartient une tâche, qui elle mentionne, et les rôles que TTM crée quand plusieurs personnes possèdent une tâche."
-fonte: 3beeb818c97b
+fonte: bf7e5a683480
 ---
 
 Une tâche peut avoir un **propriétaire** et plusieurs **tags**. Le propriétaire est celui ou celle à qui la tâche appartient : la personne qui peut la cocher et qui reçoit son rappel. Les tags sont les utilisateurs et les rôles mentionnés sur la tâche, par exemple les personnes à prévenir quand elle est terminée.
@@ -76,7 +76,9 @@ TTM se souvient des rôles qu'il crée et des personnes à qui il les a donnés.
 - aucune permission, ni sur le serveur ni sur un salon ;
 - le même nombre de membres.
 
-Renomme-le, donne-lui une permission, ajoute-le aux permissions d'un salon, ou ajoute ou retire un membre : il devient un des rôles de ton serveur. TTM vérifie cela avant de supprimer un rôle, et quand il affiche le propriétaire d'une tâche pour le changer. Un rôle qui n'est plus à TTM n'est jamais supprimé, et le choix du propriétaire affiche le rôle à la place des personnes.
+Renomme-le, donne-lui une permission, ajoute-le aux permissions d'un salon, ou ajoute ou retire un membre : il devient un des rôles de ton serveur.
+
+TTM vérifie cela avant de supprimer un rôle, et quand il affiche le propriétaire d'une tâche pour le changer. Un rôle qui n'est plus à TTM n'est jamais supprimé, et le choix du propriétaire affiche le rôle à la place des personnes.
 
 Donc, pour garder un rôle pour ton serveur, **renomme-le**. Tu peux alors l'utiliser n'importe où. Une nouvelle couleur ou une nouvelle position ne suffit pas : TTM supprimerait quand même le rôle quand plus aucune liste ne l'utilise.
 

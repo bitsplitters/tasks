@@ -1,7 +1,7 @@
 ---
 title: "/config lists"
 description: "Veja todas as listas do servidor, sele ou exclua as que você já terminou, ou traga de volta uma cuja mensagem foi excluída por engano."
-fonte: 0da09921c70a
+fonte: 089e6935e4f2
 ---
 
 Execute o comando:
@@ -12,7 +12,9 @@ Execute o comando:
 
 Ele abre um painel privado, que só você vê, com **todas as listas que este servidor ainda tem**. Cada lista tem uma linha: o nome da lista e o canal onde ela vive, como um link clicável.
 
-Uma lista que ocupa uma das vagas do seu plano é marcada como **em uso** ao lado do canal. Quando você precisa liberar uma vaga, essas são as listas a selar ou excluir. Durante a beta não há limite, então nenhuma lista é marcada. Como uma lista ocupa uma vaga: veja [Como funcionam as três vagas](/docs/premium/#how-the-three-places-work).
+Uma lista que ocupa uma das vagas do seu plano é marcada como **em uso** ao lado do canal. Quando você precisa liberar uma vaga, essas são as listas a selar ou excluir.
+
+Durante a beta não há limite, então nenhuma lista é marcada. Como uma lista ocupa uma vaga: veja [Como funcionam as três vagas](/docs/premium/#how-the-three-places-work).
 
 Uma lista em que alguém está trabalhando na [Activity](/docs/activity/) é marcada como **na Activity**. Você ainda pode regenerá-la, selá-la ou excluí-la, e a confirmação avisa você antes: veja [O que fica no canal](/docs/activity/#what-stays-in-the-channel).
 
@@ -33,9 +35,13 @@ Marque quantas listas precisar — duas para excluir, uma para selar e três par
 
 O bloco então roda **em ordem**: primeiro as exclusões, depois as selagens, depois as regenerações. Assim um bloco pode liberar uma vaga e usá-la: uma lista que você exclui ou sela passa a vaga dela para uma lista que você regenera.
 
-No fim você recebe um resumo, por nome: as listas excluídas, seladas e regeneradas, e as que não puderam ser tratadas. Cada uma dessas vem com o motivo, por exemplo uma lista que não existe mais, ou uma regeneração sem vaga sobrando no seu plano. O painel então se redesenha com as listas como estão agora.
+No fim você recebe um resumo, por nome: as listas excluídas, seladas e regeneradas, e as que não puderam ser tratadas.
 
-**Cancelar** fecha o painel e não faz nada. Suas escolhas sobrevivem à troca de página: o cabeçalho diz quantas você marcou em outras páginas, e a confirmação as inclui. As escolhas da página à sua frente ficam no próprio painel, então nunca expiram enquanto você pensa. As de outras páginas são lembradas por uma hora depois da última vez que você mexe no painel.
+Cada uma dessas vem com o motivo, por exemplo uma lista que não existe mais, ou uma regeneração sem vaga sobrando no seu plano. O painel então se redesenha com as listas como estão agora.
+
+**Cancelar** fecha o painel e não faz nada. Suas escolhas sobrevivem à troca de página: o cabeçalho diz quantas você marcou em outras páginas, e a confirmação as inclui.
+
+As escolhas da página à sua frente ficam no próprio painel, então nunca expiram enquanto você pensa. As de outras páginas são lembradas por uma hora depois da última vez que você mexe no painel.
 
 ## Regenerar
 

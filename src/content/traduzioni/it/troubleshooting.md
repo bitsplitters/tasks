@@ -1,7 +1,7 @@
 ---
 title: FAQ
 description: Domande frequenti — risposte rapide ai problemi più comuni, ognuna con il link alla pagina che la spiega per intero.
-fonte: c80b5664452a
+fonte: a72339b9982f
 ---
 
 Trova qui sotto il problema che hai. Ogni risposta è breve e rimanda alla pagina che la spiega per intero. I problemi della lista sono divisi per luogo: [nel canale](#in-the-channel) e [nell'Activity](#in-the-activity).
@@ -22,7 +22,9 @@ Controlla questi punti, in quest'ordine:
 - **Il task ha un proprietario.** Possono spuntarlo solo il proprietario, i membri del ruolo proprietario e chi ha *Gestisci messaggi* sul canale. Vedi [Chi può spuntare un task](/docs/core-concepts/#who-can-tick-a-task).
 - **Il menu è disattivato.** Qualcuno sta modificando la lista, quindi è bloccata: vedi [Ho premuto Annulla e la lista resta bloccata](#i-pressed-cancel-and-the-list-stays-locked) più sotto.
 - **Il bot dice *Non sei abilitato a usare questa funzione su questo server*.** Il tuo server ha sincronizzato i permessi e per te la lista è in sola lettura. Chiedi a un admin e vedi [Sincronizza permessi](/docs/configuration/#sync-permissions).
-- **La beta è finita e il tuo server è sul piano Free.** Quando tutti i posti del tuo piano sono occupati, una lista fuori da quei posti rifiuta la spunta. Una lista creata durante la beta fa eccezione: i suoi task si possono ancora spuntare. Vedi [Come funzionano i tre posti](/docs/premium/#how-the-three-places-work) e [Cosa conserva una lista della beta](/docs/beta/#what-a-beta-list-keeps).
+- **La beta è finita e il tuo server è sul piano Free.** Quando tutti i posti del tuo piano sono occupati, una lista fuori da quei posti rifiuta la spunta.
+
+  Una lista creata durante la beta fa eccezione: i suoi task si possono ancora spuntare. Vedi [Come funzionano i tre posti](/docs/premium/#how-the-three-places-work) e [Cosa conserva una lista della beta](/docs/beta/#what-a-beta-list-keeps).
 
 ### Ho premuto Annulla e la lista resta bloccata
 
@@ -42,7 +44,9 @@ Se un task è diventato tuo invece di andare alle persone che avevi scelto, il m
 
 ### Voglio dare un task a più persone
 
-Clicca **Proprietario** finché diventa blu. Nel menu sotto i pulsanti, con la scritta *Scegli un task nel menu in alto per prenderlo, o scegli a chi darlo*, scegli le persone. Conferma la scelta, poi scegli il task. TTM crea un ruolo per quelle persone e lo imposta come proprietario. Nell'Activity, scegli le persone nel pannello del task: vedi [Proprietario](/docs/activity-list/#owner).
+Clicca **Proprietario** finché diventa blu. Nel menu sotto i pulsanti, con la scritta *Scegli un task nel menu in alto per prenderlo, o scegli a chi darlo*, scegli le persone. Conferma la scelta, poi scegli il task.
+
+TTM crea un ruolo per quelle persone e lo imposta come proprietario. Nell'Activity, scegli le persone nel pannello del task: vedi [Proprietario](/docs/activity-list/#owner).
 
 È una funzione [Premium](/docs/premium/). Al bot serve il permesso *Gestisci ruoli*: un admin lo concede al ruolo del bot in *Impostazioni del server → Ruoli*, non su un canale. Vedi [Proprietario: una persona, un ruolo o più persone](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
@@ -78,7 +82,9 @@ TTM ti dice perché. Di solito:
 
 ### La lista impiega un po' a tornare dall'Activity
 
-L'Activity è stata chiusa senza premere **Esci**. Per TTM, una finestra chiusa somiglia a una connessione caduta per un attimo: aspetta 30 secondi che tu torni, poi riporta la lista nel canale. Con un telefono lasciato in background o bloccato può volerci fino a un minuto, perché il bot deve prima accorgersi che la pagina ha smesso di rispondere.
+L'Activity è stata chiusa senza premere **Esci**. Per TTM, una finestra chiusa somiglia a una connessione caduta per un attimo: aspetta 30 secondi che tu torni, poi riporta la lista nel canale.
+
+Con un telefono lasciato in background o bloccato può volerci fino a un minuto, perché il bot deve prima accorgersi che la pagina ha smesso di rispondere.
 
 **Esci** dice subito al bot che hai finito: se sei l'ultimo nella lista, torna subito nel canale. Vedi [Tornare nel canale](/docs/activity/#back-to-the-channel).
 

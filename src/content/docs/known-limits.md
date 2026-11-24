@@ -19,7 +19,9 @@ Team Tasks Manager works entirely inside Discord, so most of the limits below ar
 
 <div class="callout"><div class="callout-t">Hitting a ceiling?</div>Split the work across several lists. Two focused lists are easier to read than one that's maxed out — and each gets its own reminders, owners and tags.</div>
 
-**Download always gives you a file.** A normal Discord message is capped at 2000 characters. So **Download**, in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel under the list in the channel, never posts the list as text. It sends a `.txt` file to you alone, in a message only you can see. It's the same file `/create-list` can import back.
+**Download always gives you a file.** A normal Discord message is capped at 2000 characters. So **Download**, in the **More** <img class="inline-ic" src="/icons/other.png" alt="" /> panel under the list in the channel, never posts the list as text.
+
+It sends a `.txt` file to you alone, in a message only you can see. It's the same file `/create-list` can import back.
 
 **Deleting the message is not the same as deleting the list.** The list keeps its place, and its reminders keep arriving: see [What happens to a fourth list](/docs/premium/#what-happens-to-a-fourth-list).
 
@@ -59,7 +61,9 @@ In every case, only the members who can see the list's channel are notified.
 
 ## Owners and tags
 
-Each task has **one owner**: a person or a role. On Premium it can also be up to 25 people, who share a role TTM creates for them. 25 is the maximum of the owner menu. A task can carry **up to 25 tags**, the users or roles to notify: 25 is Discord's maximum for one menu.
+Each task has **one owner**: a person or a role. On Premium it can also be up to 25 people, who share a role TTM creates for them. 25 is the maximum of the owner menu.
+
+A task can carry **up to 25 tags**, the users or roles to notify: 25 is Discord's maximum for one menu.
 
 **Roles TTM creates count toward Discord's 250 roles per server.** At 250 roles, TTM can't create a new one, and it says so. When TTM deletes its roles: see [The roles TTM creates](/docs/owners-and-tags/#the-roles-ttm-creates).
 
@@ -79,17 +83,23 @@ message quotes the same number you read here.
 
 ## The activity timeline
 
-When the timeline is on, TTM posts each action into a thread next to the list, through a Discord webhook. Discord allows **15 webhooks per channel**, so TTM creates **one webhook per channel** and reuses it for every list in that channel. The name and picture you see on each message are set per message, so nothing changes visually.
+When the timeline is on, TTM posts each action into a thread next to the list, through a Discord webhook.
+
+Discord allows **15 webhooks per channel**, so TTM creates **one webhook per channel** and reuses it for every list in that channel. The name and picture you see on each message are set per message, so nothing changes visually.
 
 If a channel has already reached Discord's 15 (because of other bots or integrations), the timeline for a new list can't start. Free one up in **Channel settings → Integrations → Webhooks**.
 
 ## Voice channels
 
-Lists work in the chat of a voice channel too, with one difference: there they have no [activity timeline](#the-activity-timeline). The timeline is a thread next to the list, and Discord doesn't allow threads in voice channels. Everything else works as in a text channel: the buttons, notifications, reminders, the [Activity](/docs/activity/), **Clone list**, **Download**, **Seal list** and **Delete list**.
+Lists work in the chat of a voice channel too, with one difference: there they have no [activity timeline](#the-activity-timeline). The timeline is a thread next to the list, and Discord doesn't allow threads in voice channels.
+
+Everything else works as in a text channel: the buttons, notifications, reminders, the [Activity](/docs/activity/), **Clone list**, **Download**, **Seal list** and **Delete list**.
 
 When the timeline is on in [`/config app`](/docs/configuration/#history-tracking), whoever creates a list in a voice channel gets a short message about it, visible only to them; the Tutorial's practice list skips it. If you need the timeline, create the list in a text channel, or copy it there with **Clone list**.
 
-In a voice channel TTM doesn't need *Create public threads* and *Manage webhooks*, which only serve the timeline. It needs *Connect* instead: without it, TTM can't post in the voice channel's chat. Discord gives *Connect* to everyone by default; if your server takes it away on a voice channel, grant it to TTM there, or `/create-list` tells you it's missing.
+In a voice channel TTM doesn't need *Create public threads* and *Manage webhooks*, which only serve the timeline. It needs *Connect* instead: without it, TTM can't post in the voice channel's chat.
+
+Discord gives *Connect* to everyone by default; if your server takes it away on a voice channel, grant it to TTM there, or `/create-list` tells you it's missing.
 
 ## Notifications
 

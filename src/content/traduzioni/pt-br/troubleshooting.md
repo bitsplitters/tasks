@@ -1,7 +1,7 @@
 ---
 title: "FAQ"
 description: "Perguntas frequentes: respostas rápidas para os problemas mais comuns, cada uma com um link para a página que a explica por completo."
-fonte: c80b5664452a
+fonte: a72339b9982f
 ---
 
 Encontre abaixo o problema que você está tendo. Cada resposta é curta e leva à página que a explica por completo. Os problemas da lista estão separados por lugar: [no canal](#in-the-channel) e [na Activity](#in-the-activity).
@@ -22,7 +22,9 @@ Confira estes pontos, nesta ordem:
 - **A tarefa tem um proprietário.** Só podem marcá-la o proprietário, os membros do cargo proprietário e quem tem *Gerenciar mensagens* no canal. Veja [Quem pode marcar uma tarefa](/docs/core-concepts/#who-can-tick-a-task).
 - **O menu está desativado.** Alguém está editando a lista, então ela está bloqueada: veja [Pressionei Cancelar e a lista continua bloqueada](#i-pressed-cancel-and-the-list-stays-locked) mais abaixo.
 - **O bot diz *Você não tem permissão para usar este recurso neste servidor*.** Seu servidor sincronizou as permissões, e para você a lista é somente leitura. Peça a um administrador e veja [Sincronizar permissões](/docs/configuration/#sync-permissions).
-- **A beta acabou e o seu servidor está no plano Free.** Quando todas as vagas do seu plano estão ocupadas, uma lista fora delas recusa a marcação. Uma lista criada durante a beta é a exceção: as tarefas dela ainda podem ser marcadas. Veja [Como funcionam as três vagas](/docs/premium/#how-the-three-places-work) e [O que uma lista da beta mantém](/docs/beta/#what-a-beta-list-keeps).
+- **A beta acabou e o seu servidor está no plano Free.** Quando todas as vagas do seu plano estão ocupadas, uma lista fora delas recusa a marcação.
+
+  Uma lista criada durante a beta é a exceção: as tarefas dela ainda podem ser marcadas. Veja [Como funcionam as três vagas](/docs/premium/#how-the-three-places-work) e [O que uma lista da beta mantém](/docs/beta/#what-a-beta-list-keeps).
 
 ### Pressionei Cancelar e a lista continua bloqueada
 
@@ -42,7 +44,9 @@ Se uma tarefa ficou com você em vez de ir para as pessoas que você escolheu, o
 
 ### Quero dar uma tarefa a várias pessoas
 
-Clique em **Proprietário** até ficar azul. No menu embaixo dos botões, com o texto *Escolha uma tarefa no menu acima para pegá-la, ou escolha quem a recebe*, escolha as pessoas. Confirme a escolha e depois escolha a tarefa. O TTM cria um cargo para essas pessoas e o define como proprietário. Na Activity, escolha as pessoas no painel da tarefa: veja [Proprietário](/docs/activity-list/#owner).
+Clique em **Proprietário** até ficar azul. No menu embaixo dos botões, com o texto *Escolha uma tarefa no menu acima para pegá-la, ou escolha quem a recebe*, escolha as pessoas. Confirme a escolha e depois escolha a tarefa.
+
+O TTM cria um cargo para essas pessoas e o define como proprietário. Na Activity, escolha as pessoas no painel da tarefa: veja [Proprietário](/docs/activity-list/#owner).
 
 É um recurso [Premium](/docs/premium/). O bot precisa da permissão *Gerenciar cargos*: um administrador a concede ao cargo do bot em *Configurações do servidor → Cargos*, não em um canal. Veja [Proprietário: uma pessoa, um cargo ou várias pessoas](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
@@ -78,7 +82,9 @@ O TTM diz por quê. Em geral:
 
 ### A lista demora a voltar da Activity
 
-A Activity foi fechada sem pressionar **Sair**. Para o TTM, uma janela fechada parece uma conexão que caiu por um instante: ele espera 30 segundos para você voltar e depois leva a lista de volta ao canal. Com um celular deixado em segundo plano ou bloqueado, pode levar até um minuto, porque o bot primeiro precisa perceber que a página parou de responder.
+A Activity foi fechada sem pressionar **Sair**. Para o TTM, uma janela fechada parece uma conexão que caiu por um instante: ele espera 30 segundos para você voltar e depois leva a lista de volta ao canal.
+
+Com um celular deixado em segundo plano ou bloqueado, pode levar até um minuto, porque o bot primeiro precisa perceber que a página parou de responder.
 
 **Sair** avisa o bot na hora que você terminou: se você é o último na lista, ela volta ao canal imediatamente. Veja [De volta ao canal](/docs/activity/#back-to-the-channel).
 

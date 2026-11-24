@@ -1,7 +1,7 @@
 ---
 title: "FAQ"
 description: "Preguntas frecuentes: respuestas rápidas a los problemas más comunes, cada una con un enlace a la página que lo explica por completo."
-fonte: c80b5664452a
+fonte: a72339b9982f
 ---
 
 Busca abajo el problema que tienes. Cada respuesta es breve y te lleva a la página que lo explica por completo. Los problemas de la lista están divididos por lugar: [en el canal](#in-the-channel) y [en la Activity](#in-the-activity).
@@ -22,7 +22,9 @@ Revisa estos puntos, por orden:
 - **La tarea tiene un propietario.** Solo pueden marcarla el propietario, los miembros del rol propietario y quien tenga *Gestionar mensajes* en el canal. Consulta [Quién puede marcar una tarea](/docs/core-concepts/#who-can-tick-a-task).
 - **El menú está desactivado.** Alguien está editando la lista, así que está bloqueada: consulta [He pulsado Cancelar y la lista sigue bloqueada](#i-pressed-cancel-and-the-list-stays-locked) más abajo.
 - **El bot dice *No tienes permiso para usar esta función en este servidor*.** Tu servidor ha sincronizado sus permisos y para ti la lista es de solo lectura. Pídeselo a un administrador y consulta [Sincronizar permisos](/docs/configuration/#sync-permissions).
-- **La beta ha terminado y tu servidor está en el plan Free.** Cuando todas las plazas de tu plan están ocupadas, una lista que no ocupa ninguna rechaza el marcado. Una lista creada durante la beta es la excepción: sus tareas se pueden seguir marcando. Consulta [Cómo funcionan las tres plazas](/docs/premium/#how-the-three-places-work) y [Qué conserva una lista de la beta](/docs/beta/#what-a-beta-list-keeps).
+- **La beta ha terminado y tu servidor está en el plan Free.** Cuando todas las plazas de tu plan están ocupadas, una lista que no ocupa ninguna rechaza el marcado.
+
+  Una lista creada durante la beta es la excepción: sus tareas se pueden seguir marcando. Consulta [Cómo funcionan las tres plazas](/docs/premium/#how-the-three-places-work) y [Qué conserva una lista de la beta](/docs/beta/#what-a-beta-list-keeps).
 
 ### He pulsado Cancelar y la lista sigue bloqueada
 
@@ -42,7 +44,9 @@ Si una tarea ha pasado a ser tuya en lugar de ir a las personas que habías eleg
 
 ### Quiero dar una tarea a varias personas
 
-Haz clic en **Propietario** hasta que se ponga azul. En el menú bajo los botones, con el texto *Elige una tarea en el menú de arriba para tomarla, o elige a quién dársela*, elige a las personas. Confirma tu elección y después elige la tarea. TTM crea un rol para esas personas y lo pone como propietario. En la Activity, elígelas en el panel de la tarea: consulta [Propietario](/docs/activity-list/#owner).
+Haz clic en **Propietario** hasta que se ponga azul. En el menú bajo los botones, con el texto *Elige una tarea en el menú de arriba para tomarla, o elige a quién dársela*, elige a las personas. Confirma tu elección y después elige la tarea.
+
+TTM crea un rol para esas personas y lo pone como propietario. En la Activity, elígelas en el panel de la tarea: consulta [Propietario](/docs/activity-list/#owner).
 
 Es una función [Premium](/docs/premium/). El bot necesita el permiso *Gestionar roles*: un administrador se lo concede al rol del bot en *Ajustes del servidor → Roles*, no en un canal. Consulta [Propietario: una persona, un rol o varias personas](/docs/owners-and-tags/#owner-a-person-a-role-or-several-people).
 
@@ -78,7 +82,9 @@ TTM te dice por qué. Normalmente:
 
 ### La lista tarda en volver de la Activity
 
-La Activity se ha cerrado sin pulsar **Salir**. Para TTM, una ventana cerrada se parece a una conexión que se ha caído un momento: espera 30 segundos a que vuelvas y después devuelve la lista al canal. Con un teléfono en segundo plano o bloqueado puede tardar hasta un minuto, porque el bot primero tiene que darse cuenta de que la página ha dejado de responder.
+La Activity se ha cerrado sin pulsar **Salir**. Para TTM, una ventana cerrada se parece a una conexión que se ha caído un momento: espera 30 segundos a que vuelvas y después devuelve la lista al canal.
+
+Con un teléfono en segundo plano o bloqueado puede tardar hasta un minuto, porque el bot primero tiene que darse cuenta de que la página ha dejado de responder.
 
 **Salir** le dice al bot al instante que has terminado: si eres la última persona en la lista, vuelve al canal enseguida. Consulta [Volver al canal](/docs/activity/#back-to-the-channel).
 

@@ -104,6 +104,10 @@
 }
 .prose p, .prose li { color: var(--text-body); line-height: 1.7; text-wrap: pretty; }
 .prose li + li { margin-top: .6rem; }
+/* Un punto d'elenco col suo seguito, un secondo paragrafo rientrato (2026-11-24): l'elenco diventa «largo» e ogni voce
+   va in un <p>. I margini restano quelli dell'elenco stretto; il seguito sta sotto, alla distanza fra due voci. */
+.prose li > p { margin: 0; }
+.prose li > p + p { margin-top: .6rem; }
 .prose strong { color: var(--text); font-weight: 650; }
 .prose a { color: var(--accent-text); text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); text-underline-offset: 3px; }
 .prose a:hover { color: var(--accent-text-hover); text-decoration-color: currentColor; }

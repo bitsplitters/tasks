@@ -1,7 +1,7 @@
 ---
 title: "Referencia de comandos"
 description: "Todos los comandos de barra en un solo lugar, con la página que los explica. La mayor parte de TTM vive en botones, no en comandos."
-fonte: c894f89deed9
+fonte: f50d9f1a0b4b
 ---
 
 TTM mantiene los comandos al mínimo: una vez creada una lista, lo haces todo con botones y menús. Para ejecutar un comando, escribe `/` en el cuadro de mensajes y elígelo. También puedes abrir el **Lanzador de aplicaciones** en la barra de mensajes y elegir **Team Tasks Manager** en *Aplicaciones en este servidor*.
@@ -31,7 +31,9 @@ La lista vuelve con sus tareas y su estado, propietarios, etiquetas, recordatori
 
 TTM rechaza un archivo de inmediato si no es un `.txt` o si pesa más de **64 KB**. Si no, TTM lee el archivo. Si algo no encaja, TTM no crea nada y enumera todos los problemas en un solo mensaje, cada uno con su línea o su tarea:
 
-- **El formato**: el archivo no es texto UTF-8, o no empieza con `#!ttm/1`. Falta el título o supera los 90 caracteres. Una línea no es una tarea, o un recordatorio está escrito en meses (`M`) o está mal escrito. Un webhook está vinculado a una tarea sin texto, la lista empieza con una subtarea, o no hay tareas.
+- **El formato**: el archivo no es texto UTF-8, o no empieza con `#!ttm/1`. Falta el título o supera los 90 caracteres.
+
+  Una línea no es una tarea, o un recordatorio está escrito en meses (`M`) o está mal escrito. Un webhook está vinculado a una tarea sin texto, la lista empieza con una subtarea, o no hay tareas.
 - **El tamaño**: la lista es demasiado larga para un mensaje, o tiene más tareas de las que caben en una lista o de las que permite tu plan.
 - **Los recordatorios**: un recordatorio no tiene propietario, no tiene fecha y una distancia de cero, o se repite más veces de las que permite tu plan. Un recordatorio recurrente se rechaza donde no se pueden crear nuevos (consulta [Recordatorios](/docs/reminders/#repeating-reminders)). Habría demasiados recordatorios en espera a la vez.
 - **Este servidor**: un rol, un canal o un webhook del archivo no existe aquí, o un usuario del archivo no es miembro.
@@ -52,7 +54,9 @@ Este comando es tu punto de partida dentro de Discord. Abre un panel con cinco b
 
 ## `/invite`
 
-Muestra una tarjeta para agregar Team Tasks Manager a otro servidor: la misma presentación que su página del App Directory (qué hace, cómo empezar), el botón **Agregar a Discord**, la guía y el servidor de soporte. **Agregar a Discord** abre la página de autorización de Discord para el bot, con los mismos permisos que https://tasks.bitsplitters.app/invite.
+Muestra una tarjeta para agregar Team Tasks Manager a otro servidor: la misma presentación que su página del App Directory (qué hace, cómo empezar), el botón **Agregar a Discord**, la guía y el servidor de soporte.
+
+**Agregar a Discord** abre la página de autorización de Discord para el bot, con los mismos permisos que https://tasks.bitsplitters.app/invite.
 
 La tarjeta es visible para todos en el canal, así que puedes ejecutarla donde la vean las personas que configurarán el otro servidor. No lee nada del servidor y no necesita ningún permiso.
 
@@ -60,9 +64,13 @@ La tarjeta es visible para todos en el canal, así que puedes ejecutarla donde l
 
 Las últimas novedades de Team Tasks Manager, en tu idioma: qué hay de nuevo en el bot y cómo usarlo. Las novedades se abren en un mensaje que solo ves tú, con su fecha debajo del título.
 
-Debajo del texto, **Servidor de Discord** abre nuestro servidor de soporte y **Notas de la versión** abre esa versión en la página de [Notas de la versión](/docs/release-notes/). Cuando hay novedades más antiguas o más recientes, los botones **Anterior** y **Siguiente** te llevan a ellas. Si retrocedes, encuentras todas las versiones desde la primera, la 1.0.0, cada una con el día en que salió. Funciona solo en servidores y no necesita ningún permiso.
+Debajo del texto, **Servidor de Discord** abre nuestro servidor de soporte y **Notas de la versión** abre esa versión en la página de [Notas de la versión](/docs/release-notes/). Cuando hay novedades más antiguas o más recientes, los botones **Anterior** y **Siguiente** te llevan a ellas.
 
-Cuando hay novedades que nadie de tu servidor ha leído todavía, la última línea de los paneles del bot lo dice, en lugar del pie habitual: en `/help`, la Guía, **Más**, `/config app` y la explicación que muestra `/crear-lista`. En cuanto alguien del servidor abre `/news`, la línea desaparece para todos. Un servidor que agrega TTM después de una novedad no recibe la línea: la novedad está en `/news`.
+Si retrocedes, encuentras todas las versiones desde la primera, la 1.0.0, cada una con el día en que salió. Funciona solo en servidores y no necesita ningún permiso.
+
+Cuando hay novedades que nadie de tu servidor ha leído todavía, la última línea de los paneles del bot lo dice, en lugar del pie habitual: en `/help`, la Guía, **Más**, `/config app` y la explicación que muestra `/crear-lista`.
+
+En cuanto alguien del servidor abre `/news`, la línea desaparece para todos. Un servidor que agrega TTM después de una novedad no recibe la línea: la novedad está en `/news`.
 
 ## Nombres de los comandos en tu idioma
 

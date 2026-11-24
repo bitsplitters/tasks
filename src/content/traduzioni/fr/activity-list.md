@@ -1,7 +1,7 @@
 ---
 title: "Travailler sur une liste dans l'Activity"
 description: "Les cases, la première rangée, le panneau d'une tâche (Contenu, Propriétaire, Tag, Rappel et Webhook) et qui modifie quoi."
-fonte: 3445f59ab104
+fonte: 39bbd6a8e201
 ---
 
 Dans l'Activity, la liste est une page à part : une case devant chaque tâche, une rangée de boutons en haut et un panneau pour chaque tâche. Les règles sont celles du salon : propriétaires, réglages du serveur, limites de l'offre. Ce que fait chaque fonctionnalité : [Propriétaires et tags](/docs/owners-and-tags/), [Rappels](/docs/reminders/), [Webhooks](/docs/webhooks/), [Actions sur la liste](/docs/list-actions/).
@@ -50,7 +50,9 @@ Tant que le panneau est ouvert, la tâche est verrouillée pour les autres : vo
 
 **Bleu** affiche une recherche parmi les personnes et les rôles du serveur, avec en premier ceux qui sont dans l'Activity. Touche un nom pour l'ajouter, touche-le de nouveau pour le retirer, puis **Enregistrer**. Retire tous les noms et **Enregistrer** retire le propriétaire, comme le fait **Rouge**.
 
-**Pour prendre une tâche** qui n'a pas de propriétaire, appuie sur **Propriétaire** jusqu'à ce qu'il soit bleu : ton nom est déjà choisi, donc **Enregistrer** te donne la tâche. Pour la donner à quelqu'un d'autre, touche son nom : il prend la place du tien. Une tâche qui a déjà un propriétaire l'affiche, et ne change que si tu choisis quelqu'un.
+**Pour prendre une tâche** qui n'a pas de propriétaire, appuie sur **Propriétaire** jusqu'à ce qu'il soit bleu : ton nom est déjà choisi, donc **Enregistrer** te donne la tâche.
+
+Pour la donner à quelqu'un d'autre, touche son nom : il prend la place du tien. Une tâche qui a déjà un propriétaire l'affiche, et ne change que si tu choisis quelqu'un.
 
 - Une personne ou un rôle suffit sur toutes les offres.
 - Plusieurs personnes deviennent un rôle que TTM crée, sur Premium : voir [Les rôles que crée TTM](/docs/owners-and-tags/#the-roles-ttm-creates). Quand il manque quelque chose, **Enregistrer** reste éteint et le panneau dit pourquoi.
@@ -89,13 +91,17 @@ Une tâche cochée ne peut pas avoir de rappel. Sur une tâche sans propriétair
 
 Les webhooks sont une fonctionnalité [Premium](/docs/premium/).
 
-**Bleu** liste les webhooks du serveur par leur nom, chacun avec le moment où il part : *à l'achèvement*, *à la réouverture* ou *toujours*. L'adresse ne s'affiche jamais. Choisis-en un, puis **Enregistrer**. Un webhook qui n'existe plus s'affiche en haut, marqué *n'existe plus*, pour que tu en choisisses un autre. Si le serveur n'en a aucun, le panneau dit qu'ils se créent avec [/config webhook](/docs/config-webhook/).
+**Bleu** liste les webhooks du serveur par leur nom, chacun avec le moment où il part : *à l'achèvement*, *à la réouverture* ou *toujours*. L'adresse ne s'affiche jamais. Choisis-en un, puis **Enregistrer**.
+
+Un webhook qui n'existe plus s'affiche en haut, marqué *n'existe plus*, pour que tu en choisisses un autre. Si le serveur n'en a aucun, le panneau dit qu'ils se créent avec [/config webhook](/docs/config-webhook/).
 
 **Rouge** retire le webhook de la tâche.
 
 ## Modifier la liste
 
-**Modifier la liste** affiche le titre et chaque tâche sous forme de texte, dans le format expliqué dans [Modifier une liste à la main](/docs/writing-a-list/) : le même texte que la **Mise à jour groupée** du salon, lu selon les mêmes règles : personnes, rôles et salons par leur nom, dates de rappel dans ton fuseau horaire. Une ligne sous le texte explique comment ajouter quelqu'un de nouveau, et renvoie vers [Modifier une liste à la main](/docs/writing-a-list/#people-roles-and-channels-by-name). Change ce qu'il faut et enregistre.
+**Modifier la liste** affiche le titre et chaque tâche sous forme de texte, dans le format expliqué dans [Modifier une liste à la main](/docs/writing-a-list/) : le même texte que la **Mise à jour groupée** du salon, lu selon les mêmes règles : personnes, rôles et salons par leur nom, dates de rappel dans ton fuseau horaire.
+
+Une ligne sous le texte explique comment ajouter quelqu'un de nouveau, et renvoie vers [Modifier une liste à la main](/docs/writing-a-list/#people-roles-and-channels-by-name). Change ce qu'il faut et enregistre.
 
 La liste est verrouillée pour les autres à partir de son ouverture jusqu'à ce que tu enregistres ou annules : **Annuler**, la ✕ et un appui en dehors la déverrouillent. Elle se ferme toute seule après 30 secondes sans activité. Si le texte ne peut pas être enregistré, les problèmes s'affichent dessous : voir [Quand le texte ne peut pas être enregistré](/docs/writing-a-list/#when-the-text-cant-be-saved).
 

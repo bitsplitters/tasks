@@ -1,7 +1,7 @@
 ---
 title: "Editar una tarea en el canal"
 description: "La segunda fila de botones bajo la lista — Contenido, Propietario, Etiqueta, Recordatorio y Webhook — con sus formularios y menús."
-fonte: ba887a2603b7
+fonte: 9439d0a8db43
 ---
 
 La segunda fila bajo la lista actúa sobre **una tarea a la vez**: su texto, su propietario, sus etiquetas, su recordatorio y su webhook. Esta página muestra dónde hacer clic. Qué hace cada función y sus reglas: [Propietarios y etiquetas](/docs/owners-and-tags/), [Recordatorios](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -14,7 +14,9 @@ Cada botón de la segunda fila es un **interruptor de tres estados**. Haz clic p
 - <span class="c-blue">Azul</span> — activo en modo <span class="c-blue">edición</span>.
 - <span class="c-red">Rojo</span> — activo en modo <span class="c-red">eliminación</span>.
 
-El procedimiento es siempre el mismo: **pon un botón en azul o en rojo y luego elige la tarea** en el [selector de marcado](/docs/the-task-list/#the-check-selector). TTM aplica la acción a esa tarea. Mientras un botón está azul o rojo, el selector dice qué va a pasar, por ejemplo *Editar tarea* o *Eliminar tarea*; con todos los botones apagados dice *Marcar tarea*: elige ahí una tarea para marcarla o desmarcarla.
+El procedimiento es siempre el mismo: **pon un botón en azul o en rojo y luego elige la tarea** en el [selector de marcado](/docs/the-task-list/#the-check-selector). TTM aplica la acción a esa tarea.
+
+Mientras un botón está azul o rojo, el selector dice qué va a pasar, por ejemplo *Editar tarea* o *Eliminar tarea*; con todos los botones apagados dice *Marcar tarea*: elige ahí una tarea para marcarla o desmarcarla.
 
 Hasta que hayas elegido una tarea así una vez, poner **Contenido** o **Recordatorio** en azul o en rojo te envía un mensaje que solo ves tú. Dice qué tarea elegir y qué hace volver a presionar el botón. Cuando ya elegiste una tarea con un botón de la segunda fila encendido, el mensaje deja de salir, en todos los servidores.
 
@@ -26,7 +28,9 @@ Hasta que hayas elegido una tarea así una vez, poner **Contenido** o **Recordat
 | [**Recordatorio**](#reminder) <img class="inline-ic" src="/icons/alertW.png" alt="" /> | Agrega o edita un recordatorio. | Quita el recordatorio. |
 | [**Webhook**](#webhook) <img class="inline-ic" src="/icons/api.png" alt="" /> <a class="premium-tag" href="/docs/premium/" title="Desbloqueado para todos los servidores durante la beta">Premium</a> | Vincula un webhook a la tarea. | Quita el webhook de la tarea. |
 
-Con **Propietario**, **Etiqueta**, **Recordatorio** o **Webhook** en rojo, el selector muestra solo las tareas que tienen algo que quitar: un propietario, etiquetas, un recordatorio o un webhook. Una tarea hecha solo de etiquetas no aparece, porque sin ellas se quedaría sin texto. Si ninguna tarea tiene algo que quitar, el selector está apagado y lo dice, por ejemplo *Ningún propietario que quitar*, y recibes una nota sobre cómo agregar uno.
+Con **Propietario**, **Etiqueta**, **Recordatorio** o **Webhook** en rojo, el selector muestra solo las tareas que tienen algo que quitar: un propietario, etiquetas, un recordatorio o un webhook. Una tarea hecha solo de etiquetas no aparece, porque sin ellas se quedaría sin texto.
+
+Si ninguna tarea tiene algo que quitar, el selector está apagado y lo dice, por ejemplo *Ningún propietario que quitar*, y recibes una nota sobre cómo agregar uno.
 
 Después de usar **Propietario**, **Etiqueta** o **Recordatorio**, el botón vuelve a gris, o se queda encendido para la tarea siguiente: lo decide tu servidor, con **Mantener el estado tras la selección** en el menú **Comportamiento** de [/config app](/docs/configuration/#keep-the-state-after-a-selection). Mantener el estado cambia lo que pueden hacer Propietario y Etiqueta: consulta [Propietario](#owner) y [Etiqueta](#tag).
 
@@ -48,7 +52,9 @@ Mientras el formulario está abierto, la lista queda bloqueada para los demás. 
 
 **Azul** muestra un menú bajo los botones, con la etiqueta *Elige una tarea en el menú de arriba para tomarla, o elige a quién dársela*.
 
-**Para tomar una tarea**, haz clic en **Propietario** hasta que se ponga azul y elige la tarea en el selector de marcado sin elegir a nadie: pasa a ser tuya, y el canal muestra quién la tomó. Una tarea que ya es tuya, o que tiene otro propietario, se queda como está, y TTM te dice por qué. Para quitarle una tarea a otra persona, elígete a ti en el menú, confirma la selección y luego elige la tarea: sustituir a un propietario requiere una elección explícita.
+**Para tomar una tarea**, haz clic en **Propietario** hasta que se ponga azul y elige la tarea en el selector de marcado sin elegir a nadie: pasa a ser tuya, y el canal muestra quién la tomó.
+
+Una tarea que ya es tuya, o que tiene otro propietario, se queda como está, y TTM te dice por qué. Para quitarle una tarea a otra persona, elígete a ti en el menú, confirma la selección y luego elige la tarea: sustituir a un propietario requiere una elección explícita.
 
 **Para dar una tarea a alguien**, elige al propietario en el menú, confirma la selección y luego elige la tarea. Para dar una tarea a varias personas, una función [Premium](/docs/premium/):
 

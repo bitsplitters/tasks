@@ -1,7 +1,7 @@
 ---
 title: Per iniziare
 description: Invita il bot, crea una lista, poi spunta un task e imposta un promemoria, nel canale o nell'Activity.
-fonte: 80e3e27e599a
+fonte: e7a439b39622
 ---
 
 Team Tasks Manager (TTM) permette al tuo team di condividere e gestire i task **senza uscire da Discord**. Questa pagina ti porta da zero a una lista funzionante: la crei, spunti un task, imposti un promemoria.
@@ -48,7 +48,9 @@ Invia la form e la lista compare nel canale. Ecco la stessa lista dopo alcuni pa
   <img src="/screens/it/list-desktop.png" width="460" height="418" loading="lazy" alt="La lista Torneo del sabato in Discord: sei task numerati con le caselle. Il primo è spuntato e in grigio; Preparare i tabelloni ha due subtask e un proprietario; Trasmettere la finale ha un proprietario e la data di un promemoria. Sotto i task, una piccola riga rimanda ad Altro, alla Guida e alla documentazione completa e una barra verde mostra quanto è stato fatto. Sotto la lista ci sono il menu a tendina, Spunta task e due righe di pulsanti." />
 </picture>
 
-Preferisci imparare facendo? Accanto a **Crea la tua lista** c'è un pulsante **Tutorial**: trasforma la spiegazione in una lista di prova con sette lezioni nella tua lingua e ti manda la Guida in un messaggio che vedi solo tu. Fai le lezioni in ordine: ognuna nomina un pulsante con la sua icona e ti chiede di fare qualcosa a se stessa, dalla spunta all'Activity.
+Preferisci imparare facendo? Accanto a **Crea la tua lista** c'è un pulsante **Tutorial**: trasforma la spiegazione in una lista di prova con sette lezioni nella tua lingua e ti manda la Guida in un messaggio che vedi solo tu.
+
+Fai le lezioni in ordine: ognuna nomina un pulsante con la sua icona e ti chiede di fare qualcosa a se stessa, dalla spunta all'Activity.
 
 La lista di prova è una lista normale: quando hai finito, eliminala da **Altro** → **Elimina lista**.
 
@@ -58,7 +60,9 @@ Ora scegli dove lavorarci. La lista è la stessa nei due posti e sta [in un post
 
 ### Spunta un task
 
-Sotto la lista c'è il **menu di spunta**, un menu a tendina che mostra il titolo della lista e due righe di pulsanti. Apri il menu e scegli un task: la sua casella passa da <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> a <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" /> e la lista si aggiorna per tutti. Sceglilo di nuovo per riaprirlo. Spuntare un gruppo spunta anche i suoi subtask. In base alle tue [impostazioni](/docs/configuration/), TTM può anche pubblicare una breve notifica sotto la lista e registrare la modifica in un thread della cronologia.
+Sotto la lista c'è il **menu di spunta**, un menu a tendina che mostra il titolo della lista e due righe di pulsanti. Apri il menu e scegli un task: la sua casella passa da <img class="inline-ic" src="/icons/checkbox_empty.png" alt="" /> a <img class="inline-ic" src="/icons/checkbox_marked.png" alt="" /> e la lista si aggiorna per tutti. Sceglilo di nuovo per riaprirlo.
+
+Spuntare un gruppo spunta anche i suoi subtask. In base alle tue [impostazioni](/docs/configuration/), TTM può anche pubblicare una breve notifica sotto la lista e registrare la modifica in un thread della cronologia.
 
 <div class="callout"><div class="callout-t">Non riesci a spuntare un task?</div>Ogni pulsante della seconda riga deve essere <strong>spento</strong>: se uno è blu o rosso, scegliere un task applica l'azione di quel pulsante. E un task con un proprietario può essere spuntato solo dal proprietario e da chi ha <em>Gestisci messaggi</em> sul canale.</div>
 

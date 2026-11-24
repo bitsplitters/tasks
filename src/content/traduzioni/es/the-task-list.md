@@ -1,7 +1,7 @@
 ---
 title: "La lista en el canal"
 description: "El mensaje de la lista en un canal de Discord: el menú de marcado, la primera fila de botones, Más y qué pasa mientras alguien la edita."
-fonte: 6656d50714c3
+fonte: 6ef51298ef09
 ---
 
 Cuando una lista existe, TTM muestra un **menú de marcado** y **dos filas de botones** debajo. Casi nada aquí necesita un comando: basta con hacer clic. La primera fila actúa sobre toda la lista y se explica aquí. La segunda actúa sobre una sola tarea: consulta [Editar una tarea en el canal](/docs/channel-tasks/).
@@ -10,7 +10,9 @@ Cuando una lista existe, TTM muestra un **menú de marcado** y **dos filas de bo
 
 La lista termina con una fina **barra de progreso**: la proporción de casillas marcadas, tareas y subtareas juntas, en pasos del 5 %. Se mueve en cuanto marcas una casilla y solo está llena cuando lo están todas. Una lista sellada la conserva y muestra dónde terminó la lista.
 
-Sobre la barra, una pequeña línea ayuda a quien empieza: *¿No sabes qué hacen los botones? Más → Guía*. **Guía**, en [Más](#whats-inside-more), explica cada botón sin salir de Discord. Si tu equipo no la necesita, oculta los **Consejos** en [/config app](/docs/configuration/#tips): la línea desaparece y la barra se queda. Mientras la lista está bloqueada, esa misma línea dice quién la está editando y cómo desbloquearla, incluso con los Consejos ocultos: consulta [Cuando la lista está bloqueada](#when-the-list-is-locked).
+Sobre la barra, una pequeña línea ayuda a quien empieza: *¿No sabes qué hacen los botones? Más → Guía*. **Guía**, en [Más](#whats-inside-more), explica cada botón sin salir de Discord. Si tu equipo no la necesita, oculta los **Consejos** en [/config app](/docs/configuration/#tips): la línea desaparece y la barra se queda.
+
+Mientras la lista está bloqueada, esa misma línea dice quién la está editando y cómo desbloquearla, incluso con los Consejos ocultos: consulta [Cuando la lista está bloqueada](#when-the-list-is-locked).
 
 Mientras la lista está en la [Activity](/docs/activity/), la línea lo dice y **Entrar en la Activity** es el único botón bajo la lista.
 
@@ -68,7 +70,9 @@ Discord permite cinco botones por fila, así que las acciones que necesitas meno
 - **Sellar lista** <img class="inline-ic" src="/icons/seal.png" alt="" />: conserva en el canal una lista terminada como registro, sin botones ni menús. Consulta [Sellar](/docs/list-actions/#seal).
 - **Eliminar lista** <img class="inline-ic" src="/icons/delete.png" alt="" />: elimina la lista **de forma permanente**. Consulta [Eliminar](/docs/list-actions/#delete).
 
-Sellar y eliminar no se pueden deshacer, y el bot te pide confirmación antes. Las dos necesitan *Gestionar mensajes* en el canal: el mismo permiso que te permite eliminar a mano el mensaje de la lista. Sin él, esas dos entradas no aparecen. Guía, Clonar lista y Descargar están para todos, y también Desbloquear lista cuando la lista está bloqueada.
+Sellar y eliminar no se pueden deshacer, y el bot te pide confirmación antes. Las dos necesitan *Gestionar mensajes* en el canal: el mismo permiso que te permite eliminar a mano el mensaje de la lista.
+
+Sin él, esas dos entradas no aparecen. Guía, Clonar lista y Descargar están para todos, y también Desbloquear lista cuando la lista está bloqueada.
 
 Mientras la lista está bloqueada, Sellar lista y Eliminar lista no aparecen. Quien la está editando guardaría sobre una lista que ya no existe.
 
@@ -97,7 +101,9 @@ TTM bloquea la lista mientras alguien la edita:
 
 Para todos los demás se apagan: el menú de marcado, el botón de la Activity, **Actualización en bloque**, **Limpiar lista**, **Reabrir todo** y los botones de las tareas. **Más** se queda encendido, con **Clonar lista** dentro. **Más** muestra quién está editando, y una lista bloqueada no se puede sellar ni eliminar desde ahí.
 
-La última línea de la lista también lo dice: *🔒 @nombre está editando la lista. ¿Se ha quedado bloqueada? Más → Desbloquear lista*. Ocupa el lugar de la línea de los Consejos y aparece incluso cuando tu servidor oculta los Consejos. La mención muestra el nombre y no avisa a nadie. Cuando la lista se desbloquea, la línea de los Consejos vuelve, si tu servidor la muestra.
+La última línea de la lista también lo dice: *🔒 @nombre está editando la lista. ¿Se ha quedado bloqueada? Más → Desbloquear lista*. Ocupa el lugar de la línea de los Consejos y aparece incluso cuando tu servidor oculta los Consejos.
+
+La mención muestra el nombre y no avisa a nadie. Cuando la lista se desbloquea, la línea de los Consejos vuelve, si tu servidor la muestra.
 
 Bloquear la lista también apaga **Propietario**, **Etiqueta** y **Webhook** si uno de ellos estaba encendido: ábrelo de nuevo desde su botón cuando lo necesites.
 

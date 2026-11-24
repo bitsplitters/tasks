@@ -1,7 +1,7 @@
 ---
 title: La lista nel canale
 description: "Il messaggio della lista in un canale Discord: il menu di spunta, la prima riga di pulsanti, Altro e che cosa succede mentre qualcuno la modifica."
-fonte: 6656d50714c3
+fonte: 6ef51298ef09
 ---
 
 Quando una lista esiste, TTM mostra un **menu di spunta** e **due righe di pulsanti** sotto di essa. Quasi niente qui richiede un comando: basta un click. La prima riga agisce sull'intera lista ed è spiegata qui. La seconda agisce su un singolo task: vedi [Modificare un task nel canale](/docs/channel-tasks/).
@@ -10,7 +10,9 @@ Quando una lista esiste, TTM mostra un **menu di spunta** e **due righe di pulsa
 
 La lista termina con una sottile **barra di avanzamento**: la quota di caselle spuntate, task e subtask insieme, a passi del 5%. Si muove appena spunti una casella ed è piena solo quando lo sono tutte. Una lista sigillata la conserva e mostra dove la lista si è fermata.
 
-Sopra la barra, una piccola riga aiuta chi è nuovo: *Non sai cosa fanno i pulsanti? Altro → Guida*. **Guida**, in [Altro](#whats-inside-more), spiega ogni pulsante senza uscire da Discord. Se il tuo team non ne ha bisogno, nascondi i **Suggerimenti** in [/config app](/docs/configuration/#tips): la riga sparisce e la barra resta. Mentre la lista è bloccata, la stessa riga dice chi la sta modificando e come sbloccarla, anche con i Suggerimenti nascosti: vedi [Quando la lista è bloccata](#when-the-list-is-locked).
+Sopra la barra, una piccola riga aiuta chi è nuovo: *Non sai cosa fanno i pulsanti? Altro → Guida*. **Guida**, in [Altro](#whats-inside-more), spiega ogni pulsante senza uscire da Discord. Se il tuo team non ne ha bisogno, nascondi i **Suggerimenti** in [/config app](/docs/configuration/#tips): la riga sparisce e la barra resta.
+
+Mentre la lista è bloccata, la stessa riga dice chi la sta modificando e come sbloccarla, anche con i Suggerimenti nascosti: vedi [Quando la lista è bloccata](#when-the-list-is-locked).
 
 Mentre la lista è nell'[Activity](/docs/activity/), la riga lo dice e **Entra nell'Activity** è l'unico pulsante sotto la lista.
 
@@ -68,7 +70,9 @@ Discord permette cinque pulsanti per riga, quindi le azioni che ti servono meno 
 - **Sigilla lista** <img class="inline-ic" src="/icons/seal.png" alt="" />: conserva nel canale una lista finita come resoconto, senza pulsanti né menu. Vedi [Sigilla](/docs/list-actions/#seal).
 - **Elimina lista** <img class="inline-ic" src="/icons/delete.png" alt="" />: elimina la lista **in modo definitivo**. Vedi [Elimina](/docs/list-actions/#delete).
 
-Sigillare ed eliminare non si possono annullare e il bot ti chiede prima di confermare. Entrambe richiedono *Gestisci messaggi* sul canale: lo stesso permesso che ti permette di eliminare a mano il messaggio della lista. Senza, queste due voci non ci sono. Guida, Clona lista e Download ci sono per tutti e così Sblocca lista quando la lista è bloccata.
+Sigillare ed eliminare non si possono annullare e il bot ti chiede prima di confermare. Entrambe richiedono *Gestisci messaggi* sul canale: lo stesso permesso che ti permette di eliminare a mano il messaggio della lista.
+
+Senza, queste due voci non ci sono. Guida, Clona lista e Download ci sono per tutti e così Sblocca lista quando la lista è bloccata.
 
 Mentre la lista è bloccata, Sigilla lista ed Elimina lista non ci sono. Chi la sta modificando salverebbe su una lista che non esiste più.
 
@@ -97,7 +101,9 @@ TTM blocca la lista mentre qualcuno la modifica:
 
 Per tutti gli altri si spengono: il menu di spunta, il pulsante Activity, **Aggiornamento in blocco**, **Pulisci lista**, **Riapri tutti** e i pulsanti dei task. **Altro** resta acceso, con **Clona lista** dentro. **Altro** mostra chi sta modificando e una lista bloccata non si può sigillare né eliminare da lì.
 
-Lo dice anche l'ultima riga della lista: *🔒 @nome sta modificando la lista. Se è rimasta bloccata: Altro → Sblocca lista*. Prende il posto della riga dei Suggerimenti e compare anche quando il tuo server nasconde i Suggerimenti. La menzione mostra il nome e non avvisa nessuno. Quando la lista viene sbloccata, la riga dei Suggerimenti torna, se il tuo server la mostra.
+Lo dice anche l'ultima riga della lista: *🔒 @nome sta modificando la lista. Se è rimasta bloccata: Altro → Sblocca lista*. Prende il posto della riga dei Suggerimenti e compare anche quando il tuo server nasconde i Suggerimenti.
+
+La menzione mostra il nome e non avvisa nessuno. Quando la lista viene sbloccata, la riga dei Suggerimenti torna, se il tuo server la mostra.
 
 Bloccare la lista spegne anche **Proprietario**, **Tag** e **Webhook** se uno di loro era acceso: riaprilo dal suo pulsante quando ti serve.
 

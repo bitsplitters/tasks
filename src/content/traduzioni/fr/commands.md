@@ -1,7 +1,7 @@
 ---
 title: "Référence des commandes"
 description: "Toutes les commandes slash au même endroit, avec la page qui l'explique : l'essentiel de TTM vit dans les boutons, pas dans les commandes."
-fonte: c894f89deed9
+fonte: f50d9f1a0b4b
 ---
 
 TTM réduit les commandes au minimum : une fois qu'une liste existe, tu fais tout avec des boutons et des menus. Pour exécuter une commande, tape `/` dans la zone de message et choisis-la. Tu peux aussi ouvrir le **Lanceur d'applications** dans la barre de messages et choisir **Team Tasks Manager** sous *Applications sur ce serveur*.
@@ -31,7 +31,9 @@ La liste revient avec ses tâches et leur état, ses propriétaires, ses tags, s
 
 TTM refuse tout de suite un fichier qui n'est pas un `.txt` ou qui pèse plus de **64 Ko**. Sinon, TTM lit le fichier. Si quelque chose ne va pas, TTM ne crée rien et liste tous les problèmes dans un seul message, chacun avec sa ligne ou sa tâche :
 
-- **Le format** : le fichier n'est pas du texte UTF-8, ou il ne commence pas par `#!ttm/1`. Le titre manque ou dépasse 90 caractères. Une ligne n'est pas une tâche, ou un rappel est écrit en mois (`M`) ou mal écrit. Un webhook est lié à une tâche sans texte, la liste commence par une sous-tâche, ou il n'y a aucune tâche.
+- **Le format** : le fichier n'est pas du texte UTF-8, ou il ne commence pas par `#!ttm/1`. Le titre manque ou dépasse 90 caractères.
+
+  Une ligne n'est pas une tâche, ou un rappel est écrit en mois (`M`) ou mal écrit. Un webhook est lié à une tâche sans texte, la liste commence par une sous-tâche, ou il n'y a aucune tâche.
 - **La taille** : la liste est trop longue pour un message, ou elle a plus de tâches qu'une liste ne peut en contenir ou que ton offre n'en permet.
 - **Les rappels** : un rappel n'a pas de propriétaire, n'a pas de date et a une distance de zéro, ou se répète plus de fois que ton offre ne le permet. Un rappel récurrent est refusé là où l'on ne peut pas en créer de nouveaux (voir [Rappels](/docs/reminders/#repeating-reminders)). Il y aurait trop de rappels en attente en même temps.
 - **Ce serveur** : un rôle, un salon ou un webhook du fichier n'existe pas ici, ou un utilisateur du fichier n'est pas membre.
@@ -52,7 +54,9 @@ Cette commande est ton point de départ dans Discord. Elle ouvre un panneau avec
 
 ## `/invite`
 
-Affiche une carte pour ajouter Team Tasks Manager à un autre serveur : la même présentation que sa page de l'App Directory (ce qu'il fait, comment commencer), le bouton **Ajouter à Discord**, le guide et le serveur d'assistance. **Ajouter à Discord** ouvre la page d'autorisation de Discord pour le bot, avec les mêmes permissions que https://tasks.bitsplitters.app/invite.
+Affiche une carte pour ajouter Team Tasks Manager à un autre serveur : la même présentation que sa page de l'App Directory (ce qu'il fait, comment commencer), le bouton **Ajouter à Discord**, le guide et le serveur d'assistance.
+
+**Ajouter à Discord** ouvre la page d'autorisation de Discord pour le bot, avec les mêmes permissions que https://tasks.bitsplitters.app/invite.
 
 La carte est visible de tout le monde dans le salon, donc tu peux exécuter la commande là où les personnes qui vont configurer l'autre serveur peuvent la voir. Elle ne lit rien du serveur et ne demande aucune permission.
 
@@ -60,9 +64,13 @@ La carte est visible de tout le monde dans le salon, donc tu peux exécuter la c
 
 Les dernières nouveautés de Team Tasks Manager, dans ta langue : ce qu'il y a de nouveau dans le bot et comment l'utiliser. La nouveauté s'ouvre dans un message que toi seul peux voir, avec sa date sous le titre.
 
-Sous le texte, **Serveur Discord** ouvre notre serveur d'assistance et **Notes de version** ouvre cette version sur la page [Notes de version](/docs/release-notes/). Quand il y a des nouveautés plus anciennes ou plus récentes, les boutons **Précédente** et **Suivante** t'y emmènent. En remontant, tu trouves toutes les versions depuis la première, la 1.0.0, chacune avec le jour de sa sortie. La commande ne fonctionne que sur les serveurs, et ne demande aucune permission.
+Sous le texte, **Serveur Discord** ouvre notre serveur d'assistance et **Notes de version** ouvre cette version sur la page [Notes de version](/docs/release-notes/). Quand il y a des nouveautés plus anciennes ou plus récentes, les boutons **Précédente** et **Suivante** t'y emmènent.
 
-Quand il y a une nouveauté que personne sur ton serveur n'a encore lue, la dernière ligne des panneaux du bot le dit, à la place du pied de page habituel : dans `/help`, dans le Guide, dans **Autre**, dans `/config app` et dans l'explication que montre `/creer-liste`. Dès que quelqu'un du serveur ouvre `/news`, la ligne disparaît pour tout le monde. Un serveur qui ajoute TTM après une nouveauté n'a pas la ligne : la nouveauté est dans `/news`.
+En remontant, tu trouves toutes les versions depuis la première, la 1.0.0, chacune avec le jour de sa sortie. La commande ne fonctionne que sur les serveurs, et ne demande aucune permission.
+
+Quand il y a une nouveauté que personne sur ton serveur n'a encore lue, la dernière ligne des panneaux du bot le dit, à la place du pied de page habituel : dans `/help`, dans le Guide, dans **Autre**, dans `/config app` et dans l'explication que montre `/creer-liste`.
+
+Dès que quelqu'un du serveur ouvre `/news`, la ligne disparaît pour tout le monde. Un serveur qui ajoute TTM après une nouveauté n'a pas la ligne : la nouveauté est dans `/news`.
 
 ## Noms des commandes dans ta langue
 
