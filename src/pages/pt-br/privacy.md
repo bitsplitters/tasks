@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "Política de Privacidade"
 description: "Quais dados o bot do Discord Team Tasks Manager coleta, por quê e como são tratados."
 updated: "Última atualização: 24 de novembro de 2026"
-fonte: 5d462855738d
+fonte: a242d550d1bb
 ---
 
 Esta Política de Privacidade explica quais dados o bot **Team Tasks Manager** (“TTM”) coleta e como os tratamos. Ela vale para o uso do bot no Discord, Activity incluída (veja [A Activity](#a-activity)), para o nosso servidor da comunidade no Discord (veja [Nosso servidor da comunidade](#nosso-servidor-da-comunidade)) e para os nossos sites (veja [Nossos sites](#nossos-sites)). Para saber dos seus direitos segundo a lei de proteção de dados da UE, veja também a nossa [página do GDPR](/pt-br/gdpr/).
@@ -36,13 +36,15 @@ O TTM guarda apenas o que é necessário para manter listas de tarefas dentro do
 
 ## Por que usamos
 
-Tratamos esses dados exclusivamente para **fornecer o serviço**: exibir e atualizar as suas listas, enviar lembretes e notificações, executar os webhooks que você configura, e manter e melhorar o bot (por meio das estatísticas agregadas).
+Tratamos esses dados exclusivamente para **fornecer o serviço**: exibir e atualizar as suas listas, enviar lembretes e notificações, executar os webhooks que você configura, e manter e melhorar o bot (por meio das estatísticas agregadas). Você não tem nenhuma obrigação legal de fornecer esses dados, mas sem eles o bot não funciona: sem os IDs do Discord e o conteúdo das suas listas, o TTM não tem nada para mostrar nem para lembrar você.
 
 ## Compartilhamento
 
 **Não** vendemos os seus dados. Os dados são tratados pelo nosso provedor de infraestrutura, a **OVHcloud**, que hospeda o bot e o banco de dados dele na **França (UE)**, como operadora em nosso nome. O bot também funciona na plataforma **Discord**, então o seu uso está sujeito à [Política de Privacidade do Discord](https://discord.com/privacy). O Discord tem sede nos Estados Unidos: veja [Transferências internacionais](/pt-br/gdpr/#transferências-internacionais). A **Cloudflare**, também com sede nos Estados Unidos, hospeda a página da [Activity](#a-activity) e leva a conexão dela com o bot. Quando você usa webhooks, o TTM envia os dados que você configurou para os **endpoints de terceiros que você escolhe** — esses serviços estão fora do nosso controle.
 
 **Relatórios de erro.** Quando algo falha de forma inesperada, o bot envia um relatório para um canal privado no nosso servidor do Discord, que só nós podemos ver. Um relatório contém os IDs do servidor e do usuário envolvidos e os detalhes técnicos da falha. Pode conter um trecho do que estava sendo processado, como um pedaço de uma tarefa. Excluímos esses relatórios assim que a falha é corrigida e, no máximo, em 12 meses.
+
+**E-mail.** O que você escreve para os nossos endereços em bitsplitters.app é encaminhado pela **Cloudflare**, com o serviço Email Routing, como operadora em nosso nome, para uma caixa de correio do **Google** (Gmail), onde o lemos para responder a você. Por isso, a sua mensagem pode chegar aos Estados Unidos: veja [Transferências internacionais](/pt-br/gdpr/#transferências-internacionais). Usamos o seu endereço e a sua mensagem apenas para responder a você e acompanhar a mesma solicitação: para cumprir uma obrigação legal quando você exerce os seus direitos ou denuncia conteúdo ilegal (art. 6(1)(c) do GDPR), como parte do serviço quando você nos escreve sobre ele (art. 6(1)(b) do GDPR) e, nos demais casos, com base no nosso legítimo interesse em responder a você (art. 6(1)(f) do GDPR).
 
 ## Retenção
 
@@ -54,7 +56,9 @@ Os dados são mantidos enquanto o bot estiver presente e em uso no seu servidor.
 
 **Logs operacionais** — para diagnosticar falhas, o bot grava logs técnicos no servidor onde roda. No nível de log usado em produção, eles **não** contêm o texto das suas tarefas nem os títulos das suas listas; podem conter identificadores do Discord, por exemplo o ID do usuário envolvido em um erro. Os logs são excluídos automaticamente após **30 dias**.
 
-**Backups** — fazemos backup do banco de dados todos os dias, para restaurar o serviço após uma falha. Os backups são mantidos por **14 dias**, na UE. Os dados que você exclui, ou que excluímos quando o bot sai de um servidor, podem portanto sobreviver em um backup por até 14 dias; depois desaparecem de vez. Um backup só é usado para restaurar o serviço.
+**Backups** — fazemos backup criptografado do banco de dados a cada hora, para restaurar o serviço após uma falha. Os backups são mantidos por **14 dias**, na UE. Os dados que você exclui, ou que excluímos quando o bot sai de um servidor, podem portanto sobreviver em um backup por até 14 dias; depois desaparecem de vez. Um backup só é usado para restaurar o serviço.
+
+**E-mails** — guardamos os e-mails que você nos envia, com as nossas respostas, por **12 meses** após a nossa última resposta, para poder acompanhar a mesma solicitação; antes disso, se você pedir.
 
 **Seu fuso horário pessoal, canal de mensagens diretas e segunda linha** — o fuso horário que você escolheu (você mesmo pode excluí-lo com **Remover meu fuso**), o ID do seu canal de mensagens diretas com o bot (com, se você não aceita mensagens diretas, até quando não tentar de novo) e o registro de que você aprendeu a segunda linha são guardados junto ao seu ID de usuário do Discord e não estão ligados a nenhum servidor em particular, então remover o bot de um servidor não os exclui. Escreva para **info@bitsplitters.app** com o seu ID de usuário do Discord e nós os excluiremos. Excluir o registro da segunda linha só faz a dica voltar.
 
@@ -93,7 +97,7 @@ O Discord continua sendo o provedor da plataforma, e o que ele coleta é regido 
 
 ## Nossos sites
 
-Os nossos sites — bitsplitters.app, tasks.bitsplitters.app e timezones.bitsplitters.app — não usam cookies e não guardam nada no seu navegador.
+Os nossos sites — bitsplitters.app, tasks.bitsplitters.app e timezones.bitsplitters.app — não usam cookies. O tasks.bitsplitters.app lembra no seu navegador o tema e o idioma que você escolhe, para mostrá-los de novo na sua próxima visita: essas escolhas ficam no seu dispositivo e nunca chegam até nós. Os outros dois sites não guardam nada no seu navegador.
 
 - **Hospedagem.** Eles são hospedados no **GitHub Pages**, um serviço do GitHub, Inc. (Estados Unidos). Como qualquer servidor web, o GitHub registra dados técnicos de cada visita, incluindo o seu endereço IP, por segurança e para operar o serviço. Veja a [Declaração de Privacidade do GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 - **Estatísticas de visitas.** Para contar visitas e ver quais sites nos enviam pessoas, as nossas páginas carregam um script do **Cloudflare Web Analytics**, um serviço da Cloudflare, Inc. (Estados Unidos). Para cada visualização de página, ele registra a página, o site de onde você veio, o seu país, navegador, sistema operacional e tipo de dispositivo, e quanto tempo a página levou para carregar. Ele não define cookies, não guarda nada no seu navegador e não identifica você: vemos apenas totais, nunca visitantes individuais. A Cloudflare recebe o seu endereço IP junto com a requisição, como qualquer servidor web, e não o usa para reconhecer você. Veja a [Política de Privacidade da Cloudflare](https://www.cloudflare.com/privacypolicy/).

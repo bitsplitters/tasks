@@ -1,7 +1,7 @@
 ---
 title: "Notas de versão"
 description: "As novidades do Team Tasks Manager, da mais recente para a mais antiga."
-fonte: f88a9986fb9d
+fonte: 96dbaef26d7b
 ---
 
 Toda mudança que você vê no Discord está listada aqui, da mais recente para a mais antiga. Cada item leva à página que o explica.
@@ -86,7 +86,7 @@ Released 2026-11-15
 - **Enquanto uma lista está na Activity** — a mensagem dela no canal tem só **Entrar na Activity**, e a lista não pode ser alterada ali. Veja [Entrar com os outros](/docs/activity/#join-the-others).
 - **Launch** — o **Iniciador de apps** do Discord, ou o botão de Atividades de uma chamada de voz, abre as listas do canal. Entre em uma, leve outra para a Activity ou crie uma nova. Veja [O início do canal](/docs/activity/#the-home-of-the-channel).
 - **`/config lists`** — uma lista na Activity é marcada como *na Activity*. **Excluir** a remove para todos, e **Selar** primeiro a traz de volta para o canal. Veja [O que fica no canal](/docs/activity/#what-stays-in-the-channel).
-- **A oferta Founder** — por tempo limitado antes de a beta terminar, todo servidor pode liberar a insígnia Founder; os primeiros 5.000 Founders a comprar ficam com o plano anual a € 20 em vez de € 36, antes dos impostos (VAT). Veja [Founder](/premium/#founder).
+- **A oferta Founder** — por tempo limitado antes de a beta terminar, todo servidor pode liberar a insígnia Founder; os primeiros 5.000 Founders a comprar (1.000 desde 22 de novembro de 2026) ficam com o plano anual a € 20 em vez de € 36, antes dos impostos (VAT). Veja [Founder](/premium/#founder).
 - **Lembretes de cargo por DM** — quando o bot não consegue escrever no canal da lista, o aviso que acompanha o lembrete vem no idioma de quem escolheu as pessoas do cargo.
 
 ## 1.5.0 — Recorrência por menus

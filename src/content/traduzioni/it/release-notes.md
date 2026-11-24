@@ -1,7 +1,7 @@
 ---
 title: Note di rilascio
 description: Le novità di Team Tasks Manager, dalla più recente.
-fonte: f88a9986fb9d
+fonte: 96dbaef26d7b
 ---
 
 Ogni cambiamento che vedi in Discord è elencato qui, dal più recente. Ogni voce rimanda alla pagina che lo spiega.
@@ -86,7 +86,7 @@ Released 2026-11-15
 - **Mentre una lista è nell'Activity** — il suo messaggio nel canale ha solo **Entra nell'Activity** e la lista non si può modificare lì. Vedi [Unisciti agli altri](/docs/activity/#join-the-others).
 - **Launch** — l'**App Launcher** di Discord, o il pulsante delle Activity di una chiamata vocale, apre le liste del canale. Entra in una, porta un'altra nell'Activity, o creane una nuova. Vedi [La home del canale](/docs/activity/#the-home-of-the-channel).
 - **`/config lists`** — una lista nell'Activity è segnata come *nell'Activity*. **Elimina** la rimuove per tutti; **Sigilla** prima la riporta nel canale. Vedi [Cosa resta nel canale](/docs/activity/#what-stays-in-the-channel).
-- **L'offerta Founder** — per un periodo limitato prima della fine della beta, ogni server può sbloccare il badge Founder; i primi 5000 Founder che acquistano ottengono il piano annuale a 20 € invece di 36 €, IVA esclusa. Vedi [Founder](/premium/#founder).
+- **L'offerta Founder** — per un periodo limitato prima della fine della beta, ogni server può sbloccare il badge Founder; i primi 5000 Founder che acquistano (1000 dal 22 novembre 2026) ottengono il piano annuale a 20 € invece di 36 €, IVA esclusa. Vedi [Founder](/premium/#founder).
 - **Promemoria di ruolo in DM** — quando il bot non può scrivere nel canale della lista, l'avviso che accompagna il promemoria è nella lingua di chi ha scelto le persone del ruolo.
 
 ## 1.5.0 — Ricorrenza da menu

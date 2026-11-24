@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Termini di servizio"
 description: "I termini che regolano l'uso del bot Discord Team Tasks Manager."
-updated: "Ultimo aggiornamento: 22 ottobre 2026"
-fonte: 5b0d9cb9ce7a
+updated: "Ultimo aggiornamento: 24 novembre 2026"
+fonte: 8dfbc8dcd850
 ---
 
 I presenti Termini di servizio («Termini») regolano l'uso che fai del bot Discord **Team Tasks Manager** («TTM», «il bot», «il servizio»), fornito da bitsplitters («noi»). Aggiungendo il bot a un server Discord o usandolo, accetti questi Termini. Se non li accetti, non usare il bot.
@@ -39,6 +39,8 @@ Il bot è fornito **«così com'è» e «secondo disponibilità»**, senza garan
 
 Cessare il servizio significa chiudere il progetto, non spingere nessuno a pagare. Il piano Free descritto nelle pagine [Beta](/docs/beta/) e [Premium](/docs/premium/) non viene spento, ridotto o reso inutilizzabile per indurti a passare a un piano a pagamento. Se un giorno decidessimo di chiudere il servizio, lo annunceremo in anticipo su questo sito e sul nostro [server Discord](/docs/community/), così che tu abbia il tempo di portare con te le tue liste: il pulsante **Download** esporta ogni lista in un file che `/crea-lista` (`/create-list` con Discord in inglese) può importare, anche in una copia di TTM che esegui tu stesso.
 
+**La fine della beta.** Annunciamo la fine della [beta](/docs/beta/) almeno **30 giorni** prima, su questo sito, sul nostro [server Discord](/docs/community/) e nel bot con `/news`.
+
 ## 7. Limitazione di responsabilità
 
 Nella misura massima consentita dalla legge applicabile, non saremo responsabili di alcun danno indiretto, incidentale o consequenziale, né di alcuna perdita di dati, di profitti o di affari, derivanti dall'uso o dall'impossibilità di usare il bot.
@@ -57,13 +59,15 @@ I piani a pagamento, quando saranno disponibili, avranno condizioni proprie, che
 
 ## 10. Legge applicabile
 
-I presenti Termini sono regolati dalla legge italiana, senza tener conto delle norme sui conflitti di leggi. Qualsiasi controversia sarà sottoposta ai tribunali italiani competenti, salvo che le norme imperative a tutela dei consumatori dispongano diversamente.
+I presenti Termini sono regolati dalla legge italiana. Se sei un consumatore che vive in un altro paese, conservi anche la protezione delle norme inderogabili della legge di quel paese, che questa scelta non può toglierti. Qualsiasi controversia sarà sottoposta ai tribunali italiani competenti; se sei un consumatore, puoi agire anche davanti al giudice del luogo in cui vivi, mentre noi possiamo agire contro di te soltanto lì.
+
+I presenti Termini sono scritti in inglese. Se una traduzione si discosta dal testo inglese prevale quest'ultimo; se sei un consumatore, una clausola dal significato dubbio si interpreta nel modo più favorevole a te.
 
 ## 11. Segnalare contenuti e il nostro punto di contatto
 
-Se trovi contenuti illegali memorizzati tramite TTM, o contenuti che violano questi Termini, scrivi a **info@bitsplitters.app**. Indicaci dove si trovano (il server e la lista), perché ritieni che siano illegali, il tuo nome e la tua email. Puoi omettere nome ed email se segnali materiale pedopornografico.
+Se trovi contenuti illegali memorizzati tramite TTM, o contenuti che violano questi Termini, scrivi a **info@bitsplitters.app**. Indicaci dove si trovano (il server e la lista), perché ritieni che siano illegali, il tuo nome e la tua email, con la dichiarazione che ritieni in buona fede la tua segnalazione esatta e completa. Puoi omettere nome ed email se segnali materiale pedopornografico.
 
-Esaminiamo ogni segnalazione senza indebito ritardo e ti comunichiamo cosa abbiamo deciso. Se serve eliminiamo il contenuto, o fermiamo il bot su quel server. Comunichiamo agli amministratori del server cosa abbiamo fatto e perché, salvo che la legge lo vieti. Se non sei d'accordo con una decisione, rispondi alla nostra email e la riesamineremo.
+Ogni segnalazione la esamina una persona, senza strumenti automatici né indebito ritardo: poi ti comunichiamo cosa abbiamo deciso. Se serve eliminiamo il contenuto, o fermiamo il bot su quel server. Comunichiamo agli amministratori del server cosa abbiamo fatto e perché, salvo che la legge lo vieti. Se non sei d'accordo con una decisione, rispondi alla nostra email e la riesamineremo.
 
 Le liste di TTM stanno in messaggi Discord, quindi puoi segnalarle anche a Discord.
 

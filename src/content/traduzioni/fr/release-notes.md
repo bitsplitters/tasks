@@ -1,7 +1,7 @@
 ---
 title: "Notes de version"
 description: "Les nouveautés de Team Tasks Manager, de la plus récente à la plus ancienne."
-fonte: f88a9986fb9d
+fonte: 96dbaef26d7b
 ---
 
 Tous les changements que tu vois dans Discord sont listés ici, du plus récent au plus ancien. Chaque entrée renvoie vers la page qui l'explique.
@@ -86,7 +86,7 @@ Released 2026-11-15
 - **Quand une liste est dans l'Activity** — son message dans le salon n'a que **Rejoindre l'Activity**, et la liste ne peut pas y être modifiée. Voir [Rejoindre les autres](/docs/activity/#join-the-others).
 - **Launch** — le **Lanceur d'applications** de Discord, ou le bouton des Activités d'un appel vocal, ouvre les listes du salon. Rejoins-en une, emmène-en une autre dans l'Activity, ou crée-en une nouvelle. Voir [L'accueil du salon](/docs/activity/#the-home-of-the-channel).
 - **`/config lists`** — une liste dans l'Activity est marquée *dans l'Activity*. **Supprimer** la retire pour tout le monde, et **Sceller** la ramène d'abord dans le salon. Voir [Ce qui reste dans le salon](/docs/activity/#what-stays-in-the-channel).
-- **L'offre Founder** — pour une durée limitée avant la fin de la bêta, chaque serveur peut débloquer le badge Founder ; les 5 000 premiers Founders à acheter obtiennent l'offre annuelle à 20 € au lieu de 36 €, hors TVA. Voir [Founder](/premium/#founder).
+- **L'offre Founder** — pour une durée limitée avant la fin de la bêta, chaque serveur peut débloquer le badge Founder ; les 5 000 premiers Founders à acheter (1 000 depuis le 22 novembre 2026) obtiennent l'offre annuelle à 20 € au lieu de 36 €, hors TVA. Voir [Founder](/premium/#founder).
 - **Rappels de rôle par message privé** — quand le bot ne peut pas écrire dans le salon de la liste, l'avis qui accompagne le rappel est dans la langue de la personne qui a choisi les membres du rôle.
 
 ## 1.5.0 — La récurrence depuis des menus

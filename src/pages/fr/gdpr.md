@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "RGPD et tes droits sur tes données"
 description: "Comment Team Tasks Manager respecte le Règlement général européen sur la protection des données."
 updated: "Dernière mise à jour : 24 novembre 2026"
-fonte: 51b8abee8c2d
+fonte: 4a187e4372b2
 ---
 
 Comme **bitsplitters** opère dans l'Union européenne, l'utilisation de **Team Tasks Manager** (« TTM ») est soumise au **Règlement général sur la protection des données (RGPD)**. Cette page explique la base juridique du traitement et les droits dont tu disposes. Elle complète notre [Politique de confidentialité](/fr/privacy/), qui liste exactement les données que nous traitons.
@@ -17,6 +17,7 @@ Comme **bitsplitters** opère dans l'Union européenne, l'utilisation de **Team 
 - **Exécution du service (art. 6, par. 1, point b)** — pour toi, quand tu ajoutes le bot ou l'utilises. La plupart des données (ID Discord, contenu des tâches, rappels, configuration, webhooks, la connexion à l'[Activity](/fr/privacy/#lactivity) et ses enregistrements) sont traitées parce qu'elles sont nécessaires pour fournir la fonctionnalité que tu demandes.
 - **Intérêt légitime (art. 6, par. 1, point f)** — pour les personnes qui apparaissent dans une liste sans utiliser elles-mêmes le bot, par exemple un propriétaire choisi par quelqu'un d'autre ou un membre mentionné dans une tâche. L'intérêt est celui de l'équipe : organiser son travail dans son propre serveur. Ces personnes peuvent s'y opposer, et peuvent demander aux administrateurs du serveur de les retirer.
 - **Intérêt légitime (art. 6, par. 1, point f)** — aussi pour garder le bot fiable et sûr : statistiques d'utilisation, journaux techniques, rapports d'erreur et sauvegardes. La même base couvre notre serveur communautaire, avec sa modération et ses tickets d'assistance (voir [Notre serveur communautaire](/fr/privacy/#notre-serveur-communautaire)), et nos sites web (voir [Nos sites web](/fr/privacy/#nos-sites-web)). Nous avons mis ces intérêts en balance avec tes droits, et tu peux t'opposer à chacun d'eux.
+- **Obligation légale (art. 6, par. 1, point c)** — pour répondre à tes demandes d'exercice de tes droits et à tes signalements de contenus illicites (règlement sur les services numériques). Aux autres e-mails, nous répondons dans le cadre du service ou sur la base de notre intérêt légitime à répondre.
 
 Nous ne prenons aucune décision automatisée produisant des effets juridiques, et nous ne faisons pas de profilage.
 
@@ -53,6 +54,7 @@ Certaines données quittent l'EEE via des services établis aux **États-Unis**�
 - **Discord** — le bot fonctionne sur Discord : ce qu'il affiche dans ton serveur passe donc par Discord, comme tout ce que tu y fais d'autre, l'Activity comprise. Les rapports d'erreur décrits dans la [Politique de confidentialité](/fr/privacy/#partage) vont eux aussi dans un salon privé sur Discord. Discord transfère des données avec les garanties exposées dans [sa politique de confidentialité](https://discord.com/privacy).
 - **GitHub** — il héberge nos sites web et reçoit les données techniques de chaque visite. GitHub transfère des données avec les garanties exposées dans [sa déclaration de confidentialité](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 - **Cloudflare** — il compte les visites de nos sites web (voir [Nos sites web](/fr/privacy/#nos-sites-web)) et héberge la page de l'Activity, en acheminant sa connexion au bot (voir [L'Activity](/fr/privacy/#lactivity)). Cloudflare transfère des données dans le cadre du EU-U.S. Data Privacy Framework, avec les clauses contractuelles types en solution de repli, comme l'indique [sa page RGPD](https://www.cloudflare.com/trust-hub/gdpr/).
+- **Google** — les e-mails que tu envoies à nos adresses arrivent, transférés par Cloudflare, dans une boîte aux lettres chez Google (Gmail), comme décrit dans la [Politique de confidentialité](/fr/privacy/#partage). Google transfère des données avec les garanties exposées dans [sa politique de confidentialité](https://policies.google.com/privacy).
 
 ## Réclamations
 

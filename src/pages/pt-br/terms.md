@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Termos de Serviço"
 description: "Os termos que regem o uso do bot do Discord Team Tasks Manager."
-updated: "Última atualização: 22 de outubro de 2026"
-fonte: 5b0d9cb9ce7a
+updated: "Última atualização: 24 de novembro de 2026"
+fonte: 8dfbc8dcd850
 ---
 
 Estes Termos de Serviço (“Termos”) regem o seu uso do bot do Discord **Team Tasks Manager** (“TTM”, “o bot”, “o serviço”), fornecido pela bitsplitters (“nós”). Ao adicionar o bot a um servidor do Discord ou usá-lo, você concorda com estes Termos. Se não concordar, não use o bot.
@@ -39,6 +39,8 @@ O bot é fornecido **“no estado em que se encontra” e “conforme disponíve
 
 Encerrar o serviço significa fechar o projeto, não empurrar ninguém para o pagamento. O plano Free descrito nas páginas [Beta](/docs/beta/) e [Premium](/docs/premium/) não é desligado, reduzido nem tornado inutilizável para fazer você migrar para um plano pago. Se um dia decidirmos fechar o serviço, avisaremos com antecedência neste site e no nosso [servidor do Discord](/docs/community/), para que você tenha tempo de levar suas listas: o botão **Download** exporta cada lista como um arquivo que o `/criar-lista` pode importar, inclusive para uma cópia do TTM que você mesmo hospede.
 
+**O fim da beta.** Anunciamos o fim da [beta](/docs/beta/) com pelo menos **30 dias** de antecedência, neste site, no nosso [servidor do Discord](/docs/community/) e no bot com `/news`.
+
 ## 7. Limitação de responsabilidade
 
 Na máxima extensão permitida pela lei aplicável, não seremos responsáveis por quaisquer danos indiretos, incidentais ou consequentes, nem por qualquer perda de dados, lucros ou negócios, decorrentes do uso ou da impossibilidade de uso do bot.
@@ -57,13 +59,15 @@ Os planos pagos, quando estiverem disponíveis, terão condições próprias, mo
 
 ## 10. Lei aplicável
 
-Estes Termos são regidos pelas leis da Itália, sem considerar as regras de conflito de leis. Qualquer disputa ficará sujeita aos tribunais competentes da Itália, salvo se a lei imperativa de defesa do consumidor dispuser de outra forma.
+Estes Termos são regidos pelas leis da Itália. Se você é um consumidor que mora em outro país, mantém também a proteção das normas imperativas da lei desse país, que esta escolha não pode tirar. Qualquer disputa ficará sujeita aos tribunais competentes da Itália; se você é um consumidor, também pode propor ações perante os tribunais do lugar onde mora, e nós só podemos propor ações contra você ali.
+
+Estes Termos são redigidos em inglês. Se uma tradução for diferente do texto em inglês, prevalece o texto em inglês; se você é um consumidor, uma cláusula de sentido duvidoso é interpretada da forma mais favorável a você.
 
 ## 11. Denunciar conteúdo e o nosso ponto de contato
 
-Se você encontrar conteúdo ilegal armazenado por meio do TTM, ou conteúdo que viole estes Termos, escreva para **info@bitsplitters.app**. Diga onde ele está (o servidor e a lista), por que você acha que é ilegal, e informe seu nome e e-mail. Você pode omitir seu nome e e-mail ao denunciar material de abuso sexual infantil.
+Se você encontrar conteúdo ilegal armazenado por meio do TTM, ou conteúdo que viole estes Termos, escreva para **info@bitsplitters.app**. Diga onde ele está (o servidor e a lista), por que você acha que é ilegal, e informe seu nome e e-mail, com uma declaração de que você acredita de boa-fé que a sua denúncia é precisa e completa. Você pode omitir seu nome e e-mail ao denunciar material de abuso sexual infantil.
 
-Analisamos cada denúncia sem demora injustificada e informamos a você o que decidimos. Quando necessário, excluímos o conteúdo ou paramos o bot nesse servidor. Informamos os administradores do servidor sobre o que fizemos e por quê, a menos que a lei proíba. Se você discordar de uma decisão, responda ao nosso e-mail e vamos analisá-la de novo.
+Uma pessoa analisa cada denúncia, sem ferramentas automáticas e sem demora injustificada, e informamos a você o que decidimos. Quando necessário, excluímos o conteúdo ou paramos o bot nesse servidor. Informamos os administradores do servidor sobre o que fizemos e por quê, a menos que a lei proíba. Se você discordar de uma decisão, responda ao nosso e-mail e vamos analisá-la de novo.
 
 As listas do TTM ficam em mensagens do Discord, então você também pode denunciá-las ao Discord.
 

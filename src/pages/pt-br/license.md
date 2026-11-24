@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Licença de hospedagem própria"
 description: "A licença que acompanha o pacote do Team Tasks Manager que você executa por conta própria — o que ela permite e o que não permite."
-updated: "Versão 1.0 — 5 de setembro de 2026"
-fonte: c3dcf4887bfd
+updated: "Versão 1.1 — 24 de novembro de 2026"
+fonte: f860badc5c81
 ---
 
 Esta é a licença do **pacote que você baixa e executa na sua própria máquina**. Ela é publicada aqui para que você possa lê-la *antes* de decidir baixar qualquer coisa; o mesmo texto vai dentro do pacote como `LICENSE.txt`, junto com uma tradução em italiano.
@@ -73,7 +73,7 @@ Você pode encerrá-la a qualquer momento, excluindo o Software.
 
 ## 9. Lei aplicável
 
-Esta licença é regida pela lei italiana. Qualquer disputa ficará sujeita à jurisdição exclusiva dos tribunais de Roma, Itália, salvo quando normas imperativas deem ao consumidor o direito de propor ações perante os tribunais do seu local de residência.
+Esta licença é regida pela lei italiana. Se você é um consumidor que mora em outro país, mantém também a proteção das normas imperativas da lei desse país. Qualquer disputa ficará sujeita à jurisdição exclusiva dos tribunais de Roma, Itália, salvo quando normas imperativas deem ao consumidor o direito de propor ações perante os tribunais do seu local de residência.
 
 ## 10. Como entrar em contato
 

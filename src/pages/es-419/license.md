@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Licencia de autoalojamiento"
 description: "La licencia que acompaña al paquete de Team Tasks Manager que ejecutas por tu cuenta: qué te permite hacer y qué no."
-updated: "Versión 1.0 — 5 de septiembre de 2026"
-fonte: c3dcf4887bfd
+updated: "Versión 1.1 — 24 de noviembre de 2026"
+fonte: f860badc5c81
 ---
 
 Esta es la licencia del **paquete que descargas y ejecutas en tu propia computadora**. Se publica aquí para que puedas leerla *antes* de decidir descargar algo; el mismo texto va dentro del paquete como `LICENSE.txt`, junto con una traducción al italiano.
@@ -73,7 +73,7 @@ Puedes darla por terminada en cualquier momento eliminando el Software.
 
 ## 9. Ley aplicable
 
-Esta licencia se rige por la ley italiana. Cualquier controversia se someterá a la jurisdicción exclusiva de los tribunales de Roma, Italia, salvo que las normas imperativas otorguen a un consumidor el derecho a acudir a los tribunales de su lugar de residencia.
+Esta licencia se rige por la ley italiana. Si eres un consumidor que vive en otro país, conservas además la protección de las normas imperativas de la ley de ese país. Cualquier controversia se someterá a la jurisdicción exclusiva de los tribunales de Roma, Italia, salvo que las normas imperativas otorguen a un consumidor el derecho a acudir a los tribunales de su lugar de residencia.
 
 ## 10. Cómo ponerte en contacto
 

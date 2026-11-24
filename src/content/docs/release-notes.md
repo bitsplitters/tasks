@@ -89,7 +89,7 @@ Released 2026-11-15
 - **While a list is in the Activity** — its message in the channel has only **Join the Activity**, and the list can't be changed there. See [Join the others](/docs/activity/#join-the-others).
 - **Launch** — Discord's **App Launcher**, or the Activities button of a voice call, opens the lists of the channel. Join one, bring another into the Activity, or create a new one. See [The home of the channel](/docs/activity/#the-home-of-the-channel).
 - **`/config lists`** — a list in the Activity is marked *in the Activity*. **Delete** removes it for everyone, and **Seal** first brings it back to the channel. See [What stays in the channel](/docs/activity/#what-stays-in-the-channel).
-- **The Founder offer** — for a limited time before the beta ends, every server can unlock the Founder badge; the first 5,000 Founders to buy get the annual plan at €20 instead of €36, before VAT. See [Founder](/premium/#founder).
+- **The Founder offer** — for a limited time before the beta ends, every server can unlock the Founder badge; the first 5,000 Founders to buy (1,000 since 22 November 2026) get the annual plan at €20 instead of €36, before VAT. See [Founder](/premium/#founder).
 - **Role reminders by DM** — when the bot can't write in the list's channel, the notice that comes with the reminder is in the language of whoever chose the role's people.
 
 ## 1.5.0 — Recurrence from menus

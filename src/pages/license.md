@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Self-hosting Licence
 description: The licence that comes with the Team Tasks Manager package you run yourself — what it lets you do, and what it does not.
-updated: "Version 1.0 — 5 September 2026"
+updated: "Version 1.1 — 24 November 2026"
 ---
 
 This is the licence for the **package you download and run on your own machine**. It is published here so you can read it *before* deciding to download anything; the same text ships inside the package as `LICENSE.txt`, together with an Italian translation.
@@ -72,7 +72,7 @@ You may end it at any time by deleting the Software.
 
 ## 9. Governing law
 
-This licence is governed by Italian law. Any dispute shall be subject to the exclusive jurisdiction of the courts of Rome, Italy, save where mandatory rules give a consumer the right to bring proceedings before the courts of their place of residence.
+This licence is governed by Italian law. If you are a consumer living in another country, you also keep the protection of the mandatory rules of that country's law. Any dispute shall be subject to the exclusive jurisdiction of the courts of Rome, Italy, save where mandatory rules give a consumer the right to bring proceedings before the courts of their place of residence.
 
 ## 10. Getting in touch
 

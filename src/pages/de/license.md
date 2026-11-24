@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Lizenz für das Selbsthosting"
 description: "Die Lizenz, die dem Paket von Team Tasks Manager beiliegt, das du selbst betreibst: was sie dir erlaubt und was nicht."
-updated: "Version 1.0 — 5. September 2026"
-fonte: c3dcf4887bfd
+updated: "Version 1.1 — 24. November 2026"
+fonte: f860badc5c81
 ---
 
 Das ist die Lizenz für das **Paket, das du herunterlädst und auf deinem eigenen Rechner betreibst**. Sie ist hier veröffentlicht, damit du sie lesen kannst, *bevor* du dich entscheidest, etwas herunterzuladen; derselbe Text liegt dem Paket als `LICENSE.txt` bei, zusammen mit einer italienischen Übersetzung.
@@ -73,7 +73,7 @@ Du kannst sie jederzeit beenden, indem du die Software löschst.
 
 ## 9. Anwendbares Recht
 
-Diese Lizenz unterliegt italienischem Recht. Für jede Streitigkeit sind ausschließlich die Gerichte in Rom, Italien, zuständig, außer wenn zwingende Vorschriften einem Verbraucher das Recht geben, vor den Gerichten seines Wohnorts zu klagen.
+Diese Lizenz unterliegt italienischem Recht. Wenn du Verbraucher bist und in einem anderen Land lebst, behältst du zusätzlich den Schutz der zwingenden Vorschriften des Rechts dieses Landes. Für jede Streitigkeit sind ausschließlich die Gerichte in Rom, Italien, zuständig, außer wenn zwingende Vorschriften einem Verbraucher das Recht geben, vor den Gerichten seines Wohnorts zu klagen.
 
 ## 10. Kontakt aufnehmen
 

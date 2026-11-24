@@ -35,13 +35,15 @@ TTM only stores what is needed to run task lists inside your server:
 
 ## Why we use it
 
-We process this data solely to **provide the service**: rendering and updating your lists, sending reminders and notifications, running the webhooks you configure, and maintaining and improving the bot (via aggregate statistics).
+We process this data solely to **provide the service**: rendering and updating your lists, sending reminders and notifications, running the webhooks you configure, and maintaining and improving the bot (via aggregate statistics). You are under no legal obligation to provide this data, but the bot cannot work without it: without Discord IDs and the content of your lists, TTM has nothing to show and nothing to remind you of.
 
 ## Sharing
 
 We do **not** sell your data. Data is processed by our infrastructure provider **OVHcloud**, which hosts the bot and its database in **France (EU)**, acting as a processor on our behalf. The bot also runs on the **Discord** platform, so your use is subject to [Discord's Privacy Policy](https://discord.com/privacy). Discord is based in the United States: see [International transfers](/gdpr/#international-transfers). **Cloudflare**, also based in the United States, hosts the page of the [Activity](#the-activity) and carries its connection to the bot. When you use webhooks, TTM sends the data you configured to the **third-party endpoints you choose** — those services are outside our control.
 
 **Error reports.** When something fails unexpectedly, the bot sends a report to a private channel on our Discord server, which only we can see. A report holds the server and user IDs involved and the technical details of the fault. It can contain a fragment of what was being processed, such as a piece of a task. We delete these reports once the fault is fixed, and within 12 months at the latest.
+
+**Email.** What you write to our addresses on bitsplitters.app is forwarded by **Cloudflare Email Routing**, as a processor on our behalf, to a mailbox at **Google** (Gmail), where we read it and answer you. Your message can therefore reach the United States: see [International transfers](/gdpr/#international-transfers). We use your address and your message only to answer you and to follow up on the same request: to comply with the law when you exercise your rights or report illegal content (Art. 6(1)(c) GDPR), as part of the service when you write to us about it (Art. 6(1)(b) GDPR), otherwise on the basis of our legitimate interest in answering you (Art. 6(1)(f) GDPR).
 
 ## Retention
 
@@ -53,7 +55,9 @@ Data is kept while the bot is present and in use in your server.
 
 **Operational logs** — to diagnose faults, the bot writes technical logs on the server where it runs. At the logging level used in production these do **not** contain the text of your tasks or your list titles; they can contain Discord identifiers, for example the user ID involved in an error. Logs are deleted automatically after **30 days**.
 
-**Backups** — we back up the database every day, to restore the service after a fault. Backups are kept for **14 days**, in the EU. Data you delete, or that we delete when the bot leaves a server, can therefore survive in a backup for up to 14 days; then it is gone for good. A backup is only ever used to restore the service.
+**Backups** — we back up the database every hour, encrypted, to restore the service after a fault. Backups are kept for **14 days**, in the EU. Data you delete, or that we delete when the bot leaves a server, can therefore survive in a backup for up to 14 days; then it is gone for good. A backup is only ever used to restore the service.
+
+**Emails** — we keep the emails you send us, with our replies, for **12 months** after our last reply, so as to follow up on the same request; earlier, if you ask us.
 
 **Your personal time zone, direct-message channel and second row** — the time zone you chose (you can delete it yourself with **Remove my time zone**), the ID of your direct-message channel with the bot (with, if you don't accept direct messages, until when not to try again), and the record that you have learned the second row are stored against your Discord user ID and are not tied to any single server, so removing the bot from a server does not delete them. Write to **info@bitsplitters.app** with your Discord user ID and we will delete them. Deleting the second-row record just makes the tip come back.
 
@@ -92,7 +96,7 @@ Discord remains the provider of the platform, and what it collects is governed b
 
 ## Our websites
 
-Our websites — bitsplitters.app, tasks.bitsplitters.app and timezones.bitsplitters.app — use no cookies and store nothing in your browser.
+Our websites — bitsplitters.app, tasks.bitsplitters.app and timezones.bitsplitters.app — use no cookies. tasks.bitsplitters.app remembers in your browser the theme and the language you choose, to show them again on your next visit: these choices stay on your device and never reach us. The other two sites store nothing in your browser.
 
 - **Hosting.** They are hosted on **GitHub Pages**, a service of GitHub, Inc. (United States). Like any web server, GitHub records technical data about each visit, including your IP address, for security and to run the service. See [GitHub's Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 - **Visit statistics.** To count visits and see which sites send people to us, our pages load a script from **Cloudflare Web Analytics**, a service of Cloudflare, Inc. (United States). For each page view it records the page, the site you came from, your country, browser, operating system and type of device, and how long the page took to load. It sets no cookies, stores nothing in your browser and does not identify you: we only see totals, never individual visitors. Cloudflare receives your IP address with the request, as any web server does, and does not use it to recognise you. See [Cloudflare's Privacy Policy](https://www.cloudflare.com/privacypolicy/).

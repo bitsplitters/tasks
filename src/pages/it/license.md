@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Licenza self-host"
 description: "La licenza che accompagna il pacchetto di Team Tasks Manager che esegui per conto tuo — cosa ti permette di fare e cosa no."
-updated: "Versione 1.0 — 5 settembre 2026"
-fonte: c3dcf4887bfd
+updated: "Versione 1.1 — 24 novembre 2026"
+fonte: f860badc5c81
 ---
 
 Questa è la licenza del **pacchetto che scarichi ed esegui sulla tua macchina**. È pubblicata qui perché tu possa leggerla *prima* di decidere di scaricare qualunque cosa; lo stesso testo è incluso nel pacchetto, in inglese, come `LICENSE.txt`, insieme alla traduzione italiana `LICENSE.it.txt`, che è quella che trovi in questa pagina.
@@ -75,7 +75,7 @@ Puoi farla cessare in qualsiasi momento eliminando il Software.
 
 ## 9. Legge applicabile
 
-Questa licenza è regolata dalla legge italiana. Per ogni controversia è competente in via esclusiva il foro di Roma, salvo che norme inderogabili riconoscano al consumatore il diritto di adire il giudice del luogo di residenza.
+Questa licenza è regolata dalla legge italiana. Se sei un consumatore che vive in un altro paese, conservi anche la protezione delle norme inderogabili della legge di quel paese. Per ogni controversia è competente in via esclusiva il foro di Roma, salvo che norme inderogabili riconoscano al consumatore il diritto di adire il giudice del luogo di residenza.
 
 ## 10. Per parlarne
 

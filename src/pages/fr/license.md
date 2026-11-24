@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Licence d'auto-hébergement"
 description: "La licence qui accompagne le paquet de Team Tasks Manager que tu exécutes toi-même : ce qu'elle te permet de faire, et ce qu'elle ne te permet pas."
-updated: "Version 1.0 — 5 septembre 2026"
-fonte: c3dcf4887bfd
+updated: "Version 1.1 — 24 novembre 2026"
+fonte: f860badc5c81
 ---
 
 Voici la licence du **paquet que tu télécharges et que tu exécutes sur ta propre machine**. Elle est publiée ici pour que tu puisses la lire *avant* de décider de télécharger quoi que ce soit ; le même texte est fourni dans le paquet sous le nom `LICENSE.txt`, avec une traduction italienne.
@@ -73,7 +73,7 @@ Tu peux y mettre fin à tout moment en supprimant le Logiciel.
 
 ## 9. Droit applicable
 
-Cette licence est régie par le droit italien. Tout litige relève de la compétence exclusive des tribunaux de Rome, en Italie, sauf lorsque des règles impératives donnent à un consommateur le droit d'agir devant les tribunaux de son lieu de résidence.
+Cette licence est régie par le droit italien. Si tu es un consommateur qui vit dans un autre pays, tu conserves aussi la protection des règles impératives du droit de ce pays. Tout litige relève de la compétence exclusive des tribunaux de Rome, en Italie, sauf lorsque des règles impératives donnent à un consommateur le droit d'agir devant les tribunaux de son lieu de résidence.
 
 ## 10. Nous contacter
 

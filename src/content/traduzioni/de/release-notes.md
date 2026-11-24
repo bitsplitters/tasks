@@ -1,7 +1,7 @@
 ---
 title: "Versionshinweise"
 description: "Was es Neues in Team Tasks Manager gibt, das Neueste zuerst."
-fonte: f88a9986fb9d
+fonte: 96dbaef26d7b
 ---
 
 Jede Änderung, die du in Discord siehst, steht hier, das Neueste zuerst. Jeder Eintrag verlinkt auf die Seite, die ihn erklärt.
@@ -86,7 +86,7 @@ Released 2026-11-15
 - **Solange eine Liste in der Activity ist** — hat ihre Nachricht im Kanal nur **Activity beitreten**, und die Liste lässt sich dort nicht ändern. Siehe [Den anderen beitreten](/docs/activity/#join-the-others).
 - **Launch** — der **App Launcher** von Discord oder der Activities-Button eines Sprachanrufs öffnet die Listen des Kanals. Tritt einer bei, bringe eine andere in die Activity oder erstelle eine neue. Siehe [Die Startseite des Kanals](/docs/activity/#the-home-of-the-channel).
 - **`/config lists`** — eine Liste in der Activity ist mit *in der Activity* markiert. **Löschen** entfernt sie für alle, und **Versiegeln** bringt sie vorher in den Kanal zurück. Siehe [Was im Kanal bleibt](/docs/activity/#what-stays-in-the-channel).
-- **Das Founder-Angebot** — für begrenzte Zeit vor dem Ende der Beta kann jeder Server das Founder-Abzeichen freischalten; die ersten 5.000 Founder, die kaufen, bekommen den Jahrestarif für 20 € statt 36 €, vor MwSt. Siehe [Founder](/premium/#founder).
+- **Das Founder-Angebot** — für begrenzte Zeit vor dem Ende der Beta kann jeder Server das Founder-Abzeichen freischalten; die ersten 5.000 Founder, die kaufen (seit dem 22. November 2026 sind es 1.000), bekommen den Jahrestarif für 20 € statt 36 €, vor MwSt. Siehe [Founder](/premium/#founder).
 - **Erinnerungen an Rollen per DM** — kann der Bot im Kanal der Liste nicht schreiben, steht die Benachrichtigung, die zur Erinnerung gehört, in der Sprache der Person, die die Leute der Rolle gewählt hat.
 
 ## 1.5.0 — Wiederholung per Menü

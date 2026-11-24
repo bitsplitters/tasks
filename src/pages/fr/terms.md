@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Conditions d'utilisation"
 description: "Les conditions qui régissent l'utilisation du bot Discord Team Tasks Manager."
-updated: "Dernière mise à jour : 22 octobre 2026"
-fonte: 5b0d9cb9ce7a
+updated: "Dernière mise à jour : 24 novembre 2026"
+fonte: 8dfbc8dcd850
 ---
 
 Les présentes Conditions d'utilisation (« Conditions ») régissent ton utilisation du bot Discord **Team Tasks Manager** (« TTM », « le bot », « le service »), fourni par bitsplitters (« nous »). En ajoutant le bot à un serveur Discord ou en l'utilisant, tu acceptes ces Conditions. Si tu n'es pas d'accord, n'utilise pas le bot.
@@ -39,6 +39,8 @@ Le bot est fourni **« en l'état » et « selon disponibilité »**, sans g
 
 Arrêter le service veut dire fermer le projet, pas pousser quelqu'un à payer. L'offre Free décrite dans les pages [Bêta](/docs/beta/) et [Premium](/docs/premium/) n'est pas désactivée, réduite ou rendue inutilisable pour t'amener à passer à une offre payante. Si nous décidons un jour de fermer le service, nous l'annoncerons à l'avance sur ce site et sur notre [serveur Discord](/docs/community/), pour que tu aies le temps de récupérer tes listes : le bouton **Télécharger** exporte chaque liste dans un fichier que `/creer-liste` peut importer, y compris dans une copie de TTM que tu héberges toi-même.
 
+**La fin de la bêta.** Nous annonçons la fin de la [bêta](/docs/beta/) au moins **30 jours** à l'avance, sur ce site, sur notre [serveur Discord](/docs/community/) et dans le bot avec `/news`.
+
 ## 7. Limitation de responsabilité
 
 Dans toute la mesure permise par la loi applicable, nous ne sommes responsables d'aucun dommage indirect, accessoire ou consécutif, ni d'aucune perte de données, de bénéfices ou d'activité, découlant de l'utilisation ou de l'impossibilité d'utiliser le bot.
@@ -57,13 +59,15 @@ Les offres payantes, lorsqu'elles seront disponibles, auront leurs propres condi
 
 ## 10. Droit applicable
 
-Ces Conditions sont régies par le droit italien, sans égard à ses règles de conflit de lois. Tout litige relève des tribunaux compétents d'Italie, sauf disposition impérative de protection des consommateurs contraire.
+Ces Conditions sont régies par le droit italien. Si tu es un consommateur qui vit dans un autre pays, tu conserves aussi la protection des règles impératives du droit de ce pays, que ce choix ne peut pas t'enlever. Tout litige relève des tribunaux compétents d'Italie ; si tu es un consommateur, tu peux aussi saisir les tribunaux du lieu où tu vis, et nous ne pouvons agir contre toi que devant eux.
+
+Ces Conditions sont rédigées en anglais. Si une traduction diffère du texte anglais, le texte anglais prévaut ; si tu es un consommateur, une clause dont le sens est douteux s'interprète dans le sens le plus favorable pour toi.
 
 ## 11. Signaler un contenu, et notre point de contact
 
-Si tu trouves un contenu illégal stocké via TTM, ou un contenu qui enfreint ces Conditions, écris à **info@bitsplitters.app**. Indique-nous où il se trouve (le serveur et la liste), pourquoi tu le juges illégal, ainsi que ton nom et ton adresse e-mail. Tu peux omettre ton nom et ton adresse e-mail quand tu signales du matériel pédopornographique.
+Si tu trouves un contenu illégal stocké via TTM, ou un contenu qui enfreint ces Conditions, écris à **info@bitsplitters.app**. Indique-nous où il se trouve (le serveur et la liste), pourquoi tu le juges illégal, ainsi que ton nom et ton adresse e-mail, avec une déclaration confirmant que tu penses de bonne foi que ton signalement est exact et complet. Tu peux omettre ton nom et ton adresse e-mail quand tu signales du matériel pédopornographique.
 
-Nous examinons chaque signalement sans retard injustifié, et nous te disons ce que nous avons décidé. Si nécessaire, nous supprimons le contenu ou nous arrêtons le bot sur ce serveur. Nous informons les administrateurs du serveur de ce que nous avons fait et pourquoi, sauf si la loi l'interdit. Si tu n'es pas d'accord avec une décision, réponds à notre e-mail et nous la réexaminerons.
+Une personne examine chaque signalement, sans outil automatisé et sans retard injustifié, et nous te disons ce que nous avons décidé. Si nécessaire, nous supprimons le contenu ou nous arrêtons le bot sur ce serveur. Nous informons les administrateurs du serveur de ce que nous avons fait et pourquoi, sauf si la loi l'interdit. Si tu n'es pas d'accord avec une décision, réponds à notre e-mail et nous la réexaminerons.
 
 Les listes de TTM vivent dans des messages Discord : tu peux donc aussi les signaler à Discord.
 

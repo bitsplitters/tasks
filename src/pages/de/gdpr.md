@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "DSGVO und deine Datenrechte"
 description: "Wie Team Tasks Manager die Datenschutz-Grundverordnung der EU einhält."
 updated: "Zuletzt aktualisiert: 24. November 2026"
-fonte: 51b8abee8c2d
+fonte: 4a187e4372b2
 ---
 
 Weil **bitsplitters** in der Europäischen Union tätig ist, unterliegt die Nutzung von **Team Tasks Manager** („TTM“) der **Datenschutz-Grundverordnung (DSGVO)**. Diese Seite erklärt die Rechtsgrundlage der Verarbeitung und die Rechte, die du hast. Sie ergänzt unsere [Datenschutzerklärung](/de/privacy/), die genau auflistet, welche Daten wir verarbeiten.
@@ -17,6 +17,7 @@ Weil **bitsplitters** in der Europäischen Union tätig ist, unterliegt die Nutz
 - **Erfüllung des Dienstes (Art. 6 Abs. 1 lit. b)** — für dich, wenn du den Bot hinzufügst oder nutzt. Die meisten Daten (Discord-Kennungen, Inhalte der Aufgaben, Erinnerungen, Konfiguration, Webhooks, die Anmeldung bei der [Activity](/de/privacy/#die-activity) und ihre Aufzeichnungen) werden verarbeitet, weil das nötig ist, um die Funktion bereitzustellen, die du verlangst.
 - **Berechtigtes Interesse (Art. 6 Abs. 1 lit. f)** — für die Personen, die in einer Liste vorkommen, ohne den Bot selbst zu nutzen, zum Beispiel ein von jemand anderem gewählter Besitzer oder ein in einer Aufgabe erwähntes Mitglied. Das Interesse ist das des Teams: seine Arbeit auf seinem eigenen Server zu organisieren. Diese Personen können widersprechen und die Admins des Servers bitten, sie zu entfernen.
 - **Berechtigtes Interesse (Art. 6 Abs. 1 lit. f)** — auch dafür, den Bot zuverlässig und sicher zu halten: Nutzungsstatistiken, technische Logs, Fehlerberichte und Backups. Dieselbe Grundlage deckt unseren Community-Server mit seiner Moderation und seinen Support-Tickets (siehe [Unser Community-Server](/de/privacy/#unser-community-server)) und unsere Websites (siehe [Unsere Websites](/de/privacy/#unsere-websites)). Wir haben diese Interessen gegen deine Rechte abgewogen, und du kannst jedem davon widersprechen.
+- **Rechtliche Verpflichtung (Art. 6 Abs. 1 lit. c)** — um deine Anträge auf Ausübung deiner Rechte und deine Meldungen rechtswidriger Inhalte (Digital Services Act) zu beantworten. Andere E-Mails beantworten wir als Teil des Dienstes oder auf Grundlage unseres berechtigten Interesses, zu antworten.
 
 Wir treffen keine automatisierten Entscheidungen mit Rechtswirkung und betreiben kein Profiling.
 
@@ -53,6 +54,7 @@ Einige Daten verlassen den EWR über Dienste mit Sitz in den **Vereinigten Staat
 - **Discord** — der Bot arbeitet auf Discord, also läuft das, was er auf deinem Server zeigt, über Discord, ebenso alles andere, was du dort tust, die Activity eingeschlossen. Auch die Fehlerberichte, die in der [Datenschutzerklärung](/de/privacy/#weitergabe) beschrieben sind, gehen an einen privaten Kanal auf Discord. Discord übermittelt Daten unter den Garantien, die in [seiner Datenschutzerklärung](https://discord.com/privacy) dargelegt sind.
 - **GitHub** — es hostet unsere Websites und erhält die technischen Daten jedes Besuchs. GitHub übermittelt Daten unter den Garantien, die in [seiner Datenschutzerklärung](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) dargelegt sind.
 - **Cloudflare** — es zählt die Besuche unserer Websites (siehe [Unsere Websites](/de/privacy/#unsere-websites)) und hostet die Seite der Activity und trägt ihre Verbindung zum Bot (siehe [Die Activity](/de/privacy/#die-activity)). Cloudflare übermittelt Daten im Rahmen des EU-U.S. Data Privacy Framework, mit den Standardvertragsklauseln als Rückfalloption, wie auf [seiner DSGVO-Seite](https://www.cloudflare.com/trust-hub/gdpr/) dargelegt.
+- **Google** — die E-Mails, die du an unsere Adressen schickst, kommen, von Cloudflare weitergeleitet, in einem Postfach bei Google (Gmail) an, wie in der [Datenschutzerklärung](/de/privacy/#weitergabe) beschrieben. Google übermittelt Daten unter den Garantien, die in [seiner Datenschutzerklärung](https://policies.google.com/privacy) dargelegt sind.
 
 ## Beschwerden
 

@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "RGPD y tus derechos sobre los datos"
 description: "Cómo cumple Team Tasks Manager el Reglamento General de Protección de Datos de la Unión Europea."
 updated: "Última actualización: 24 de noviembre de 2026"
-fonte: 51b8abee8c2d
+fonte: 4a187e4372b2
 ---
 
 Como **bitsplitters** opera en la Unión Europea, el uso de **Team Tasks Manager** («TTM») está sujeto al **Reglamento General de Protección de Datos (RGPD)**. Esta página explica la base jurídica del tratamiento y los derechos que tienes. Complementa nuestra [Política de privacidad](/es/privacy/), que enumera exactamente qué datos tratamos.
@@ -17,6 +17,7 @@ Como **bitsplitters** opera en la Unión Europea, el uso de **Team Tasks Manager
 - **Ejecución del servicio (art. 6.1.b)**: para ti, cuando añades el bot o lo usas. La mayoría de los datos (los ID de Discord, el contenido de las tareas, los recordatorios, la configuración, los webhooks, el inicio de sesión en la [Activity](/es/privacy/#la-activity) y sus registros) se tratan porque son necesarios para proporcionar la funcionalidad que solicitas.
 - **Interés legítimo (art. 6.1.f)**: para las personas que aparecen en una lista sin usar el bot, por ejemplo un propietario elegido por otra persona o un miembro mencionado en una tarea. El interés es el del equipo: organizar su trabajo en su propio servidor. Esas personas pueden oponerse y pueden pedir a los administradores del servidor que las quiten.
 - **Interés legítimo (art. 6.1.f)**: también para mantener el bot fiable y seguro: estadísticas de uso, registros técnicos, informes de errores y copias de seguridad. La misma base cubre nuestro servidor de la comunidad, con su moderación y sus tickets de soporte (consulta [Nuestro servidor de la comunidad](/es/privacy/#nuestro-servidor-de-la-comunidad)), y nuestros sitios web (consulta [Nuestros sitios web](/es/privacy/#nuestros-sitios-web)). Hemos ponderado estos intereses frente a tus derechos, y puedes oponerte a cualquiera de ellos.
+- **Obligación legal (art. 6.1.c)**: para responder a tus solicitudes de ejercicio de derechos y a tus denuncias de contenido ilegal (Ley de Servicios Digitales). Los demás correos los respondemos como parte del servicio o por nuestro interés legítimo en responder.
 
 No realizamos decisiones automatizadas con efectos jurídicos ni elaboración de perfiles.
 
@@ -53,6 +54,7 @@ Algunos datos salen del EEE a través de servicios con sede en **Estados Unidos*
 - **Discord**: el bot funciona en Discord, así que lo que muestra en tu servidor pasa por Discord, igual que todo lo demás que haces allí, la Activity incluida. Los informes de errores descritos en la [Política de privacidad](/es/privacy/#compartición) también van a un canal privado de Discord. Discord transfiere datos con las garantías que establece [su política de privacidad](https://discord.com/privacy).
 - **GitHub**: aloja nuestros sitios web y recibe los datos técnicos de cada visita. GitHub transfiere datos con las garantías que establece [su declaración de privacidad](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 - **Cloudflare**: cuenta las visitas a nuestros sitios web (consulta [Nuestros sitios web](/es/privacy/#nuestros-sitios-web)) y aloja la página de la Activity y transporta su conexión con el bot (consulta [La Activity](/es/privacy/#la-activity)). Cloudflare transfiere datos conforme al Marco de Privacidad de Datos UE-EE. UU., con las cláusulas contractuales tipo como respaldo, como se indica en [su página sobre el RGPD](https://www.cloudflare.com/trust-hub/gdpr/).
+- **Google**: los correos que envías a nuestras direcciones llegan, reenviados por Cloudflare, a un buzón de Google (Gmail), como se describe en la [Política de privacidad](/es/privacy/#compartición). Google transfiere datos con las garantías que establece [su política de privacidad](https://policies.google.com/privacy).
 
 ## Reclamaciones
 

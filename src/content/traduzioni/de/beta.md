@@ -1,7 +1,7 @@
 ---
 title: "So funktioniert die Beta"
 description: "Während der Beta ist jede Funktion freigeschaltet — und auch danach verlierst du nie, was du aufgebaut hast."
-fonte: d0f1163ca10a
+fonte: 84125ff8589f
 ---
 
 Team Tasks Manager ist in der **offenen Beta**. Jede Funktion ist freigeschaltet, für jeden Server und für die gesamte Beta: Listen, Erinnerungen, Webhooks und alles andere. Es gibt keine Testphase, keine Kreditkarte, die du angeben musst, und keinen gesperrten Button.
@@ -10,6 +10,7 @@ Team Tasks Manager ist in der **offenen Beta**. Jede Funktion ist freigeschaltet
 
 Wenn TTM die Beta verlässt, wird es **Freemium**: ein Free-Tarif plus ein kostenpflichtiger Tarif namens Premium. Genau das passiert, ohne versteckte Bedingungen:
 
+- **Du erfährst es mindestens 30 Tage vorher.** Wir kündigen das Ende der Beta auf dieser Website, auf unserem [Discord](/docs/community/) und im Bot mit `/news` an.
 - **Nichts, was du aufgebaut hast, wird je gelöscht oder versteckt.** Deine Listen, Aufgaben und Erinnerungen bleiben genau dort, wo sie sind.
 - **Der Free-Tarif bleibt für immer kostenlos.** Ein kleines Team kann TTM weiter nutzen, ohne zu zahlen.
 - **Oberhalb der Free-Grenzen kannst du nichts mehr hinzufügen**, bis du Platz schaffst oder upgradest. Alles, was schon da ist, bleibt.

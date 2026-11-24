@@ -2,8 +2,8 @@
 layout: ../../layouts/Legal.astro
 title: "Nutzungsbedingungen"
 description: "Die Bedingungen, die die Nutzung des Discord-Bots Team Tasks Manager regeln."
-updated: "Zuletzt aktualisiert: 22. Oktober 2026"
-fonte: 5b0d9cb9ce7a
+updated: "Zuletzt aktualisiert: 24. November 2026"
+fonte: 8dfbc8dcd850
 ---
 
 Diese Nutzungsbedingungen („Bedingungen“) regeln deine Nutzung des Discord-Bots **Team Tasks Manager** („TTM“, „der Bot“, „der Dienst“), bereitgestellt von bitsplitters („wir“, „uns“). Wenn du den Bot zu einem Discord-Server hinzufügst oder nutzt, akzeptierst du diese Bedingungen. Wenn du sie nicht akzeptierst, nutze den Bot nicht.
@@ -39,6 +39,8 @@ Der Bot wird **„wie besehen“ und „wie verfügbar“** bereitgestellt, ohne
 
 Den Dienst einzustellen heißt, das Projekt zu schließen, nicht, jemanden zum Bezahlen zu drängen. Der Free-Tarif, der auf den Seiten [Beta](/docs/beta/) und [Premium](/docs/premium/) beschrieben ist, wird nicht abgeschaltet, eingeschränkt oder unbrauchbar gemacht, um dich zu einem kostenpflichtigen Tarif zu bewegen. Wenn wir je beschließen, den Dienst zu schließen, kündigen wir das vorher auf dieser Website und auf unserem [Discord-Server](/docs/community/) an, damit du Zeit hast, deine Listen mitzunehmen: Der Button **Herunterladen** exportiert jede Liste als Datei, die `/liste-erstellen` importieren kann, auch in eine Kopie von TTM, die du selbst betreibst.
 
+**Das Ende der Beta.** Wir kündigen das Ende der [Beta](/docs/beta/) mindestens **30 Tage** im Voraus an, auf dieser Website, auf unserem [Discord-Server](/docs/community/) und im Bot mit `/news`.
+
 ## 7. Haftungsbeschränkung
 
 Soweit nach geltendem Recht zulässig, haften wir nicht für indirekte, zufällige oder Folgeschäden und nicht für Verlust von Daten, Gewinn oder Geschäft, die aus der Nutzung oder der Unmöglichkeit der Nutzung des Bots entstehen.
@@ -57,13 +59,15 @@ Kostenpflichtige Tarife werden, wenn sie verfügbar werden, mit eigenen Bedingun
 
 ## 10. Anwendbares Recht
 
-Auf diese Bedingungen ist italienisches Recht anwendbar, unter Ausschluss der Kollisionsnormen. Für jede Streitigkeit sind die Gerichte Italiens zuständig, soweit nicht zwingendes Verbraucherschutzrecht etwas anderes vorsieht.
+Auf diese Bedingungen ist italienisches Recht anwendbar. Wenn du Verbraucher bist und in einem anderen Land lebst, behältst du zusätzlich den Schutz der zwingenden Vorschriften des Rechts dieses Landes, den dir diese Rechtswahl nicht nehmen kann. Für jede Streitigkeit sind die Gerichte Italiens zuständig; wenn du Verbraucher bist, kannst du auch vor den Gerichten deines Wohnorts klagen, und wir können dich nur dort verklagen.
+
+Diese Bedingungen sind auf Englisch verfasst. Weicht eine Übersetzung vom englischen Text ab, gilt der englische Text; wenn du Verbraucher bist, wird eine Klausel mit zweifelhafter Bedeutung so ausgelegt, wie es für dich am günstigsten ist.
 
 ## 11. Inhalte melden und unsere Kontaktstelle
 
-Wenn du rechtswidrige Inhalte findest, die über TTM gespeichert sind, oder Inhalte, die gegen diese Bedingungen verstoßen, schreibe an **info@bitsplitters.app**. Sag uns, wo sie sind (der Server und die Liste), warum du sie für rechtswidrig hältst, und nenne deinen Namen und deine E-Mail-Adresse. Du kannst Namen und E-Mail-Adresse weglassen, wenn du Material über sexuellen Kindesmissbrauch meldest.
+Wenn du rechtswidrige Inhalte findest, die über TTM gespeichert sind, oder Inhalte, die gegen diese Bedingungen verstoßen, schreibe an **info@bitsplitters.app**. Sag uns, wo sie sind (der Server und die Liste), warum du sie für rechtswidrig hältst, und nenne deinen Namen und deine E-Mail-Adresse, mit der Erklärung, dass du in gutem Glauben davon überzeugt bist, dass deine Meldung richtig und vollständig ist. Du kannst Namen und E-Mail-Adresse weglassen, wenn du Material über sexuellen Kindesmissbrauch meldest.
 
-Wir prüfen jede Meldung unverzüglich und teilen dir mit, was wir entschieden haben. Wo nötig, löschen wir den Inhalt oder stoppen den Bot auf diesem Server. Wir teilen den Admins des Servers mit, was wir getan haben und warum, es sei denn, das Gesetz verbietet es. Wenn du mit einer Entscheidung nicht einverstanden bist, antworte auf unsere E-Mail, und wir sehen sie uns noch einmal an.
+Ein Mensch prüft jede Meldung, ohne automatisierte Werkzeuge und unverzüglich, und wir teilen dir mit, was wir entschieden haben. Wo nötig, löschen wir den Inhalt oder stoppen den Bot auf diesem Server. Wir teilen den Admins des Servers mit, was wir getan haben und warum, es sei denn, das Gesetz verbietet es. Wenn du mit einer Entscheidung nicht einverstanden bist, antworte auf unsere E-Mail, und wir sehen sie uns noch einmal an.
 
 Die Listen von TTM liegen in Discord-Nachrichten, du kannst sie also auch bei Discord melden.
 

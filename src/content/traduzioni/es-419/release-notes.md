@@ -1,7 +1,7 @@
 ---
 title: "Notas de la versión"
 description: "Las novedades de Team Tasks Manager, de la más reciente a la más antigua."
-fonte: f88a9986fb9d
+fonte: 96dbaef26d7b
 ---
 
 Aquí está cada cambio que ves en Discord, del más reciente al más antiguo. Cada entrada enlaza a la página que lo explica.
@@ -86,7 +86,7 @@ Released 2026-11-15
 - **Mientras una lista está en la Activity** — su mensaje en el canal solo tiene **Entrar a la Activity**, y la lista no se puede cambiar ahí. Consulta [Únete a los demás](/docs/activity/#join-the-others).
 - **Launch** — el **Lanzador de aplicaciones** de Discord, o el botón de actividades de una llamada de voz, abre las listas del canal. Únete a una, lleva otra a la Activity o crea una nueva. Consulta [El inicio del canal](/docs/activity/#the-home-of-the-channel).
 - **`/config lists`** — una lista en la Activity se marca como *en la Activity*. **Eliminar** la quita para todos, y **Sellar** primero la devuelve al canal. Consulta [Qué se queda en el canal](/docs/activity/#what-stays-in-the-channel).
-- **La oferta Founder** — durante un tiempo limitado antes de que termine la beta, cada servidor puede desbloquear la insignia Founder; los primeros 5000 Founder que compren obtienen el plan anual a 20 € en vez de 36 €, sin IVA. Consulta [Founder](/premium/#founder).
+- **La oferta Founder** — durante un tiempo limitado antes de que termine la beta, cada servidor puede desbloquear la insignia Founder; los primeros 5000 Founder que compren (1000 desde el 22 de noviembre de 2026) obtienen el plan anual a 20 € en vez de 36 €, sin IVA. Consulta [Founder](/premium/#founder).
 - **Recordatorios de rol por mensaje directo** — cuando el bot no puede escribir en el canal de la lista, el aviso que acompaña al recordatorio está en el idioma de quien eligió a las personas del rol.
 
 ## 1.5.0 — Recurrencia desde menús

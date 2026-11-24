@@ -2,7 +2,7 @@
 layout: ../layouts/Legal.astro
 title: Terms of Service
 description: The terms governing the use of the Team Tasks Manager Discord bot.
-updated: "Last updated: 22 October 2026"
+updated: "Last updated: 24 November 2026"
 ---
 
 These Terms of Service ("Terms") govern your use of the **Team Tasks Manager** Discord bot ("TTM", "the bot", "the service"), provided by bitsplitters ("we", "us"). By adding the bot to a Discord server or using it, you agree to these Terms. If you do not agree, do not use the bot.
@@ -38,6 +38,8 @@ The bot is provided **"as is" and "as available"**, without warranties of any ki
 
 Discontinuing the service means closing the project, not pushing anyone to pay. The Free plan described on the [Beta](/docs/beta/) and [Premium](/docs/premium/) pages is not switched off, reduced or made unusable in order to make you move to a paid plan. If we ever decide to close the service, we will announce it in advance on this site and on our [Discord server](/docs/community/), so that you have time to take your lists with you: the **Download** button exports each list as a file that `/create-list` can import, including into a copy of TTM you run yourself.
 
+**The end of the beta.** We announce the end of the [beta](/docs/beta/) at least **30 days** in advance, on this site, on our [Discord server](/docs/community/) and in the bot with `/news`.
+
 ## 7. Limitation of liability
 
 To the maximum extent permitted by applicable law, we shall not be liable for any indirect, incidental, or consequential damages, or for any loss of data, profits, or business, arising from the use or inability to use the bot.
@@ -56,13 +58,15 @@ Paid plans, when they become available, will come with their own conditions, sho
 
 ## 10. Governing law
 
-These Terms are governed by the laws of Italy, without regard to conflict-of-law rules. Any dispute shall be subject to the competent courts of Italy, unless mandatory consumer-protection law provides otherwise.
+These Terms are governed by the laws of Italy. If you are a consumer living in another country, you also keep the protection of the mandatory rules of that country's law, which this choice cannot take away. Any dispute shall be subject to the competent courts of Italy; if you are a consumer, you can also bring proceedings before the courts of the place where you live, and we can bring proceedings against you only there.
+
+These Terms are written in English. If a translation differs from the English text, the English text prevails; if you are a consumer, a term whose meaning is in doubt is read in the way most favourable to you.
 
 ## 11. Reporting content, and our point of contact
 
-If you find illegal content stored through TTM, or content that breaks these Terms, write to **info@bitsplitters.app**. Tell us where it is (the server and the list), why you think it is illegal, and your name and email. You can leave out your name and email when you report child sexual abuse material.
+If you find illegal content stored through TTM, or content that breaks these Terms, write to **info@bitsplitters.app**. Tell us where it is (the server and the list), why you think it is illegal, and your name and email, with a statement that you believe in good faith that your report is accurate and complete. You can leave out your name and email when you report child sexual abuse material.
 
-We review every report without undue delay, and tell you what we decided. Where needed we delete the content, or stop the bot on that server. We tell the server's admins what we did and why, unless the law forbids it. If you disagree with a decision, reply to our email and we will look at it again.
+A person reviews every report, without automated tools and without undue delay, and we tell you what we decided. Where needed we delete the content, or stop the bot on that server. We tell the server's admins what we did and why, unless the law forbids it. If you disagree with a decision, reply to our email and we will look at it again.
 
 TTM's lists live in Discord messages, so you can also report them to Discord.
 

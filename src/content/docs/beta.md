@@ -11,6 +11,7 @@ Team Tasks Manager is in **open beta**. Every feature is unlocked, for every ser
 
 When TTM leaves beta it becomes **freemium**: a Free plan, plus a paid plan called Premium. Here is exactly what happens, with no hidden conditions:
 
+- **You'll know at least 30 days before.** We announce the end of the beta on this site, on our [Discord](/docs/community/) and in the bot with `/news`.
 - **Nothing you've built is ever deleted or hidden.** Your lists, tasks and reminders stay exactly where they are.
 - **The Free plan stays free, forever.** A small team can keep using TTM without paying.
 - **Above the free limits, you can't add more** until you make room or upgrade. Everything already there stays.
