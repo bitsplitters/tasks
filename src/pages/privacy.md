@@ -43,7 +43,7 @@ We do **not** sell your data. Data is processed by our infrastructure provider *
 
 **Error reports.** When something fails unexpectedly, the bot sends a report to a private channel on our Discord server, which only we can see. A report holds the server and user IDs involved and the technical details of the fault. It can contain a fragment of what was being processed, such as a piece of a task. We delete these reports once the fault is fixed, and within 12 months at the latest.
 
-**Email.** What you write to our addresses on bitsplitters.app is forwarded by **Cloudflare Email Routing**, as a processor on our behalf, to a mailbox at **Google** (Gmail), where we read it and answer you. Your message can therefore reach the United States: see [International transfers](/gdpr/#international-transfers). We use your address and your message only to answer you and to follow up on the same request: to comply with the law when you exercise your rights or report illegal content (Art. 6(1)(c) GDPR), as part of the service when you write to us about it (Art. 6(1)(b) GDPR), otherwise on the basis of our legitimate interest in answering you (Art. 6(1)(f) GDPR).
+**Email.** What you write to our addresses on bitsplitters.app arrives in a mailbox hosted by **OVHcloud** in **France (EU)**, as a processor on our behalf, where we read it and answer you. We use your address and your message only to answer you and to follow up on the same request: to comply with the law when you exercise your rights or report illegal content (Art. 6(1)(c) GDPR), as part of the service when you write to us about it (Art. 6(1)(b) GDPR), otherwise on the basis of our legitimate interest in answering you (Art. 6(1)(f) GDPR).
 
 ## Retention
 

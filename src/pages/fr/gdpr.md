@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "RGPD et tes droits sur tes données"
 description: "Comment Team Tasks Manager respecte le Règlement général européen sur la protection des données."
 updated: "Dernière mise à jour : 24 novembre 2026"
-fonte: 4a187e4372b2
+fonte: deedb9d3e060
 ---
 
 Comme **bitsplitters** opère dans l'Union européenne, l'utilisation de **Team Tasks Manager** (« TTM ») est soumise au **Règlement général sur la protection des données (RGPD)**. Cette page explique la base juridique du traitement et les droits dont tu disposes. Elle complète notre [Politique de confidentialité](/fr/privacy/), qui liste exactement les données que nous traitons.
@@ -47,14 +47,13 @@ Nous ne conservons les données que le temps nécessaire pour fournir le service
 
 ## Transferts internationaux
 
-Le bot, sa base de données et ses sauvegardes sont hébergés par **OVHcloud** sur un serveur dédié en **France (centre de données de Gravelines)**, dans l'Espace économique européen (EEE). Une seconde copie des sauvegardes est conservée en **Italie**, sur notre propre ordinateur.
+Le bot, sa base de données et ses sauvegardes sont hébergés par **OVHcloud** sur un serveur dédié en **France (centre de données de Gravelines)**, dans l'Espace économique européen (EEE). Notre messagerie est elle aussi hébergée par OVHcloud en France. Une seconde copie des sauvegardes est conservée en **Italie**, sur notre propre ordinateur.
 
 Certaines données quittent l'EEE via des services établis aux **États-Unis** :
 
 - **Discord** — le bot fonctionne sur Discord : ce qu'il affiche dans ton serveur passe donc par Discord, comme tout ce que tu y fais d'autre, l'Activity comprise. Les rapports d'erreur décrits dans la [Politique de confidentialité](/fr/privacy/#partage) vont eux aussi dans un salon privé sur Discord. Discord transfère des données avec les garanties exposées dans [sa politique de confidentialité](https://discord.com/privacy).
 - **GitHub** — il héberge nos sites web et reçoit les données techniques de chaque visite. GitHub transfère des données avec les garanties exposées dans [sa déclaration de confidentialité](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 - **Cloudflare** — il compte les visites de nos sites web (voir [Nos sites web](/fr/privacy/#nos-sites-web)) et héberge la page de l'Activity, en acheminant sa connexion au bot (voir [L'Activity](/fr/privacy/#lactivity)). Cloudflare transfère des données dans le cadre du EU-U.S. Data Privacy Framework, avec les clauses contractuelles types en solution de repli, comme l'indique [sa page RGPD](https://www.cloudflare.com/trust-hub/gdpr/).
-- **Google** — les e-mails que tu envoies à nos adresses arrivent, transférés par Cloudflare, dans une boîte aux lettres chez Google (Gmail), comme décrit dans la [Politique de confidentialité](/fr/privacy/#partage). Google transfère des données avec les garanties exposées dans [sa politique de confidentialité](https://policies.google.com/privacy).
 
 ## Réclamations
 

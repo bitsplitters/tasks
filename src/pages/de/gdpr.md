@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "DSGVO und deine Datenrechte"
 description: "Wie Team Tasks Manager die Datenschutz-Grundverordnung der EU einhält."
 updated: "Zuletzt aktualisiert: 24. November 2026"
-fonte: 4a187e4372b2
+fonte: deedb9d3e060
 ---
 
 Weil **bitsplitters** in der Europäischen Union tätig ist, unterliegt die Nutzung von **Team Tasks Manager** („TTM“) der **Datenschutz-Grundverordnung (DSGVO)**. Diese Seite erklärt die Rechtsgrundlage der Verarbeitung und die Rechte, die du hast. Sie ergänzt unsere [Datenschutzerklärung](/de/privacy/), die genau auflistet, welche Daten wir verarbeiten.
@@ -47,14 +47,13 @@ Wir speichern Daten nur so lange, wie es nötig ist, um den Dienst bereitzustell
 
 ## Internationale Datentransfers
 
-Der Bot, seine Datenbank und seine Backups werden von **OVHcloud** auf einem dedizierten Server in **Frankreich (Rechenzentrum Gravelines)** gehostet, innerhalb des Europäischen Wirtschaftsraums (EWR). Eine zweite Kopie der Backups liegt in **Italien**, auf unserem eigenen Computer.
+Der Bot, seine Datenbank und seine Backups werden von **OVHcloud** auf einem dedizierten Server in **Frankreich (Rechenzentrum Gravelines)** gehostet, innerhalb des Europäischen Wirtschaftsraums (EWR). Auch unsere E-Mails hostet OVHcloud in Frankreich. Eine zweite Kopie der Backups liegt in **Italien**, auf unserem eigenen Computer.
 
 Einige Daten verlassen den EWR über Dienste mit Sitz in den **Vereinigten Staaten**:
 
 - **Discord** — der Bot arbeitet auf Discord, also läuft das, was er auf deinem Server zeigt, über Discord, ebenso alles andere, was du dort tust, die Activity eingeschlossen. Auch die Fehlerberichte, die in der [Datenschutzerklärung](/de/privacy/#weitergabe) beschrieben sind, gehen an einen privaten Kanal auf Discord. Discord übermittelt Daten unter den Garantien, die in [seiner Datenschutzerklärung](https://discord.com/privacy) dargelegt sind.
 - **GitHub** — es hostet unsere Websites und erhält die technischen Daten jedes Besuchs. GitHub übermittelt Daten unter den Garantien, die in [seiner Datenschutzerklärung](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) dargelegt sind.
 - **Cloudflare** — es zählt die Besuche unserer Websites (siehe [Unsere Websites](/de/privacy/#unsere-websites)) und hostet die Seite der Activity und trägt ihre Verbindung zum Bot (siehe [Die Activity](/de/privacy/#die-activity)). Cloudflare übermittelt Daten im Rahmen des EU-U.S. Data Privacy Framework, mit den Standardvertragsklauseln als Rückfalloption, wie auf [seiner DSGVO-Seite](https://www.cloudflare.com/trust-hub/gdpr/) dargelegt.
-- **Google** — die E-Mails, die du an unsere Adressen schickst, kommen, von Cloudflare weitergeleitet, in einem Postfach bei Google (Gmail) an, wie in der [Datenschutzerklärung](/de/privacy/#weitergabe) beschrieben. Google übermittelt Daten unter den Garantien, die in [seiner Datenschutzerklärung](https://policies.google.com/privacy) dargelegt sind.
 
 ## Beschwerden
 

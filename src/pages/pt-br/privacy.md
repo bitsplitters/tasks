@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "Política de Privacidade"
 description: "Quais dados o bot do Discord Team Tasks Manager coleta, por quê e como são tratados."
 updated: "Última atualização: 24 de novembro de 2026"
-fonte: a242d550d1bb
+fonte: fbdb53671f51
 ---
 
 Esta Política de Privacidade explica quais dados o bot **Team Tasks Manager** (“TTM”) coleta e como os tratamos. Ela vale para o uso do bot no Discord, Activity incluída (veja [A Activity](#a-activity)), para o nosso servidor da comunidade no Discord (veja [Nosso servidor da comunidade](#nosso-servidor-da-comunidade)) e para os nossos sites (veja [Nossos sites](#nossos-sites)). Para saber dos seus direitos segundo a lei de proteção de dados da UE, veja também a nossa [página do GDPR](/pt-br/gdpr/).
@@ -44,7 +44,7 @@ Tratamos esses dados exclusivamente para **fornecer o serviço**: exibir e atual
 
 **Relatórios de erro.** Quando algo falha de forma inesperada, o bot envia um relatório para um canal privado no nosso servidor do Discord, que só nós podemos ver. Um relatório contém os IDs do servidor e do usuário envolvidos e os detalhes técnicos da falha. Pode conter um trecho do que estava sendo processado, como um pedaço de uma tarefa. Excluímos esses relatórios assim que a falha é corrigida e, no máximo, em 12 meses.
 
-**E-mail.** O que você escreve para os nossos endereços em bitsplitters.app é encaminhado pela **Cloudflare**, com o serviço Email Routing, como operadora em nosso nome, para uma caixa de correio do **Google** (Gmail), onde o lemos para responder a você. Por isso, a sua mensagem pode chegar aos Estados Unidos: veja [Transferências internacionais](/pt-br/gdpr/#transferências-internacionais). Usamos o seu endereço e a sua mensagem apenas para responder a você e acompanhar a mesma solicitação: para cumprir uma obrigação legal quando você exerce os seus direitos ou denuncia conteúdo ilegal (art. 6(1)(c) do GDPR), como parte do serviço quando você nos escreve sobre ele (art. 6(1)(b) do GDPR) e, nos demais casos, com base no nosso legítimo interesse em responder a você (art. 6(1)(f) do GDPR).
+**E-mail.** O que você escreve para os nossos endereços em bitsplitters.app chega a uma caixa de correio hospedada pela **OVHcloud** na **França (UE)**, como operadora em nosso nome, onde o lemos para responder a você. Usamos o seu endereço e a sua mensagem apenas para responder a você e acompanhar a mesma solicitação: para cumprir uma obrigação legal quando você exerce os seus direitos ou denuncia conteúdo ilegal (art. 6(1)(c) do GDPR), como parte do serviço quando você nos escreve sobre ele (art. 6(1)(b) do GDPR) e, nos demais casos, com base no nosso legítimo interesse em responder a você (art. 6(1)(f) do GDPR).
 
 ## Retenção
 

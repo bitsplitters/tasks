@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "Política de privacidad"
 description: "Qué datos recoge el bot de Discord Team Tasks Manager, por qué y cómo se tratan."
 updated: "Última actualización: 24 de noviembre de 2026"
-fonte: a242d550d1bb
+fonte: fbdb53671f51
 ---
 
 Esta Política de privacidad explica qué datos recoge el bot **Team Tasks Manager** («TTM») y cómo los tratamos. Se aplica al uso del bot en Discord, Activity incluida (consulta [La Activity](#la-activity)), a nuestro servidor de la comunidad en Discord (consulta [Nuestro servidor de la comunidad](#nuestro-servidor-de-la-comunidad)) y a nuestros sitios web (consulta [Nuestros sitios web](#nuestros-sitios-web)). Para tus derechos según la normativa de protección de datos de la UE, consulta también nuestra [página del RGPD](/es-419/gdpr/).
@@ -44,7 +44,7 @@ Tratamos estos datos únicamente para **prestar el servicio**: mostrar y actuali
 
 **Informes de errores.** Cuando algo falla de forma inesperada, el bot envía un informe a un canal privado de nuestro servidor de Discord, que solo nosotros podemos ver. Un informe contiene los ID del servidor y del usuario implicados y los detalles técnicos del fallo. Puede contener un fragmento de lo que se estaba procesando, como un trozo de una tarea. Eliminamos estos informes cuando se corrige el fallo y, a más tardar, en 12 meses.
 
-**Correo electrónico.** Lo que escribes a nuestras direcciones de bitsplitters.app lo reenvía **Cloudflare Email Routing**, como encargado del tratamiento por cuenta nuestra, a un buzón de **Google** (Gmail), donde lo leemos para responderte. Por eso tu mensaje puede llegar a Estados Unidos: consulta [Transferencias internacionales](/es-419/gdpr/#transferencias-internacionales). Usamos tu dirección y tu mensaje solo para responderte y dar seguimiento a la misma solicitud: para cumplir una obligación legal cuando ejerces tus derechos o denuncias contenido ilegal (art. 6.1.c del RGPD), como parte del servicio cuando nos escribes sobre él (art. 6.1.b del RGPD) y, en los demás casos, por nuestro interés legítimo en responderte (art. 6.1.f del RGPD).
+**Correo electrónico.** Lo que escribes a nuestras direcciones de bitsplitters.app llega a un buzón alojado por **OVHcloud** en **Francia (UE)**, como encargado del tratamiento por cuenta nuestra, donde lo leemos para responderte. Usamos tu dirección y tu mensaje solo para responderte y dar seguimiento a la misma solicitud: para cumplir una obligación legal cuando ejerces tus derechos o denuncias contenido ilegal (art. 6.1.c del RGPD), como parte del servicio cuando nos escribes sobre él (art. 6.1.b del RGPD) y, en los demás casos, por nuestro interés legítimo en responderte (art. 6.1.f del RGPD).
 
 ## Conservación
 

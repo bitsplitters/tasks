@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "Datenschutzerklärung"
 description: "Welche Daten der Discord-Bot Team Tasks Manager erhebt, warum und wie sie behandelt werden."
 updated: "Zuletzt aktualisiert: 24. November 2026"
-fonte: a242d550d1bb
+fonte: fbdb53671f51
 ---
 
 Diese Datenschutzerklärung erklärt, welche Daten der Bot **Team Tasks Manager** („TTM“) erhebt und wie wir sie behandeln. Sie gilt für die Nutzung des Bots auf Discord, die Activity eingeschlossen (siehe [Die Activity](#die-activity)), für unseren Discord-Community-Server (siehe [Unser Community-Server](#unser-community-server)) und für unsere Websites (siehe [Unsere Websites](#unsere-websites)). Zu deinen Rechten nach dem Datenschutzrecht der EU siehe auch unsere [DSGVO-Seite](/de/gdpr/).
@@ -44,7 +44,7 @@ Wir verkaufen deine Daten **nicht**. Die Daten werden von unserem Infrastruktura
 
 **Fehlerberichte.** Wenn etwas unerwartet fehlschlägt, sendet der Bot einen Bericht an einen privaten Kanal auf unserem Discord-Server, den nur wir sehen können. Ein Bericht enthält die IDs des beteiligten Servers und Benutzers und die technischen Einzelheiten des Fehlers. Er kann einen Ausschnitt dessen enthalten, was gerade verarbeitet wurde, etwa ein Stück einer Aufgabe. Wir löschen diese Berichte, sobald der Fehler behoben ist, spätestens innerhalb von 12 Monaten.
 
-**E-Mail.** Was du an unsere Adressen unter bitsplitters.app schreibst, leitet **Cloudflare Email Routing** als Auftragsverarbeiter in unserem Auftrag an ein Postfach bei **Google** (Gmail) weiter, wo wir es lesen, um dir zu antworten. Deine Nachricht kann daher in die Vereinigten Staaten gelangen: siehe [Internationale Datentransfers](/de/gdpr/#internationale-datentransfers). Wir nutzen deine Adresse und deine Nachricht nur, um dir zu antworten und dieselbe Anfrage weiterzuverfolgen: zur Erfüllung einer rechtlichen Verpflichtung, wenn du deine Rechte ausübst oder rechtswidrige Inhalte meldest (Art. 6 Abs. 1 lit. c DSGVO), als Teil des Dienstes, wenn du uns dazu schreibst (Art. 6 Abs. 1 lit. b DSGVO), sonst auf Grundlage unseres berechtigten Interesses, dir zu antworten (Art. 6 Abs. 1 lit. f DSGVO).
+**E-Mail.** Was du an unsere Adressen unter bitsplitters.app schreibst, kommt in einem Postfach an, das **OVHcloud** als Auftragsverarbeiter in unserem Auftrag in **Frankreich (EU)** hostet. Dort lesen wir es, um dir zu antworten. Wir nutzen deine Adresse und deine Nachricht nur, um dir zu antworten und dieselbe Anfrage weiterzuverfolgen: zur Erfüllung einer rechtlichen Verpflichtung, wenn du deine Rechte ausübst oder rechtswidrige Inhalte meldest (Art. 6 Abs. 1 lit. c DSGVO), als Teil des Dienstes, wenn du uns dazu schreibst (Art. 6 Abs. 1 lit. b DSGVO), sonst auf Grundlage unseres berechtigten Interesses, dir zu antworten (Art. 6 Abs. 1 lit. f DSGVO).
 
 ## Speicherdauer
 

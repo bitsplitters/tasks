@@ -46,14 +46,13 @@ We keep data only as long as needed to provide the service, as described in the 
 
 ## International transfers
 
-The bot, its database and its backups are hosted by **OVHcloud** on a dedicated server in **France (Gravelines data centre)**, within the European Economic Area (EEA). A second copy of the backups is kept in **Italy**, on our own computer.
+The bot, its database and its backups are hosted by **OVHcloud** on a dedicated server in **France (Gravelines data centre)**, within the European Economic Area (EEA). Our email is hosted by OVHcloud in France too. A second copy of the backups is kept in **Italy**, on our own computer.
 
 Some data leaves the EEA through services based in the **United States**:
 
 - **Discord** — the bot works on Discord, so what it shows in your server passes through Discord, as does everything else you do there, the Activity included. The error reports described in the [Privacy Policy](/privacy/#sharing) go to a private channel on Discord too. Discord transfers data under the safeguards set out in [its privacy policy](https://discord.com/privacy).
 - **GitHub** — it hosts our websites, and receives the technical data of each visit. GitHub transfers data under the safeguards set out in [its privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 - **Cloudflare** — it counts the visits to our websites (see [Our websites](/privacy/#our-websites)) and hosts the page of the Activity, carrying its connection to the bot (see [The Activity](/privacy/#the-activity)). Cloudflare transfers data under the EU-U.S. Data Privacy Framework, with the standard contractual clauses as a fallback, as set out on [its GDPR page](https://www.cloudflare.com/trust-hub/gdpr/).
-- **Google** — the email you send to our addresses arrives in a Google mailbox (Gmail), forwarded by Cloudflare, as described in the [Privacy Policy](/privacy/#sharing). Google transfers data under the safeguards set out in [its privacy policy](https://policies.google.com/privacy).
 
 ## Complaints
 
