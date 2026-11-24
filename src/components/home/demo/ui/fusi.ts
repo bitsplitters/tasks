@@ -28,11 +28,11 @@ function riga(z: Zona, motivi: readonly Motivo[], attuale: string): string {
 
 /**
  * Sotto la ricerca: senza testo le zone di chi guarda, coi motivi; con un testo quelle trovate, senza. `attuale` è la
- * zona del campo, segnata; `scelta` quella che chi guarda ha scelto per sé, se ce n'è una.
+ * zona del campo, segnata.
  */
-export function htmlDelleZone(scritto: string, attuale: string, scelta: string | undefined, adesso: number): string {
+export function htmlDelleZone(scritto: string, attuale: string, adesso: number): string {
   const q = scritto.trim();
-  const righe = q ? cercaZone(q, adesso).map((zona) => ({ zona, motivi: [] as Motivo[] })) : tueZone(scelta, adesso);
+  const righe = q ? cercaZone(q, adesso).map((zona) => ({ zona, motivi: [] as Motivo[] })) : tueZone(adesso);
   let nota = '';
   if (!q) nota = `<div class="sc-pnote">${escape(testo('activity.zone.yours'))}</div>`;
   else if (righe.length === 0) nota = `<div class="sc-pnote">${escape(testo('activity.zone.none', q))}</div>`;
@@ -43,7 +43,7 @@ export function htmlDelleZone(scritto: string, attuale: string, scelta: string |
  * La vista nel DOM, al posto di ciò che `dove` conteneva. La scelta di una zona e il ritorno li decide chi la monta;
  * nessuno dei due rende il focus, come nella pagina.
  */
-export function montaFusi(dove: HTMLElement, attuale: string, scelta: string | undefined, adesso: number,
+export function montaFusi(dove: HTMLElement, attuale: string, adesso: number,
   alla: { scelta(zona: string): void; indietro(): void }): { smonta(): void } {
   const cerca = escape(testo('activity.zone.search'));
   dove.innerHTML = '<div class="sc-zview"><div class="sc-zones"><div class="sc-zhead">' +
@@ -56,7 +56,7 @@ export function montaFusi(dove: HTMLElement, attuale: string, scelta: string | u
   const campo = dove.querySelector<HTMLInputElement>('[data-k="z-search"]')!;
   const elenco = dove.querySelector<HTMLElement>('[data-k="z-list"]')!;
   const disegna = () => {
-    elenco.innerHTML = htmlDelleZone(campo.value, attuale, scelta, adesso);
+    elenco.innerHTML = htmlDelleZone(campo.value, attuale, adesso);
   };
   const alClic = (e: MouseEvent) => {
     const t = e.target as Element;

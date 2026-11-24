@@ -1,7 +1,7 @@
 ---
 title: "Die Activity"
 description: "Öffne eine Liste in einem Fenster innerhalb von Discord, in dem dein Team gemeinsam daran arbeitet und jede Änderung sofort sieht."
-fonte: 3944b7fd591c
+fonte: 430ed626ef5b
 ---
 
 Probiere den Activity-Modus: flüssiger und frei von den Grenzen der Textkanäle, ideal für längere oder gemeinsame Arbeitssitzungen.
@@ -77,7 +77,7 @@ Keine Liste kommt in die Activity, und die Startseite blendet **Neue Liste** aus
 
 ## Deine Einstellungen
 
-Das Zahnrad oben rechts hat zwei Gruppen. Unter **Für dich, überall** ist **Zeitzone** deine Zeitzone, dieselbe wie bei [/my timezone](/docs/my-timezone/): TTM schlägt sie dir im Kanal und auch auf jedem Server vor, und **Zurück zu automatisch** vergisst sie. Unter **Auf diesem Gerät** gelten **Textgröße**, **Design** und **Zeilen mit Abstand**, mehr Platz zum Tippen auf dem Handy, nur für dich und auf diesem Gerät.
+Das Zahnrad oben rechts hat zwei Gruppen. Unter **Für dich, überall** ist **Zeitzone** deine Zeitzone, dieselbe wie bei [/my timezone](/docs/my-timezone/): TTM schlägt sie dir im Kanal und auch auf jedem Server vor, und **Meine Zeitzone entfernen** vergisst sie. Unter **Auf diesem Gerät** gelten **Textgröße**, **Design** und **Zeilen mit Abstand**, mehr Platz zum Tippen auf dem Handy, nur für dich und auf diesem Gerät.
 
 ## Wie es weitergeht
 

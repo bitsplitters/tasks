@@ -24,7 +24,7 @@ Nothing arrived? The owner must accept direct messages from members of that serv
 
 TTM needs an official time-zone name like `Europe/Rome`. Look yours up on the **[time zone map](https://timezones.bitsplitters.app)**: select your area on the map, copy the value, and paste it into the field. The Activity also lets you search by city or country.
 
-<div class="callout"><div class="callout-t">Choose your time zone</div>Use <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> in any server, or the gear in the Activity, and TTM proposes <strong>your</strong> zone everywhere, in the channel and in the Activity. Until you choose one, TTM learns it: the zone you leave in a reminder becomes yours. With a zone of your own, a different zone in a reminder applies to that date only. Reminders you write in the text of a list use the same zone.</div>
+<div class="callout"><div class="callout-t">Choose your time zone</div>Use <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> in any server, or the gear in the Activity, and TTM proposes <strong>your</strong> zone everywhere, in the channel and in the Activity. Until you choose one, TTM proposes the zone of your Discord language, of your device or of the server, and the line under the field tells you which. A different zone in a reminder applies to that date only. Reminders you write in the text of a list use the same zone.</div>
 
 ## How the reminder arrives
 

@@ -1,7 +1,7 @@
 ---
 title: "Notes de version"
 description: "Les nouveautés de Team Tasks Manager, de la plus récente à la plus ancienne."
-fonte: 77cbf888899e
+fonte: f88a9986fb9d
 ---
 
 Tous les changements que tu vois dans Discord sont listés ici, du plus récent au plus ancien. Chaque entrée renvoie vers la page qui l'explique.
@@ -10,8 +10,8 @@ Tous les changements que tu vois dans Discord sont listés ici, du plus récent 
 
 Released 2026-11-24
 
-- **Choisis ton fuseau horaire une seule fois** — **/my timezone**, sur n'importe quel serveur, affiche ton fuseau horaire et d'où il vient. **Choisir** définit le tien, et TTM te le propose sur tous les serveurs, dans le salon et dans l'Activity. **Revenir en automatique** te ramène à celui qui est proposé. Voir [/my timezone](/docs/my-timezone/).
-- **Un autre fuseau ne vaut que pour cette date** — avec un fuseau à toi, celui que tu laisses dans un rappel ne le remplace plus. Sous le fuseau horaire de **Quand**, une ligne te dit si c'est le tien ou comment le choisir. Voir [/my timezone](/docs/my-timezone/).
+- **Choisis ton fuseau horaire une seule fois** — **/my timezone**, sur n'importe quel serveur, affiche ton fuseau horaire et d'où il vient. **Choisir** définit le tien, et TTM te le propose sur tous les serveurs, dans le salon et dans l'Activity. **Retirer mon fuseau** te ramène à celui qui est proposé. Voir [/my timezone](/docs/my-timezone/).
+- **Un autre fuseau ne vaut que pour cette date** — le fuseau que tu laisses dans un rappel ne devient plus le tien, et TTM oublie ceux qu'il avait appris ainsi : il ne te propose le tien qu'une fois que tu l'as choisi. Sous le fuseau horaire de **Quand**, une ligne te dit d'où vient le fuseau et comment choisir le tien. Voir [/my timezone](/docs/my-timezone/).
 - **Dans l'Activity aussi** — l'engrenage affiche ton fuseau horaire sous **Pour toi, partout**, le même que dans `/my timezone`. Sous le fuseau horaire d'un rappel, la ligne y renvoie. Voir [Tes réglages](/docs/activity/#your-settings).
 
 ## 2.5.0 — Des noms à la place des codes

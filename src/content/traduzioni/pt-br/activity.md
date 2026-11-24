@@ -1,7 +1,7 @@
 ---
 title: "A Activity"
 description: "Abra uma lista em uma janela dentro do Discord, onde sua equipe trabalha nela junta e vê cada mudança enquanto acontece."
-fonte: 3944b7fd591c
+fonte: 430ed626ef5b
 ---
 
 Experimente o modo Activity: mais fluido e livre dos limites dos canais de texto, ideal para sessões de trabalho mais longas ou colaborativas.
@@ -77,7 +77,7 @@ Nenhuma lista entra na Activity, e o início esconde **Nova lista**. Uma lista q
 
 ## Suas configurações
 
-A engrenagem no canto superior direito tem dois grupos. Em **Para você, em todo lugar**, **Fuso horário** é o seu fuso horário, o mesmo do [/my timezone](/docs/my-timezone/): o TTM o propõe no canal e também em todos os servidores, e **Voltar ao automático** o esquece. Em **Neste dispositivo**, **Tamanho do texto**, **Tema** e **Linhas espaçadas**, mais espaço para tocar no celular, valem só para você, naquele dispositivo.
+A engrenagem no canto superior direito tem dois grupos. Em **Para você, em todo lugar**, **Fuso horário** é o seu fuso horário, o mesmo do [/my timezone](/docs/my-timezone/): o TTM o propõe no canal e também em todos os servidores, e **Remover meu fuso** o esquece. Em **Neste dispositivo**, **Tamanho do texto**, **Tema** e **Linhas espaçadas**, mais espaço para tocar no celular, valem só para você, naquele dispositivo.
 
 ## Para onde ir depois
 

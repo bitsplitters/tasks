@@ -1,7 +1,7 @@
 ---
 title: "La Activity"
 description: "Abre una lista en una ventana dentro de Discord, donde tu equipo trabaja en ella a la vez y ve cada cambio al instante."
-fonte: 3944b7fd591c
+fonte: 430ed626ef5b
 ---
 
 Prueba el modo Activity: más fluido y libre de los límites de los canales de texto, ideal para sesiones de trabajo largas o colaborativas.
@@ -77,7 +77,7 @@ Ninguna lista entra en la Activity, y el inicio oculta **Nueva lista**. Una list
 
 ## Tu configuración
 
-El engranaje arriba a la derecha tiene dos grupos. En **Para ti, en todas partes**, **Zona horaria** es tu zona horaria, la misma que en [/my timezone](/docs/my-timezone/): TTM la propone en el canal y también en todos los servidores, y **Volver a automática** la olvida. En **En este dispositivo**, **Tamaño del texto**, **Tema** y **Filas espaciadas**, más espacio para tocar en un celular, se aplican solo a ti, en ese dispositivo.
+El engranaje arriba a la derecha tiene dos grupos. En **Para ti, en todas partes**, **Zona horaria** es tu zona horaria, la misma que en [/my timezone](/docs/my-timezone/): TTM la propone en el canal y también en todos los servidores, y **Quitar mi zona horaria** la olvida. En **En este dispositivo**, **Tamaño del texto**, **Tema** y **Filas espaciadas**, más espacio para tocar en un celular, se aplican solo a ti, en ese dispositivo.
 
 ## Adónde ir después
 

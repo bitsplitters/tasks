@@ -76,11 +76,6 @@ export interface Stato {
   ruoli: Ruolo[];
   bloccata: boolean;
   inActivity: boolean;
-  /**
-   * Il fuso di chi guarda, quando ne ha scritto uno al posto di quello proposto, in una modale «Quando» o nel pannello
-   * del promemoria (UserTimezoneService.learn). Senza, vale quello del server (fusoDi).
-   */
-  fuso?: string;
 }
 
 /*
@@ -120,7 +115,10 @@ export const webhookDellaDemo = (): Webhook[] => [
 /** Chi è nell'Activity: le pillole del selettore delle persone prima di scrivere (activity.picker.here). */
 export const NELL_ACTIVITY: readonly string[] = [SAM, MIA];
 
-/** Il fuso del server: anche quello di chi guarda, finché non ne scrive un altro (fusoDi). */
+/**
+ * Il fuso del server: anche quello che il bot propone a chi guarda, che nella demo non ne sceglie uno (FusoDiChiAgisce).
+ * Un fuso scritto in una data vale solo per quella.
+ */
 export const ZONA = 'Europe/Rome';
 
 /** L'orologio fermo: il 15 novembre 2026 alle 18:04 di Roma, l'ora del messaggio della lista. */
@@ -167,11 +165,6 @@ export function statoIniziale(lista: Lista = listaDellaDemo()): Stato {
     bloccata: false,
     inActivity: false,
   };
-}
-
-/** Il fuso di chi guarda, come FusoDiChiAgisce: il suo, se ne ha scritto uno, altrimenti quello del server. */
-export function fusoDi(stato: Stato): string {
-  return stato.fuso ?? ZONA;
 }
 
 /** La posizione come la scrive la riga: '2', '2.1'. */

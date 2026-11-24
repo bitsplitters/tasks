@@ -77,8 +77,8 @@ Remove them all and **Save** removes every tag, as **Red** does.
 
 Tap **Time zone** to choose it: search by city, country, a name such as `Europe/Rome` or an offset such as `+5:30`.
 
-- *Your time zones* lists the ones that matter to you: this device's, yours or the last one you used, the server's.
-- A line under the field tells you whether the zone is yours. Until you choose one in **Settings**, the zone you leave here becomes yours: see [Your time zone](/docs/reminders/#your-time-zone).
+- *Your time zones* lists the ones that matter to you: this device's, yours, the server's.
+- A line under the field tells you where the zone comes from: yours, this device's or the server's, with **Settings** to choose yours. A different zone applies to that date only: see [Your time zone](/docs/reminders/#your-time-zone).
 - *On this device* shows the same moment in your device's time, when the zone is different.
 
 The three repetition menus appear on Premium, with the [repeating reminders](/docs/reminders/#repeating-reminders) toggle on, or when the reminder already repeats: see [The repetition fields](/docs/reminders/#the-repetition-fields).

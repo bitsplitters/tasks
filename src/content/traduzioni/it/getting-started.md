@@ -1,7 +1,7 @@
 ---
 title: Per iniziare
 description: Invita il bot, crea una lista, poi spunta un task e imposta un promemoria, nel canale o nell'Activity.
-fonte: 65c887766b9d
+fonte: 80e3e27e599a
 ---
 
 Team Tasks Manager (TTM) permette al tuo team di condividere e gestire i task **senza uscire da Discord**. Questa pagina ti porta da zero a una lista funzionante: la crei, spunti un task, imposti un promemoria.
@@ -70,7 +70,7 @@ Nella seconda riga:
 2. Scegli un task **non ancora spuntato**. Si apre una form intitolata *Imposta il promemoria per il task …*, già compilata con dieci minuti da adesso.
 3. Inviala così com'è. Se il tuo server ha attivato i promemoria ricorrenti, dopo la form arriva una scheda di riepilogo: premi **Salva**.
 
-Il task mostra l'ora e il promemoria arriva una volta sola. Finché non lo cambi, il fuso orario nell'ultimo campo è quello del server: cambialo se il tuo è diverso.
+Il task mostra l'ora e il promemoria arriva una volta sola. Il fuso orario nell'ultimo campo è quello della lingua del tuo Discord, oppure quello del server: cambialo se il tuo è diverso e impostalo con [/my timezone](/docs/my-timezone/) per vederlo sempre proposto.
 
 **Hai chiuso la form con ✕?** La lista resta bloccata: apri **Altro** sotto la lista e premi **Sblocca lista**. Vedi [Quando la lista è bloccata](/docs/the-task-list/#when-the-list-is-locked).
 

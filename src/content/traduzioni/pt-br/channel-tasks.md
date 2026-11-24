@@ -1,7 +1,7 @@
 ---
 title: "Editando uma tarefa no canal"
 description: "A segunda linha de botões sob a lista — Conteúdo, Proprietário, Tag, Lembrete e Webhook — com seus formulários e menus."
-fonte: b7393a97a79d
+fonte: ba887a2603b7
 ---
 
 A segunda linha sob a lista age sobre **uma tarefa por vez**: o texto dela, o proprietário, as tags, o lembrete e o webhook. Esta página mostra onde clicar. O que cada recurso faz e as regras dele: [Proprietários e tags](/docs/owners-and-tags/), [Lembretes](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -118,7 +118,7 @@ Clique em **Lembrete** <img class="inline-ic" src="/icons/alertW.png" alt="" /> 
 | **Mês** | um menu suspenso, no seu idioma | sem ambiguidade de `dd/mm` com que se preocupar |
 | **Ano** | um número | já preenchido |
 | **Hora** | `HH:mm`, 24 horas | por exemplo `15:30` |
-| **Fuso horário** | o nome oficial de um fuso | já preenchido com o *seu* fuso (até você mudá-lo, o do seu idioma do Discord, ou o do servidor) |
+| **Fuso horário** | o nome oficial de um fuso | já preenchido com o *seu* fuso (até você escolher um com `/my timezone`, o do seu idioma do Discord, ou o do servidor) |
 
 Tudo chega já preenchido com **dez minutos a partir de agora**. Envie, e a tarefa mostra o horário agendado. Enquanto o formulário está aberto, a lista fica bloqueada para os outros. Quem recebe o lembrete, e o fuso horário: veja [Lembretes](/docs/reminders/#the-rules).
 

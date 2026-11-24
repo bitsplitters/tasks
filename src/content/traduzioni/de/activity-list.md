@@ -1,7 +1,7 @@
 ---
 title: "An einer Liste in der Activity arbeiten"
 description: "Die Kästchen, die erste Reihe, das Panel einer Aufgabe (Inhalt, Besitzer, Tag, Erinnerung und Webhook) und wer was bearbeitet."
-fonte: b319d1ca5512
+fonte: 3445f59ab104
 ---
 
 In der Activity ist die Liste eine eigene Seite: ein Kästchen vor jeder Aufgabe, eine Reihe Buttons oben und ein Panel für jede Aufgabe. Es gelten die Regeln des Kanals: Besitzer, Servereinstellungen, Tarifgrenzen. Was jede Funktion tut: [Besitzer und Tags](/docs/owners-and-tags/), [Erinnerungen](/docs/reminders/), [Webhooks](/docs/webhooks/), [Aktionen auf der Liste](/docs/list-actions/).
@@ -75,8 +75,8 @@ Entferne sie alle, und **Speichern** entfernt alle Tags, wie es **Rot** tut.
 
 Tippe auf **Zeitzone**, um sie zu wählen: Suche nach Stadt, Land, einem Namen wie `Europe/Rome` oder einem Versatz wie `+5:30`.
 
-- *Deine Zeitzonen* listet die auf, die für dich zählen: die dieses Geräts, deine eigene oder die zuletzt verwendete, die des Servers.
-- Eine Zeile unter dem Feld sagt dir, ob die Zone deine ist. Bis du in **Einstellungen** eine wählst, wird die Zone, die du hier lässt, deine: Siehe [Deine Zeitzone](/docs/reminders/#your-time-zone).
+- *Deine Zeitzonen* listet die auf, die für dich zählen: die dieses Geräts, deine eigene, die des Servers.
+- Eine Zeile unter dem Feld sagt dir, woher die Zone kommt: deine, die dieses Geräts oder die des Servers, mit **Einstellungen**, um deine zu wählen. Eine andere Zone gilt nur für dieses Datum: Siehe [Deine Zeitzone](/docs/reminders/#your-time-zone).
 - *Auf diesem Gerät* zeigt denselben Moment in der Zeit deines Geräts, wenn die Zone eine andere ist.
 
 Die drei Wiederholungsmenüs erscheinen in Premium, bei eingeschaltetem Schalter für [wiederkehrende Erinnerungen](/docs/reminders/#repeating-reminders), oder wenn sich die Erinnerung schon wiederholt: Siehe [Die Wiederholungsfelder](/docs/reminders/#the-repetition-fields).

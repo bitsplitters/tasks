@@ -13,8 +13,8 @@ Every change you can see in Discord is listed here, newest first. Each entry lin
 
 Released 2026-11-24
 
-- **Choose your time zone once** — **/my timezone**, in any server, shows your time zone and where it comes from. **Choose** sets yours, and TTM proposes it in every server, in the channel and in the Activity. **Back to automatic** goes back to the proposed one. See [/my timezone](/docs/my-timezone/).
-- **A different zone is for that date only** — with a zone of your own, the one you leave in a reminder no longer replaces it. Under the time zone of **When**, a line tells you whether it's yours or how to choose it. See [/my timezone](/docs/my-timezone/).
+- **Choose your time zone once** — **/my timezone**, in any server, shows your time zone and where it comes from. **Choose** sets yours, and TTM proposes it in every server, in the channel and in the Activity. **Remove my time zone** goes back to the proposed one. See [/my timezone](/docs/my-timezone/).
+- **A different zone is for that date only** — the zone you leave in a reminder no longer becomes yours, and the zones TTM had learned that way are forgotten: TTM proposes yours only once you choose it. Under the time zone of **When**, a line tells you where the zone comes from and how to choose yours. See [/my timezone](/docs/my-timezone/).
 - **In the Activity too** — the gear has your time zone under **For you, everywhere**, the same as `/my timezone`. Under the time zone of a reminder, the line links to it. See [Your settings](/docs/activity/#your-settings).
 
 ## 2.5.0 — Names instead of codes

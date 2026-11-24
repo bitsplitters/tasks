@@ -1,7 +1,7 @@
 ---
 title: L'Activity
 description: Apri una lista in una finestra dentro Discord, dove il tuo team ci lavora insieme e vede ogni modifica mentre accade.
-fonte: 3944b7fd591c
+fonte: 430ed626ef5b
 ---
 
 Prova la modalità Activity: più fluida e libera dai limiti dei canali testuali, ideale per sessioni di lavoro più lunghe o collaborative.
@@ -77,7 +77,7 @@ Nessuna lista entra nell'Activity e la home nasconde **Nuova lista**. Una lista 
 
 ## Le tue impostazioni
 
-L'ingranaggio in alto a destra ha due gruppi. Sotto **Per te, ovunque**, **Fuso orario** è il tuo fuso orario, lo stesso di [/my timezone](/docs/my-timezone/): TTM te lo propone nel canale e in ogni server e **Torna automatico** lo dimentica. Sotto **Su questo dispositivo**, **Dimensione del testo**, **Tema** e **Righe distanziate**, più spazio per toccare su un telefono, valgono solo per te, su quel dispositivo.
+L'ingranaggio in alto a destra ha due gruppi. Sotto **Per te, ovunque**, **Fuso orario** è il tuo fuso orario, lo stesso di [/my timezone](/docs/my-timezone/): TTM te lo propone nel canale e in ogni server e **Togli il mio fuso** lo dimentica. Sotto **Su questo dispositivo**, **Dimensione del testo**, **Tema** e **Righe distanziate**, più spazio per toccare su un telefono, valgono solo per te, su quel dispositivo.
 
 ## Dove andare dopo
 

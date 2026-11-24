@@ -15,10 +15,10 @@ import { montaFusi } from './fusi.ts';
 
 /**
  * I campi in `dove`, al posto di ciò che conteneva, coi data-k che cominciano con `prefisso` (p nel pannello, r in
- * Reopen all). `scelta` è il fuso che chi guarda ha scelto prima, per «Your time zones». `cambio` arriva a ogni campo
- * scritto e al ritorno dalla vista dei fusi; `fusi` quando la vista si apre, perché chi monta tolga i suoi avvisi.
+ * Reopen all). `cambio` arriva a ogni campo scritto e al ritorno dalla vista dei fusi; `fusi` quando la vista si apre,
+ * perché chi monta tolga i suoi avvisi.
  */
-export function montaQuando(dove: HTMLElement, iniziale: Quando, prefisso: string, scelta: string | undefined,
+export function montaQuando(dove: HTMLElement, iniziale: Quando, prefisso: string,
   alla: { cambio(q: Quando): void; fusi(): void }): { smonta(): void } {
   let q = iniziale;
   let vista: { smonta(): void } | null = null;
@@ -63,9 +63,9 @@ export function montaQuando(dove: HTMLElement, iniziale: Quando, prefisso: strin
 
   function apriIFusi(): void {
     alla.fusi();
-    vista = montaFusi(dove, q.zona, scelta, ADESSO, {
+    vista = montaFusi(dove, q.zona, ADESSO, {
       scelta: (z) => {
-        q = { ...q, zona: z, toccata: true };
+        q = { ...q, zona: z };
         tornaAiCampi();
       },
       indietro: tornaAiCampi,

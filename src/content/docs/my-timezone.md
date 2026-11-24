@@ -14,7 +14,6 @@ So everyone on the team thinks in their own local time. The command works in ser
 `/my timezone` shows your current zone and where it comes from:
 
 - **chosen by you**, with **Choose**;
-- **the last one you left in a reminder**;
 - **your Discord language**, such as `Europe/Rome` for Italian;
 - **the server**, when your language is spoken across several zones, such as English (US).
 
@@ -26,13 +25,13 @@ To find it, open the **[time zone map](https://timezones.bitsplitters.app)**, se
 
 From then on TTM proposes your zone whenever you pick a date. A different zone in a reminder applies to that date only: your zone stays.
 
-**Back to automatic** forgets your choice, and TTM learns your zone from your reminders again.
+**Remove my time zone** forgets your choice, and TTM goes back to proposing the zone it uses [until you choose](#until-you-choose).
 
 ## Until you choose
 
-TTM learns your zone by itself. The zone you leave in a reminder becomes yours, and the line under the field tells you so.
+TTM doesn't change your zone by itself: a different zone in a reminder applies to that date only.
 
-Before your first reminder, the channel proposes the zone of your Discord language, and the Activity the zone of your device. A language spoken across several zones gets the server's zone: see [Time zone](/docs/configuration/#time-zone) in `/config app`.
+The channel proposes the zone of your Discord language, and the Activity the zone of your device. A language spoken across several zones gets the server's zone: see [Time zone](/docs/configuration/#time-zone) in `/config app`. The line under the field tells you where the zone comes from, and how to set yours.
 
 ## In the Activity
 

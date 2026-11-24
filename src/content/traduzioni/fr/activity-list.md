@@ -1,7 +1,7 @@
 ---
 title: "Travailler sur une liste dans l'Activity"
 description: "Les cases, la première rangée, le panneau d'une tâche (Contenu, Propriétaire, Tag, Rappel et Webhook) et qui modifie quoi."
-fonte: b319d1ca5512
+fonte: 3445f59ab104
 ---
 
 Dans l'Activity, la liste est une page à part : une case devant chaque tâche, une rangée de boutons en haut et un panneau pour chaque tâche. Les règles sont celles du salon : propriétaires, réglages du serveur, limites de l'offre. Ce que fait chaque fonctionnalité : [Propriétaires et tags](/docs/owners-and-tags/), [Rappels](/docs/reminders/), [Webhooks](/docs/webhooks/), [Actions sur la liste](/docs/list-actions/).
@@ -75,8 +75,8 @@ Retire-les tous et **Enregistrer** retire tous les tags, comme le fait **Rouge**
 
 Touche **Fuseau horaire** pour le choisir : cherche par ville, par pays, par un nom comme `Europe/Paris` ou par un décalage comme `+5:30`.
 
-- *Tes fuseaux horaires* liste ceux qui comptent pour toi : celui de cet appareil, le tien ou le dernier que tu as utilisé, celui du serveur.
-- Une ligne sous le champ te dit si le fuseau est le tien. Tant que tu n'en as pas choisi un dans **Paramètres**, le fuseau que tu laisses ici devient le tien : voir [Ton fuseau horaire](/docs/reminders/#your-time-zone).
+- *Tes fuseaux horaires* liste ceux qui comptent pour toi : celui de cet appareil, le tien, celui du serveur.
+- Une ligne sous le champ te dit d'où vient le fuseau : le tien, celui de cet appareil ou celui du serveur, avec **Paramètres** pour choisir le tien. Un autre fuseau ne vaut que pour cette date : voir [Ton fuseau horaire](/docs/reminders/#your-time-zone).
 - *Sur cet appareil* affiche le même moment à l'heure de ton appareil, quand le fuseau est différent.
 
 Les trois menus de répétition apparaissent sur Premium, avec l'interrupteur des [rappels répétés](/docs/reminders/#repeating-reminders) activé, ou quand le rappel se répète déjà : voir [Les champs de la répétition](/docs/reminders/#the-repetition-fields).

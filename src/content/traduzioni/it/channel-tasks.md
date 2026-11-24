@@ -1,7 +1,7 @@
 ---
 title: Modificare un task nel canale
 description: La seconda riga di pulsanti sotto la lista — Contenuto, Proprietario, Tag, Promemoria e Webhook — con le loro finestre e i loro menu.
-fonte: b7393a97a79d
+fonte: ba887a2603b7
 ---
 
 La seconda riga sotto la lista agisce su **un task alla volta**: il suo testo, il suo proprietario, i suoi tag, il suo promemoria e il suo webhook. Questa pagina mostra dove cliccare. Cosa fa ogni funzione e le sue regole: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/).
@@ -118,7 +118,7 @@ Clicca **Promemoria** <img class="inline-ic" src="/icons/alertW.png" alt="" /> f
 | **Mese** | un menu a tendina, nella tua lingua | nessuna ambiguità tra `gg/mm` e `mm/gg` |
 | **Anno (yyyy)** | un numero | precompilato |
 | **Ora (HH:mm)** | `HH:mm`, 24 ore | per es. `15:30` |
-| **Fuso orario** | il nome ufficiale di un fuso | precompilato con *il tuo* fuso (finché non lo cambi, quello della lingua del tuo Discord, oppure quello del server) |
+| **Fuso orario** | il nome ufficiale di un fuso | precompilato con *il tuo* fuso (finché non ne scegli uno con `/my timezone`, quello della lingua del tuo Discord, oppure quello del server) |
 
 Tutto arriva precompilato con **dieci minuti da adesso**. Invialo e il task mostra l'orario programmato. Finché la finestra è aperta, la lista è bloccata per gli altri. Chi riceve il promemoria e il fuso orario: vedi [Promemoria](/docs/reminders/#the-rules).
 

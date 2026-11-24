@@ -1,7 +1,7 @@
 ---
 title: "Trabalhando em uma lista na Activity"
 description: "As caixas, a primeira linha, o painel de uma tarefa (Conteúdo, Proprietário, Tag, Lembrete e Webhook) e quem está editando o quê."
-fonte: b319d1ca5512
+fonte: 3445f59ab104
 ---
 
 Dentro da Activity, a lista é uma página própria: uma caixa na frente de cada tarefa, uma linha de botões no alto e um painel para cada tarefa. As regras são as do canal: proprietários, configurações do servidor, limites do plano. O que cada recurso faz: [Proprietários e tags](/docs/owners-and-tags/), [Lembretes](/docs/reminders/), [Webhooks](/docs/webhooks/), [Ações da lista](/docs/list-actions/).
@@ -75,8 +75,8 @@ Remova todas e **Salvar** remove todas as tags, como faz o **Vermelho**.
 
 Toque em **Fuso horário** para escolhê-lo: pesquise por cidade, país, um nome como `Europe/Rome` ou um deslocamento como `+5:30`.
 
-- *Seus fusos horários* lista os que importam para você: o deste dispositivo, o seu ou o último que você usou, o do servidor.
-- Uma linha embaixo do campo diz se o fuso é o seu. Até você escolher um em **Configurações**, o fuso que você deixa aqui passa a ser o seu: veja [Seu fuso horário](/docs/reminders/#your-time-zone).
+- *Seus fusos horários* lista os que importam para você: o deste dispositivo, o seu, o do servidor.
+- Uma linha embaixo do campo diz de onde vem o fuso: o seu, o deste dispositivo ou o do servidor, com **Configurações** para escolher o seu. Um fuso diferente vale só para aquela data: veja [Seu fuso horário](/docs/reminders/#your-time-zone).
 - *Neste dispositivo* mostra o mesmo momento na hora do seu dispositivo, quando o fuso é diferente.
 
 Os três menus de repetição aparecem no Premium, com a opção de [lembretes repetidos](/docs/reminders/#repeating-reminders) ativada, ou quando o lembrete já se repete: veja [Os campos da repetição](/docs/reminders/#the-repetition-fields).

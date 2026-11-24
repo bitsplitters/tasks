@@ -7,20 +7,19 @@ import { campiDi, daiCampi } from './modello.ts';
 import { avviso, testo } from './testi.ts';
 import { DISPOSITIVO, stessaZona, sulDispositivo } from './zone.ts';
 
-/** Data e ora come le scrivono i campi, nel fuso in cui sono scelte; toccata se il fuso l'ha cambiato chi guarda. */
+/** Data e ora come le scrivono i campi, nel fuso in cui sono scelte. */
 export interface Quando {
   data: string;
   ora: string;
   zona: string;
-  toccata: boolean;
 }
 
 const due = (n: number) => String(n).padStart(2, '0');
 
-/** L'istante `at` come lo scrivono i campi nel fuso `zona`, che chi guarda non ha ancora toccato (whenOf). */
+/** L'istante `at` come lo scrivono i campi nel fuso `zona` (whenOf). */
 export function quandoDa(at: number, zona: string): Quando {
   const c = campiDi(at, zona);
-  return { data: `${c.anno}-${due(c.mese)}-${due(c.giorno)}`, ora: c.ora, zona, toccata: false };
+  return { data: `${c.anno}-${due(c.mese)}-${due(c.giorno)}`, ora: c.ora, zona };
 }
 
 /** L'istante dei campi, o null finché uno dei due è vuoto (atOf). */

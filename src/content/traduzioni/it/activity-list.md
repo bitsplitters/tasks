@@ -1,7 +1,7 @@
 ---
 title: Lavorare su una lista nell'Activity
 description: Le caselle, la prima riga, il pannello di un task (Contenuto, Proprietario, Tag, Promemoria e Webhook) e chi sta modificando che cosa.
-fonte: b319d1ca5512
+fonte: 3445f59ab104
 ---
 
 Dentro l'Activity la lista è una pagina a sé: una casella davanti a ogni task, una riga di pulsanti in alto e un pannello per ogni task. Le regole sono quelle del canale: proprietari, impostazioni del server, limiti del piano. Che cosa fa ogni funzione: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/), [Azioni sulla lista](/docs/list-actions/).
@@ -75,8 +75,8 @@ Toglili tutti e **Salva** rimuove ogni tag, come fa **Rosso**.
 
 Tocca **Fuso orario** per sceglierlo: cerca per città, paese, un nome come `Europe/Rome` o uno scarto come `+5:30`.
 
-- *I tuoi fusi* elenca quelli che contano per te: quello di questo dispositivo, il tuo o l'ultimo che hai usato, quello del server.
-- Una riga sotto il campo ti dice se il fuso è il tuo. Finché non ne scegli uno in **Impostazioni**, il fuso che lasci qui diventa il tuo: vedi [Il tuo fuso orario](/docs/reminders/#your-time-zone).
+- *I tuoi fusi* elenca quelli che contano per te: quello di questo dispositivo, il tuo, quello del server.
+- Una riga sotto il campo ti dice da dove viene il fuso: il tuo, quello di questo dispositivo o quello del server, con **Impostazioni** per scegliere il tuo. Un fuso diverso vale solo per quella data: vedi [Il tuo fuso orario](/docs/reminders/#your-time-zone).
 - *Su questo dispositivo* mostra lo stesso momento nell'ora del tuo dispositivo, quando il fuso è diverso.
 
 I tre menu della ripetizione compaiono con Premium, con l'interruttore dei [promemoria ricorrenti](/docs/reminders/#repeating-reminders) acceso, oppure quando il promemoria si ripete già: vedi [I campi della ripetizione](/docs/reminders/#the-repetition-fields).

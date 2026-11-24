@@ -4,7 +4,7 @@
  * quella del fuso (NomiNellaModale.perLaModale); al salvataggio i nomi tornano codici (dallaModale). La demo e i casi
  * d'uso del sito li usano ai bordi delle loro modali, come il bot: dentro, il testo resta con gli id.
  */
-import { CANALE, NOME_DEL_CANALE, PERSONE, fusoDi } from './modello.ts';
+import { CANALE, NOME_DEL_CANALE, PERSONE, ZONA } from './modello.ts';
 import type { Stato } from './modello.ts';
 import { testo } from './testi.ts';
 
@@ -25,7 +25,7 @@ export function rubricaDi(stato: Stato): Rubrica {
     persone: PERSONE.map((p) => ({ id: p.id, nome: p.nome, username: p.username })),
     ruoli: stato.ruoli.map((r) => ({ id: r.id, nome: r.nome })),
     canali: [{ id: CANALE, nome: NOME_DEL_CANALE }],
-    zona: fusoDi(stato),
+    zona: ZONA,
   };
 }
 

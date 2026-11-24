@@ -1,7 +1,7 @@
 ---
 title: "/my timezone"
 description: "Tu zona horaria, elegida una sola vez: TTM te la propone cada vez que eliges una fecha, en cada servidor, en el canal y en la Activity."
-fonte: ec7d9b989675
+fonte: 95eefd9352af
 ---
 
 Cada vez que eliges una fecha para un recordatorio, TTM te propone una zona horaria. Con `/my timezone` eliges **la tuya** una sola vez, y TTM te la propone en todos los servidores, en el canal y en la Activity.
@@ -13,7 +13,6 @@ Así cada persona del equipo piensa en su propia hora local. El comando funciona
 `/my timezone` muestra tu zona actual y de dónde viene:
 
 - **elegida por ti**, con **Elegir**;
-- **la última que dejaste en un recordatorio**;
 - **el idioma de tu Discord**, como `Europe/Rome` para el italiano;
 - **el servidor**, cuando tu idioma se habla en varias zonas, como el inglés (EE. UU.).
 
@@ -25,13 +24,13 @@ Para encontrarlo, abre el **[mapa de zonas horarias](https://timezones.bitsplitt
 
 A partir de ese momento TTM te propone tu zona cada vez que eliges una fecha. Una zona distinta en un recordatorio vale solo para esa fecha: la tuya se queda.
 
-**Volver a automática** olvida tu elección, y TTM vuelve a aprender tu zona a partir de tus recordatorios.
+**Quitar mi zona horaria** olvida tu elección, y TTM vuelve a proponer la zona que usa [hasta que elijas](#until-you-choose).
 
 ## Hasta que elijas
 
-TTM aprende tu zona por sí solo. La zona que dejas en un recordatorio pasa a ser la tuya, y la línea bajo el campo te lo dice.
+TTM no cambia tu zona por sí solo: una zona distinta en un recordatorio vale solo para esa fecha.
 
-Antes de tu primer recordatorio, el canal propone la zona del idioma de tu Discord, y la Activity la zona de tu dispositivo. Un idioma que se habla en varias zonas toma la zona del servidor: consulta [Zona horaria](/docs/configuration/#time-zone) en `/config app`.
+El canal propone la zona del idioma de tu Discord, y la Activity la zona de tu dispositivo. Un idioma que se habla en varias zonas toma la zona del servidor: consulta [Zona horaria](/docs/configuration/#time-zone) en `/config app`. La línea bajo el campo te dice de dónde viene la zona y cómo fijar la tuya.
 
 ## En la Activity
 

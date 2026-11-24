@@ -1,7 +1,7 @@
 ---
 title: "L'Activity"
 description: "Ouvre une liste dans une fenêtre à l'intérieur de Discord, où ton équipe travaille dessus ensemble et voit chaque changement en direct."
-fonte: 3944b7fd591c
+fonte: 430ed626ef5b
 ---
 
 Essaie le mode Activity : plus fluide et libéré des limites des salons textuels, idéal pour les sessions de travail longues ou collaboratives.
@@ -77,7 +77,7 @@ Aucune liste n'entre dans l'Activity, et l'accueil masque **Nouvelle liste**. Un
 
 ## Tes réglages
 
-L'engrenage en haut à droite a deux groupes. Sous **Pour toi, partout**, **Fuseau horaire** est ton fuseau horaire, le même que [/my timezone](/docs/my-timezone/) : TTM le propose dans le salon et sur tous les serveurs aussi, et **Revenir en automatique** l'oublie. Sous **Sur cet appareil**, **Taille du texte**, **Thème** et **Lignes espacées**, plus de place pour toucher sur un téléphone, ne s'appliquent qu'à toi, sur cet appareil.
+L'engrenage en haut à droite a deux groupes. Sous **Pour toi, partout**, **Fuseau horaire** est ton fuseau horaire, le même que [/my timezone](/docs/my-timezone/) : TTM le propose dans le salon et sur tous les serveurs aussi, et **Retirer mon fuseau** l'oublie. Sous **Sur cet appareil**, **Taille du texte**, **Thème** et **Lignes espacées**, plus de place pour toucher sur un téléphone, ne s'appliquent qu'à toi, sur cet appareil.
 
 ## Pour aller plus loin
 

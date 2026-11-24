@@ -1,7 +1,7 @@
 ---
 title: Note di rilascio
 description: Le novità di Team Tasks Manager, dalla più recente.
-fonte: 77cbf888899e
+fonte: f88a9986fb9d
 ---
 
 Ogni cambiamento che vedi in Discord è elencato qui, dal più recente. Ogni voce rimanda alla pagina che lo spiega.
@@ -10,8 +10,8 @@ Ogni cambiamento che vedi in Discord è elencato qui, dal più recente. Ogni voc
 
 Released 2026-11-24
 
-- **Scegli il tuo fuso orario una volta sola** — **/my timezone**, in qualsiasi server, mostra il tuo fuso orario e da dove viene. **Scegli** imposta il tuo e TTM te lo propone in ogni server, nel canale e nell'Activity. **Torna automatico** torna a quello proposto. Vedi [/my timezone](/docs/my-timezone/).
-- **Un fuso diverso vale solo per quella data** — con un fuso tuo, quello che lasci in un promemoria non lo sostituisce più. Sotto il fuso orario di **Quando**, una riga ti dice se è il tuo o come sceglierlo. Vedi [/my timezone](/docs/my-timezone/).
+- **Scegli il tuo fuso orario una volta sola** — **/my timezone**, in qualsiasi server, mostra il tuo fuso orario e da dove viene. **Scegli** imposta il tuo e TTM te lo propone in ogni server, nel canale e nell'Activity. **Togli il mio fuso** torna a quello proposto. Vedi [/my timezone](/docs/my-timezone/).
+- **Un fuso diverso vale solo per quella data** — il fuso che lasci in un promemoria non diventa più il tuo e TTM dimentica quelli che aveva imparato così: ti propone il tuo solo quando lo scegli. Sotto il fuso orario di **Quando**, una riga ti dice da dove viene il fuso e come scegliere il tuo. Vedi [/my timezone](/docs/my-timezone/).
 - **Anche nell'Activity** — l'ingranaggio ha il tuo fuso orario sotto **Per te, ovunque**, uguale a `/my timezone`. Sotto il fuso orario di un promemoria, la riga rimanda lì. Vedi [Le tue impostazioni](/docs/activity/#your-settings).
 
 ## 2.5.0 — Nomi al posto dei codici

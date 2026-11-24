@@ -6,10 +6,10 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { PROPOSTO, ZONA, fusoDi, posizione, statoIniziale } from '../src/components/home/demo/modello.ts';
+import { PROPOSTO, ZONA, posizione, statoIniziale } from '../src/components/home/demo/modello.ts';
 import type { Stato } from '../src/components/home/demo/modello.ts';
 import { escape } from '../src/components/home/demo/markdown.ts';
-import { imparaIlFuso, testoDellaLista } from '../src/components/home/demo/regole.ts';
+import { testoDellaLista } from '../src/components/home/demo/regole.ts';
 import {
   PAGINE, bloccoDellaPrimaRiga, corpoDellUscita, corpoDellaModifica, corpoDellaPulizia, corpoDellaRiapertura,
   dialogoDellUscita, htmlDelPiedeDellaGuida, htmlDellaGuida, nuovaDataProposta, primaDelDialogo,
@@ -142,13 +142,11 @@ test('le frecce della guida: ‹ spenta a pagina 1, › spenta a pagina 5; in me
 });
 
 test('New date parte da adesso più dieci minuti nel fuso di chi guarda (newWhen)', () => {
-  assert.deepEqual(nuovaDataProposta(S0), { data: '2026-11-15', ora: '18:14', zona: ZONA, toccata: false });
-  assert.deepEqual(nuovaDataProposta(imparaIlFuso(S0, 'Asia/Kolkata')),
-    { data: '2026-11-15', ora: '22:44', zona: 'Asia/Kolkata', toccata: false });
+  assert.deepEqual(nuovaDataProposta(), { data: '2026-11-15', ora: '18:14', zona: ZONA });
 });
 
 test("New date a meno di 5 minuti, o passata: l'avviso e Reopen spento; senza i campi Reopen va", () => {
-  const q = nuovaDataProposta(S0);
+  const q = nuovaDataProposta();
   assert.equal(problemaDellaNuovaData(q), null);
   assert.equal(riaperturaPronta(q), true);
   assert.equal(riaperturaPronta(null), true);
@@ -162,20 +160,15 @@ test("New date a meno di 5 minuti, o passata: l'avviso e Reopen spento; senza i 
   assert.equal(riaperturaPronta({ ...q, data: '' }), false);
 });
 
-test("Reopen nell'Activity: tutto da fare; con New date i promemoria si spostano, il fuso si impara se toccato", () => {
+test("Reopen nell'Activity: tutto da fare; con New date i promemoria si spostano, nel fuso della data", () => {
   const s = conFatti(['1', '3']);
   const daFare = riapriNellActivity({ ...s, inActivity: true }, null);
   assert.deepEqual(daFare.lista.tasks.map((t) => t.fatto), [false, false, false, false, false]);
   assert.equal(daFare.inActivity, true);
   assert.deepEqual(daFare.lista.tasks[3].promemoria, S0.lista.tasks[3].promemoria);
-  const domani = { ...nuovaDataProposta(s), data: '2026-11-16' };
+  const domani = { ...nuovaDataProposta(), data: '2026-11-16' };
   const spostata = riapriNellActivity(s, domani);
   assert.deepEqual(spostata.lista.tasks[3].promemoria, { at: PROPOSTO + 86400, zona: ZONA });
-  assert.equal('fuso' in spostata, false);
-  const tokyo = { ...domani, zona: 'Asia/Tokyo', toccata: true };
-  const imparata = riapriNellActivity(s, tokyo);
-  assert.equal(fusoDi(imparata), 'Asia/Tokyo');
-  assert.equal(imparata.lista.tasks[3].promemoria?.zona, 'Asia/Tokyo');
-  assert.equal('fuso' in riapriNellActivity(s, { ...tokyo, toccata: false }), false);
-  assert.equal('fuso' in riapriNellActivity(s, { ...domani, toccata: true }), false);
+  const tokyo = riapriNellActivity(s, { ...domani, zona: 'Asia/Tokyo' });
+  assert.equal(tokyo.lista.tasks[3].promemoria?.zona, 'Asia/Tokyo');
 });

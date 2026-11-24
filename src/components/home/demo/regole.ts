@@ -5,7 +5,7 @@
  * una domanda. Qui anche i tipi che le regole condividono coi testi (testi.ts) e con l'interfaccia.
  */
 import { FUSI_DEL_BOT } from './fusi-del-bot.ts';
-import { ADESSO, PROPOSTO, SAM, campiDi, daiCampi, fusoDi, idRuoloTtm, posizione } from './modello.ts';
+import { ADESSO, PROPOSTO, SAM, ZONA, campiDi, daiCampi, idRuoloTtm, posizione } from './modello.ts';
 import type { Lista, Owner, Pos, Ruolo, Stato, Task } from './modello.ts';
 import { elencoDeiTolti } from './testi.ts';
 
@@ -603,7 +603,7 @@ function campiDa(at: number, zona: string): Campi {
 export function campiDelPromemoria(stato: Stato, pos: string): Campi | Extract<Esito, { tipo: 'rifiuto' }> {
   const task = stato.lista.tasks[indice(stato, pos)];
   if (task.fatto) return rifiuto(PROMEMORIA_SU_COMPLETATO);
-  return campiDa(task.promemoria ? task.promemoria.at : PROPOSTO, fusoDi(stato));
+  return campiDa(task.promemoria ? task.promemoria.at : PROPOSTO, ZONA);
 }
 
 /**
@@ -678,30 +678,20 @@ export function validaPromemoria(campi: Campi, adesso = ADESSO): { at: number } 
 }
 
 /**
- * Lo stato col fuso che chi guarda ha scritto in una modale «Quando» al posto di quello proposto: diventa il suo
- * (UserTimezoneService.learn, che salva il fuso valido diverso da quello proposto). Si chiama dopo i controlli.
+ * Il promemoria della modale (TaskListMdlWhen, poi ReminderSaver; i ricorrenti sono spenti, come nel piano Free), nel
+ * canale come nell'Activity. Il fuso del campo vale solo per questo promemoria: non diventa quello di chi agisce. Lo
+ * stesso minuto del promemoria che c'è non si scrive, il bot risponde «No changes». Un task senza owner prende come
+ * owner chi salva (RegoleDelPromemoria.conPromemoria). `at` viene da validaPromemoria: la data passata, che il bot
+ * ricontrolla al salvataggio, qui non arriva.
  */
-export function imparaIlFuso(stato: Stato, zona: string): Stato {
-  return zona === fusoDi(stato) ? stato : { ...stato, fuso: zona };
-}
-
-/**
- * Il promemoria della modale (TaskListMdlWhen, poi ReminderSaver; i ricorrenti sono spenti, come nel piano Free). Il
- * fuso scritto al posto di quello proposto diventa quello di chi agisce (UserTimezoneService.learn), anche quando il
- * promemoria poi resta com'era: lo stesso minuto del promemoria che c'è non si scrive, il bot risponde «No changes».
- * Un task senza owner prende come owner chi salva (RegoleDelPromemoria.conPromemoria). `at` viene da validaPromemoria:
- * la data passata, che il bot ricontrolla al salvataggio, qui non arriva. Nell'Activity il fuso s'impara solo se chi
- * guarda l'ha toccato (ReminderAction, `learn`): chi chiama lo dice con `impara`.
- */
-export function applicaPromemoria(stato: Stato, pos: string, at: number, zona: string, impara = true): Esito {
-  const dopo = impara ? imparaIlFuso(stato, zona) : stato;
-  const i = indice(dopo, pos);
-  const task = dopo.lista.tasks[i];
+export function applicaPromemoria(stato: Stato, pos: string, at: number, zona: string): Esito {
+  const i = indice(stato, pos);
+  const task = stato.lista.tasks[i];
   if (task.fatto) return rifiuto(PROMEMORIA_SU_COMPLETATO);
   if (task.promemoria && Math.floor(task.promemoria.at / 60) === Math.floor(at / 60))
-    return { tipo: 'fatto', stato: dopo, messaggio: { chiave: 'tasklist.reminder.unchanged' } };
+    return { tipo: 'fatto', stato, messaggio: { chiave: 'tasklist.reminder.unchanged' } };
   const owner: Owner = task.owner ?? { tipo: 'persona', id: SAM };
-  return fatto(conTask(dopo, i, { ...task, owner, promemoria: { at, zona } }));
+  return fatto(conTask(stato, i, { ...task, owner, promemoria: { at, zona } }));
 }
 
 /**
@@ -796,21 +786,18 @@ function riancorati(tasks: Task[], ancora: Ancora): Task[] {
 
 /**
  * Ciò che Reopen fa, nel canale come nell'Activity (Riapertura.riaperti): tutti i task tornano da fare. Con l'ancora
- * di New date si spostano i promemoria dei soli task che si riaprono; se `impara`, il fuso dell'ancora diventa quello
- * di chi guarda (imparaIlFuso). Nel canale lo impara sempre; nell'Activity solo se l'ha cambiato a mano, con un fuso
- * che la pagina non proponeva (ReopenDialog, learn).
+ * di New date si spostano i promemoria dei soli task che si riaprono, nel fuso dell'ancora: vale solo per loro.
  */
-export function conTuttiRiaperti(stato: Stato, ancora?: Ancora, impara = true): Stato {
+export function conTuttiRiaperti(stato: Stato, ancora?: Ancora): Stato {
   const { tasks } = stato.lista;
   const riaperti = (ancora ? riancorati(tasks, ancora) : tasks).map((t) => (t.fatto ? { ...t, fatto: false } : t));
-  return conTasks(ancora && impara ? imparaIlFuso(stato, ancora.zona) : stato, riaperti);
+  return conTasks(stato, riaperti);
 }
 
 /**
  * Reopen, o il submit di New date (ReopenLogic.riapertura). Il ponte resta aperto sotto la lista, che intanto può
  * cambiare: passata nell'Activity, bloccata (Riapri tutti è spento), senza completati, il bot rifiuta. Altrimenti
- * conTuttiRiaperti. Il bot impara il fuso anche quando poi rifiuta, la demo no: un rifiuto non porta uno stato, per
- * arrivarci serve una lista cambiata col ponte aperto.
+ * conTuttiRiaperti.
  */
 export function riapriConfermato(stato: Stato, ancora?: Ancora): Esito {
   if (stato.inActivity) return rifiuto('tasklist.modal.activity.error');
@@ -823,8 +810,8 @@ export function riapriConfermato(stato: Stato, ancora?: Ancora): Esito {
  * I campi della modale di New date (TaskListBtnReopenNewDate, TaskListMdlReopenWhen.createModal): adesso più dieci
  * minuti nel fuso di chi agisce, qualunque promemoria abbiano i task.
  */
-export function campiDellaNuovaData(stato: Stato): Campi {
-  return campiDa(PROPOSTO, fusoDi(stato));
+export function campiDellaNuovaData(): Campi {
+  return campiDa(PROPOSTO, ZONA);
 }
 
 /**

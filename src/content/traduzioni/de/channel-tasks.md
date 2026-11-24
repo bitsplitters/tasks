@@ -1,7 +1,7 @@
 ---
 title: "Eine Aufgabe im Kanal bearbeiten"
 description: "Die zweite Reihe von Buttons unter der Liste — Inhalt, Besitzer, Tag, Erinnerung und Webhook — mit ihren Formularen und Menüs."
-fonte: b7393a97a79d
+fonte: ba887a2603b7
 ---
 
 Die zweite Reihe unter der Liste wirkt auf **eine Aufgabe auf einmal**: ihren Text, ihren Besitzer, ihre Tags, ihre Erinnerung und ihren Webhook. Diese Seite zeigt, wo du klickst. Was jede Funktion macht und welche Regeln gelten: [Besitzer und Tags](/docs/owners-and-tags/), [Erinnerungen](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -118,7 +118,7 @@ Klicke **Erinnerung** <img class="inline-ic" src="/icons/alertW.png" alt="" />, 
 | **Monat** | ein Dropdown, in deiner Sprache | keine Unklarheit zwischen `dd/mm` zu befürchten |
 | **Jahr** | eine Zahl | vorausgefüllt |
 | **Uhrzeit** | `HH:mm`, 24 Stunden | z. B. `15:30` |
-| **Zeitzone** | ein offizieller Zonenname | vorausgefüllt mit *deiner* Zone (bis du sie änderst, die deiner Discord-Sprache oder die des Servers) |
+| **Zeitzone** | ein offizieller Zonenname | vorausgefüllt mit *deiner* Zone (bis du eine mit `/my timezone` wählst, die deiner Discord-Sprache oder die des Servers) |
 
 Alles kommt vorausgefüllt mit **zehn Minuten ab jetzt**. Sende es ab, und die Aufgabe zeigt die geplante Zeit. Solange das Formular offen ist, ist die Liste für die anderen gesperrt. Wer die Erinnerung bekommt und was zur Zeitzone gilt: Siehe [Erinnerungen](/docs/reminders/#the-rules).
 

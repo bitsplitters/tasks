@@ -1,7 +1,7 @@
 ---
 title: "Recordatorios"
 description: "Asocia un horario a una tarea para que TTM avise a su propietario a tiempo: quién lo recibe, zonas horarias, repeticiones."
-fonte: e9b5187d37f5
+fonte: fb523a41633c
 ---
 
 Un recordatorio convierte una tarea en algo que te recuerda *a ti*, en lugar de al revés. Lo configuras una vez; TTM se encarga de los avisos. Se agrega con **Recordatorio** <img class="inline-ic" src="/icons/alertW.png" alt="" />: en el canal, en la segunda fila bajo la lista; en la Activity, en el panel de una tarea.
@@ -23,7 +23,7 @@ Un recordatorio convierte una tarea en algo que te recuerda *a ti*, en lugar de 
 
 TTM necesita un nombre oficial de zona horaria como `Europe/Rome`. Busca el tuyo en el **[mapa de zonas horarias](https://timezones.bitsplitters.app)**: selecciona tu zona en el mapa, copia el valor y pégalo en el campo. La Activity también te permite buscar por ciudad o país.
 
-<div class="callout"><div class="callout-t">Elige tu zona horaria</div>Usa <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> en cualquier servidor, o el engranaje de la Activity, y TTM te propondrá <strong>tu</strong> zona en todas partes, en el canal y en la Activity. Hasta que elijas una, TTM la aprende: la zona que dejes en un recordatorio pasa a ser la tuya. Con una zona propia, una zona distinta en un recordatorio vale solo para esa fecha. Los recordatorios que escribes en el texto de una lista usan la misma zona.</div>
+<div class="callout"><div class="callout-t">Elige tu zona horaria</div>Usa <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> en cualquier servidor, o el engranaje de la Activity, y TTM te propondrá <strong>tu</strong> zona en todas partes, en el canal y en la Activity. Hasta que elijas una, TTM propone la zona del idioma de tu Discord, de tu dispositivo o del servidor, y la línea debajo del campo te dice cuál. Una zona distinta en un recordatorio vale solo para esa fecha. Los recordatorios que escribes en el texto de una lista usan la misma zona.</div>
 
 ## Cómo llega el recordatorio
 

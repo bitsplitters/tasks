@@ -156,8 +156,7 @@ test('modaleDiModificaInBlocco: in sola lettura, il titolo, la legenda con le so
 });
 
 test('modaleDellaNuovaData: i campi del promemoria, le 18:14 proposte, col titolo della riapertura', () => {
-  const s0 = statoIniziale();
-  const campi = campiDellaNuovaData(s0);
+  const campi = campiDellaNuovaData();
   const m = modaleDellaNuovaData(campi);
   assert.equal(m.titolo, 'New date for the reminders');
   assert.deepEqual(m.campi, modaleDelPromemoria('3', campi).campi);

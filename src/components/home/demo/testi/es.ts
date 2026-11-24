@@ -141,7 +141,6 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'activity.zone.search': 'Ciudad, país, Europe/Madrid o +5:30',
   'activity.zone.yours': 'Tus zonas horarias',
   'activity.zone.reason.device': 'este dispositivo',
-  'activity.zone.reason.learned': 'la última usada',
   'activity.zone.reason.server': 'el servidor',
   'activity.zone.none': 'Ninguna zona horaria coincide con «{0}»',
   'activity.webhook.trigger.completion': 'al completarse',

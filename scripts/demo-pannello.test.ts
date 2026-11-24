@@ -11,7 +11,7 @@ import {
 } from '../src/components/home/demo/modello.ts';
 import type { Stato, Task } from '../src/components/home/demo/modello.ts';
 import {
-  eliminaTaskConfermato, imparaIlFuso, togliOwnerConfermato,
+  eliminaTaskConfermato, togliOwnerConfermato,
 } from '../src/components/home/demo/regole.ts';
 import type { Esito, Menzione } from '../src/components/home/demo/regole.ts';
 import {
@@ -140,24 +140,23 @@ test('il data-k di una zona: il nome IANA in minuscolo, con - al posto di / e _'
 });
 
 test('senza testo, «Your time zones» coi motivi; la zona del campo è quella segnata', () => {
-  const roma = htmlDelleZone('', ZONA, undefined, ADESSO);
+  const roma = htmlDelleZone('', ZONA, ADESSO);
   assert.match(roma, /^<div class="sc-pnote">Your time zones<\/div><ul class="sc-zlist">/);
   assert.match(roma, /<button type="button" class="sc-zrow" data-k="z-europe-rome" data-zona="Europe\/Rome"/);
   assert.match(roma, /data-zona="Europe\/Rome" aria-current="true">/);
   assert.match(roma, /<span class="sc-zrcity">Rome<\/span><span class="sc-zrcountry">Italy<\/span>/);
   assert.match(roma, /<span class="sc-zrreasons">this device · the server<\/span>/);
   assert.match(roma, /<span class="sc-zrnow">18:04<\/span><span class="sc-zroffset">UTC\+1<\/span>/);
-  const tokyo = htmlDelleZone('', 'Asia/Tokyo', 'Asia/Tokyo', ADESSO);
+  const tokyo = htmlDelleZone('', 'Asia/Tokyo', ADESSO);
   assert.match(tokyo, /data-k="z-europe-rome" data-zona="Europe\/Rome">/);
-  assert.match(tokyo, /data-k="z-asia-tokyo" data-zona="Asia\/Tokyo" aria-current="true">/);
-  assert.match(tokyo, /<span class="sc-zrreasons">last used<\/span>/);
+  assert.doesNotMatch(tokyo, /z-asia-tokyo|aria-current/);
 });
 
 test('col testo, le zone trovate senza motivi; nessuna: «No time zone matches»', () => {
-  const parigi = htmlDelleZone(' paris ', ZONA, undefined, ADESSO);
+  const parigi = htmlDelleZone(' paris ', ZONA, ADESSO);
   assert.match(parigi, /^<ul class="sc-zlist"><li><button type="button" class="sc-zrow" data-k="z-europe-paris"/);
   assert.doesNotMatch(parigi, /sc-zrreasons|sc-pnote/);
-  assert.equal(htmlDelleZone('atlantis', ZONA, undefined, ADESSO),
+  assert.equal(htmlDelleZone('atlantis', ZONA, ADESSO),
     '<div class="sc-pnote">No time zone matches «atlantis»</div><ul class="sc-zlist"></ul>');
 });
 
@@ -224,11 +223,11 @@ test('il contenuto cambia quando il testo è un altro, a meno degli spazi', () =
 });
 
 test('il promemoria: quello del task nel suo fuso, o quello proposto nel fuso di chi guarda', () => {
-  assert.deepEqual(quandoDi(S0, '3'), { data: '2026-11-15', ora: '18:14', zona: ZONA, toccata: false });
-  assert.deepEqual(quandoDi(S0, '4'), { data: '2026-11-15', ora: '18:14', zona: ZONA, toccata: false });
-  const kolkata = imparaIlFuso(S0, 'Asia/Kolkata');
-  assert.deepEqual(quandoDi(kolkata, '4'), { data: '2026-11-15', ora: '22:44', zona: 'Asia/Kolkata', toccata: false });
-  assert.deepEqual(quandoDi(kolkata, '3'), { data: '2026-11-15', ora: '18:14', zona: ZONA, toccata: false });
+  assert.deepEqual(quandoDi(S0, '3'), { data: '2026-11-15', ora: '18:14', zona: ZONA });
+  assert.deepEqual(quandoDi(S0, '4'), { data: '2026-11-15', ora: '18:14', zona: ZONA });
+  const kolkata = statoDi(salvaPromemoria(S0, '4', { data: '2026-11-15', ora: '22:44', zona: 'Asia/Kolkata' }));
+  assert.deepEqual(quandoDi(kolkata, '4'), { data: '2026-11-15', ora: '22:44', zona: 'Asia/Kolkata' });
+  assert.deepEqual(quandoDi(kolkata, '2'), { data: '2026-11-15', ora: '18:14', zona: ZONA });
 });
 
 test('l\'istante dei campi, null finché la data o l\'ora non sono intere', () => {
@@ -258,22 +257,21 @@ test('il modulo del promemoria: Save acceso per uno nuovo o cambiato; gli avvisi
 });
 
 test('in un altro fuso, sotto i campi l\'ora del dispositivo; lo stesso istante in un altro fuso cambia', () => {
-  const tokyo = { data: '2026-11-16', ora: '18:14', zona: 'Asia/Tokyo', toccata: true };
+  const tokyo = { data: '2026-11-16', ora: '18:14', zona: 'Asia/Tokyo' };
   const m = moduloDelPromemoria(S0, '3', tokyo);
   assert.equal(m.dispositivo, 'On this device: Mon 16 Nov, 10:14');
   assert.equal(m.pronto, true);
-  const stessoIstante = { data: '2026-11-16', ora: '02:14', zona: 'Asia/Tokyo', toccata: true };
+  const stessoIstante = { data: '2026-11-16', ora: '02:14', zona: 'Asia/Tokyo' };
   assert.equal(moduloDelPromemoria(S0, '3', stessoIstante).at, PROPOSTO);
   assert.equal(moduloDelPromemoria(S0, '3', stessoIstante).pronto, true);
 });
 
-test('Save del promemoria: il fuso s\'impara solo se chi guarda l\'ha toccato', () => {
-  const kolkata = imparaIlFuso(S0, 'Asia/Kolkata');
-  const nonToccato = statoDi(salvaPromemoria(kolkata, '3', { ...quandoDi(kolkata, '3'), ora: '19:00' }));
-  assert.equal(nonToccato.fuso, 'Asia/Kolkata');
-  assert.deepEqual(nonToccato.lista.tasks[3].promemoria, { at: PROPOSTO + 2760, zona: ZONA });
-  const toccato = statoDi(salvaPromemoria(kolkata, '3', { ...quandoDi(kolkata, '3'), ora: '19:00', toccata: true }));
-  assert.equal(toccato.fuso, ZONA);
+test('Save del promemoria: il fuso del campo vale solo per quel promemoria', () => {
+  const alle19 = statoDi(salvaPromemoria(S0, '3', { ...quandoDi(S0, '3'), ora: '19:00' }));
+  assert.deepEqual(alle19.lista.tasks[3].promemoria, { at: PROPOSTO + 2760, zona: ZONA });
+  const tokyo = statoDi(salvaPromemoria(S0, '3', { ...quandoDi(S0, '3'), zona: 'Asia/Tokyo' }));
+  assert.equal(tokyo.lista.tasks[3].promemoria?.zona, 'Asia/Tokyo');
+  assert.deepEqual(quandoDi(tokyo, '4'), quandoDi(S0, '4'));
   const nuovo = statoDi(salvaPromemoria(S0, '4', quandoDi(S0, '4')));
   assert.deepEqual(nuovo.lista.tasks[4].owner, { tipo: 'persona', id: SAM });
 });

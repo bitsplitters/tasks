@@ -1,7 +1,7 @@
 ---
 title: "Primeiros passos"
 description: "Convide o bot, crie uma lista, depois marque uma tarefa e defina um lembrete — no canal ou na Activity."
-fonte: 65c887766b9d
+fonte: 80e3e27e599a
 ---
 
 O Team Tasks Manager (TTM) permite que sua equipe compartilhe e gerencie tarefas **sem sair do Discord**. Esta página leva você do zero a uma lista funcionando: criá-la, marcar uma tarefa, definir um lembrete.
@@ -70,7 +70,7 @@ Na segunda linha:
 2. Escolha uma tarefa que **ainda não esteja marcada**. Abre um formulário com o título *Lembrete para a tarefa …*, preenchido com dez minutos a partir de agora.
 3. Envie-o como está. Se o seu servidor ativou os lembretes recorrentes, um cartão de resumo vem em seguida: aperte **Salvar**.
 
-A tarefa mostra o horário, e o lembrete chega uma vez. Até você mudá-lo, o fuso horário do último campo é o do servidor: mude-o se o seu for diferente.
+A tarefa mostra o horário, e o lembrete chega uma vez. O fuso horário do último campo é o do seu idioma do Discord, ou o do servidor: mude-o se o seu for diferente, e defina-o com [/my timezone](/docs/my-timezone/) para vê-lo sempre proposto.
 
 **Fechou o formulário com ✕?** A lista continua bloqueada: abra **Mais** sob a lista e aperte **Desbloquear lista**. Veja [Quando a lista está bloqueada](/docs/the-task-list/#when-the-list-is-locked).
 

@@ -1,7 +1,7 @@
 ---
 title: "Pour commencer"
 description: "Invite le bot, crée une liste, puis coche une tâche et définis un rappel, dans le salon ou dans l'Activity."
-fonte: 65c887766b9d
+fonte: 80e3e27e599a
 ---
 
 Team Tasks Manager (TTM) permet à ton équipe de partager et de gérer ses tâches **sans quitter Discord**. Cette page t'emmène de zéro à une liste qui marche : tu la crées, tu coches une tâche, tu définis un rappel.
@@ -70,7 +70,7 @@ Sur la deuxième rangée :
 2. Choisis une tâche **pas encore cochée**. Un formulaire intitulé *Rappel pour la tâche …* s'ouvre, rempli avec dix minutes à partir de maintenant.
 3. Envoie-le tel quel. Si ton serveur a activé les rappels récurrents, une carte récapitulative suit : appuie sur **Enregistrer**.
 
-La tâche affiche l'heure, et le rappel arrive une seule fois. Tant que tu ne le changes pas, le fuseau horaire du dernier champ est celui du serveur : change-le si le tien est différent.
+La tâche affiche l'heure, et le rappel arrive une seule fois. Le fuseau horaire du dernier champ est celui de ta langue Discord, ou celui du serveur : change-le si le tien est différent, et définis-le avec [/my timezone](/docs/my-timezone/) pour qu'il te soit toujours proposé.
 
 **Tu as fermé le formulaire avec ✕ ?** La liste reste verrouillée : ouvre **Autre** sous la liste et appuie sur **Déverrouiller la liste**. Voir [Quand la liste est verrouillée](/docs/the-task-list/#when-the-list-is-locked).
 

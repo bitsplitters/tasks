@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "DSGVO und deine Datenrechte"
 description: "Wie Team Tasks Manager die Datenschutz-Grundverordnung der EU einhält."
 updated: "Zuletzt aktualisiert: 24. November 2026"
-fonte: f96def244ac2
+fonte: 51b8abee8c2d
 ---
 
 Weil **bitsplitters** in der Europäischen Union tätig ist, unterliegt die Nutzung von **Team Tasks Manager** („TTM“) der **Datenschutz-Grundverordnung (DSGVO)**. Diese Seite erklärt die Rechtsgrundlage der Verarbeitung und die Rechte, die du hast. Sie ergänzt unsere [Datenschutzerklärung](/de/privacy/), die genau auflistet, welche Daten wir verarbeiten.
@@ -32,7 +32,7 @@ Nach der DSGVO hast du das Recht auf:
 - **Widerspruch** — einer Verarbeitung zu widersprechen, die auf berechtigtem Interesse beruht.
 - **Widerruf der Einwilligung** — wo die Verarbeitung auf einer Einwilligung beruht, sie jederzeit zu widerrufen.
 
-Ein großer Teil deiner Daten liegt auch direkt in deiner Hand, innerhalb von Discord: Aufgaben, Erinnerungen, Webhooks und Konfiguration zu bearbeiten oder zu löschen, entfernt sie; das **Löschen einer Liste** (der Button *Liste löschen* in ihrem Panel *Mehr* oder `/config lists`) entfernt diese Liste mit ihren Aufgaben, Erinnerungen und ihrem Verlauf, und das **Versiegeln** (*Liste versiegeln*, dasselbe Panel) tut dasselbe, lässt aber ihre Nachricht im Kanal; und das **Entfernen des Bots von einem Server** löscht die Listen, Aufgaben, Erinnerungen, Webhooks und den Verlauf, die er hält, und die Aufzeichnungen der Rollen, die er für Aufgaben mit mehreren Besitzern erstellt hat (die Rollen bleiben im Server). Einige Aufzeichnungen auf Serverebene bleiben erhalten: Die genaue Liste steht unter [Speicherdauer](/de/privacy/#speicherdauer) in der Datenschutzerklärung, ebenso die Daten, die zu deiner Discord-Benutzer-ID gespeichert sind (deine persönliche Zeitzone, dein Kanal für Direktnachrichten mit dem Bot und ob du die zweite Reihe gelernt hast), die das Entfernen des Bots nicht berührt und die wir auf Anfrage löschen. Deine persönliche Zeitzone kannst du auch selbst löschen, mit **Zurück zu automatisch** in `/my timezone` oder im Zahnrad der Activity.
+Ein großer Teil deiner Daten liegt auch direkt in deiner Hand, innerhalb von Discord: Aufgaben, Erinnerungen, Webhooks und Konfiguration zu bearbeiten oder zu löschen, entfernt sie; das **Löschen einer Liste** (der Button *Liste löschen* in ihrem Panel *Mehr* oder `/config lists`) entfernt diese Liste mit ihren Aufgaben, Erinnerungen und ihrem Verlauf, und das **Versiegeln** (*Liste versiegeln*, dasselbe Panel) tut dasselbe, lässt aber ihre Nachricht im Kanal; und das **Entfernen des Bots von einem Server** löscht die Listen, Aufgaben, Erinnerungen, Webhooks und den Verlauf, die er hält, und die Aufzeichnungen der Rollen, die er für Aufgaben mit mehreren Besitzern erstellt hat (die Rollen bleiben im Server). Einige Aufzeichnungen auf Serverebene bleiben erhalten: Die genaue Liste steht unter [Speicherdauer](/de/privacy/#speicherdauer) in der Datenschutzerklärung, ebenso die Daten, die zu deiner Discord-Benutzer-ID gespeichert sind (deine persönliche Zeitzone, dein Kanal für Direktnachrichten mit dem Bot und ob du die zweite Reihe gelernt hast), die das Entfernen des Bots nicht berührt und die wir auf Anfrage löschen. Deine persönliche Zeitzone kannst du auch selbst löschen, mit **Meine Zeitzone entfernen** in `/my timezone` oder im Zahnrad der Activity.
 
 ## So übst du deine Rechte aus
 

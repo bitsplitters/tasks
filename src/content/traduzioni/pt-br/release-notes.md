@@ -1,7 +1,7 @@
 ---
 title: "Notas de versão"
 description: "As novidades do Team Tasks Manager, da mais recente para a mais antiga."
-fonte: 77cbf888899e
+fonte: f88a9986fb9d
 ---
 
 Toda mudança que você vê no Discord está listada aqui, da mais recente para a mais antiga. Cada item leva à página que o explica.
@@ -10,8 +10,8 @@ Toda mudança que você vê no Discord está listada aqui, da mais recente para 
 
 Released 2026-11-24
 
-- **Escolha seu fuso horário uma vez só** — **/my timezone**, em qualquer servidor, mostra o seu fuso horário e de onde ele vem. **Escolher** define o seu, e o TTM o propõe em todos os servidores, no canal e na Activity. **Voltar ao automático** volta para o proposto. Veja [/my timezone](/docs/my-timezone/).
-- **Um fuso diferente vale só para aquela data** — com um fuso seu, o que você deixa em um lembrete não o substitui mais. Sob o fuso horário do **Quando**, uma linha diz se é o seu ou como escolhê-lo. Veja [/my timezone](/docs/my-timezone/).
+- **Escolha seu fuso horário uma vez só** — **/my timezone**, em qualquer servidor, mostra o seu fuso horário e de onde ele vem. **Escolher** define o seu, e o TTM o propõe em todos os servidores, no canal e na Activity. **Remover meu fuso** volta para o proposto. Veja [/my timezone](/docs/my-timezone/).
+- **Um fuso diferente vale só para aquela data** — o fuso que você deixa em um lembrete não passa mais a ser o seu, e o TTM esquece os que tinha aprendido assim: ele só propõe o seu depois que você o escolhe. Sob o fuso horário do **Quando**, uma linha diz de onde vem o fuso e como escolher o seu. Veja [/my timezone](/docs/my-timezone/).
 - **Na Activity também** — a engrenagem mostra o seu fuso horário em **Para você, em todo lugar**, igual ao `/my timezone`. Sob o fuso horário de um lembrete, a linha leva até lá. Veja [Suas configurações](/docs/activity/#your-settings).
 
 ## 2.5.0 — Nomes no lugar de códigos

@@ -7,13 +7,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { FUSI_DEL_BOT } from '../src/components/home/demo/fusi-del-bot.ts';
 import {
-  ADESSO, COACHES, LEO, MIA, PROPOSTO, SAM, ZONA, fusoDi, idRuoloTtm, listaDellaDemo, posizione, statoIniziale,
+  ADESSO, COACHES, LEO, MIA, PROPOSTO, SAM, ZONA, idRuoloTtm, listaDellaDemo, posizione, statoIniziale,
 } from '../src/components/home/demo/modello.ts';
 import type { Stato, Task } from '../src/components/home/demo/modello.ts';
 import {
   applicaOwner, applicaOwnerActivity, applicaPromemoria, applicaTag, applicaTagActivity, applicaWebhook, avanzamento,
   campiDelPromemoria, campiDellaNuovaData, carrello, conTuttiRiaperti, eliminaTask, eliminaTaskConfermato,
-  imparaIlFuso,
   invertiSpunta, nelCanale, nellActivity, prosa, prosaDelTask, pulisci, pulisciConfermato, pulsantiAccesi, riapri,
   riapriConfermato, rifiutoDelCarrello, rinumera,
   salvaTesto, salvaTestoActivity, sceltaDellOwner, spunta, statoDeiGruppi, tagDelTesto, testoDellaLista, togliOwner,
@@ -445,26 +444,12 @@ test('il promemoria salvato dà al task senza owner chi lo salva; lo stesso minu
   assert.deepEqual(s0, statoIniziale());
 });
 
-test('il fuso scritto al posto di quello proposto diventa quello di chi agisce (UserTimezoneService.learn)', () => {
-  const s0 = statoIniziale();
-  assert.equal(fusoDi(s0), ZONA);
-  assert.equal('fuso' in statoDi(applicaPromemoria(s0, '2', PROPOSTO, ZONA)), false);
-  const kolkata = statoDi(applicaPromemoria(s0, '2', PROPOSTO, 'Asia/Kolkata'));
-  assert.equal(fusoDi(kolkata), 'Asia/Kolkata');
+test('il fuso scritto in un promemoria vale solo per quello: gli altri propongono il fuso del server', () => {
+  const kolkata = statoDi(applicaPromemoria(statoIniziale(), '2', PROPOSTO, 'Asia/Kolkata'));
   assert.deepEqual(kolkata.lista.tasks[1].promemoria, { at: PROPOSTO, zona: 'Asia/Kolkata' });
-  assert.deepEqual(campiDelPromemoria(kolkata, '4'), conCampi({ ora: '22:44', zona: 'Asia/Kolkata' }));
-  assert.equal(fusoDi(statoDi(applicaPromemoria(kolkata, '4', PROPOSTO, ZONA))), ZONA);
-  // Anche quando il promemoria poi resta com'era.
-  assert.equal(fusoDi(statoDi(applicaPromemoria(s0, '3', PROPOSTO, 'Asia/Kolkata'))), 'Asia/Kolkata');
-});
-
-test('nell\'Activity il fuso s\'impara solo se chi guarda l\'ha toccato (ReminderAction, learn)', () => {
-  const kolkata = imparaIlFuso(statoIniziale(), 'Asia/Kolkata');
-  const dopo = statoDi(applicaPromemoria(kolkata, '3', PROPOSTO + 3600, ZONA, false));
-  assert.equal(fusoDi(dopo), 'Asia/Kolkata');
-  assert.deepEqual(dopo.lista.tasks[3].promemoria, { at: PROPOSTO + 3600, zona: ZONA });
-  assert.equal(fusoDi(statoDi(applicaPromemoria(kolkata, '3', PROPOSTO + 3600, ZONA, true))), ZONA);
-  assert.equal('fuso' in statoDi(applicaPromemoria(statoIniziale(), '2', PROPOSTO, 'Asia/Tokyo', false)), false);
+  // La modale riapre l'istante nel fuso di chi agisce, il server: il bot tiene l'istante, non il fuso.
+  assert.deepEqual(campiDelPromemoria(kolkata, '2'), CAMPI);
+  assert.deepEqual(campiDelPromemoria(kolkata, '4'), CAMPI);
 });
 
 test('il pulsante rosso del promemoria lascia owner, tag e webhook, anche su un task completato (AlertLogic)', () => {
@@ -555,17 +540,15 @@ test("Reopen rifiuta la lista cambiata col ponte aperto: nell'Activity, bloccata
   assert.deepEqual(riapriConfermato(tutte, { at: DOMANI, zona: ZONA }), rifiutoDi('tasklist.modal.activity.error'));
 });
 
-test("nell'Activity Reopen non ha i controlli del ponte; il fuso dell'ancora si impara solo se richiesto", () => {
+test("nell'Activity Reopen non ha i controlli del ponte; il fuso dell'ancora va ai promemoria spostati", () => {
   const dentro = conSpunte(['3'], { ...statoIniziale(), inActivity: true });
   const s = conIlTask(3, { promemoria: { at: PROPOSTO, zona: ZONA } }, dentro);
   const riaperta = conTuttiRiaperti(s);
   assert.deepEqual(fatti(riaperta), []);
   assert.equal(riaperta.inActivity, true);
   assert.deepEqual(riaperta.lista.tasks[3].promemoria, { at: PROPOSTO, zona: ZONA });
-  const ferma = conTuttiRiaperti(s, { at: DOMANI, zona: 'Asia/Kolkata' }, false);
-  assert.deepEqual(ferma.lista.tasks[3].promemoria, { at: DOMANI, zona: 'Asia/Kolkata' });
-  assert.equal('fuso' in ferma, false);
-  assert.equal(fusoDi(conTuttiRiaperti(s, { at: DOMANI, zona: 'Asia/Kolkata' })), 'Asia/Kolkata');
+  const spostata = conTuttiRiaperti(s, { at: DOMANI, zona: 'Asia/Kolkata' });
+  assert.deepEqual(spostata.lista.tasks[3].promemoria, { at: DOMANI, zona: 'Asia/Kolkata' });
 });
 
 test('New date: il primo promemoria dei riaperti cade sulla data, gli altri lo seguono (ReminderReanchorer)', () => {
@@ -577,32 +560,18 @@ test('New date: il primo promemoria dei riaperti cade sulla data, gli altri lo s
   assert.deepEqual(fatti(riaperta), []);
   const date = riaperta.lista.tasks.map((t) => t.promemoria?.at);
   assert.deepEqual(date, [undefined, alle18, undefined, DOMANI, DOMANI + 3600]);
-  assert.equal('fuso' in riaperta, false);
   const kolkata = statoDi(riapriConfermato(s, { at: DOMANI, zona: 'Asia/Kolkata' }));
-  assert.equal(fusoDi(kolkata), 'Asia/Kolkata');
   assert.deepEqual(kolkata.lista.tasks[3].promemoria, { at: DOMANI, zona: 'Asia/Kolkata' });
   assert.deepEqual(kolkata.lista.tasks[1].promemoria, { at: alle18, zona: ZONA });
 });
 
 test('New date: adesso più dieci minuti; la data troppo vicina ha il testo del clone (TaskListMdlReopenWhen)', () => {
-  const conPromemoria = conIlTask(3, { promemoria: { at: DOMANI, zona: ZONA } }, conSpunte(['3']));
-  assert.deepEqual(campiDellaNuovaData(conPromemoria), CAMPI);
-  const kolkata = imparaIlFuso(statoIniziale(), 'Asia/Kolkata');
-  assert.deepEqual(campiDellaNuovaData(kolkata), conCampi({ ora: '22:44', zona: 'Asia/Kolkata' }));
+  assert.deepEqual(campiDellaNuovaData(), CAMPI);
   assert.deepEqual(validaNuovaData(CAMPI), { at: PROPOSTO });
   assert.deepEqual(validaNuovaData(conCampi({ ora: '18:08' })), { errori: ['tasklist.modal.clone.date.now.error'] });
   assert.deepEqual(validaNuovaData(conCampi({ zona: 'Mars/Olympus', mese: '' })), { errori: [E_FUSO, E_MESE] });
   assert.deepEqual(validaNuovaData(conCampi({ anno: '2025' })), { errori: [E_ANNO] });
   assert.deepEqual(validaPromemoria(conCampi({ ora: '18:08' })), { errori: [E_MINUTI] });
-});
-
-test('il fuso scritto al posto di quello proposto diventa quello di chi guarda (UserTimezoneService.learn)', () => {
-  const s0 = statoIniziale();
-  assert.equal(imparaIlFuso(s0, ZONA), s0);
-  const kolkata = imparaIlFuso(s0, 'Asia/Kolkata');
-  assert.deepEqual(kolkata, { ...s0, fuso: 'Asia/Kolkata' });
-  assert.equal(imparaIlFuso(kolkata, 'Asia/Kolkata'), kolkata);
-  assert.equal(fusoDi(imparaIlFuso(kolkata, ZONA)), ZONA);
 });
 
 test("la lista libera ha tutto acceso; bloccata, solo More; nell'Activity, solo Join (BloccoLista)", () => {

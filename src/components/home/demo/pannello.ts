@@ -11,7 +11,7 @@ import type { Acceso } from './condiviso.ts';
 import { escape, markdown } from './markdown.ts';
 import { coiCodici, coiNomi, rubricaDi } from './nomi.ts';
 import type { Contesto } from './markdown.ts';
-import { ADESSO, PROPOSTO, fusoDi, posizione, webhookDellaDemo } from './modello.ts';
+import { ADESSO, PROPOSTO, ZONA, posizione, webhookDellaDemo } from './modello.ts';
 import type { Stato, Task } from './modello.ts';
 import {
   applicaOwnerActivity, applicaPromemoria, applicaTagActivity, applicaWebhook, eliminaTask, eliminaTaskConfermato,
@@ -105,7 +105,7 @@ export function testoCambiato(stato: Stato, task: Task, scritto: string): boolea
 /** Il promemoria del task nel suo fuso; senza, adesso più dieci minuti nel fuso di chi guarda (newWhen). */
 export function quandoDi(stato: Stato, pos: string): Quando {
   const r = taskDi(stato, pos).promemoria;
-  return quandoDa(r?.at ?? PROPOSTO, r?.zona ?? fusoDi(stato));
+  return quandoDa(r?.at ?? PROPOSTO, r?.zona ?? ZONA);
 }
 
 export interface ModuloDelPromemoria {
@@ -139,11 +139,11 @@ export function moduloDelPromemoria(stato: Stato, pos: string, q: Quando): Modul
   };
 }
 
-/** Save del promemoria: il fuso scelto a mano, se non è già quello di chi guarda, diventa il suo (learn). */
+/** Save del promemoria: il fuso del campo vale solo per questo promemoria (ApiBot.saveReminder). */
 export function salvaPromemoria(stato: Stato, pos: string, q: Quando): Esito {
   const at = istanteDi(q);
   if (at === null) throw new Error('La demo salva un promemoria senza data');
-  return applicaPromemoria(stato, pos, at, q.zona, q.toccata && !stessaZona(q.zona, fusoDi(stato)));
+  return applicaPromemoria(stato, pos, at, q.zona);
 }
 
 /** Le webhook che il pannello offre: quella che il task ha e il server non più, in cima; poi quelle del server. */
@@ -257,7 +257,7 @@ function promemoria(contenuto: HTMLElement, avvisi: (t: readonly string[]) => vo
   let q = quandoDi(stato, pos);
   let m = moduloDelPromemoria(stato, pos, q);
   avvisi(m.avvisi);
-  const campi = montaQuando(contenuto, q, 'p', stato.fuso, {
+  const campi = montaQuando(contenuto, q, 'p', {
     cambio: (nuovo) => {
       q = nuovo;
       m = moduloDelPromemoria(stato, pos, q);

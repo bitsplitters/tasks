@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "RGPD et tes droits sur tes données"
 description: "Comment Team Tasks Manager respecte le Règlement général européen sur la protection des données."
 updated: "Dernière mise à jour : 24 novembre 2026"
-fonte: f96def244ac2
+fonte: 51b8abee8c2d
 ---
 
 Comme **bitsplitters** opère dans l'Union européenne, l'utilisation de **Team Tasks Manager** (« TTM ») est soumise au **Règlement général sur la protection des données (RGPD)**. Cette page explique la base juridique du traitement et les droits dont tu disposes. Elle complète notre [Politique de confidentialité](/fr/privacy/), qui liste exactement les données que nous traitons.
@@ -32,7 +32,7 @@ Au titre du RGPD, tu as le droit de :
 - **Opposition** — t'opposer à un traitement fondé sur l'intérêt légitime.
 - **Retrait du consentement** — lorsque le traitement repose sur le consentement, le retirer à tout moment.
 
-Une grande partie de tes données est aussi directement sous ton contrôle dans Discord : modifier ou supprimer des tâches, des rappels, des webhooks et la configuration les retire ; **supprimer une liste** (le bouton *Supprimer la liste* dans son panneau *Autre*, ou `/config lists`) retire cette liste avec ses tâches, ses rappels et son historique, et la **sceller** (*Sceller la liste*, même panneau) fait de même en laissant son message dans le salon ; et **retirer le bot d'un serveur** supprime les listes, les tâches, les rappels, les webhooks et l'historique qu'il conserve, ainsi que les enregistrements des rôles qu'il a créés pour les tâches ayant plusieurs propriétaires (les rôles restent dans le serveur). Quelques enregistrements au niveau du serveur sont conservés — voir [Conservation](/fr/privacy/#conservation) dans la Politique de confidentialité pour la liste exacte, et pour les données enregistrées avec ton ID utilisateur Discord (ton fuseau horaire personnel, ton canal de messages privés avec le bot et le fait que tu aies appris la deuxième rangée), que le retrait du bot ne touche pas et que nous supprimons sur demande. Ton fuseau horaire personnel, tu peux aussi le supprimer toi-même, avec **Revenir en automatique** dans `/my timezone` ou dans l'engrenage de l'Activity.
+Une grande partie de tes données est aussi directement sous ton contrôle dans Discord : modifier ou supprimer des tâches, des rappels, des webhooks et la configuration les retire ; **supprimer une liste** (le bouton *Supprimer la liste* dans son panneau *Autre*, ou `/config lists`) retire cette liste avec ses tâches, ses rappels et son historique, et la **sceller** (*Sceller la liste*, même panneau) fait de même en laissant son message dans le salon ; et **retirer le bot d'un serveur** supprime les listes, les tâches, les rappels, les webhooks et l'historique qu'il conserve, ainsi que les enregistrements des rôles qu'il a créés pour les tâches ayant plusieurs propriétaires (les rôles restent dans le serveur). Quelques enregistrements au niveau du serveur sont conservés — voir [Conservation](/fr/privacy/#conservation) dans la Politique de confidentialité pour la liste exacte, et pour les données enregistrées avec ton ID utilisateur Discord (ton fuseau horaire personnel, ton canal de messages privés avec le bot et le fait que tu aies appris la deuxième rangée), que le retrait du bot ne touche pas et que nous supprimons sur demande. Ton fuseau horaire personnel, tu peux aussi le supprimer toi-même, avec **Retirer mon fuseau** dans `/my timezone` ou dans l'engrenage de l'Activity.
 
 ## Comment exercer tes droits
 

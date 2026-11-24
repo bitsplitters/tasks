@@ -71,7 +71,7 @@ In the second row:
 2. Pick a task that is **not ticked yet**. A form titled *Set reminder for task …* opens, filled in with ten minutes from now.
 3. Submit it as it is. If your server has turned on recurring reminders, a summary card follows: press **Save**.
 
-The task shows the time, and the reminder arrives once. Until you change it, the time zone in the last field is the server's: change it if yours is different.
+The task shows the time, and the reminder arrives once. The time zone in the last field is the one of your Discord language, or the server's: change it if yours is different, and set yours with [/my timezone](/docs/my-timezone/) to have it proposed every time.
 
 **Closed the form with ✕?** The list stays locked: open **More** under the list and press **Unlock list**. See [When the list is locked](/docs/the-task-list/#when-the-list-is-locked).
 

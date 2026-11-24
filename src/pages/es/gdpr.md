@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "RGPD y tus derechos sobre los datos"
 description: "Cómo cumple Team Tasks Manager el Reglamento General de Protección de Datos de la Unión Europea."
 updated: "Última actualización: 24 de noviembre de 2026"
-fonte: f96def244ac2
+fonte: 51b8abee8c2d
 ---
 
 Como **bitsplitters** opera en la Unión Europea, el uso de **Team Tasks Manager** («TTM») está sujeto al **Reglamento General de Protección de Datos (RGPD)**. Esta página explica la base jurídica del tratamiento y los derechos que tienes. Complementa nuestra [Política de privacidad](/es/privacy/), que enumera exactamente qué datos tratamos.
@@ -32,7 +32,7 @@ Según el RGPD tienes derecho a:
 - **Oposición**: oponerte al tratamiento basado en el interés legítimo.
 - **Retirar el consentimiento**: cuando el tratamiento se basa en el consentimiento, retirarlo en cualquier momento.
 
-Gran parte de tus datos también está bajo tu control directo dentro de Discord: editar o eliminar tareas, recordatorios, webhooks y configuración los elimina; **eliminar una lista** (el botón *Eliminar lista* de su panel *Más*, o `/config lists`) elimina esa lista con sus tareas, recordatorios e historial, y **sellarla** (*Sellar lista*, en el mismo panel) hace lo mismo pero deja su mensaje en el canal; y **quitar el bot de un servidor** elimina las listas, tareas, recordatorios, webhooks e historial que conserva, y los registros de los roles que creó para las tareas con varias personas como propietarias (los roles se quedan en el servidor). Se conservan algunos registros a nivel de servidor: consulta [Conservación](/es/privacy/#conservación) en la Política de privacidad para ver la lista exacta y los datos almacenados con tu ID de usuario de Discord (tu zona horaria personal, tu canal de mensajes directos con el bot y si has aprendido la segunda fila), que quitar el bot no toca y que eliminamos si lo solicitas. También puedes eliminar tú mismo tu zona horaria personal, con **Volver a automática** en `/my timezone` o en el engranaje de la Activity.
+Gran parte de tus datos también está bajo tu control directo dentro de Discord: editar o eliminar tareas, recordatorios, webhooks y configuración los elimina; **eliminar una lista** (el botón *Eliminar lista* de su panel *Más*, o `/config lists`) elimina esa lista con sus tareas, recordatorios e historial, y **sellarla** (*Sellar lista*, en el mismo panel) hace lo mismo pero deja su mensaje en el canal; y **quitar el bot de un servidor** elimina las listas, tareas, recordatorios, webhooks e historial que conserva, y los registros de los roles que creó para las tareas con varias personas como propietarias (los roles se quedan en el servidor). Se conservan algunos registros a nivel de servidor: consulta [Conservación](/es/privacy/#conservación) en la Política de privacidad para ver la lista exacta y los datos almacenados con tu ID de usuario de Discord (tu zona horaria personal, tu canal de mensajes directos con el bot y si has aprendido la segunda fila), que quitar el bot no toca y que eliminamos si lo solicitas. También puedes eliminar tú mismo tu zona horaria personal, con **Quitar mi zona horaria** en `/my timezone` o en el engranaje de la Activity.
 
 ## Cómo ejercer tus derechos
 

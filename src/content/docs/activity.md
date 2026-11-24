@@ -79,7 +79,7 @@ No list enters the Activity, and the home hides **New list**. A list already in 
 
 ## Your settings
 
-The gear at the top right has two groups. Under **For you, everywhere**, **Time zone** is your time zone, the same as [/my timezone](/docs/my-timezone/): TTM proposes it in the channel and in every server too, and **Back to automatic** forgets it. Under **On this device**, **Text size**, **Theme** and **Spaced rows**, more room to tap on a phone, apply only to you, on that device.
+The gear at the top right has two groups. Under **For you, everywhere**, **Time zone** is your time zone, the same as [/my timezone](/docs/my-timezone/): TTM proposes it in the channel and in every server too, and **Remove my time zone** forgets it. Under **On this device**, **Text size**, **Theme** and **Spaced rows**, more room to tap on a phone, apply only to you, on that device.
 
 ## Where to go next
 

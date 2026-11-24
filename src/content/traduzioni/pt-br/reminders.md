@@ -1,7 +1,7 @@
 ---
 title: "Lembretes"
 description: "Associe um horário a uma tarefa para o TTM avisar o proprietário na hora certa: quem recebe, fusos horários, repetições."
-fonte: e9b5187d37f5
+fonte: fb523a41633c
 ---
 
 Um lembrete faz da tarefa algo que lembra *você*, em vez do contrário. Você o define uma vez, e o TTM cuida dos avisos. Você adiciona um com **Lembrete** <img class="inline-ic" src="/icons/alertW.png" alt="" />: no canal, na segunda linha embaixo da lista; na Activity, no painel de uma tarefa.
@@ -23,7 +23,7 @@ Nada chegou? O proprietário precisa aceitar mensagens diretas de membros desse 
 
 O TTM precisa de um nome oficial de fuso horário, como `Europe/Rome`. Procure o seu no **[mapa de fusos horários](https://timezones.bitsplitters.app)**: selecione a sua região no mapa, copie o valor e cole no campo. A Activity também permite pesquisar por cidade ou país.
 
-<div class="callout"><div class="callout-t">Escolha o seu fuso horário</div>Use <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> em qualquer servidor, ou a engrenagem na Activity, e o TTM propõe o <strong>seu</strong> fuso em todo lugar, no canal e na Activity. Até você escolher um, o TTM aprende: o fuso que você deixa em um lembrete passa a ser o seu. Com um fuso próprio, um fuso diferente em um lembrete vale só para aquela data. Os lembretes que você escreve no texto de uma lista usam o mesmo fuso.</div>
+<div class="callout"><div class="callout-t">Escolha o seu fuso horário</div>Use <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> em qualquer servidor, ou a engrenagem na Activity, e o TTM propõe o <strong>seu</strong> fuso em todo lugar, no canal e na Activity. Até você escolher um, o TTM propõe o fuso do idioma do seu Discord, do seu dispositivo ou do servidor, e a linha sob o campo diz qual. Um fuso diferente em um lembrete vale só para aquela data. Os lembretes que você escreve no texto de uma lista usam o mesmo fuso.</div>
 
 ## Como o lembrete chega
 

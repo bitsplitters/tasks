@@ -1,7 +1,7 @@
 ---
 title: "Trabajar con una lista en la Activity"
 description: "Las casillas, la primera fila, el panel de una tarea (Contenido, Propietario, Etiqueta, Recordatorio y Webhook) y quién está editando qué."
-fonte: b319d1ca5512
+fonte: 3445f59ab104
 ---
 
 Dentro de la Activity la lista es una página propia: una casilla delante de cada tarea, una fila de botones arriba y un panel para cada tarea. Las reglas son las del canal: propietarios, ajustes del servidor, límites del plan. Qué hace cada función: [Propietarios y etiquetas](/docs/owners-and-tags/), [Recordatorios](/docs/reminders/), [Webhooks](/docs/webhooks/), [Acciones sobre la lista](/docs/list-actions/).
@@ -75,8 +75,8 @@ Quítalas todas y **Guardar** elimina todas las etiquetas, igual que **Rojo**.
 
 Toca **Zona horaria** para elegirla: busca por ciudad, por país, por un nombre como `Europe/Rome` o por una diferencia como `+5:30`.
 
-- *Tus zonas horarias* enumera las que te importan: la de este dispositivo, la tuya o la última que usaste, la del servidor.
-- Una línea bajo el campo te dice si la zona es la tuya. Hasta que elijas una en **Ajustes**, la zona que dejes aquí pasa a ser la tuya: consulta [Tu zona horaria](/docs/reminders/#your-time-zone).
+- *Tus zonas horarias* enumera las que te importan: la de este dispositivo, la tuya, la del servidor.
+- Una línea bajo el campo te dice de dónde viene la zona: la tuya, la de este dispositivo o la del servidor, con **Ajustes** para elegir la tuya. Una zona distinta vale solo para esa fecha: consulta [Tu zona horaria](/docs/reminders/#your-time-zone).
 - *En este dispositivo* muestra el mismo momento en la hora de tu dispositivo, cuando la zona es distinta.
 
 Los tres menús de repetición aparecen en Premium, con el interruptor de los [recordatorios repetidos](/docs/reminders/#repeating-reminders) activado, o cuando el recordatorio ya se repite: consulta [Los campos de la repetición](/docs/reminders/#the-repetition-fields).

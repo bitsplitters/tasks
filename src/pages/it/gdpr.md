@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "GDPR e i tuoi diritti sui dati"
 description: "Come Team Tasks Manager si conforma al Regolamento generale sulla protezione dei dati dell'Unione europea."
 updated: "Ultimo aggiornamento: 24 novembre 2026"
-fonte: f96def244ac2
+fonte: 51b8abee8c2d
 ---
 
 Poiché **bitsplitters** opera nell'Unione europea, l'uso di **Team Tasks Manager** («TTM») è soggetto al **Regolamento generale sulla protezione dei dati (GDPR)**. Questa pagina spiega la base giuridica del trattamento e i diritti di cui disponi. Integra la nostra [Informativa sulla privacy](/it/privacy/), che elenca con esattezza quali dati trattiamo.
@@ -32,7 +32,7 @@ Ai sensi del GDPR hai il diritto di:
 - **Opposizione** — opporti al trattamento basato sul legittimo interesse.
 - **Revoca del consenso** — quando il trattamento si basa sul consenso, revocarlo in qualsiasi momento.
 
-Gran parte dei tuoi dati è inoltre direttamente sotto il tuo controllo all'interno di Discord: modificare o eliminare task, promemoria, webhook e configurazione li rimuove; **eliminare una lista** (il pulsante *Elimina lista* nel suo pannello *Altro* — *Delete list* e *More* con Discord in inglese —, oppure `/config lists`) rimuove quella lista con i suoi task, promemoria e cronologia; **sigillarla** (*Sigilla lista*, stesso pannello) fa lo stesso lasciando però il suo messaggio nel canale; e **rimuovere il bot da un server** elimina le liste, i task, i promemoria, i webhook e la cronologia che conserva, nonché i record dei ruoli che ha creato per i task che hanno più persone come proprietari (i ruoli restano nel server). Alcuni record a livello di server vengono conservati: vedi [Conservazione](/it/privacy/#conservazione) nell'Informativa sulla privacy per l'elenco esatto e per i dati memorizzati in associazione al tuo ID utente Discord (il tuo fuso orario personale, il tuo canale di messaggi diretti con il bot e se hai imparato la seconda riga), che la rimozione del bot non tocca e che eliminiamo su richiesta. Il fuso orario personale puoi cancellarlo anche da solo, con **Torna automatico** in `/my timezone` o nell'ingranaggio dell'Activity.
+Gran parte dei tuoi dati è inoltre direttamente sotto il tuo controllo all'interno di Discord: modificare o eliminare task, promemoria, webhook e configurazione li rimuove; **eliminare una lista** (il pulsante *Elimina lista* nel suo pannello *Altro* — *Delete list* e *More* con Discord in inglese —, oppure `/config lists`) rimuove quella lista con i suoi task, promemoria e cronologia; **sigillarla** (*Sigilla lista*, stesso pannello) fa lo stesso lasciando però il suo messaggio nel canale; e **rimuovere il bot da un server** elimina le liste, i task, i promemoria, i webhook e la cronologia che conserva, nonché i record dei ruoli che ha creato per i task che hanno più persone come proprietari (i ruoli restano nel server). Alcuni record a livello di server vengono conservati: vedi [Conservazione](/it/privacy/#conservazione) nell'Informativa sulla privacy per l'elenco esatto e per i dati memorizzati in associazione al tuo ID utente Discord (il tuo fuso orario personale, il tuo canale di messaggi diretti con il bot e se hai imparato la seconda riga), che la rimozione del bot non tocca e che eliminiamo su richiesta. Il fuso orario personale puoi cancellarlo anche da solo, con **Togli il mio fuso** in `/my timezone` o nell'ingranaggio dell'Activity.
 
 ## Come esercitare i tuoi diritti
 

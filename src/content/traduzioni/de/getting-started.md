@@ -1,7 +1,7 @@
 ---
 title: "Loslegen"
 description: "Lade den Bot ein, erstelle eine Liste, hake dann eine Aufgabe ab und stelle eine Erinnerung ein, im Kanal oder in der Activity."
-fonte: 65c887766b9d
+fonte: 80e3e27e599a
 ---
 
 Team Tasks Manager (TTM) lässt dein Team Aufgaben teilen und verwalten, **ohne Discord zu verlassen**. Diese Seite führt dich von null zu einer funktionierenden Liste: erstellen, eine Aufgabe abhaken, eine Erinnerung einstellen.
@@ -70,7 +70,7 @@ In der zweiten Reihe:
 2. Wähle eine Aufgabe, die **noch nicht abgehakt** ist. Ein Formular mit dem Titel *Erinnerung für Aufgabe …* öffnet sich, ausgefüllt mit zehn Minuten ab jetzt.
 3. Sende es so ab, wie es ist. Hat dein Server wiederkehrende Erinnerungen eingeschaltet, folgt eine Übersichtskarte: Drücke **Speichern**.
 
-Die Aufgabe zeigt die Uhrzeit, und die Erinnerung kommt einmal an. Solange du sie nicht änderst, ist die Zeitzone im letzten Feld die des Servers: Ändere sie, wenn deine eine andere ist.
+Die Aufgabe zeigt die Uhrzeit, und die Erinnerung kommt einmal an. Die Zeitzone im letzten Feld ist die deiner Discord-Sprache oder die des Servers: Ändere sie, wenn deine eine andere ist, und lege deine mit [/my timezone](/docs/my-timezone/) fest, damit sie dir immer vorgeschlagen wird.
 
 **Das Formular mit ✕ geschlossen?** Die Liste bleibt gesperrt: Öffne **Mehr** unter der Liste und drücke **Liste entsperren**. Siehe [Wenn die Liste gesperrt ist](/docs/the-task-list/#when-the-list-is-locked).
 

@@ -1,7 +1,7 @@
 ---
 title: "Notas de la versión"
 description: "Las novedades de Team Tasks Manager, de la más reciente a la más antigua."
-fonte: 77cbf888899e
+fonte: f88a9986fb9d
 ---
 
 Aquí está cada cambio que ves en Discord, del más reciente al más antiguo. Cada entrada enlaza a la página que lo explica.
@@ -10,8 +10,8 @@ Aquí está cada cambio que ves en Discord, del más reciente al más antiguo. C
 
 Released 2026-11-24
 
-- **Elige tu zona horaria una sola vez** — **/my timezone**, en cualquier servidor, muestra tu zona horaria y de dónde viene. **Elegir** fija la tuya, y TTM te la propone en todos los servidores, en el canal y en la Activity. **Volver a automática** vuelve a la propuesta. Consulta [/my timezone](/docs/my-timezone/).
-- **Una zona distinta se aplica solo a esa fecha** — si tienes una zona propia, la que dejes en un recordatorio ya no la sustituye. Bajo la zona horaria de **Cuándo**, una línea te dice si es la tuya o cómo elegirla. Consulta [/my timezone](/docs/my-timezone/).
+- **Elige tu zona horaria una sola vez** — **/my timezone**, en cualquier servidor, muestra tu zona horaria y de dónde viene. **Elegir** fija la tuya, y TTM te la propone en todos los servidores, en el canal y en la Activity. **Quitar mi zona horaria** vuelve a la propuesta. Consulta [/my timezone](/docs/my-timezone/).
+- **Una zona distinta se aplica solo a esa fecha** — la zona que dejes en un recordatorio ya no pasa a ser la tuya, y TTM olvida las que había aprendido así: te propone la tuya solo cuando la eliges. Bajo la zona horaria de **Cuándo**, una línea te dice de dónde viene la zona y cómo elegir la tuya. Consulta [/my timezone](/docs/my-timezone/).
 - **También en la Activity** — el engranaje muestra tu zona horaria en **Para ti, en todas partes**, igual que `/my timezone`. Bajo la zona horaria de un recordatorio, la línea enlaza a ella. Consulta [Tu configuración](/docs/activity/#your-settings).
 
 ## 2.5.0 — Nombres en vez de códigos

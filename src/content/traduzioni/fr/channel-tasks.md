@@ -1,7 +1,7 @@
 ---
 title: "Modifier une tâche dans le salon"
 description: "La deuxième rangée de boutons sous la liste — Contenu, Propriétaire, Tag, Rappel et Webhook — avec leurs formulaires et leurs menus."
-fonte: b7393a97a79d
+fonte: ba887a2603b7
 ---
 
 La deuxième rangée sous la liste agit sur **une seule tâche à la fois** : son texte, son propriétaire, ses tags, son rappel et son webhook. Cette page montre où cliquer. Ce que fait chaque fonctionnalité, et ses règles : [Propriétaires et tags](/docs/owners-and-tags/), [Rappels](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -118,7 +118,7 @@ Clique sur **Rappel** <img class="inline-ic" src="/icons/alertW.png" alt="" /> j
 | **Mois** | un menu déroulant, dans ta langue | pas d'ambiguïté `jj/mm` à craindre |
 | **Année** | un nombre | prérempli |
 | **Heure** | `HH:mm`, format 24 heures | p. ex. `15:30` |
-| **Fuseau horaire** | un nom de fuseau officiel | prérempli avec *ton* fuseau (tant que tu ne le changes pas, celui de ta langue Discord, ou celui du serveur) |
+| **Fuseau horaire** | un nom de fuseau officiel | prérempli avec *ton* fuseau (tant que tu n'en as pas choisi un avec `/my timezone`, celui de ta langue Discord, ou celui du serveur) |
 
 Tout arrive prérempli avec **dix minutes à partir de maintenant**. Envoie-le, et la tâche affiche l'heure programmée. Tant que le formulaire est ouvert, la liste est verrouillée pour les autres. Qui reçoit le rappel, et le fuseau horaire : voir [Rappels](/docs/reminders/#the-rules).
 

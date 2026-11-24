@@ -1,7 +1,7 @@
 ---
 title: "Versionshinweise"
 description: "Was es Neues in Team Tasks Manager gibt, das Neueste zuerst."
-fonte: 77cbf888899e
+fonte: f88a9986fb9d
 ---
 
 Jede Änderung, die du in Discord siehst, steht hier, das Neueste zuerst. Jeder Eintrag verlinkt auf die Seite, die ihn erklärt.
@@ -10,8 +10,8 @@ Jede Änderung, die du in Discord siehst, steht hier, das Neueste zuerst. Jeder 
 
 Released 2026-11-24
 
-- **Wähle deine Zeitzone einmal** — **/my timezone** zeigt dir auf jedem Server deine Zeitzone und woher sie kommt. Mit **Wählen** legst du deine fest, und TTM schlägt sie dir auf jedem Server vor, im Kanal und in der Activity. Mit **Zurück zu automatisch** gehst du zur vorgeschlagenen zurück. Siehe [/my timezone](/docs/my-timezone/).
-- **Eine andere Zone gilt nur für dieses Datum** — hast du eine eigene Zeitzone, ersetzt die Zone, die du in einer Erinnerung angibst, sie nicht mehr. Unter der Zeitzone von **Wann** sagt dir eine Zeile, ob es deine ist oder wie du sie wählst. Siehe [/my timezone](/docs/my-timezone/).
+- **Wähle deine Zeitzone einmal** — **/my timezone** zeigt dir auf jedem Server deine Zeitzone und woher sie kommt. Mit **Wählen** legst du deine fest, und TTM schlägt sie dir auf jedem Server vor, im Kanal und in der Activity. Mit **Meine Zeitzone entfernen** gehst du zur vorgeschlagenen zurück. Siehe [/my timezone](/docs/my-timezone/).
+- **Eine andere Zone gilt nur für dieses Datum** — die Zone, die du in einer Erinnerung angibst, wird nicht mehr deine, und die Zonen, die TTM so gelernt hatte, sind vergessen: TTM schlägt dir deine erst vor, wenn du sie wählst. Unter der Zeitzone von **Wann** sagt dir eine Zeile, woher die Zone kommt und wie du deine wählst. Siehe [/my timezone](/docs/my-timezone/).
 - **Auch in der Activity** — das Zahnrad zeigt deine Zeitzone unter **Für dich, überall**, genau wie `/my timezone`. Unter der Zeitzone einer Erinnerung verlinkt die Zeile darauf. Siehe [Deine Einstellungen](/docs/activity/#your-settings).
 
 ## 2.5.0 — Namen statt Codes

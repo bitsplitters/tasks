@@ -1,7 +1,7 @@
 ---
 title: "/my timezone"
 description: "Ton fuseau horaire, choisi une fois : TTM te le propose chaque fois que tu choisis une date, sur tous les serveurs, dans le salon et dans l'Activity."
-fonte: ec7d9b989675
+fonte: 95eefd9352af
 ---
 
 Chaque fois que tu choisis une date pour un rappel, TTM te propose un fuseau horaire. Avec `/my timezone`, tu choisis **le tien** une seule fois, et TTM te le propose sur tous les serveurs, dans le salon et dans l'Activity.
@@ -13,7 +13,6 @@ Ainsi, chacun dans l'équipe raisonne dans son heure locale. La commande fonctio
 `/my timezone` affiche ton fuseau actuel et d'où il vient :
 
 - **choisi par toi**, avec **Choisir** ;
-- **le dernier que tu as laissé dans un rappel** ;
 - **ta langue Discord**, comme `Europe/Rome` pour l'italien ;
 - **le serveur**, quand ta langue est parlée dans plusieurs fuseaux, comme l'anglais (US).
 
@@ -25,13 +24,13 @@ Pour le trouver, ouvre la **[carte des fuseaux horaires](https://timezones.bitsp
 
 À partir de là, TTM te propose ton fuseau chaque fois que tu choisis une date. Un autre fuseau dans un rappel ne vaut que pour cette date : le tien reste.
 
-**Revenir en automatique** oublie ton choix, et TTM apprend de nouveau ton fuseau à partir de tes rappels.
+**Retirer mon fuseau** oublie ton choix, et TTM propose de nouveau le fuseau qu'il utilise [tant que tu n'as pas choisi](#until-you-choose).
 
 ## Tant que tu n'as pas choisi
 
-TTM apprend ton fuseau tout seul. Le fuseau que tu laisses dans un rappel devient le tien, et la ligne sous le champ te le dit.
+TTM ne change pas ton fuseau tout seul : un autre fuseau dans un rappel ne vaut que pour cette date.
 
-Avant ton premier rappel, le salon propose le fuseau de ta langue Discord, et l'Activity celui de ton appareil. Une langue parlée dans plusieurs fuseaux prend le fuseau du serveur : voir [Fuseau horaire](/docs/configuration/#time-zone) dans `/config app`.
+Le salon propose le fuseau de ta langue Discord, et l'Activity celui de ton appareil. Une langue parlée dans plusieurs fuseaux prend le fuseau du serveur : voir [Fuseau horaire](/docs/configuration/#time-zone) dans `/config app`. La ligne sous le champ te dit d'où vient le fuseau et comment définir le tien.
 
 ## Dans l'Activity
 

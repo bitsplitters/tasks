@@ -333,7 +333,7 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
    * altrimenti la riapertura con la data scelta.
    */
   function nuovaData(pulsante: HTMLElement): void {
-    apri(modaleDellaNuovaData(campiDellaNuovaData(stato())), (valori) => {
+    apri(modaleDellaNuovaData(campiDellaNuovaData()), (valori) => {
       const scritti = campiDalPromemoria(valori);
       const valido = validaNuovaData(scritti);
       if ('errori' in valido) rispondi(testoDegliErrori(valido.errori), pulsante);

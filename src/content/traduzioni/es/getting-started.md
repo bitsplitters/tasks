@@ -1,7 +1,7 @@
 ---
 title: "Primeros pasos"
 description: "Invita al bot, crea una lista, marca una tarea y pon un recordatorio, en el canal o en la Activity."
-fonte: 65c887766b9d
+fonte: 80e3e27e599a
 ---
 
 Team Tasks Manager (TTM) permite que tu equipo comparta y gestione tareas **sin salir de Discord**. Esta página te lleva de cero a una lista funcionando: crearla, marcar una tarea, poner un recordatorio.
@@ -70,7 +70,7 @@ En la segunda fila:
 2. Elige una tarea que **aún no esté marcada**. Se abre un formulario titulado *Recordatorio para la tarea …*, rellenado con diez minutos a partir de ahora.
 3. Envíalo tal cual. Si tu servidor ha activado los recordatorios recurrentes, sigue una tarjeta resumen: pulsa **Guardar**.
 
-La tarea muestra la hora, y el recordatorio llega una vez. Hasta que lo cambies, la zona horaria del último campo es la del servidor: cámbiala si la tuya es distinta.
+La tarea muestra la hora, y el recordatorio llega una vez. La zona horaria del último campo es la de tu idioma de Discord, o la del servidor: cámbiala si la tuya es distinta, y fíjala con [/my timezone](/docs/my-timezone/) para que se te proponga siempre.
 
 **¿Cerraste el formulario con ✕?** La lista se queda bloqueada: abre **Más** bajo la lista y pulsa **Desbloquear lista**. Consulta [Cuando la lista está bloqueada](/docs/the-task-list/#when-the-list-is-locked).
 

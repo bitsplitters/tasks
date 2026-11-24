@@ -141,7 +141,6 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'activity.zone.search': 'Città, paese, Europe/Rome o +5:30',
   'activity.zone.yours': 'I tuoi fusi',
   'activity.zone.reason.device': 'questo dispositivo',
-  'activity.zone.reason.learned': 'l\'ultimo usato',
   'activity.zone.reason.server': 'il server',
   'activity.zone.none': 'Nessun fuso corrisponde a «{0}»',
   'activity.webhook.trigger.completion': 'al completamento',

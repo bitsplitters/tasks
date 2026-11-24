@@ -1,7 +1,7 @@
 ---
 title: "Rappels"
 description: "Associe un horaire à une tâche pour que TTM prévienne son propriétaire à temps : qui le reçoit, les fuseaux horaires, les répétitions."
-fonte: e9b5187d37f5
+fonte: fb523a41633c
 ---
 
 Un rappel fait d'une tâche quelque chose qui te rappelle *à toi*, et non l'inverse. Tu le définis une fois, et TTM s'occupe des alertes. Tu en ajoutes un avec **Rappel** <img class="inline-ic" src="/icons/alertW.png" alt="" /> : dans le salon, dans la deuxième rangée sous la liste ; dans l'Activity, dans le panneau d'une tâche.
@@ -23,7 +23,7 @@ Rien n'est arrivé ? Le propriétaire doit accepter les messages privés des me
 
 TTM a besoin d'un nom de fuseau horaire officiel comme `Europe/Paris`. Cherche le tien sur la **[carte des fuseaux horaires](https://timezones.bitsplitters.app)** : sélectionne ta région sur la carte, copie la valeur et colle-la dans le champ. L'Activity te permet aussi de chercher par ville ou par pays.
 
-<div class="callout"><div class="callout-t">Choisis ton fuseau horaire</div>Utilise <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> sur n'importe quel serveur, ou l'engrenage dans l'Activity, et TTM te propose <strong>ton</strong> fuseau partout, dans le salon et dans l'Activity. Tant que tu n'en as pas choisi un, TTM l'apprend : le fuseau que tu laisses dans un rappel devient le tien. Avec un fuseau à toi, un autre fuseau dans un rappel ne vaut que pour cette date. Les rappels que tu écris dans le texte d'une liste utilisent le même fuseau.</div>
+<div class="callout"><div class="callout-t">Choisis ton fuseau horaire</div>Utilise <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> sur n'importe quel serveur, ou l'engrenage dans l'Activity, et TTM te propose <strong>ton</strong> fuseau partout, dans le salon et dans l'Activity. Tant que tu n'en as pas choisi un, TTM propose le fuseau de ta langue Discord, de ton appareil ou du serveur, et la ligne sous le champ te dit lequel. Un autre fuseau dans un rappel ne vaut que pour cette date. Les rappels que tu écris dans le texte d'une liste utilisent le même fuseau.</div>
 
 ## Comment arrive le rappel
 

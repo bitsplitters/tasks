@@ -3,7 +3,7 @@ layout: ../../layouts/Legal.astro
 title: "GDPR e seus direitos sobre os dados"
 description: "Como o Team Tasks Manager cumpre o Regulamento Geral sobre a Proteção de Dados da União Europeia."
 updated: "Última atualização: 24 de novembro de 2026"
-fonte: f96def244ac2
+fonte: 51b8abee8c2d
 ---
 
 Como a **bitsplitters** opera na União Europeia, o uso do **Team Tasks Manager** (“TTM”) está sujeito ao **Regulamento Geral sobre a Proteção de Dados (GDPR)**. Esta página explica a base legal do tratamento e os direitos que você tem. Ela complementa a nossa [Política de Privacidade](/pt-br/privacy/), que lista exatamente quais dados tratamos.
@@ -32,7 +32,7 @@ Pelo GDPR, você tem o direito de:
 - **Oposição** — opor-se ao tratamento baseado em interesse legítimo.
 - **Retirar o consentimento** — quando o tratamento se baseia em consentimento, retirá-lo a qualquer momento.
 
-Boa parte dos seus dados também está diretamente sob o seu controle dentro do Discord: editar ou excluir tarefas, lembretes, webhooks e configuração os remove; **excluir uma lista** (o botão *Excluir lista* no painel *Mais* dela, ou `/config lists`) remove essa lista com suas tarefas, lembretes e histórico; **selá-la** (*Selar lista*, no mesmo painel) faz o mesmo, mas deixa a mensagem dela no canal; e **remover o bot de um servidor** exclui as listas, tarefas, lembretes, webhooks e histórico que ele guarda, e os registros dos cargos que criou para tarefas com vários proprietários (os cargos ficam no servidor). Alguns registros no nível do servidor são mantidos: veja [Retenção](/pt-br/privacy/#retenção) na Política de Privacidade para a lista exata e para os dados armazenados junto ao seu ID de usuário do Discord (seu fuso horário pessoal, seu canal de mensagens diretas com o bot e se você aprendeu a segunda linha), que a remoção do bot não toca e que excluímos a pedido. O fuso horário pessoal você também pode excluir sozinho, com **Voltar ao automático** em `/my timezone` ou na engrenagem da Activity.
+Boa parte dos seus dados também está diretamente sob o seu controle dentro do Discord: editar ou excluir tarefas, lembretes, webhooks e configuração os remove; **excluir uma lista** (o botão *Excluir lista* no painel *Mais* dela, ou `/config lists`) remove essa lista com suas tarefas, lembretes e histórico; **selá-la** (*Selar lista*, no mesmo painel) faz o mesmo, mas deixa a mensagem dela no canal; e **remover o bot de um servidor** exclui as listas, tarefas, lembretes, webhooks e histórico que ele guarda, e os registros dos cargos que criou para tarefas com vários proprietários (os cargos ficam no servidor). Alguns registros no nível do servidor são mantidos: veja [Retenção](/pt-br/privacy/#retenção) na Política de Privacidade para a lista exata e para os dados armazenados junto ao seu ID de usuário do Discord (seu fuso horário pessoal, seu canal de mensagens diretas com o bot e se você aprendeu a segunda linha), que a remoção do bot não toca e que excluímos a pedido. O fuso horário pessoal você também pode excluir sozinho, com **Remover meu fuso** em `/my timezone` ou na engrenagem da Activity.
 
 ## Como exercer seus direitos
 

@@ -1,7 +1,7 @@
 ---
 title: /my timezone
 description: "Il tuo fuso orario, scelto una volta sola: TTM te lo propone ogni volta che scegli una data, in ogni server, nel canale e nell'Activity."
-fonte: ec7d9b989675
+fonte: 95eefd9352af
 ---
 
 Ogni volta che scegli una data per un promemoria, TTM ti propone un fuso orario. Con `/my timezone` scegli il **tuo** una volta sola e TTM te lo propone in ogni server, nel canale e nell'Activity.
@@ -13,7 +13,6 @@ Così ognuno nel team ragiona nel proprio orario locale. Il comando funziona sol
 `/my timezone` mostra il tuo fuso attuale e da dove viene:
 
 - **scelto da te**, con **Scegli**;
-- **l'ultimo che hai lasciato in un promemoria**;
 - **la lingua del tuo Discord**, come `Europe/Rome` per l'italiano;
 - **il server**, quando la tua lingua è parlata in più fusi, come l'inglese (US).
 
@@ -25,13 +24,13 @@ Per trovarlo, apri la **[mappa dei fusi orari](https://timezones.bitsplitters.ap
 
 Da quel momento TTM ti propone il tuo fuso ogni volta che scegli una data. Un fuso diverso in un promemoria vale solo per quella data: il tuo resta.
 
-**Torna automatico** dimentica la tua scelta e TTM impara di nuovo il tuo fuso dai tuoi promemoria.
+**Togli il mio fuso** dimentica la tua scelta: TTM torna a proporre il fuso che usa [finché non scegli](#until-you-choose).
 
 ## Finché non scegli
 
-TTM impara il tuo fuso da solo. Il fuso che lasci in un promemoria diventa il tuo e la riga sotto il campo te lo dice.
+TTM non cambia il tuo fuso da solo: un fuso diverso in un promemoria vale solo per quella data.
 
-Prima del tuo primo promemoria, il canale propone il fuso della lingua del tuo Discord e l'Activity quello del tuo dispositivo. Una lingua parlata in più fusi prende il fuso del server: vedi [Fuso orario](/docs/configuration/#time-zone) in `/config app`.
+Il canale propone il fuso della lingua del tuo Discord e l'Activity quello del tuo dispositivo. Una lingua parlata in più fusi prende il fuso del server: vedi [Fuso orario](/docs/configuration/#time-zone) in `/config app`. La riga sotto il campo ti dice da dove viene il fuso e come impostare il tuo.
 
 ## Nell'Activity
 

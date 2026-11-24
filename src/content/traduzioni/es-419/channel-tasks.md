@@ -1,7 +1,7 @@
 ---
 title: "Editar una tarea en el canal"
 description: "La segunda fila de botones bajo la lista — Contenido, Propietario, Etiqueta, Recordatorio y Webhook — con sus formularios y menús."
-fonte: b7393a97a79d
+fonte: ba887a2603b7
 ---
 
 La segunda fila bajo la lista actúa sobre **una tarea a la vez**: su texto, su propietario, sus etiquetas, su recordatorio y su webhook. Esta página muestra dónde hacer clic. Qué hace cada función y sus reglas: [Propietarios y etiquetas](/docs/owners-and-tags/), [Recordatorios](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -118,7 +118,7 @@ Haz clic en **Recordatorio** <img class="inline-ic" src="/icons/alertW.png" alt=
 | **Mes** | un desplegable, en tu idioma | sin ambigüedad `dd/mm` de la que preocuparse |
 | **Año** | un número | rellenado |
 | **Hora** | `HH:mm`, 24 horas | p. ej. `15:30` |
-| **Zona horaria** | un nombre de zona oficial | rellenada con *tu* zona (hasta que la cambies, la de tu idioma de Discord, o la del servidor) |
+| **Zona horaria** | un nombre de zona oficial | rellenada con *tu* zona (hasta que elijas una con `/my timezone`, la de tu idioma de Discord, o la del servidor) |
 
 Todo llega rellenado con **diez minutos a partir de ahora**. Envíalo, y la tarea muestra la hora programada. Mientras el formulario está abierto, la lista queda bloqueada para los demás. Quién recibe el recordatorio y la zona horaria: consulta [Recordatorios](/docs/reminders/#the-rules).
 

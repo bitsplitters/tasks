@@ -11,7 +11,7 @@ import { MAX_VALUE_LENGTH, TITOLO_MAX } from './componenti.ts';
 import type { Condiviso } from './condiviso.ts';
 import { escape, markdown } from './markdown.ts';
 import { coiNomi, legendaDeiNomi, rubricaDi } from './nomi.ts';
-import { ADESSO, NELL_ACTIVITY, PROPOSTO, SAM, fusoDi } from './modello.ts';
+import { ADESSO, NELL_ACTIVITY, PROPOSTO, SAM, ZONA } from './modello.ts';
 import type { Stato } from './modello.ts';
 import { istanteDi, quandoDa, troppoVicina } from './quando.ts';
 import type { Quando } from './quando.ts';
@@ -23,7 +23,6 @@ import { nuovoNumero, riquadroAvviso } from './ui/comune.ts';
 import { apriDialogo, inAttesa } from './ui/dialogo.ts';
 import type { Dialogo, Pulsante } from './ui/dialogo.ts';
 import { montaQuando } from './ui/quando.ts';
-import { stessaZona } from './zone.ts';
 
 /** Le pagine della guida (GuideDialog, PAGES). */
 export const PAGINE = 5;
@@ -139,8 +138,8 @@ export function htmlDelPiedeDellaGuida(pagina: number): string {
 }
 
 /** New date parte da adesso più dieci minuti, al minuto, nel fuso che la pagina propone (newWhen). */
-export function nuovaDataProposta(stato: Stato): Quando {
-  return quandoDa(PROPOSTO, fusoDi(stato));
+export function nuovaDataProposta(): Quando {
+  return quandoDa(PROPOSTO, ZONA);
 }
 
 /** La data di New date a meno di 5 minuti da adesso, anche passata: l'avviso sopra i campi (tooSoon). */
@@ -156,13 +155,12 @@ export function riaperturaPronta(q: Quando | null): boolean {
 
 /**
  * Reopen nell'Activity (ApiBot.reopen): tutti i task da fare, la lista resta nella sessione. Con i campi di New date i
- * promemoria dei riaperti si spostano; il fuso diventa quello di chi guarda solo se l'ha cambiato con uno che la
- * pagina non proponeva (learn).
+ * promemoria dei riaperti si spostano, nel fuso della data.
  */
 export function riapriNellActivity(stato: Stato, q: Quando | null): Stato {
   const at = q === null ? null : istanteDi(q);
   if (q === null || at === null) return conTuttiRiaperti(stato);
-  return conTuttiRiaperti(stato, { at, zona: q.zona }, q.toccata && !stessaZona(q.zona, fusoDi(stato)));
+  return conTuttiRiaperti(stato, { at, zona: q.zona });
 }
 
 /* I dialoghi nella finestra. */
@@ -327,7 +325,7 @@ export function montaPrimaRiga(scena: HTMLElement, condiviso: Condiviso,
      */
     let spostando = false;
     let scegliendo = false;
-    let q = nuovaDataProposta(stato);
+    let q = nuovaDataProposta();
     let campi: { smonta(): void } | null = null;
     const contesto = contestoDellActivity(stato);
 
@@ -357,7 +355,7 @@ export function montaPrimaRiga(scena: HTMLElement, condiviso: Condiviso,
       if (quando) {
         quando.replaceChildren();
         if (si) {
-          campi = montaQuando(quando, q, 'r', stato.fuso, {
+          campi = montaQuando(quando, q, 'r', {
             cambio: (nuovo) => {
               q = nuovo;
               scegliendo = false;

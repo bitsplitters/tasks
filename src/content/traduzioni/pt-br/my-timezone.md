@@ -1,7 +1,7 @@
 ---
 title: "/my timezone"
 description: "Seu fuso horário, escolhido uma vez: o TTM o propõe sempre que você escolhe uma data, em todos os servidores, no canal e na Activity."
-fonte: ec7d9b989675
+fonte: 95eefd9352af
 ---
 
 Toda vez que você escolhe uma data para um lembrete, o TTM propõe um fuso horário. Com `/my timezone` você escolhe o **seu** uma vez só, e o TTM o propõe em todos os servidores, no canal e na Activity.
@@ -13,7 +13,6 @@ Assim, cada pessoa da equipe pensa no próprio horário local. O comando funcion
 `/my timezone` mostra o seu fuso atual e de onde ele vem:
 
 - **escolhido por você**, com **Escolher**;
-- **o último que você deixou em um lembrete**;
 - **o idioma do seu Discord**, como `Europe/Rome` para o italiano;
 - **o servidor**, quando o seu idioma é falado em vários fusos, como o inglês (EUA).
 
@@ -25,13 +24,13 @@ Para encontrá-lo, abra o **[mapa de fusos horários](https://timezones.bitsplit
 
 A partir daí o TTM propõe o seu fuso sempre que você escolhe uma data. Um fuso diferente em um lembrete vale só para essa data: o seu continua.
 
-**Voltar ao automático** esquece a sua escolha, e o TTM volta a aprender o seu fuso pelos seus lembretes.
+**Remover meu fuso** esquece a sua escolha, e o TTM volta a propor o fuso que usa [até você escolher](#until-you-choose).
 
 ## Até você escolher
 
-O TTM aprende o seu fuso sozinho. O fuso que você deixa em um lembrete passa a ser o seu, e a linha sob o campo avisa isso.
+O TTM não muda o seu fuso sozinho: um fuso diferente em um lembrete vale só para essa data.
 
-Antes do seu primeiro lembrete, o canal propõe o fuso do idioma do seu Discord, e a Activity o fuso do seu dispositivo. Um idioma falado em vários fusos recebe o fuso do servidor: veja [Fuso horário](/docs/configuration/#time-zone) em `/config app`.
+O canal propõe o fuso do idioma do seu Discord, e a Activity o fuso do seu dispositivo. Um idioma falado em vários fusos recebe o fuso do servidor: veja [Fuso horário](/docs/configuration/#time-zone) em `/config app`. A linha sob o campo diz de onde vem o fuso e como definir o seu.
 
 ## Na Activity
 

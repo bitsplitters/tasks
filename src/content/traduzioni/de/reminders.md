@@ -1,7 +1,7 @@
 ---
 title: "Erinnerungen"
 description: "Hänge einer Aufgabe einen Zeitplan an, damit TTM ihren Besitzer rechtzeitig erinnert: wer sie bekommt, Zeitzonen, Wiederholungen."
-fonte: e9b5187d37f5
+fonte: fb523a41633c
 ---
 
 Eine Erinnerung macht aus einer Aufgabe etwas, das *dich* erinnert, statt umgekehrt. Du setzt sie einmal, und TTM kümmert sich um die Pings. Du fügst eine mit **Erinnerung** <img class="inline-ic" src="/icons/alertW.png" alt="" /> hinzu: im Kanal in der zweiten Reihe unter der Liste, in der Activity im Panel einer Aufgabe.
@@ -23,7 +23,7 @@ Ist nichts angekommen? Der Besitzer muss Direktnachrichten von Mitgliedern diese
 
 TTM braucht den offiziellen Namen einer Zeitzone wie `Europe/Rome`. Den Namen deiner Zone findest du auf der **[Zeitzonenkarte](https://timezones.bitsplitters.app)**: Wähle dein Gebiet auf der Karte, kopiere den Wert und füge ihn ins Feld ein. In der Activity kannst du auch nach Stadt oder Land suchen.
 
-<div class="callout"><div class="callout-t">Wähle deine Zeitzone</div>Nutze <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> auf einem beliebigen Server oder das Zahnrad in der Activity, und TTM schlägt dir überall <strong>deine</strong> Zone vor, im Kanal und in der Activity. Bis du eine wählst, lernt TTM sie: Die Zone, die du in einer Erinnerung lässt, wird deine. Mit einer eigenen Zone gilt eine andere Zone in einer Erinnerung nur für dieses Datum. Erinnerungen, die du im Text einer Liste schreibst, nutzen dieselbe Zone.</div>
+<div class="callout"><div class="callout-t">Wähle deine Zeitzone</div>Nutze <a href="/docs/my-timezone/"><strong>/my timezone</strong></a> auf einem beliebigen Server oder das Zahnrad in der Activity, und TTM schlägt dir überall <strong>deine</strong> Zone vor, im Kanal und in der Activity. Bis du eine wählst, schlägt TTM die Zone deiner Discord-Sprache, deines Geräts oder des Servers vor, und die Zeile unter dem Feld sagt dir, welche. Eine andere Zone in einer Erinnerung gilt nur für dieses Datum. Erinnerungen, die du im Text einer Liste schreibst, nutzen dieselbe Zone.</div>
 
 ## Wie die Erinnerung ankommt
 
