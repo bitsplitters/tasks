@@ -1,7 +1,7 @@
 ---
 title: Modificare una lista a mano
 description: Modifica una lista scrivendo il suo testo, per cambiare molte cose insieme o incollare una lista da un'altra parte. Per tutto il resto usa i pulsanti, che sono più semplici e non fanno sbagliare.
-fonte: 7218c363e178
+fonte: 59a51484e014
 ---
 
 Questa pagina è per quando preferisci cambiare tu il testo di una lista, in **Aggiornamento in blocco** nel canale o in **Modifica la lista** nell'Activity.
@@ -116,6 +116,7 @@ Il pulsante **Proprietario** imposta il proprietario di un task per te: vedi [Pr
 
 - **Un ruolo** funziona allo stesso modo: `@Moderatori:`. Anche un codice: `<@123456789012345678>:`.
 - **Senza i due punti** la stessa menzione è solo un tag, non un proprietario.
+- **Nel resto del task** un nome seguito dai due punti resta testo semplice: in `chiedi a @Ava: le chiavi` nessuno viene menzionato. Per menzionare Ava lì, lascia uno spazio prima dei due punti: `@Ava :`.
 - **Il nome del proprietario** va dalla `@` ai due punti, quindi `@Ava Rossi:` è un errore anche quando TTM conosce Ava.
 - **Un nome che TTM non conosce** è un errore al posto del proprietario. TTM non salva nulla e il messaggio dice di scegliere il proprietario con il pulsante **Proprietario** o di scrivere il suo codice.
 - **Per iniziare un task con `@parola:` come testo semplice**, vedi [Scrivere @ senza una menzione](#writing--without-a-mention). La form Contenuto non ha un proprietario, quindi lì `@parola:` resta testo semplice.

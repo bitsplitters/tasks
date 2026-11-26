@@ -117,6 +117,7 @@ The **Owner** button sets a task's owner for you: see [Owner](/docs/owners-and-t
 
 - **A role** works the same way: `@Moderators:`. So does a code: `<@123456789012345678>:`.
 - **Without the colon**, the same mention is just a tag, not an owner.
+- **Elsewhere in the task**, a name followed by a colon stays plain text: in `ask @Ava: the keys` nobody is mentioned. To mention Ava there, leave a space before the colon: `@Ava :`.
 - **The owner's name** runs from the `@` to the colon, so `@Ava Rossi:` is an error even when TTM knows Ava.
 - **A name TTM doesn't know** is an error in the owner's place. TTM saves nothing, and the message says to pick the owner with the **Owner** button or write their code.
 - **To start a task with `@word:` as plain text**, see [Writing @ without a mention](#writing--without-a-mention). The Content form has no owner, so there `@word:` stays plain text.

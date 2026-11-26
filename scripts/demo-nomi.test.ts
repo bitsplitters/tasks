@@ -65,8 +65,18 @@ test("nel contenuto di un task solo `@nome:` in testa è testo: lì l'owner non 
   assert.deepEqual(coiCodici('@Leo Rossi: ask', R, CON_LEO, 'contenuto'),
     { testo: `<@${LEO}> Rossi: ask`, owner: null });
   assert.equal(coiNomi('@Bea: ask', R), '@Bea: ask');
-  for (const salvato of ['@Bea: as text at the head', `<@${LEO}>: ask`, String.raw`\@Bea: with its bar`])
+  for (const salvato of ['@Bea: as text at the head', String.raw`\@Bea: with its bar`])
     assert.equal(coiCodici(coiNomi(salvato, R), R, salvato, 'contenuto').testo, salvato, salvato);
+  // Un nome noto seguito dai due punti resta testo anche qui (L4-2): il codice salvato torna parola.
+  assert.equal(coiCodici(coiNomi(`<@${LEO}>: ask`, R), R, `<@${LEO}>: ask`, 'contenuto').testo, '@Leo: ask');
+});
+
+test("fuori dalla testa un nome noto seguito dai due punti resta testo: salvato come codice sarebbe un owner", () => {
+  // Revisione generale, L4-2 (scelta dell'utente del 2026-11-26), come NomiNellaModale. Con lo spazio prima dei due
+  // punti è la menzione; i canali non cambiano.
+  assert.deepEqual(coiCodici('@Leo: ask @Leo: now', R, CON_LEO), { testo: `<@${LEO}>: ask @Leo: now`, owner: null });
+  assert.equal(coiCodici('ask @Leo : now', R, CON_LEO).testo, `ask <@${LEO}> : now`);
+  assert.equal(coiCodici('see #scrims: now', R, CON_LEO).testo, `see <#${SCRIMS}>: now`);
 });
 
 test('la lettura salta codici, link, backtick e token: lì una `@` non è un nome', () => {

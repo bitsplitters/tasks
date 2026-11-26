@@ -1,7 +1,7 @@
 ---
 title: "Modifier une liste à la main"
 description: "Modifie une liste en écrivant son texte, pour changer beaucoup de choses d'un coup ou coller une liste venue d'ailleurs. Pour tout le reste, utilise les boutons, plus simples et qui t'évitent les erreurs."
-fonte: 7218c363e178
+fonte: 59a51484e014
 ---
 
 Cette page est pour quand tu préfères modifier toi-même le texte d'une liste, dans **Mise à jour groupée** dans le salon ou dans **Modifier la liste** dans l'Activity.
@@ -116,6 +116,7 @@ Le bouton **Propriétaire** définit le propriétaire d'une tâche pour toi : v
 
 - **Un rôle** fonctionne de la même façon : `@Modérateurs:`. Un code aussi : `<@123456789012345678>:`.
 - **Sans les deux-points**, la même mention n'est qu'un tag, pas un propriétaire.
+- **Dans le reste de la tâche**, un nom suivi des deux-points reste du texte simple : dans `demander à @Ava: les clés`, personne n'est mentionné. Pour mentionner Ava à cet endroit, laisse une espace avant les deux-points : `@Ava :`.
 - **Le nom du propriétaire** va du `@` aux deux-points, donc `@Ava Rossi:` est une erreur même quand TTM connaît Ava.
 - **Un nom que TTM ne connaît pas** est une erreur à la place du propriétaire. TTM n'enregistre rien, et le message dit de choisir le propriétaire avec le bouton **Propriétaire** ou d'écrire son code.
 - **Pour commencer une tâche par `@mot:` en texte simple**, voir [Écrire @ sans mention](#writing--without-a-mention). Le formulaire Contenu n'a pas de propriétaire, donc là `@mot:` reste du texte simple.

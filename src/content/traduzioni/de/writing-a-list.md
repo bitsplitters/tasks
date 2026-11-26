@@ -1,7 +1,7 @@
 ---
 title: "Eine Liste von Hand bearbeiten"
 description: "Bearbeite eine Liste, indem du ihren Text schreibst, um viele Dinge auf einmal zu ändern oder eine Liste von anderswo einzufügen. Für alles andere nimm die Buttons: Sie sind einfacher und bewahren dich vor Fehlern."
-fonte: 7218c363e178
+fonte: 59a51484e014
 ---
 
 Diese Seite ist für den Fall, dass du den Text einer Liste lieber selbst änderst, in **Sammelbearbeitung** im Kanal oder in **Liste bearbeiten** in der Activity.
@@ -116,6 +116,7 @@ Der Button **Besitzer** legt den Besitzer einer Aufgabe für dich fest: Siehe [B
 
 - **Eine Rolle** funktioniert genauso: `@Moderatoren:`. Ein Code auch: `<@123456789012345678>:`.
 - **Ohne den Doppelpunkt** ist dieselbe Erwähnung nur ein Tag, kein Besitzer.
+- **Im Rest der Aufgabe** bleibt ein Name mit Doppelpunkt einfacher Text: In `frag @Ava: die Schlüssel` wird niemand erwähnt. Um Ava dort zu erwähnen, lass vor dem Doppelpunkt ein Leerzeichen: `@Ava :`.
 - **Der Name des Besitzers** reicht vom `@` bis zum Doppelpunkt, also ist `@Ava Rossi:` ein Fehler, auch wenn TTM Ava kennt.
 - **Ein Name, den TTM nicht kennt**, ist an der Stelle des Besitzers ein Fehler. TTM speichert nichts, und die Nachricht sagt, du sollst den Besitzer mit dem Button **Besitzer** wählen oder seinen Code schreiben.
 - **Um eine Aufgabe mit `@Wort:` als einfachem Text zu beginnen**, siehe [@ ohne Erwähnung schreiben](#writing--without-a-mention). Das Formular **Inhalt** hat keinen Besitzer, also bleibt dort `@Wort:` einfacher Text.

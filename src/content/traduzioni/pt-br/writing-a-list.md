@@ -1,7 +1,7 @@
 ---
 title: "Editando uma lista à mão"
 description: "Edite uma lista escrevendo o texto dela, para mudar muitas coisas de uma vez ou colar uma lista de outro lugar. Para todo o resto, use os botões, que são mais simples e evitam erros."
-fonte: 7218c363e178
+fonte: 59a51484e014
 ---
 
 Esta página é para quando você prefere mudar o texto de uma lista por conta própria, em **Atualização em bloco** no canal ou em **Editar a lista** na Activity.
@@ -116,6 +116,7 @@ O botão **Proprietário** define o proprietário de uma tarefa para você: veja
 
 - **Um cargo** funciona do mesmo jeito: `@Moderadores:`. Um código também: `<@123456789012345678>:`.
 - **Sem os dois-pontos**, a mesma menção é só uma tag, não um proprietário.
+- **No resto da tarefa**, um nome seguido de dois-pontos fica como texto simples: em `pedir para @Ava: as chaves` ninguém é mencionado. Para mencionar a Ava ali, deixe um espaço antes dos dois-pontos: `@Ava :`.
 - **O nome do proprietário** vai do `@` até os dois-pontos, então `@Ava Rossi:` é um erro mesmo quando o TTM conhece a Ava.
 - **Um nome que o TTM não conhece** é um erro no lugar do proprietário. O TTM não salva nada, e a mensagem diz para escolher o proprietário com o botão **Proprietário** ou escrever o código dele.
 - **Para começar uma tarefa com `@palavra:` como texto simples**, veja [Escrevendo @ sem uma menção](#writing--without-a-mention). O formulário Conteúdo não tem proprietário, então ali `@palavra:` continua sendo texto simples.
