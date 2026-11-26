@@ -1,10 +1,19 @@
 ---
 title: "Versionshinweise"
 description: "Was es Neues in Team Tasks Manager gibt, das Neueste zuerst."
-fonte: 96dbaef26d7b
+fonte: ce9e4842ccd2
 ---
 
 Jede Änderung, die du in Discord siehst, steht hier, das Neueste zuerst. Jeder Eintrag verlinkt auf die Seite, die ihn erklärt.
+
+## 2.6.1 — Die Anleitung in deiner Sprache
+
+Released 2026-11-26
+
+- **Die Anleitung in deiner Sprache** — die Links in den Nachrichten von TTM öffnen die Website in der Sprache, in der TTM mit dir spricht. Auf Italienisch, Deutsch, Französisch, Spanisch oder Portugiesisch öffnen sich die Anleitung, diese Versionshinweise und die Seiten Beta und Premium in dieser Sprache, egal welche Sprache dein Browser hat.
+- **Auch alte Benachrichtigungen verschwinden** — wenn der Benachrichtigungsmodus Benachrichtigungen löscht, verschwinden jetzt auch die, die älter als 14 Tage sind. Discord lehnte es ab, sie gesammelt zu löschen, deshalb blieben sie im Kanal: Jetzt entfernt TTM sie nach und nach, bei jeder neuen Benachrichtigung. Siehe [Benachrichtigungsmodus](/docs/configuration/#notification-mode).
+- **Alte Dateien lassen sich wieder importieren** — eine Datei von **Herunterladen** aus einer Liste, die vor dem 4. Oktober 2026 erstellt wurde, mit einem Titel über 90 Zeichen, stoppt `/liste-erstellen` nicht mehr: TTM kürzt den Titel auf 90 Zeichen. Ist ein Kanal aus der Datei ein archivierter Forumsbeitrag, sagt dir die Nachricht, dass du ihn wieder öffnen sollst. Siehe [/liste-erstellen](/docs/commands/#create-list).
+- **`@Name:` mitten in einer Aufgabe bleibt Text** — ein Name mit Doppelpunkt legt den Besitzer nur am Anfang der Aufgabe fest. Anderswo bleibt er, wie du ihn geschrieben hast: Niemand wird aus Versehen zum Besitzer. Um dort jemanden zu erwähnen, lass vor dem Doppelpunkt ein Leerzeichen: `@Ava :`. Siehe [Besitzer: die Erwähnung mit einem Doppelpunkt](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 
 ## 2.6.0 — Deine Zeitzone, überall
 

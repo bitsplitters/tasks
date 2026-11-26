@@ -9,6 +9,15 @@ releases: true
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 2.6.1 — The guide in your language
+
+Released 2026-11-26
+
+- **The guide in your language** — the links in TTM's messages open the site in the language TTM speaks to you. In Italian, German, French, Spanish or Portuguese, the guide, these release notes and the Beta and Premium pages open in that language, whatever the language of your browser.
+- **Old notifications go too** — when the notification mode deletes notifications, the ones older than 14 days now go as well. Discord refused to delete them in bulk, so they stayed in the channel: TTM now removes them a few at a time, with each new notification. See [Notification mode](/docs/configuration/#notification-mode).
+- **Old files import again** — a **Download** file from a list made before 4 October 2026, with a title longer than 90 characters, no longer stops `/create-list`: TTM shortens the title to 90 characters. When a channel in the file is an archived forum post, the message tells you to reopen it. See [/create-list](/docs/commands/#create-list).
+- **`@name:` inside a task stays text** — a name followed by a colon sets the owner only at the start of a task. Elsewhere it stays as you wrote it, so nobody becomes the owner by mistake. To mention someone there, leave a space before the colon: `@Ava :`. See [Owners: the mention with a colon](/docs/writing-a-list/#owners-the-mention-with-a-colon).
+
 ## 2.6.0 — Your time zone, everywhere
 
 Released 2026-11-24

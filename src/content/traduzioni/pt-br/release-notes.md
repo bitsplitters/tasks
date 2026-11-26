@@ -1,10 +1,19 @@
 ---
 title: "Notas de versão"
 description: "As novidades do Team Tasks Manager, da mais recente para a mais antiga."
-fonte: 96dbaef26d7b
+fonte: ce9e4842ccd2
 ---
 
 Toda mudança que você vê no Discord está listada aqui, da mais recente para a mais antiga. Cada item leva à página que o explica.
+
+## 2.6.1 — O guia no seu idioma
+
+Released 2026-11-26
+
+- **O guia no seu idioma** — os links nas mensagens do TTM abrem o site no idioma em que o TTM fala com você. Em italiano, alemão, francês, espanhol ou português, o guia, estas notas de versão e as páginas Beta e Premium abrem nesse idioma, seja qual for o idioma do seu navegador.
+- **As notificações antigas também saem** — quando o modo de notificação exclui notificações, agora as com mais de 14 dias também saem. O Discord se recusava a excluí-las em bloco, então elas ficavam no canal: agora o TTM as remove aos poucos, a cada notificação nova. Veja [Modo de notificação](/docs/configuration/#notification-mode).
+- **Arquivos antigos voltam a ser importados** — um arquivo do **Download** de uma lista criada antes de 4 de outubro de 2026, com um título de mais de 90 caracteres, não trava mais o `/criar-lista`: o TTM encurta o título para 90 caracteres. Quando um canal do arquivo é um post de fórum arquivado, a mensagem diz para você reabri-lo. Veja [/criar-lista](/docs/commands/#create-list).
+- **`@nome:` no meio de uma tarefa fica como texto** — um nome seguido de dois-pontos define o proprietário só no início da tarefa. No resto, ele fica como você escreveu: ninguém vira proprietário por engano. Para mencionar alguém ali, deixe um espaço antes dos dois-pontos: `@Ava :`. Veja [Proprietários: a menção com dois-pontos](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 
 ## 2.6.0 — Seu fuso horário, em todo lugar
 
