@@ -85,7 +85,7 @@ Only in the channel. After you use **Owner**, **Tag** or **Reminder** in the sec
 
 Off by default: the button goes back to grey. Turn it on when you apply the same action to several tasks in a row.
 
-It also changes what **Tag** and **Owner** can do. With it off, your choice always overwrites. With it on, you also get live editing of a task's existing tags or owner. See [Tag](/docs/channel-tasks/#tag) for the full breakdown.
+It also changes what **Tag** and **Owner** can do. With it off, the people you choose always overwrite, and a task picked with the Tag menu empty tags you. With it on, you also get live editing of a task's existing tags or owner: a task picked with the Tag menu empty loads its tags into the menu. See [Tag](/docs/channel-tasks/#tag) for the full breakdown.
 
 In the Activity the panel of a task always works the same way: after an action it stays on the task, with the buttons grey. See [The panel of a task](/docs/activity-list/#the-panel-of-a-task).
 

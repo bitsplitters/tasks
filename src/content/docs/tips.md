@@ -33,6 +33,10 @@ Running the same list in several channels? **Clone list** <img class="inline-ic"
 
 Tick **Keep the state after a selection** in the **Behavior** menu of [/config app](/docs/configuration/#keep-the-state-after-a-selection). The active button (owner, tag or reminder) stays on after each task, so you can tag five tasks in five clicks instead of fifteen.
 
+## Ask who's in
+
+Write the question as a task, such as *Who's up for a 1v1 tonight?*, and tag yourself on it: in the channel, [**Tag**](/docs/channel-tasks/#tag) blue and the task, with the menu empty; in the Activity, [**Tag**](/docs/activity-list/#tag) and **Save**. Whoever is in ticks the task, and the notification of the tick mentions you. It works for a scrim, a raid slot, a seat in the car. The task closes at the first answer: whoever answers second reopens it, and the reopening mentions you too.
+
 ## Keep the channel quiet
 
 If task notifications feel noisy, set **Notification mode** in [/config app](/docs/configuration/#notification-mode) to keep only the last one, or turn them off: the list stays up to date either way.

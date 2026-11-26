@@ -65,6 +65,8 @@ To give it to someone else instead, tap their name: it takes the place of yours.
 
 **Blue** shows the tags the task has now, already chosen. Add and remove people or roles from the search, up to 25, then **Save**: the task gets exactly the set you see. There is no overwrite mode or live editing: you always start from the current tags.
 
+**To tag yourself**, press **Tag** until it turns blue: if you aren't among the tags, your name is already added after them, so **Save** tags you. To tag someone else instead, tap their name: it takes the place of yours. If someone changes the tags while you look, **Save** still adds you to theirs.
+
 Remove them all and **Save** removes every tag, as **Red** does.
 
 **Red** removes every tag. Either way, a task made only of tags keeps them, because without them it would have no text.

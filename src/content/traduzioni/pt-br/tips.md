@@ -1,7 +1,7 @@
 ---
 title: "Dicas e truques"
 description: "Pequenos hábitos que deixam o TTM mais rápido e mais silencioso, no canal e na Activity."
-fonte: 6e297084b41a
+fonte: 901e2ac519ca
 ---
 
 A maioria funciona onde quer que a lista esteja. As que existem em um único lugar dizem isso sob o título.
@@ -31,6 +31,10 @@ Mantém a mesma lista em vários canais? **Clonar lista** <img class="inline-ic"
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />No canal</p>
 
 Marque **Manter o estado após a seleção** no menu **Comportamento** de [/config app](/docs/configuration/#keep-the-state-after-a-selection). O botão ativo (proprietário, tag ou lembrete) continua ligado depois de cada tarefa, e assim você põe tag em cinco tarefas com cinco cliques em vez de quinze.
+
+## Pergunte quem topa
+
+Escreva a pergunta como uma tarefa, por exemplo *Quem topa um 1v1 hoje à noite?*, e se adicione às tags dela: no canal, [**Tag**](/docs/channel-tasks/#tag) azul e a tarefa, com o menu vazio; na Activity, [**Tag**](/docs/activity-list/#tag) e **Salvar**. Quem topar marca a tarefa, e a notificação menciona você. Serve para um scrim, uma vaga na raid, um lugar no carro. A tarefa fecha na primeira resposta: quem responde em segundo a reabre, e a reabertura também menciona você.
 
 ## Mantenha o canal silencioso
 

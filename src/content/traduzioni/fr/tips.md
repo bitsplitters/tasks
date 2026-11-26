@@ -1,7 +1,7 @@
 ---
 title: "Astuces et conseils"
 description: "De petites habitudes qui rendent TTM plus rapide et plus discret, dans le salon et dans l'Activity."
-fonte: 6e297084b41a
+fonte: 901e2ac519ca
 ---
 
 La plupart fonctionnent partout où se trouve la liste. Celles qui n'existent qu'à un seul endroit le disent sous leur titre.
@@ -31,6 +31,10 @@ Tu gères la même liste dans plusieurs salons ? **Cloner la liste** <img class
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Dans le salon</p>
 
 Coche **Conserver l'état après la sélection** dans le menu **Comportement** de [/config app](/docs/configuration/#keep-the-state-after-a-selection). Le bouton actif (propriétaire, tag ou rappel) reste allumé après chaque tâche, donc tu peux mettre un tag sur cinq tâches en cinq clics au lieu de quinze.
+
+## Demander qui est dispo
+
+Écris la question comme une tâche, par exemple *Qui est dispo pour un 1v1 ce soir ?*, et ajoute-toi à ses tags : dans le salon, [**Tag**](/docs/channel-tasks/#tag) en bleu et la tâche, avec le menu vide ; dans l'Activity, [**Tag**](/docs/activity-list/#tag) et **Enregistrer**. La personne dispo coche la tâche, et la notification te mentionne. Ça marche pour un scrim, une place dans le raid, une place dans la voiture. La tâche se ferme à la première réponse : qui répond en second la rouvre, et la réouverture te mentionne aussi.
 
 ## Garder le salon calme
 

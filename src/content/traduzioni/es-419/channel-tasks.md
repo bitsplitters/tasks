@@ -1,7 +1,7 @@
 ---
 title: "Editar una tarea en el canal"
 description: "La segunda fila de botones bajo la lista — Contenido, Propietario, Etiqueta, Recordatorio y Webhook — con sus formularios y menús."
-fonte: 9439d0a8db43
+fonte: 2d23fdacb892
 ---
 
 La segunda fila bajo la lista actúa sobre **una tarea a la vez**: su texto, su propietario, sus etiquetas, su recordatorio y su webhook. Esta página muestra dónde hacer clic. Qué hace cada función y sus reglas: [Propietarios y etiquetas](/docs/owners-and-tags/), [Recordatorios](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -80,10 +80,11 @@ Para volver a tomar tareas, haz clic en **Propietario** hasta que vuelva a estar
 
 ## Etiqueta
 
-**Azul** muestra un menú bajo los botones. Por defecto, elige ahí hasta 25 usuarios o roles, confirma la selección (consulta [Confirmar una selección](#confirming-a-selection--desktop-vs-mobile)) y luego elige la tarea:
+**Azul** muestra un menú bajo los botones, con la etiqueta *Elige una tarea en el menú de arriba para agregarte a sus etiquetas, o elige las etiquetas*.
 
-- elige a *Anna* y *@Devs*, y la tarea queda etiquetada con Anna y @Devs, nada más: tu elección **sustituye** las etiquetas de la tarea;
-- elige a las personas **antes** que la tarea: con el menú vacío, TTM te pide que selecciones antes al menos una etiqueta.
+**Para agregarte**, haz clic en **Etiqueta** hasta que se ponga azul y elige la tarea en el selector de marcado sin elegir a nadie: entras en sus etiquetas, después de las que ya tiene. Si eliges una tarea en la que ya estás, sales de ella: solo tú, las demás se quedan. El canal muestra lo que hiciste sin mencionarte, porque ya lo sabes. Una tarea admite hasta 25 etiquetas: en una llena, TTM te avisa que antes hay que quitar a alguien.
+
+**Para etiquetar a otros**, elige en el menú hasta 25 usuarios o roles, confirma la selección (consulta [Confirmar una selección](#confirming-a-selection--desktop-vs-mobile)) y luego elige la tarea. Elige a *Anna* y *@Devs*, y la tarea queda etiquetada con Anna y @Devs, nada más: tu elección **sustituye** las etiquetas de la tarea.
 
 **Rojo** quita todas las etiquetas de la tarea.
 
@@ -93,6 +94,8 @@ Con **Mantener el estado tras la selección** activado, en el menú **Comportami
 
 - **Primero las personas** significa **asignar**.
 - **Primero la tarea**, con el menú todavía vacío, significa **edición en vivo**.
+
+Así que, con el estado mantenido, una tarea elegida con el menú vacío no te agrega: abre la edición en vivo. Para agregarte ahí, elige la tarea, marca tu nombre y cierra el menú.
 
 **Asignar — elige personas y luego la tarea.** Las etiquetas de la tarea pasan a ser exactamente tu elección, como arriba. Tus elecciones se quedan en el menú, así que puedes aplicar el mismo conjunto a la tarea siguiente, y a la siguiente, sin elegir de nuevo.
 

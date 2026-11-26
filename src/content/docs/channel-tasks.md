@@ -82,10 +82,11 @@ To go back to taking tasks, click **Owner** until it's blue again.
 
 ## Tag
 
-**Blue** shows a menu under the buttons. By default, choose up to 25 users or roles there, confirm the selection (see [Confirming a selection](#confirming-a-selection--desktop-vs-mobile)), then pick the task:
+**Blue** shows a menu under the buttons, labelled *Pick a task in the menu above to tag yourself, or choose the tags*.
 
-- choose *Anna* and *@Devs*, and the task is tagged Anna and @Devs, nothing else: your choice **replaces** the task's tags;
-- pick the people **before** the task: with the menu empty, TTM asks you to select at least one tag first.
+**To tag yourself**, click **Tag** until it turns blue, then pick the task in the check selector without choosing anyone: you join its tags, after the ones it already has. Pick a task where you are already tagged and you leave it: only you, the others stay. The channel shows what you did without mentioning you, because you already know. A task holds up to 25 tags: on a full one, TTM tells you someone has to be removed first.
+
+**To tag others**, choose up to 25 users or roles in the menu, confirm the selection (see [Confirming a selection](#confirming-a-selection--desktop-vs-mobile)), then pick the task. Choose *Anna* and *@Devs*, and the task is tagged Anna and @Devs, nothing else: your choice **replaces** the task's tags.
 
 **Red** removes every tag on the task.
 
@@ -95,6 +96,8 @@ With **Keep the state after a selection** on, in the **Behavior** menu of [/conf
 
 - **People first** means **assign**.
 - **Task first**, with the menu still empty, means **live editing**.
+
+So with the state kept, a task picked with the menu empty doesn't tag you: it opens live editing. To tag yourself there, pick the task, tick yourself and close the menu.
 
 **Assign — pick people, then the task.** The task's tags become exactly your choice, as above. Your picks stay in the menu, so you can apply the same set to the next task, and the next, without choosing again.
 

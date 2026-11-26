@@ -1,7 +1,7 @@
 ---
 title: "Propriétaires et tags"
 description: "À qui appartient une tâche, qui elle mentionne, et les rôles que TTM crée quand plusieurs personnes possèdent une tâche."
-fonte: bf7e5a683480
+fonte: 32af5b22a9d3
 ---
 
 Une tâche peut avoir un **propriétaire** et plusieurs **tags**. Le propriétaire est celui ou celle à qui la tâche appartient : la personne qui peut la cocher et qui reçoit son rappel. Les tags sont les utilisateurs et les rôles mentionnés sur la tâche, par exemple les personnes à prévenir quand elle est terminée.
@@ -37,6 +37,8 @@ Un tag est un utilisateur ou un rôle mentionné sur la tâche. Une tâche peut 
 Un nouveau choix de tags **remplace** l'ancien : la tâche est taguée avec exactement les personnes et les rôles que tu as choisis. Pour ajouter quelqu'un, garde les autres dans ton choix. Retirer les tags les retire tous d'un coup.
 
 La façon de les choisir diffère un peu entre les deux endroits. Dans le salon, un réglage du serveur décide si tu écrases les tags ou si tu les modifies en direct : voir [Tag](/docs/channel-tasks/#tag). Dans l'Activity, tu pars toujours des tags que la tâche a en ce moment : voir [Tag](/docs/activity-list/#tag).
+
+**T'ajouter aux tags** prend un clic aux deux endroits, et les autres tags restent tels qu'ils sont. Dans le salon, **Tag** en bleu et la tâche, avec le menu vide : une deuxième fois sur la même tâche te retire. Dans l'Activity, **Tag** et **Enregistrer** : ton nom est déjà ajouté.
 
 Dans le texte d'une liste, un tag s'écrit `@` suivi du nom, comme `@Ava`, et le propriétaire est le même nom suivi de deux-points, `@Ava:` : voir [Modifier une liste à la main](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 

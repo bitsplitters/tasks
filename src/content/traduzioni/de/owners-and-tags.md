@@ -1,7 +1,7 @@
 ---
 title: "Besitzer und Tags"
 description: "Wem eine Aufgabe gehört, wen sie erwähnt und welche Rollen TTM erstellt, wenn mehrere Personen eine Aufgabe besitzen."
-fonte: bf7e5a683480
+fonte: 32af5b22a9d3
 ---
 
 Eine Aufgabe kann einen **Besitzer** und mehrere **Tags** haben. Der Besitzer ist, wem die Aufgabe gehört: wer sie abhaken darf und wer ihre Erinnerung bekommt. Tags sind die Benutzer und Rollen, die an der Aufgabe erwähnt werden, zum Beispiel die Personen, die bei ihrem Abschluss benachrichtigt werden sollen.
@@ -37,6 +37,8 @@ Ein Tag ist ein Benutzer oder eine Rolle, die an der Aufgabe erwähnt wird. Eine
 Eine neue Auswahl von Tags **ersetzt** die alte: Die Aufgabe trägt genau die Personen und Rollen, die du gewählt hast. Um jemanden hinzuzufügen, behalte die anderen in deiner Auswahl. Entfernst du die Tags, verschwinden alle auf einmal.
 
 Wie du sie wählst, unterscheidet sich ein wenig zwischen den beiden Orten. Im Kanal entscheidet eine Einstellung des Servers, ob du die Tags überschreibst oder live bearbeitest: siehe [Tag](/docs/channel-tasks/#tag). In der Activity gehst du immer von den Tags aus, die die Aufgabe jetzt hat: siehe [Tag](/docs/activity-list/#tag).
+
+**Dich selbst taggen** geht an beiden Orten mit einem Klick, die anderen Tags bleiben, wie sie sind. Im Kanal **Tag** blau und die Aufgabe, bei leerem Menü: Ein zweites Mal auf derselben Aufgabe entfernt dich wieder. In der Activity **Tag** und **Speichern**: Dein Name ist schon hinzugefügt.
 
 Im Text einer Liste ist ein Tag `@` und der Name, etwa `@Ava`, und der Besitzer ist derselbe Name gefolgt von einem Doppelpunkt, `@Ava:`: siehe [Eine Liste von Hand bearbeiten](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 

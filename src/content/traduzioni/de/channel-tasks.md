@@ -1,7 +1,7 @@
 ---
 title: "Eine Aufgabe im Kanal bearbeiten"
 description: "Die zweite Reihe von Buttons unter der Liste — Inhalt, Besitzer, Tag, Erinnerung und Webhook — mit ihren Formularen und Menüs."
-fonte: 9439d0a8db43
+fonte: 2d23fdacb892
 ---
 
 Die zweite Reihe unter der Liste wirkt auf **eine Aufgabe auf einmal**: ihren Text, ihren Besitzer, ihre Tags, ihre Erinnerung und ihren Webhook. Diese Seite zeigt, wo du klickst. Was jede Funktion macht und welche Regeln gelten: [Besitzer und Tags](/docs/owners-and-tags/), [Erinnerungen](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -80,10 +80,11 @@ Um wieder Aufgaben zu übernehmen, klicke **Besitzer**, bis er wieder blau ist.
 
 ## Tag
 
-**Blau** zeigt unter den Buttons ein Menü. Standardmäßig wählst du dort bis zu 25 Benutzer oder Rollen, bestätigst die Auswahl (siehe [Eine Auswahl bestätigen](#confirming-a-selection--desktop-vs-mobile)) und wählst dann die Aufgabe:
+**Blau** zeigt unter den Buttons ein Menü mit der Beschriftung *Wähle eine Aufgabe im Menü oben, um dich zu ihren Tags hinzuzufügen, oder wähle die Tags*.
 
-- wählst du *Anna* und *@Devs*, ist die Aufgabe mit Anna und @Devs getaggt, sonst nichts: Deine Wahl **ersetzt** die Tags der Aufgabe;
-- wähle die Personen **vor** der Aufgabe: Ist das Menü leer, bittet TTM dich, zuerst mindestens eine Person oder Rolle als Tag zu wählen.
+**Um dich zu den Tags hinzuzufügen**, klicke **Tag**, bis er blau wird, und wähle dann die Aufgabe im Abhak-Menü, ohne jemanden auszuwählen: Du kommst zu ihren Tags dazu, hinter die, die sie schon hat. Wählst du eine Aufgabe, bei der du schon dabei bist, bist du wieder draußen: nur du, die anderen bleiben. Der Kanal zeigt, was du getan hast, ohne dich zu erwähnen, denn du weißt es ja schon. Eine Aufgabe trägt bis zu 25 Tags: Bei einer vollen sagt dir TTM, dass zuerst jemand entfernt werden muss.
+
+**Um andere zu taggen**, wählst du im Menü bis zu 25 Benutzer oder Rollen, bestätigst die Auswahl (siehe [Eine Auswahl bestätigen](#confirming-a-selection--desktop-vs-mobile)) und wählst dann die Aufgabe. Wählst du *Anna* und *@Devs*, ist die Aufgabe mit Anna und @Devs getaggt, sonst nichts: Deine Wahl **ersetzt** die Tags der Aufgabe.
 
 **Rot** entfernt alle Tags der Aufgabe.
 
@@ -93,6 +94,8 @@ Ist **Zustand nach der Auswahl beibehalten** im Menü **Verhalten** von [/config
 
 - **Zuerst Personen** bedeutet **zuweisen**.
 - **Zuerst die Aufgabe**, bei noch leerem Menü, bedeutet **Live-Bearbeitung**.
+
+Bei beibehaltenem Zustand fügt dich eine Aufgabe, die du bei leerem Menü wählst, also nicht hinzu: Sie öffnet die Live-Bearbeitung. Um dich dort hinzuzufügen, wähle die Aufgabe, hake deinen Namen an und schließe das Menü.
 
 **Zuweisen — Personen wählen, dann die Aufgabe.** Die Tags der Aufgabe werden genau deine Wahl, wie oben. Deine Auswahl bleibt im Menü, sodass du denselben Satz auf die nächste Aufgabe und die übernächste anwenden kannst, ohne neu zu wählen.
 

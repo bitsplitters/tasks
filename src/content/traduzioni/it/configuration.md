@@ -1,7 +1,7 @@
 ---
 title: /config app
 description: Personalizza notifiche, cronologia, promemoria, fuso orario e permessi con /config app.
-fonte: cc3b2bd36302
+fonte: bef5208f8910
 ---
 
 Esegui il comando:
@@ -84,7 +84,7 @@ Solo nel canale. Dopo che usi **Proprietario**, **Tag** o **Promemoria** nella s
 
 Spenta di default: il pulsante torna grigio. Attivala quando applichi la stessa azione a più task di fila.
 
-Cambia anche cosa possono fare **Tag** e **Proprietario**. Con l'opzione spenta, la tua scelta sovrascrive sempre. Con l'opzione accesa hai anche la modifica in diretta dei tag o del proprietario esistenti di un task. Vedi [Tag](/docs/channel-tasks/#tag) per il quadro completo.
+Cambia anche cosa possono fare **Tag** e **Proprietario**. Con l'opzione spenta, le persone che scegli sovrascrivono sempre; un task scelto col menu di Tag vuoto ti tagga. Con l'opzione accesa hai anche la modifica in diretta dei tag o del proprietario esistenti di un task: un task scelto col menu di Tag vuoto carica i suoi tag nel menu. Vedi [Tag](/docs/channel-tasks/#tag) per il quadro completo.
 
 Nell'Activity il pannello di un task funziona sempre allo stesso modo: dopo un'azione resta sul task, con i pulsanti grigi. Vedi [Il pannello di un task](/docs/activity-list/#the-panel-of-a-task).
 

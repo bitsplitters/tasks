@@ -1,7 +1,7 @@
 ---
 title: Modificare un task nel canale
 description: La seconda riga di pulsanti sotto la lista — Contenuto, Proprietario, Tag, Promemoria e Webhook — con le loro finestre e i loro menu.
-fonte: 9439d0a8db43
+fonte: 2d23fdacb892
 ---
 
 La seconda riga sotto la lista agisce su **un task alla volta**: il suo testo, il suo proprietario, i suoi tag, il suo promemoria e il suo webhook. Questa pagina mostra dove cliccare. Cosa fa ogni funzione e le sue regole: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/).
@@ -80,10 +80,11 @@ Il **rosso** toglie il proprietario e anche il suo promemoria: non resta nessuno
 
 ## Tag
 
-Il **blu** mostra un menu sotto i pulsanti. Di default scegli lì fino a 25 utenti o ruoli, conferma la selezione (vedi [Confermare una selezione](#confirming-a-selection--desktop-vs-mobile)), poi scegli il task:
+Il **blu** mostra un menu sotto i pulsanti, con la scritta *Scegli un task nel menu in alto per taggarti, o scegli i tag*.
 
-- scegli *Anna* e *@Devs* e il task è taggato Anna e @Devs, nient'altro: la tua scelta **sostituisce** i tag del task;
-- scegli le persone **prima** del task: con il menu vuoto, TTM ti chiede di selezionare prima almeno un tag.
+**Per taggarti**, clicca **Tag** finché diventa blu, poi scegli il task nel menu di spunta senza scegliere nessuno: il tuo tag entra fra i suoi, dopo quelli che ha già. Su un task che ha già il tuo tag la stessa scelta lo toglie: solo il tuo, gli altri restano. Il canale mostra cosa hai fatto senza menzionarti, perché lo sai già. Un task porta fino a 25 tag: su uno pieno TTM ti dice che prima va tolto qualcuno.
+
+**Per taggare altri**, scegli nel menu fino a 25 utenti o ruoli, conferma la selezione (vedi [Confermare una selezione](#confirming-a-selection--desktop-vs-mobile)), poi scegli il task. Scegli *Anna* e *@Devs* e il task è taggato Anna e @Devs, nient'altro: la tua scelta **sostituisce** i tag del task.
 
 Il **rosso** toglie tutti i tag dal task.
 
@@ -93,6 +94,8 @@ Con **Mantieni lo stato dopo la selezione** attivo, nel menu **Comportamento** d
 
 - **Prima le persone** vuol dire **assegnare**.
 - **Prima il task**, con il menu ancora vuoto, vuol dire **modifica in diretta**.
+
+Con lo stato mantenuto, quindi, un task scelto col menu vuoto non ti tagga: apre la modifica in diretta. Per taggarti lì, scegli il task, spunta il tuo nome e chiudi il menu.
 
 **Assegnare — scegli le persone, poi il task.** I tag del task diventano esattamente la tua scelta, come sopra. Le tue scelte restano nel menu, quindi puoi applicare lo stesso insieme al task successivo e a quello dopo, senza sceglierlo di nuovo.
 

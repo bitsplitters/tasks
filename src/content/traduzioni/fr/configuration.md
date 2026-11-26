@@ -1,7 +1,7 @@
 ---
 title: "/config app"
 description: "Adapte les notifications, l'historique, les rappels, le fuseau horaire et les permissions avec /config app."
-fonte: cc3b2bd36302
+fonte: bef5208f8910
 ---
 
 Lance la commande :
@@ -84,7 +84,7 @@ Seulement dans le salon. Après avoir utilisé **Propriétaire**, **Tag** ou **R
 
 Désactivée par défaut : le bouton redevient gris. Active-la quand tu appliques la même action à plusieurs tâches de suite.
 
-Elle change aussi ce que **Tag** et **Propriétaire** peuvent faire. Désactivée, ton choix écrase toujours. Activée, tu peux aussi modifier en direct les tags ou le propriétaire existants d'une tâche. Voir [Tag](/docs/channel-tasks/#tag) pour le détail complet.
+Elle change aussi ce que **Tag** et **Propriétaire** peuvent faire. Désactivée, les personnes que tu choisis écrasent toujours, et une tâche choisie avec le menu de Tag vide t'ajoute. Activée, tu peux aussi modifier en direct les tags ou le propriétaire existants d'une tâche : une tâche choisie avec le menu de Tag vide charge ses tags dans le menu. Voir [Tag](/docs/channel-tasks/#tag) pour le détail complet.
 
 Dans l'Activity, le panneau d'une tâche fonctionne toujours de la même façon : après une action, il reste sur la tâche, avec les boutons gris. Voir [Le panneau d'une tâche](/docs/activity-list/#the-panel-of-a-task).
 

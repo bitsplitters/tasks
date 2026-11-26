@@ -1,7 +1,7 @@
 ---
 title: "Trabajar con una lista en la Activity"
 description: "Las casillas, la primera fila, el panel de una tarea (Contenido, Propietario, Etiqueta, Recordatorio y Webhook) y quién está editando qué."
-fonte: 39bbd6a8e201
+fonte: 0f9b0e6b28e5
 ---
 
 Dentro de la Activity la lista es una página propia: una casilla delante de cada tarea, una fila de botones arriba y un panel para cada tarea. Las reglas son las del canal: propietarios, configuración del servidor, límites del plan. Qué hace cada función: [Propietarios y etiquetas](/docs/owners-and-tags/), [Recordatorios](/docs/reminders/), [Webhooks](/docs/webhooks/), [Acciones sobre la lista](/docs/list-actions/).
@@ -62,6 +62,8 @@ Para dársela a otra persona, toca su nombre: ocupa el lugar del tuyo. Una tarea
 ## Etiqueta
 
 **Azul** muestra las etiquetas que la tarea tiene ahora, ya elegidas. Agrega y quita personas o roles desde la búsqueda, hasta 25, y después **Guardar**: la tarea recibe exactamente el conjunto que ves. No hay modo de sobrescritura ni edición en directo: siempre partes de las etiquetas actuales.
+
+**Para agregarte**, presiona **Etiqueta** hasta que se ponga azul: si no estás entre las etiquetas, tu nombre ya está agregado después de ellas, así que **Guardar** te agrega. Para etiquetar a otra persona, toca su nombre: ocupa el lugar del tuyo. Si alguien cambia las etiquetas mientras miras, **Guardar** te agrega igual a las nuevas.
 
 Quítalas todas y **Guardar** elimina todas las etiquetas, igual que **Rojo**.
 

@@ -1,7 +1,7 @@
 ---
 title: "Modifier une tâche dans le salon"
 description: "La deuxième rangée de boutons sous la liste — Contenu, Propriétaire, Tag, Rappel et Webhook — avec leurs formulaires et leurs menus."
-fonte: 9439d0a8db43
+fonte: 2d23fdacb892
 ---
 
 La deuxième rangée sous la liste agit sur **une seule tâche à la fois** : son texte, son propriétaire, ses tags, son rappel et son webhook. Cette page montre où cliquer. Ce que fait chaque fonctionnalité, et ses règles : [Propriétaires et tags](/docs/owners-and-tags/), [Rappels](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -80,10 +80,11 @@ Pour revenir à la prise de tâches, clique sur **Propriétaire** jusqu'à ce qu
 
 ## Tag
 
-**Bleu** affiche un menu sous les boutons. Par défaut, choisis-y jusqu'à 25 membres ou rôles, confirme la sélection (voir [Confirmer une sélection : ordinateur et mobile](#confirming-a-selection--desktop-vs-mobile)), puis choisis la tâche :
+**Bleu** affiche un menu sous les boutons, intitulé *Choisis une tâche dans le menu au-dessus pour t'ajouter à ses tags, ou choisis les tags*.
 
-- choisis *Anna* et *@Devs*, et la tâche est taguée Anna et @Devs, rien d'autre : ton choix **remplace** les tags de la tâche ;
-- choisis les personnes **avant** la tâche : avec le menu vide, TTM te demande de sélectionner d'abord au moins un tag.
+**Pour t'ajouter aux tags**, clique sur **Tag** jusqu'à ce qu'il soit bleu, puis choisis la tâche dans le menu de cochage sans désigner personne : tu rejoins ses tags, après ceux qu'elle a déjà. Choisis une tâche où tu es déjà et tu en sors : seulement toi, les autres restent. Le salon montre ce que tu as fait sans te mentionner, puisque tu le sais déjà. Une tâche porte jusqu'à 25 tags : sur une tâche pleine, TTM te dit qu'il faut d'abord en retirer un.
+
+**Pour taguer d'autres personnes**, choisis dans le menu jusqu'à 25 membres ou rôles, confirme la sélection (voir [Confirmer une sélection : ordinateur et mobile](#confirming-a-selection--desktop-vs-mobile)), puis choisis la tâche. Choisis *Anna* et *@Devs*, et la tâche est taguée Anna et @Devs, rien d'autre : ton choix **remplace** les tags de la tâche.
 
 **Rouge** retire tous les tags de la tâche.
 
@@ -93,6 +94,8 @@ Avec **Conserver l'état après la sélection** activé, dans le menu **Comporte
 
 - **Les personnes d'abord**, c'est **attribuer**.
 - **La tâche d'abord**, avec le menu encore vide, c'est **l'édition en direct**.
+
+Avec l'état conservé, une tâche choisie avec le menu vide ne t'ajoute donc pas : elle ouvre l'édition en direct. Pour t'y ajouter, choisis la tâche, coche ton nom et ferme le menu.
 
 **Attribuer — choisis les personnes, puis la tâche.** Les tags de la tâche deviennent exactement ton choix, comme ci-dessus. Tes choix restent dans le menu : tu peux donc appliquer le même ensemble à la tâche suivante, et à la suivante, sans rechoisir.
 

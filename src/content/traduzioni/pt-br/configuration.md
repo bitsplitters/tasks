@@ -1,7 +1,7 @@
 ---
 title: "/config app"
 description: "Personalize notificações, histórico, lembretes, fuso horário e permissões com /config app."
-fonte: cc3b2bd36302
+fonte: bef5208f8910
 ---
 
 Execute o comando:
@@ -84,7 +84,7 @@ Só no canal. Depois de usar **Proprietário**, **Tag** ou **Lembrete** na segun
 
 Desativada por padrão: o botão volta ao cinza. Ative quando você aplica a mesma ação a várias tarefas seguidas.
 
-Ela também muda o que **Tag** e **Proprietário** podem fazer. Com ela desativada, a sua escolha sempre sobrescreve. Com ela ativada, você também edita ao vivo as tags ou o proprietário que a tarefa já tem. Veja [Tag](/docs/channel-tasks/#tag) para o detalhamento completo.
+Ela também muda o que **Tag** e **Proprietário** podem fazer. Com ela desativada, as pessoas que você escolhe sempre sobrescrevem, e uma tarefa escolhida com o menu da Tag vazio adiciona você. Com ela ativada, você também edita ao vivo as tags ou o proprietário que a tarefa já tem: uma tarefa escolhida com o menu da Tag vazio carrega as tags dela no menu. Veja [Tag](/docs/channel-tasks/#tag) para o detalhamento completo.
 
 Na Activity, o painel de uma tarefa sempre funciona do mesmo jeito: depois de uma ação, ele continua na tarefa, com os botões cinza. Veja [O painel de uma tarefa](/docs/activity-list/#the-panel-of-a-task).
 

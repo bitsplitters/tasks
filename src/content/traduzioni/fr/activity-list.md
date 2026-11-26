@@ -1,7 +1,7 @@
 ---
 title: "Travailler sur une liste dans l'Activity"
 description: "Les cases, la première rangée, le panneau d'une tâche (Contenu, Propriétaire, Tag, Rappel et Webhook) et qui modifie quoi."
-fonte: 39bbd6a8e201
+fonte: 0f9b0e6b28e5
 ---
 
 Dans l'Activity, la liste est une page à part : une case devant chaque tâche, une rangée de boutons en haut et un panneau pour chaque tâche. Les règles sont celles du salon : propriétaires, réglages du serveur, limites de l'offre. Ce que fait chaque fonctionnalité : [Propriétaires et tags](/docs/owners-and-tags/), [Rappels](/docs/reminders/), [Webhooks](/docs/webhooks/), [Actions sur la liste](/docs/list-actions/).
@@ -62,6 +62,8 @@ Pour la donner à quelqu'un d'autre, touche son nom : il prend la place du tien
 ## Tag
 
 **Bleu** affiche les tags que la tâche a en ce moment, déjà choisis. Ajoute et retire des personnes ou des rôles depuis la recherche, jusqu'à 25, puis **Enregistrer** : la tâche reçoit exactement l'ensemble que tu vois. Il n'y a ni mode d'écrasement ni modification en direct : tu pars toujours des tags actuels.
+
+**Pour t'ajouter aux tags**, appuie sur **Tag** jusqu'à ce qu'il soit bleu : si tu n'es pas parmi les tags, ton nom est déjà ajouté après eux, donc **Enregistrer** t'ajoute. Pour taguer quelqu'un d'autre à la place, touche son nom : il prend la place du tien. Si quelqu'un change les tags pendant que tu regardes, **Enregistrer** t'ajoute quand même aux nouveaux.
 
 Retire-les tous et **Enregistrer** retire tous les tags, comme le fait **Rouge**.
 

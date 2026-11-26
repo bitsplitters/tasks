@@ -1,7 +1,7 @@
 ---
 title: "Tipps & Tricks"
 description: "Kleine Gewohnheiten, die TTM schneller und leiser machen, im Kanal und in der Activity."
-fonte: 6e297084b41a
+fonte: 901e2ac519ca
 ---
 
 Das meiste funktioniert überall, wo die Liste ist. Was es nur an einem Ort gibt, sagt das unter seinem Titel.
@@ -31,6 +31,10 @@ Du führst dieselbe Liste in mehreren Kanälen? **Liste klonen** <img class="inl
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Im Kanal</p>
 
 Wähle **Zustand nach der Auswahl beibehalten** im Menü **Verhalten** von [/config app](/docs/configuration/#keep-the-state-after-a-selection). Der aktive Button (Besitzer, Tag oder Erinnerung) bleibt nach jeder Aufgabe an, so kannst du fünf Aufgaben mit fünf Klicks taggen statt mit fünfzehn.
+
+## Fragen, wer dabei ist
+
+Schreibe die Frage als Aufgabe, etwa *Wer ist heute Abend für ein 1v1 dabei?*, und tagge dich selbst darauf: im Kanal [**Tag**](/docs/channel-tasks/#tag) blau und die Aufgabe, bei leerem Menü; in der Activity [**Tag**](/docs/activity-list/#tag) und **Speichern**. Wer dabei ist, hakt die Aufgabe ab, und die Benachrichtigung erwähnt dich. Das klappt für ein Scrim, einen Raid-Platz, einen Platz im Auto. Die Aufgabe schließt sich bei der ersten Antwort: Wer als Zweites antwortet, öffnet sie wieder, und auch das erwähnt dich.
 
 ## Den Kanal ruhig halten
 

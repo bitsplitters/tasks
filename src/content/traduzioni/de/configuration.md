@@ -1,7 +1,7 @@
 ---
 title: "/config app"
 description: "Passe Benachrichtigungen, Verlauf, Erinnerungen, Zeitzone und Berechtigungen mit /config app an."
-fonte: cc3b2bd36302
+fonte: bef5208f8910
 ---
 
 Führe den Befehl aus:
@@ -84,7 +84,7 @@ Nur im Kanal. Nachdem du **Besitzer**, **Tag** oder **Erinnerung** in der zweite
 
 Standardmäßig aus: Der Button wird wieder grau. Schalte es ein, wenn du dieselbe Aktion auf mehrere Aufgaben nacheinander anwendest.
 
-Es ändert auch, was **Tag** und **Besitzer** können. Ist es aus, überschreibt deine Auswahl immer. Ist es an, kannst du außerdem die vorhandenen Tags oder den Besitzer einer Aufgabe live bearbeiten. Siehe [Tag](/docs/channel-tasks/#tag) für die ganze Aufschlüsselung.
+Es ändert auch, was **Tag** und **Besitzer** können. Ist es aus, überschreiben die Personen, die du wählst, immer, und eine Aufgabe, die du bei leerem Tag-Menü wählst, fügt dich hinzu. Ist es an, kannst du außerdem die vorhandenen Tags oder den Besitzer einer Aufgabe live bearbeiten: Eine Aufgabe, die du bei leerem Tag-Menü wählst, lädt ihre Tags ins Menü. Siehe [Tag](/docs/channel-tasks/#tag) für die ganze Aufschlüsselung.
 
 In der Activity funktioniert das Panel einer Aufgabe immer gleich: Nach einer Aktion bleibt es bei der Aufgabe, mit grauen Buttons. Siehe [Das Panel einer Aufgabe](/docs/activity-list/#the-panel-of-a-task).
 

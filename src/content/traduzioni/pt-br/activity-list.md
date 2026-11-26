@@ -1,7 +1,7 @@
 ---
 title: "Trabalhando em uma lista na Activity"
 description: "As caixas, a primeira linha, o painel de uma tarefa (Conteúdo, Proprietário, Tag, Lembrete e Webhook) e quem está editando o quê."
-fonte: 39bbd6a8e201
+fonte: 0f9b0e6b28e5
 ---
 
 Dentro da Activity, a lista é uma página própria: uma caixa na frente de cada tarefa, uma linha de botões no alto e um painel para cada tarefa. As regras são as do canal: proprietários, configurações do servidor, limites do plano. O que cada recurso faz: [Proprietários e tags](/docs/owners-and-tags/), [Lembretes](/docs/reminders/), [Webhooks](/docs/webhooks/), [Ações da lista](/docs/list-actions/).
@@ -62,6 +62,8 @@ Para dá-la a outra pessoa, toque no nome dela: ele toma o lugar do seu. Uma tar
 ## Tag
 
 **Azul** mostra as tags que a tarefa tem agora, já escolhidas. Adicione e remova pessoas ou cargos pela busca, até 25, e depois **Salvar**: a tarefa fica exatamente com o conjunto que você vê. Não há modo de sobrescrita nem edição ao vivo: você sempre parte das tags atuais.
+
+**Para se adicionar às tags**, pressione **Tag** até ficar azul: se você não está entre as tags, o seu nome já está adicionado depois delas, então **Salvar** adiciona você. Para pôr a tag de outra pessoa, toque no nome dela: ele toma o lugar do seu. Se alguém mudar as tags enquanto você olha, **Salvar** adiciona você às tags novas mesmo assim.
 
 Remova todas e **Salvar** remove todas as tags, como faz o **Vermelho**.
 

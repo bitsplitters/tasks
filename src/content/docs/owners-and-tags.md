@@ -39,6 +39,8 @@ A new choice of tags **replaces** the old one: the task is tagged with exactly t
 
 How you choose them differs a little between the two places. In the channel, a setting of the server decides whether you overwrite the tags or edit them live: see [Tag](/docs/channel-tasks/#tag). In the Activity you always start from the tags the task has now: see [Tag](/docs/activity-list/#tag).
 
+**Tagging yourself** takes one click in both places, and leaves the other tags as they are. In the channel, **Tag** blue and the task, with the menu empty: a second time on the same task removes you. In the Activity, **Tag** and **Save**: your name is already added.
+
 In the text of a list, a tag is `@` and the name, such as `@Ava`, and the owner is the same name followed by a colon, `@Ava:`: see [Editing a list by hand](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 
 ## The roles TTM creates

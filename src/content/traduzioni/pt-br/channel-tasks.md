@@ -1,7 +1,7 @@
 ---
 title: "Editando uma tarefa no canal"
 description: "A segunda linha de botões sob a lista — Conteúdo, Proprietário, Tag, Lembrete e Webhook — com seus formulários e menus."
-fonte: 9439d0a8db43
+fonte: 2d23fdacb892
 ---
 
 A segunda linha sob a lista age sobre **uma tarefa por vez**: o texto dela, o proprietário, as tags, o lembrete e o webhook. Esta página mostra onde clicar. O que cada recurso faz e as regras dele: [Proprietários e tags](/docs/owners-and-tags/), [Lembretes](/docs/reminders/), [Webhooks](/docs/webhooks/).
@@ -80,10 +80,11 @@ O **vermelho** remove o proprietário, e o lembrete dele também: não sobra nin
 
 ## Tag
 
-O **azul** mostra um menu sob os botões. Por padrão, escolha ali até 25 usuários ou cargos, confirme a seleção (veja [Confirmando uma seleção](#confirming-a-selection--desktop-vs-mobile)) e depois escolha a tarefa:
+O **azul** mostra um menu sob os botões, com o rótulo *Escolha uma tarefa no menu acima para se adicionar às tags dela, ou escolha as tags*.
 
-- escolha *Ana* e *@Devs*, e a tarefa fica com as tags Ana e @Devs, nada além: a sua escolha **substitui** as tags da tarefa;
-- escolha as pessoas **antes** da tarefa: com o menu vazio, o TTM pede que você selecione pelo menos uma tag primeiro.
+**Para se adicionar às tags**, clique em **Tag** até ficar azul e depois escolha a tarefa no seletor de marcação, sem escolher ninguém: você entra nas tags dela, depois das que ela já tem. Se escolher uma tarefa em que você já está, você sai: só você, as outras ficam. O canal mostra o que você fez sem mencionar você, porque você já sabe. Uma tarefa comporta até 25 tags: numa cheia, o TTM avisa que antes é preciso remover alguém.
+
+**Para pôr tags em outras pessoas**, escolha no menu até 25 usuários ou cargos, confirme a seleção (veja [Confirmando uma seleção](#confirming-a-selection--desktop-vs-mobile)) e depois escolha a tarefa. Escolha *Ana* e *@Devs*, e a tarefa fica com as tags Ana e @Devs, nada além: a sua escolha **substitui** as tags da tarefa.
 
 O **vermelho** remove todas as tags da tarefa.
 
@@ -93,6 +94,8 @@ Com **Manter o estado após a seleção** ligado, no menu **Comportamento** do [
 
 - **Pessoas primeiro** significa **atribuir**.
 - **Tarefa primeiro**, com o menu ainda vazio, significa **edição ao vivo**.
+
+Então, com o estado mantido, uma tarefa escolhida com o menu vazio não adiciona você: ela abre a edição ao vivo. Para se adicionar ali, escolha a tarefa, marque o seu nome e feche o menu.
 
 **Atribuir — escolha as pessoas e depois a tarefa.** As tags da tarefa passam a ser exatamente a sua escolha, como acima. Suas escolhas ficam no menu, então você pode aplicar o mesmo conjunto à próxima tarefa, e à seguinte, sem escolher de novo.
 

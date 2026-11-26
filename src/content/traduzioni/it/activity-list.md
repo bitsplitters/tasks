@@ -1,7 +1,7 @@
 ---
 title: Lavorare su una lista nell'Activity
 description: Le caselle, la prima riga, il pannello di un task (Contenuto, Proprietario, Tag, Promemoria e Webhook) e chi sta modificando che cosa.
-fonte: 39bbd6a8e201
+fonte: 0f9b0e6b28e5
 ---
 
 Dentro l'Activity la lista è una pagina a sé: una casella davanti a ogni task, una riga di pulsanti in alto e un pannello per ogni task. Le regole sono quelle del canale: proprietari, impostazioni del server, limiti del piano. Che cosa fa ogni funzione: [Proprietari e tag](/docs/owners-and-tags/), [Promemoria](/docs/reminders/), [Webhook](/docs/webhooks/), [Azioni sulla lista](/docs/list-actions/).
@@ -62,6 +62,8 @@ Per darlo invece a qualcun altro, tocca il suo nome: prende il posto del tuo. Un
 ## Tag
 
 **Blu** mostra i tag che il task ha adesso, già scelti. Aggiungi e togli persone o ruoli dalla ricerca, fino a 25, poi **Salva**: il task riceve esattamente l'insieme che vedi. Non c'è una modalità di sovrascrittura né la modifica in tempo reale: parti sempre dai tag attuali.
+
+**Per taggarti**, premi **Tag** finché diventa blu: se il tuo tag non c'è, il tuo nome è già aggiunto dopo gli altri, quindi **Salva** ti tagga. Per taggare invece qualcun altro, tocca il suo nome: prende il posto del tuo. Se intanto qualcuno cambia i tag, **Salva** aggiunge il tuo ai tag nuovi.
 
 Toglili tutti e **Salva** rimuove ogni tag, come fa **Rosso**.
 

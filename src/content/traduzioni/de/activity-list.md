@@ -1,7 +1,7 @@
 ---
 title: "An einer Liste in der Activity arbeiten"
 description: "Die Kästchen, die erste Reihe, das Panel einer Aufgabe (Inhalt, Besitzer, Tag, Erinnerung und Webhook) und wer was bearbeitet."
-fonte: 39bbd6a8e201
+fonte: 0f9b0e6b28e5
 ---
 
 In der Activity ist die Liste eine eigene Seite: ein Kästchen vor jeder Aufgabe, eine Reihe Buttons oben und ein Panel für jede Aufgabe. Es gelten die Regeln des Kanals: Besitzer, Servereinstellungen, Tarifgrenzen. Was jede Funktion tut: [Besitzer und Tags](/docs/owners-and-tags/), [Erinnerungen](/docs/reminders/), [Webhooks](/docs/webhooks/), [Aktionen auf der Liste](/docs/list-actions/).
@@ -62,6 +62,8 @@ Um sie stattdessen jemand anderem zu geben, tippe auf dessen Namen: Er tritt an 
 ## Tag
 
 **Blau** zeigt die Tags, die die Aufgabe jetzt hat, schon ausgewählt. Füge Personen oder Rollen aus der Suche hinzu und entferne sie, bis zu 25, dann **Speichern**: Die Aufgabe bekommt genau die Menge, die du siehst. Es gibt keinen Überschreibmodus und keine Live-Bearbeitung: Du startest immer von den aktuellen Tags.
+
+**Um dich zu den Tags hinzuzufügen**, drücke **Tag**, bis er blau wird: Bist du nicht unter den Tags, ist dein Name schon hinter ihnen hinzugefügt, **Speichern** fügt dich also hinzu. Um stattdessen jemand anderen zu taggen, tippe auf dessen Namen: Er tritt an die Stelle deines. Ändert jemand die Tags, während du schaust, fügt dich **Speichern** trotzdem zu den neuen hinzu.
 
 Entferne sie alle, und **Speichern** entfernt alle Tags, wie es **Rot** tut.
 

@@ -1,7 +1,7 @@
 ---
 title: Trucchi e consigli
 description: Piccole abitudini che rendono TTM più veloce e più silenzioso, nel canale e nell'Activity.
-fonte: 6e297084b41a
+fonte: 901e2ac519ca
 ---
 
 La maggior parte funziona ovunque sia la lista. Quelli che esistono in un solo posto lo dicono sotto il titolo.
@@ -31,6 +31,10 @@ Gestisci la stessa lista in più canali? **Clona lista** <img class="inline-ic" 
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />Nel canale</p>
 
 Spunta **Mantieni lo stato dopo la selezione** nel menu **Comportamento** di [/config app](/docs/configuration/#keep-the-state-after-a-selection). Il pulsante attivo (proprietario, tag o promemoria) resta acceso dopo ogni task, così puoi mettere un tag a cinque task in cinque click invece di quindici.
+
+## Chiedi chi c'è
+
+Scrivi la domanda come un task, per esempio *Chi c'è per un 1v1 stasera?*, poi aggiungi il tuo tag: nel canale [**Tag**](/docs/channel-tasks/#tag) blu e il task, col menu vuoto; nell'Activity [**Tag**](/docs/activity-list/#tag) e **Salva**. Chi c'è spunta il task: la notifica della spunta ti menziona. Funziona per uno scrim, un posto nel raid, un passaggio in macchina. Il task si chiude alla prima risposta: chi risponde per secondo lo riapre. Anche la riapertura ti menziona.
 
 ## Tieni tranquillo il canale
 

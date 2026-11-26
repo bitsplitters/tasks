@@ -1,7 +1,7 @@
 ---
 title: "/config app"
 description: "Personaliza notificaciones, historial, recordatorios, zona horaria y permisos con /config app."
-fonte: cc3b2bd36302
+fonte: bef5208f8910
 ---
 
 Ejecuta el comando:
@@ -84,7 +84,7 @@ Solo en el canal. Después de usar **Propietario**, **Etiqueta** o **Recordatori
 
 Desactivada por defecto: el botón vuelve a gris. Actívala cuando apliques la misma acción a varias tareas seguidas.
 
-También cambia lo que pueden hacer **Etiqueta** y **Propietario**. Con la opción desactivada, tu elección siempre sobrescribe. Con la opción activada, también puedes editar en directo las etiquetas o el propietario existentes de una tarea. Consulta [Etiqueta](/docs/channel-tasks/#tag) para ver el detalle completo.
+También cambia lo que pueden hacer **Etiqueta** y **Propietario**. Con la opción desactivada, las personas que eliges siempre sobrescriben, y una tarea elegida con el menú de Etiqueta vacío te añade. Con la opción activada, también puedes editar en directo las etiquetas o el propietario existentes de una tarea: una tarea elegida con el menú de Etiqueta vacío carga sus etiquetas en el menú. Consulta [Etiqueta](/docs/channel-tasks/#tag) para ver el detalle completo.
 
 En la Activity, el panel de una tarea siempre funciona igual: tras una acción se queda en la tarea, con los botones en gris. Consulta [El panel de una tarea](/docs/activity-list/#the-panel-of-a-task).
 

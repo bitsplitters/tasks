@@ -1,7 +1,7 @@
 ---
 title: "Propietarios y etiquetas"
 description: "A quién pertenece una tarea, a quién menciona y los roles que crea TTM cuando varias personas son propietarias de una tarea."
-fonte: bf7e5a683480
+fonte: 32af5b22a9d3
 ---
 
 Una tarea puede tener un **propietario** y varias **etiquetas**. El propietario es a quien pertenece la tarea: quien puede marcarla y quien recibe su recordatorio. Las etiquetas son los usuarios y roles mencionados en la tarea, por ejemplo las personas a las que hay que notificar cuando se completa.
@@ -37,6 +37,8 @@ Una etiqueta es un usuario o un rol mencionado en la tarea. Una tarea puede llev
 Una nueva elección de etiquetas **reemplaza** la anterior: la tarea queda etiquetada exactamente con las personas y los roles que elegiste. Para agregar a alguien, mantén a los demás en tu elección. Quitar las etiquetas las quita todas a la vez.
 
 Cómo las eliges cambia un poco entre los dos lugares. En el canal, un ajuste del servidor decide si sobrescribes las etiquetas o las editas en vivo: consulta [Etiqueta](/docs/channel-tasks/#tag). En la Activity siempre partes de las etiquetas que la tarea tiene ahora: consulta [Etiqueta](/docs/activity-list/#tag).
+
+**Agregarte** a las etiquetas es un clic en los dos lugares, y las demás se quedan como están. En el canal, **Etiqueta** en azul y la tarea, con el menú vacío: una segunda vez en la misma tarea te quita. En la Activity, **Etiqueta** y **Guardar**: tu nombre ya está agregado.
 
 En el texto de una lista, una etiqueta es `@` y el nombre, como `@Ava`, y el propietario es el mismo nombre seguido de dos puntos, `@Ava:`: consulta [Editar una lista a mano](/docs/writing-a-list/#owners-the-mention-with-a-colon).
 

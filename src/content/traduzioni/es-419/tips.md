@@ -1,7 +1,7 @@
 ---
 title: "Trucos y consejos"
 description: "Pequeños hábitos que hacen TTM más rápido y más silencioso, en el canal y en la Activity."
-fonte: 6e297084b41a
+fonte: 901e2ac519ca
 ---
 
 La mayoría funcionan dondequiera que esté la lista. Los que existen en un solo lugar lo dicen debajo de su título.
@@ -31,6 +31,10 @@ Si tu equipo ya sabe dónde presionar, oculta los **Consejos** en [/config app](
 <p class="place-pill"><img class="place-ic" src="/icons/posto-canale.svg" alt="" />En el canal</p>
 
 Activa **Mantener el estado tras la selección** en el menú **Comportamiento** de [/config app](/docs/configuration/#keep-the-state-after-a-selection). El botón activo (propietario, etiqueta o recordatorio) se queda encendido después de cada tarea, así que puedes etiquetar cinco tareas en cinco clics en lugar de quince.
+
+## Pregunta quién se anima
+
+Escribe la pregunta como una tarea, por ejemplo *¿Quién se anima a un 1v1 esta noche?*, y agrégate a sus etiquetas: en el canal, [**Etiqueta**](/docs/channel-tasks/#tag) en azul y la tarea, con el menú vacío; en la Activity, [**Etiqueta**](/docs/activity-list/#tag) y **Guardar**. Quien se anime marca la tarea, y la notificación te menciona. Sirve para un scrim, un lugar en la raid, un asiento en el auto. La tarea se cierra con la primera respuesta: quien responde segundo la reabre, y la reapertura también te menciona.
 
 ## Mantén tranquilo el canal
 
