@@ -5,7 +5,7 @@ group: Reference
 order: 9.5
 ---
 
-Team Tasks Manager works entirely inside Discord, so most of the limits below aren't TTM's choice. They come from Discord itself. For example: how long a message can be, how many menus fit in one message, how far back messages can be deleted in bulk. Where a limit is Discord's, we say so.
+Team Tasks Manager works entirely inside Discord, so most of the limits below aren't TTM's choice. They come from Discord itself. For example: how long a message can be, how many menus fit in one message. Where a limit is Discord's, we say so.
 
 ## Lists and tasks
 
@@ -100,10 +100,6 @@ When the timeline is on in [`/config app`](/docs/configuration/#history-tracking
 In a voice channel TTM doesn't need *Create public threads* and *Manage webhooks*, which only serve the timeline. It needs *Connect* instead: without it, TTM can't post in the voice channel's chat.
 
 Discord gives *Connect* to everyone by default; if your server takes it away on a voice channel, grant it to TTM there, or `/create-list` tells you it's missing.
-
-## Notifications
-
-When TTM tidies up its own notification messages, Discord only allows bulk-deleting messages from the **last 14 days**. Older notifications may stay in the channel — you can remove them manually.
 
 ---
 

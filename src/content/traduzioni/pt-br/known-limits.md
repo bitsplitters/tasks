@@ -1,10 +1,10 @@
 ---
 title: "Limites conhecidos"
 description: "Os tetos de listas, tarefas, lembretes e mais: a maioria vem do próprio Discord, e como trabalhar dentro deles."
-fonte: a9ff3dff4029
+fonte: abe38a403ccc
 ---
 
-O Team Tasks Manager funciona inteiramente dentro do Discord, então a maioria dos limites abaixo não é escolha do TTM. Eles vêm do próprio Discord. Por exemplo: o tamanho máximo de uma mensagem, quantos menus cabem em uma mensagem, até quanto tempo atrás dá para excluir mensagens em bloco. Quando um limite é do Discord, nós dizemos.
+O Team Tasks Manager funciona inteiramente dentro do Discord, então a maioria dos limites abaixo não é escolha do TTM. Eles vêm do próprio Discord. Por exemplo: o tamanho máximo de uma mensagem, quantos menus cabem em uma mensagem. Quando um limite é do Discord, nós dizemos.
 
 ## Listas e tarefas
 
@@ -99,10 +99,6 @@ Quando a timeline está ativada em [`/config app`](/docs/configuration/#history-
 Em um canal de voz o TTM não precisa de *Criar tópicos públicos* nem de *Gerenciar webhooks*, que só servem à timeline. Em vez disso, ele precisa de *Conectar*: sem ela, o TTM não consegue escrever no chat do canal de voz.
 
 O Discord dá *Conectar* a todos por padrão; se o seu servidor a retira em um canal de voz, conceda-a ao TTM lá, ou o `/criar-lista` avisa que ela está faltando.
-
-## Notificações
-
-Quando o TTM organiza as próprias mensagens de notificação, o Discord só permite excluir em bloco as mensagens dos **últimos 14 dias**. As notificações mais antigas podem ficar no canal: você pode removê-las manualmente.
 
 ---
 

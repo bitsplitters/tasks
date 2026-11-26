@@ -1,7 +1,7 @@
 ---
 title: Riferimento dei comandi
 description: Tutti gli slash command in un posto solo, con la pagina che li spiega. Gran parte di TTM vive nei pulsanti, non nei comandi.
-fonte: f50d9f1a0b4b
+fonte: 103a298bf4e4
 ---
 
 TTM tiene i comandi al minimo: una volta creata una lista, fai tutto con pulsanti e menu. Per eseguire un comando, scrivi `/` nella casella dei messaggi e sceglilo. Puoi anche aprire l'**Avvio app** nella barra dei messaggi e scegliere **Team Tasks Manager** sotto *App su questo server*.
@@ -31,7 +31,7 @@ La lista torna con i suoi task e il loro stato, i proprietari, i tag, i promemor
 
 TTM rifiuta subito un file che non sia un `.txt` o che pesi più di **64 KB**. Negli altri casi TTM legge il file. Se qualcosa non torna, TTM non crea niente ed elenca tutti i problemi in un solo messaggio, ognuno con la sua riga o il suo task:
 
-- **Il formato** — il file non è testo UTF-8 o non inizia con `#!ttm/1`. Il titolo manca o supera i 90 caratteri.
+- **Il formato** — il file non è testo UTF-8 o non inizia con `#!ttm/1`. Il titolo manca.
 
   Una riga non è un task, oppure un promemoria è scritto in mesi (`M`) o scritto male. Un webhook è collegato a un task senza testo, la lista inizia con un subtask o non ci sono task.
 - **La dimensione** — la lista è troppo lunga per un messaggio o ha più task di quanti ne possa contenere una lista o ne consenta il tuo piano.

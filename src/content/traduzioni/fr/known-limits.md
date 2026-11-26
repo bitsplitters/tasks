@@ -1,10 +1,10 @@
 ---
 title: "Limites connues"
 description: "Les plafonds sur les listes, les tâches, les rappels et le reste : la plupart viennent de Discord lui-même, et comment travailler avec."
-fonte: a9ff3dff4029
+fonte: abe38a403ccc
 ---
 
-Team Tasks Manager travaille entièrement dans Discord, donc la plupart des limites ci-dessous ne sont pas un choix de TTM. Elles viennent de Discord lui-même. Par exemple : la longueur maximale d'un message, le nombre de menus qui tiennent dans un message, jusqu'où on peut remonter pour supprimer des messages en masse. Quand une limite est celle de Discord, on le dit.
+Team Tasks Manager travaille entièrement dans Discord, donc la plupart des limites ci-dessous ne sont pas un choix de TTM. Elles viennent de Discord lui-même. Par exemple : la longueur maximale d'un message, le nombre de menus qui tiennent dans un message. Quand une limite est celle de Discord, on le dit.
 
 ## Listes et tâches
 
@@ -99,10 +99,6 @@ Quand la timeline est activée dans [`/config app`](/docs/configuration/#history
 Dans un salon vocal, TTM n'a pas besoin de *Créer des fils publics* ni de *Gérer les webhooks*, qui ne servent qu'à la timeline. Il lui faut *Se connecter* à la place : sans elle, TTM ne peut pas écrire dans le chat du salon vocal.
 
 Discord donne *Se connecter* à tout le monde par défaut ; si ton serveur la retire sur un salon vocal, accorde-la à TTM là, sinon `/creer-liste` te dit qu'elle manque.
-
-## Notifications
-
-Quand TTM range ses propres messages de notification, Discord ne permet de supprimer en masse que les messages des **14 derniers jours**. Les notifications plus anciennes peuvent rester dans le salon : tu peux les retirer à la main.
 
 ---
 

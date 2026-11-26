@@ -1,10 +1,10 @@
 ---
 title: "Límites conocidos"
 description: "Los topes de listas, tareas, recordatorios y más: la mayoría vienen de Discord, y cómo trabajar dentro de ellos."
-fonte: a9ff3dff4029
+fonte: abe38a403ccc
 ---
 
-Team Tasks Manager funciona por completo dentro de Discord, así que la mayoría de los límites de abajo no son una decisión de TTM. Vienen de Discord. Por ejemplo: cuánto puede durar un mensaje, cuántos menús caben en un mensaje, hasta cuánto tiempo atrás se pueden eliminar mensajes en bloque. Cuando un límite es de Discord, lo decimos.
+Team Tasks Manager funciona por completo dentro de Discord, así que la mayoría de los límites de abajo no son una decisión de TTM. Vienen de Discord. Por ejemplo: cuánto puede durar un mensaje, cuántos menús caben en un mensaje. Cuando un límite es de Discord, lo decimos.
 
 ## Listas y tareas
 
@@ -99,10 +99,6 @@ Cuando el historial está activado en [`/config app`](/docs/configuration/#histo
 En un canal de voz TTM no necesita *Crear hilos públicos* ni *Gestionar webhooks*, que solo sirven para el historial. En cambio necesita *Conectar*: sin él, TTM no puede escribir en el chat del canal de voz.
 
 Discord da *Conectar* a todos por defecto; si tu servidor lo quita en un canal de voz, concédeselo a TTM allí, o `/crear-lista` te dirá que falta.
-
-## Notificaciones
-
-Cuando TTM ordena sus propios mensajes de notificación, Discord solo permite eliminar en bloque los mensajes de los **últimos 14 días**. Las notificaciones más antiguas pueden quedarse en el canal: puedes quitarlas manualmente.
 
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: "Bekannte Grenzen"
 description: "Die Obergrenzen für Listen, Aufgaben, Erinnerungen und mehr: Die meisten kommen von Discord selbst, und so arbeitest du damit."
-fonte: a9ff3dff4029
+fonte: abe38a403ccc
 ---
 
-Team Tasks Manager arbeitet komplett innerhalb von Discord, deshalb sind die meisten Grenzen unten nicht die Entscheidung von TTM. Sie kommen von Discord selbst. Zum Beispiel: wie lang eine Nachricht sein darf, wie viele Menüs in eine Nachricht passen, wie weit zurück man Nachrichten gesammelt löschen kann. Wo eine Grenze von Discord kommt, sagen wir es dazu.
+Team Tasks Manager arbeitet komplett innerhalb von Discord, deshalb sind die meisten Grenzen unten nicht die Entscheidung von TTM. Sie kommen von Discord selbst. Zum Beispiel: wie lang eine Nachricht sein darf, wie viele Menüs in eine Nachricht passen. Wo eine Grenze von Discord kommt, sagen wir es dazu.
 
 ## Listen und Aufgaben
 
@@ -99,10 +99,6 @@ Ist der Verlauf in [`/config app`](/docs/configuration/#history-tracking) einges
 In einem Sprachkanal braucht TTM weder *Öffentliche Threads erstellen* noch *Webhooks verwalten*, die nur dem Verlauf dienen. Stattdessen braucht es *Verbinden*: Ohne diese Berechtigung kann TTM nicht im Chat des Sprachkanals schreiben.
 
 Discord gibt *Verbinden* standardmäßig allen; nimmt dein Server sie in einem Sprachkanal weg, gib sie dort TTM, sonst sagt dir `/liste-erstellen`, dass sie fehlt.
-
-## Benachrichtigungen
-
-Wenn TTM seine eigenen Benachrichtigungsnachrichten aufräumt, erlaubt Discord das gesammelte Löschen nur für Nachrichten der **letzten 14 Tage**. Ältere Benachrichtigungen können im Kanal bleiben: Du kannst sie von Hand entfernen.
 
 ---
 

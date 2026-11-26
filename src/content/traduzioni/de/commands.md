@@ -1,7 +1,7 @@
 ---
 title: "Befehlsreferenz"
 description: "Jeder Slash-Befehl an einem Ort, mit der Seite, die ihn erklärt: Das meiste von TTM steckt in Buttons, nicht in Befehlen."
-fonte: f50d9f1a0b4b
+fonte: 103a298bf4e4
 ---
 
 TTM hält Befehle auf ein Minimum: Sobald eine Liste existiert, machst du alles mit Buttons und Menüs. Um einen Befehl auszuführen, tippe `/` in das Nachrichtenfeld und wähle ihn. Du kannst auch den **App-Launcher** in der Nachrichtenleiste öffnen und unter *Apps auf diesem Server* **Team Tasks Manager** wählen.
@@ -31,7 +31,7 @@ Die Liste kommt mit ihren Aufgaben und deren Zustand, Besitzern, Tags, Erinnerun
 
 TTM lehnt eine Datei sofort ab, wenn sie keine `.txt` ist oder größer als **64 KB**. Sonst liest TTM die Datei. Passt etwas nicht, erstellt TTM nichts und listet alle Probleme in einer Nachricht auf, jedes mit seiner Zeile oder seiner Aufgabe:
 
-- **Das Format**: Die Datei ist kein UTF-8-Text oder beginnt nicht mit `#!ttm/1`. Der Titel fehlt oder ist länger als 90 Zeichen.
+- **Das Format**: Die Datei ist kein UTF-8-Text oder beginnt nicht mit `#!ttm/1`. Der Titel fehlt.
 
   Eine Zeile ist keine Aufgabe, oder eine Erinnerung ist in Monaten (`M`) oder fehlerhaft geschrieben. Ein Webhook ist mit einer Aufgabe ohne Text verknüpft, die Liste beginnt mit einer Unteraufgabe oder es gibt keine Aufgaben.
 - **Die Größe**: Die Liste ist zu lang für eine Nachricht oder hat mehr Aufgaben, als eine Liste fassen kann oder dein Tarif erlaubt.

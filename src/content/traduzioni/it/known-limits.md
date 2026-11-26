@@ -1,10 +1,10 @@
 ---
 title: Limiti noti
 description: "I tetti su liste, task, promemoria e altro: la maggior parte viene da Discord stesso e come lavorarci dentro."
-fonte: a9ff3dff4029
+fonte: abe38a403ccc
 ---
 
-Team Tasks Manager lavora interamente dentro Discord, quindi la maggior parte dei limiti qui sotto non è una scelta di TTM. Vengono da Discord stesso. Per esempio: quanto può essere lungo un messaggio, quanti menu stanno in un messaggio, fino a quanto indietro si possono eliminare i messaggi in blocco. Dove un limite è di Discord, lo diciamo.
+Team Tasks Manager lavora interamente dentro Discord, quindi la maggior parte dei limiti qui sotto non è una scelta di TTM. Vengono da Discord stesso. Per esempio: quanto può essere lungo un messaggio, quanti menu stanno in un messaggio. Dove un limite è di Discord, lo diciamo.
 
 ## Liste e task
 
@@ -99,10 +99,6 @@ Quando la cronologia è accesa in [`/config app`](/docs/configuration/#history-t
 In un canale vocale TTM non ha bisogno di *Creare thread pubblici* e *Gestisci webhook*, che servono solo alla cronologia. Gli serve invece *Connettersi*: senza, TTM non può scrivere nella chat del canale vocale.
 
 Discord dà *Connettersi* a tutti di default; se il tuo server lo toglie su un canale vocale, concedilo a TTM lì, altrimenti `/crea-lista` ti dice che manca.
-
-## Notifiche
-
-Quando TTM mette in ordine i propri messaggi di notifica, Discord permette di eliminare in blocco solo i messaggi degli **ultimi 14 giorni**. Le notifiche più vecchie possono restare nel canale: puoi rimuoverle a mano.
 
 ---
 

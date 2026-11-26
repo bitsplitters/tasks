@@ -32,7 +32,7 @@ The list comes back with its tasks and their state, owners, tags, reminders and 
 
 TTM refuses a file straight away if it isn't a `.txt` or is bigger than **64 KB**. Otherwise TTM reads the file. If something doesn't fit, TTM creates nothing and lists every problem in one message, each with its line or its task:
 
-- **The format** — the file isn't UTF-8 text, or it doesn't start with `#!ttm/1`. The title is missing or longer than 90 characters.
+- **The format** — the file isn't UTF-8 text, or it doesn't start with `#!ttm/1`. The title is missing.
 
   A line isn't a task, or a reminder is written in months (`M`) or written badly. A webhook is linked to a task with no text, the list starts with a subtask, or there are no tasks.
 - **The size** — the list is too long for one message, or it has more tasks than a list can hold or your plan allows.

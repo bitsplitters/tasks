@@ -1,7 +1,7 @@
 ---
 title: "Referencia de comandos"
 description: "Todos los comandos de barra en un solo lugar, con la página que los explica. La mayor parte de TTM vive en botones, no en comandos."
-fonte: f50d9f1a0b4b
+fonte: 103a298bf4e4
 ---
 
 TTM mantiene los comandos al mínimo: una vez creada una lista, lo haces todo con botones y menús. Para ejecutar un comando, escribe `/` en el cuadro de mensajes y elígelo. También puedes abrir el **Lanzador de aplicaciones** en la barra de mensajes y elegir **Team Tasks Manager** en *Aplicaciones en este servidor*.
@@ -31,7 +31,7 @@ La lista vuelve con sus tareas y su estado, propietarios, etiquetas, recordatori
 
 TTM rechaza un archivo de inmediato si no es un `.txt` o si pesa más de **64 KB**. Si no, TTM lee el archivo. Si algo no encaja, TTM no crea nada y enumera todos los problemas en un solo mensaje, cada uno con su línea o su tarea:
 
-- **El formato**: el archivo no es texto UTF-8, o no empieza con `#!ttm/1`. Falta el título o supera los 90 caracteres.
+- **El formato**: el archivo no es texto UTF-8, o no empieza con `#!ttm/1`. Falta el título.
 
   Una línea no es una tarea, o un recordatorio está escrito en meses (`M`) o está mal escrito. Un webhook está vinculado a una tarea sin texto, la lista empieza con una subtarea, o no hay tareas.
 - **El tamaño**: la lista es demasiado larga para un mensaje, o tiene más tareas de las que caben en una lista o de las que permite tu plan.

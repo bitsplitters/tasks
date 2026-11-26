@@ -1,7 +1,7 @@
 ---
 title: "Référence des commandes"
 description: "Toutes les commandes slash au même endroit, avec la page qui l'explique : l'essentiel de TTM vit dans les boutons, pas dans les commandes."
-fonte: f50d9f1a0b4b
+fonte: 103a298bf4e4
 ---
 
 TTM réduit les commandes au minimum : une fois qu'une liste existe, tu fais tout avec des boutons et des menus. Pour exécuter une commande, tape `/` dans la zone de message et choisis-la. Tu peux aussi ouvrir le **Lanceur d'applications** dans la barre de messages et choisir **Team Tasks Manager** sous *Applications sur ce serveur*.
@@ -31,7 +31,7 @@ La liste revient avec ses tâches et leur état, ses propriétaires, ses tags, s
 
 TTM refuse tout de suite un fichier qui n'est pas un `.txt` ou qui pèse plus de **64 Ko**. Sinon, TTM lit le fichier. Si quelque chose ne va pas, TTM ne crée rien et liste tous les problèmes dans un seul message, chacun avec sa ligne ou sa tâche :
 
-- **Le format** : le fichier n'est pas du texte UTF-8, ou il ne commence pas par `#!ttm/1`. Le titre manque ou dépasse 90 caractères.
+- **Le format** : le fichier n'est pas du texte UTF-8, ou il ne commence pas par `#!ttm/1`. Le titre manque.
 
   Une ligne n'est pas une tâche, ou un rappel est écrit en mois (`M`) ou mal écrit. Un webhook est lié à une tâche sans texte, la liste commence par une sous-tâche, ou il n'y a aucune tâche.
 - **La taille** : la liste est trop longue pour un message, ou elle a plus de tâches qu'une liste ne peut en contenir ou que ton offre n'en permet.
