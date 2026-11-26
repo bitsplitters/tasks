@@ -532,18 +532,41 @@ function conITagDelTask(stato: Stato, pos: string, tag: string[], vuoto: string)
   return fatto(conTask(stato, i, { ...task, testo }));
 }
 
+/** I tag che un task può avere: quanti il menu dei tag del canale ne tiene (TagLogic.OPTIONS_MAX_AMOUNT). */
+const TAG_MASSIMI = 25;
+
 /**
  * I tag dalla select del canale alla scelta del task (TagLogic.manageTag, col default OptionMode.DISABLED): prendono il
  * posto di quelli del task, in fondo al testo, prima i ruoli poi le persone, ognuno nell'ordine scelto
- * (TagContentEditor.mentionsFrom). Senza scelta si rifiuta.
+ * (TagContentEditor.mentionsFrom). Senza scelta è il tag di sé (spec 2026-11-26-taggarsi-con-un-clic): Sam, chi prova
+ * la demo, entra fra i tag del task, o ne esce se c'era.
  */
 export function applicaTag(stato: Stato, pos: string, persone: string[], ruoli: string[]): Esito {
   const tag = [
     ...ruoli.map((id) => menzione({ ruolo: true, id })),
     ...persone.map((id) => menzione({ ruolo: false, id })),
   ];
-  if (tag.length === 0) return rifiuto('tasklist.slct.tag.noselection.error');
+  if (tag.length === 0) return tagDiSe(stato, pos);
   return conITagDelTask(stato, pos, tag, 'tasklist.slct.tag.delete.blank.error');
+}
+
+/**
+ * Il tag di Sam col default (RegolaDelTagDiSe): assente entra in coda, col resto del testo dov'era; presente esce,
+ * solo lui. Con 25 tag e Sam assente si rifiuta col pieno. Un task fatto solo del tag di Sam resterebbe senza testo:
+ * si rifiuta come il rosso su un task di soli tag (TagLogic.ERROR_ONLY_TAGS).
+ */
+function tagDiSe(stato: Stato, pos: string): Esito {
+  const i = indice(stato, pos);
+  const task = stato.lista.tasks[i];
+  // Lo stesso pattern dei tag, ristretto a Sam e alle menzioni di persona.
+  const suo = new RegExp(`<@!?${SAM}>(?!:)`, 'g');
+  if (task.testo.search(suo) >= 0) {
+    const testo = senzaSpaziInPiu(task.testo.replace(suo, ' '));
+    if (testo === '') return rifiuto('tasklist.slct.tag.delete.blank.error');
+    return fatto(conTask(stato, i, { ...task, testo }));
+  }
+  if (tokenDeiTag(task.testo).length >= TAG_MASSIMI) return rifiuto('tasklist.slct.tag.me.full.error');
+  return fatto(conTask(stato, i, { ...task, testo: `${task.testo.trimEnd()} ${menzione({ ruolo: false, id: SAM })}` }));
 }
 
 /**

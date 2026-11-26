@@ -22,8 +22,9 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
     '{0} Task **{1}** has a reminder: without an owner it would reach no one, so the reminder is removed too.\n\n' +
     'Submit to remove the owner and its reminder, or close the window to leave everything as it is.',
   // I tag
-  'tasklist.slct.tag': 'Choose the tag, then the task',
-  'tasklist.slct.tag.noselection.error': 'Select a role or user to add to the task.',
+  'tasklist.slct.tag.me': 'Pick a task in the menu above to tag yourself, or choose the tags',
+  'tasklist.slct.tag.me.full.error':
+    'This task already has 25 tags, the most it can have. To tag yourself, someone has to be removed first.',
   'tasklist.slct.tag.delete.notpresent.error': 'There are no tags in the selected task.',
   'tasklist.slct.tag.delete.blank.error':
     'The task contains only tags: removing them would leave it without text, so they stay. No change applied.',
@@ -174,6 +175,7 @@ export const TESTI: Readonly<Record<string, string>> = Object.freeze({
   'tasklist.slct.activities.hint.owner.delete': 'Remove owner',
   'tasklist.slct.activities.hint.owner.take': 'Take or assign a task',
   'tasklist.slct.activities.hint.tag.edit': 'Edit tags',
+  'tasklist.slct.activities.hint.tag.me': 'Tag yourself or choose the tags',
   'tasklist.slct.activities.hint.tag.delete': 'Remove tags',
   'tasklist.slct.activities.hint.reminder.edit': 'Edit reminder',
   'tasklist.slct.activities.hint.reminder.delete': 'Remove reminder',

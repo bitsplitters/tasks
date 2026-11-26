@@ -134,10 +134,12 @@ export function montaCanale(scena: HTMLElement, condiviso: Condiviso): Canale {
 
   /**
    * Il menu di menzioni di Owner o Tag: Discord manda la scelta al bot quando il menu si chiude. Per l'owner il bot
-   * rifiuta persone e ruoli insieme, o più ruoli (TaskListSlctOwner): lo dice, poi il campo torna com'era.
+   * rifiuta persone e ruoli insieme, o più ruoli (TaskListSlctOwner): lo dice, poi il campo torna com'era. Il menu dei
+   * tag ha la scritta del tag di sé, perché la demo ha il default del server (TaskListBtnTag).
    */
   function montaIlMenu(tasto: 'owner' | 'tag'): void {
-    menzioni = montaMenzioni(sub, vociDelMenu(stato()), [], testo(`tasklist.slct.${tasto}`), {
+    const scritta = testo(tasto === 'tag' ? 'tasklist.slct.tag.me' : 'tasklist.slct.owner');
+    menzioni = montaMenzioni(sub, vociDelMenu(stato()), [], scritta, {
       chiusura: (scelte) => {
         const { persone, ruoli } = divisa(scelte, stato());
         const no = tasto === 'owner' ? rifiutoDelCarrello(persone, ruoli) : null;

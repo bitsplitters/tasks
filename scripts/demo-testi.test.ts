@@ -190,10 +190,12 @@ test("rispostaDellEsito: ciò che il bot risponde all'esito di un'azione, nel fu
   assert.equal(rispostaDellEsito({ tipo: 'domanda', domanda: { tipo: 'togliOwner', pos: '3' } }), null);
 });
 
-test("Owner blu: nel selettore del canale la frase del claim, nel pannello dell'Activity quella di sempre", () => {
+test("Owner e Tag blu: nel selettore del canale il claim e il tag di sé, nell'Activity le frasi di sempre", () => {
   assert.equal(frasiNelCanale().owner.blue, TESTI['tasklist.slct.activities.hint.owner.take']);
   assert.equal(frasi().owner.blue, TESTI['tasklist.slct.activities.hint.owner.edit']);
-  assert.deepEqual({ ...frasiNelCanale(), owner: frasi().owner }, frasi());
+  assert.equal(frasiNelCanale().tag.blue, TESTI['tasklist.slct.activities.hint.tag.me']);
+  assert.equal(frasi().tag.blue, TESTI['tasklist.slct.activities.hint.tag.edit']);
+  assert.deepEqual({ ...frasiNelCanale(), owner: frasi().owner, tag: frasi().tag }, frasi());
 });
 
 test('umoreDelFumetto: la mascotte è sorpresa per gli avvisi del bot e contenta per le altre risposte', () => {

@@ -52,11 +52,13 @@ export const frasi = (): Record<Tasto, Record<Colore, string>> => ({
 
 /**
  * Il selettore del canale con un pulsante acceso: come il pannello, ma Owner blu dice il claim
- * (tasklist.slct.activities.hint.owner.take), che nell'Activity non c'è.
+ * (tasklist.slct.activities.hint.owner.take) e Tag blu il tag di sé (tasklist.slct.activities.hint.tag.me), che
+ * nell'Activity non ci sono.
  */
 export const frasiNelCanale = (): Record<Tasto, Record<Colore, string>> => ({
   ...frasi(),
   owner: due('owner', 'take', 'delete'),
+  tag: due('tag', 'me', 'delete'),
 });
 
 /** Il pannello a riposo (activity.panel.choose). */

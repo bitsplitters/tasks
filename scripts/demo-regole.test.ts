@@ -333,7 +333,30 @@ test('nel canale i tag scelti prendono il posto di quelli del task: prima i ruol
   assert.equal(leo.lista.tasks[1].testo, `Lock the scrim block vs. Nova Collective ${LEO_TAG}`);
   const due = statoDi(applicaTag(leo, '2', [MIA], [COACHES]));
   assert.equal(due.lista.tasks[1].testo, `Lock the scrim block vs. Nova Collective ${COACHES_TAG} ${MIA_TAG}`);
-  assert.deepEqual(applicaTag(s0, '2', [], []), rifiutoDi('tasklist.slct.tag.noselection.error'));
+});
+
+test("nel canale il menu vuoto tagga Sam in coda, o lo toglie se c'era; pieno a 25 tag (RegolaDelTagDiSe)", () => {
+  const SAM_TAG = `<@${SAM}>`;
+  const s0 = statoIniziale();
+  const preso = statoDi(applicaTag(s0, '2', [], []));
+  assert.equal(preso.lista.tasks[1].testo, `Lock the scrim block vs. Nova Collective ${SAM_TAG}`);
+  assert.deepEqual(statoDi(applicaTag(preso, '2', [], [])), s0);
+  // In coda ai tag che il task ha, col resto del testo dov'era; togliere tocca solo Sam.
+  const leo = statoDi(applicaTag(s0, '2', [LEO], []));
+  const conSam = statoDi(applicaTag(leo, '2', [], []));
+  assert.equal(conSam.lista.tasks[1].testo, `Lock the scrim block vs. Nova Collective ${LEO_TAG} ${SAM_TAG}`);
+  assert.deepEqual(statoDi(applicaTag(conSam, '2', [], [])), leo);
+  const nelMezzo = conTesto(1, `Ask ${SAM_TAG} about the block ${LEO_TAG}`);
+  assert.equal(statoDi(applicaTag(nelMezzo, '2', [], [])).lista.tasks[1].testo, `Ask about the block ${LEO_TAG}`);
+  // Con 25 tag Sam non entra; se c'è già, esce anche da un task pieno.
+  const id = (i: number) => `11817304562039476${String(i).padStart(2, '0')}`;
+  const venticinque = Array.from({ length: 25 }, (_, i) => `<@${id(i)}>`).join(' ');
+  assert.deepEqual(applicaTag(conTesto(1, `Raid slot ${venticinque}`), '2', [], []),
+    rifiutoDi('tasklist.slct.tag.me.full.error'));
+  const pienoConSam = conTesto(1, `Raid slot ${venticinque.replace('<@1181730456203947600>', SAM_TAG)}`);
+  assert.equal(tagDelTesto(statoDi(applicaTag(pienoConSam, '2', [], [])).lista.tasks[1].testo).length, 24);
+  // Un task fatto solo del tag di Sam resterebbe senza testo.
+  assert.deepEqual(applicaTag(conTesto(1, SAM_TAG), '2', [], []), rifiutoDi('tasklist.slct.tag.delete.blank.error'));
 });
 
 test("nell'Activity i tag vanno nell'ordine scelto; gli stessi di adesso non cambiano niente (PannelloDelTask)", () => {
