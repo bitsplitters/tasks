@@ -156,8 +156,8 @@ export function coiNomi(conId: string, rubrica: Rubrica): string {
  * noi tramite funzione»): un nome che non c'è come uno più lungo di quello che combacia, `@Leo Rossi:`. Non nel
  * contenuto di un task solo, che non ha l'owner: lì `@nome:` in testa è testo come altrove. Una barra davanti a un
  * segno lo lascia testo, e resta nel testo salvato com'è scritta: `\@Leo` si salva `\@Leo`, che Discord mostra `@Leo`
- * senza menzione (scelta dell'utente del 2026-11-22: la barra è dell'utente). Fuori dalla testa, e in tutto il
- * contenuto di un task solo, un nome noto seguito dai due punti resta testo: salvato come codice sarebbe un owner
+ * senza menzione (scelta dell'utente del 2026-11-22: la barra è dell'utente). Fuori dalla testa (e in tutto il
+ * contenuto di un task solo) un nome noto seguito dai due punti resta testo: salvato come codice sarebbe un owner
  * (revisione generale, L4-2, scelta dell'utente del 2026-11-26). Le date no: le modali della demo che si scrivono,
  * quelle del contenuto, non hanno promemoria.
  *
