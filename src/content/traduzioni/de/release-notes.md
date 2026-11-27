@@ -1,10 +1,18 @@
 ---
 title: "Versionshinweise"
 description: "Was es Neues in Team Tasks Manager gibt, das Neueste zuerst."
-fonte: ce9e4842ccd2
+fonte: 627e9e340ad2
 ---
 
 Jede Änderung, die du in Discord siehst, steht hier, das Neueste zuerst. Jeder Eintrag verlinkt auf die Seite, die ihn erklärt.
+
+## 2.7.0 — Mit einem Klick dabei
+
+Released 2026-11-27
+
+- **Mit einem Klick dabei** — klicke im Kanal **Tag**, bis er blau wird, und wähle dann eine Aufgabe, ohne jemanden auszuwählen: Du kommst zu ihren Tags dazu, hinter die, die sie schon hat. Wählst du eine Aufgabe, bei der du schon dabei bist, bist du wieder draußen: nur du, die anderen bleiben. Bisher wurde das leere Menü abgelehnt. Der Kanal zeigt, was du getan hast, ohne dich zu erwähnen. Ist [Zustand nach der Auswahl beibehalten](/docs/configuration/#keep-the-state-after-a-selection) an, lädt eine Aufgabe, die du bei leerem Menü wählst, wie bisher ihre Tags ins Menü. Siehe [Tag](/docs/channel-tasks/#tag).
+- **In der Activity fügt Tag dich hinzu** — drücke **Tag** bei einer Aufgabe, bei der du nicht unter den Tags bist: Dein Name ist schon hinter den anderen hinzugefügt, **Speichern** fügt dich also hinzu. Um stattdessen jemand anderen zu taggen, tippe auf dessen Namen: Er tritt an die Stelle deines. Ändert jemand die Tags, während du schaust, fügt dich **Speichern** trotzdem zu den neuen hinzu. Siehe [Tag](/docs/activity-list/#tag).
+- **Fragen, wer dabei ist** — schreibe eine Frage als Aufgabe, etwa *Wer ist heute Abend für ein 1v1 dabei?*, und tagge dich selbst darauf. Wer dabei ist, hakt die Aufgabe ab, und die Benachrichtigung erwähnt dich. Siehe [Fragen, wer dabei ist](/docs/tips/#ask-whos-in).
 
 ## 2.6.1 — Die Anleitung in deiner Sprache
 

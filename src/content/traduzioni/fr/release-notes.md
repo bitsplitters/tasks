@@ -1,10 +1,18 @@
 ---
 title: "Notes de version"
 description: "Les nouveautés de Team Tasks Manager, de la plus récente à la plus ancienne."
-fonte: ce9e4842ccd2
+fonte: 627e9e340ad2
 ---
 
 Tous les changements que tu vois dans Discord sont listés ici, du plus récent au plus ancien. Chaque entrée renvoie vers la page qui l'explique.
+
+## 2.7.0 — T'ajouter aux tags en un clic
+
+Released 2026-11-27
+
+- **T'ajouter aux tags en un clic** — dans le salon, clique sur **Tag** jusqu'à ce qu'il soit bleu, puis choisis une tâche sans désigner personne : tu rejoins ses tags, après ceux qu'elle a déjà. Choisis une tâche où tu es déjà et tu en sors : seulement toi, les autres restent. Avant, le menu vide était refusé. Le salon montre ce que tu as fait sans te mentionner. Avec [Conserver l'état après la sélection](/docs/configuration/#keep-the-state-after-a-selection) activé, une tâche choisie avec le menu vide charge ses tags dans le menu, comme avant. Voir [Tag](/docs/channel-tasks/#tag).
+- **Dans l'Activity, Tag t'ajoute** — appuie sur **Tag** sur une tâche où tu n'es pas parmi les tags : ton nom est déjà ajouté après eux, donc **Enregistrer** t'ajoute. Pour taguer quelqu'un d'autre à la place, touche son nom : il prend la place du tien. Si quelqu'un change les tags pendant que tu regardes, **Enregistrer** t'ajoute quand même aux nouveaux. Voir [Tag](/docs/activity-list/#tag).
+- **Demander qui est dispo** — écris une question comme une tâche, par exemple *Qui est dispo pour un 1v1 ce soir ?*, et ajoute-toi à ses tags. La personne dispo coche la tâche, et la notification te mentionne. Voir [Demander qui est dispo](/docs/tips/#ask-whos-in).
 
 ## 2.6.1 — Le guide dans ta langue
 

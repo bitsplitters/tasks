@@ -9,6 +9,14 @@ releases: true
 
 Every change you can see in Discord is listed here, newest first. Each entry links to the page that explains it.
 
+## 2.7.0 — Tag yourself in one click
+
+Released 2026-11-27
+
+- **Tag yourself in one click** — in the channel, click **Tag** until it turns blue, then pick a task without choosing anyone: you join its tags, after the ones it already has. Pick a task where you are already tagged and you leave it: only you, the others stay. Before, the empty menu was refused. The channel shows what you did without mentioning you. With [Keep the state after a selection](/docs/configuration/#keep-the-state-after-a-selection) on, a task picked with the menu empty loads its tags into the menu, as before. See [Tag](/docs/channel-tasks/#tag).
+- **In the Activity, Tag adds you** — press **Tag** on a task where you aren't tagged: your name is already added after the others, so **Save** tags you. To tag someone else instead, tap their name: it takes the place of yours. If someone changes the tags while you look, **Save** still adds you to theirs. See [Tag](/docs/activity-list/#tag).
+- **Ask who's in** — write a question as a task, such as *Who's up for a 1v1 tonight?*, and tag yourself on it. Whoever is in ticks the task, and the notification of the tick mentions you. See [Ask who's in](/docs/tips/#ask-whos-in).
+
 ## 2.6.1 — The guide in your language
 
 Released 2026-11-26

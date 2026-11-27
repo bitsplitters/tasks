@@ -1,10 +1,18 @@
 ---
 title: Note di rilascio
 description: Le novità di Team Tasks Manager, dalla più recente.
-fonte: ce9e4842ccd2
+fonte: 627e9e340ad2
 ---
 
 Ogni cambiamento che vedi in Discord è elencato qui, dal più recente. Ogni voce rimanda alla pagina che lo spiega.
+
+## 2.7.0 — Taggarti con un clic
+
+Released 2026-11-27
+
+- **Taggarti con un clic** — nel canale clicca **Tag** finché diventa blu, poi scegli un task senza scegliere nessuno: il tuo tag entra fra i suoi, dopo quelli che ha già. Su un task che ha già il tuo tag la stessa scelta lo toglie: solo il tuo, gli altri restano. Prima il menu vuoto veniva rifiutato. Il canale mostra cosa hai fatto senza menzionarti. Con [Mantieni lo stato dopo la selezione](/docs/configuration/#keep-the-state-after-a-selection) acceso, un task scelto col menu vuoto carica i suoi tag nel menu, come prima. Vedi [Tag](/docs/channel-tasks/#tag).
+- **Nell'Activity Tag aggiunge te** — premi **Tag** su un task che non ha il tuo tag: il tuo nome è già aggiunto dopo gli altri, quindi **Salva** ti tagga. Per taggare invece qualcun altro, tocca il suo nome: prende il posto del tuo. Se intanto qualcuno cambia i tag, **Salva** aggiunge il tuo ai tag nuovi. Vedi [Tag](/docs/activity-list/#tag).
+- **Chiedi chi c'è** — scrivi una domanda come un task, per esempio *Chi c'è per un 1v1 stasera?*, poi aggiungi il tuo tag. Chi c'è spunta il task: la notifica della spunta ti menziona. Vedi [Chiedi chi c'è](/docs/tips/#ask-whos-in).
 
 ## 2.6.1 — La guida nella tua lingua
 

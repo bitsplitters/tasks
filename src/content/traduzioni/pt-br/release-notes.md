@@ -1,10 +1,18 @@
 ---
 title: "Notas de versão"
 description: "As novidades do Team Tasks Manager, da mais recente para a mais antiga."
-fonte: ce9e4842ccd2
+fonte: 627e9e340ad2
 ---
 
 Toda mudança que você vê no Discord está listada aqui, da mais recente para a mais antiga. Cada item leva à página que o explica.
+
+## 2.7.0 — Entre nas tags com um clique
+
+Released 2026-11-27
+
+- **Entre nas tags com um clique** — no canal, clique em **Tag** até ficar azul e depois escolha uma tarefa, sem escolher ninguém: você entra nas tags dela, depois das que ela já tem. Se escolher uma tarefa em que você já está, você sai: só você, as outras ficam. Antes, o menu vazio era recusado. O canal mostra o que você fez sem mencionar você. Com [Manter o estado após a seleção](/docs/configuration/#keep-the-state-after-a-selection) ativado, uma tarefa escolhida com o menu vazio carrega as tags dela no menu, como antes. Veja [Tag](/docs/channel-tasks/#tag).
+- **Na Activity, Tag adiciona você** — pressione **Tag** numa tarefa em que você não está entre as tags: o seu nome já está adicionado depois das outras, então **Salvar** adiciona você. Para pôr a tag de outra pessoa, toque no nome dela: ele toma o lugar do seu. Se alguém mudar as tags enquanto você olha, **Salvar** adiciona você às tags novas mesmo assim. Veja [Tag](/docs/activity-list/#tag).
+- **Pergunte quem topa** — escreva uma pergunta como uma tarefa, por exemplo *Quem topa um 1v1 hoje à noite?*, e se adicione às tags dela. Quem topar marca a tarefa, e a notificação menciona você. Veja [Pergunte quem topa](/docs/tips/#ask-whos-in).
 
 ## 2.6.1 — O guia no seu idioma
 

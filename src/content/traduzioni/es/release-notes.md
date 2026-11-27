@@ -1,10 +1,18 @@
 ---
 title: "Notas de la versión"
 description: "Las novedades de Team Tasks Manager, de la más reciente a la más antigua."
-fonte: ce9e4842ccd2
+fonte: 627e9e340ad2
 ---
 
 Aquí está cada cambio que ves en Discord, del más reciente al más antiguo. Cada entrada enlaza a la página que lo explica.
+
+## 2.7.0 — Añádete con un clic
+
+Released 2026-11-27
+
+- **Añádete con un clic** — en el canal, haz clic en **Etiqueta** hasta que se ponga azul y elige una tarea sin elegir a nadie: entras en sus etiquetas, después de las que ya tiene. Si eliges una tarea en la que ya estás, sales de ella: solo tú, las demás se quedan. Antes, el menú vacío se rechazaba. El canal muestra lo que has hecho sin mencionarte. Con [Mantener el estado tras la selección](/docs/configuration/#keep-the-state-after-a-selection) activada, una tarea elegida con el menú vacío carga sus etiquetas en el menú, como antes. Consulta [Etiqueta](/docs/channel-tasks/#tag).
+- **En la Activity, Etiqueta te añade** — pulsa **Etiqueta** en una tarea en la que no estás: tu nombre ya está añadido después de los demás, así que **Guardar** te añade. Para etiquetar a otra persona, toca su nombre: ocupa el lugar del tuyo. Si alguien cambia las etiquetas mientras miras, **Guardar** te añade igualmente a las nuevas. Consulta [Etiqueta](/docs/activity-list/#tag).
+- **Pregunta quién se apunta** — escribe una pregunta como una tarea, por ejemplo *¿Quién se apunta a un 1v1 esta noche?*, y añádete a sus etiquetas. Quien se apunte marca la tarea, y la notificación te menciona. Consulta [Pregunta quién se apunta](/docs/tips/#ask-whos-in).
 
 ## 2.6.1 — La guía en tu idioma
 
